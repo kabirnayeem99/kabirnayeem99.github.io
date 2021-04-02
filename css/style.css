@@ -41,7 +41,8 @@ Table of Content:
 /*font Variables*/
 /*Color Variables*/
 /*=================== fonts ====================*/
-@import url("https://fonts.googleapis.com/css?family=Heebo:300,400,700,900|Roboto:300,400,500,700");
+/* @import url("https://fonts.googleapis.com/css?family=JetBrains Mono:300,400,700,900|JetBrains Mono:300,400,500,700"); */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .list {
@@ -62,12 +63,12 @@ a {
 body {
   line-height: 26px;
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-weight: normal;
   color: #777777; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Heebo", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-weight: bold; }
 
 button:focus {
@@ -113,14 +114,14 @@ button:focus {
   max-width: 670px;
   margin: 0px auto 75px; }
   .main_title h2 {
-    font-family: "Heebo", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-size: 36px;
     color: #222222;
     margin-bottom: 15px;
     text-transform: uppercase; }
   .main_title p {
     font-size: 16px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: normal;
     line-height: 26px;
     color: #777777;
@@ -145,7 +146,7 @@ button:focus {
     .header_area .navbar .nav .nav-item {
       margin-right: 45px; }
       .header_area .navbar .nav .nav-item .nav-link {
-        font: 500 12px/120px "Roboto", sans-serif;
+        font: 500 12px/120px "JetBrains Mono", sans-serif;
         text-transform: uppercase;
         color: #fff;
         padding: 0px;
@@ -184,7 +185,7 @@ button:focus {
             height: 0;
             border-style: solid;
             border-width: 10px 10px 0 10px;
-            border-color: #eeeeee transparent transparent transparent;
+            border-color: #ffffff transparent transparent transparent;
             position: absolute;
             right: 24px;
             top: 45px;
@@ -208,7 +209,7 @@ button:focus {
             .header_area .navbar .nav .nav-item.submenu ul .nav-item:last-child {
               border-bottom: none; }
             .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
-              background: #766dff;
+              background: #202020;
               color: #fff; }
         @media (min-width: 992px) {
           .header_area .navbar .nav .nav-item.submenu:hover ul {
@@ -255,27 +256,27 @@ button:focus {
     .top_menu .header_social li:last-child {
       margin-right: 0px; }
     .top_menu .header_social li:hover a {
-      color: #766dff; }
+      color: #202020; }
   .top_menu .dn_btn {
     line-height: 42px;
     display: inline-block;
     font-size: 12px;
     margin-right: 30px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: normal;
     color: #777777;
     transition: all 300ms linear 0s; }
     .top_menu .dn_btn:hover {
-      color: #766dff; }
+      color: #202020; }
     .top_menu .dn_btn:last-child {
       margin-right: 0px; }
   .top_menu .lan_pack {
     height: 30px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #ffffff;
     border-radius: 3px;
     line-height: 28px;
     font-size: 12px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: 500;
     padding-left: 19px;
     padding-right: 36px;
@@ -301,9 +302,9 @@ button:focus {
 .home_banner_area {
   position: relative;
   z-index: 1;
-  background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-  background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-  background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
+  background-image: -moz-linear-gradient(0deg,#303030 0%, #000000 100%);
+  background-image: -webkit-linear-gradient(0deg, #303030 0%, #000000 100%);
+  background-image: -ms-linear-gradient(0deg, #303030 0%, #000000 100%);
   margin-bottom: 200px; }
   .home_banner_area .box_1620 {
     min-height: 700px;
@@ -358,7 +359,7 @@ button:focus {
       .blog_banner .banner_inner .blog_b_text h2 {
         font-size: 60px;
         font-weight: bold;
-        font-family: "Heebo", sans-serif;
+        font-family: "JetBrains Mono", sans-serif;
         line-height: 66px;
         margin-bottom: 15px;
         text-transform: uppercase; }
@@ -378,9 +379,9 @@ button:focus {
   position: relative;
   z-index: 1;
   min-height: 350px;
-  background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-  background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-  background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
+  background-image: -moz-linear-gradient(0deg, #303030 0%, #000000 100%);
+  background-image: -webkit-linear-gradient(0deg, #303030 0%, #000000 100%);
+  background-image: -ms-linear-gradient(0deg, #303030 0%, #000000 100%);
   margin-bottom: 120px; }
   .banner_area .box_1620 {
     background: #fff;
@@ -398,13 +399,13 @@ button:focus {
     .banner_area .banner_inner .banner_content h2 {
       color: #222222;
       font-size: 48px;
-      font-family: "Heebo", sans-serif;
+      font-family: "JetBrains Mono", sans-serif;
       margin-bottom: 0px;
       font-weight: bold; }
     .banner_area .banner_inner .banner_content .page_link a {
       font-size: 14px;
       color: #222222;
-      font-family: "Roboto", sans-serif;
+      font-family: "JetBrains Mono", sans-serif;
       margin-right: 32px;
       position: relative; }
       .banner_area .banner_inner .banner_content .page_link a:before {
@@ -419,7 +420,7 @@ button:focus {
         .banner_area .banner_inner .banner_content .page_link a:last-child:before {
           display: none; }
       .banner_area .banner_inner .banner_content .page_link a:hover {
-        color: #766dff; }
+        color: #202020; }
 
 /* End Home Banner Area css
 ============================================================================================ */
@@ -434,7 +435,7 @@ button:focus {
   margin-bottom: 30px; }
   .l_blog_item .date {
     font-size: 13px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: normal;
     color: #777777;
     margin-top: 20px;
@@ -444,14 +445,14 @@ button:focus {
     font-size: 18px;
     line-height: 24px;
     color: #222222;
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #ffffff;
     padding-bottom: 20px;
     margin-bottom: 20px;
     transition: all 300ms linear 0s; }
   .l_blog_item p {
     margin-bottom: 0px; }
   .l_blog_item:hover h4 {
-    color: #766dff; }
+    color: #202020; }
 
 /* End Latest Blog Area css
 ============================================================================================ */
@@ -481,13 +482,13 @@ button:focus {
   font-size: 12px;
   font-weight: 500;
   line-height: 20px;
-  border: 1px solid #eeeeee;
+  border: 1px solid #ffffff;
   display: inline-block;
   padding: 1px 18px;
   text-align: center;
   color: #222222; }
   .tags .tag_btn:before {
-    background: #766dff; }
+    background: #202020; }
   .tags .tag_btn + .tag_btn {
     margin-left: 2px; }
 
@@ -532,9 +533,9 @@ button:focus {
       width: 100%;
       height: 1px; }
   .categories_post:hover .categories_details {
-    background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-    background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-    background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
+    background-image: -moz-linear-gradient(0deg, #303030 0%, #000000 100%);
+    background-image: -webkit-linear-gradient(0deg, #303030 0%, #000000 100%);
+    background-image: -ms-linear-gradient(0deg, #303030 0%, #000000 100%);
     opacity: 0.851; }
 
 /*============ blog_left_sidebar css ==============*/
@@ -546,14 +547,14 @@ button:focus {
   .blog_info .post_tag {
     padding-bottom: 20px; }
     .blog_info .post_tag a {
-      font: 300 14px/21px "Roboto", sans-serif;
+      font: 300 14px/21px "JetBrains Mono", sans-serif;
       color: #222222; }
       .blog_info .post_tag a:hover {
         color: #777777; }
       .blog_info .post_tag a.active {
-        color: #766dff; }
+        color: #202020; }
   .blog_info .blog_meta li a {
-    font: 300 14px/20px "Roboto", sans-serif;
+    font: 300 14px/20px "JetBrains Mono", sans-serif;
     color: #777777;
     vertical-align: middle;
     padding-bottom: 12px;
@@ -566,7 +567,7 @@ button:focus {
       line-height: 20px;
       vertical-align: middle; }
     .blog_info .blog_meta li a:hover {
-      color: #766dff; }
+      color: #202020; }
 
 .blog_post img {
   max-width: 100%; }
@@ -580,7 +581,7 @@ button:focus {
     font-weight: 600;
     transition: all 0.3s linear; }
     .blog_details h2:hover {
-      color: #766dff; }
+      color: #202020; }
   .blog_details p {
     margin-bottom: 26px; }
 
@@ -594,13 +595,13 @@ button:focus {
   background: #fff; }
 
 .blog_right_sidebar {
-  border: 1px solid #eeeeee;
+  border: 1px solid #ffffff;
   background: #fafaff;
   padding: 30px; }
   .blog_right_sidebar .widget_title {
     font-size: 18px;
     line-height: 25px;
-    background: #766dff;
+    background: #202020;
     text-align: center;
     color: #fff;
     padding: 8px 0px;
@@ -615,7 +616,7 @@ button:focus {
     padding-left: 20px;
     border-radius: 45px;
     z-index: 0;
-    background: #766dff; }
+    background: #202020; }
     .blog_right_sidebar .search_widget .input-group .form-control.placeholder {
       color: #fff; }
     .blog_right_sidebar .search_widget .input-group .form-control:-moz-placeholder {
@@ -657,7 +658,7 @@ button:focus {
         .blog_right_sidebar .author_widget .social_icon a + a {
           margin-left: 20px; }
         .blog_right_sidebar .author_widget .social_icon a:hover {
-          color: #766dff; }
+          color: #202020; }
   .blog_right_sidebar .popular_post_widget .post_item .media-body {
     justify-content: center;
     align-self: center;
@@ -669,7 +670,7 @@ button:focus {
       margin-bottom: 4px;
       transition: all 0.3s linear; }
       .blog_right_sidebar .popular_post_widget .post_item .media-body h3:hover {
-        color: #766dff; }
+        color: #202020; }
     .blog_right_sidebar .popular_post_widget .post_item .media-body p {
       font-size: 12px;
       line-height: 21px;
@@ -689,9 +690,9 @@ button:focus {
     .blog_right_sidebar .post_category_widget .cat-list li + li {
       padding-top: 15px; }
     .blog_right_sidebar .post_category_widget .cat-list li:hover {
-      border-color: #766dff; }
+      border-color: #202020; }
       .blog_right_sidebar .post_category_widget .cat-list li:hover a {
-        color: #766dff; }
+        color: #202020; }
   .blog_right_sidebar .newsletter_widget {
     text-align: center; }
     .blog_right_sidebar .newsletter_widget .form-group {
@@ -705,13 +706,13 @@ button:focus {
       font-size: 12px;
       line-height: 36px;
       padding: 0px 0px 0px 15px;
-      border: 1px solid #eeeeee;
+      border: 1px solid #ffffff;
       border-right: 0px; }
     .blog_right_sidebar .newsletter_widget .form-control {
       font-size: 12px;
       line-height: 24px;
       color: #cccccc;
-      border: 1px solid #eeeeee;
+      border: 1px solid #ffffff;
       border-left: 0px;
       border-radius: 0px; }
       .blog_right_sidebar .newsletter_widget .form-control.placeholder {
@@ -726,7 +727,7 @@ button:focus {
         outline: none;
         box-shadow: none; }
     .blog_right_sidebar .newsletter_widget .bbtns {
-      background: #766dff;
+      background: #202020;
       color: #fff;
       font-size: 12px;
       line-height: 38px;
@@ -748,14 +749,14 @@ button:focus {
       color: #222222;
       font-size: 12px; }
       .blog_right_sidebar .tag_cloud_widget ul li a:hover {
-        background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-        background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-        background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
+        background-image: -moz-linear-gradient(0deg, #303030 0%, #000000 100%);
+        background-image: -webkit-linear-gradient(0deg, #303030 0%, #000000 100%);
+        background-image: -ms-linear-gradient(0deg, #303030 0%, #000000 100%);
         color: #fff; }
   .blog_right_sidebar .br {
     width: 100%;
     height: 1px;
-    background: #eeeeee;
+    background: #ffffff;
     margin: 30px 0px; }
 
 .blog-pagination {
@@ -771,7 +772,7 @@ button:focus {
   font-weight: 400; }
 
 .blog-pagination .page-item.active .page-link {
-  background-color: #766dff;
+  background-color: #202020;
   border-color: transparent;
   color: #fff; }
 
@@ -794,7 +795,7 @@ button:focus {
 .blog-pagination .page-link:hover {
   color: #fff;
   text-decoration: none;
-  background-color: #766dff;
+  background-color: #202020;
   border-color: #eee; }
 
 /*============ Start Blog Single Styles  =============*/
@@ -928,7 +929,7 @@ button:focus {
     font-weight: 600;
     transition: all 300ms linear 0s; }
     .comments-area .btn-reply:hover {
-      background-color: #766dff;
+      background-color: #202020;
       color: #fff; }
 
 .comment-form {
@@ -1020,44 +1021,44 @@ button:focus {
 .reservation_form .form-group input {
   height: 40px;
   border-radius: 0px;
-  border: 1px solid #eeeeee;
+  border: 1px solid #ffffff;
   outline: none;
   box-shadow: none;
   padding: 0px 15px;
   font-size: 13px;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-weight: 300;
   color: #999999; }
   .reservation_form .form-group input.placeholder {
     font-size: 13px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: 300;
     color: #999999; }
   .reservation_form .form-group input:-moz-placeholder {
     font-size: 13px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: 300;
     color: #999999; }
   .reservation_form .form-group input::-moz-placeholder {
     font-size: 13px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: 300;
     color: #999999; }
   .reservation_form .form-group input::-webkit-input-placeholder {
     font-size: 13px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: 300;
     color: #999999; }
 .reservation_form .form-group .res_select {
   height: 40px;
-  border: 1px solid #eeeeee;
+  border: 1px solid #ffffff;
   border-radius: 0px;
   width: 100%;
   padding: 0px 15px;
   line-height: 36px; }
   .reservation_form .form-group .res_select .current {
     font-size: 13px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: 300;
     color: #999999; }
   .reservation_form .form-group .res_select:after {
@@ -1088,12 +1089,12 @@ button:focus {
     top: 0;
     font-size: 20px;
     line-height: 24px;
-    color: #766dff;
+    color: #202020;
     font-weight: 600; }
   .contact_info .info_item h6 {
     font-size: 16px;
     line-height: 24px;
-    color: "Roboto", sans-serif;
+    color: "JetBrains Mono", sans-serif;
     font-weight: bold;
     margin-bottom: 0px;
     color: #222222; }
@@ -1110,8 +1111,8 @@ button:focus {
     font-size: 13px;
     line-height: 26px;
     color: #999;
-    border: 1px solid #eeeeee;
-    font-family: "Roboto", sans-serif;
+    border: 1px solid #ffffff;
+    font-family: "JetBrains Mono", sans-serif;
     border-radius: 0px;
     padding-left: 20px; }
     .contact_form .form-group .form-control:focus {
@@ -1160,9 +1161,9 @@ button:focus {
     .modal-message .modal-dialog .modal-content .modal-header h2 {
       display: block;
       text-align: center;
-      color: #766dff;
+      color: #202020;
       padding-bottom: 10px;
-      font-family: "Roboto", sans-serif; }
+      font-family: "JetBrains Mono", sans-serif; }
     .modal-message .modal-dialog .modal-content .modal-header p {
       display: block; }
 
@@ -1185,20 +1186,20 @@ button:focus {
     line-height: 26px; }
     .sample-text-area p b {
       font-weight: bold;
-      color: #766dff; }
+      color: #202020; }
     .sample-text-area p i {
-      color: #766dff;
+      color: #202020;
       font-style: italic; }
     .sample-text-area p sup {
-      color: #766dff;
+      color: #202020;
       font-style: italic; }
     .sample-text-area p sub {
-      color: #766dff;
+      color: #202020;
       font-style: italic; }
     .sample-text-area p del {
-      color: #766dff; }
+      color: #202020; }
     .sample-text-area p u {
-      color: #766dff; }
+      color: #202020; }
 
 /*============== End Elements Area css ================*/
 /*==============Elements Button Area css ================*/
@@ -1294,10 +1295,10 @@ button:focus {
 
 .link-border {
   background: transparent;
-  border: 1px solid #766dff;
-  color: #766dff; }
+  border: 1px solid #202020;
+  color: #202020; }
   .link-border:before {
-    background: #766dff; }
+    background: #202020; }
 
 .radius {
   border-radius: 3px; }
@@ -1408,21 +1409,27 @@ b, sup, sub, u, del {
   color: #f8b600; }
 
 h1 {
+  font-family: 'JetBrains Mono';
   font-size: 36px; }
 
 h2 {
+  font-family: 'JetBrains Mono';
   font-size: 30px; }
 
 h3 {
+  font-family: 'JetBrains Mono';
   font-size: 24px; }
 
 h4 {
+  font-family: 'JetBrains Mono';
   font-size: 18px; }
 
 h5 {
+  font-family: 'JetBrains Mono';
   font-size: 16px; }
 
 h6 {
+  font-family: 'JetBrains Mono';
   font-size: 14px; }
 
 .typography h1, .typography h2, .typography h3, .typography h4, .typography h5, .typography h6 {
@@ -2367,11 +2374,11 @@ h6 {
 ============================================================================================ */
 .main_btn {
   display: inline-block;
-  background-image: linear-gradient(to right, #766dff 0%, #86e8ff 48%, #766dff 100%);
+  background-image: linear-gradient(to right, #303030 0%, #000 48%, #696969 100%);
   background-size: 200% auto;
   padding: 0px 40px;
   color: #fff;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-size: 13px;
   font-weight: 500;
   line-height: 48px;
@@ -2391,7 +2398,7 @@ h6 {
   background: #f9f9ff;
   padding: 0px 45px;
   color: #222222;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-size: 13px;
   font-weight: 500;
   line-height: 48px;
@@ -2399,22 +2406,22 @@ h6 {
   outline: none !important;
   box-shadow: none !important;
   text-align: center;
-  border: 1px solid #eeeeee;
+  border: 1px solid #ffffff;
   cursor: pointer;
   transition: all 300ms linear 0s; }
   .main_btn2:hover {
-    background: #766dff;
+    background: #202020;
     color: #fff;
-    border-color: #766dff;
+    border-color: #202020;
     box-shadow: 0px 10px 20px 0px rgba(250, 51, 63, 0.25); }
 
 .submit_btn {
   width: auto;
   display: inline-block;
-  background: #766dff;
+  background: #202020;
   padding: 0px 50px;
   color: #fff;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-size: 13px;
   font-weight: 500;
   line-height: 50px;
@@ -2422,19 +2429,19 @@ h6 {
   outline: none !important;
   box-shadow: none !important;
   text-align: center;
-  border: 1px solid #766dff;
+  border: 1px solid #202020;
   cursor: pointer;
   transition: all 300ms linear 0s; }
   .submit_btn:hover {
     background: transparent;
-    color: #766dff; }
+    color: #202020; }
 
 .white_bg_btn {
   display: inline-block;
   background: #f9f9ff;
   padding: 0px 35px;
   color: #222222;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-size: 13px;
   font-weight: 500;
   line-height: 34px;
@@ -2445,9 +2452,9 @@ h6 {
   cursor: pointer;
   transition: all 300ms linear 0s; }
   .white_bg_btn:hover {
-    background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-    background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-    background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
+    background-image: -moz-linear-gradient(0deg, #303030 0%, #000000 100%);
+    background-image: -webkit-linear-gradient(0deg, #303030 0%, #000000 100%);
+    background-image: -ms-linear-gradient(0deg, #303030 0%, #000000 100%);
     color: #fff;
     border: none; }
 
@@ -2455,15 +2462,15 @@ h6 {
   padding: 0px 44px;
   line-height: 50px;
   background: #222222;
-  color: #766dff;
+  color: #202020;
   display: inline-block;
   border-radius: 5px;
   font-size: 13px;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-weight: 500;
   transition: all 300ms linear 0s; }
   .black_btn:hover {
-    background: #766dff;
+    background: #202020;
     color: #222222; }
 
 /* End Main Button Area css
@@ -2473,7 +2480,7 @@ h6 {
 /* Welcome Area css
 ============================================================================================ */
 .welcome_inner .welcome_img {
-  background: #eeeeee;
+  background: #ffffff;
   margin-left: 40px;
   padding-left: 30px;
   padding-right: 30px;
@@ -2483,34 +2490,34 @@ h6 {
 
 .welcome_text h4 {
   color: #222222;
-  font-family: "Heebo", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-size: 36px;
   margin-bottom: 18px;
   text-transform: uppercase; }
 .welcome_text p {
   max-width: 495px;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   margin-bottom: 40px; }
 
 .wel_item {
-  border: 1px solid #eeeeee;
+  border: 1px solid #ffffff;
   padding: 20px 20px;
   border-radius: 5px; }
   .wel_item i {
     font-size: 24px;
-    background: linear-gradient(to right, #766dff 0%, #86e7ff 70%);
+    background: linear-gradient(to right, #202020 0%, #86e7ff 70%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; }
   .wel_item h4 {
     font-size: 24px;
-    font-family: "Heebo", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: bold;
     color: #222222;
     margin-bottom: 5px;
     margin-top: 10px; }
   .wel_item p {
     font-size: 16px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     color: #777777;
     margin-bottom: 0px; }
 
@@ -2523,12 +2530,12 @@ h6 {
     .tools_expert .skill_main .skill_item h4 {
       text-align: none;
       font-size: 14px;
-      font-family: "Roboto", sans-serif;
+      font-family: "JetBrains Mono", sans-serif;
       font-weight: 500;
       color: #222222;
       margin-bottom: 15px; }
     .tools_expert .skill_main .skill_item .progress_br {
-      border: 1px solid #eeeeee;
+      border: 1px solid #ffffff;
       padding: 5px;
       border-radius: 10px; }
     .tools_expert .skill_main .skill_item .progress {
@@ -2542,18 +2549,18 @@ h6 {
         border-radius: 5px;
         vertical-align: middle;
         align-self: center;
-        background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-        background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-        background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%); }
+        background-image: -moz-linear-gradient(0deg, #303030 0%, #000000 100%);
+        background-image: -webkit-linear-gradient(0deg, #303030 0%, #000000 100%);
+        background-image: -ms-linear-gradient(0deg, #303030 0%, #000000 100%); }
 
 /* End Welcome Area css
 ============================================================================================ */
 /* My Tabs Area css
 ============================================================================================ */
 .mytabs_area {
-  background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-  background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-  background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%); }
+  background-image: -moz-linear-gradient(0deg, #303030 0%, #000000 100%);
+  background-image: -webkit-linear-gradient(0deg, #303030 0%, #000000 100%);
+  background-image: -ms-linear-gradient(0deg, #303030 0%, #000000 100%); }
 
 .tabs_inner .nav.nav-tabs {
   display: block;
@@ -2571,7 +2578,7 @@ h6 {
       font-size: 13px;
       font-weight: 500;
       color: #fff;
-      font-family: "Roboto", sans-serif;
+      font-family: "JetBrains Mono", sans-serif;
       border: 1px solid #9ab5f5;
       background: rgba(255, 255, 255, 0.1); }
       .tabs_inner .nav.nav-tabs li a.active {
@@ -2671,7 +2678,7 @@ h6 {
   .feature_item h4 {
     color: #222222;
     font-size: 21px;
-    font-family: "Heebo", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     font-weight: bold;
     margin-bottom: 20px;
     text-transform: uppercase; }
@@ -2698,13 +2705,13 @@ h6 {
   align-self: center; }
 
 .profile_inner {
-  border-bottom: 1px solid #eeeeee; }
+  border-bottom: 1px solid #ffffff; }
   .profile_inner .personal_text {
     padding-left: 95px; }
 
 .personal_text h6 {
   font-size: 14px;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   text-transform: uppercase;
   letter-spacing: 2.1px;
   font-weight: normal;
@@ -2713,7 +2720,7 @@ h6 {
 .personal_text h4 {
   font-size: 16px;
   font-weight: 500;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   text-transform: uppercase;
   margin-bottom: 20px;
   color: #222222; }
@@ -2723,7 +2730,7 @@ h6 {
   margin-bottom: 15px;
   color: #222222; }
 .personal_text p {
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   max-width: 540px;
   color: #777777;
   margin-bottom: 40px; }
@@ -2740,7 +2747,7 @@ h6 {
       top: 50%;
       transform: translateY(-50%);
       font-size: 20px;
-      color: #766dff; }
+      color: #202020; }
   .personal_text .basic_info li:last-child {
     margin-bottom: 0px; }
 .personal_text .personal_social {
@@ -2760,9 +2767,9 @@ h6 {
       color: #fff;
       font-size: 16px; }
     .personal_text .personal_social li:hover a {
-      background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-      background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-      background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%); }
+      background-image: -moz-linear-gradient(0deg, #303030 0%, #000000 100%);
+      background-image: -webkit-linear-gradient(0deg, #303030 0%, #000000 100%);
+      background-image: -ms-linear-gradient(0deg, #303030 0%, #000000 100%); }
 
 /* End Personal Profile Area css
 ============================================================================================ */
@@ -2781,13 +2788,13 @@ h6 {
         margin-right: 0px; }
       .isotope_fillter .gallery_filter li a {
         font-size: 12px;
-        font-family: "Roboto", sans-serif;
+        font-family: "JetBrains Mono", sans-serif;
         font-weight: 500;
         color: #222222;
         transition: all 300ms linear 0s;
         text-transform: uppercase; }
       .isotope_fillter .gallery_filter li:hover a, .isotope_fillter .gallery_filter li.active a {
-        color: #766dff; }
+        color: #202020; }
 
 .gallery_f_inner {
   margin-bottom: -45px; }
@@ -2806,9 +2813,9 @@ h6 {
       height: 100%;
       left: 0px;
       top: 0px;
-      background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-      background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-      background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
+      background-image: -moz-linear-gradient(0deg, #303030 0%, #000000 100%);
+      background-image: -webkit-linear-gradient(0deg, #303030 0%, #000000 100%);
+      background-image: -ms-linear-gradient(0deg, #303030 0%, #000000 100%);
       position: absolute;
       opacity: 0;
       transition: all 300ms ease; }
@@ -2834,7 +2841,7 @@ h6 {
   .h_gallery_item:hover .g_img_item .light {
     opacity: 1; }
   .h_gallery_item:hover .g_item_text h4:hover {
-    color: #766dff; }
+    color: #202020; }
 
 .more_btn {
   text-align: center;
@@ -2871,14 +2878,14 @@ h6 {
 .test_title h2 {
   color: #222222;
   font-size: 36px;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-weight: bold;
   margin-bottom: 12px; }
 .test_title p {
   margin-bottom: 0px; }
 
 .testi_item {
-  border: 1px solid #eeeeee;
+  border: 1px solid #ffffff;
   border-radius: 10px;
   background: #fff;
   padding: 40px 28px; }
@@ -2906,17 +2913,17 @@ h6 {
     color: #fff;
     font-size: 18px;
     font-weight: bold;
-    font-family: "Heebo", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     margin-bottom: 0px; }
 
 .ab_widget p {
   font-size: 14px;
   line-height: 24px;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   color: #777777;
   margin-bottom: 30px; }
   .ab_widget p a {
-    color: #766dff; }
+    color: #202020; }
   .ab_widget p + p {
     margin-bottom: 0px; }
 
@@ -2925,7 +2932,7 @@ h6 {
   .news_widget p {
     font-size: 14px;
     line-height: 24px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     color: #777777;
     margin-bottom: 15px; }
   .news_widget .input-group input {
@@ -2937,35 +2944,35 @@ h6 {
     padding: 0px 15px;
     border: 1px solid #1e233b;
     font-size: 14px;
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", sans-serif;
     color: #cccccc;
     outline: none;
     box-shadow: none; }
     .news_widget .input-group input.placeholder {
       font-size: 14px;
-      font-family: "Roboto", sans-serif;
+      font-family: "JetBrains Mono", sans-serif;
       font-weight: normal;
       color: #cccccc; }
     .news_widget .input-group input:-moz-placeholder {
       font-size: 14px;
-      font-family: "Roboto", sans-serif;
+      font-family: "JetBrains Mono", sans-serif;
       font-weight: normal;
       color: #cccccc; }
     .news_widget .input-group input::-moz-placeholder {
       font-size: 14px;
-      font-family: "Roboto", sans-serif;
+      font-family: "JetBrains Mono", sans-serif;
       font-weight: normal;
       color: #cccccc; }
     .news_widget .input-group input::-webkit-input-placeholder {
       font-size: 14px;
-      font-family: "Roboto", sans-serif;
+      font-family: "JetBrains Mono", sans-serif;
       font-weight: normal;
       color: #cccccc; }
   .news_widget .input-group .sub-btn {
     border-radius: 0px;
-    background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-    background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-    background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
+    background-image: -moz-linear-gradient(0deg, #127222 0%, #16ebc7 100%);
+    background-image: -webkit-linear-gradient(0deg, #127222 0%, #16ebc7 100%);
+    background-image: -ms-linear-gradient(0deg, #127222 0%, #16ebc7  100%);
     outline: none !important;
     box-shadow: none !important;
     padding: 0px;
@@ -2977,7 +2984,7 @@ h6 {
 .social_widget p {
   font-size: 14px;
   line-height: 24px;
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   color: #777777;
   margin-bottom: 10px; }
 .social_widget .list li {
@@ -2990,13 +2997,13 @@ h6 {
   .social_widget .list li:last-child {
     margin-right: 0px; }
   .social_widget .list li:hover a {
-    color: #766dff; }
+    color: #202020; }
 
 .copy_right_text {
   text-align: center;
   margin-top: 60px; }
   .copy_right_text p a {
-    color: #766dff; }
+    color: #202020; }
 
 /* End Footer Area css
 ============================================================================================ */
