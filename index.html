@@ -1,662 +1,556 @@
-<!doctype html>
-<html lang="en">
+<html>
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="img/personal -2.jpg" type="image/png">
-	<title>Kabir's Portfolio</title>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="vendors/linericon/style.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-	<link rel="stylesheet" href="vendors/lightbox/simpleLightbox.css">
-	<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
-	<link rel="stylesheet" href="vendors/animate-css/animate.css">
-	<link rel="stylesheet" href="vendors/popup/magnific-popup.css">
-	<link rel="stylesheet" href="vendors/flaticon/flaticon.css">
-	<!-- <link rel="stylesheet" href="css/codestatsembedded.min.css"> -->
-	<!-- main css -->
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/responsive.css">
+	<title>Ariel Cortel's Portfolio</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Exo|Pangolin|Play" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+	body,
+html {
+  width: 100%;
+  heigt: 100%;
+}
+
+body {
+  font-family: "Exo", "Lucida Grande", sans-serif;
+  font-weight: 700;
+}
+
+.navdesign {
+  font-size: 18px;
+}
+
+.navdesign .navbar-brand {
+  font-size: 18px;
+  color: #FFF;
+}
+
+.navdesign .navbar-brand:hover,
+.navdesign .navbar-brand:focus {
+  background: rgba(255, 255, 255);
+  color: #0FF;
+}
+
+.navdesign ul.navbar-nav li a {
+  color: #FFF;
+}
+
+.navdesign ul.navbar-nav li a:hover,
+.navdesign ul.navbar-nav li a:focus {
+  background: rgba(255, 255, 255);
+  color: #0FF;
+}
+
+.homedesign {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  background: url("http://www.meh.ro/wp-content/uploads/2013/05/meh.ro11247.jpg") no-repeat;
+  background-size: cover;
+  height: 900px;
+}
+
+.hometext {
+  position: relative;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+
+.hometext > h1 {
+  margin-top: -50px;
+  font-size: 120px;
+  color: #000;
+  text-shadow: 7px 7px 10px rgba(0,0,0,1.5);
+  letter-spacing: .13em;
+}
+
+.hometext > h2 {
+  color: rgba(0, 0, 0, 2.5);
+  font-size: 60px;
+  font-family: "Courier New", Courier, monospace;
+  padding-bottom: 3%;
+  font-weight: bold;
+}
+
+@media(max-width:767px) {
+  .hometext {
+    padding-top: 40%;
+    padding-bottom: 15%;
+  }
+  .hometext > h1 {
+    font-size: 50px;
+  }
+  .hometext > h2 {
+    font-size: 25px;
+  }
+  ul.intro-social-buttons > li {
+    display: block;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+  ul.intro-social-buttons > li:last-child {
+    margin-bottom: 0;
+  }
+  .imgdesign {
+    display: none;
+  }
+}
+
+.btn{
+  color: #FFF;
+  border: 3px outset rgba(255,255,255,2.5) !important;
+  background: #000;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
+  letter-spacing: 3px;
+  transition: .5s;  
+}
+.btn:hover{
+  transform:scale(1.1) !important;
+  color: #0FF !important;
+  background: rgba(255,255,255,.8);
+  border: 3px outset rgba(0,0,0,1.5);
+}
+
+.aboutdesign{
+  padding-top: 50px 0;  
+  background-color: #000;
+  background-size: cover;
+  height: 900px;
+}
+
+.container .link{
+  color: rgba(0,195,195,1.5);
+}
+
+h3.section-heading{
+  margin-top:200px;
+  font-size: 3em;
+  color: #FFF;
+  letter-spacing: .12em;
+  font-family: Pangolin, sans serif;
+}
+
+.aboutdesign p {
+  font-size: 18px;
+  color: #FFF;
+  line-height: 1.5em;
+  letter-spacing: .12em
+}
+
+.imgdesign {
+  margin-top: 200px;
+  margin-left: 180px;
+  border: 5px solid rgb(255,255,255);
+}
+
+section{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#section-2{
+  color: rgba(0,0,0,1.5);
+  font-size: 32px;
+  font-weight: bold;
+  text-shadow: 3px 3px 3px rgba(255,255,255,2.5);
+  padding-bottom: 5%;
+  padding-top: 2%;
+  font-family: Play, sans serif;
+}
+
+#section-1{
+  margin-top: 100px;
+  color: rgba(0,0,0,1.5);
+  font-size: 5em;
+  text-shadow: 2px 2px 2px rgba(0,0,0,2.5);
+  font-family: Pangolin, sans serif;
+  letter-spacing: .1em
+}
+
+#portfolio .portfolio-item {
+  margin: 0 0 15px;
+  right: 0;
+  border: 1px outset rgba(0,0,0,2.5);
+  padding: 0 20px;
+}
+
+#portfolio .portfolio-item:hover{
+  transition: 0.8s;
+  box-shadow: 5px 10px 5px rgba (0,195,195,1,5);
+}
+
+#portfolio .portfolio-item .portfolio-link {
+  display: block;
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+#portfolio .portfolio-item .portfolio-link .portfolio-hover {
+  background: rgba(0, 0, 0, .7);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all ease .5s;
+  -webkit-transition: all ease .5s;
+  -moz-transition: all ease .5s,
+}
+
+#portfolio .portfolio-item .portfolio-link .portfolio-hover:hover {
+  opacity: .5;
+}
+#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  font-size: 20px;
+  text-align: center;
+  top: 50%;
+  margin-top: -12px;
+  color: #fff;
+}
+
+#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
+  margin-top: -12px;
+}
+
+#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
+#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h4 {
+  margin: 0;
+}
+
+#portfolio .portfolio-item .portfolio-caption {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: rgba(0,0,0, 0.8);
+  text-align: center;
+  padding: 25px;
+}
+
+#portfolio .portfolio-item .portfolio-caption h4 {
+  color: #fff;
+  text-transform: none;
+  margin: 0;
+}
+
+#portfolio .portfolio-item .portfolio-caption p {
+  font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: italic;
+  font-size: 13px;
+  margin: 0;
+}
+
+#portfolio * {
+  z-index: 2;
+}
+
+.portfolio-caption h4 {
+  color: #0FF !important;
+}
+
+@media (min-width:767px) {
+  #portfolio .portfolio-item {
+    margin: 0 0 30px;
+  }
+}
+
+.contactdesign {
+  padding-top: 50px 0;
+  text-align: center;
+  height: 900px;
+  background-color: #000;
+}
+
+.contacttext {
+  position: relative;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+
+.contacttext > h1 {
+  margin-top: -50px;
+  font-size: 90px;
+  color: rgba(255, 255, 255, 1.0);
+  font-family: Pangolin, sans serif;
+}
+
+.contacttext > h2 {
+  color: #FFF;
+  font-size: 60px;
+  font-family: Play, Charcoal, sans-serif;
+}
+
+.contacttext > h3 {
+  color: #FFF;
+  font-size: 40px;
+}
+
+.divider {
+  width: 800px;
+}
+
+@media(max-width:767px) {
+  .contacttext {
+    padding-top: 40%;
+    padding-bottom: 15%;
+  }
+  .contacttext > h1 {
+    font-size: 50px;
+  }
+  .contacttext > h2 {
+    font-size: 25px;
+  }
+  contacttect >h3 {
+    font-size: 20px;
+  }
+  ul.intro-social-buttons > li {
+    display: block;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+  ul.intro-social-buttons > li:last-child {
+    margin-bottom: 0;
+  }
+  .divider {
+    width: 100%;
+  }
+}
+.btn{
+  color: #FFF;
+  border: 3px outset rgba(0,255,255,2.5);
+  background: #000;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
+  letter-spacing: 3px;
+  transition: .5s;  
+}
+.btn:hover{
+  transform:scale(1.2);
+  color: #0FF;
+  background: rgba(255,255,255,.8);
+  border: 3px outset rgba(0,0,0,1.5);
+}
+
+</style>
 </head>
 
+
 <body>
-
-	<!--================Header Menu Area =================-->
-	<header class="header_area">
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light">
-				<div class="container box_1620">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<!-- <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png"
-							alt=""></a> -->
-					<button class="navbar-toggler" type="button" data-toggle="collapse"
-						data-target="#navbarSupportedContent"
-						aria-controls="navbarSupportedContent" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item active"><a class="nav-link"
-									href="index.html">Home</a></li>
-							<li class="nav-item"><a class="nav-link"
-									href="about-us.html">About</a></li>
-							<!-- <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>  -->
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle"
-									data-toggle="dropdown" role="button"
-									aria-haspopup="true"
-									aria-expanded="false">Pages</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link"
-											href="portfolio.html">Portfolio</a>
-									</li>
-									<li class="nav-item"><a class="nav-link"
-											href="elements.html">Elements</a>
-									</li>
-								</ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle"
-									data-toggle="dropdown" role="button"
-									aria-haspopup="true"
-									aria-expanded="false">Blog</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link"
-											href="blog.html">Blog</a></li>
-									<li class="nav-item"><a class="nav-link"
-											href="single-blog.html">Blog
-											Details</a></li>
-								</ul>
-							</li>
-							<li class="nav-item"><a class="nav-link"
-									href="contact.html">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-	</header>
-	<!--================Header Menu Area =================-->
-
-	<!--================Home Banner Area =================-->
-	<section class="home_banner_area">
-		<div class="container box_1620">
-			<div class="banner_inner d-flex align-items-center">
-				<div class="banner_content">
-					<div class="media">
-						<div class="d-flex" style="border-radius: 50%" class="rounded">
-							<img src="img/personal.jpg" alt="" width="500" height="500"
-								class="rounded-circle">
-						</div>
-						<div class="media-body">
-							<div class="personal_text">
-								<h6>hello world, i am...</h6>
-								<h3>Naimul Kabir</h3>
-								<h4>Aspiring Mobile Developer From Bangladesh</h4>
-								<p>Build native and cross-platform complext mobile
-									application with Android SDK and Flutter.</p>
-								<ul class="list basic_info">
-									<li><a href="#"><i
-												class="lnr lnr-calendar-full"></i>
-											4 October 1999</a></li>
-									<!-- <li><a href="#"><i
-												class="lnr lnr-phone-handset"></i>
-											44 (012) 6954 783</a></li> -->
-									<li><a href="#"><i class="lnr lnr-envelope"></i>
-											kabirnayeem.99@gmail.com</a>
-									</li>
-									<!-- <li><a href="#"><i class="lnr lnr-home"></i> Santa monica bullevard</a></li> -->
-								</ul>
-								<ul class="list personal_social">
-									<!-- <li><a href="https:"><i class="fa fa-"></i></a></li> -->
-									<li><a href="https://twitter.com/kabirnayeem99"><i
-												class="fa fa-twitter"></i></a>
-									</li>
-									<li><a href="https://www.linkedin.com/in/kabirnayeem99/"><i
-												class="fa fa-linkedin"></i></a>
-									</li>
-								</ul>
-
-							</div>
-						</div>
-					</div>
-				</div>
+	<nav class="navbar navbar-inverse navbar-fixed-top navdesign">
+		<div class="container-fluid">
+			<div class="navbar-header navbar-right">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="https://www.freecodecamp.com/acortel"
+					target="_blank">Camper acortel12</a>
 			</div>
-		</div>
-	</section>
-	<!--================End Home Banner Area =================-->
-
-	<!--================Welcome Area =================-->
-	<section class="welcome_area p_120">
-		<div class="container">
-			<div class="row welcome_inner">
-				<div class="col-lg-6">
-					<div class="welcome_text">
-						<h4>About Myself</h4>
-						<p>I love anything creative, solving problems by learning regularly. A
-							self-taught mobile application developer with experience in
-							building native and complex cross-platform mobile application.
-							<uo>
-								<li>Technological enthusiasm, curiosity and passion for
-									programming.</li>
-								<li>Adaptable to new positions, problems, framework and
-									libraries.</li>
-								<li>Strong appetency for learning.</li>
-								<li>Flexible communication to reach my audience </li>
-								<li>Customer interaction skills.</li>
-								<li>Design and artistic soft skills.</li>
-							</uo>
-
-						</p>
-
-						<div class="row">
-
-							<!--<div class="col-md-4">
-								<div class="wel_item">
-									<i class="lnr lnr-database"></i>
-									<h4>1384</h4>
-									<p>Total GitHub Contributions</p>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="wel_item">
-									<i class="lnr lnr-book"></i>
-									<h4>83</h4>
-									<p>Total Projects Completed</p>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="wel_item">
-									<i class="lnr lnr-users"></i>
-									<h4>85 hrs 23 mins</h4>
-									<p>Total Hours of Coding</p>
-								</div>
-							</div>-->
-						</div>
-
-					</div>
-				</div>
-				<div class="welcome_text">
-					<h4>Skills</h4>
-
-					<div class="developer">
-						<table>
-							<tr>
-								<td><img style="padding: 2px"
-										src=" https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" />
-								</td>
-								<td>
-									<img style="padding: 2px" alt="Kotlin"
-										src="https://img.shields.io/badge/kotlin-%230095D5.svg?&style=for-the-badge&logo=kotlin&logoColor=white" />
-								</td>
-								<td>
-									<img style="padding: 2px"
-										src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" />
-								</td>
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" />
-								</td>
-							</tr>
-							<tr>
-
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" />
-								</td>
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-								</td>
-								<td>
-									<img style="padding: 2px"
-										src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" />
-								</td>
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" />
-								</td>
-							</tr>
-							<tr>
-
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white" />
-
-								</td>
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" />
-								</td>
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white" />
-								</td>
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white" />
-								</td>
-							</tr>
-
-							<tr>
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white" />
-								</td>
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=white" />
-								</td>
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
-								</td>
-								<td><img style="padding: 2px"
-										src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white" />
-								</td>
-								</td>
-							<tr>
-								<td><img alt="JavaScript" style="padding: 2px"
-										src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
-								</td>
-							</tr>
-							<td><img src="" />
-
-
-								</tr>
-						</table>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-	<!--================End Welcome Area =================-->
-
-	<!--================My Tabs Area =================-->
-	<section class="mytabs_area p_120">
-		<div class="container">
-			<div class="tabs_inner">
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item">
-						<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
-							role="tab" aria-controls="home" aria-selected="true">My
-							Experiences</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
-							role="tab" aria-controls="profile" aria-selected="false">My
-							Education</a>
-					</li>
-				</ul>
-				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade show active" id="home" role="tabpanel"
-						aria-labelledby="home-tab">
-						<ul class="list">
-							<li>
-								<span></span>
-								<div class="media">
-									<div class="d-flex">
-										<p>March 2017 to present</p>
-									</div>
-									<div class="media-body">
-										<h4>Colorlib</h4>
-										<p>Senior Web Developer <br />Santa
-											monica, Los angeles</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<span></span>
-								<div class="media">
-									<div class="d-flex">
-										<p>March 2017 to present</p>
-									</div>
-									<div class="media-body">
-										<h4>Colorlib</h4>
-										<p>Senior Web Developer <br />Santa
-											monica, Los angeles</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<span></span>
-								<div class="media">
-									<div class="d-flex">
-										<p>March 2017 to present</p>
-									</div>
-									<div class="media-body">
-										<h4>Colorlib</h4>
-										<p>Senior Web Developer <br />Santa
-											monica, Los angeles</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div class="tab-pane fade" id="profile" role="tabpanel"
-						aria-labelledby="profile-tab">
-						<ul class="list">
-							<li>
-								<span></span>
-								<div class="media">
-									<div class="d-flex">
-										<p>March 2017 to present</p>
-									</div>
-									<div class="media-body">
-										<h4>Colorlib</h4>
-										<p>Senior Web Developer <br />Santa
-											monica, Los angeles</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<span></span>
-								<div class="media">
-									<div class="d-flex">
-										<p>March 2017 to present</p>
-									</div>
-									<div class="media-body">
-										<h4>Colorlib</h4>
-										<p>Senior Web Developer <br />Santa
-											monica, Los angeles</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<span></span>
-								<div class="media">
-									<div class="d-flex">
-										<p>March 2017 to present</p>
-									</div>
-									<div class="media-body">
-										<h4>Colorlib</h4>
-										<p>Senior Web Developer <br />Santa
-											monica, Los angeles</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================End My Tabs Area =================-->
-
-	<!--================Feature Area =================-->
-	<section class="feature_area p_120">
-		<div class="container">
-			<div class="main_title">
-				<h2>some statistics of mine</h2>
-			</div>
-			<div class="align-items-center row">
-				<!-- <i class="flaticon-city"></i>
-						<h4>Architecture</h4>
-						<p>If you are looking at blank cassettes on the web, you may be very
-							confused at the difference in price. You may see some for as low
-							as $17 each.</p> -->
-
-
-				<div style="padding: 10px;">
-					<p><img src="https://github-readme-stats.vercel.app/api?username=kabirnayeem99&show_icons=true&locale=en&theme=graywhite&count_private=true" />
-					</p>
-				</div>
-				<div style="padding: 10px;">
-					<p><img src="https://github-readme-streak-stats.herokuapp.com/?user=kabirnayeem99&theme=graywhite&count_private=true" />
-					</p>
-				</div>
-				<div style="padding: 10px;">
-					<p><img src="https://github-readme-stats.vercel.app/api/top-langs?username=kabirnayeem99&show_icons=true&locale=en&hide=html,makefile&theme=graywhite&custom_title=GitHub%20Stats"
-							alt="kabirnayeem99" /></p>
-				</div>
-				<div style="padding: 10px;">
-
-					<p><a href="https://wakatime.com/@kabirnayeem99"><img
-								src="https://github-readme-stats.vercel.app/api/wakatime?username=kabirnayeem99&layout=compact&custom_title=Wakatime%20Stats&hide=html,groovy&theme=graywhite"
-								alt="kabirnayeem99" /></a></p>
-				</div>
-
-				<!-- <div class="col-lg-4 col-md-6">
-					<div class="feature_item">
-						<i class="flaticon-skyline"></i>
-						<h4>Interior Design</h4>
-						<p>If you are looking at blank cassettes on the web, you may be very
-							confused at the difference in price. You may see some for as low
-							as $17 each.</p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="feature_item">
-						<i class="flaticon-sketch"></i>
-						<h4>Concept Design</h4>
-						<p>If you are looking at blank cassettes on the web, you may be very
-							confused at the difference in price. You may see some for as low
-							as $17 each.</p>
-					</div>
-				</div> -->
-			</div>
-		</div>
-	</section>
-	<!--================End Feature Area =================-->
-
-	<!--================Home Gallery Area =================-->
-	<section class="home_gallery_area p_120">
-		<div class="container">
-			<div class="main_title">
-				<h2>Our Latest Featured Projects</h2>
-				<p>Who are in extremely love with eco friendly system.</p>
-			</div>
-			<div class="isotope_fillter">
-				<ul class="gallery_filter list">
-					<li class="active" data-filter="*"><a href="#">All</a></li>
-					<li data-filter=".brand"><a href="#">Vector</a></li>
-					<li data-filter=".manipul"><a href="#">Raster</a></li>
-					<li data-filter=".creative"><a href="#">UI/UX</a></li>
-					<li data-filter=".design"><a href="#">Printing</a></li>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="#home">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#portfolio">Portfolio</a></li>
+					<li><a href="#contact">Contact</a></li>
 				</ul>
 			</div>
 		</div>
-		<div class="container">
-			<div class="gallery_f_inner row imageGallery1">
-				<div class="col-lg-4 col-md-4 col-sm-6 brand manipul design print">
-					<div class="h_gallery_item">
-						<div class="g_img_item">
-							<img class="img-fluid" src="img/gallery/project-1.jpg" alt="">
-							<a class="light" href="img/gallery/project-1.jpg"><img
-									src="img/gallery/icon.png" alt=""></a>
-						</div>
-						<div class="g_item_text">
-							<h4>3D Helmet Design</h4>
-							<p>Client Project</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 brand manipul creative">
-					<div class="h_gallery_item">
-						<div class="g_img_item">
-							<img class="img-fluid" src="img/gallery/project-2.jpg" alt="">
-							<a class="light" href="img/gallery/project-2.jpg"><img
-									src="img/gallery/icon.png" alt=""></a>
-						</div>
-						<div class="g_item_text">
-							<h4>2D Vinyl Design</h4>
-							<p>Client Project</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 manipul creative design print">
-					<div class="h_gallery_item">
-						<div class="g_img_item">
-							<img class="img-fluid" src="img/gallery/project-3.jpg" alt="">
-							<a class="light" href="img/gallery/project-3.jpg"><img
-									src="img/gallery/icon.png" alt=""></a>
-						</div>
-						<div class="g_item_text">
-							<h4>Creative Poster Design</h4>
-							<p>Client Project</p>
+	</nav>
+
+	<a name="home"></a>
+	<div class="homedesign">
+		<div class="bg-overlay-1">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="hometext">
+							<h1>Ariel Cortel</h1>
+							<h2>Will Code for Food</h2>
+							<ul class="list-inline intro-social-buttons">
+								<li><a href="https://twitter.com/arielcortel12?lang=en"
+										target="_blank"
+										class="btn btn-default btn-lg"><i
+											class="fa fa-twitter fa-fw"></i>Twitter</a>
+								</li>
+								<li><a href="https://github.com/acortel" target="_blank"
+										class="btn btn-default btn-lg"><i
+											class="fa fa-github fa-fw"></i>GitHub</a>
+								</li>
+								<li><a href="https://www.linkedin.com/in/ariel-cortel-06b4a010b?trk=nav_responsive_tab_profile"
+										target="_blank"
+										class="btn btn-default btn-lg"><i
+											class="fa fa-linkedin fa-fw"></i>Linkedin</a>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 brand creative print">
-					<div class="h_gallery_item">
-						<div class="g_img_item">
-							<img class="img-fluid" src="img/gallery/project-4.jpg" alt="">
-							<a class="light" href="img/gallery/project-4.jpg"><img
-									src="img/gallery/icon.png" alt=""></a>
-						</div>
-						<div class="g_item_text">
-							<h4>Embosed Logo Design</h4>
-							<p>Client Project</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 brand manipul design">
-					<div class="h_gallery_item">
-						<div class="g_img_item">
-							<img class="img-fluid" src="img/gallery/project-5.jpg" alt="">
-							<a class="light" href="img/gallery/project-5.jpg"><img
-									src="img/gallery/icon.png" alt=""></a>
-						</div>
-						<div class="g_item_text">
-							<h4>3D Disposable Bottle</h4>
-							<p>Client Project</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 brand creative">
-					<div class="h_gallery_item">
-						<div class="g_img_item">
-							<img class="img-fluid" src="img/gallery/project-6.jpg" alt="">
-							<a class="light" href="img/gallery/project-6.jpg"><img
-									src="img/gallery/icon.png" alt=""></a>
-						</div>
-						<div class="g_item_text">
-							<h4>3D Logo Design</h4>
-							<p>Client Project</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="more_btn">
-				<a class="main_btn" href="#">Load More Items</a>
+
 			</div>
 		</div>
-	</section>
-	<!--================End Home Gallery Area =================-->
+	</div>
 
-	<!-- ================Testimonials Area =================
-        <section class="testimonials_area p_120">
-        	<div class="container">
-        		<div class="main_title">
-        			<h2>Testimonials</h2>
-        			<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see some for as low as $.17 each.</p>
-        		</div>
-        		<div class="testi_inner">
-					<div class="testi_slider owl-carousel">
-						<div class="item">
-							<div class="testi_item">
-								<p>As conscious traveling Paup ers we must always be oncerned about our dear Mother Earth. If you think about it, you travel across her face</p>
-								<h4>Fanny Spencer</h4>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star-half-o"></i></a>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testi_item">
-								<p>As conscious traveling Paup ers we must always be oncerned about our dear Mother Earth. If you think about it, you travel across her face</p>
-								<h4>Fanny Spencer</h4>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star-half-o"></i></a>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testi_item">
-								<p>As conscious traveling Paup ers we must always be oncerned about our dear Mother Earth. If you think about it, you travel across her face</p>
-								<h4>Fanny Spencer</h4>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star"></i></a>
-								<a href="#"><i class="fa fa-star-half-o"></i></a>
-							</div>
-						</div>
-					</div>
-        		</div>
-        	</div>
-        </section>
-        ================End Testimonials Area =================-->
-
-	<!--================Footer Area =================-->
-	<footer class="footer_area p_120">
-		<div class="container">
-			<div class="row footer_inner">
-				<div class="col-lg-5 col-sm-6">
-					<aside class="f_widget ab_widget">
-						<div class="f_title">
-							<h3>About Me</h3>
-						</div>
-						<p>Do you want to be even more successful? Learn to love learning and
-							growth. The more effort you put into improving your skills,</p>
-						<p>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;
-							<script>document.write(new Date().getFullYear());</script> All
-							rights reserved | This template is made with <i
-								class="fa fa-heart-o" aria-hidden="true"></i> by <a
-								href="https://colorlib.com" target="_blank">Colorlib</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	<a name="about"></a>
+	<div class="aboutdesign">
+		<div class="bg-overlay-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="clearfix"></div>
+						<h3 class="section-heading">Web Developer in-the-making:</h3>
+						</br>
+						<p>I'm a self-taught 21-years-old web designer and developer learning
+							coding skills at <a class="link"
+								href="https://www.freecodecamp.com" target="_blank">Free
+								Code Camp.</a></br>
+							I finished a 2-year course on Information Technology at <a
+								class="link" href="http://www.sti.edu"
+								target="_blank">Systems Technology Institute (STI
+								College)</a> in the Philippines.</br>
+							I wanted to learn more about Web Development and acquire more
+							skills about programming to further my knowledge that's why I
+							decided to be a camper at Free Code Camp.</br>
+							Programming Languages & Frameworks:</br>
+							HTML, CSS, Javascript, jQuery, Bootstrap</br>
 						</p>
-					</aside>
-				</div>
-
-				<div class="col-lg-2">
-					<aside class="f_widget social_widget">
-						<div class="f_title">
-							<h3>Follow Me</h3>
-						</div>
-						<p>Let us be social</p>
-						<ul class="list">
-							<li><a href="https://www.linkedin.com/in/kabirnayeem99/"><i
-										class="fa fa-linkedin"></i></a></li>
-							<li><a href="https://twitter.com/kabirnayeem99"><i
-										class="fa fa-twitter"></i></a></li>
-							<!-- <li><a href="#"><i class="fa fa-ov"></i></a></li> -->
-							<!-- <li><a href="#"><i class="fa fa-behance"></i></a></li> -->
-						</ul>
-					</aside>
+					</div>
+					<div class="col-sm-6">
+						<img class="img-responsive imgdesign img-circle"
+							src="https://avatars0.githubusercontent.com/u/15952879?v=3&s=460"
+							alt="Gwapo">
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<a name="portfolio"></a>
+	<section id="portfolio" class="bg-light-gray bounds">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h4 id="section-1" class="section-heading">My Portfolio</h4>
+					<h5 id="section-2" class="section-subheading">These are my projects:</h5>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4 portfolio-item">
+					<a href="https://codepen.io/acortel12/full/wGBXxZ/" target="_blank"
+						class="portfolio-link" data-toggle="modal">
+						<div class="portfolio-hover">
+							<div class="portfolio-hover-content">
+								<i class="fa fa-fire fa-3x"></i>
+							</div>
+						</div>
+						<img src="http://i.imgur.com/jgJfEFS.png" class="img-responsive" alt="">
+					</a>
+					<div class="portfolio-caption">
+						<h4>FreeCodeCamp Project: Kobe Bryant Tribute Page.</h4>
+						<p id="small-text" class="text-muted">Bootstrap, HTML and CSS</p>
+					</div>
+				</div>
+				<div class="col-sm-4 portfolio-item">
+					<a href="https://codepen.io/acortel12/full/owxYzE/" target="_blank"
+						class="portfolio-link" data-toggle="modal">
+						<div class="portfolio-hover">
+							<div class="portfolio-hover-content">
+								<i class="fa fa-fire fa-3x"></i>
+							</div>
+						</div>
+						<img src="http://i.imgur.com/QuWf3gx.png" class="img-responsive" alt="">
+					</a>
+					<div class="portfolio-caption">
+						<h4>Sample Project Exercise: Shamie's Designs.</h4>
+						<p id="small-text" class="text-muted">Basic HTML and CSS</p>
+					</div>
+				</div>
+				<div class="col-sm-4 portfolio-item">
+					<a href="https://codepen.io/acortel12/full/rwWKPV/" target="_blank"
+						class="portfolio-link" data-toggle="modal">
+						<div class="portfolio-hover">
+							<div class="portfolio-hover-content">
+								<i class="fa fa-fire fa-3x"></i>
+							</div>
+						</div>
+						<img src="http://i.imgur.com/UieEi2S.png" class="img-responsive" alt="">
+					</a>
+					<div class="portfolio-caption">
+						<h4>Sample Project Exercise: My Photos(About me)</h4>
+						<p id="small-text" class="text-muted">jQuert, HTML and CSS</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4 portfolio-item">
+					<a href="https://codepen.io/acortel12/full/bRoeVw/" target="_blank"
+						class="portfolio-link" data-toggle="modal">
+						<div class="portfolio-hover">
+							<div class="portfolio-hover-content">
+								<i class="fa fa-fire fa-3x"></i>
+							</div>
+						</div>
+						<img src="http://i.imgur.com/fE7uFaU.png" class="img-responsive" alt="">
+					</a>
+					<div class="portfolio-caption">
+						<h4>FreeCodeCamp Project: Random Quote Generator.</h4>
+						<p id="small-text" class="text-muted">Bootstrap, HTML, CSS, Javascript &
+							jQuery</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+
+	<a name="contact"></a>
+	<div class="contactdesign">
+		<div class="bg-overlay-3">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="contacttext">
+							<h1>Send me a message:</h1>
+							<h2>acortel12@gmail.com</h2>
+							<h3>or reach me in this sites:</h3>
+							<hr class="divider">
+							<ul class="list-inline intro-social-buttons">
+								<li><a href="https://twitter.com/arielcortel12?lang=en"
+										target="_blank"
+										class="btn btn-default btn-lg"><i
+											class="fa fa-twitter fa-fw"></i>Twitter</a>
+								</li>
+								<li><a href="https://github.com/acortel" target="_blank"
+										class="btn btn-default btn-lg"><i
+											class="fa fa-github fa-fw"></i>GitHub</a>
+								</li>
+								<li><a href="https://www.linkedin.com/in/ariel-cortel-06b4a010b?trk=nav_responsive_tab_profile"
+										target="_blank"
+										class="btn btn-default btn-lg"><i
+											class="fa fa-linkedin fa-fw"></i>Linkedin</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<footer class=" text-center">
+		<p class="copyright text-muted small ">Copyright &copy; Ariel Ramada Cortel 2016. All Rights Reserved
+		</p>
 	</footer>
-	<!--================End Footer Area =================-->
 
 
-
-
-
-
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/popper.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<!-- <script src="js/min.js"></script> -->
-	<script src="js/stellar.js"></script>
-	<script src="vendors/lightbox/simpleLightbox.min.js"></script>
-	<script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
-	<script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
-	<script src="vendors/isotope/isotope.pkgd.min.js"></script>
-	<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-	<script src="vendors/popup/jquery.magnific-popup.min.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="vendors/counter-up/jquery.waypoints.min.js"></script>
-	<script src="vendors/counter-up/jquery.counterup.min.js"></script>
-	<script src="js/mail-script.js"></script>
-	<script src="js/theme.js"></script>
 </body>
 
 </html>
