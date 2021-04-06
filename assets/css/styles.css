@@ -17,7 +17,7 @@
 /*===== Fuente y tipografia =====*/
 :root{
   --body-font: 'JetBrains Mono', sans-serif;
-  --big-font-size: 2rem;
+  --big-font-size: 1rem;
   --h2-font-size: 1.25rem;
   --normal-font-size: 0.938rem;
 }
@@ -218,7 +218,8 @@ img{
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 295px;
+  padding: var(--mb-5);
+  width: 300px;
 }
 
 /*BUTTONS*/
