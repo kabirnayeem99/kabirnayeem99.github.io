@@ -1,556 +1,283 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<title>Ariel Cortel's Portfolio</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-	<link href="https://fonts.googleapis.com/css?family=Exo|Pangolin|Play" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-	body,
-html {
-  width: 100%;
-  heigt: 100%;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body {
-  font-family: "Exo", "Lucida Grande", sans-serif;
-  font-weight: 700;
-}
+    <link rel="stylesheet" href="assets/css/styles.css">
 
-.navdesign {
-  font-size: 18px;
-}
+    <!-- =====BOX ICONS===== -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
-.navdesign .navbar-brand {
-  font-size: 18px;
-  color: #FFF;
-}
-
-.navdesign .navbar-brand:hover,
-.navdesign .navbar-brand:focus {
-  background: rgba(255, 255, 255);
-  color: #0FF;
-}
-
-.navdesign ul.navbar-nav li a {
-  color: #FFF;
-}
-
-.navdesign ul.navbar-nav li a:hover,
-.navdesign ul.navbar-nav li a:focus {
-  background: rgba(255, 255, 255);
-  color: #0FF;
-}
-
-.homedesign {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  text-align: center;
-  background: url("http://www.meh.ro/wp-content/uploads/2013/05/meh.ro11247.jpg") no-repeat;
-  background-size: cover;
-  height: 900px;
-}
-
-.hometext {
-  position: relative;
-  padding-top: 20%;
-  padding-bottom: 20%;
-}
-
-.hometext > h1 {
-  margin-top: -50px;
-  font-size: 120px;
-  color: #000;
-  text-shadow: 7px 7px 10px rgba(0,0,0,1.5);
-  letter-spacing: .13em;
-}
-
-.hometext > h2 {
-  color: rgba(0, 0, 0, 2.5);
-  font-size: 60px;
-  font-family: "Courier New", Courier, monospace;
-  padding-bottom: 3%;
-  font-weight: bold;
-}
-
-@media(max-width:767px) {
-  .hometext {
-    padding-top: 40%;
-    padding-bottom: 15%;
-  }
-  .hometext > h1 {
-    font-size: 50px;
-  }
-  .hometext > h2 {
-    font-size: 25px;
-  }
-  ul.intro-social-buttons > li {
-    display: block;
-    margin-bottom: 20px;
-    padding: 0;
-  }
-  ul.intro-social-buttons > li:last-child {
-    margin-bottom: 0;
-  }
-  .imgdesign {
-    display: none;
-  }
-}
-
-.btn{
-  color: #FFF;
-  border: 3px outset rgba(255,255,255,2.5) !important;
-  background: #000;
-  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
-  letter-spacing: 3px;
-  transition: .5s;  
-}
-.btn:hover{
-  transform:scale(1.1) !important;
-  color: #0FF !important;
-  background: rgba(255,255,255,.8);
-  border: 3px outset rgba(0,0,0,1.5);
-}
-
-.aboutdesign{
-  padding-top: 50px 0;  
-  background-color: #000;
-  background-size: cover;
-  height: 900px;
-}
-
-.container .link{
-  color: rgba(0,195,195,1.5);
-}
-
-h3.section-heading{
-  margin-top:200px;
-  font-size: 3em;
-  color: #FFF;
-  letter-spacing: .12em;
-  font-family: Pangolin, sans serif;
-}
-
-.aboutdesign p {
-  font-size: 18px;
-  color: #FFF;
-  line-height: 1.5em;
-  letter-spacing: .12em
-}
-
-.imgdesign {
-  margin-top: 200px;
-  margin-left: 180px;
-  border: 5px solid rgb(255,255,255);
-}
-
-section{
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-#section-2{
-  color: rgba(0,0,0,1.5);
-  font-size: 32px;
-  font-weight: bold;
-  text-shadow: 3px 3px 3px rgba(255,255,255,2.5);
-  padding-bottom: 5%;
-  padding-top: 2%;
-  font-family: Play, sans serif;
-}
-
-#section-1{
-  margin-top: 100px;
-  color: rgba(0,0,0,1.5);
-  font-size: 5em;
-  text-shadow: 2px 2px 2px rgba(0,0,0,2.5);
-  font-family: Pangolin, sans serif;
-  letter-spacing: .1em
-}
-
-#portfolio .portfolio-item {
-  margin: 0 0 15px;
-  right: 0;
-  border: 1px outset rgba(0,0,0,2.5);
-  padding: 0 20px;
-}
-
-#portfolio .portfolio-item:hover{
-  transition: 0.8s;
-  box-shadow: 5px 10px 5px rgba (0,195,195,1,5);
-}
-
-#portfolio .portfolio-item .portfolio-link {
-  display: block;
-  position: relative;
-  max-width: 400px;
-  margin: 0 auto;
-}
-#portfolio .portfolio-item .portfolio-link .portfolio-hover {
-  background: rgba(0, 0, 0, .7);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: all ease .5s;
-  -webkit-transition: all ease .5s;
-  -moz-transition: all ease .5s,
-}
-
-#portfolio .portfolio-item .portfolio-link .portfolio-hover:hover {
-  opacity: .5;
-}
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
-  position: absolute;
-  width: 100%;
-  height: 20px;
-  font-size: 20px;
-  text-align: center;
-  top: 50%;
-  margin-top: -12px;
-  color: #fff;
-}
-
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
-  margin-top: -12px;
-}
-
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h4 {
-  margin: 0;
-}
-
-#portfolio .portfolio-item .portfolio-caption {
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: rgba(0,0,0, 0.8);
-  text-align: center;
-  padding: 25px;
-}
-
-#portfolio .portfolio-item .portfolio-caption h4 {
-  color: #fff;
-  text-transform: none;
-  margin: 0;
-}
-
-#portfolio .portfolio-item .portfolio-caption p {
-  font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: italic;
-  font-size: 13px;
-  margin: 0;
-}
-
-#portfolio * {
-  z-index: 2;
-}
-
-.portfolio-caption h4 {
-  color: #0FF !important;
-}
-
-@media (min-width:767px) {
-  #portfolio .portfolio-item {
-    margin: 0 0 30px;
-  }
-}
-
-.contactdesign {
-  padding-top: 50px 0;
-  text-align: center;
-  height: 900px;
-  background-color: #000;
-}
-
-.contacttext {
-  position: relative;
-  padding-top: 20%;
-  padding-bottom: 20%;
-}
-
-.contacttext > h1 {
-  margin-top: -50px;
-  font-size: 90px;
-  color: rgba(255, 255, 255, 1.0);
-  font-family: Pangolin, sans serif;
-}
-
-.contacttext > h2 {
-  color: #FFF;
-  font-size: 60px;
-  font-family: Play, Charcoal, sans-serif;
-}
-
-.contacttext > h3 {
-  color: #FFF;
-  font-size: 40px;
-}
-
-.divider {
-  width: 800px;
-}
-
-@media(max-width:767px) {
-  .contacttext {
-    padding-top: 40%;
-    padding-bottom: 15%;
-  }
-  .contacttext > h1 {
-    font-size: 50px;
-  }
-  .contacttext > h2 {
-    font-size: 25px;
-  }
-  contacttect >h3 {
-    font-size: 20px;
-  }
-  ul.intro-social-buttons > li {
-    display: block;
-    margin-bottom: 20px;
-    padding: 0;
-  }
-  ul.intro-social-buttons > li:last-child {
-    margin-bottom: 0;
-  }
-  .divider {
-    width: 100%;
-  }
-}
-.btn{
-  color: #FFF;
-  border: 3px outset rgba(0,255,255,2.5);
-  background: #000;
-  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
-  letter-spacing: 3px;
-  transition: .5s;  
-}
-.btn:hover{
-  transform:scale(1.2);
-  color: #0FF;
-  background: rgba(255,255,255,.8);
-  border: 3px outset rgba(0,0,0,1.5);
-}
-
-</style>
+    <title>Kabir's Portfolio</title>
 </head>
 
-
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top navdesign">
-		<div class="container-fluid">
-			<div class="navbar-header navbar-right">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="https://www.freecodecamp.com/acortel"
-					target="_blank">Camper acortel12</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li><a href="#home">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#portfolio">Portfolio</a></li>
-					<li><a href="#contact">Contact</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <a href="#" class="nav__logo">Kabir</a>
+            </div>
 
-	<a name="home"></a>
-	<div class="homedesign">
-		<div class="bg-overlay-1">
-			<div class="container">
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                    <li class="nav__item"><a href="#work" class="nav__link">Projects</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </div>
 
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="hometext">
-							<h1>Ariel Cortel</h1>
-							<h2>Will Code for Food</h2>
-							<ul class="list-inline intro-social-buttons">
-								<li><a href="https://twitter.com/arielcortel12?lang=en"
-										target="_blank"
-										class="btn btn-default btn-lg"><i
-											class="fa fa-twitter fa-fw"></i>Twitter</a>
-								</li>
-								<li><a href="https://github.com/acortel" target="_blank"
-										class="btn btn-default btn-lg"><i
-											class="fa fa-github fa-fw"></i>GitHub</a>
-								</li>
-								<li><a href="https://www.linkedin.com/in/ariel-cortel-06b4a010b?trk=nav_responsive_tab_profile"
-										target="_blank"
-										class="btn btn-default btn-lg"><i
-											class="fa fa-linkedin fa-fw"></i>Linkedin</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
 
-			</div>
-		</div>
-	</div>
+    <main class="l-main">
+        <!--===== HOME =====-->
+        <section class="home bd-grid" id="home">
+            <div class="home__data">
+                <h1 class="home__title"><br>Hi,<br>I'am <span class="home__title-color">Kabir</span><br> Mobile
+                    Developer
+                </h1>
 
-	<a name="about"></a>
-	<div class="aboutdesign">
-		<div class="bg-overlay-2">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="clearfix"></div>
-						<h3 class="section-heading">Web Developer in-the-making:</h3>
-						</br>
-						<p>I'm a self-taught 21-years-old web designer and developer learning
-							coding skills at <a class="link"
-								href="https://www.freecodecamp.com" target="_blank">Free
-								Code Camp.</a></br>
-							I finished a 2-year course on Information Technology at <a
-								class="link" href="http://www.sti.edu"
-								target="_blank">Systems Technology Institute (STI
-								College)</a> in the Philippines.</br>
-							I wanted to learn more about Web Development and acquire more
-							skills about programming to further my knowledge that's why I
-							decided to be a camper at Free Code Camp.</br>
-							Programming Languages & Frameworks:</br>
-							HTML, CSS, Javascript, jQuery, Bootstrap</br>
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<img class="img-responsive imgdesign img-circle"
-							src="https://avatars0.githubusercontent.com/u/15952879?v=3&s=460"
-							alt="Gwapo">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                <a href="#" class="button">Contact</a>
+            </div>
 
-	<a name="portfolio"></a>
-	<section id="portfolio" class="bg-light-gray bounds">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h4 id="section-1" class="section-heading">My Portfolio</h4>
-					<h5 id="section-2" class="section-subheading">These are my projects:</h5>
-				</div>
-			</div>
+            <div class="home__social">
+                <a href="https://www.linkedin.com/in/kabirnayeem99/" class="home__social-icon"><i
+                        class='bx bxl-linkedin'></i></a>
+                <a href="https://stackoverflow.com/users/9659254/naimul-kabir" class="home__social-icon"><i
+                        class='bx bxl-stack-overflow'></i></a>
+                <!-- <a href="mailto:kabirnayeem.99@gmail.com" class="home__social-icon"><i class='bx bxl-mail'></i></a> -->
+                <a href="https://github.com/kabirnayeem99" class="home__social-icon"><i class='bx bxl-github'></i></a>
+            </div>
 
-			<div class="row">
-				<div class="col-sm-4 portfolio-item">
-					<a href="https://codepen.io/acortel12/full/wGBXxZ/" target="_blank"
-						class="portfolio-link" data-toggle="modal">
-						<div class="portfolio-hover">
-							<div class="portfolio-hover-content">
-								<i class="fa fa-fire fa-3x"></i>
-							</div>
-						</div>
-						<img src="http://i.imgur.com/jgJfEFS.png" class="img-responsive" alt="">
-					</a>
-					<div class="portfolio-caption">
-						<h4>FreeCodeCamp Project: Kobe Bryant Tribute Page.</h4>
-						<p id="small-text" class="text-muted">Bootstrap, HTML and CSS</p>
-					</div>
-				</div>
-				<div class="col-sm-4 portfolio-item">
-					<a href="https://codepen.io/acortel12/full/owxYzE/" target="_blank"
-						class="portfolio-link" data-toggle="modal">
-						<div class="portfolio-hover">
-							<div class="portfolio-hover-content">
-								<i class="fa fa-fire fa-3x"></i>
-							</div>
-						</div>
-						<img src="http://i.imgur.com/QuWf3gx.png" class="img-responsive" alt="">
-					</a>
-					<div class="portfolio-caption">
-						<h4>Sample Project Exercise: Shamie's Designs.</h4>
-						<p id="small-text" class="text-muted">Basic HTML and CSS</p>
-					</div>
-				</div>
-				<div class="col-sm-4 portfolio-item">
-					<a href="https://codepen.io/acortel12/full/rwWKPV/" target="_blank"
-						class="portfolio-link" data-toggle="modal">
-						<div class="portfolio-hover">
-							<div class="portfolio-hover-content">
-								<i class="fa fa-fire fa-3x"></i>
-							</div>
-						</div>
-						<img src="http://i.imgur.com/UieEi2S.png" class="img-responsive" alt="">
-					</a>
-					<div class="portfolio-caption">
-						<h4>Sample Project Exercise: My Photos(About me)</h4>
-						<p id="small-text" class="text-muted">jQuert, HTML and CSS</p>
-					</div>
-				</div>
-			</div>
+            <div class="home__img">
+                <img src="assets/img/perfil.png" alt="">
+            </div>
+        </section>
 
-			<div class="row">
-				<div class="col-sm-4 portfolio-item">
-					<a href="https://codepen.io/acortel12/full/bRoeVw/" target="_blank"
-						class="portfolio-link" data-toggle="modal">
-						<div class="portfolio-hover">
-							<div class="portfolio-hover-content">
-								<i class="fa fa-fire fa-3x"></i>
-							</div>
-						</div>
-						<img src="http://i.imgur.com/fE7uFaU.png" class="img-responsive" alt="">
-					</a>
-					<div class="portfolio-caption">
-						<h4>FreeCodeCamp Project: Random Quote Generator.</h4>
-						<p id="small-text" class="text-muted">Bootstrap, HTML, CSS, Javascript &
-							jQuery</p>
-					</div>
-				</div>
-			</div>
+        <!--===== ABOUT =====-->
+        <section class="about section " id="about">
+            <h2 class="section-title">About</h2>
 
-		</div>
+            <div class="about__container bd-grid">
+                <div class="about__img">
+                    <img src="assets/img/about.jpg" alt="">
+                </div>
 
-	</section>
+                <div>
+                    <h2 class="about__subtitle">I'am Kabir</h2>
+                    <p class="about__text">An aspiring mobile developer with built-in curiosity and a clear mind.</p>
+                    <br />
+                    <p class="about__text">I love anything creative, solving problems by learning regularly. A
+                        self-taught mobile application developer with experience in building native and complex
+                        cross-platform mobile application.
+                    </p>
+                    <br />
+                    - Technological enthusiasm, curiosity and passion for programming.<br>
+                    - Adaptable to new positions, problems, framework and libraries.<br>
+                    - Strong appetency for learning.<br>
+                    - Flexible communication to reach my audience and customer interaction skills.<br>
+                    - Design and artistic soft skills.<br>
+                </div>
+            </div>
+        </section>
 
-	<a name="contact"></a>
-	<div class="contactdesign">
-		<div class="bg-overlay-3">
-			<div class="container">
+        <!--===== SKILLS =====-->
+        <section class="skills section" id="skills">
+            <h2 class="section-title">Skills</h2>
 
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="contacttext">
-							<h1>Send me a message:</h1>
-							<h2>acortel12@gmail.com</h2>
-							<h3>or reach me in this sites:</h3>
-							<hr class="divider">
-							<ul class="list-inline intro-social-buttons">
-								<li><a href="https://twitter.com/arielcortel12?lang=en"
-										target="_blank"
-										class="btn btn-default btn-lg"><i
-											class="fa fa-twitter fa-fw"></i>Twitter</a>
-								</li>
-								<li><a href="https://github.com/acortel" target="_blank"
-										class="btn btn-default btn-lg"><i
-											class="fa fa-github fa-fw"></i>GitHub</a>
-								</li>
-								<li><a href="https://www.linkedin.com/in/ariel-cortel-06b4a010b?trk=nav_responsive_tab_profile"
-										target="_blank"
-										class="btn btn-default btn-lg"><i
-											class="fa fa-linkedin fa-fw"></i>Linkedin</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-	<footer class=" text-center">
-		<p class="copyright text-muted small ">Copyright &copy; Ariel Ramada Cortel 2016. All Rights Reserved
-		</p>
-	</footer>
+            <div class="skills__container bd-grid">
+                <div>
+                    <h2 class="skills__subtitle">Profesional Skills</h2>
+                    <p class="skills__text">I am mainly proficient at Android and Flutter development, but I am familiar
+                        with other technologies, inlcuding iOS development, Linux, CI/CD, web design and so on. I also
+                        enjoy learning new skills.</p>
+                    <!-- <div class="skills__data"> -->
 
 
+                    <div class="skills__data" style="background-color: #3DDC84; width: 86%;"> <img
+                            src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #0095D5; width: 92%;"><img alt="Kotlin"
+                            src="https://img.shields.io/badge/kotlin-%230095D5.svg?&style=for-the-badge&logo=kotlin&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #02569B; width: 76%;"> <img
+                            src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #ED8B00; width: 93%;"> <img
+                            src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" />
+                    </div>
+
+
+
+
+                    <div class="skills__data" style="background-color: #0175C2; width: 86%;"> <img
+                            src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #3776AB; width: 70%;"> <img
+                            src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #092E20; width: 45%;"> <img
+                            src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #00599C; width: 40%;">
+                        <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" />
+                    </div>
+
+
+
+
+
+                    <div class="skills__data" style="background-color: #276DC3; width: 50%;"> <img
+                            src="https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white" />
+                    </div>
+
+
+
+                    <div class="skills__data" style="background-color: #121011; width: 82%;"> <img
+                            src="https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #0081CB; width: 70%;"> <img
+                            src="https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #00000F; width: 80%;"> <img
+                            src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white" />
+                    </div>
+
+
+
+
+
+                    <div class="skills__data" style="background-color: #07405E; width: 80%;"> <img
+                            src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #ffca28; width: 70%;"> <img
+                            src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #F05032; width: 80%;"> <img
+                            src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
+                    </div>
+
+
+                    <div class="skills__data" style="background-color: #000000; width: 95%;"> <img
+                            src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white" />
+                    </div>
+
+                    <div class="skills__data" style=" background-color: #323330; width: 67%;"> <img alt="JavaScript"
+                            src="https://img.shields.io/badge/javascript-323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
+                    </div>
+
+
+                    <div class="skills__data" style=" background-color: #FA7343; width: 40%;"> <img alt="Swift"
+                            src="https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white" />
+                    </div>
+
+
+                </div>
+
+                <div class="stats__data">
+                    <div class="stats__box">
+                        <!-- <img src="assets/img/work3.jpg" alt="" class="skills__img"> -->
+                        <img src="https://github-readme-stats.vercel.app/api/wakatime?username=kabirnayeem99&layout=compact&custom_title=Programming%20Stats&hide=html,groovy&theme=bluefy"
+                            alt="kabirnayeem99" />
+                    </div>
+                    <div class="stats__box"><img
+                            src="https://github-readme-stats.vercel.app/api?username=kabirnayeem99&show_icons=true&locale=en&theme=graywhite&count_private=true" />
+
+                    </div>
+                    <div class="stats__box">
+                        <img
+                            src="https://github-readme-streak-stats.herokuapp.com/?user=kabirnayeem99&theme=bluefy&count_private=true" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--===== Projects =====-->
+        <section class="work section" id="work">
+            <h2 class="section-title">Projects</h2>
+
+            <div class="work__container bd-grid">
+                <div class="work__img">
+                    <img src="assets/img/PPayed.jpg" alt="papyed native mobile app portfolio kotlin firebase">
+                </div>
+                <div class="work__img">
+                    <img src="assets/img/PPayed.jpg" alt="">
+                </div>
+                <div class="work__img">
+                    <img src="assets/img/PPayed.jpg" alt="">
+                </div>
+                <div class="work__img">
+                    <img src="assets/img/PPayed.jpg" alt="">
+                </div>
+                <div class="work__img">
+                    <img src="assets/img/PPayed.jpg" alt="">
+                </div>
+                <div class="work__img">
+                    <img src="assets/img/PPayed.jpg" alt="">
+                </div>
+            </div>
+        </section>
+
+        <!--===== CONTACT =====-->
+        <section class="contact section" id="contact">
+            <h2 class="section-title">Contact</h2>
+
+            <div class="contact__container bd-grid">
+                <form action="" class="contact__form">
+                    <input type="text" placeholder="Name" class="contact__input">
+                    <input type="mail" placeholder="Email" class="contact__input">
+                    <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
+                    <input type="button" value="Enviar" class="contact__button button">
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!--===== FOOTER =====-->
+    <footer class="footer">
+        <p class="footer__title">Kabir</p>
+        <div class="footer__social">
+            <a href="#" class="footer__icon"><i class='bx bxl-facebook'></i></a>
+            <a href="#" class="footer__icon"><i class='bx bxl-instagram'></i></a>
+            <a href="#" class="footer__icon"><i class='bx bxl-twitter'></i></a>
+        </div>
+        <p>&#169; 2020 copyright all right reserved</p>
+    </footer>
+
+
+    <!--===== SCROLL REVEAL =====-->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!--===== MAIN JS =====-->
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
