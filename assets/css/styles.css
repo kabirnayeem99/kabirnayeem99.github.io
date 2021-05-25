@@ -287,6 +287,13 @@ img{
   padding: 0.1rem 0.1rem 0.1rem 0.1rem ;
   /* box-shadow: 0 4px 25px rgba(14,36,49,.15); */
 }
+.stats__box__wide{
+  display: flex;
+  position: center;
+  margin-left: var(--mb-4);
+  margin-right: var(--mb-4);
+  /* box-shadow: 0 4px 25px rgba(14,36,49,.15); */
+}
 
 .project__box{
   /* display: flex; */
