@@ -14,7 +14,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow-y: auto;
         height: 100vh;
       }
       .projects {
@@ -24,7 +23,8 @@
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-        overflow-y: auto;
+        overflow-y: scroll;
+        max-height: 80vh; /* Set a maximum height for scrolling */
       }
       h1 {
         font-size: 24px;
@@ -39,14 +39,8 @@
         font-size: 20px;
         margin-bottom: 5px;
       }
-      .project p {
-        font-size: 14px;
-        color: #888;
-      }
-      .project ul {
-        font-size: 14px;
-        color: #888;
-      }
+      .project p,
+      .project ul,
       .project li {
         font-size: 14px;
         color: #888;
@@ -56,12 +50,13 @@
         text-decoration: none;
         margin-top: 5px;
         display: inline-block;
+        font-size: 14px;
       }
     </style>
   </head>
   <body>
     <div class="projects">
-      <h1>Top projects</h1>
+      <h1>Top projects 🚀</h1>
       <div class="project">
         <h2>IslamQA Android</h2>
         <p>
