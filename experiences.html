@@ -14,7 +14,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
       }
       .experiences {
         width: 80%;
@@ -23,6 +23,17 @@
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+        overflow-y: auto;
+        max-height: 80vh;
+      }
+      .experiences::-webkit-scrollbar {
+        width: 0.5em;
+      }
+      .experiences::-webkit-scrollbar-thumb {
+        background-color: transparent; /* Make the thumb (handle) transparent */
+      }
+      .experiences::-webkit-scrollbar-track {
+        background-color: transparent; /* Make the track (background) transparent */
       }
       h1 {
         font-size: 24px;
@@ -41,20 +52,57 @@
         font-size: 14px;
         color: #888;
       }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
     <div class="experiences">
-      <h1>My Experiences</h1>
+      <h1>Experiences</h1>
       <div class="experience">
-        <h2>Experience 1</h2>
-        <p>Detailed description of your first experience goes here.</p>
+        <h2>native android developer</h2>
+        <p>
+          <strong>organization:</strong>
+          <a href="https://syarah.com/">Syarah</a>
+        </p>
+        <p>
+          <strong>skills/contributions:</strong>clean architecture · jetpack
+          compose · java
+        </p>
       </div>
       <div class="experience">
-        <h2>Experience 2</h2>
-        <p>Detailed description of your second experience goes here.</p>
+        <h2>flutter developer</h2>
+        <p>
+          <strong>organization:</strong>
+          <a href="https://irdfoundation.com/">IRD Foundation</a>
+        </p>
+        <p>
+          <strong>skills/contributions:</strong> rewritten Al-Hadith legacy
+          native android application with Flutter, following clean architecture,
+          bloc pattern, and performance best practices; re-structured; and
+          improved performance of Quran Majeed Pro application; involved in in
+          undisclosed commercial projects.
+        </p>
       </div>
-      <!-- Add more experience sections as needed -->
+      <div class="experience">
+        <h2>android developer</h2>
+        <p>
+          <strong>organization:</strong>
+          <a href="https://www.linkedin.com/company/devstation39">
+            DevStation39</a
+          >
+        </p>
+        <p>
+          <strong>skills/contributions:</strong> worked as a dedicated android
+          developer on a contractual basis, consistently delivering successful
+          results for the organization and clients; completed 7-8 diverse
+          projects of varying scales and complexities, demonstrating versatility
+          and expertise in different contexts, both legacy projects and new
+          projects.
+        </p>
+      </div>
     </div>
   </body>
 </html>

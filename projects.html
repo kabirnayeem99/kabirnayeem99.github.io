@@ -23,8 +23,17 @@
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-        overflow-y: scroll;
+        overflow-y: auto;
         max-height: 80vh; /* Set a maximum height for scrolling */
+      }
+      .projects::-webkit-scrollbar {
+        width: 0.5em;
+      }
+      .projects::-webkit-scrollbar-thumb {
+        background-color: transparent; /* Make the thumb (handle) transparent */
+      }
+      .projects::-webkit-scrollbar-track {
+        background-color: transparent; /* Make the track (background) transparent */
       }
       h1 {
         font-size: 24px;
