@@ -18,6 +18,7 @@
         justify-content: center;
         min-height: 100vh;
       }
+
       .portfolio-container {
         width: 80%; /* Adjusted width for better responsiveness */
         max-width: 600px;
@@ -28,26 +29,55 @@
         overflow-y: auto;
         height: 80vh;
       }
+
       .portfolio-container::-webkit-scrollbar {
         width: 0.5em;
       }
+
       .portfolio-container::-webkit-scrollbar-thumb {
         background-color: transparent; /* Make the thumb (handle) transparent */
       }
+
       .portfolio-container::-webkit-scrollbar-track {
         background-color: transparent; /* Make the track (background) transparent */
       }
+
       .top-section {
         text-align: center;
         margin-bottom: 20px;
       }
+
       .contact {
         margin-top: 20px;
+        display: grid;
+        gap: 10px;
       }
+
       .contact a {
         color: #ffffff;
         text-decoration: none;
-        margin-right: 10px;
+        padding: 10px; /* Increase tap area */
+        transition: background-color 0.3s; /* Add transition effect */
+        border-radius: 5px; /* Rounded corners for tap area */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .contact a:hover {
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.1
+        ); /* Highlight effect on hover */
+      }
+
+      @media (min-width: 768px) {
+        /* Apply styles for screens wider than 768px (desktop) */
+        .contact {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
       }
     </style>
   </head>
@@ -64,10 +94,8 @@
           <a href="https://github.com/kabirnayeem99">🔗 github</a>
           <a href="https://www.linkedin.com/in/kabirnayeem99">🔗 linkedin</a>
           <a href="https://leetcode.com/kabirnayeem99">🔗 leetcode</a>
-        </div>
-        <div class="contact">
           <a href="projects.html">📂 projects</a>
-          <a href="experiences.html">👝 experiences</a>
+          <a href="experiences.html">👝 history</a>
           <a href="stats.html">📊 stats</a>
         </div>
       </div>
