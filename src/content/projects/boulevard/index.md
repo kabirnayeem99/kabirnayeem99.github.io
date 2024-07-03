@@ -20,10 +20,9 @@ Boulevard is a Mentoring Operating System (MoS) that powers mentoring, learning,
 ## 🛠️ Tech Stack
 
 - Native Android SDK
-- Java & Kotlin
-- Firebase
-- ParseSDK
-- RxJava
+- Java
+- Multi-Module Project
+- Clean Architecture
 
 ## 📲 Download
 
