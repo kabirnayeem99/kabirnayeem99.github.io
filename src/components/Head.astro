@@ -37,6 +37,7 @@ const { title, description, image = "/nano.png" } = Astro.props;
   media="(prefers-color-scheme: light)"
 />
 <link rel="icon" type="image/x-icon" href="/favicon-light.svg" />
+<link rel="sitemap" href="/sitemap-index.xml" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
@@ -66,6 +67,12 @@ const { title, description, image = "/nano.png" } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- Google Site Ownership verification -->
+<meta
+  name="google-site-verification"
+  content="F9rV_qmMTwOKM_FXW_y4CvXUPVctz-VO_e1zY757H8w"
+/>
 
 <ViewTransitions />
 
