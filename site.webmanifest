@@ -1,0 +1,27 @@
+{
+    "name": "Naimul Kabir - Software Engineer | Android, iOS, KMP, Flutter",
+    "short_name": "Naimul Kabir",
+    "description": "Portfolio of Naimul Kabir, a Software Engineer specializing in Android, iOS, Kotlin Multiplatform, and Flutter.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#BDD3B3",
+    "background_color": "#BDD3B3",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "scope": "/",
+    "related_applications": [],
+    "prefer_related_applications": false
+}
