@@ -3,108 +3,151 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Naimul Kabir - Software Engineer</title>
-  <link rel="stylesheet" href="retro.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Naimul Kabir · Software Engineer</title>
+  <meta name="description"
+    content="Portfolio of Naimul Kabir, a software engineer focused on Android, iOS, and Kotlin multiplatform apps." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <div class="page-wrap">
-    <div class="header-90s">
-      <div class="gif-wall" style="justify-content:center; gap:16px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="spinning globe" />
-        <div>
-          <div class="title-90s">Naimul Kabir’s Web Zone</div>
-          <div class="sub-90s">Muslim • Bibliophile • Philomath • Software Engineer @ Syarah</div>
+  <div class="site">
+    <header>
+      <h1 class="site-title">Naimul Kabir</h1>
+      <p class="tagline">Muslim · Software Engineer · Bibilophile · Philomath</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="project.html">Projects</a>
+        <a href="blog.html">Writing</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <div class="summary-card">
+          <p>
+            I build mobile apps that work across platforms—native Android (Kotlin, Compose, Java), iOS (SwiftUI),
+            Flutter,
+            and Kotlin Multiplatform. I am currently at <a href="https://syarah.com/" target="_blank"
+              rel="noreferrer">Syarah</a>
+            working on internal supply-chain applications.
+          </p>
         </div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="spinning globe" />
-      </div>
-    </div>
+      </section>
 
-    <div class="marquee-bar">
-      <marquee scrollamount="6" behavior="scroll">
-        <span class="blink">WELCOME TO MY 100% HAND‑CODED 90s-STYLE PORTFOLIO!</span>
-        &nbsp; ✨ &nbsp; Check out my <b>Work</b> and <b>Projects</b> &nbsp; ✨ &nbsp;
-        Best viewed in 800x600 with Netscape Navigator 😉
-      </marquee>
-    </div>
+      <section>
+        <h2 class="section-title">Right now</h2>
+        <p>
+          Diving into backend development with Laravel, with some HTML-CSS-Tailwind here and there. Also trying to
+          make some useful skills around UI-UX with Figma.
+        </p>
+        <p>
+          Outside work, I like reading books of all kind- Islamic, history, novels, thrillers, poetries, philosophy...
+        </p>
+      </section>
 
-    <table class="nav-bar">
-      <tr>
-        <td><a class="nav-link" href="index.html">Home</a></td>
-        <td><a class="nav-link" href="work.html">Work Experience</a></td>
-        <td><a class="nav-link" href="project.html">Projects</a></td>
-        <td style="text-align:right; color:#fffd82; font-size:12px;">Visitor #: <span id="hitCounter" class="counter">000001</span></td>
-      </tr>
-    </table>
+      <section>
+        <h2 class="section-title">Selected highlights</h2>
+        <div class="highlight-list">
+          <article class="highlight">
+            <h3>Internal camera SDK with Machine Learning at Syarah</h3>
+            <p class="meta">2023 — Present</p>
+            <p>
+              Developed an in-house Camera SDK to capture car images of different angle, and developed a machine
+              learning model with YOLOv8 to
+              validate car angle and to auto detect and capture car sides based on provided tag. Also developed an
+              internal upload service SDK, that works
+              around WorkManager in Android.
+            </p>
+          </article>
+          <article class="highlight">
+            <h3>Rewritten most popular Islamic App in Bangladesh</h3>
+            <p class="meta">2022 — 2023</p>
+            <p>
+              Helped modernize the Al-Hadith app—one of Bangladesh's most-downloaded Islamic apps—maintaining the legacy
+              Android build while guiding its Flutter rewrite for millions of users. They're one of the pioneer of
+              digitalizing
+              Islamic texts in Bangla.
+            </p>
+          </article>
+          <article class="highlight">
+            <h3>Contract work and services</h3>
+            <p class="meta">Ongoing</p>
+            <p>
+              Partnering with small businesses on web design, digital marketing, and Amazon FBA tooling, plus
+              contractual
+              development on large-scale apps like Marriott Bonvoy, BaseHubs, PatientAccess, and Jobamax.
+            </p>
+          </article>
+        </div>
+      </section>
 
-    <div class="rainbow-rule"></div>
+      <section>
+        <h2 class="section-title">Writing & notes</h2>
+        <p>
+          Occasional blog posts on tooling, operating systems, and keeping development environments sane.
+        </p>
+        <ul class="article-list">
+          <li class="article-item">
+            <a href="https://kabirnayeem99.medium.com/ktor2curl-convert-ktor-requests-into-curl-log-3e573d427485"
+              target="_blank" rel="noreferrer">
+              <h3>Ktor2Curl: convert Ktor requests into curl logs</h3>
+              <p>Releasing a tiny helper that mirrors every Ktor request as a curl command for easier debugging.</p>
+            </a>
+          </li>
+          <li class="article-item">
+            <a href="https://kabirnayeem99.medium.com/setup-windows-for-android-development-9d27e1a9d9a4"
+              target="_blank" rel="noreferrer">
+              <h3>Setup Windows for Android development</h3>
+              <p>A checklist for turning a fresh Windows install into a reliable Android development machine.</p>
+            </a>
+          </li>
+          <li class="article-item">
+            <a href="https://kabirnayeem99.medium.com/make-arch-look-like-ubuntu-f5b88caf761f" target="_blank"
+              rel="noreferrer">
+              <h3>Make Arch look like Ubuntu</h3>
+              <p>Notes on restyling an Arch desktop to feel familiar without giving up rolling-release perks.</p>
+            </a>
+          </li>
+          <li class="article-item">
+            <a href="https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6" target="_blank"
+              rel="noreferrer">
+              <h3>Manjaro to Arch conversation</h3>
+              <p>Why I left the Manjaro comfort layer and what helped during the hop to vanilla Arch.</p>
+            </a>
+          </li>
+          <li class="article-item">
+            <a href="https://kabirnayeem99.medium.com/keep-calm-switch-back-to-windows-11f5f636f870" target="_blank"
+              rel="noreferrer">
+              <h3>Keep calm, switch back to Windows</h3>
+              <p>Pragmatic advice for moving from Linux back to Windows without losing your dev workflow.</p>
+            </a>
+          </li>
+        </ul>
+      </section>
 
-    <div class="content-90s">
-      <p>
-        I’m a software engineer. I work with Android, iOS, Kotlin Multiplatform, Flutter, and Laravel APIs. I like
-        building apps that work well and are easy to maintain. I enjoy coding, solving problems, and learning new
-        things. In my free time, I like reading about Islamic history, poetry, and philosophy.
-      </p>
+      <section>
+        <h2 class="section-title">Elsewhere</h2>
+        <p>Email <a href="mailto:kabirnayeem.99@gmail.com">kabirnayeem.99@gmail.com</a></p>
+        <p><a href="https://github.com/kabirnayeem99" target="_blank" rel="noreferrer">GitHub</a> · <a
+            href="https://www.linkedin.com/in/kabirnayeem99/" target="_blank" rel="noreferrer">LinkedIn</a></p>
+      </section>
+    </main>
 
-      <h2 class="title-90s" style="font-size:26px; margin-top:18px;">Quick Links</h2>
-      <div class="gif-wall" style="margin:6px 0 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Animated_fire_by_nevit.gif" alt="flames" />
-        <a class="btn-90s" href="work.html">My Work Experience</a>
-        <a class="btn-90s" href="project.html">My Projects</a>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Animated_fire_by_nevit.gif" alt="flames" />
-      </div>
-
-      <h2 class="title-90s" style="font-size:26px; margin-top:22px;">Contact</h2>
-      <table class="table-90s">
-        <tr>
-          <th>Service</th>
-          <th>Link</th>
-        </tr>
-        <tr>
-          <td>GitHub</td>
-          <td><a href="https://github.com/kabirnayeem99" target="_blank">kabirnayeem99</a></td>
-        </tr>
-        <tr>
-          <td>LinkedIn</td>
-          <td><a href="https://www.linkedin.com/in/kabirnayeem99/" target="_blank">Naimul Kabir</a></td>
-        </tr>
-        <tr>
-          <td>Email</td>
-          <td><a href="mailto:kabirnayeem.99@gmail.com">kabirnayeem.99@gmail.com</a></td>
-        </tr>
-      </table>
-
-      <div class="rainbow-rule" style="margin:16px 0;"></div>
-
-      <div class="badge-bar" style="justify-content:center;">
-        <div class="badge">Under Construction</div>
-        <div class="badge">Best viewed in 800x600</div>
-        <div class="badge">Frame‑tastic!</div>
-      </div>
-    </div>
-
-    <div class="footer-90s">
-      <div class="gif-wall" style="justify-content:center;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="globe" />
-        <span>&copy; <span id="yearNow"></span> Naimul Kabir — Powered by plain HTML</span>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Animated_fire_by_nevit.gif" alt="flames" />
-      </div>
-    </div>
+    <footer>
+      <p>&copy; <span id="year"></span> Naimul Kabir. Plain HTML, no frameworks.</p>
+    </footer>
   </div>
 
   <script>
-    // Silly 90s-style local hit counter
-    (function () {
-      try {
-        var n = parseInt(localStorage.getItem('hitCounter') || '0', 10) + 1;
-        localStorage.setItem('hitCounter', String(n));
-        var el = document.getElementById('hitCounter');
-        if (el) el.textContent = ("000000" + n).slice(-6);
-      } catch (e) { }
-      var y = document.getElementById('yearNow');
-      if (y) y.textContent = new Date().getFullYear();
-    })();
+    document.addEventListener('DOMContentLoaded', function () {
+      var year = new Date().getFullYear();
+      var el = document.getElementById('year');
+      if (el) {
+        el.textContent = year;
+      }
+    });
   </script>
 </body>
 

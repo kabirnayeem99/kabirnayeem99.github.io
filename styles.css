@@ -1,43 +1,251 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
-
-body {
-  font-family: "JetBrains Mono", monospace;
-  padding: 0 20%;
+:root {
+  color-scheme: light;
+  font-size: 16px;
 }
 
-@media (max-width: 768px) {
-  body {
-    padding: 0 2%;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+  background-color: #faf6f1;
+  color: #1d1d1d;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.7;
+}
+
+main {
+  display: block;
+}
+
+.site {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.site-title {
+  font-size: clamp(2.4rem, 5vw, 3.1rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.tagline {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #595550;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  font-size: 0.95rem;
+}
+
+nav a {
+  color: #383430;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+nav a:hover,
+nav a:focus {
+  border-color: #383430;
+}
+
+.section-title {
+  font-size: 1.325rem;
+  font-weight: 600;
+  margin: 48px 0 12px;
+}
+
+section:first-of-type .section-title {
+  margin-top: 0;
+}
+
+p {
+  margin: 0 0 16px;
+}
+
+ul,
+ol {
+  margin: 0 0 24px 20px;
+  padding: 0;
+}
+
+li + li {
+  margin-top: 10px;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus {
+  text-decoration-color: rgba(0, 0, 0, 0.85);
+}
+
+.summary-card {
+  border-radius: 12px;
+  padding: 20px 22px;
+  background: #f3ede6;
+  border: 1px solid #e5ded6;
+  margin-bottom: 32px;
+}
+
+.summary-card p {
+  margin: 0;
+}
+
+.highlight-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.highlight {
+  border: 1px solid #e5ded6;
+  background: #fdf8f3;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.highlight h3 {
+  font-size: 1.1rem;
+  margin: 0 0 6px;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #706a64;
+  margin-bottom: 4px;
+}
+
+.article-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.article-item a {
+  text-decoration: none;
+}
+
+.article-item h3 {
+  font-size: 1.05rem;
+  margin: 0 0 4px;
+}
+
+.article-item p {
+  margin: 0;
+  color: #5c564f;
+}
+
+.article-item:hover h3,
+.article-item:focus-within h3 {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid #e5ded6;
+  font-size: 0.9rem;
+  color: #706a64;
+}
+
+small {
+  font-size: 0.85em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e5ded6;
+  margin: 32px 0;
+}
+
+@media (max-width: 640px) {
+  nav {
+    gap: 12px;
+  }
+
+  .site {
+    padding: 48px 20px 72px;
+  }
+
+  .highlight-list {
+    grid-template-columns: 1fr;
   }
 }
 
-.cache-notice {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  color: black;
-  padding: 10px;
-  border: 1px solid transparent;
-  background: #fff;
-  font-size: 14px;
-  z-index: 1000;
-  display: none;
-  font-family: "JetBrains Mono", monospace;
-  text-align: center;
-  border-image: linear-gradient(to right, #d00, #007a3d, #000) 1;
-}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #12100f;
+    color: #eee5da;
+  }
 
-.cache-notice button {
-  background: #fff;
-  border: 1px solid transparent;
-  padding: 5px 10px;
-  margin-left: 10px;
-  margin-top: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: "JetBrains Mono", monospace;
-  border-image: linear-gradient(to right, #d00, #007a3d, #000) 1;
+  .tagline {
+    color: #b7aa9f;
+  }
+
+  nav a {
+    color: #efe2d2;
+  }
+
+  nav a:hover,
+  nav a:focus {
+    border-color: #efe2d2;
+  }
+
+  .summary-card {
+    background: #1d1a18;
+    border-color: #2b2724;
+  }
+
+  .highlight {
+    background: #1d1a18;
+    border-color: #2b2724;
+  }
+
+  a {
+    text-decoration-color: rgba(255, 247, 234, 0.45);
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration-color: rgba(255, 247, 234, 0.85);
+  }
+
+  footer {
+    border-color: #2b2724;
+    color: #b7aa9f;
+  }
+
+  hr {
+    border-top-color: #2b2724;
+  }
 }

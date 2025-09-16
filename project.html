@@ -1,124 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects · Naimul Kabir</title>
+    <meta name="description" content="Selected Android, iOS, Kotlin Multiplatform, and Flutter projects by Naimul Kabir." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site">
+      <header>
+        <h1 class="site-title">Projects</h1>
+        <p class="tagline">A shortlist of experiments and products I still think about.</p>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="work.html">Work</a>
+          <a href="project.html">Projects</a>
+          <a href="blog.html">Writing</a>
+        </nav>
+      </header>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <main>
+        <section>
+          <h2 class="section-title">Libraries & tools</h2>
+          <div class="highlight-list">
+            <article class="highlight">
+              <h3><a href="https://github.com/kabirnayeem99/kVinInfo" target="_blank" rel="noreferrer">kVINInfo</a></h3>
+              <p class="meta">2024 — Kotlin · Multiplatform</p>
+              <p>Pure Kotlin VIN validation, decoding, and mock generation. Ships without external dependencies and plugs into KMP apps easily.</p>
+            </article>
+            <article class="highlight">
+              <h3><a href="https://github.com/kabirnayeem99/Ktor2Curl" target="_blank" rel="noreferrer">Ktor2Curl</a></h3>
+              <p class="meta">2024 — Kotlin · Server/Client</p>
+              <p>A tiny plugin that mirrors each Ktor request as a curl command for quick debugging, inspired by OkHttp's Ok2Curl.</p>
+            </article>
+          </div>
+        </section>
 
-  <title>Projects by Naimul Kabir | Android, iOS, KMP, Flutter</title>
-  <link rel="stylesheet" href="retro.css" />
-</head>
+        <section>
+          <h2 class="section-title">Android & Flutter</h2>
+          <div class="highlight-list">
+            <article class="highlight">
+              <h3><a href="https://github.com/kabirnayeem99/islam_qa_org_android" target="_blank" rel="noreferrer">IslamQA Android</a></h3>
+              <p class="meta">2022 — Kotlin · Jetpack Compose</p>
+              <p>Unofficial Android client for IslamQA.org with offline search, bookmarking, and WorkManager-powered background sync.</p>
+            </article>
+            <article class="highlight">
+              <h3><a href="https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US" target="_blank" rel="noreferrer">আল হাদিস</a></h3>
+              <p class="meta">2022 — Dart · Flutter</p>
+              <p>Digitizes 49k+ Bangla hadith. Led the modernization effort, safeguarding content accuracy and performance.</p>
+            </article>
+            <article class="highlight">
+              <h3><a href="https://play.google.com/store/apps/details?id=com.basehubs.app&hl=en" target="_blank" rel="noreferrer">BaseHubs</a></h3>
+              <p class="meta">2021 — Kotlin · Clean Architecture</p>
+              <p>Connects military families with local businesses, built with modular architecture, Firebase, and Parse backend integrations.</p>
+            </article>
+            <article class="highlight">
+              <h3><a href="https://play.google.com/store/apps/details?id=com.thefivenetwork.five&hl=en" target="_blank" rel="noreferrer">Boulevard Mentorship</a></h3>
+              <p class="meta">2021 — Kotlin · Multi-module</p>
+              <p>Mentorship OS bridging young talent and mentors. Focused on modularization and reliable notifications.</p>
+            </article>
+            <article class="highlight">
+              <h3><a href="https://play.google.com/store/apps/details?id=com.marriott.mrt&hl=en" target="_blank" rel="noreferrer">Marriott Bonvoy</a></h3>
+              <p class="meta">2022 — Android · Experiment</p>
+              <p>Worked within a massive, experiment-heavy codebase to support booking flows and instrumentation for millions of users.</p>
+            </article>
+            <article class="highlight">
+              <h3>PatientAccess</h3>
+              <p class="meta">2021 — Android · Healthcare</p>
+              <p>Appointment booking experience pairing clean architecture with Firestore and Jetpack to keep patient data safe.</p>
+            </article>
+          </div>
+        </section>
+      </main>
 
-<body>
-  <div class="page-wrap">
-    <div class="header-90s">
-      <div class="gif-wall" style="justify-content:center; gap:16px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="spinning globe" />
-        <div>
-          <div class="title-90s">Projects</div>
-          <div class="sub-90s">From KMP libraries to mobile apps</div>
-        </div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="spinning globe" />
-      </div>
+      <footer>
+        <p>More projects live on <a href="https://github.com/kabirnayeem99" target="_blank" rel="noreferrer">GitHub</a>.</p>
+      </footer>
     </div>
-
-    <table class="nav-bar">
-      <tr>
-        <td><a class="nav-link" href="index.html">Home</a></td>
-        <td><a class="nav-link" href="work.html">Work Experience</a></td>
-        <td><a class="nav-link" href="project.html">Projects</a></td>
-      </tr>
-    </table>
-
-    <div class="rainbow-rule"></div>
-
-    <div class="content-90s">
-      <div class="gif-wall" style="justify-content:center; margin:6px 0 12px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Animated_fire_by_nevit.gif" alt="flames" />
-        <marquee behavior="alternate" scrollamount="5" style="max-width:600px;">Hot off the virtual press! New and classic projects below!</marquee>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Animated_fire_by_nevit.gif" alt="flames" />
-      </div>
-
-      <!-- Keep original project content, styled the 90s way -->
-      <table class="table-90s">
-        <tr><th>Project</th><th>Details</th></tr>
-        <tr>
-          <td><b>kVINInfo - A Kotlin Library for VIN Processing</b><br/><i>May 2024 - Present</i></td>
-          <td>
-            kVINInfo is a pure Kotlin VIN validation, info extraction (with and without NHTSA DB), and mock VIN generation library.
-            <br/><b>Skills:</b> Kotlin · KMP
-            <br/><a href="https://github.com/kabirnayeem99/kVinInfo" target="_blank">GitHub - kabirnayeem99/kVinInfo</a>
-          </td>
-        </tr>
-        <tr>
-          <td><b>Ktor2Curl - A Ktor Plugin for Generating cURL Commands</b><br/><i>Oct 2024 - Present</i></td>
-          <td>
-            Simple way to transform Ktor requests into cURL logs. Pure Kotlin library, supports both KMP and Android projects. Inspired by Ok2Curl for OkHttp.
-            <br/><b>Skills:</b> Kotlin · Ktor · KMP
-            <br/><a href="https://github.com/kabirnayeem99/Ktor2Curl" target="_blank">GitHub - kabirnayeem99/Ktor2Curl</a>
-          </td>
-        </tr>
-        <tr>
-          <td><b>IslamQA Android - Unofficial Native Android Client for IslamQA.org</b><br/><i>Jun 2022 - Present</i></td>
-          <td>
-            Unofficial Android client for IslamQA.org.
-            <br/><b>Skills:</b> Jetpack Compose · Clean architecture · Kotlin Coroutines · WorkManager
-            <br/><a href="https://github.com/kabirnayeem99/islam_qa_org_android" target="_blank">GitHub - kabirnayeem99/islam_qa_org_android</a>
-          </td>
-        </tr>
-        <tr>
-          <td><b>আল হাদিস (Al Hadith) - Flutter Project for Hadith Collection & Search</b><br/><i>Jan 2022 - Jan 2023</i></td>
-          <td>
-            Al-Hadith (আল হাদিস) is a popular Islamic app in Bangladesh, digitizing 49,000+ Hadiths in Bangla.
-            <br/><b>Skills:</b> Dart · Flutter · GetX · FCM · SQLite
-            <br/><a href="https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US" target="_blank">আল হাদিস (Al Hadith) - App on Google Play</a>
-          </td>
-        </tr>
-        <tr>
-          <td><b>BaseHubs - Native Android App</b><br/><i>Jan 2021 - Jan 2022</i></td>
-          <td>
-            Platform connecting military families to trusted local businesses, with recommendations and discounts.
-            <br/><b>Skills:</b> ParseSDK · Firebase · Cloud Firestore · Crashlytics · Retrofit · Clean architecture
-            <br/><a href="https://play.google.com/store/apps/details?id=com.basehubs.app&hl=en" target="_blank">BaseHubs - App on Google Play</a>
-          </td>
-        </tr>
-        <tr>
-          <td><b>Boulevard Mentorship - Native Android App with Modular Arch</b><br/><i>Jan 2021 - Jan 2022</i></td>
-          <td>
-            Mentoring OS connecting young talent with mentors and organizations.
-            <br/><b>Skills:</b> Multi-Module Project · Android Jetpack
-            <br/><a href="https://play.google.com/store/apps/details?id=com.thefivenetwork.five&hl=en" target="_blank">Boulevard Mentorship - App on Google Play</a>
-          </td>
-        </tr>
-        <tr>
-          <td><b>Marriot Bonvoy - Native Android App with Massive Codebase</b><br/><i>Jan 2022</i></td>
-          <td>
-            Hotel booking app with 10M+ downloads, offering search for 8,000+ hotels.
-            <br/><b>Skills:</b> Amazon Web Services (AWS) · A/B Testing
-            <br/><a href="https://play.google.com/store/apps/details?id=com.marriott.mrt&hl=en" target="_blank">Marriott Bonvoy - App on Google Play</a>
-          </td>
-        </tr>
-        <tr>
-          <td><b>PatientAccess - Native Android App for Doctor Appointment</b><br/><i>Jan 2021 - Jan 2022</i></td>
-          <td>
-            Connects patients to healthcare providers for booking and managing visits.
-            <br/><b>Skills:</b> Cloud Firestore · Clean architecture · Android Jetpack · Android Development
-          </td>
-        </tr>
-      </table>
-
-      <div class="gif-wall" style="justify-content:center; margin:12px 0;">
-        <a class="btn-90s" href="index.html">&larr; Back to Home</a>
-      </div>
-    </div>
-
-    <div class="footer-90s" style="padding-top:0;">
-      <div class="badge-bar" style="justify-content:center;">
-        <div class="badge">No JavaScript frameworks</div>
-        <div class="badge">Old school vibes</div>
-      </div>
-    </div>
-  </div>
-</body>
-
+  </body>
 </html>
