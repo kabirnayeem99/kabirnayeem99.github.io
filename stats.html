@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stats · Naimul Kabir</title>
+  <meta name="description"
+    content="Public coding stats and practice milestones for Naimul Kabir, including LeetCode activity." />
+  <meta name="keywords" content="Naimul Kabir stats, LeetCode stats, coding activity, problem solving heatmap" />
+  <meta name="author" content="Naimul Kabir" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://kabirnayeem99.github.io/stats.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Naimul Kabir" />
+  <meta property="og:url" content="https://kabirnayeem99.github.io/stats.html" />
+  <meta property="og:title" content="Stats · Naimul Kabir" />
+  <meta property="og:description"
+    content="Public coding stats and practice milestones for Naimul Kabir, including LeetCode activity." />
+  <meta property="og:image" content="https://kabirnayeem99.github.io/android-chrome-512x512.png" />
+  <meta property="og:image:alt" content="Naimul Kabir logo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stats · Naimul Kabir" />
+  <meta name="twitter:description"
+    content="Public coding stats and practice milestones for Naimul Kabir, including LeetCode activity." />
+  <meta name="twitter:image" content="https://kabirnayeem99.github.io/android-chrome-512x512.png" />
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="google-site-verification" content="F9rV_qmMTwOKM_FXW_y4CvXUPVctz-VO_e1zY757H8w" />
+</head>
+
+<body>
+  <div class="site">
+    <header>
+      <h1 class="site-title">Stats</h1>
+      <p class="tagline">Oversharing, just oversharing!</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="project.html">Projects</a>
+        <a href="blog.html">Writing</a>
+        <a href="stats.html">Stats</a>
+      </nav>
+      <div class="language-switcher" aria-label="Language options">
+        <a href="stats.html" lang="en" aria-current="page">English</a>
+        <a href="bn/stats.html" lang="bn">বাংলা</a>
+        <!-- <a href="ar/stats.html" lang="ar">العربية</a>
+                <a href="ur/stats.html" lang="ur">اردو</a> -->
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <p>
+          These are graphs, charts, lists that might not fit in a professional portfolio. Someone may even cringe out.
+          But sometimes oversharing feels good, and surprisingly honest. Who can tell, they may even impress someone
+          looking for someone good at specific tech stack or languages.
+        </p>
+      </section>
+
+      <section>
+        <div class="summary-card stats-card">
+          <h2 class="section-title">WakaTime Top Languages</h2>
+          <p>WakaTime tracks all my development activities, in-office or personal projects.
+          </p>
+          <img class="stats-embed"
+            src="https://github-readme-stats.vercel.app/api/wakatime?username=kabirnayeem99&amp;hide=xml,groovy,html,text,css,bash,yaml,sh,toml,todo.gitignore,gradle,other,markdown,svg,ps&amp;langs_count=5&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=8"
+            alt="WakaTime language usage for kabirnayeem99" loading="lazy" />
+        </div>
+      </section>
+
+      <section>
+        <div class="summary-card stats-card">
+          <h2 class="section-title">GitHub Top Languages</h2>
+          <p>GitHub top languages section is slightly different than WakaTime, in the sense that, it all, or most of
+            all, is my personal projects.</p>
+          <img class="stats-embed"
+            src="https://github-readme-stats.vercel.app/api/top-langs/?username=kabirnayeem99&amp;hide=html,python,makefile&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=8"
+            alt="GitHub top languages for kabirnayeem99" loading="lazy" />
+        </div>
+      </section>
+
+      <section>
+        <div class="summary-card stats-card">
+          <h2 class="section-title">LeetCode Profile</h2>
+          <p>Silly <a href="https://leetcode.com/u/kabirnayeem99/" target="_blank" rel="noreferrer">LeetCode</a> stats,
+            and I have no idea why I'm sharing them. As I'm starting out, this looks very poor, and pathetic. Hopefully,
+            in future, the situation improves. </p>
+          <p><sub>Thanks to <a href="https://leetcard.jacoblin.cool/" target="_blank"
+                rel="noreferrer">LeetCard</a>.</sub></p>
+          <img class="stats-embed"
+            src="https://leetcard.jacoblin.cool/kabirnayeem99?theme=forest&amp;font=JetBrains%20Mono&amp;ext=heatmap&hide_title=true&disable_animations=true"
+            alt="LeetCode stats for kabirnayeem99" loading="lazy" />
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Last refreshed <time id="last-refreshed" datetime="">Today</time>. Ping me for other data cuts.</p>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var refreshedEl = document.getElementById('last-refreshed');
+      if (!refreshedEl) {
+        return;
+      }
+
+      var today = new Date();
+      refreshedEl.setAttribute('datetime', today.toISOString().split('T')[0]);
+      var lang = document.documentElement.lang || 'en';
+      var localeMap = {
+        bn: 'bn-BD',
+        ar: 'ar-SA',
+        ur: 'ur-PK'
+      };
+
+      var locale = localeMap[lang] || 'en-GB';
+      refreshedEl.textContent = today.toLocaleDateString(locale, {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+      });
+    });
+  </script>
+</body>
+
+</html>

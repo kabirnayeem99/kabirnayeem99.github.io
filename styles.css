@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo&family=Gulzar&family=Tiro+Bangla&display=swap");
+
 :root {
   color-scheme: light;
   font-size: 16px;
@@ -14,6 +16,18 @@ body {
   color: #2f261a;
   -webkit-font-smoothing: antialiased;
   line-height: 1.7;
+}
+
+html[lang="bn"] body {
+  font-family: "Tiro Bangla", "Noto Serif Bengali", "Bangla Sangam MN", "SolaimanLipi", serif;
+}
+
+html[lang="ar"] body {
+  font-family: "Cairo", "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
+}
+
+html[lang="ur"] body {
+  font-family: "Gulzar", "Noto Nastaliq Urdu", "Mehr Nastaliq Web", "Scheherazade New", serif;
 }
 
 main {
@@ -72,6 +86,47 @@ nav a:focus {
   margin: 48px 0 12px;
 }
 
+.language-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.language-switcher a {
+  color: #6b5f50;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+
+.language-switcher a[lang="bn"] {
+  font-family: "Tiro Bangla", "Noto Serif Bengali", "Bangla Sangam MN", "SolaimanLipi", serif;
+}
+
+.language-switcher a[lang="ar"] {
+  font-family: "Katibeh", "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
+}
+
+.language-switcher a[lang="ur"] {
+  font-family: "Gulzar", "Noto Nastaliq Urdu", "Mehr Nastaliq Web", "Scheherazade New", serif;
+}
+
+.language-switcher a[aria-current="page"] {
+  font-weight: 600;
+  border-color: #6b5f50;
+}
+
+.language-switcher a:hover,
+.language-switcher a:focus {
+  border-color: #6b5f50;
+}
+
+html[dir="rtl"] .language-switcher {
+  justify-content: flex-end;
+}
+
 section:first-of-type .section-title {
   margin-top: 0;
 }
@@ -86,7 +141,7 @@ ol {
   padding: 0;
 }
 
-li + li {
+li+li {
   margin-top: 10px;
 }
 
@@ -113,6 +168,18 @@ a:focus {
 
 .summary-card p {
   margin: 0;
+}
+
+.stats-card .section-title {
+  margin-top: 0;
+}
+
+.stats-embed {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 18px;
+  border-radius: 8px;
 }
 
 .highlight-list {

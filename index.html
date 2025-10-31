@@ -40,7 +40,14 @@
         <a href="work.html">Work</a>
         <a href="project.html">Projects</a>
         <a href="blog.html">Writing</a>
+        <a href="stats.html">Stats</a>
       </nav>
+      <div class="language-switcher" aria-label="Language options">
+        <a href="index.html" lang="en" aria-current="page">English</a>
+        <a href="bn/index.html" lang="bn">বাংলা</a>
+        <!-- <a href="ar/index.html" lang="ar">العربية</a>
+                <a href="ur/index.html" lang="ur">اردو</a> -->
+      </div>
     </header>
 
     <main>
@@ -50,22 +57,28 @@
             I build mobile apps that work across platforms, with native Android SDK (Kotlin, Compose, Java), iOS
             (SwiftUI),
             Flutter,
-            and Kotlin Multiplatform. I'm also familiar with backend development through PHP Laravel. I am currently at <a href="https://syarah.com/" target="_blank"
-              rel="noreferrer">Syarah</a>
+            and Kotlin Multiplatform. I'm also familiar with backend development, mainly, through PHP Laravel. I am
+            currently at
+            <a href="https://syarah.com/" target="_blank" rel="noreferrer">Syarah</a>
             working on their internal supply-chain applications.
           </p>
         </div>
       </section>
 
- <section>
-  <h2 class="section-title">Right Now</h2>
-  <p>
-    Lately, I've been building some pet projects with PHP Laravel. And also trying to get back into DS & Algo, and problem-solving on <a href="https://leetcode.com/u/kabirnayeem99/">LeetCode</a>.
-  </p>
-  <p>
-    Outside work, my almost single source of entertainment is reading, just some light novels, thrillers, maybe some non-fictions time to time. And the occasional tech article as a form of infotainment or to stay up-to-date with techs, politics and whatnot.
-  </p>
-</section>
+      <section>
+        <h2 class="section-title">Right Now</h2>
+        <p>
+          Lately, I've been building some pet projects with PHP Laravel. And also trying to get back into DS & Algo, and
+          problem-solving on <a href="https://leetcode.com/u/kabirnayeem99/">LeetCode</a>.
+        </p>
+        <p>
+          Outside work, my almost single source of entertainment is reading, just some light novels, thriller junks,
+          maybe
+          some non-fictions time to time, on History, Islamic History, Politics... And the occasional blogs or articles
+          as a form of infotainment or to stay
+          up-to-date with techs, politics and whatnot.
+        </p>
+      </section>
 
 
       <section>
@@ -77,9 +90,10 @@
             <p>
               Developed an in-house Camera SDK to capture car images of different angle, and developed a machine
               learning model with YOLOv8 to
-              validate car angle and to auto detect and capture car sides based on provided tag. Also developed an
-              internal upload service SDK, that works
-              around WorkManager in Android.
+              validate car angle and to auto detect and capture car sides based on provided tag. Has custom control,
+              gyroscope sensor based validations. Also developed an
+              internal upload service SDK, that was developed keeping high temperature & networ instability of the
+              desert in mind.
             </p>
           </article>
           <article class="highlight">
@@ -99,7 +113,8 @@
             <p>
               Partnering with small businesses on web design, digital marketing, and Amazon FBA tooling, plus
               contractual
-              development on large-scale apps like Marriott Bonvoy, BaseHubs, PatientAccess, and Jobamax.
+              development on large-scale apps like Marriott Bonvoy, BaseHubs, PatientAccess, and Jobamax. Added Sunmi
+              Printer SDK to a Cordova Hybrid app.
             </p>
           </article>
         </div>
@@ -112,38 +127,22 @@
         </p>
         <ul class="article-list">
 
-             <li class="article-item">
-            <a href="https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8" target="_blank"
-              rel="noreferrer">
+          <li class="article-item">
+            <a href="https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8"
+              target="_blank" rel="noreferrer">
               <h3>If I Had to Restart My Career as a Mobile Dev</h3>
-              <p>I go through some of my mistakes, and some suggestions and recommendations for newcomer mobile devs, that I truly believe should help them.</p>
+              <p>I go through some of my mistakes, and some suggestions and recommendations for newcomer mobile devs,
+                that I truly believe should help them.</p>
             </a>
           </li>
-          
+
           <li class="article-item">
             <a href="https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6" target="_blank"
               rel="noreferrer">
               <h3>Manjaro to Arch conversation</h3>
-              <p>Hacky Guide on turning a Manjaro installation into an Arch Install. May not work, after so many years,
-                as
-                both platforms has changed largely after writing this blog.</p>
-            </a>
-          </li>
-
-          <li class="article-item">
-            <a href="https://kabirnayeem99.medium.com/setup-windows-for-android-development-9d27e1a9d9a4"
-              target="_blank" rel="noreferrer">
-              <h3>Setup Windows for Android development</h3>
-              <p>A guide to make Windows Installation a proper Android Development Work station.</p>
-            </a>
-          </li>
-
-          <li class="article-item">
-            <a href="https://kabirnayeem99.medium.com/keep-calm-switch-back-to-windows-11f5f636f870" target="_blank"
-              rel="noreferrer">
-              <h3>Keep calm, switch back to Windows</h3>
-              <p>I don't know why even I have written this!!! Rationalising my switching back to windows from FOSS OS.
-              </p>
+              <p>Hacky Guide on turning a Manjaro installation into an Arch Install. My most viwed (~8k views) and read
+                (~4k) blog. After all this time, I don't think it works anymore. Nonetheless Linux Geeks may find this
+                interesting.</p>
             </a>
           </li>
         </ul>
@@ -164,11 +163,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var year = new Date().getFullYear();
       var el = document.getElementById('year');
-      if (el) {
-        el.textContent = year;
+      if (!el) {
+        return;
       }
+
+      var today = new Date();
+      var lang = document.documentElement.lang || 'en';
+      var localeMap = {
+        bn: 'bn-BD',
+        ar: 'ar-SA',
+        ur: 'ur-PK'
+      };
+      var locale = localeMap[lang] || 'en-US';
+      el.textContent = today.toLocaleDateString(locale, { year: 'numeric' });
     });
   </script>
 </body>
