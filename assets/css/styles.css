@@ -411,25 +411,229 @@ a:focus-visible {
   background: #f0ece2;
 }
 
+.wakatime-widget {
+  margin-top: 0.9rem;
+  padding: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fcfaf5;
+}
+
+.wakatime-widget h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.wakatime-status {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.wakatime-status.is-error {
+  color: #7a3026;
+}
+
+.wakatime-visuals {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.wakatime-bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.wakatime-bar-row {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.wakatime-bar-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.wakatime-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.wakatime-swatch {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.wakatime-percent {
+  color: var(--text-muted);
+}
+
+.wakatime-metrics {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.wakatime-time {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.wakatime-track {
+  width: 100%;
+  height: 11px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #ece5d8;
+}
+
+.wakatime-fill {
+  height: 100%;
+  border-radius: inherit;
+  opacity: 0.82;
+  transition: width 0.4s ease;
+}
+
+.wakatime-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.wakatime-card {
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.wakatime-card-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.wakatime-card-value {
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.github-commits-widget {
+  margin-top: 0.9rem;
+  padding: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fcfaf5;
+}
+
+.github-commits-status {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.github-commits-status.is-error {
+  color: #7a3026;
+}
+
+.github-commits-visuals {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.github-commits-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.github-commits-card {
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.github-commits-card-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.github-commits-card-value {
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.github-heatmap-wrap {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.github-heatmap-scroll {
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+}
+
+.github-heatmap {
+  display: grid;
+  grid-template-rows: repeat(7, 11px);
+  grid-auto-flow: column;
+  grid-auto-columns: 11px;
+  gap: 3px;
+  width: max-content;
+  min-width: 100%;
+}
+
+.github-heatmap-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(27, 31, 35, 0.06);
+  transition: transform 0.12s ease;
+}
+
+.github-heatmap-dot:hover {
+  transform: scale(1.08);
+}
+
+.github-heatmap-dot.is-future {
+  border-color: rgba(27, 31, 35, 0.04);
+}
+
+.github-heatmap-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.github-heatmap-legend-label {
+  line-height: 1;
+}
+
+.github-heatmap-legend-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(27, 31, 35, 0.06);
+}
+
 hr {
   border: 0;
   border-top: 1px solid var(--border);
   margin: 1.2rem 0;
-}
-
-.gr_grid_container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
-  gap: 10px;
-}
-
-.gr_grid_book_container {
-  width: 100%;
-}
-
-.gr_grid_book_container img {
-  width: 100%;
-  border-radius: 8px;
 }
 
 footer {
