@@ -92,10 +92,9 @@ html[lang="ur"] body {
 }
 
 header {
-  position: relative;
   text-align: center;
   margin-bottom: 2rem;
-  padding-top: 3rem;
+  padding-top: 0;
 }
 
 .site-title {
@@ -134,55 +133,164 @@ nav a:focus-visible {
 }
 
 .language-switcher {
-  position: absolute;
-  top: 0;
-  inset-inline-end: 0;
-  margin: 0;
-  padding: 8px 12px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 10px;
-  width: auto;
-  max-width: min(100%, 460px);
+  position: relative;
+  display: inline-block;
+  margin: 0 auto 1.25rem;
+}
+
+.language-switcher + .site-title {
+  margin-top: 0.35rem;
+}
+
+html[lang="ur"] .language-switcher {
+  margin-bottom: 1.5rem;
+}
+
+html[lang="ur"] .language-switcher + .site-title {
+  margin-top: 0.55rem;
+}
+
+.language-switcher summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 1.9rem;
+  padding: 0.18rem 0.62rem;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: rgba(255, 253, 248, 0.85);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.language-switcher a {
-  color: var(--text-muted);
+.language-switcher summary::marker {
+  content: "";
+}
+
+.language-switcher summary::-webkit-details-marker {
+  display: none;
+}
+
+.language-switcher summary:hover {
+  border-color: var(--text-muted);
+  background: #f7f4ee;
+}
+
+.language-switcher summary:focus-visible {
+  outline: 2px solid #b8b0a3;
+  outline-offset: 2px;
+}
+
+.language-switcher[open] summary {
+  border-color: var(--text-muted);
+  background: #f7f4ee;
+}
+
+.language-switcher-globe {
+  width: 0.98rem;
+  height: 0.98rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+
+.language-switcher-globe::before,
+.language-switcher-globe::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.language-switcher-globe::before {
+  border-inline: 1px solid currentColor;
+  inset-inline: 0.22rem;
+}
+
+.language-switcher-globe::after {
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  inset-block: 0.28rem;
+}
+
+.language-switcher-label {
+  white-space: nowrap;
+}
+
+.language-menu {
+  position: absolute;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 8px);
+  min-width: 9rem;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 0.3rem;
+  z-index: 20;
+}
+
+.language-switcher:not([open]) .language-menu {
+  display: none;
+}
+
+.language-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.8rem;
+  padding: 0.12rem 0.42rem;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--text);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.language-switcher a[lang="en"] {
+.language-switcher .language-menu a:visited {
+  color: var(--text);
+}
+
+.language-menu a[lang="en"] {
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
 }
 
-.language-switcher a[lang="bn"] {
+.language-menu a[lang="bn"] {
   font-family: "Anek Bangla", "Noto Sans Bengali", "Hind Siliguri", sans-serif;
 }
 
-.language-switcher a[lang="ar"] {
+.language-menu a[lang="ar"] {
   font-family: "Cairo", "Noto Sans Arabic", Tahoma, Arial, sans-serif;
 }
 
-.language-switcher a[lang="ur"] {
+.language-menu a[lang="ur"] {
   font-family: "Gulzar", "Noto Nastaliq Urdu", "Noto Naskh Arabic", serif;
 }
 
-.language-switcher a:hover,
-.language-switcher a:focus-visible {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+.language-menu a:hover,
+.language-menu a:focus-visible {
+  border-bottom-color: var(--text-muted);
+  background: #f1eee7;
 }
 
-.language-switcher a[aria-current="page"] {
+.language-menu a[aria-current="page"] {
   color: var(--text);
   font-weight: 600;
   border-bottom-color: var(--text-muted);
+  background: #ece8df;
 }
 
 main {
@@ -345,12 +453,8 @@ footer {
     padding: 34px 16px 56px;
   }
 
-  .language-switcher {
-    position: static;
-    margin: 0.9rem auto 0;
-    justify-content: center;
-    max-width: 100%;
-    border-radius: 14px;
+  .language-menu {
+    min-width: 8.5rem;
   }
 }
 
