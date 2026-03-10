@@ -1,5 +1,116 @@
+// @ts-check
+/**
+ * Renders WakaTime language and summary charts with cache-first loading.
+ *
+ * Display order:
+ * 1) bundled static snapshot (while loading local storage)
+ * 2) localStorage cache (valid for 1 day; stale cache is shown until live refresh finishes)
+ * 3) live API response (only when cache is invalid or missing)
+ */
 (function () {
   "use strict";
+
+  /**
+   * @typedef {{
+   *   toSafeNumber: function(unknown): number,
+   *   formatPercent: function(number): string,
+   *   formatDuration: function(number): string
+   * }} StatsUtils
+   */
+
+  /** @typedef {{ name?: unknown, percent?: unknown, color?: unknown }} RawLanguageItem */
+  /** @typedef {{ data?: RawLanguageItem[] }} WakatimeLanguagePayload */
+  /** @typedef {{
+   *   best_day?: { date?: string, text?: string },
+   *   grand_total?: {
+   *     total_seconds?: unknown,
+   *     total_seconds_including_other_language?: unknown,
+   *     human_readable_total?: string,
+   *     human_readable_total_including_other_language?: string,
+   *     human_readable_daily_average?: string,
+   *     human_readable_daily_average_including_other_language?: string
+   *   },
+   *   range?: { start?: string, end?: string }
+   * }} WakatimeSummaryData */
+  /** @typedef {{ data?: WakatimeSummaryData }} WakatimeSummaryPayload */
+  /** @typedef {{ languagePayload: WakatimeLanguagePayload, summaryPayload: WakatimeSummaryPayload }} WakatimeCachedPayload */
+  /** @typedef {{ payload: WakatimeCachedPayload, isFresh: boolean }} WakatimeCacheEntry */
+  /** @typedef {{ name: string, percent: number, color: string }} LanguageItem */
+  /** @typedef {Window & { personPortfolioStatsUtils?: unknown, personPortfolioSnapshots?: unknown }} PortfolioWindow */
+
+  /**
+   * @param {unknown} value
+   * @returns {value is Record<string, unknown>}
+   */
+  function isRecord(value) {
+    return Boolean(value) && typeof value === "object";
+  }
+
+  /**
+   * @returns {StatsUtils}
+   */
+  function createFallbackStatsUtils() {
+    /** @param {unknown} value */
+    function toSafeNumber(value) {
+      var numericValue = Number(value);
+      return Number.isFinite(numericValue) ? numericValue : 0;
+    }
+
+    /** @param {number} value */
+    function formatPercent(value) {
+      if (value < 1) {
+        return value.toFixed(2) + "%";
+      }
+      return value.toFixed(1) + "%";
+    }
+
+    /** @param {number} seconds */
+    function formatDuration(seconds) {
+      var totalSeconds = Math.max(0, Math.round(toSafeNumber(seconds)));
+      var hours = Math.floor(totalSeconds / 3600);
+      var minutes = Math.floor((totalSeconds % 3600) / 60);
+      var secondsRemainder = totalSeconds % 60;
+
+      if (hours > 0 && minutes > 0) {
+        return hours + " hrs " + minutes + " mins";
+      }
+      if (hours > 0) {
+        return hours + " hrs";
+      }
+      if (minutes > 0) {
+        return minutes + " mins";
+      }
+      return secondsRemainder + " secs";
+    }
+
+    return {
+      toSafeNumber: toSafeNumber,
+      formatPercent: formatPercent,
+      formatDuration: formatDuration,
+    };
+  }
+
+  /**
+   * @returns {StatsUtils}
+   */
+  function getStatsUtils() {
+    var root = /** @type {PortfolioWindow} */ (window).personPortfolioStatsUtils;
+    if (isRecord(root)) {
+      var toSafeNumber = root.toSafeNumber;
+      var formatPercent = root.formatPercent;
+      var formatDuration = root.formatDuration;
+
+      if (
+        typeof toSafeNumber === "function" &&
+        typeof formatPercent === "function" &&
+        typeof formatDuration === "function"
+      ) {
+        return /** @type {StatsUtils} */ (root);
+      }
+    }
+
+    return createFallbackStatsUtils();
+  }
 
   var widget = document.querySelector("[data-wakatime-widget]");
   if (!widget) {
@@ -8,16 +119,28 @@
 
   var languagesUrl = widget.getAttribute("data-wakatime-languages-url");
   var summaryUrl = widget.getAttribute("data-wakatime-summary-url");
-  var statusEl = widget.querySelector('[data-role="status"]');
-  var visualsEl = widget.querySelector('[data-role="visuals"]');
-  var barsEl = widget.querySelector('[data-role="language-bars"]');
-  var summaryEl = widget.querySelector('[data-role="summary-cards"]');
-  var cacheTtlMs = 10 * 60 * 1000;
+  /** @type {HTMLElement | null} */
+  var statusEl = /** @type {HTMLElement | null} */ (widget.querySelector('[data-role="status"]'));
+  /** @type {HTMLElement | null} */
+  var visualsEl = /** @type {HTMLElement | null} */ (widget.querySelector('[data-role="visuals"]'));
+  /** @type {HTMLOListElement | null} */
+  var barsEl = /** @type {HTMLOListElement | null} */ (widget.querySelector('[data-role="language-bars"]'));
+  /** @type {HTMLElement | null} */
+  var summaryEl = /** @type {HTMLElement | null} */ (widget.querySelector('[data-role="summary-cards"]'));
+  var cacheTtlMs = 24 * 60 * 60 * 1000;
   var cacheKey =
     "person-portfolio:wakatime:v1:" +
     encodeURIComponent(languagesUrl || "") +
     ":" +
     encodeURIComponent(summaryUrl || "");
+
+  var statsUtils = getStatsUtils();
+  var toSafeNumber = statsUtils.toSafeNumber;
+  var formatPercent = statsUtils.formatPercent;
+  var formatDuration = statsUtils.formatDuration;
+  var staticSnapshot = getStaticSnapshot();
+
+  /** @type {Record<string, true>} */
   var excludedLanguageNames = {
     html: true,
     xml: true,
@@ -34,6 +157,8 @@
     zsh: true,
     sh: true,
   };
+
+  /** @type {string[]} */
   var excludedLanguageKeywords = [
     "template",
     "config",
@@ -56,76 +181,78 @@
     "file",
   ];
 
+  /**
+   * @param {unknown} name
+   * @returns {string}
+   */
   function normalizeLanguageName(name) {
     return String(name || "").trim().toLowerCase();
   }
 
+  /**
+   * @param {unknown} name
+   * @returns {boolean}
+   */
   function shouldExcludeLanguage(name) {
     var normalized = normalizeLanguageName(name);
     if (!normalized) {
       return true;
     }
+
     if (excludedLanguageNames[normalized]) {
       return true;
     }
+
     return excludedLanguageKeywords.some(function (keyword) {
       return normalized.indexOf(keyword) >= 0;
     });
   }
 
+  /**
+   * @param {string} message
+   * @param {boolean} isError
+   * @returns {void}
+   */
   function setStatus(message, isError) {
     if (!statusEl) {
       return;
     }
+
     statusEl.textContent = message;
     statusEl.classList.toggle("is-error", Boolean(isError));
   }
 
-  function formatPercent(value) {
-    if (value < 1) {
-      return value.toFixed(2) + "%";
-    }
-    return value.toFixed(1) + "%";
-  }
-
+  /**
+   * @param {unknown} isoDate
+   * @returns {string}
+   */
   function formatDate(isoDate) {
-    if (!isoDate) {
+    var safeDate = typeof isoDate === "string" ? isoDate : "";
+    if (!safeDate) {
       return "n/a";
     }
-    return isoDate.slice(0, 10);
+
+    return safeDate.slice(0, 10);
   }
 
-  function toSafeNumber(value) {
-    var number = Number(value);
-    return Number.isFinite(number) ? number : 0;
-  }
-
-  function formatDuration(seconds) {
-    var totalSeconds = Math.max(0, Math.round(toSafeNumber(seconds)));
-    var hours = Math.floor(totalSeconds / 3600);
-    var minutes = Math.floor((totalSeconds % 3600) / 60);
-    var secondsRemainder = totalSeconds % 60;
-
-    if (hours > 0 && minutes > 0) {
-      return hours + " hrs " + minutes + " mins";
-    }
-    if (hours > 0) {
-      return hours + " hrs";
-    }
-    if (minutes > 0) {
-      return minutes + " mins";
-    }
-    return secondsRemainder + " secs";
-  }
-
+  /**
+   * @param {WakatimeSummaryPayload} payload
+   * @returns {number}
+   */
   function totalTrackedSeconds(payload) {
-    var data = payload && payload.data ? payload.data : {};
-    var grandTotal = data.grand_total || {};
+    var data = isRecord(payload) && isRecord(payload.data) ? payload.data : {};
+    var grandTotal = isRecord(data.grand_total) ? data.grand_total : {};
+
     return toSafeNumber(
       grandTotal.total_seconds_including_other_language || grandTotal.total_seconds
     );
   }
 
+  /**
+   * @param {string} url
+   * @param {number} timeoutMs
+   * @returns {Promise<unknown>}
+   */
   function fetchJsonWithTimeout(url, timeoutMs) {
     var controller = new AbortController();
     var timeoutId = setTimeout(function () {
@@ -150,10 +277,19 @@
       });
   }
 
+  /**
+   * @param {string} url
+   * @param {number} timeoutMs
+   * @returns {Promise<unknown>}
+   */
   function fetchJsonp(url, timeoutMs) {
     return new Promise(function (resolve, reject) {
       var callbackName =
         "wakatimeJsonp_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+      /** @type {Record<string, unknown>} */
+      var windowWithCallbacks = /** @type {Record<string, unknown>} */ (
+        /** @type {unknown} */ (window)
+      );
       var script = document.createElement("script");
       var separator = url.indexOf("?") >= 0 ? "&" : "?";
       var timeoutId = setTimeout(function () {
@@ -163,13 +299,14 @@
 
       function cleanup() {
         clearTimeout(timeoutId);
-        if (window[callbackName]) {
-          delete window[callbackName];
+        if (Object.prototype.hasOwnProperty.call(windowWithCallbacks, callbackName)) {
+          delete windowWithCallbacks[callbackName];
         }
         script.remove();
       }
 
-      window[callbackName] = function (payload) {
+      /** @param {unknown} payload */
+      windowWithCallbacks[callbackName] = function (payload) {
         cleanup();
         resolve(payload);
       };
@@ -184,47 +321,80 @@
     });
   }
 
+  /**
+   * @param {string} url
+   * @returns {Promise<unknown>}
+   */
   function fetchWakatime(url) {
     return fetchJsonWithTimeout(url, 10000).catch(function () {
       return fetchJsonp(url, 12000);
     });
   }
 
-  function readCache() {
+  /**
+   * @returns {WakatimeCachedPayload | null}
+   */
+  function getStaticSnapshot() {
+    var rootSnapshot = /** @type {PortfolioWindow} */ (window).personPortfolioSnapshots;
+    if (!isRecord(rootSnapshot)) {
+      return null;
+    }
+
+    var wakatimeSnapshot = rootSnapshot.wakatime;
+    if (!isRecord(wakatimeSnapshot)) {
+      return null;
+    }
+
+    if (!isRecord(wakatimeSnapshot.languagePayload) || !isRecord(wakatimeSnapshot.summaryPayload)) {
+      return null;
+    }
+
+    return /** @type {WakatimeCachedPayload} */ (wakatimeSnapshot);
+  }
+
+  /**
+   * @returns {WakatimeCacheEntry | null}
+   */
+  function readCacheEntry() {
     try {
-      if (!window.localStorage) {
-        return null;
-      }
       var raw = window.localStorage.getItem(cacheKey);
       if (!raw) {
         return null;
       }
-      var parsed = JSON.parse(raw);
-      if (!parsed || typeof parsed !== "object") {
+
+      var parsed = /** @type {unknown} */ (JSON.parse(raw));
+      if (!isRecord(parsed)) {
         return null;
       }
+
       var cachedAt = toSafeNumber(parsed.cachedAt);
-      if (!cachedAt) {
+
+      if (!isRecord(parsed.payload)) {
         return null;
       }
-      var ageMs = Date.now() - cachedAt;
-      if (ageMs < 0 || ageMs > cacheTtlMs) {
+
+      if (!isRecord(parsed.payload.languagePayload) || !isRecord(parsed.payload.summaryPayload)) {
         return null;
       }
-      if (!parsed.payload || typeof parsed.payload !== "object") {
-        return null;
-      }
-      return parsed.payload;
+
+      var ageMs = cachedAt > 0 ? Date.now() - cachedAt : Number.POSITIVE_INFINITY;
+      var isFresh = cachedAt > 0 && ageMs >= 0 && ageMs <= cacheTtlMs;
+
+      return {
+        payload: /** @type {WakatimeCachedPayload} */ (parsed.payload),
+        isFresh: isFresh,
+      };
     } catch (error) {
       return null;
     }
   }
 
+  /**
+   * @param {WakatimeCachedPayload} payload
+   * @returns {void}
+   */
   function writeCache(payload) {
     try {
-      if (!window.localStorage) {
-        return;
-      }
       window.localStorage.setItem(
         cacheKey,
         JSON.stringify({
@@ -237,25 +407,35 @@
     }
   }
 
+  /**
+   * @param {WakatimeLanguagePayload} payload
+   * @returns {LanguageItem[]}
+   */
   function normalizeLanguages(payload) {
-    var raw = payload && Array.isArray(payload.data) ? payload.data : [];
+    var raw = Array.isArray(payload.data) ? payload.data : [];
 
     return raw
       .map(function (item) {
         return {
-          name: String(item.name || "Unknown"),
-          percent: toSafeNumber(item.percent),
-          color: typeof item.color === "string" && item.color ? item.color : "#6b7280",
+          name: String(item && item.name ? item.name : "Unknown"),
+          percent: toSafeNumber(item && item.percent),
+          color:
+            item && typeof item.color === "string" && item.color ? item.color : "#6b7280",
         };
       })
       .filter(function (item) {
         return item.percent > 0 && !shouldExcludeLanguage(item.name);
       })
-      .sort(function (a, b) {
-        return b.percent - a.percent;
+      .sort(function (left, right) {
+        return right.percent - left.percent;
       });
   }
 
+  /**
+   * @param {LanguageItem} item
+   * @param {number} trackedSeconds
+   * @returns {HTMLLIElement}
+   */
   function createLanguageRow(item, trackedSeconds) {
     var row = document.createElement("li");
     row.className = "wakatime-bar-row";
@@ -282,7 +462,6 @@
     var percent = document.createElement("span");
     percent.className = "wakatime-percent";
     percent.textContent = formatPercent(item.percent);
-
     metrics.appendChild(percent);
 
     if (trackedSeconds > 0) {
@@ -306,20 +485,34 @@
     track.appendChild(fill);
     row.appendChild(head);
     row.appendChild(track);
+
     return row;
   }
 
+  /**
+   * @param {LanguageItem[]} languages
+   * @param {WakatimeSummaryPayload} summaryPayload
+   * @returns {void}
+   */
   function renderLanguageCharts(languages, summaryPayload) {
-    barsEl.innerHTML = "";
+    if (!barsEl) {
+      return;
+    }
+    var safeBarsEl = /** @type {HTMLOListElement} */ (barsEl);
+
+    safeBarsEl.innerHTML = "";
     var trackedSeconds = totalTrackedSeconds(summaryPayload);
 
-    var topLanguages = languages.slice(0, 10);
-
-    topLanguages.forEach(function (item) {
-      barsEl.appendChild(createLanguageRow(item, trackedSeconds));
+    languages.slice(0, 10).forEach(function (item) {
+      safeBarsEl.appendChild(createLanguageRow(item, trackedSeconds));
     });
   }
 
+  /**
+   * @param {string} label
+   * @param {string} value
+   * @returns {HTMLDivElement}
+   */
   function summaryItem(label, value) {
     var card = document.createElement("div");
     card.className = "wakatime-card";
@@ -337,28 +530,50 @@
     return card;
   }
 
+  /**
+   * @param {WakatimeSummaryPayload} payload
+   * @returns {void}
+   */
   function renderSummary(payload) {
-    var data = payload && payload.data ? payload.data : {};
-    var total = data.grand_total || {};
-    var best = data.best_day || {};
-    var range = data.range || {};
+    if (!summaryEl) {
+      return;
+    }
+
+    var data = isRecord(payload) && isRecord(payload.data) ? payload.data : {};
+    var total = isRecord(data.grand_total) ? data.grand_total : {};
+    var best = isRecord(data.best_day) ? data.best_day : {};
+    var range = isRecord(data.range) ? data.range : {};
 
     summaryEl.innerHTML = "";
     summaryEl.appendChild(
       summaryItem(
         "Total coded",
-        total.human_readable_total_including_other_language || total.human_readable_total || "n/a"
+        String(
+          total.human_readable_total_including_other_language ||
+            total.human_readable_total ||
+            "n/a"
+        )
       )
     );
+
     summaryEl.appendChild(
       summaryItem(
         "Daily average",
-        total.human_readable_daily_average_including_other_language ||
-          total.human_readable_daily_average ||
-          "n/a"
+        String(
+          total.human_readable_daily_average_including_other_language ||
+            total.human_readable_daily_average ||
+            "n/a"
+        )
       )
     );
-    summaryEl.appendChild(summaryItem("Best day", (best.text || "n/a") + (best.date ? " · " + formatDate(best.date) : "")));
+
+    summaryEl.appendChild(
+      summaryItem(
+        "Best day",
+        String(best.text || "n/a") + (best.date ? " · " + formatDate(best.date) : "")
+      )
+    );
+
     summaryEl.appendChild(
       summaryItem(
         "Tracking range",
@@ -368,48 +583,107 @@
     );
   }
 
+  /**
+   * @param {WakatimeLanguagePayload} languagePayload
+   * @param {WakatimeSummaryPayload} summaryPayload
+   * @param {string} statusMessage
+   * @returns {void}
+   */
   function renderFromPayloads(languagePayload, summaryPayload, statusMessage) {
     var languages = normalizeLanguages(languagePayload);
-
     if (!languages.length) {
       throw new Error("No language data available");
     }
 
     renderLanguageCharts(languages, summaryPayload);
     renderSummary(summaryPayload);
-    visualsEl.hidden = false;
+
+    if (visualsEl) {
+      visualsEl.hidden = false;
+    }
+
     setStatus(statusMessage, false);
   }
 
-  var cachedPayload = readCache();
-  if (
-    cachedPayload &&
-    cachedPayload.languagePayload &&
-    cachedPayload.summaryPayload
-  ) {
+  /**
+   * @returns {boolean}
+   */
+  function renderStaticSnapshot() {
+    if (staticSnapshot) {
+      try {
+        renderFromPayloads(
+          staticSnapshot.languagePayload,
+          staticSnapshot.summaryPayload,
+          "Showing bundled WakaTime snapshot."
+        );
+        return true;
+      } catch (error) {
+        // Snapshot shape mismatch; fallback to loading/error states.
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * @param {WakatimeCacheEntry} cacheEntry
+   * @returns {boolean}
+   */
+  function renderCacheEntry(cacheEntry) {
     try {
       renderFromPayloads(
-        cachedPayload.languagePayload,
-        cachedPayload.summaryPayload,
-        "Updated from cached WakaTime data."
+        cacheEntry.payload.languagePayload,
+        cacheEntry.payload.summaryPayload,
+        cacheEntry.isFresh
+          ? "Showing cached WakaTime data."
+          : "Showing stale cached WakaTime data."
       );
-      return;
+      return true;
     } catch (error) {
-      // Cache parse or shape mismatch; fallback to live fetch.
+      return false;
     }
   }
 
-  Promise.all([fetchWakatime(languagesUrl), fetchWakatime(summaryUrl)])
+  var hasStaticSnapshot = renderStaticSnapshot();
+  var cacheEntry = readCacheEntry();
+  var hasRenderedCache = false;
+  var hasFreshCache = false;
+
+  if (cacheEntry) {
+    hasRenderedCache = renderCacheEntry(cacheEntry);
+    hasFreshCache = hasRenderedCache && cacheEntry.isFresh;
+  }
+
+  if (hasFreshCache) {
+    return;
+  }
+
+  Promise.all([
+    fetchWakatime(String(languagesUrl || "")),
+    fetchWakatime(String(summaryUrl || "")),
+  ])
     .then(function (results) {
-      var languagePayload = results[0];
-      var summaryPayload = results[1];
-      writeCache({
+      var languagePayload = /** @type {WakatimeLanguagePayload} */ (results[0]);
+      var summaryPayload = /** @type {WakatimeSummaryPayload} */ (results[1]);
+      var cachePayload = {
         languagePayload: languagePayload,
         summaryPayload: summaryPayload,
-      });
+      };
+
+      writeCache(cachePayload);
       renderFromPayloads(languagePayload, summaryPayload, "Updated from WakaTime shared data.");
     })
     .catch(function () {
+      if (hasRenderedCache) {
+        setStatus("Live WakaTime refresh failed. Showing cached WakaTime data.", false);
+        return;
+      }
+
+      if (hasStaticSnapshot) {
+        setStatus("Live WakaTime refresh failed. Showing bundled WakaTime snapshot.", false);
+        return;
+      }
+
       setStatus("Could not load live WakaTime charts right now.", true);
       if (visualsEl) {
         visualsEl.hidden = true;
