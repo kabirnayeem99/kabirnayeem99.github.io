@@ -159,6 +159,7 @@ header {
 }
 
 .hero-illustration {
+  display: block;
   width: 140px;
   height: 140px;
   margin-bottom: 0.5rem;

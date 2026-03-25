@@ -1605,22 +1605,13 @@ def footer_for_page(content: SiteContent, page_id: PageId, lang: Lang) -> HtmlFr
     return content.stats_page.locales[lang].footer_html
 
 
-def render_hero() -> str:
-    """Render the hero illustration SVG."""
+def render_hero(current_output: str) -> str:
+    """Render the shared logo asset used as the hero illustration."""
 
-    return "\n".join(
-        (
-            '      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="hero-illustration" aria-hidden="true">',
-            '        <path d="M75 100 Q 75 145 100 155 Q 125 145 125 100 Z" fill="var(--surface)" stroke="var(--border)" stroke-width="1" />',
-            '        <path d="M75 90 Q 70 125 80 145" fill="none" stroke="var(--text)" stroke-width="3" stroke-linecap="round" />',
-            '        <path d="M125 90 Q 130 125 120 145" fill="none" stroke="var(--text)" stroke-width="3" stroke-linecap="round" />',
-            '        <path d="M75 115 Q 75 180 100 195 Q 125 180 125 115 L 120 115 Q 120 160 100 170 Q 80 160 80 115 Z" fill="var(--text)" />',
-            '        <path d="M90 40 Q 100 25 110 40 L 115 65 Q 100 55 85 65 Z" fill="var(--accent)" opacity="0.6" />',
-            '        <path d="M55 90 Q 100 50 145 90 L 150 115 Q 100 90 50 115 Z" fill="var(--text)" />',
-            '        <path d="M60 75 Q 100 35 140 75 L 145 95 Q 100 70 55 95 Z" fill="var(--text-muted)" />',
-            '        <path d="M98 45 Q 115 15 130 35 Q 120 30 110 45" fill="var(--text)" opacity="0.9" />',
-            "      </svg>",
-        )
+    logo_src = asset_href(current_output, "assets/images/logo.svg")
+    return (
+        f'      <img src="{html.escape(logo_src)}" alt="" class="hero-illustration" '
+        'width="140" height="140" decoding="async" fetchpriority="high" aria-hidden="true" />'
     )
 
 
@@ -1636,7 +1627,7 @@ def render_page(content: SiteContent, page_id: PageId, lang: Lang, route: str, o
         '  <div class="site">',
         '    <header id="top">',
         render_language_switcher(content.site, content.routes, page_id, lang, route),
-        render_hero(),
+        render_hero(route),
         f"      <h1 class=\"site-title\">{html.escape(header.site_title)}</h1>",
         f"      <p class=\"tagline\">{html.escape(header.tagline)}</p>",
         render_nav(content, page_id, lang, route),
