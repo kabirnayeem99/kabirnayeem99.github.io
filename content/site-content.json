@@ -6,20 +6,20 @@
       "en": "English",
       "bn": "বাংলা",
       "ur": "اردو",
-      "ar": "العربية"
+      "ar": "اَلْعَرَبِيَّةُ"
     },
     "locales": {
       "en": {
-        "dir": null,
+        "dir": "ltr",
         "author": "Naimul Kabir",
         "language_switcher_label": "Change language",
         "og_image_alt": "Naimul Kabir logo"
       },
       "bn": {
-        "dir": null,
-        "author": "Naimul Kabir",
+        "dir": "ltr",
+        "author": "নাঈমুল কবির",
         "language_switcher_label": "ভাষা পরিবর্তন",
-        "og_image_alt": "Naimul Kabir logo"
+        "og_image_alt": "নাঈমুল কবিরের লোগো"
       },
       "ar": {
         "dir": "rtl",
@@ -89,19 +89,19 @@
     "index": {
       "en": "Home",
       "bn": "মূলপাতা",
-      "ar": "الرئيسية",
+      "ar": "ٱلرَّئِيسِيَّةُ",
       "ur": "صفحۂ اول"
     },
     "work": {
       "en": "Work",
       "bn": "কর্মজীবন",
-      "ar": "العمل",
+      "ar": "ٱلْعَمَلُ",
       "ur": "کام"
     },
     "project": {
       "en": "Projects",
       "bn": "প্রজেক্ট",
-      "ar": "المشاريع",
+      "ar": "ٱلْمَشَارِيعُ",
       "ur": "پراجیکٹس"
     },
     "blog": {
@@ -126,15 +126,16 @@
             "tagline": "Muslim · Software Engineer · Bibliophile · Philomath"
           },
           "summary_card": [
-            "Mobile software engineer focused on Android, iOS, Flutter, and Kotlin Multiplatform. I build cross-platform products with native-level attention to performance, reliability, and maintainability.",
-            "Currently at <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">Syarah</a> building internal supply-chain apps and tooling. Open to remote roles and contract work."
+            "Software engineer focused on Android, iOS, Flutter, and Kotlin Multiplatform. I build cross-platform products with native-level performance, reliability, and maintainability.",
+            "Comfortable across the stack (full-stack) when needed.",
+            "Currently at <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">Syarah</a>, building internal supply-chain systems and tooling. Open to remote roles and contract work."
           ],
           "sections": [
             {
               "title": "Right Now",
               "paragraphs": [
-                "Lately, I've been spending time on Go and getting back into DS & Algo and problem solving on <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a>.",
-                "Outside work, I read a lot. Mostly light novels, thrillers, and the occasional non-fiction on history, Islamic history, and politics. I also keep up with tech and current events through blogs and long-form articles."
+                "Lately, I've been spending time with Go and getting back into DS & Algo, solving problems on <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> to stay sharp.",
+                "Outside work, reading is pretty much my default source of entertainment. Mostly light novels and thrillers, with occasional detours into philosophy, history, Islamic theology, and politics. I also keep up with tech and current events through blogs and long-form pieces."
               ]
             },
             {
@@ -158,7 +159,7 @@
                   "title": "Contract work and services",
                   "meta": "Ongoing",
                   "paragraphs": [
-                    "Worked with small businesses on web design, digital marketing, and Amazon FBA tooling, alongside contract development for larger products like Marriott Bonvoy, BaseHubs, PatientAccess, and Jobamax. Also integrated the Sunmi Printer SDK into a Cordova hybrid app."
+                    "Working with small businesses on web design, digital marketing, and Amazon FBA tooling, alongside contract development for larger products like Marriott Bonvoy, BaseHubs, PatientAccess, and Jobamax. Also integrated the Sunmi Printer SDK into a Cordova hybrid app."
                   ]
                 }
               ]
@@ -172,12 +173,12 @@
                 {
                   "title": "If I Had to Restart My Career as a Mobile Dev",
                   "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
-                  "summary": "Lessons from my early mistakes, plus practical advice for newer mobile developers."
+                  "summary": "Lessons from my early mistakes, plus practical advice for jr. mobile developers."
                 },
                 {
                   "title": "Manjaro to Arch conversation",
                   "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
-                  "summary": "A rough guide on turning a Manjaro install into Arch. Old now, but still a fun read if you like Linux experiments."
+                  "summary": "Might be one of my most read blog (around ~8k view & ~4k read) A rough guide on turning a Manjaro install into Arch. Old now, but still a fun read if you like Linux experiments."
                 }
               ]
             },
@@ -199,25 +200,25 @@
           },
           "header": {
             "site_title": "নাঈমুল কবির",
-            "tagline": "মুসলিম · সফটওয়্যার ইঞ্জিনিয়ার · বইপোকা · আজীবন শিক্ষার্থী"
+            "tagline": "মুসলিম · সফটওয়্যার ইঞ্জিনিয়ার · বইপোকা · জিজ্ঞাসু"
           },
           "summary_card": [
-            "আমি অ্যান্ড্রয়েড, আইওএস, ফ্লাটার আর কটলিন মাল্টিপ্ল্যাটফর্মে কাজ করা একজন মোবাইল সফটওয়্যার ইঞ্জিনিয়ার। পারফরম্যান্স, নির্ভরযোগ্যতা আর মেইনটেইনেবিলিটিতে নেটিভ-লেভেলের মনোযোগ রেখে ক্রস-প্ল্যাটফর্ম প্রোডাক্ট বানাই।",
-            "এখন <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">সাইয়ারাহ</a>-এ ইন্টারনাল সাপ্লাই-চেইন অ্যাপ আর টুলিং নিয়ে কাজ করছি। রিমোট রোল আর কনট্র্যাক্ট কাজের জন্য উন্মুক্ত।"
+            "পেশায় সফটওয়্যার ইঞ্জিনিয়ার। মূলত মোবাইল অ্যাপ বানায়। প্রয়োজনে কখনও কখনও ফুল স্ট্যাকে কাজেরও অভিজ্ঞতা আছে।",
+            "বর্তমানে <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">সাইয়ারাহ</a> নামে জর্দানের একটা স্টার্টআপে মোবাইল ডেভেলপার হিশেবে কর্মরত আছি, রিমোটে।"
           ],
           "sections": [
             {
-              "title": "এই মুহূর্তে",
+              "title": "বর্তমানে",
               "paragraphs": [
-                "ইদানীং Go নিয়ে সময় দিচ্ছি, আর <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a>-এ সমস্যা সমাধান করে আবার DS & Algo-তে ফিরছি।",
-                "কাজের বাইরে অনেক পড়ি। বেশিরভাগই লাইট নভেল, থ্রিলার, আর মাঝে মাঝে ইতিহাস, ইসলামের ইতিহাস আর রাজনীতি নিয়ে নন-ফিকশন। টেক আর সাম্প্রতিক বিষয়ও ব্লগ আর লং-ফর্ম লেখার মাধ্যমে অনুসরণ করি।"
+                "এখন গোল্যাঙ শিখছি। এর বাইরে লিটকোডে একটু সময় দেয়ার চেষ্টা করছি, ডাটা স্ট্রাকচার-অ্যালগরিদম আরেকটু ঝালাই করার জন্যে।",
+                "কাজের বাইরে বিনোদন বলতে আসলে বই পড়া। উপন্যাস, থ্রিলার, ক্রাইম থ্রিলার, মাঝে মাঝে নন-ফিকশন দর্শন, ইতিহাস, ইসলামি বই পত্র পড়ি। নিয়মিত নিউজলেটার আর ব্লগ পড়ার চেষ্টা করি, টেক জগতের হাল-হকিকত সম্পর্কে ওয়াকিবহাল থাকার জন্য।"
               ]
             },
             {
               "title": "নির্বাচিত হাইলাইটস",
               "highlights": [
                 {
-                  "title": "সাইয়ারাহতে মেশিন লার্নিংসহ ইন্টারনাল ক্যামেরা SDK",
+                  "title": "সাইয়ারাহতে মেশিন লার্নিংসহ ইন্টারনাল ক্যামেরা এসডিকে",
                   "meta": "২০২৩ - বর্তমান",
                   "paragraphs": [
                     "সাপ্লাই-চেইন ইন্সপেকশনের জন্য সেন্সর-ভিত্তিক ভ্যালিডেশন আর YOLOv8-ভিত্তিক অ্যাঙ্গেল চেকসহ ইন-হাউস ক্যামেরা SDK তৈরি করেছি। পাশাপাশি অস্থির নেটওয়ার্ক আর চরম গরমেও নির্ভরযোগ্য থাকে এমন একটি ইন্টারনাল আপলোড সার্ভিস SDK বানিয়েছি।"
