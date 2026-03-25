@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if ! command -v rg >/dev/null 2>&1; then
-  echo "ripgrep (rg) is required" >&2
-  exit 1
-fi
-
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
 missing_count=0
+
+extract_attrs() {
+  local file="$1"
+
+  if command -v rg >/dev/null 2>&1; then
+    rg -oN '(href|src)="[^"]+"' "$file" || true
+    return
+  fi
+
+  grep -Eo '(href|src)="[^"]+"' "$file" || true
+}
 
 for file in *.html ar/*.html bn/*.html ur/*.html; do
   dir="$(dirname "$file")"
@@ -34,7 +40,7 @@ for file in *.html ar/*.html bn/*.html ur/*.html; do
       echo "Missing reference: $file -> $ref"
       missing_count=$((missing_count + 1))
     fi
-  done < <(rg -oN '(href|src)="[^"]+"' "$file" || true)
+  done < <(extract_attrs "$file")
 done
 
 if [[ $missing_count -gt 0 ]]; then
