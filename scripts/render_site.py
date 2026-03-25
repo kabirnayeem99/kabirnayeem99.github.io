@@ -52,6 +52,24 @@ BACK_TO_TOP_LABELS: Final[Mapping[Lang, str]] = {
     "ar": "العَودَةُ إلى الأَعلى",
     "ur": "اوپر واپس جائیں",
 }
+THEME_DARK_LABELS: Final[Mapping[Lang, str]] = {
+    "en": "Switch to dark mode",
+    "bn": "ডার্ক মোডে যান",
+    "ar": "التَّحوُّلُ إلى الوَضعِ الدَّاكِن",
+    "ur": "ڈارک موڈ پر جائیں",
+}
+THEME_LIGHT_LABELS: Final[Mapping[Lang, str]] = {
+    "en": "Switch to light mode",
+    "bn": "লাইট মোডে যান",
+    "ar": "التَّحوُّلُ إلى الوَضعِ الفاتِح",
+    "ur": "لائٹ موڈ پر جائیں",
+}
+THEME_BOOTSTRAP_SCRIPT: Final[str] = (
+    "(function(){var theme='light';"
+    "try{var stored=window.localStorage.getItem('person-portfolio-theme');"
+    "if(stored==='dark'){theme='dark';}}catch(_error){}"
+    "document.documentElement.setAttribute('data-theme',theme);})();"
+)
 
 T = TypeVar("T")
 
@@ -1154,6 +1172,7 @@ def render_head(
             f'  <meta name="twitter:title" content="{html.escape(meta.title)}" />',
             f'  <meta name="twitter:description" content="{html.escape(meta.description)}" />',
             f'  <meta name="twitter:image" content="{html.escape(og_image)}" />',
+            f"  <script>{THEME_BOOTSTRAP_SCRIPT}</script>",
             f'  <link rel="preload" href="{html.escape(stylesheet)}" as="style" />',
             f'  <link rel="stylesheet" href="{html.escape(stylesheet)}" />',
             f'  <link rel="icon" type="image/svg+xml" href="{html.escape(brand_logo)}" />',
@@ -1199,6 +1218,39 @@ def render_language_switcher(
     return "\n".join(lines)
 
 
+def render_theme_toggle(lang: Lang) -> str:
+    """Render the explicit light/dark theme toggle."""
+
+    dark_label = THEME_DARK_LABELS[lang]
+    light_label = THEME_LIGHT_LABELS[lang]
+    return (
+        f'      <button class="theme-toggle" type="button" aria-label="{html.escape(dark_label)}" '
+        f'title="{html.escape(dark_label)}" aria-pressed="false" data-theme-toggle '
+        f'data-dark-label="{html.escape(dark_label)}" data-light-label="{html.escape(light_label)}">'
+        '<span class="theme-toggle-icon" aria-hidden="true" data-theme-toggle-icon>☾</span>'
+        "</button>"
+    )
+
+
+def render_header_controls(
+    site: SiteSettings,
+    routes: RouteTable,
+    page_id: PageId,
+    lang: Lang,
+    current_output: str,
+) -> str:
+    """Render top-right lightweight controls for theme and language."""
+
+    return "\n".join(
+        (
+            '      <div class="header-controls">',
+            render_theme_toggle(lang),
+            render_language_switcher(site, routes, page_id, lang, current_output),
+            "      </div>",
+        )
+    )
+
+
 def render_nav(
     content: SiteContent,
     page_id: PageId,
@@ -1227,17 +1279,20 @@ def render_scripts(page_id: PageId, current_output: str) -> str:
 
     default_scripts = (
         "assets/js/image-guard.js",
+        "assets/js/theme-toggle.js",
         "assets/js/language-switcher.js",
         "assets/js/year.js",
     )
     long_page_scripts = (
         "assets/js/image-guard.js",
         "assets/js/back-to-top.js",
+        "assets/js/theme-toggle.js",
         "assets/js/language-switcher.js",
         "assets/js/year.js",
     )
     stats_scripts = (
         "assets/js/image-guard.js",
+        "assets/js/theme-toggle.js",
         "assets/js/language-switcher.js",
         "assets/js/stats-snapshots.js",
         "assets/js/stats-utils.js",
@@ -1622,7 +1677,7 @@ def render_page(content: SiteContent, page_id: PageId, lang: Lang, route: str, o
         "<body>",
         '  <div class="site">',
         '    <header id="top">',
-        render_language_switcher(content.site, content.routes, page_id, lang, route),
+        render_header_controls(content.site, content.routes, page_id, lang, route),
         render_hero(route),
         f"      <h1 class=\"site-title\">{html.escape(header.site_title)}</h1>",
         f"      <p class=\"tagline\">{html.escape(header.tagline)}</p>",
