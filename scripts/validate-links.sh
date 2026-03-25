@@ -23,17 +23,18 @@ for file in *.html ar/*.html bn/*.html ur/*.html; do
   while IFS= read -r attr; do
     ref="${attr#*=\"}"
     ref="${ref%\"}"
+    ref_path="${ref%%#*}"
 
-    case "$ref" in
+    case "$ref_path" in
       "" | http://* | https://* | mailto:* | \#* | javascript:*)
         continue
         ;;
     esac
 
-    if [[ "$ref" == /* ]]; then
-      resolved=".$ref"
+    if [[ "$ref_path" == /* ]]; then
+      resolved=".$ref_path"
     else
-      resolved="$dir/$ref"
+      resolved="$dir/$ref_path"
     fi
 
     if [[ ! -e "$resolved" ]]; then
