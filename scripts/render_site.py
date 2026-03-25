@@ -1127,12 +1127,9 @@ def render_head(
 
     locale = site.locales[lang]
     canonical = canonical_url(site.base_url, route, page_id, lang)
-    og_image = f"{site.base_url}/assets/icons/android-chrome-512x512.png"
+    og_image = f"{site.base_url}/assets/images/logo.svg"
     stylesheet = asset_href(current_output, "assets/css/styles.css")
-    favicon_ico = asset_href(current_output, "assets/icons/favicon.ico")
-    favicon_32 = asset_href(current_output, "assets/icons/favicon-32x32.png")
-    favicon_16 = asset_href(current_output, "assets/icons/favicon-16x16.png")
-    apple_touch = asset_href(current_output, "assets/icons/apple-touch-icon.png")
+    brand_logo = asset_href(current_output, "assets/images/logo.svg")
     manifest = asset_href(current_output, "site.webmanifest")
     og_type = "website" if page_id == "index" else "article"
     return "\n".join(
@@ -1159,10 +1156,9 @@ def render_head(
             f'  <meta name="twitter:image" content="{html.escape(og_image)}" />',
             f'  <link rel="preload" href="{html.escape(stylesheet)}" as="style" />',
             f'  <link rel="stylesheet" href="{html.escape(stylesheet)}" />',
-            f'  <link rel="shortcut icon" href="{html.escape(favicon_ico)}" />',
-            f'  <link rel="icon" type="image/png" sizes="32x32" href="{html.escape(favicon_32)}" />',
-            f'  <link rel="icon" type="image/png" sizes="16x16" href="{html.escape(favicon_16)}" />',
-            f'  <link rel="apple-touch-icon" href="{html.escape(apple_touch)}" />',
+            f'  <link rel="icon" type="image/svg+xml" href="{html.escape(brand_logo)}" />',
+            f'  <link rel="shortcut icon" href="{html.escape(brand_logo)}" />',
+            f'  <link rel="apple-touch-icon" href="{html.escape(brand_logo)}" />',
             f'  <link rel="manifest" href="{html.escape(manifest)}" />',
             f'  <meta name="google-site-verification" content="{html.escape(site.google_site_verification)}" />',
             "</head>",
