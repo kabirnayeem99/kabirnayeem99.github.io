@@ -31,6 +31,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Render site
+        run: python3 scripts/render_site.py
+      - name: Validate links
+        run: ./scripts/validate-links.sh
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

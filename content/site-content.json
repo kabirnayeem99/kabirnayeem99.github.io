@@ -1,0 +1,1099 @@
+{
+  "site": {
+    "base_url": "https://kabirnayeem99.github.io",
+    "google_site_verification": "F9rV_qmMTwOKM_FXW_y4CvXUPVctz-VO_e1zY757H8w",
+    "language_menu_labels": {
+      "en": "English",
+      "bn": "বাংলা",
+      "ur": "اردو",
+      "ar": "العربية"
+    },
+    "locales": {
+      "en": {
+        "dir": null,
+        "author": "Naimul Kabir",
+        "language_switcher_label": "Change language",
+        "og_image_alt": "Naimul Kabir logo"
+      },
+      "bn": {
+        "dir": null,
+        "author": "Naimul Kabir",
+        "language_switcher_label": "ভাষা পরিবর্তন",
+        "og_image_alt": "Naimul Kabir logo"
+      },
+      "ar": {
+        "dir": "rtl",
+        "author": "نَعِيم الكبير",
+        "language_switcher_label": "تغيير اللغة",
+        "og_image_alt": "شعار نَعِيم الكبير"
+      },
+      "ur": {
+        "dir": "rtl",
+        "author": "نَعِیمُ الْکَبِیر",
+        "language_switcher_label": "زبان تبدیل کریں",
+        "og_image_alt": "نَعِیمُ الْکَبِیر لوگو"
+      }
+    }
+  },
+  "routes": {
+    "index": {
+      "en": "index.html",
+      "bn": "bn/index.html",
+      "ar": "ar/index.html",
+      "ur": "ur/index.html"
+    },
+    "work": {
+      "en": "work.html",
+      "bn": "bn/work.html",
+      "ar": "ar/work.html",
+      "ur": "ur/work.html"
+    },
+    "project": {
+      "en": "project.html",
+      "bn": "bn/project.html",
+      "ar": "ar/project.html",
+      "ur": "ur/project.html"
+    },
+    "blog": {
+      "en": "blog.html"
+    },
+    "stats": {
+      "en": "stats.html"
+    }
+  },
+  "navigation": {
+    "en": [
+      "index",
+      "work",
+      "project",
+      "blog",
+      "stats"
+    ],
+    "bn": [
+      "index",
+      "work",
+      "project"
+    ],
+    "ar": [
+      "index",
+      "work",
+      "project"
+    ],
+    "ur": [
+      "index",
+      "work",
+      "project"
+    ]
+  },
+  "navigation_labels": {
+    "index": {
+      "en": "Home",
+      "bn": "মূলপাতা",
+      "ar": "الرئيسية",
+      "ur": "صفحۂ اول"
+    },
+    "work": {
+      "en": "Work",
+      "bn": "কর্মজীবন",
+      "ar": "العمل",
+      "ur": "کام"
+    },
+    "project": {
+      "en": "Projects",
+      "bn": "প্রজেক্ট",
+      "ar": "المشاريع",
+      "ur": "پراجیکٹس"
+    },
+    "blog": {
+      "en": "Writing"
+    },
+    "stats": {
+      "en": "Stats"
+    }
+  },
+  "pages": {
+    "index": {
+      "og_type": "website",
+      "locales": {
+        "en": {
+          "meta": {
+            "title": "Naimul Kabir · Software Engineer",
+            "description": "Portfolio of Naimul Kabir, a software engineer focused on Android, iOS, and Kotlin multiplatform apps.",
+            "keywords": "Naimul Kabir, Software Engineer, Android Developer, Kotlin Multiplatform, Flutter, Laravel, Mobile Apps"
+          },
+          "header": {
+            "site_title": "Naimul Kabir",
+            "tagline": "Muslim · Software Engineer · Bibliophile · Philomath"
+          },
+          "summary_card": [
+            "Mobile software engineer focused on Android, iOS, Flutter, and Kotlin Multiplatform. I build cross-platform products with native-level attention to performance, reliability, and maintainability.",
+            "Currently at <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">Syarah</a> building internal supply-chain apps and tooling. Open to remote roles and contract work."
+          ],
+          "sections": [
+            {
+              "title": "Right Now",
+              "paragraphs": [
+                "Lately, I've been spending time on Go and getting back into DS & Algo and problem solving on <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a>.",
+                "Outside work, I read a lot. Mostly light novels, thrillers, and the occasional non-fiction on history, Islamic history, and politics. I also keep up with tech and current events through blogs and long-form articles."
+              ]
+            },
+            {
+              "title": "Selected highlights",
+              "highlights": [
+                {
+                  "title": "Internal camera SDK with Machine Learning at Syarah",
+                  "meta": "2023 - Present",
+                  "paragraphs": [
+                    "Built an in-house camera SDK with sensor-based validation and YOLOv8-powered angle checks to improve car image capture for supply-chain inspections. Also developed an internal upload service SDK designed to stay reliable under unstable network conditions and extreme heat."
+                  ]
+                },
+                {
+                  "title": "Rewritten most popular Islamic App in Bangladesh",
+                  "meta": "2022 - 2023",
+                  "paragraphs": [
+                    "Helped modernize the Al-Hadith app, one of Bangladesh's most-downloaded Islamic apps, while maintaining the legacy Android build and supporting its Flutter rewrite for a large user base."
+                  ]
+                },
+                {
+                  "title": "Contract work and services",
+                  "meta": "Ongoing",
+                  "paragraphs": [
+                    "Worked with small businesses on web design, digital marketing, and Amazon FBA tooling, alongside contract development for larger products like Marriott Bonvoy, BaseHubs, PatientAccess, and Jobamax. Also integrated the Sunmi Printer SDK into a Cordova hybrid app."
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Writing & notes",
+              "paragraphs": [
+                "Occasional posts on mobile development, Linux, career lessons, and things worth documenting."
+              ],
+              "articles": [
+                {
+                  "title": "If I Had to Restart My Career as a Mobile Dev",
+                  "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
+                  "summary": "Lessons from my early mistakes, plus practical advice for newer mobile developers."
+                },
+                {
+                  "title": "Manjaro to Arch conversation",
+                  "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
+                  "summary": "A rough guide on turning a Manjaro install into Arch. Old now, but still a fun read if you like Linux experiments."
+                }
+              ]
+            },
+            {
+              "title": "Elsewhere",
+              "contacts": [
+                "Email <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>",
+                "<a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a> · <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>"
+              ]
+            }
+          ],
+          "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Plain HTML, no frameworks."
+        },
+        "bn": {
+          "meta": {
+            "title": "নাঈমুল কবির · সফটওয়্যার ইঞ্জিনিয়ার",
+            "description": "নাঈমুল কবিরের পোর্টফোলিও - সফটওয়্যার প্রকৌশলী, ফুলস্ট্যাক, তবে মোবাইলে বেশী কাজ করে",
+            "keywords": "নাঈমুল কবির, সফটওয়্যার ইঞ্জিনিয়ার, অ্যান্ড্রয়েড ডেভেলপার, কটলিন মাল্টিপ্ল্যাটফর্ম, ফ্লাটার"
+          },
+          "header": {
+            "site_title": "নাঈমুল কবির",
+            "tagline": "মুসলিম · সফটওয়্যার প্রকৌশলী · বইপোঁকা · জিঞ্জাসু (!)"
+          },
+          "summary_card": [
+            "আমি মূলত অ্যাপ বানাই, যেগুলো ক্রস প্ল্যাটফর্ম, মানে অ্যান্ড্রয়েড, আইওএস দুটোতেই কাজ করে। কটলিন, কম্পোজ, জাভাতে, বা ফ্লাটার আর সুইফট ইউআইতে। একটু আধটু ব্যাকএন্ডও জানি, পিএইচপি লারাভেল দিয়ে। এখন আমি <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">সাইয়ারাহতে</a> তাদের ইন্টারনাল সাপ্লাই-চেইন অ্যাপ নিয়ে কাজ করি।"
+          ],
+          "sections": [
+            {
+              "title": "এই মুহূর্তে",
+              "paragraphs": [
+                "ইদানীং, ব্যাকএন্ড শিখছি, কিছু ছোটখাটো ব্যক্তিগত প্রজেক্ট করছি। আর, মনে হলো ডিএস-এলগোতে আরেকটু সময় দি, তাই, <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">লিটকোড</a> এ নিয়মিত প্রবলেম সলভিঙের চেষ্টা করছি।",
+                "কাজের বাইরে, আমার বিনোদন বলতে আসলে বলতে গেলে শুধু বই পড়া। সস্তা থ্রিলার, কিশোর উপন্যাস, এই সেই পড়ি। মাঝে মাঝে একটু নন-ফিকশন পড়ি, তবে সামান্য। নিয়মিত ব্লগ আর্টিকেল পড়ি, তবে সেটা মনে হয় কাজেরই প্রয়োজনে বা অন্তত পেশা সম্পর্কিত।"
+              ]
+            },
+            {
+              "title": "কিছু উল্লেখযোগ্য কাজ",
+              "highlights": [
+                {
+                  "title": "সাইয়ারাতে এমএলসহ ইন্টার্নাল ক্যামেরা এসডিকে",
+                  "meta": "২০২৩ - বর্তমান",
+                  "paragraphs": [
+                    "বিভিন্ন অ্যাঙ্গেল থেকে গাড়ির ট্যাগের উপর ভিত্তি করে নিজে নিজে ছবি তোলার জন্য। আবার YOLOv8 দিয়ে মেশিন লার্নিং মডেল বানিয়ে ঠিক জায়গার ছবি তুলছে কি না, তা ভ্যালিডেশনের সুযোগ আছে। আর কাস্টম ক্যামেরা কন্ট্রোল, যেমন আইএসও, এক্সপোজার, কালার কন্ট্রাস্ট, ব্রাইটনেস ইত্যাদি। সাথে মরুভূমির এক্সট্রিম ওয়েদারে, আর নেটওয়ার্ক ইনস্ট্যাবল পরিবেশের কথা মাথায় রেখে একটা আপলোড ম্যানেজার এসডিকে।"
+                  ]
+                },
+                {
+                  "title": "বাংলাদেশের সবচেয়ে জনপ্রিয় ইসলামি অ্যাপগুলোর একটার রিরাইট",
+                  "meta": "২০২২ - ২০২৩",
+                  "paragraphs": [
+                    "আল হাদিস অ্যাপ পুরোটা ফ্লাটারে নতুন করে লিখেছি। ফ্লাটারের তখনকার রেন্ডারিং পারফরমেন্সের কথা মাথায় রেখে, আর যেহেতু ডার্ট সিঙ্গেল থ্রেডেড, অনেকগুলো ইনোভেটিভ ওয়েতে কিছু বিষয় হ্যান্ডেল করতে হয়েছিলো।"
+                  ]
+                },
+                {
+                  "title": "চুক্তিভিত্তিক প্রজেক্ট",
+                  "meta": "চলমান",
+                  "paragraphs": [
+                    "ক্যারিয়ারের শুরুর দিকে একটা ইউএস ফার্কে চুক্তিভিত্তিক কাজ করছি, অনেকগুলো ইউনিক প্রজেক্ট আর বড় প্রজেক্টে কাজের সুযোগ হয়েছে। ওয়ানড্রাইভের জন্য ফ্লাটারে প্লাগইন বানানো, মেরিয়ট বনভয়তে কাজ করা, আবার সুনমি প্রিন্টারের সাপোর্ট এড করা হাইব্রিড আইওনিক অ্যাপে, সুনমি ডিভাইসে রান করার জন্য।"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "অন্যান্য ঠিকানা",
+              "contacts": [
+                "ইমেইল <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>",
+                "<a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">গিটহাব</a> · <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">লিংকডইন</a>"
+              ]
+            }
+          ],
+          "footer_html": "&copy; <span id=\"year\">২০২৫</span> নাঈমুল কবির। পিউর এইচটিএমএলে বানানো।"
+        },
+        "ar": {
+          "meta": {
+            "title": "نَعِيم الكبير · مهندس برمجيات",
+            "description": "ملف أعمال نَعِيم الكبير: تطبيقات جوال لأندرويد وآي أو إس وكوتلن متعدد المنصات، مع لمحة عن خبرته في تطوير الخلفية والمشاريع الحديثة.",
+            "keywords": "نَعِيم الكبير، مهندس برمجيات، مطور أندرويد، كوتلن، فلاتر، كوتلن متعدد المنصات"
+          },
+          "header": {
+            "site_title": "نَعِيم الكبير",
+            "tagline": "مُسلم · مهندس برمجيات · مُحب للكتب · شغوف بالتعلّم"
+          },
+          "summary_card": [
+            "أبني تطبيقات جوال متعددة المنصات باستخدام أندرويد إس دي كيه (كوتلن، كومبوز، جافا)، وآي أو إس (سويفت يو آي)، وفلاتر، وكوتلن متعدد المنصات. لدي خبرة في تطوير الخلفية عبر بي إتش بي لارافيل. أعمل حالياً في <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">سَيَّارَة</a> على تطبيقات سلاسل الإمداد الداخلية."
+          ],
+          "sections": [
+            {
+              "title": "الآن",
+              "paragraphs": [
+                "مؤخراً أتعلم غو، وأحاول العودة إلى هياكل البيانات والخوارزميات عبر حل المسائل على <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">ليت كود</a>.",
+                "خارج ساعات العمل، القراءة هي وسيلتي الأساسية للترفيه: روايات خفيفة، وتشويق، وبعض الكتب غير الروائية عن التاريخ والتاريخ الإسلامي والسياسة. وأتابع أحياناً مقالات تقنية للبقاء على اطلاع."
+              ]
+            },
+            {
+              "title": "مختارات",
+              "highlights": [
+                {
+                  "title": "حزمة كاميرا داخلية بالذكاء الاصطناعي في سَيَّارَة",
+                  "meta": "2023 - الآن",
+                  "paragraphs": [
+                    "طورت حزمة كاميرا داخلية لالتقاط صور السيارات من زوايا متعددة، وبنيت نموذجاً بالذكاء الاصطناعي باستخدام YOLOv8 للتحقق من زاوية السَّيَّارَة والتقاط الصور تلقائياً. كما أنشأت حزمة رفع داخلية مبنية على وورك مانيجر في أندرويد."
+                  ]
+                },
+                {
+                  "title": "إعادة كتابة أشهر تطبيق إسلامي في بنغلاديش",
+                  "meta": "2022 - 2023",
+                  "paragraphs": [
+                    "ساعدت في تحديث تطبيق «الحديث»، أحد أكثر التطبيقات الإسلامية تحميلاً في بنغلاديش. وازنت بين صيانة نسخة أندرويد القديمة وقيادة إعادة الكتابة إلى فلاتر لخدمة ملايين المستخدمين."
+                  ]
+                },
+                {
+                  "title": "أعمال تعاقدية وخدمات",
+                  "meta": "مستمر",
+                  "paragraphs": [
+                    "تعاونت مع شركات صغيرة في تصميم الويب والتسويق الرقمي، وعملت على أدوات Amazon FBA، إضافة إلى تطوير تعاقدي لتطبيقات كبرى مثل Marriott Bonvoy وBaseHubs وPatientAccess وJobamax."
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "أماكن أخرى",
+              "contacts": [
+                "البريد <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>",
+                "<a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a> · <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>"
+              ]
+            }
+          ],
+          "footer_html": "&copy; <span id=\"year\">2025</span> نَعِيم الكبير. HTML بسيط بلا أطر عمل."
+        },
+        "ur": {
+          "meta": {
+            "title": "نعیم الکبیر · سافٹ ویئر انجینئر",
+            "description": "نعیم الکبیر کا پورٹ فولیو—اینڈرائیڈ، آئی او ایس اور کاٹلِن مُلٹی پلیٹ فارم کی موبائل ایپس، بیک اینڈ تجربہ اور تازہ ترین کام۔",
+            "keywords": "نعیم الکبیر، سافٹ ویئر انجینئر، اینڈرائیڈ ڈویلپر، کٹلن ملٹی پلیٹ فارم، فْلَٹَر"
+          },
+          "header": {
+            "site_title": "نعیم الکبیر",
+            "tagline": "مسلمان · سافٹ ویئر انجینئر · کتاب دوست · علم کا شوقین"
+          },
+          "summary_card": [
+            "میں اینڈرائڈ ایس ڈی کے (کاٹلِن، کمپوز، جاوا)، آئی او ایس (سِوِفٹ یو آئی)، فْلَٹَر اور کاٹلِن مُلٹی پلیٹ فارم کے ذریعے کراس پلیٹ فارم موبائل ایپس بناتا ہوں۔ پی ایچ پی لاراوِل کے ساتھ بیک اینڈ ڈویلپمنٹ کا بھی تجربہ ہے۔ اس وقت میں <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">سیارہ (سَيَّارَة)</a> میں اندرونی سپلائی چین ایپلیکیشنز پر کام کر رہا ہوں۔"
+          ],
+          "sections": [
+            {
+              "title": "فی الحال",
+              "paragraphs": [
+                "پچھلے دنوں چند ذاتی پراجیکٹس پی ایچ پی لاراوِل میں بنا رہا ہوں۔ ساتھ ساتھ الگورتھم اور ڈی ایس دوبارہ یاد کرنے کے لیے <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">لیٹ کوڈ</a> پر سوال حل کر رہا ہوں۔",
+                "کام کے علاوہ تفریح کا بڑا ذریعہ مطالعہ ہے—ناول، تھرلر، کبھی کبھی غیر افسانوی کتابیں۔ ٹیک، سیاست اور دنیا کے بارے میں باخبر رہنے کے لیے کبھی کبھار مضامین بھی پڑھ لیتا ہوں۔"
+              ]
+            },
+            {
+              "title": "منتخب جھلکیاں",
+              "highlights": [
+                {
+                  "title": "سہاراہ میں داخلی کیمرا ایس ڈی کے اور مشین لرننگ",
+                  "meta": "2023 - تا حال",
+                  "paragraphs": [
+                    "گاڑیوں کی مختلف زاویوں سے تصاویر لینے کے لیے کیمرا ایس ڈی کے بنایا، اور یُولُو وی 8 کی مدد سے زاویہ شناخت اور خودکار تصویر کشی کا نظام تیار کیا۔ وُرک مینیجر پر مبنی اپ لوڈ سروس ایس ڈی کے بھی بنایا۔"
+                  ]
+                },
+                {
+                  "title": "بنگلہ دیش کی مقبول اسلامی ایپ کی از سر نو تحریر",
+                  "meta": "2022 - 2023",
+                  "paragraphs": [
+                    "\"الحدیث\" ایپ کو جدید بنایا—پرانے اینڈرائیڈ ورژن کی دیکھ بھال کے ساتھ فْلَٹَر میں مکمل رائٹ کو لیڈ کیا۔ لاکھوں صارفین کے لیے مواد کی درستی اور تجربہ برقرار رکھا۔"
+                  ]
+                },
+                {
+                  "title": "معاہداتی کام اور سروسز",
+                  "meta": "جاری",
+                  "paragraphs": [
+                    "چھوٹے کاروباروں کے لیے ویب ڈیزائن، ڈیجیٹل مارکیٹنگ، ایمیزون ایف بی اے ٹولنگ، اور میریئٹ بون وائے، بیس ہَبز، پیشنٹ ایکسَیس، جوبامیکس جیسے بڑے پراجیکٹس پر کنٹریکٹ ڈویلپمنٹ کیا۔"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "دیگر روابط",
+              "contacts": [
+                "ای میل <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>",
+                "<a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">گِٹ ہَب</a> · <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">لنکڈ اِن</a>"
+              ]
+            }
+          ],
+          "footer_html": "&copy; <span id=\"year\">2025</span> نعیم الکبیر۔ سادہ ایچ ٹی ایم ایل، کوئی فریم ورک نہیں۔"
+        }
+      }
+    },
+    "work": {
+      "og_type": "article",
+      "locales": {
+        "en": {
+          "meta": {
+            "title": "Work · Naimul Kabir",
+            "description": "Timeline of work experience for Naimul Kabir across Syarah, MaxCode Lab, and more.",
+            "keywords": "Naimul Kabir work experience, Android engineer, Kotlin developer, mobile software engineer"
+          },
+          "header": {
+            "site_title": "Work",
+            "tagline": "Teams, products, and the problems I worked on."
+          },
+          "summary": "Places I've worked and the kind of problems I worked on there.",
+          "section_title": "Experience",
+          "entries": [
+            {
+              "title": "Syarah · Mobile Software Engineer",
+              "meta": "Jun 2023 - Present · Remote",
+              "paragraphs": [
+                "Automotive platform serving the Middle East."
+              ],
+              "bullets": [
+                "Built an in-house camera SDK using Kotlin, device sensors, and YOLOv8-based validation -> improved car-image capture quality and angle validation for supply-chain workflows.",
+                "Developed an internal upload service SDK on top of WorkManager -> made uploads more reliable under unstable network conditions and extreme heat.",
+                "Worked on internal mobile tools for automotive operations -> supported day-to-day inspection and logistics flows used across the business."
+              ]
+            },
+            {
+              "title": "MaxCode Lab (IRD Foundation) · Mobile App Developer",
+              "meta": "Oct 2022 - Sep 2023 · On-site",
+              "paragraphs": [
+                "Worked on Al-Hadith, one of Bangladesh's most widely used Islamic apps."
+              ],
+              "bullets": [
+                "Maintained and modernized the app using Android and Flutter -> improved reliability and prepared the product for long-term growth.",
+                "Led the migration from legacy Android code to Flutter -> made the codebase easier to maintain while preserving content accuracy for a large user base."
+              ]
+            },
+            {
+              "title": "Fiverr · Freelance Flutter Engineer",
+              "meta": "Mar 2023 - Jul 2023 · Remote",
+              "bullets": [
+                "Fixed production issues in Flutter apps across short client engagements -> shipped stable updates without heavy rewrites.",
+                "Built a OneDrive integration package with Flutter and Microsoft auth flows -> filled a gap where documentation and package support were limited."
+              ]
+            },
+            {
+              "title": "DevStation39 · Android Developer",
+              "meta": "Aug 2021 - Sep 2022 · Remote",
+              "bullets": [
+                "Contributed to multiple Android apps across Kotlin, RxJava, Firebase, ParseSDK, and other legacy stacks -> delivered features across very different products and codebases.",
+                "Worked as a contractor while finishing university -> built a strong base in shipping production mobile apps under real client constraints."
+              ]
+            }
+          ],
+          "footer_html": "Need more detail? Email <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>."
+        },
+        "bn": {
+          "meta": {
+            "title": "কর্মজীবন · নাঈমুল কবির",
+            "description": "সিয়ারাহ, ম্যাক্সকোড ল্যাবসহ নাঈমুল কবিরের কর্মজীবনের অভিজ্ঞতা ও নির্বাচিত কাজের গল্প।",
+            "keywords": "নাঈমুল কবির কর্মজীবন, অ্যান্ড্রয়েড ইঞ্জিনিয়ার, কটলিন ডেভেলপার"
+          },
+          "header": {
+            "site_title": "কর্মজীবন",
+            "tagline": "যেখানে যেখানে, যাদের যাদের সাথে কাজ করেছি।"
+          },
+          "summary": "কোন কোনটা রিমোট ছিলো, কিছু অপিস বেসড ছিলো। সবগুলো অভিজ্ঞতাই সুন্দর, আর মনে রাখার মত।",
+          "section_title": "অভিজ্ঞতা",
+          "entries": [
+            {
+              "title": "সাইয়ারাহ · মোবাইল সফটওয়্যার প্রকৌশলী",
+              "meta": "জুন ২০২৩ - বর্তমান · রিমোট",
+              "paragraphs": [
+                "মধ্যপ্রাচ্যভিত্তিক ডিজিটাল অটোমোটিভ কোম্পানি; $১৯.১ মিলিয়ন বাৎসরিক আয়, আর ৭৭৮ জনের মত এম্প্লয়ি আছে। ফোর্বস টপ ৫০ স্টার্টআপ (২০২১), সৌদি ওয়েব অ্যাওয়ার্ড (২০২১) সহ নানা স্বীকৃতি পেয়েছে।",
+                "তাদের সাপ্লাই-চেইন টুলস নিয়ে কাজ করছি। তাদের গাড়ির ছবি তোলার জন্য একটা ইন্টার্নাল ক্যামেরা এসডিকে নিয়ে কাজ করেছি, যেটাতে কাস্টম কন্ট্রোল আছে, অ্যাঙ্গেল ভ্যালিডেশন আছে, জায়রোস্কোপ সেন্সর দিয়ে। যেটা আবার YOLOv8-ভিত্তিক মেশিন লার্নিং ব্যবহার করে। আর মরুভূমির পরিবেশে আনস্টেবল নেটওয়ার্ক, আর দ্রুত মোবাইল হিট হয়ে যায়, এমন পরিবেশর কথা মাথায় রেখে একটা আপলোড এসডিকে বানিয়েছি।"
+              ]
+            },
+            {
+              "title": "ম্যাক্সকোড ল্যাব (আইআরডি ফাউন্ডেশন) · মোবাইল অ্যাপ ডেভেলপার",
+              "meta": "অক্টোবর ২০২২ - সেপ্টেম্বর ২০২৩ · অনসাইট",
+              "paragraphs": [
+                "আইআরডি সম্ভবত ইসলামিক টেক্সটগুলো ডিজিটাইলাইজেশনের কাজ প্রথম শুরু করেছে বাংলাতে। আমি তাদের একটা কমার্শিয়ার প্রজেক্টে কাজ করেছি। তাদের আলহাদিস অ্যাপটা ফ্লাটারে নতুন করে লিখেছি। আর কুরআন অ্যাপের শুরুর দিকে কিছু কাজ করেছি।",
+                "আমার জীবনের সেরা কিছু অভিজ্ঞতা ছিলো সেখানে কাজ করা। খুবই দ্বীনি একটা পরিবেশ, দুপুরের পর দ্বীনি হালাক্বা হতো, রমজানের শেষ ১০ দিন ইবাদতের জন্য বন্ধ দিয়েছিলো, অপিসেই প্রতিটা নামাযের জামাত হতো, আরও অনেক সুন্দর সুন্দর স্মৃতি আছে ওখানকার।"
+              ]
+            },
+            {
+              "title": "ফাইভার · ফ্রিল্যান্স ফ্লাটার ডেভলপার",
+              "meta": "মার্চ ২০২৩ - জুলাই ২০২৩ · রিমোট",
+              "paragraphs": [
+                "এর আগেতো বিশ্ববিদ্যালয় হলে থাকতাম, পরে বন্ধুদের সাথে ম্যাসে। হঠাৎ করে আইআরডিতে কাজের সময় বনশ্রীতে বাসা নিতে হলো। সে সময়, জাস্ট একাকীত্বের জন্য ফাইভারে বাগ ফিক্সিঙের কাজ শুরু করলাম।"
+              ]
+            },
+            {
+              "title": "DevStation39 · অ্যান্ড্রয়েড ডেভেলপার",
+              "meta": "আগস্ট ২০২১ - সেপ্টেম্বর ২০২২ · রিমোট",
+              "paragraphs": [
+                "প্রথম প্রোগ্রামিং বা সফটওয়্যার ডেভেলপমেন্ট সম্পর্কিত জব। চুক্তিভিত্তিক ছিলো, ঘন্টা হিশেব হতো। অনেক অনেক প্রজেক্টে কাজের সুযোগ পেয়েছি, একেক প্রজেক্টের ধাচ, টেকনোলজি একেকরকম ছিলো। ক্যারিয়ারের শুরু হিশেবে নতুন অনেক কিছু শিখেছি। আর বিভিন্ন দেশের ভিন্ন ভিন্ন মানুষের সাথে কাজেরও অভিজ্ঞতা হলো।"
+              ]
+            }
+          ],
+          "footer_html": "আরও জানতে চায়লে ইমেইল করুন <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>।"
+        },
+        "ar": {
+          "meta": {
+            "title": "العمل · نَعِيم الكبير",
+            "description": "رحلة نَعِيم الكبير المهنية عبر سَيَّارَة وMaxCode Lab وغيرها من الفرق التي عمل معها.",
+            "keywords": "نَعِيم الكبير خبرة، مهندس أندرويد، مطور كوتلن"
+          },
+          "header": {
+            "site_title": "العمل",
+            "tagline": "الأماكن التي عملت فيها، والفرق التي تعلّمت معها."
+          },
+          "summary": "بعض المحطات كانت عن بُعد، وأخرى حضورية، لكن القاسم المشترك هو ما تعلّمته من الفرق الرائعة التي عملت معها. هذه لمحة عن التجارب التي أعتز بها.",
+          "section_title": "الخبرة",
+          "entries": [
+            {
+              "title": "سَيَّارَة · مهندس برمجيات جوال",
+              "meta": "يونيو 2023 - الآن · عن بُعد",
+              "paragraphs": [
+                "شركة سيارات رقمية في الشرق الأوسط بإيرادات 19.1 مليون دولار وفريق يضم 778 موظفاً. نالت جوائز مثل Forbes Top 50 Startup (2021) وجائزة أفضل شركة ناشئة في Saudi Web Awards (2021).",
+                "أعمل على أدوات سلاسل الإمداد الداخلية، ومنها حزمة كاميرا داخلية مع التقاط تلقائي وتحقّق قائم على YOLOv8. كما طورت حزمة رفع داخلية مبنية على وورك مانيجر في أندرويد."
+              ]
+            },
+            {
+              "title": "MaxCode Lab (IRD Foundation) · مطور تطبيقات جوال",
+              "meta": "أكتوبر 2022 - سبتمبر 2023 · حضوري",
+              "paragraphs": [
+                "حافظت على تطبيق «الحديث»، أحد أشهر التطبيقات الإسلامية في بنغلاديش، وقُدتُ تحديثه والانتقال من نسخة أندرويد القديمة إلى فلاتر.",
+                "كانت تجربة مميزة جداً: حلقات علم بعد الظهر، وقرارات تراعي الشريعة، وإجازات في العشر الأواخر من رمضان، والصلاة جماعة في المكتب."
+              ]
+            },
+            {
+              "title": "Fiverr · مطور فلاتر مستقل",
+              "meta": "مارس 2023 - يوليو 2023 · عن بُعد",
+              "paragraphs": [
+                "عملت فترة قصيرة ركزت فيها على إصلاح الأعطال وتنفيذ مهام تطويرية متنوعة. من أبرز الأعمال تطوير حزمة فلاتر للتكامل مع OneDrive رغم محدودية توثيق MSAL."
+              ]
+            },
+            {
+              "title": "DevStation39 · مطور أندرويد",
+              "meta": "أغسطس 2021 - سبتمبر 2022 · عن بُعد",
+              "paragraphs": [
+                "أول دور مهني لي. عملت على تطبيقات متعددة بأنماط وتقنيات مختلفة، منها تقنيات قديمة مثل RxJava وParseSDK و Firebase Firestore، مما ساعدني على بناء أساس تقني قوي."
+              ]
+            }
+          ],
+          "footer_html": "للمزيد من التفاصيل: <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>"
+        },
+        "ur": {
+          "meta": {
+            "title": "کام · نعیم الکبیر",
+            "description": "نعیم الکبیر کی پیشہ ورانہ سفر کی جھلک—سیارہ، میکس کوڈ لیب اور دیگر ٹیموں کے ساتھ تجربات۔",
+            "keywords": "نعیم الکبیر تجربہ، اینڈرائیڈ انجینئر، کاٹلِن ڈویلپر"
+          },
+          "header": {
+            "site_title": "کام",
+            "tagline": "جہاں کام کیا، جن لوگوں سے سیکھا—وہ سب یہاں جھلکتے ہیں۔"
+          },
+          "summary": "کچھ ادارے مکمل ریموٹ رہے، کچھ میں روزانہ دفتر جانا پڑا۔ ہر جگہ لوگوں سے بہت کچھ سیکھا، اسی لیے یادگار تجربات یہاں سمیٹے ہیں۔",
+          "section_title": "تجربہ",
+          "entries": [
+            {
+              "title": "سیارہ · موبائل سافٹ ویئر انجینئر",
+              "meta": "جون 2023 - تا حال · ریموٹ",
+              "paragraphs": [
+                "مشرقِ وسطیٰ کی ڈیجیٹل آٹو موٹیو کمپنی، 19.1 ملین ڈالر ریونیو اور 778 افراد پر مشتمل ٹیم۔ فوربز ٹاپ 50 اسٹارٹ اپ (2021) سمیت کئی اعزازات حاصل کیے۔",
+                "سپلائی چین ٹولز پر کام—خودکار تصویرکشی والی کیمرا ایس ڈی کے، یُولُو وی 8 پر مبنی ویلیڈیشن اور وُرک مینیجر کو لپیٹتی اپ لوڈ سروس۔"
+              ]
+            },
+            {
+              "title": "میکس کوڈ لیب (آئی آر ڈی فاؤنڈیشن) · موبائل ایپ ڈویلپر",
+              "meta": "اکتوبر 2022 - ستمبر 2023 · آن سائٹ",
+              "paragraphs": [
+                "\"الحدیث\" ایپ کی دیکھ بھال اور جدید کاری—پرانے اینڈرائیڈ کوڈ کو برقرار رکھتے ہوئے فْلَٹَر میں دوبارہ تحریر کی راہنمائی۔",
+                "مذہبی ماحول والا دفتر—نماز کے بعد حلقۂ درس، شریعت پر مبنی فیصلے، رمضان کے آخری عشرے میں طویل چھٹیاں، دفتر میں باجماعت نماز۔"
+              ]
+            },
+            {
+              "title": "فائیوَر · فری لانس فْلَٹَر انجینئر",
+              "meta": "مارچ 2023 - جولائی 2023 · ریموٹ",
+              "paragraphs": [
+                "ہاسٹل سے کرائے کے گھر منتقل ہونے کے بعد تنہائی دور کرنے کے لیے فری لانسنگ شروع کی۔ بگز فکس کیے اور ون ڈرائیو کے لیے فْلَٹَر پیکیج بنایا جبکہ ایم ایس اے ایل کی دستاویزات لگ بھگ نہ ہونے کے برابر تھیں۔"
+              ]
+            },
+            {
+              "title": "دیو اسٹیشن 39 · اینڈرائیڈ ڈویلپر",
+              "meta": "اگست 2021 - ستمبر 2022 · ریموٹ",
+              "paragraphs": [
+                "پہلا پروفیشنل تجربہ۔ متعدد ایپس پر کام کیا، آر ایکس جاوا، پارس ایس ڈی کے، فائربیس فائر اسٹور جیسی ٹیکنالوجیز کے ساتھ سیکھنے کا موقع ملا۔"
+              ]
+            }
+          ],
+          "footer_html": "مزید تفصیل چاہیے؟ ای میل کریں <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>۔"
+        }
+      }
+    },
+    "project": {
+      "og_type": "article",
+      "locales": {
+        "en": {
+          "meta": {
+            "title": "Projects · Naimul Kabir",
+            "description": "Selected Android, iOS, Kotlin Multiplatform, and Flutter projects by Naimul Kabir.",
+            "keywords": "Naimul Kabir projects, Android apps, Flutter apps, Kotlin Multiplatform, Ktor library"
+          },
+          "header": {
+            "site_title": "Projects",
+            "tagline": "Selected work across mobile apps, backend systems, and developer tools."
+          },
+          "groups": [
+            {
+              "title": "Libraries & tools",
+              "items": [
+                {
+                  "title": "Ktor2Curl",
+                  "href": "https://github.com/kabirnayeem99/Ktor2Curl",
+                  "meta": "2024 - Kotlin · Server/Client",
+                  "paragraphs": [
+                    "Mirrors each Ktor request as a curl command for faster debugging.",
+                    "<strong>Tech stack:</strong> Kotlin, Ktor",
+                    "<strong>Why it matters:</strong> Makes requests easier to inspect, reproduce, and share without digging through logs."
+                  ]
+                },
+                {
+                  "title": "kVINInfo",
+                  "href": "https://github.com/kabirnayeem99/kVinInfo",
+                  "meta": "2024 - Kotlin · Multiplatform",
+                  "paragraphs": [
+                    "Pure Kotlin VIN validation, decoding, and mock generation library.",
+                    "<strong>Tech stack:</strong> Kotlin Multiplatform",
+                    "<strong>Why it matters:</strong> Keeps VIN-related logic portable across platforms without adding extra dependencies."
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Backend",
+              "items": [
+                {
+                  "title": "সমবায় নথি",
+                  "href": "https://samabay.multazim.solutions/dashboard",
+                  "meta": "2022 - PHP · Laravel",
+                  "paragraphs": [
+                    "SaaS platform for local cooperative societies to manage records and payments.",
+                    "<strong>Tech stack:</strong> PHP, Laravel",
+                    "<strong>Why it matters:</strong> Helps smaller organizations move paper-heavy workflows into a usable digital system."
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Mobile Apps",
+              "items": [
+                {
+                  "title": "IslamQA Android",
+                  "href": "https://github.com/kabirnayeem99/islam_qa_org_android",
+                  "meta": "2022 - Kotlin · Jetpack Compose",
+                  "paragraphs": [
+                    "Unofficial Android client for IslamQA.org with offline search, bookmarks, and background sync.",
+                    "<strong>Tech stack:</strong> Kotlin, Jetpack Compose, WorkManager",
+                    "<strong>Why it matters:</strong> Makes a large knowledge base easier to use on mobile, including in low-connectivity situations."
+                  ]
+                },
+                {
+                  "title": "আল হাদিস",
+                  "href": "https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US",
+                  "meta": "2022 - Dart · Flutter",
+                  "paragraphs": [
+                    "Mobile app for reading and searching 49k+ Bangla hadith.",
+                    "<strong>Tech stack:</strong> Dart, Flutter",
+                    "<strong>Why it matters:</strong> Keeps a widely used Islamic reference app fast, maintainable, and accessible to a large Bangla-speaking audience."
+                  ]
+                },
+                {
+                  "title": "BaseHubs",
+                  "href": "https://play.google.com/store/apps/details?id=com.basehubs.app&hl=en",
+                  "meta": "2021 - Kotlin · Clean Architecture",
+                  "paragraphs": [
+                    "Connects military families with local businesses and services.",
+                    "<strong>Tech stack:</strong> Kotlin, Clean Architecture, Firebase, Parse",
+                    "<strong>Why it matters:</strong> Supports a focused community use-case with a modular mobile codebase."
+                  ]
+                },
+                {
+                  "title": "Boulevard Mentorship",
+                  "href": "https://play.google.com/store/apps/details?id=com.thefivenetwork.five&hl=en",
+                  "meta": "2021 - Kotlin · Multi-module",
+                  "paragraphs": [
+                    "Mentorship platform connecting young talent with mentors through a structured mobile experience.",
+                    "<strong>Tech stack:</strong> Kotlin, multi-module Android",
+                    "<strong>Why it matters:</strong> Built to keep mentorship workflows and notifications reliable as the app grew."
+                  ]
+                },
+                {
+                  "title": "Marriott Bonvoy",
+                  "href": "https://play.google.com/store/apps/details?id=com.marriott.mrt&hl=en",
+                  "meta": "2022 - Android · Experiment",
+                  "paragraphs": [
+                    "Contributed to booking and experiment-driven flows inside a large-scale travel app.",
+                    "<strong>Tech stack:</strong> Android",
+                    "<strong>Why it matters:</strong> Shipping in a product used by millions requires careful changes, instrumentation, and stability."
+                  ]
+                },
+                {
+                  "title": "PatientAccess",
+                  "meta": "2021 - Android · Healthcare",
+                  "paragraphs": [
+                    "Worked on appointment-booking flows in a healthcare app.",
+                    "<strong>Tech stack:</strong> Android, Firestore, Jetpack",
+                    "<strong>Why it matters:</strong> Healthcare apps need clear UX and careful handling of sensitive user data."
+                  ]
+                }
+              ]
+            }
+          ],
+          "footer_html": "More projects live on <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a>."
+        },
+        "bn": {
+          "meta": {
+            "title": "প্রজেক্ট · নাঈমুল কবির",
+            "description": "নির্বাচিত অ্যান্ড্রয়েড, আইওএস, কটলিন মাল্টিপ্ল্যাটফর্ম ও ফ্লাটার প্রজেক্ট—নাঈমুল কবিরের প্রিয় কাজগুলো।",
+            "keywords": "নাঈমুল কবির প্রজেক্ট, অ্যান্ড্রয়েড অ্যাপ, ফ্লাটার অ্যাপ, কটলিন মাল্টিপ্ল্যাটফর্ম"
+          },
+          "header": {
+            "site_title": "প্রজেক্ট",
+            "tagline": "অপিসের বা নিজের কিছু প্রজেক্ট, মনে হলো শেয়ার করার মত।"
+          },
+          "groups": [
+            {
+              "title": "লাইব্রেরি ও টুলিং",
+              "items": [
+                {
+                  "title": "Ktor2Curl",
+                  "href": "https://github.com/kabirnayeem99/Ktor2Curl",
+                  "meta": "২০২৪ · কটলিন · সার্ভার/ক্লায়েন্ট",
+                  "paragraphs": [
+                    "কেটর রিকোয়েস্টকে curl কমান্ড হিসেবে লগ করে, OkHttp-র Ok2Curl থেকে আইডিয়াটা নিয়েছি।"
+                  ]
+                },
+                {
+                  "title": "kVINInfo",
+                  "href": "https://github.com/kabirnayeem99/kVinInfo",
+                  "meta": "২০২৪ · কটলিন · মাল্টিপ্ল্যাটফর্ম",
+                  "paragraphs": [
+                    "গাড়ির আইডিন্টিফিকেশন নাম্বার ভ্যালিডেশন, বা ভ্যালিড মক ভিন জেনারেট করার জন্য।"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "ব্যাকএন্ড",
+              "items": [
+                {
+                  "title": "সমবায় নথি",
+                  "href": "https://samabay.multazim.solutions/dashboard",
+                  "meta": "২০২২ · পিএইচপি · লারাভেল",
+                  "paragraphs": [
+                    "স্থানীয় সমবায় সমিতির জন্য ছোট SaaS প্ল্যাটফর্ম তৈরীর চেষ্টা করেছিলাম। পরে ব্যবসায়িকভাবে সফলতা পায়নাই।"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "মোবাইল অ্যাপ",
+              "items": [
+                {
+                  "title": "IslamQA Android",
+                  "href": "https://github.com/kabirnayeem99/islam_qa_org_android",
+                  "meta": "২০২২ · কটলিন · জেটপ্যাক কম্পোজ",
+                  "paragraphs": [
+                    "অফলাইন সার্চ, বুকমার্কিং আর ব্যাকগ্রাউন্ড সিঙ্কসহ IslamQA.org-এর জন্য আনঅফিশিয়াল অ্যান্ড্রয়েড ক্লায়েন্ট।"
+                  ]
+                },
+                {
+                  "title": "আল হাদিস",
+                  "href": "https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US",
+                  "meta": "২০২২ · ডার্ট · ফ্লাটার",
+                  "paragraphs": [
+                    "৪৯ হাজারের বেশি বাংলা হাদিস ডিজিটালাইজ করা অ্যাপ।"
+                  ]
+                },
+                {
+                  "title": "BaseHubs",
+                  "href": "https://play.google.com/store/apps/details?id=com.basehubs.app&hl=en",
+                  "meta": "২০২১ · কটলিন · ক্লিন আর্কিটেকচার",
+                  "paragraphs": [
+                    "আর্মি ফ্যামিলির জন্য লোকাল বিজনেস রিকমেন্ডেশন, ডিসকাউন্টের তথ্য ইত্যাদী ইত্যাদী। প্রথমে পার্স দিয়ে, পরে ফায়ারবেস দিয়ে, আবার পরে নিজস্ব এপিআই দিয়ে বানানো।"
+                  ]
+                }
+              ]
+            }
+          ],
+          "footer_html": "আরও প্রজেক্ট দেখতে <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a>-এ ঘুরে আসুন।"
+        },
+        "ar": {
+          "meta": {
+            "title": "المشاريع · نَعِيم الكبير",
+            "description": "نماذج مختارة من مشاريع نَعِيم الكبير على أندرويد وآي أو إس وكوتلن متعدد المنصات وفلاتر.",
+            "keywords": "نَعِيم الكبير مشاريع، تطبيقات أندرويد، فلاتر، كوتلن متعدد المنصات"
+          },
+          "header": {
+            "site_title": "المشاريع",
+            "tagline": "أعمال مهنية وشخصية أفتخر بها."
+          },
+          "groups": [
+            {
+              "title": "مكتبات وأدوات",
+              "items": [
+                {
+                  "title": "Ktor2Curl",
+                  "href": "https://github.com/kabirnayeem99/Ktor2Curl",
+                  "meta": "2024 · كوتلن · خادم/عميل",
+                  "paragraphs": [
+                    "إضافة صغيرة تعكس كل طلب Ktor كأمر curl للتصحيح السريع، وهي مستوحاة من Ok2Curl."
+                  ]
+                },
+                {
+                  "title": "kVINInfo",
+                  "href": "https://github.com/kabirnayeem99/kVinInfo",
+                  "meta": "2024 · كوتلن · متعدد المنصات",
+                  "paragraphs": [
+                    "مكتبة كوتلن خالصة للتحقق من أرقام VIN وتحليلها وتوليد بيانات تجريبية، من دون تبعيات خارجية."
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "الخلفية",
+              "items": [
+                {
+                  "title": "সমবায় নথি",
+                  "href": "https://samabay.multazim.solutions/dashboard",
+                  "meta": "2022 · بي إتش بي · لارافيل",
+                  "paragraphs": [
+                    "منصة SaaS صغيرة للجمعيات التعاونية المحلية، تساعد على إدارة الأعضاء، وتتبع الدفعات، والتحقق من المعاملات."
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "تطبيقات الجوال",
+              "items": [
+                {
+                  "title": "IslamQA Android",
+                  "href": "https://github.com/kabirnayeem99/islam_qa_org_android",
+                  "meta": "2022 · كوتلن · Jetpack Compose",
+                  "paragraphs": [
+                    "عميل غير رسمي لـ IslamQA.org يدعم البحث دون اتصال والمزامنة الخلفية عبر وورك مانيجر."
+                  ]
+                },
+                {
+                  "title": "আল হাদিস",
+                  "href": "https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US",
+                  "meta": "2022 · دارت · فلاتر",
+                  "paragraphs": [
+                    "تطبيق يرقمن أكثر من 49 ألف حديث بنغالي، مع تركيز واضح على الدقة والأداء."
+                  ]
+                },
+                {
+                  "title": "BaseHubs",
+                  "href": "https://play.google.com/store/apps/details?id=com.basehubs.app&hl=en",
+                  "meta": "2021 · كوتلن · معمارية نظيفة",
+                  "paragraphs": [
+                    "منصة تربط عائلات العسكريين بالأعمال المحلية عبر معمارية معيارية وتكامل مع Firebase وParse."
+                  ]
+                },
+                {
+                  "title": "Boulevard Mentorship",
+                  "href": "https://play.google.com/store/apps/details?id=com.thefivenetwork.five&hl=en",
+                  "meta": "2021 · كوتلن · متعدد الحزم",
+                  "paragraphs": [
+                    "نظام إرشاد يربط المواهب بالمرشدين مع تركيز على الاعتمادية وجودة التنبيهات."
+                  ]
+                },
+                {
+                  "title": "Marriott Bonvoy",
+                  "href": "https://play.google.com/store/apps/details?id=com.marriott.mrt&hl=en",
+                  "meta": "2022 · أندرويد · تجارب",
+                  "paragraphs": [
+                    "العمل داخل قاعدة شيفرة ضخمة قائمة على التجارب لدعم مسارات الحجز لملايين المستخدمين."
+                  ]
+                },
+                {
+                  "title": "PatientAccess",
+                  "meta": "2021 · أندرويد · الرعاية الصحية",
+                  "paragraphs": [
+                    "تجربة حجز مواعيد تجمع بين المعمارية النظيفة وFirestore للحفاظ على بيانات المرضى."
+                  ]
+                }
+              ]
+            }
+          ],
+          "footer_html": "المزيد من المشاريع على <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a>."
+        },
+        "ur": {
+          "meta": {
+            "title": "پراجیکٹس · نعیم الکبیر",
+            "description": "منتخب موبائل اور بیک اینڈ پراجیکٹس جنہیں نعیم الکبیر نے کاٹلِن، فْلَٹَر اور دیگر ٹیکنالوجیز میں تخلیق کیا۔",
+            "keywords": "نعیم الکبیر پراجیکٹس، اینڈرائیڈ ایپس، فْلَٹَر، کاٹلِن مُلٹی پلیٹ فارم"
+          },
+          "header": {
+            "site_title": "پراجیکٹس",
+            "tagline": "پیشہ ورانہ ہو یا ذاتی، یہ وہ کام ہیں جن پر مجھے فخر ہے۔"
+          },
+          "groups": [
+            {
+              "title": "لائبریریز اور ٹولز",
+              "items": [
+                {
+                  "title": "کی ٹور ٹو کَرل",
+                  "href": "https://github.com/kabirnayeem99/Ktor2Curl",
+                  "meta": "2024 · کاٹلِن · سرور/کلائنٹ",
+                  "paragraphs": [
+                    "ہر کی ٹور ریکویسٹ کو ساتھ ساتھ کَرل کمانڈ میں تبدیل کر کے ڈیبگنگ آسان بناتا ہے—اوکے ٹو کَرل سے متاثر۔"
+                  ]
+                },
+                {
+                  "title": "کے وی آئی این اِنفو",
+                  "href": "https://github.com/kabirnayeem99/kVinInfo",
+                  "meta": "2024 · کاٹلِن · ملٹی پلیٹ فارم",
+                  "paragraphs": [
+                    "وی آئی این کوڈ کی توثیق، ڈیکوڈنگ اور فرضی ڈیٹا کی تخلیق—خالص کاٹلِن میں، اضافی انحصار کے بغیر۔"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "بیک اینڈ",
+              "items": [
+                {
+                  "title": "সমবায় নথি",
+                  "href": "https://samabay.multazim.solutions/dashboard",
+                  "meta": "2022 · پی ایچ پی · لاراوِل",
+                  "paragraphs": [
+                    "مقامی کوآپریٹو سوسائٹیوں کے لیے چھوٹا ساس پلیٹ فارم—ارکان کی دستاویزات، ادائیگی اور ٹرانزیکشن کی توثیق ایک جگہ۔"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "موبائل ایپس",
+              "items": [
+                {
+                  "title": "اسلام کیو اے اینڈرائڈ",
+                  "href": "https://github.com/kabirnayeem99/islam_qa_org_android",
+                  "meta": "2022 · کاٹلِن · جیٹ پیک کمپوز",
+                  "paragraphs": [
+                    "اسلام کیو اے ڈاٹ آرگ کا غیر رسمی اینڈرائیڈ کلائنٹ—آف لائن سرچ، بک مارکس اور وُرک مینیجر کے ذریعے پس منظر میں ہم آہنگی۔"
+                  ]
+                },
+                {
+                  "title": "আল হাদিস",
+                  "href": "https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US",
+                  "meta": "2022 · ڈارٹ · فْلَٹَر",
+                  "paragraphs": [
+                    "تقریباً 49 ہزار بنگالی احادیث کی ڈیجیٹل شکل—مواد کے معیار اور کارکردگی پر بھرپور توجہ۔"
+                  ]
+                },
+                {
+                  "title": "بیس ہَبز",
+                  "href": "https://play.google.com/store/apps/details?id=com.basehubs.app&hl=en",
+                  "meta": "2021 · کاٹلِن · کلین آرکیٹیکچر",
+                  "paragraphs": [
+                    "فوجی خاندانوں اور مقامی کاروباروں کو جوڑنے والی ایپ—ماڈیولر آرکیٹیکچر، فائربیس اور پارس انضمام کے ساتھ۔"
+                  ]
+                },
+                {
+                  "title": "بُولیوَرڈ مینٹورشِپ",
+                  "href": "https://play.google.com/store/apps/details?id=com.thefivenetwork.five&hl=en",
+                  "meta": "2021 · کاٹلِن · ملٹی ماڈیول",
+                  "paragraphs": [
+                    "مینٹرز اور نوجوان ٹیلنٹ کو ملانے والا پلیٹ فارم—اعتماد اور قابل بھروسہ نوٹیفکیشنز کے لیے بنایا گیا۔"
+                  ]
+                },
+                {
+                  "title": "میریئٹ بون وائے",
+                  "href": "https://play.google.com/store/apps/details?id=com.marriott.mrt&hl=en",
+                  "meta": "2022 · اینڈرائڈ · تجربات",
+                  "paragraphs": [
+                    "بڑے پروڈکشن کوڈ بیس میں بکنگ فلو کی معاونت اور لاکھوں صارفین کے لیے انسٹرومنٹیشن۔"
+                  ]
+                },
+                {
+                  "title": "پیشنٹ ایکسَیس",
+                  "meta": "2021 · اینڈرائڈ · صحت",
+                  "paragraphs": [
+                    "شفاف آرکیٹیکچر، فائر اسٹور اور جیٹ پیک کی مدد سے مریضوں کو محفوظ اور آسان اپائنٹمنٹ بکنگ کی سہولت۔"
+                  ]
+                }
+              ]
+            }
+          ],
+          "footer_html": "مزید پراجیکٹس <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">گِٹ ہَب</a> پر دستیاب ہیں۔"
+        }
+      }
+    },
+    "blog": {
+      "og_type": "article",
+      "locales": {
+        "en": {
+          "meta": {
+            "title": "Writing · Naimul Kabir",
+            "description": "Static blog entries and notes by Naimul Kabir.",
+            "keywords": "Naimul Kabir blog, software engineering articles, mobile development notes"
+          },
+          "header": {
+            "site_title": "Writing",
+            "tagline": "Some of blogs, tutorials, guides, personal experiences & renting..."
+          },
+          "articles": [
+            {
+              "title": "If I Had to Restart My Career as a Mobile Dev",
+              "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
+              "meta": "Medium · career",
+              "summary": "Some of mistakes I made early in my career as a mobile dev, and some honest suggestions and guidelines for jr. mobile devs or software devs in general."
+            },
+            {
+              "title": "Ktor2Curl: convert Ktor requests into curl logs",
+              "href": "https://kabirnayeem99.medium.com/ktor2curl-convert-ktor-requests-into-curl-log-3e573d427485",
+              "meta": "Medium · tooling",
+              "summary": "A tutorial on the Ktor2Curl, a equivalent of Ok2Curl, but for Ktor and Kotlin Multiplatform, written by me.."
+            },
+            {
+              "title": "Setup Windows for Android development",
+              "href": "https://kabirnayeem99.medium.com/setup-windows-for-android-development-9d27e1a9d9a4",
+              "meta": "Medium · environment",
+              "summary": "A guide to make Windows Installation a proper Android Development Work station."
+            },
+            {
+              "title": "Make Arch look like Ubuntu",
+              "href": "https://kabirnayeem99.medium.com/make-arch-look-like-ubuntu-f5b88caf761f",
+              "meta": "Medium · desktop tweaks",
+              "summary": "Guide on using themse and fonts to make default Arch+GNOME install look closer to Ubuntu."
+            },
+            {
+              "title": "Manjaro to Arch conversation",
+              "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
+              "meta": "Medium · distro hopping",
+              "summary": "Hacky Guide on turning a Manjaro installation into an Arch Install. May not work, after so many years, as both platforms has changed largely after writing this blog."
+            },
+            {
+              "title": "Keep calm, switch back to Windows",
+              "href": "https://kabirnayeem99.medium.com/keep-calm-switch-back-to-windows-11f5f636f870",
+              "meta": "Medium · productivity",
+              "summary": "I don't know why even I have written this!!! Rationalising my switching back to windows from FOSS OS."
+            }
+          ],
+          "footer_html": "Last updated <time datetime=\"2024-11-02\">2 Nov 2024</time>. Send edits or typos my way."
+        }
+      }
+    },
+    "stats": {
+      "og_type": "article",
+      "locales": {
+        "en": {
+          "meta": {
+            "title": "Stats · Naimul Kabir",
+            "description": "Public coding stats and practice milestones for Naimul Kabir, including LeetCode activity.",
+            "keywords": "Naimul Kabir stats, LeetCode stats, coding activity, problem solving heatmap"
+          },
+          "header": {
+            "site_title": "Stats",
+            "tagline": "Oversharing, just oversharing!"
+          },
+          "intro": [
+            "These are graphs, charts, lists that might not fit in a professional portfolio. Someone may even cringe out. But sometimes oversharing feels good, and surprisingly honest. Who can tell, they may even impress someone looking for someone good at specific tech stack or languages."
+          ],
+          "sections": {
+            "wakatime": {
+              "title": "WakaTime Stats",
+              "status_text": "Showing bundled WakaTime snapshot.",
+              "languages_url": "https://wakatime.com/share/@kabirnayeem99/3ee188ec-1b6b-454a-9c7d-12b1d02cf86b.json",
+              "summary_url": "https://wakatime.com/share/@kabirnayeem99/c002cbf8-c46e-46ee-b225-d7b680009c55.json",
+              "aria_label": "Top languages by usage"
+            },
+            "languages": {
+              "title": "Most Used Languages",
+              "intro": "Here are some of the languags I used most, and well-versed in.",
+              "wakatime_copy": "Most written and used Langauges from WakaTime (includes both work and personal)",
+              "wakatime_profile_href": "https://wakatime.com/@877bdd59-77ed-4e91-839b-edf730c4e129",
+              "wakatime_badge_src": "https://wakatime.com/badge/user/877bdd59-77ed-4e91-839b-edf730c4e129.svg",
+              "wakatime_badge_alt": "Total time coded since Feb 12 2021",
+              "wakatime_embed_src": "https://github-readme-stats.vercel.app/api/wakatime?username=kabirnayeem99&hide=xml,groovy,html,text,css,bash,yaml,sh,toml,todo.gitignore,gradle,other,markdown,svg,ps&langs_count=5&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=8&locale=bn",
+              "wakatime_embed_alt": "WakaTime Language Usage - kabirnayeem99",
+              "github_copy": "Most written and used Langauges hosted on GitHub (Mostly Personal)",
+              "github_profile_href": "https://github.com/kabirnayeem99",
+              "github_embed_src": "https://github-readme-stats.vercel.app/api/top-langs/?username=kabirnayeem99&hide=html,python,makefile&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=8&locale=bn",
+              "github_embed_alt": "GitHub Top Languages - kabirnayeem99"
+            },
+            "github_commits": {
+              "title": "GitHub Personal Commits",
+              "description": "Live public contribution activity pulled from a GitHub contributions API.",
+              "status_text": "Showing bundled GitHub snapshot.",
+              "contrib_url": "https://github-contributions-api.jogruber.de/v4/kabirnayeem99",
+              "source_label": "Source:",
+              "source_href": "https://github.com/kabirnayeem99",
+              "source_text": "github.com/kabirnayeem99",
+              "heatmap_aria_label": "GitHub-style contribution graph",
+              "legend_aria_label": "Contribution intensity"
+            },
+            "leetcode": {
+              "title": "LeetCode Profile",
+              "copy": "Silly <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> stats, and I have no idea why I'm sharing them. As I'm starting out, this looks very poor, and pathetic. Hopefully, in future, the situation improves.",
+              "thanks": "Thanks to <a href=\"https://leetcard.jacoblin.cool/\" target=\"_blank\" rel=\"noreferrer\">LeetCard</a>.",
+              "card_src": "https://leetcard.jacoblin.cool/kabirnayeem99?theme=light&font=JetBrains%20Mono&colors=%23FBF4E6%2C%20%236A666B%2C%20%232F261B%2C%20%238281A1%2C%20%23FACE68%2C%20%2373AF6F%2C%20%23FACE68%2C%23FF5555%2C&ext=heatmap&hide_title=true&disable_animations=true",
+              "card_alt": "LeetCode stats for kabirnayeem99"
+            },
+            "learning_path": {
+              "title": "Learning Path",
+              "copy": "For learning new technologies, I'm currently using <a href=\"https://roadmap.sh/\" target=\"_blank\" rel=\"noreferrer\">roadmap.sh</a>. Here's the progress there.",
+              "href": "https://roadmap.sh",
+              "image_src": "https://roadmap.sh/card/wide/690713b1b0418a041e32d9c5?variant=light&roadmaps=backend%2Cgolang",
+              "image_alt": "roadmap.sh"
+            },
+            "goodreads": {
+              "title": "Goodreads Last Read Books",
+              "copy": "Some of the books I've read recently.",
+              "widget_id": "1771265103",
+              "user_id": "45514357",
+              "user_name": "Naimul",
+              "profile_href": "https://www.goodreads.com/user/show/45514357-naimul-kabir",
+              "profile_label": "Naimul Kabir's favorite books »",
+              "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=40&order=d&shelf=read&sort=date_added&widget_id=1771265103"
+            }
+          },
+          "footer_html": "Last refreshed <time id=\"last-refreshed\" datetime=\"\">Today</time>. Ping me for other data cuts."
+        }
+      }
+    }
+  }
+}
