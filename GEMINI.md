@@ -1,6 +1,6 @@
-# AGENTS.md
+# GEMINI.md
 
-Project guidance for AI/code agents working in this repository.
+Repository guidance for Gemini or other AI/code agents working in this project.
 
 ## Core stack rule (mandatory)
 

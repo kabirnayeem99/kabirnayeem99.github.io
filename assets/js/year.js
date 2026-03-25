@@ -3,33 +3,49 @@
  * Populates year and "last refreshed" values in the footer based on page language.
  */
 document.addEventListener("DOMContentLoaded", function () {
+  /** @typedef {"bn" | "ar" | "ur"} SupportedLocaleKey */
+
   var today = new Date();
   var lang = document.documentElement.lang || "en";
 
-  /** @type {Record<string, string>} */
+  /** @type {Record<SupportedLocaleKey, string>} */
   var localeMap = {
     bn: "bn-BD",
     ar: "ar-SA",
     ur: "ur-PK",
   };
 
-  var locale = localeMap[lang] || "en-US";
+  /** @type {string} */
+  var locale = hasOwnLocale(localeMap, lang) ? localeMap[lang] : "en-US";
 
+  /** @type {HTMLElement | null} */
   var yearElement = document.getElementById("year");
   if (yearElement) {
     yearElement.textContent = today.toLocaleDateString(locale, { year: "numeric" });
   }
 
+  /** @type {HTMLElement | null} */
   var refreshedElement = document.getElementById("last-refreshed");
   if (refreshedElement) {
     refreshedElement.setAttribute("datetime", today.toISOString().split("T")[0]);
 
     // Keep human-readable date neutral when no explicit locale mapping exists.
-    var refreshedLocale = localeMap[lang] || "en-GB";
+    var refreshedLocale = hasOwnLocale(localeMap, lang) ? localeMap[lang] : "en-GB";
     refreshedElement.textContent = today.toLocaleDateString(refreshedLocale, {
       day: "numeric",
       month: "short",
       year: "numeric",
     });
+  }
+
+  /**
+   * Narrows arbitrary strings to supported locale-map keys.
+   *
+   * @param {Record<SupportedLocaleKey, string>} locales
+   * @param {string} key
+   * @returns {key is SupportedLocaleKey}
+   */
+  function hasOwnLocale(locales, key) {
+    return Object.prototype.hasOwnProperty.call(locales, key);
   }
 });
