@@ -1,6 +1,8 @@
 @font-face {
   font-family: "EB Garamond";
-  src: url("../fonts/eb-garamond/EBGaramond-wght.ttf") format("truetype");
+  src:
+    url("__EB_GARAMOND_WOFF2__") format("woff2"),
+    url("../fonts/eb-garamond/EBGaramond-wght.ttf") format("truetype");
   font-style: normal;
   font-weight: 400 800;
   font-display: swap;
@@ -565,6 +567,15 @@ a:focus-visible {
   margin-bottom: 0;
 }
 
+.summary-card a,
+.summary-card a:visited {
+  color: var(--accent-visited);
+}
+
+.summary-card a:hover {
+  color: var(--text);
+}
+
 .highlight,
 .article-item,
 .stats-card {
@@ -904,7 +915,7 @@ footer {
   border-top: 1px solid var(--border);
   margin-top: 3rem;
   padding-top: 1.5rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   text-align: center;
   font-weight: 500;
 }
