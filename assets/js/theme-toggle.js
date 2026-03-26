@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Explicit light/dark theme control with localStorage persistence.
+ * Explicit light/dark theme control with cross-page persistence.
  *
  * The site defaults to light mode. Dark mode is applied only when the user
  * explicitly selects it.
@@ -19,6 +19,61 @@ document.addEventListener("DOMContentLoaded", function () {
   /** @type {HTMLElement | null} */
   var icon = /** @type {HTMLElement | null} */ (button.querySelector("[data-theme-toggle-icon]"));
   var storageKey = "person-portfolio-theme";
+  var cookiePrefix = storageKey + "=";
+  var windowNamePrefix = storageKey + "=";
+
+  /**
+   * @returns {"light" | "dark" | null}
+   */
+  function readCookieTheme() {
+    var cookies = document.cookie ? document.cookie.split("; ") : [];
+
+    for (var index = 0; index < cookies.length; index += 1) {
+      var entry = cookies[index];
+      if (entry.indexOf(cookiePrefix) !== 0) {
+        continue;
+      }
+
+      var value = entry.slice(cookiePrefix.length);
+      if (value === "light" || value === "dark") {
+        return value;
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * @param {"light" | "dark"} theme
+   * @returns {void}
+   */
+  function persistTheme(theme) {
+    try {
+      window.localStorage.setItem(storageKey, theme);
+    } catch (_error) {
+      // Ignore storage failures and keep the cookie fallback.
+    }
+
+    document.cookie =
+      storageKey + "=" + theme + "; Path=/; Max-Age=31536000; SameSite=Lax";
+    window.name = windowNamePrefix + theme;
+  }
+
+  /**
+   * @returns {"light" | "dark" | null}
+   */
+  function readWindowNameTheme() {
+    if (window.name.indexOf(windowNamePrefix) !== 0) {
+      return null;
+    }
+
+    var value = window.name.slice(windowNamePrefix.length);
+    if (value === "light" || value === "dark") {
+      return value;
+    }
+
+    return null;
+  }
 
   /**
    * @returns {"light" | "dark"}
@@ -47,16 +102,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  applyTheme(currentTheme());
+  var storedTheme = readWindowNameTheme();
+  var cookieTheme = readCookieTheme();
+  if (cookieTheme === "light" || cookieTheme === "dark") {
+    storedTheme = cookieTheme;
+  }
+  try {
+    var localTheme = window.localStorage.getItem(storageKey);
+    if (localTheme === "light" || localTheme === "dark") {
+      storedTheme = localTheme;
+    }
+  } catch (_error) {
+    // Ignore storage failures and keep the cookie fallback.
+  }
+
+  applyTheme(storedTheme === "dark" ? "dark" : currentTheme());
+  persistTheme(currentTheme());
 
   button.addEventListener("click", function () {
     var nextTheme = currentTheme() === "dark" ? "light" : "dark";
     applyTheme(nextTheme);
-
-    try {
-      window.localStorage.setItem(storageKey, nextTheme);
-    } catch (_error) {
-      // Ignore storage failures and keep the session theme only in memory.
-    }
+    persistTheme(nextTheme);
   });
 });
