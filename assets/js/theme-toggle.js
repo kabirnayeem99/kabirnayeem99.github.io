@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function applyTheme(theme) {
     var isDark = theme === "dark";
     document.documentElement.setAttribute("data-theme", theme);
+    document.dispatchEvent(new CustomEvent("site-theme-change", { detail: { theme: theme } }));
     button.setAttribute("aria-pressed", String(isDark));
 
     var nextLabel = isDark ? button.dataset.lightLabel : button.dataset.darkLabel;

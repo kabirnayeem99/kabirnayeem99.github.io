@@ -282,6 +282,11 @@ nav a {
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 
+nav a[aria-current="page"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
 nav a:hover,
 nav a:focus-visible {
   color: var(--accent);
@@ -625,6 +630,18 @@ a:focus-visible {
   background: var(--media-surface);
 }
 
+.stats-embed {
+  object-fit: contain;
+}
+
+.stats-embed--leetcode-card {
+  aspect-ratio: 500 / 250;
+}
+
+.stats-embed--roadmap-card {
+  aspect-ratio: 1130 / 380;
+}
+
 .wakatime-widget {
   margin-top: 1rem;
   padding: 1.25rem;
@@ -851,6 +868,32 @@ a:focus-visible {
   border-radius: 2px;
 }
 
+.goodreads-widget {
+  min-height: 76rem;
+}
+
+.gr_grid_book_container {
+  float: left;
+  width: 98px;
+  height: 147px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.gr_grid_book_container a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gr_grid_book_container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 hr {
   border: 0;
   border-top: 1px solid var(--border);
@@ -904,6 +947,10 @@ footer {
 
   .summary-card {
     padding: 1.25rem;
+  }
+
+  .goodreads-widget {
+    min-height: 112rem;
   }
 
   .back-to-top {

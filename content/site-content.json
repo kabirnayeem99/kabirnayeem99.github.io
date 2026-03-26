@@ -1210,11 +1210,11 @@
               "wakatime_profile_href": "https://wakatime.com/@877bdd59-77ed-4e91-839b-edf730c4e129",
               "wakatime_badge_src": "https://wakatime.com/badge/user/877bdd59-77ed-4e91-839b-edf730c4e129.svg",
               "wakatime_badge_alt": "Total time coded since Feb 12 2021",
-              "wakatime_embed_src": "https://github-readme-stats.vercel.app/api/wakatime?username=kabirnayeem99&hide=xml,groovy,html,text,css,bash,yaml,sh,toml,todo.gitignore,gradle,other,markdown,svg,ps&langs_count=5&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=8&locale=bn",
+              "wakatime_embed_src": "https://github-readme-stats.vercel.app/api/wakatime?username=kabirnayeem99&hide=xml,groovy,html,text,css,bash,yaml,sh,toml,todo.gitignore,gradle,other,markdown,svg,ps&langs_count=5&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=8&locale=en",
               "wakatime_embed_alt": "WakaTime Language Usage - kabirnayeem99",
               "github_copy": "Most written and used Langauges hosted on GitHub (Mostly Personal)",
               "github_profile_href": "https://github.com/kabirnayeem99",
-              "github_embed_src": "https://github-readme-stats.vercel.app/api/top-langs/?username=kabirnayeem99&hide=html,python,makefile&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=8&locale=bn",
+              "github_embed_src": "https://github-readme-stats.vercel.app/api/top-langs/?username=kabirnayeem99&hide=html,python,makefile&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=8&locale=en",
               "github_embed_alt": "GitHub Top Languages - kabirnayeem99"
             },
             "github_commits": {
@@ -1232,7 +1232,7 @@
               "title": "LeetCode Profile",
               "copy": "Silly <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> stats, and I have no idea why I'm sharing them. As I'm starting out, this looks very poor, and pathetic. Hopefully, in future, the situation improves.",
               "thanks": "Thanks to <a href=\"https://leetcard.jacoblin.cool/\" target=\"_blank\" rel=\"noreferrer\">LeetCard</a>.",
-              "card_src": "https://leetcard.jacoblin.cool/kabirnayeem99?theme=light&font=JetBrains%20Mono&colors=%23FBF4E6%2C%20%236A666B%2C%20%232F261B%2C%20%238281A1%2C%20%23FACE68%2C%20%2373AF6F%2C%20%23FACE68%2C%23FF5555%2C&ext=heatmap&hide_title=true&disable_animations=true",
+              "card_src": "https://leetcard.jacoblin.cool/kabirnayeem99?theme=light&font=JetBrains%20Mono&colors=%23FFFFFF%2C%20%2344403C%2C%20%231C1917%2C%20%2378716C%2C%20%23D97706%2C%20%2373AF6F%2C%20%23FACC15%2C%20%23FF5555%2C&ext=heatmap&hide_title=true&disable_animations=true",
               "card_alt": "LeetCode stats for kabirnayeem99"
             },
             "learning_path": {
