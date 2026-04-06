@@ -1,8 +1,6 @@
 @font-face {
   font-family: "EB Garamond";
-  src:
-    url("__EB_GARAMOND_WOFF2__") format("woff2"),
-    url("../fonts/eb-garamond/EBGaramond-wght.ttf") format("truetype");
+  src: url("../fonts/eb-garamond/EBGaramond-wght.ttf") format("truetype");
   font-style: normal;
   font-weight: 400 800;
   font-display: swap;

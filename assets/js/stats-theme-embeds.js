@@ -29,7 +29,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  /**
+   * @param {"light" | "dark"} theme
+   * @returns {void}
+   */
+  function applyThemeToEmbedLinks(theme) {
+    /** @type {NodeListOf<HTMLAnchorElement>} */
+    var links = document.querySelectorAll("a[data-theme-light-href][data-theme-dark-href]");
+    var hrefKey = theme === "dark" ? "themeDarkHref" : "themeLightHref";
+
+    links.forEach(function (link) {
+      var nextHref = link.dataset[hrefKey];
+      if (typeof nextHref !== "string" || nextHref.length === 0) {
+        return;
+      }
+
+      if (link.getAttribute("href") === nextHref) {
+        return;
+      }
+
+      link.setAttribute("href", nextHref);
+    });
+  }
+
   applyThemeToEmbeds(currentTheme());
+  applyThemeToEmbedLinks(currentTheme());
 
   document.addEventListener("site-theme-change", function (event) {
     var nextTheme = currentTheme();
@@ -41,5 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     applyThemeToEmbeds(nextTheme);
+    applyThemeToEmbedLinks(nextTheme);
   });
 });
