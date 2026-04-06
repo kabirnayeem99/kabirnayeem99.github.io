@@ -19,29 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
   /** @type {HTMLElement | null} */
   var icon = /** @type {HTMLElement | null} */ (button.querySelector("[data-theme-toggle-icon]"));
   var storageKey = "person-portfolio-theme";
-  var cookiePrefix = storageKey + "=";
-  var windowNamePrefix = storageKey + "=";
-
-  /**
-   * @returns {"light" | "dark" | null}
-   */
-  function readCookieTheme() {
-    var cookies = document.cookie ? document.cookie.split("; ") : [];
-
-    for (var index = 0; index < cookies.length; index += 1) {
-      var entry = cookies[index];
-      if (entry.indexOf(cookiePrefix) !== 0) {
-        continue;
-      }
-
-      var value = entry.slice(cookiePrefix.length);
-      if (value === "light" || value === "dark") {
-        return value;
-      }
-    }
-
-    return null;
-  }
 
   /**
    * @param {"light" | "dark"} theme
@@ -51,28 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       window.localStorage.setItem(storageKey, theme);
     } catch (_error) {
-      // Ignore storage failures and keep the cookie fallback.
+      // Ignore storage failures and keep current in-memory theme.
     }
-
-    document.cookie =
-      storageKey + "=" + theme + "; Path=/; Max-Age=31536000; SameSite=Lax";
-    window.name = windowNamePrefix + theme;
-  }
-
-  /**
-   * @returns {"light" | "dark" | null}
-   */
-  function readWindowNameTheme() {
-    if (window.name.indexOf(windowNamePrefix) !== 0) {
-      return null;
-    }
-
-    var value = window.name.slice(windowNamePrefix.length);
-    if (value === "light" || value === "dark") {
-      return value;
-    }
-
-    return null;
   }
 
   /**
@@ -84,12 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /**
    * @param {"light" | "dark"} theme
+   * @param {boolean} emitEvent
    * @returns {void}
    */
-  function applyTheme(theme) {
+  function applyTheme(theme, emitEvent) {
     var isDark = theme === "dark";
     document.documentElement.setAttribute("data-theme", theme);
-    document.dispatchEvent(new CustomEvent("site-theme-change", { detail: { theme: theme } }));
+    if (emitEvent) {
+      document.dispatchEvent(new CustomEvent("site-theme-change", { detail: { theme: theme } }));
+    }
     button.setAttribute("aria-pressed", String(isDark));
 
     var nextLabel = isDark ? button.dataset.lightLabel : button.dataset.darkLabel;
@@ -103,26 +63,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  var storedTheme = readWindowNameTheme();
-  var cookieTheme = readCookieTheme();
-  if (cookieTheme === "light" || cookieTheme === "dark") {
-    storedTheme = cookieTheme;
-  }
+  /** @type {"light" | "dark" | null} */
+  var storedTheme = null;
   try {
     var localTheme = window.localStorage.getItem(storageKey);
     if (localTheme === "light" || localTheme === "dark") {
       storedTheme = localTheme;
     }
   } catch (_error) {
-    // Ignore storage failures and keep the cookie fallback.
+    // Ignore storage failures and keep default theme from the bootstrap script.
   }
 
-  applyTheme(storedTheme === "dark" ? "dark" : currentTheme());
-  persistTheme(currentTheme());
+  applyTheme(storedTheme === "dark" ? "dark" : currentTheme(), false);
 
   button.addEventListener("click", function () {
     var nextTheme = currentTheme() === "dark" ? "light" : "dark";
-    applyTheme(nextTheme);
+    applyTheme(nextTheme, true);
     persistTheme(nextTheme);
   });
 });

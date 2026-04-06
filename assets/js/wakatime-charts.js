@@ -279,56 +279,10 @@
 
   /**
    * @param {string} url
-   * @param {number} timeoutMs
-   * @returns {Promise<unknown>}
-   */
-  function fetchJsonp(url, timeoutMs) {
-    return new Promise(function (resolve, reject) {
-      var callbackName =
-        "wakatimeJsonp_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
-      /** @type {Record<string, unknown>} */
-      var windowWithCallbacks = /** @type {Record<string, unknown>} */ (
-        /** @type {unknown} */ (window)
-      );
-      var script = document.createElement("script");
-      var separator = url.indexOf("?") >= 0 ? "&" : "?";
-      var timeoutId = setTimeout(function () {
-        cleanup();
-        reject(new Error("JSONP timeout"));
-      }, timeoutMs);
-
-      function cleanup() {
-        clearTimeout(timeoutId);
-        if (Object.prototype.hasOwnProperty.call(windowWithCallbacks, callbackName)) {
-          delete windowWithCallbacks[callbackName];
-        }
-        script.remove();
-      }
-
-      /** @param {unknown} payload */
-      windowWithCallbacks[callbackName] = function (payload) {
-        cleanup();
-        resolve(payload);
-      };
-
-      script.onerror = function () {
-        cleanup();
-        reject(new Error("JSONP request failed"));
-      };
-
-      script.src = url + separator + "callback=" + callbackName;
-      document.head.appendChild(script);
-    });
-  }
-
-  /**
-   * @param {string} url
    * @returns {Promise<unknown>}
    */
   function fetchWakatime(url) {
-    return fetchJsonWithTimeout(url, 10000).catch(function () {
-      return fetchJsonp(url, 12000);
-    });
+    return fetchJsonWithTimeout(url, 10000);
   }
 
   /**

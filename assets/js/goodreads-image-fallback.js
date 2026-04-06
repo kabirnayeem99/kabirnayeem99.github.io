@@ -9,6 +9,47 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!(widget instanceof HTMLElement)) {
     return;
   }
+  /** @type {HTMLElement | null} */
+  var statusEl = document.querySelector("[data-goodreads-status]");
+
+  /**
+   * @returns {boolean}
+   */
+  function hasRenderedBooks() {
+    return widget.querySelectorAll(".gr_grid_book_container img").length > 0;
+  }
+
+  /**
+   * @param {string} message
+   * @param {boolean} isError
+   * @returns {void}
+   */
+  function setStatus(message, isError) {
+    if (!(statusEl instanceof HTMLElement)) {
+      return;
+    }
+    statusEl.textContent = message;
+    statusEl.classList.toggle("is-error", Boolean(isError));
+    statusEl.hidden = message.length === 0;
+  }
+
+  /**
+   * @returns {void}
+   */
+  function markLoaded() {
+    widget.classList.remove("is-empty", "is-error");
+    widget.classList.add("is-loaded");
+    setStatus("", false);
+  }
+
+  /**
+   * @returns {void}
+   */
+  function markUnavailable() {
+    widget.classList.remove("is-loaded");
+    widget.classList.add("is-empty", "is-error");
+    setStatus("Could not load Goodreads books right now.", true);
+  }
 
   /**
    * @param {string} source
@@ -70,12 +111,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /**
    * @param {HTMLImageElement} image
-   * @returns {void}
+   * @returns {boolean}
    */
   function applyNextFallback(image) {
     var queueJson = image.dataset.goodreadsFallbackQueue;
     if (typeof queueJson !== "string" || queueJson.length === 0) {
-      return;
+      return false;
     }
 
     /** @type {unknown} */
@@ -83,23 +124,23 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       decodedQueue = JSON.parse(queueJson);
     } catch (_error) {
-      return;
+      return false;
     }
 
     if (!Array.isArray(decodedQueue)) {
-      return;
+      return false;
     }
 
     var queue = decodedQueue.filter(function (entry) {
       return typeof entry === "string" && entry.length > 0;
     });
     if (queue.length === 0) {
-      return;
+      return false;
     }
 
     var index = Number(image.dataset.goodreadsFallbackIndex || "0");
     if (!Number.isInteger(index) || index < 0 || index >= queue.length) {
-      return;
+      return false;
     }
 
     var nextSource = queue[index];
@@ -108,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (image.getAttribute("src") !== nextSource) {
       image.setAttribute("src", nextSource);
     }
+    return true;
   }
 
   /**
@@ -119,7 +161,12 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    applyNextFallback(event.target);
+    if (applyNextFallback(event.target)) {
+      return;
+    }
+    if (!hasRenderedBooks()) {
+      markUnavailable();
+    }
   }
 
   /**
@@ -140,6 +187,10 @@ document.addEventListener("DOMContentLoaded", function () {
         applyNextFallback(image);
       }
     });
+
+    if (hasRenderedBooks()) {
+      markLoaded();
+    }
   }
 
   enhanceImages(widget);
@@ -167,4 +218,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   observer.observe(widget, { childList: true, subtree: true });
+
+  window.setTimeout(function () {
+    if (!hasRenderedBooks()) {
+      markUnavailable();
+    }
+  }, 6000);
 });

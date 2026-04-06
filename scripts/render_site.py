@@ -68,33 +68,22 @@ THEME_LIGHT_LABELS: Final[Mapping[Lang, str]] = {
     "ar": "التَّحوُّلُ إلى الوَضعِ الفاتِح",
     "ur": "لائٹ موڈ پر جائیں",
 }
+SKIP_TO_MAIN_LABELS: Final[Mapping[Lang, str]] = {
+    "en": "Skip to main content",
+    "bn": "মূল অংশে যান",
+    "ar": "تَخَطَّ إلى المُحتَوَى الرَّئيسِي",
+    "ur": "مرکزی مواد پر جائیں",
+}
+OG_LOCALE_BY_LANG: Final[Mapping[Lang, str]] = {
+    "en": "en_US",
+    "bn": "bn_BD",
+    "ar": "ar_SA",
+    "ur": "ur_PK",
+}
 THEME_BOOTSTRAP_SCRIPT: Final[str] = (
     "(function(){"
     "var storageKey='person-portfolio-theme';"
-    "var cookiePrefix=storageKey+'=';"
-    "var windowNamePrefix='person-portfolio-theme=';"
-    "function readCookieTheme(){"
-    "var cookies=document.cookie?document.cookie.split('; '):[];"
-    "for(var index=0;index<cookies.length;index+=1){"
-    "var entry=cookies[index];"
-    "if(entry.indexOf(cookiePrefix)===0){"
-    "var value=entry.slice(cookiePrefix.length);"
-    "if(value==='light'||value==='dark'){return value;}"
-    "}"
-    "}"
-    "return null;"
-    "}"
-    "function readWindowNameTheme(){"
-    "if(window.name.indexOf(windowNamePrefix)!==0){return null;}"
-    "var value=window.name.slice(windowNamePrefix.length);"
-    "if(value==='light'||value==='dark'){return value;}"
-    "return null;"
-    "}"
     "var theme='light';"
-    "var windowNameTheme=readWindowNameTheme();"
-    "if(windowNameTheme!==null){theme=windowNameTheme;}"
-    "var cookieTheme=readCookieTheme();"
-    "if(cookieTheme!==null){theme=cookieTheme;}"
     "try{"
     "var stored=window.localStorage.getItem(storageKey);"
     "if(stored==='light'||stored==='dark'){theme=stored;}"
@@ -102,16 +91,6 @@ THEME_BOOTSTRAP_SCRIPT: Final[str] = (
     "document.documentElement.setAttribute('data-theme',theme);"
     "})();"
 )
-INLINE_SCRIPT_PATHS: Final[frozenset[str]] = frozenset(
-    {
-        "assets/js/image-guard.js",
-        "assets/js/theme-toggle.js",
-        "assets/js/language-switcher.js",
-        "assets/js/year.js",
-        "assets/js/back-to-top.js",
-    }
-)
-
 T = TypeVar("T")
 
 
@@ -154,6 +133,10 @@ class SiteSettings:
     google_site_verification: str
     language_menu_labels: Mapping[Lang, str]
     locales: Mapping[Lang, LocaleInfo]
+    person_name: str
+    website_name: str
+    twitter_site: str
+    social_profiles: tuple[str, ...]
 
 
 @dataclass(frozen=True, slots=True)
@@ -381,6 +364,7 @@ class SiteContent:
         self,
         page_filter: frozenset[PageId] | None = None,
         lang_filter: frozenset[Lang] | None = None,
+        build_date: str | None = None,
     ) -> Iterable[tuple[PageId, Lang, str, str]]:
         """Yield page_id, lang, output path, and rendered HTML."""
 
@@ -396,7 +380,14 @@ class SiteContent:
                     page_id,
                     lang,
                     route,
-                    render_page(self, page_id, lang, route, localized_page.og_type),
+                    render_page(
+                        self,
+                        page_id,
+                        lang,
+                        route,
+                        localized_page.og_type,
+                        build_date if build_date is not None else datetime.date.today().isoformat(),
+                    ),
                 )
 
     def page_for(
@@ -587,6 +578,16 @@ def parse_site_settings(value: object, path: str) -> SiteSettings:
     for raw_lang, raw_locale in locales_raw.items():
         lang = parse_lang(raw_lang, f"{path}.locales.{raw_lang}")
         locales[lang] = parse_locale_info(raw_locale, f"{path}.locales.{raw_lang}")
+    person_name = require_optional_string(get_optional(raw, "person_name"), f"{path}.person_name")
+    website_name = require_optional_string(get_optional(raw, "website_name"), f"{path}.website_name")
+    twitter_site = require_optional_string(get_optional(raw, "twitter_site"), f"{path}.twitter_site")
+    social_profiles_value = get_optional(raw, "social_profiles")
+    social_profiles = (
+        parse_string_tuple(social_profiles_value, f"{path}.social_profiles")
+        if social_profiles_value is not None
+        else ()
+    )
+    default_person_name = locales["en"].author if "en" in locales else next(iter(locales.values())).author
     return SiteSettings(
         base_url=require_string(get_required(raw, "base_url", path), f"{path}.base_url"),
         google_site_verification=require_string(
@@ -595,6 +596,10 @@ def parse_site_settings(value: object, path: str) -> SiteSettings:
         ),
         language_menu_labels=menu_labels,
         locales=locales,
+        person_name=person_name if person_name is not None else default_person_name,
+        website_name=website_name if website_name is not None else f"{default_person_name} Portfolio",
+        twitter_site=twitter_site if twitter_site is not None else "",
+        social_profiles=social_profiles,
     )
 
 
@@ -1238,6 +1243,39 @@ def stats_embed_theme_sources(light_url: str, *, provider: Literal["leetcode", "
     return (light_url, dark_url)
 
 
+def script_safe_json(value: object) -> str:
+    """Return compact JSON text that is safe inside an inline script tag."""
+
+    return json.dumps(value, ensure_ascii=False, separators=(",", ":")).replace("</script", "<\\/script")
+
+
+def render_schema_graph(site: SiteSettings, canonical: str, og_image: str) -> str:
+    """Render a JSON-LD graph with WebSite and Person entities."""
+
+    graph = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": f"{site.base_url}/#website",
+                "url": f"{site.base_url}/",
+                "name": site.website_name,
+                "publisher": {"@id": f"{site.base_url}/#person"},
+                "inLanguage": ["en", "bn", "ar", "ur"],
+            },
+            {
+                "@type": "Person",
+                "@id": f"{site.base_url}/#person",
+                "name": site.person_name,
+                "url": canonical,
+                "image": og_image,
+                "sameAs": list(site.social_profiles),
+            },
+        ],
+    }
+    return f'  <script type="application/ld+json">{script_safe_json(graph)}</script>'
+
+
 def render_head(
     site: SiteSettings,
     routes: RouteTable,
@@ -1252,7 +1290,7 @@ def render_head(
     locale = site.locales[lang]
     canonical = canonical_url(site.base_url, route, page_id, lang)
     alternate_links = alternate_language_links(site, routes, page_id)
-    og_image = f"{site.base_url}/assets/images/logo.svg"
+    og_image = f"{site.base_url}/assets/images/og-card.png"
     stylesheet = asset_href(current_output, "assets/css/styles.css")
     favicon_32 = asset_href(current_output, "assets/icons/favicon-32x32.png")
     favicon_16 = asset_href(current_output, "assets/icons/favicon-16x16.png")
@@ -1260,6 +1298,13 @@ def render_head(
     apple_touch_icon = asset_href(current_output, "assets/icons/apple-touch-icon.png")
     manifest = asset_href(current_output, "site.webmanifest")
     og_type = "website" if page_id == "index" else "article"
+    og_locale = OG_LOCALE_BY_LANG[lang]
+    og_locale_alternates = tuple(
+        OG_LOCALE_BY_LANG[alternate_lang]
+        for alternate_lang in routes[page_id]
+        if alternate_lang != lang
+    )
+    schema_graph = render_schema_graph(site, canonical, og_image)
     return "\n".join(
         (
             "<head>",
@@ -1274,15 +1319,26 @@ def render_head(
             *alternate_links,
             f'  <meta property="og:type" content="{og_type}" />',
             f'  <meta property="og:site_name" content="{html.escape(locale.author)}" />',
+            f'  <meta property="og:locale" content="{html.escape(og_locale)}" />',
+            *tuple(
+                f'  <meta property="og:locale:alternate" content="{html.escape(alternate_locale)}" />'
+                for alternate_locale in og_locale_alternates
+            ),
             f'  <meta property="og:url" content="{html.escape(canonical)}" />',
             f'  <meta property="og:title" content="{html.escape(meta.title)}" />',
             f'  <meta property="og:description" content="{html.escape(meta.description)}" />',
             f'  <meta property="og:image" content="{html.escape(og_image)}" />',
+            '  <meta property="og:image:width" content="1200" />',
+            '  <meta property="og:image:height" content="630" />',
             f'  <meta property="og:image:alt" content="{html.escape(locale.og_image_alt)}" />',
             '  <meta name="twitter:card" content="summary_large_image" />',
+            f'  <meta name="twitter:site" content="{html.escape(site.twitter_site)}" />',
             f'  <meta name="twitter:title" content="{html.escape(meta.title)}" />',
             f'  <meta name="twitter:description" content="{html.escape(meta.description)}" />',
             f'  <meta name="twitter:image" content="{html.escape(og_image)}" />',
+            '  <meta name="theme-color" content="#f7f0e1" media="(prefers-color-scheme: light)" />',
+            '  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />',
+            schema_graph,
             (
                 '  <script defer src="https://cloud.umami.is/script.js" '
                 'data-website-id="cdec8895-be63-42d6-a490-12dd2ea8f35c"></script>'
@@ -1459,19 +1515,24 @@ def render_webmanifest() -> str:
     return json.dumps(manifest, indent=4) + "\n"
 
 
-def render_footer(footer_html: HtmlFragment) -> str:
+def render_footer(footer_html: HtmlFragment, build_date: str) -> str:
     """Render the page footer."""
 
-    return "\n".join(("    <footer>", f"      <p>{footer_html}</p>", "    </footer>"))
-
-
-def inline_script_tag(script_path: str) -> str:
-    """Inline a local script file into the generated HTML."""
-
-    source_path = DEFAULT_ROOT / script_path
-    script_source = source_path.read_text(encoding="utf-8")
-    safe_source = script_source.replace("</script", "<\\/script")
-    return f"  <script>{safe_source}</script>"
+    stamped_footer_html = str(footer_html)
+    stamped_footer_html = re.sub(
+        r'(<time\b[^>]*id="last-refreshed"[^>]*datetime=")[^"]*(")',
+        rf"\g<1>{build_date}\g<2>",
+        stamped_footer_html,
+        count=1,
+    )
+    stamped_footer_html = re.sub(
+        r'(<time\b[^>]*id="last-refreshed"[^>]*>).*?(</time>)',
+        rf"\g<1>{build_date}\g<2>",
+        stamped_footer_html,
+        count=1,
+        flags=re.DOTALL,
+    )
+    return "\n".join(("    <footer>", f"      <p>{stamped_footer_html}</p>", "    </footer>"))
 
 
 def render_scripts(page_id: PageId, current_output: str) -> str:
@@ -1513,9 +1574,6 @@ def render_scripts(page_id: PageId, current_output: str) -> str:
         paths = default_scripts
     rendered_scripts: list[str] = []
     for path in paths:
-        if path in INLINE_SCRIPT_PATHS:
-            rendered_scripts.append(inline_script_tag(path))
-            continue
         rendered_scripts.append(f'  <script defer src="{html.escape(asset_href(current_output, path))}"></script>')
     return "\n".join(rendered_scripts)
 
@@ -1579,7 +1637,7 @@ def render_article_teaser(article: ArticleLink) -> str:
 def render_index_main(page: IndexPageLocale) -> str:
     """Render homepage main content."""
 
-    lines = ["    <main>", "      <section>", '        <div class="summary-card">']
+    lines = ['    <main id="main-content">', "      <section>", '        <div class="summary-card">']
     for paragraph in page.summary_card:
         lines.append(f"          <p>{paragraph}</p>")
     lines.extend(("        </div>", "      </section>"))
@@ -1609,7 +1667,7 @@ def render_work_main(page: WorkPageLocale) -> str:
     """Render work page main content."""
 
     lines = [
-        "    <main>",
+        '    <main id="main-content">',
         "      <section>",
         '        <div class="summary-card">',
         f"          <p>{page.summary}</p>",
@@ -1628,7 +1686,7 @@ def render_work_main(page: WorkPageLocale) -> str:
 def render_project_main(page: ProjectPageLocale) -> str:
     """Render project page main content."""
 
-    lines = ["    <main>"]
+    lines = ['    <main id="main-content">']
     for group in page.groups:
         lines.extend(
             (
@@ -1647,7 +1705,7 @@ def render_project_main(page: ProjectPageLocale) -> str:
 def render_blog_main(page: BlogPageLocale) -> str:
     """Render blog page main content."""
 
-    lines = ["    <main>", "      <section>"]
+    lines = ['    <main id="main-content">', "      <section>"]
     for index, article in enumerate(page.articles):
         if index > 0:
             lines.append("        <hr />")
@@ -1686,7 +1744,7 @@ def render_stats_main(page: StatsPageLocale) -> str:
         stats.learning_path.href,
         provider="roadmap",
     )
-    lines = ["    <main>", "      <section>"]
+    lines = ['    <main id="main-content">', "      <section>"]
     for paragraph in page.intro:
         lines.append(f"        <p>{paragraph}</p>")
     lines.extend(
@@ -1781,7 +1839,13 @@ def render_stats_main(page: StatsPageLocale) -> str:
             '        <div class="summary-card stats-card">',
             f"          <h2 class=\"section-title\">{html.escape(stats.goodreads.title)}</h2>",
             f"          <p>{html.escape(stats.goodreads.copy)}</p>",
+            '          <p class="goodreads-status" data-goodreads-status>Loading Goodreads books…</p>',
             f'          <div class="goodreads-widget" id="gr_grid_widget_{html.escape(stats.goodreads.widget_id)}"></div>',
+            (
+                '          <p class="goodreads-profile-link">'
+                f'<a href="{html.escape(stats.goodreads.profile_href)}" target="_blank" rel="noreferrer">'
+                "View full Goodreads shelf</a></p>"
+            ),
             "        </div>",
             "      </section>",
             "    </main>",
@@ -1853,17 +1917,30 @@ def footer_for_page(content: SiteContent, page_id: PageId, lang: Lang) -> HtmlFr
 def render_hero(current_output: str) -> str:
     """Render the shared logo asset used as the hero illustration."""
 
-    del current_output
-    logo_svg = (DEFAULT_ROOT / "assets" / "images" / "logo.svg").read_text(encoding="utf-8").strip()
-    inline_logo = logo_svg.replace(
-        "<svg ",
-        '<svg class="hero-illustration" aria-hidden="true" focusable="false" ',
-        1,
+    logo_href = asset_href(current_output, "assets/images/logo.svg")
+    return (
+        '      <img class="hero-illustration" alt="" aria-hidden="true" '
+        f'src="{html.escape(logo_href)}" width="1024" height="1024" decoding="async" />'
     )
-    return f"      {inline_logo}"
 
 
-def render_page(content: SiteContent, page_id: PageId, lang: Lang, route: str, og_type: str) -> str:
+def render_skip_link(lang: Lang) -> str:
+    """Render an accessible skip link for keyboard users."""
+
+    return (
+        f'  <a class="skip-link" href="#main-content">'
+        f"{html.escape(SKIP_TO_MAIN_LABELS[lang])}</a>"
+    )
+
+
+def render_page(
+    content: SiteContent,
+    page_id: PageId,
+    lang: Lang,
+    route: str,
+    og_type: str,
+    build_date: str,
+) -> str:
     """Render one page to a full HTML document."""
 
     del og_type  # The og:type is derived from the page kind in render_head.
@@ -1872,6 +1949,7 @@ def render_page(content: SiteContent, page_id: PageId, lang: Lang, route: str, o
     head = render_head(content.site, content.routes, page_id, lang, route, route, meta_for_page(content, page_id, lang))
     body_lines = [
         f'<body data-page-id="{page_id}">',
+        render_skip_link(lang),
         '  <div class="site">',
         '    <header id="top">',
         render_header_controls(content.site, content.routes, page_id, lang, route),
@@ -1881,7 +1959,7 @@ def render_page(content: SiteContent, page_id: PageId, lang: Lang, route: str, o
         render_nav(content, page_id, lang, route),
         "    </header>",
         render_main_for_page(content, page_id, lang),
-        render_footer(footer_for_page(content, page_id, lang)),
+        render_footer(footer_for_page(content, page_id, lang), build_date),
         "  </div>",
         render_back_to_top_button(lang) if page_id in ("work", "project") else "",
         render_scripts(page_id, route),
@@ -1922,7 +2000,11 @@ def render_outputs(
     build_date = datetime.date.today().isoformat()
     outputs = {
         route: rendered
-        for _, _, route, rendered in content.iter_pages(page_filter=page_filter, lang_filter=lang_filter)
+        for _, _, route, rendered in content.iter_pages(
+            page_filter=page_filter,
+            lang_filter=lang_filter,
+            build_date=build_date,
+        )
     }
     css_source_path = root / CSS_SOURCE_RELATIVE_PATH
     css_source = css_source_path.read_text(encoding="utf-8")

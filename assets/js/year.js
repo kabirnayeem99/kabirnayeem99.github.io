@@ -24,20 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
     yearElement.textContent = today.toLocaleDateString(locale, { year: "numeric" });
   }
 
-  /** @type {HTMLElement | null} */
-  var refreshedElement = document.getElementById("last-refreshed");
-  if (refreshedElement) {
-    refreshedElement.setAttribute("datetime", today.toISOString().split("T")[0]);
-
-    // Keep human-readable date neutral when no explicit locale mapping exists.
-    var refreshedLocale = hasOwnLocale(localeMap, lang) ? localeMap[lang] : "en-GB";
-    refreshedElement.textContent = today.toLocaleDateString(refreshedLocale, {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
-  }
-
   /**
    * Narrows arbitrary strings to supported locale-map keys.
    *

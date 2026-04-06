@@ -1,6 +1,15 @@
 {
   "site": {
     "base_url": "https://kabirnayeem99.github.io",
+    "person_name": "Naimul Kabir",
+    "website_name": "Naimul Kabir Portfolio",
+    "twitter_site": "@kabirnayeem99",
+    "social_profiles": [
+      "https://github.com/kabirnayeem99",
+      "https://www.linkedin.com/in/kabirnayeem99/",
+      "https://kabirnayeem99.medium.com/",
+      "https://leetcode.com/u/kabirnayeem99/"
+    ],
     "google_site_verification": "F9rV_qmMTwOKM_FXW_y4CvXUPVctz-VO_e1zY757H8w",
     "language_menu_labels": {
       "en": "English",

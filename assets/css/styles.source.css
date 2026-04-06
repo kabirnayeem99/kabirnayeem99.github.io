@@ -164,6 +164,29 @@ body::after {
   mix-blend-mode: multiply;
 }
 
+.skip-link {
+  position: fixed;
+  inset-block-start: 0.8rem;
+  inset-inline-start: 0.8rem;
+  z-index: 200;
+  padding: 0.45rem 0.7rem;
+  background: var(--surface-elevated);
+  color: var(--text);
+  border: 1px solid var(--accent-border);
+  border-radius: 0.45rem;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1.2;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
 html:lang(en) body {
   font-family: "EB Garamond", Georgia, "Times New Roman", serif;
 }
@@ -878,7 +901,24 @@ a:focus-visible {
 }
 
 .goodreads-widget {
-  min-height: 76rem;
+  min-height: 12rem;
+}
+
+.goodreads-widget.is-empty {
+  min-height: 0;
+}
+
+.goodreads-status {
+  margin: 0.75rem 0 0;
+  color: var(--text-muted);
+}
+
+.goodreads-status.is-error {
+  color: #dc2626;
+}
+
+.goodreads-profile-link {
+  margin-top: 0.85rem;
 }
 
 .gr_grid_book_container {
@@ -923,6 +963,18 @@ footer {
 }
 
 @media (max-width: 640px) {
+  body::before {
+    position: absolute;
+    animation: none;
+    background:
+      radial-gradient(circle at 14% 16%, var(--bg-gradient-1), transparent 42%),
+      radial-gradient(circle at 80% 82%, var(--bg-gradient-2), transparent 40%);
+  }
+
+  body::after {
+    display: none;
+  }
+
   :root {
     font-size: 17px;
   }
@@ -956,10 +1008,6 @@ footer {
 
   .summary-card {
     padding: 1.25rem;
-  }
-
-  .goodreads-widget {
-    min-height: 112rem;
   }
 
   .back-to-top {
