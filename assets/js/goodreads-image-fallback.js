@@ -5,10 +5,12 @@
  */
 document.addEventListener("DOMContentLoaded", function () {
   /** @type {HTMLElement | null} */
-  var widget = document.querySelector(".goodreads-widget");
-  if (!(widget instanceof HTMLElement)) {
+  var candidateWidget = document.querySelector(".goodreads-widget");
+  if (!(candidateWidget instanceof HTMLElement)) {
     return;
   }
+  /** @type {HTMLElement} */
+  var widget = candidateWidget;
   /** @type {HTMLElement | null} */
   var statusEl = document.querySelector("[data-goodreads-status]");
 

@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
   applyTheme(storedTheme === "dark" ? "dark" : currentTheme(), false);
 
   button.addEventListener("click", function () {
+    /** @type {"light" | "dark"} */
     var nextTheme = currentTheme() === "dark" ? "light" : "dark";
     applyTheme(nextTheme, true);
     persistTheme(nextTheme);

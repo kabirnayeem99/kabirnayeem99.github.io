@@ -35,6 +35,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Type-check JS
+        run: ./scripts/check-js-types.sh
       - name: Run JS tests
         run: node --test tests/stats-utils.test.mjs
       - name: Render site
