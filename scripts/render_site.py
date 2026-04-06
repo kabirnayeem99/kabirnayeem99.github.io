@@ -1920,7 +1920,7 @@ def render_hero(current_output: str) -> str:
     logo_href = asset_href(current_output, "assets/images/logo.svg")
     return (
         '      <img class="hero-illustration" alt="" aria-hidden="true" '
-        f'src="{html.escape(logo_href)}" width="1024" height="1024" decoding="async" />'
+        f'src="{html.escape(logo_href)}" width="1024" height="1024" decoding="async" fetchpriority="high" />'
     )
 
 
