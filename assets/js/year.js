@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Populates year and "last refreshed" values in the footer based on page language.
+ * Populates footer year values based on page language.
  */
 document.addEventListener("DOMContentLoaded", function () {
   /** @typedef {"bn" | "ar" | "ur"} SupportedLocaleKey */

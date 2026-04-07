@@ -21,6 +21,30 @@ from .models import SiteContent
 from .rendering import render_page, render_service_worker, render_sitemap, render_webmanifest
 
 
+def source_timestamp(root: Path) -> datetime.datetime:
+    """Return the most recent source-input timestamp in local time."""
+
+    candidates: list[Path] = [
+        root / "content/site-content.json",
+        root / CSS_SOURCE_RELATIVE_PATH,
+    ]
+    candidates.extend((root / "assets/js").glob("*.js"))
+    candidates.extend((root / "src/site_renderer").rglob("*.py"))
+
+    latest_mtime = 0.0
+    for path in candidates:
+        if not path.exists():
+            continue
+        path_mtime = path.stat().st_mtime
+        if path_mtime > latest_mtime:
+            latest_mtime = path_mtime
+
+    if latest_mtime == 0.0:
+        return datetime.datetime.now().astimezone()
+
+    return datetime.datetime.fromtimestamp(latest_mtime, tz=datetime.timezone.utc).astimezone()
+
+
 def render_outputs(
     content: SiteContent,
     *,
@@ -30,7 +54,10 @@ def render_outputs(
 ) -> dict[str, str]:
     """Render selected HTML outputs plus the minified global stylesheet."""
 
-    build_date = datetime.date.today().isoformat()
+    build_now = source_timestamp(root)
+    build_date = build_now.date().isoformat()
+    build_timestamp_iso = build_now.isoformat(timespec="seconds")
+    build_timestamp_display = build_now.isoformat(sep=" ", timespec="seconds")
     outputs: dict[str, str] = {}
 
     for page_id in PAGE_IDS:
@@ -47,7 +74,8 @@ def render_outputs(
                 lang,
                 route,
                 localized_page.og_type,
-                build_date,
+                build_timestamp_iso,
+                build_timestamp_display,
             )
 
     css_source_path = root / CSS_SOURCE_RELATIVE_PATH

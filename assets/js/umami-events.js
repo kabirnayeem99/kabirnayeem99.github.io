@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /** @type {HTMLAnchorElement | null} */
-    var navLink = /** @type {HTMLAnchorElement | null} */ (target.closest("nav a[data-nav-page-id]"));
+    var navLink = /** @type {HTMLAnchorElement | null} */ (target.closest('a[data-nav-page-id]'));
     if (navLink instanceof HTMLAnchorElement) {
       var navPage = navLink.dataset.navPageId;
       if (navPage === "work" || navPage === "project" || navPage === "stats") {

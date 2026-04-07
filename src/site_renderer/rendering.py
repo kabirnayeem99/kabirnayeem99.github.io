@@ -14,6 +14,7 @@ from .constants import (
     BACK_TO_TOP_LABELS,
     GENERATED_COMMENT,
     LANGS,
+    LAST_UPDATED_LABELS,
     OG_LOCALE_BY_LANG,
     PAGE_IDS,
     SERVICE_WORKER_ASSET_PATHS,
@@ -32,6 +33,7 @@ from .models import (
     BlogPageLocale,
     ContentCard,
     HeaderText,
+    IndexAction,
     IndexPageLocale,
     LocaleInfo,
     MetaText,
@@ -57,6 +59,17 @@ def route_for(routes: RouteTable, page_id: PageId, lang: Lang) -> str:
     if lang in page_routes:
         return page_routes[lang]
     return routes["index"][lang]
+
+
+def route_for_action(routes: RouteTable, page_id: PageId, lang: Lang) -> str:
+    """Resolve a route for CTAs, preferring locale-specific pages then English."""
+
+    page_routes = routes[page_id]
+    if lang in page_routes:
+        return page_routes[lang]
+    if "en" in page_routes:
+        return page_routes["en"]
+    return next(iter(page_routes.values()))
 
 
 def canonical_url(base_url: str, route: str, page_id: PageId, lang: Lang) -> str:
@@ -337,6 +350,89 @@ def render_nav(
     return "\n".join(lines)
 
 
+def social_platform_for_url(url: str) -> str | None:
+    """Return a known social platform key for a profile URL."""
+
+    lowered = url.lower()
+    if "github.com" in lowered:
+        return "github"
+    if "linkedin.com" in lowered:
+        return "linkedin"
+    if "leetcode.com" in lowered:
+        return "leetcode"
+    if "medium.com" in lowered:
+        return "medium"
+    return None
+
+
+def render_social_icon(platform: str) -> str:
+    """Render inline SVG icon markup for a social platform."""
+
+    paths_by_platform: dict[str, tuple[tuple[str, str], ...]] = {
+        "github": (
+            ("M4.0744 2.9938C4.13263 1.96371 4.37869 1.51577 5.08432 1.15606C5.84357 0.768899 7.04106 0.949072 8.45014 1.66261C9.05706 1.97009 9.11886 1.97635 10.1825 1.83998C11.5963 1.65865 13.4164 1.65929 14.7213 1.84164C15.7081 1.97954 15.7729 1.97265 16.3813 1.66453C18.3814 0.651679 19.9605 0.71795 20.5323 1.8387C20.8177 2.39812 20.8707 3.84971 20.6494 5.04695C20.5267 5.71069 20.5397 5.79356 20.8353 6.22912C22.915 9.29385 21.4165 14.2616 17.8528 16.1155C17.5801 16.2574 17.3503 16.3452 17.163 16.4167C16.5879 16.6363 16.4133 16.703 16.6247 17.7138C16.7265 18.2 16.8491 19.4088 16.8973 20.4002C16.9844 22.1922 16.9831 22.2047 16.6688 22.5703C16.241 23.0676 15.6244 23.076 15.2066 22.5902C14.9341 22.2734 14.9075 22.1238 14.9075 20.9015C14.9075 19.0952 14.7095 17.8946 14.2417 16.8658C13.6854 15.6415 14.0978 15.185 15.37 14.9114C17.1383 14.531 18.5194 13.4397 19.2892 11.8146C20.0211 10.2698 20.1314 8.13501 18.8082 6.83668C18.4319 6.3895 18.4057 5.98446 18.6744 4.76309C18.7748 4.3066 18.859 3.71768 18.8615 3.45425C18.8653 3.03823 18.8274 2.97541 18.5719 2.97541C18.4102 2.97541 17.7924 3.21062 17.1992 3.49805L16.2524 3.95695C16.1663 3.99866 16.07 4.0147 15.975 4.0038C13.5675 3.72746 11.2799 3.72319 8.86062 4.00488C8.76526 4.01598 8.66853 3.99994 8.58215 3.95802L7.63585 3.49882C7.04259 3.21087 6.42482 2.97541 6.26317 2.97541C5.88941 2.97541 5.88379 3.25135 6.22447 4.89078C6.43258 5.89203 6.57262 6.11513 5.97101 6.91572C5.06925 8.11576 4.844 9.60592 5.32757 11.1716C5.93704 13.1446 7.4295 14.4775 9.52773 14.9222C10.7926 15.1903 11.1232 15.5401 10.6402 16.9905C10.26 18.1319 10.0196 18.4261 9.46707 18.4261C8.72365 18.4261 8.25796 17.7821 8.51424 17.1082C8.62712 16.8112 8.59354 16.7795 7.89711 16.5255C5.77117 15.7504 4.14514 14.0131 3.40172 11.7223C2.82711 9.95184 3.07994 7.64739 4.00175 6.25453C4.31561 5.78028 4.32047 5.74006 4.174 4.83217C4.09113 4.31822 4.04631 3.49103 4.0744 2.9938Z", ""),
+            ("M3.33203 15.9454C3.02568 15.4859 2.40481 15.3617 1.94528 15.6681C1.48576 15.9744 1.36158 16.5953 1.66793 17.0548C1.8941 17.3941 2.16467 17.6728 2.39444 17.9025C2.4368 17.9449 2.47796 17.9858 2.51815 18.0257C2.71062 18.2169 2.88056 18.3857 3.05124 18.5861C3.42875 19.0292 3.80536 19.626 4.0194 20.6962C4.11474 21.1729 4.45739 21.4297 4.64725 21.5419C4.85315 21.6635 5.07812 21.7352 5.26325 21.7819C5.64196 21.8774 6.10169 21.927 6.53799 21.9559C7.01695 21.9877 7.53592 21.998 7.99999 22.0008C8.00033 22.5527 8.44791 23.0001 8.99998 23.0001C9.55227 23.0001 9.99998 22.5524 9.99998 22.0001V21.0001C9.99998 20.4478 9.55227 20.0001 8.99998 20.0001C8.90571 20.0001 8.80372 20.0004 8.69569 20.0008C8.10883 20.0026 7.34388 20.0049 6.67018 19.9603C6.34531 19.9388 6.07825 19.9083 5.88241 19.871C5.58083 18.6871 5.09362 17.8994 4.57373 17.2891C4.34391 17.0194 4.10593 16.7834 3.91236 16.5914C3.87612 16.5555 3.84144 16.5211 3.80865 16.4883C3.5853 16.265 3.4392 16.1062 3.33203 15.9454Z", ""),
+        ),
+        "linkedin": (
+            ("M6.5 8C7.32843 8 8 7.32843 8 6.5C8 5.67157 7.32843 5 6.5 5C5.67157 5 5 5.67157 5 6.5C5 7.32843 5.67157 8 6.5 8Z", ""),
+            ("M5 10C5 9.44772 5.44772 9 6 9H7C7.55228 9 8 9.44771 8 10V18C8 18.5523 7.55228 19 7 19H6C5.44772 19 5 18.5523 5 18V10Z", ""),
+            ("M11 19H12C12.5523 19 13 18.5523 13 18V13.5C13 12 16 11 16 13V18.0004C16 18.5527 16.4477 19 17 19H18C18.5523 19 19 18.5523 19 18V12C19 10 17.5 9 15.5 9C13.5 9 13 10.5 13 10.5V10C13 9.44771 12.5523 9 12 9H11C10.4477 9 10 9.44772 10 10V18C10 18.5523 10.4477 19 11 19Z", ""),
+            ("M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z", ' fill-rule="evenodd" clip-rule="evenodd"'),
+        ),
+        "leetcode": (
+            ("M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z", ""),
+        ),
+        "medium": (
+            ("M13 12C13 15.3137 10.3137 18 7 18C3.68629 18 1 15.3137 1 12C1 8.68629 3.68629 6 7 6C10.3137 6 13 8.68629 13 12Z", ""),
+            ("M23 12C23 14.7614 22.5523 17 22 17C21.4477 17 21 14.7614 21 12C21 9.23858 21.4477 7 22 7C22.5523 7 23 9.23858 23 12Z", ""),
+            ("M17 18C18.6569 18 20 15.3137 20 12C20 8.68629 18.6569 6 17 6C15.3431 6 14 8.68629 14 12C14 15.3137 15.3431 18 17 18Z", ""),
+        ),
+    }
+    viewbox_by_platform: dict[str, str] = {
+        "github": "0 0 24 24",
+        "linkedin": "0 0 24 24",
+        "leetcode": "0 0 24 24",
+        "medium": "0 0 24 24",
+    }
+    paths = paths_by_platform[platform]
+    viewbox = viewbox_by_platform[platform]
+    rendered_paths = "".join(
+        f'<path d="{path}" fill="currentColor"{extra_attrs}></path>'
+        for path, extra_attrs in paths
+    )
+    return (
+        f'<svg class="social-chip-icon" viewBox="{viewbox}" aria-hidden="true" '
+        f'focusable="false" xmlns="http://www.w3.org/2000/svg">{rendered_paths}</svg>'
+    )
+
+
+def render_social_chips(site: SiteSettings) -> str:
+    """Render bordered social chips with icon + label using site social profile URLs."""
+
+    labels_by_platform: dict[str, str] = {
+        "github": "GitHub",
+        "linkedin": "LinkedIn",
+        "leetcode": "LeetCode",
+        "medium": "Medium",
+    }
+    lines = ['      <div class="social-chip-row" aria-label="Social links">']
+    for url in site.social_profiles:
+        platform = social_platform_for_url(url)
+        if platform is None:
+            continue
+        label = labels_by_platform[platform]
+        lines.append(
+            (
+                f'        <a class="social-chip" href="{html.escape(url)}" target="_blank" rel="noreferrer" '
+                f'aria-label="{html.escape(label)}">'
+                f"{render_social_icon(platform)}"
+                f'<span>{html.escape(label)}</span></a>'
+            )
+        )
+    lines.append("      </div>")
+    return "\n".join(lines)
+
+
 def sitemap_priority(page_id: PageId, lang: Lang) -> str:
     """Return the sitemap priority for a rendered page."""
 
@@ -547,23 +643,35 @@ def render_service_worker(content: SiteContent, build_date: str) -> str:
     return source
 
 
-def render_footer(footer_html: HtmlFragment, build_date: str) -> str:
+def render_footer(
+    footer_html: HtmlFragment,
+    lang: Lang,
+    build_timestamp_iso: str,
+    build_timestamp_display: str,
+) -> str:
     """Render the page footer."""
 
     stamped_footer_html = str(footer_html)
-    stamped_footer_html = re.sub(
-        r'(<time\b[^>]*id="last-refreshed"[^>]*datetime=")[^"]*(")',
-        rf"\g<1>{build_date}\g<2>",
-        stamped_footer_html,
-        count=1,
-    )
-    stamped_footer_html = re.sub(
-        r'(<time\b[^>]*id="last-refreshed"[^>]*>).*?(</time>)',
-        rf"\g<1>{build_date}\g<2>",
-        stamped_footer_html,
-        count=1,
-        flags=re.DOTALL,
-    )
+    has_time = re.search(r"<time\b", stamped_footer_html) is not None
+    if has_time:
+        stamped_footer_html = re.sub(
+            r'(<time\b[^>]*datetime=")[^"]*(")',
+            rf"\g<1>{html.escape(build_timestamp_iso)}\g<2>",
+            stamped_footer_html,
+            count=1,
+        )
+        stamped_footer_html = re.sub(
+            r"(<time\b[^>]*>).*?(</time>)",
+            rf"\g<1>{html.escape(build_timestamp_display)}\g<2>",
+            stamped_footer_html,
+            count=1,
+            flags=re.DOTALL,
+        )
+    else:
+        stamped_footer_html = (
+            f'{stamped_footer_html} <span class="footer-meta">· {html.escape(LAST_UPDATED_LABELS[lang])} '
+            f'<time datetime="{html.escape(build_timestamp_iso)}">{html.escape(build_timestamp_display)}</time></span>'
+        )
     return "\n".join(("    <footer>", f"      <p>{stamped_footer_html}</p>", "    </footer>"))
 
 
@@ -603,7 +711,7 @@ def render_scripts(page_id: PageId, current_output: str) -> str:
     )
     if page_id == "stats":
         paths = stats_scripts
-    elif page_id in ("work", "project"):
+    elif page_id in ("work", "project", "index"):
         paths = long_page_scripts
     else:
         paths = default_scripts
@@ -669,16 +777,67 @@ def render_article_teaser(article: ArticleLink) -> str:
     )
 
 
-def render_index_main(page: IndexPageLocale) -> str:
+def render_index_action(
+    action: IndexAction,
+    routes: RouteTable,
+    lang: Lang,
+    current_output: str,
+) -> str:
+    """Render a homepage CTA action link."""
+
+    href = action.href
+    nav_attr = ""
+    if action.page_id is not None:
+        href = relative_href(current_output, route_for_action(routes, action.page_id, lang))
+        nav_attr = f' data-nav-page-id="{action.page_id}"'
+
+    if href is None:
+        raise ValueError("IndexAction must define href or page_id")
+
+    is_external = href.startswith("http://") or href.startswith("https://")
+    target_attr = ' target="_blank"' if is_external else ""
+    rel_attr = ' rel="noreferrer"' if is_external else ""
+    variant_class = "action-chip action-chip--primary" if action.variant == "primary" else "action-chip action-chip--secondary"
+
+    return (
+        f'            <a class="{variant_class}" href="{html.escape(href)}"{target_attr}{rel_attr}{nav_attr}>'
+        f"{html.escape(action.label)}</a>"
+    )
+
+
+def render_index_main(
+    page: IndexPageLocale,
+    routes: RouteTable,
+    lang: Lang,
+    current_output: str,
+) -> str:
     """Render homepage main content."""
 
-    lines = ['    <main id="main-content">', "      <section>", '        <div class="summary-card">']
+    lines = ['    <main id="main-content">']
+    if page.top_actions:
+        lines.append('      <section class="top-action-section">')
+        if page.top_actions_title is not None:
+            lines.append(f"        <h2 class=\"section-title\">{html.escape(page.top_actions_title)}</h2>")
+        lines.append('        <div class="section-actions section-actions--top">')
+        for action in page.top_actions:
+            lines.append(render_index_action(action, routes, lang, current_output))
+        lines.append("        </div>")
+        lines.append("      </section>")
+
+    lines.extend(("      <section>", '        <div class="summary-card">'))
     for paragraph in page.summary_card:
         lines.append(f"          <p>{paragraph}</p>")
     lines.extend(("        </div>", "      </section>"))
     for section in page.sections:
         lines.append("      <section>")
-        lines.append(f"        <h2 class=\"section-title\">{html.escape(section.title)}</h2>")
+        lines.append('        <div class="section-head">')
+        lines.append(f"          <h2 class=\"section-title\">{html.escape(section.title)}</h2>")
+        if section.actions:
+            lines.append('          <div class="section-actions">')
+            for action in section.actions:
+                lines.append(render_index_action(action, routes, lang, current_output))
+            lines.append("          </div>")
+        lines.append("        </div>")
         for paragraph in section.paragraphs:
             lines.append(f"        <p>{paragraph}</p>")
         if section.highlights:
@@ -686,6 +845,11 @@ def render_index_main(page: IndexPageLocale) -> str:
             for item in section.highlights:
                 lines.append(render_content_card(item))
             lines.append("        </div>")
+        if section.tags:
+            lines.append('        <ul class="skill-chip-list">')
+            for tag in section.tags:
+                lines.append(f"          <li class=\"skill-chip\">{html.escape(tag)}</li>")
+            lines.append("        </ul>")
         if section.articles:
             lines.append('        <ul class="article-list">')
             for article in section.articles:
@@ -893,11 +1057,12 @@ def render_main_for_page(
     content: SiteContent,
     page_id: PageId,
     lang: Lang,
+    current_output: str,
 ) -> str:
     """Dispatch to the correct page renderer using typed locale data."""
 
     if page_id == "index":
-        return render_index_main(content.index_page.locales[lang])
+        return render_index_main(content.index_page.locales[lang], content.routes, lang, current_output)
     if page_id == "work":
         return render_work_main(content.work_page.locales[lang])
     if page_id == "project":
@@ -974,7 +1139,8 @@ def render_page(
     lang: Lang,
     route: str,
     og_type: str,
-    build_date: str,
+    build_timestamp_iso: str,
+    build_timestamp_display: str,
 ) -> str:
     """Render one page to a full HTML document."""
 
@@ -994,12 +1160,18 @@ def render_page(
         render_hero(route),
         f"      <h1 class=\"site-title\">{html.escape(header.site_title)}</h1>",
         f"      <p class=\"tagline\">{html.escape(header.tagline)}</p>",
-        render_nav(content, page_id, lang, route),
+        render_social_chips(content.site),
+        render_nav(content, page_id, lang, route) if page_id != "index" else "",
         "    </header>",
-        render_main_for_page(content, page_id, lang),
-        render_footer(footer_for_page(content, page_id, lang), build_date),
+        render_main_for_page(content, page_id, lang, route),
+        render_footer(
+            footer_for_page(content, page_id, lang),
+            lang,
+            build_timestamp_iso,
+            build_timestamp_display,
+        ),
         "  </div>",
-        render_back_to_top_button(lang) if page_id in ("work", "project") else "",
+        render_back_to_top_button(lang) if page_id in ("work", "project", "index") else "",
         render_scripts(page_id, route),
     ]
     if page_id == "stats":

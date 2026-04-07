@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from ..constants import HtmlFragment
 from .article_link import ArticleLink
 from .content_card import ContentCard
+from .index_action import IndexAction
 
 
 @dataclass(frozen=True, slots=True)
@@ -18,3 +19,5 @@ class IndexSection:
     highlights: tuple[ContentCard, ...]
     articles: tuple[ArticleLink, ...]
     contacts: tuple[HtmlFragment, ...]
+    tags: tuple[str, ...]
+    actions: tuple[IndexAction, ...]

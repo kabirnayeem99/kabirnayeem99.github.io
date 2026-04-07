@@ -148,7 +148,7 @@
               ]
             },
             {
-              "title": "Selected highlights",
+              "title": "Selected works",
               "highlights": [
                 {
                   "title": "Internal camera SDK with Machine Learning at Syarah",
@@ -171,6 +171,18 @@
                     "Working with small businesses on web design, digital marketing, and Amazon FBA tooling, alongside contract development for larger products like Marriott Bonvoy, BaseHubs, PatientAccess, and Jobamax. Also integrated the Sunmi Printer SDK into a Cordova hybrid app."
                   ]
                 }
+              ],
+              "actions": [
+                {
+                  "label": "View all work",
+                  "page_id": "work",
+                  "variant": "secondary"
+                },
+                {
+                  "label": "View all projects",
+                  "page_id": "project",
+                  "variant": "secondary"
+                }
               ]
             },
             {
@@ -189,17 +201,52 @@
                   "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
                   "summary": "Might be one of my most read blog (around ~8k view & ~4k read) A rough guide on turning a Manjaro install into Arch. Old now, but still a fun read if you like Linux experiments."
                 }
+              ],
+              "actions": [
+                {
+                  "label": "View all writing",
+                  "page_id": "blog",
+                  "variant": "secondary"
+                }
               ]
             },
             {
-              "title": "Elsewhere",
-              "contacts": [
-                "Email <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>",
-                "<a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a> · <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>"
+              "title": "Skills & Technologies",
+              "paragraphs": [
+                "Core tools and technologies I use across mobile, backend, and product work."
+              ],
+              "tags": [
+                "Kotlin",
+                "Android",
+                "iOS",
+                "Flutter",
+                "Dart",
+                "Kotlin Multiplatform",
+                "Jetpack Compose",
+                "Swift",
+                "Laravel",
+                "Go",
+                "Java",
+                "Python",
+                "SQL",
+                "PostgreSQL",
+                "Redis",
+                "Firebase",
+                "Git",
+                "Linux",
+                "Docker"
               ]
             }
           ],
-          "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Plain HTML, no frameworks."
+          "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Plain HTML, no frameworks.",
+          "top_actions_title": "Send me an email",
+          "top_actions": [
+            {
+              "label": "✉ Send an email",
+              "href": "mailto:kabirnayeem.99@gmail.com",
+              "variant": "primary"
+            }
+          ]
         },
         "bn": {
           "meta": {
@@ -224,7 +271,7 @@
               ]
             },
             {
-              "title": "নির্বাচিত হাইলাইটস",
+              "title": "নির্বাচিত কাজ",
               "highlights": [
                 {
                   "title": "সাইয়ারাহতে মেশিন লার্নিংসহ ইন্টারনাল ক্যামেরা এসডিকে",
@@ -247,6 +294,18 @@
                     "ছোট ব্যবসার জন্য চুক্তিভিত্তিক বিভিন্ন প্রজেক্টে কাজ করছি। যেমন, প্যাশেন্ট এক্সেস নামে একটা ডাক্তার এপয়েন্টমেন্ট, জবাম্যাক্স নামে জব প্ল্যাটফর্ম, সুপার ডিল কেএসএ নামে একটা সৌদি ঘড়ির ইকমার্স সাইট, একটা পিওএসে সুনমি প্রিন্টার এসডিকে সাপোর্ট ইত্যাদি ইত্যাদি। "
                   ]
                 }
+              ],
+              "actions": [
+                {
+                  "label": "সব কাজ দেখুন",
+                  "page_id": "work",
+                  "variant": "secondary"
+                },
+                {
+                  "label": "সব প্রজেক্ট দেখুন",
+                  "page_id": "project",
+                  "variant": "secondary"
+                }
               ]
             },
             {
@@ -265,17 +324,52 @@
                   "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
                   "summary": "সম্ভবত আমার সবচেয়ে বেশী পড়া ব্লগ। শুধু মিডিয়ামেই এটা ৮,০০০ এর মত ভিউ পেয়েছে,  ৪,০০০ মানুষ পড়েছে। এখন আর এতদিন পর এটা আর কাজ করার কথা না, তবুও আগ্রহীরা পড়তে পারেন।"
                 }
+              ],
+              "actions": [
+                {
+                  "label": "সব লেখা দেখুন",
+                  "page_id": "blog",
+                  "variant": "secondary"
+                }
               ]
             },
             {
-              "title": "অন্যান্য ঠিকানা",
-              "contacts": [
-                "ইমেইল <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>",
-                "<a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">গিটহাব</a> · <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">লিংকডইন</a>"
+              "title": "স্কিলস ও টেকনোলজি",
+              "paragraphs": [
+                "মোবাইল, ব্যাকএন্ড এবং প্রোডাক্ট কাজের জন্য যেসব টুল ও টেকনোলজি বেশি ব্যবহার করি।"
+              ],
+              "tags": [
+                "Kotlin",
+                "Android",
+                "iOS",
+                "Flutter",
+                "Dart",
+                "Kotlin Multiplatform",
+                "Jetpack Compose",
+                "Swift",
+                "Laravel",
+                "Go",
+                "Java",
+                "Python",
+                "SQL",
+                "PostgreSQL",
+                "Redis",
+                "Firebase",
+                "Git",
+                "Linux",
+                "Docker"
               ]
             }
           ],
-          "footer_html": "&copy; <span id=\"year\">২০২৫</span> নাঈমুল কবির। একেবারে শুধু এইচটিএমএল আর সিএসএস দিয়ে বানানো।"
+          "footer_html": "&copy; <span id=\"year\">২০২৫</span> নাঈমুল কবির। একেবারে শুধু এইচটিএমএল আর সিএসএস দিয়ে বানানো।",
+          "top_actions_title": "আমাকে ইমেইল করুন",
+          "top_actions": [
+            {
+              "label": "✉ ইমেইল করুন",
+              "href": "mailto:kabirnayeem.99@gmail.com",
+              "variant": "primary"
+            }
+          ]
         },
         "ar": {
           "meta": {
@@ -300,7 +394,7 @@
               ]
             },
             {
-              "title": "أَبْرَزُ المَحَطّات",
+              "title": "أعمال مختارة",
               "highlights": [
                 {
                   "title": "حُزْمَةُ كاميرا داخليّة مع تَعَلُّم الآلة في سَيَّارَة",
@@ -323,6 +417,18 @@
                     "عَمِلتُ مع شَرِكاتٍ صغيرةٍ في تَصميمِ الويب والتَّسويقِ الرَّقمي وأدواتِ Amazon FBA، إلى جانبِ تَطويرٍ تَعاقديٍّ لِمُنتجاتٍ أَكبر مثل Marriott Bonvoy وBaseHubs وPatientAccess وJobamax. كما دَمَجتُ Sunmi Printer SDK داخلَ تطبيقٍ هجينٍ مبنيٍّ على Cordova."
                   ]
                 }
+              ],
+              "actions": [
+                {
+                  "label": "عرض كل الأعمال",
+                  "page_id": "work",
+                  "variant": "secondary"
+                },
+                {
+                  "label": "عرض كل المشاريع",
+                  "page_id": "project",
+                  "variant": "secondary"
+                }
               ]
             },
             {
@@ -341,17 +447,52 @@
                   "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
                   "summary": "غَالِبًا هَذَا أَكْثَرُ مَقَالٍ تَمَّتْ قِرَاءَتُهُ. حَصَلَ عَلَىٰ حَوَالَي ٨٠٠٠ مُشَاهَدَةٍ وَقَرَأَهُ نَحْوُ ٤٠٠٠ شَخْصٍ عَلَىٰ مِيدْيُوم. رُبَّمَا لَمْ يَعُدْ يَعْمَلُ كَمَا كَانَ بِسَبَبِ مُرُورِ ٱلْوَقْتِ، لٰكِنْ مَنْ يَهْتَمُّ يُمْكِنُهُ ٱلِاطِّلَاعُ عَلَيْهِ."
                 }
+              ],
+              "actions": [
+                {
+                  "label": "عرض كل الكتابات",
+                  "page_id": "blog",
+                  "variant": "secondary"
+                }
               ]
             },
             {
-              "title": "روابط أُخرى",
-              "contacts": [
-                "البريد <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>",
-                "<a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a> · <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>"
+              "title": "المهارات والتقنيات",
+              "paragraphs": [
+                "أهم الأدوات والتقنيات التي أستخدمها في تطوير الجوال والباك إند وبناء المنتجات."
+              ],
+              "tags": [
+                "Kotlin",
+                "Android",
+                "iOS",
+                "Flutter",
+                "Dart",
+                "Kotlin Multiplatform",
+                "Jetpack Compose",
+                "Swift",
+                "Laravel",
+                "Go",
+                "Java",
+                "Python",
+                "SQL",
+                "PostgreSQL",
+                "Redis",
+                "Firebase",
+                "Git",
+                "Linux",
+                "Docker"
               ]
             }
           ],
-          "footer_html": "&copy; <span id=\"year\">٢٠٢٥</span> نَعِيمُولُ كَبِير. مَبْنِيٌّ بِـ HTML وَ CSS فَقَط."
+          "footer_html": "&copy; <span id=\"year\">٢٠٢٥</span> نَعِيمُولُ كَبِير. مَبْنِيٌّ بِـ HTML وَ CSS فَقَط.",
+          "top_actions_title": "راسلني عبر البريد",
+          "top_actions": [
+            {
+              "label": "✉ أرسل بريدًا",
+              "href": "mailto:kabirnayeem.99@gmail.com",
+              "variant": "primary"
+            }
+          ]
         },
         "ur": {
           "meta": {
@@ -376,7 +517,7 @@
               ]
             },
             {
-              "title": "منتخب جھلکیاں",
+              "title": "منتخب کام",
               "highlights": [
                 {
                   "title": "سیارہ میں مشین لرننگ کے ساتھ داخلی کیمرا SDK",
@@ -399,6 +540,18 @@
                     "چھوٹے کاروباروں کے لیے ویب ڈیزائن، ڈیجیٹل مارکیٹنگ اور Amazon FBA ٹولنگ پر کام کیا۔ ساتھ ہی Marriott Bonvoy، BaseHubs، PatientAccess اور Jobamax جیسے بڑے پراڈکٹس پر کنٹریکٹ ڈویلپمنٹ کی۔ Cordova کی ایک ہائبرڈ ایپ میں Sunmi Printer SDK بھی اِنٹیگریٹ کیا۔"
                   ]
                 }
+              ],
+              "actions": [
+                {
+                  "label": "تمام کام دیکھیں",
+                  "page_id": "work",
+                  "variant": "secondary"
+                },
+                {
+                  "label": "تمام پراجیکٹس دیکھیں",
+                  "page_id": "project",
+                  "variant": "secondary"
+                }
               ]
             },
             {
@@ -417,17 +570,52 @@
                   "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
                   "summary": "Manjaro انسٹال کو Arch میں بدلنے کی ایک کھردری مگر مفید گائیڈ۔ اب کافی پرانی ہے، مگر Linux کے تجربات پسند ہوں تو اب بھی اچھی لگتی ہے۔"
                 }
+              ],
+              "actions": [
+                {
+                  "label": "تمام تحریریں دیکھیں",
+                  "page_id": "blog",
+                  "variant": "secondary"
+                }
               ]
             },
             {
-              "title": "دیگر روابط",
-              "contacts": [
-                "ای میل <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>",
-                "<a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a> · <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>"
+              "title": "مہارتیں اور ٹیکنالوجیز",
+              "paragraphs": [
+                "موبائل، بیک اینڈ اور پروڈکٹ ورک میں جن بنیادی ٹولز اور ٹیکنالوجیز پر میں کام کرتا ہوں۔"
+              ],
+              "tags": [
+                "Kotlin",
+                "Android",
+                "iOS",
+                "Flutter",
+                "Dart",
+                "Kotlin Multiplatform",
+                "Jetpack Compose",
+                "Swift",
+                "Laravel",
+                "Go",
+                "Java",
+                "Python",
+                "SQL",
+                "PostgreSQL",
+                "Redis",
+                "Firebase",
+                "Git",
+                "Linux",
+                "Docker"
               ]
             }
           ],
-          "footer_html": "&copy; <span id=\"year\">2025</span> نعیم الکبیر۔ سادہ HTML، کوئی فریم ورک نہیں۔"
+          "footer_html": "&copy; <span id=\"year\">2025</span> نعیم الکبیر۔ سادہ HTML، کوئی فریم ورک نہیں۔",
+          "top_actions_title": "مجھے ای میل کریں",
+          "top_actions": [
+            {
+              "label": "✉ ای میل بھیجیں",
+              "href": "mailto:kabirnayeem.99@gmail.com",
+              "variant": "primary"
+            }
+          ]
         }
       }
     },
@@ -444,7 +632,7 @@
             "site_title": "Work",
             "tagline": "Teams, products, and the problems I worked on."
           },
-          "summary": "Places I've worked and the kind of problems I worked on there.",
+          "summary": "A concise snapshot of where I've worked and what I shipped.",
           "section_title": "Experience",
           "entries": [
             {
@@ -1202,7 +1390,7 @@
             "tagline": "Oversharing, just oversharing!"
           },
           "intro": [
-            "These are graphs, charts, lists that might not fit in a professional portfolio. Someone may even cringe out. But sometimes oversharing feels good, and surprisingly honest. Who can tell, they may even impress someone looking for someone good at specific tech stack or languages."
+            "A quick snapshot of public coding activity, learning progress, and practice milestones."
           ],
           "sections": {
             "wakatime": {

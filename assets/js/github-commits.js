@@ -157,6 +157,7 @@
   var staticSnapshot = getStaticSnapshot();
 
   var weeksToShow = 53;
+  var resizeRafId = 0;
   /** @type {string[]} */
   var greenScale = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
 
@@ -502,6 +503,11 @@
     var safeHeatmapEl = /** @type {HTMLElement} */ (heatmapEl);
 
     safeHeatmapEl.innerHTML = "";
+    var weekCount =
+      days.reduce(function (max, day) {
+        return Math.max(max, day.week);
+      }, 0) + 1;
+    safeHeatmapEl.setAttribute("data-week-count", String(Math.max(1, weekCount)));
 
     var maxCount = days.reduce(function (max, day) {
       return day.isFuture ? max : Math.max(max, day.count);
@@ -529,6 +535,55 @@
   }
 
   /**
+   * Fit the contribution heatmap to its container so no horizontal scrolling is required.
+   *
+   * @returns {void}
+   */
+  function fitHeatmapToContainer() {
+    if (!heatmapEl) {
+      return;
+    }
+    var safeHeatmapEl = /** @type {HTMLElement} */ (heatmapEl);
+    var scrollWrap = safeHeatmapEl.parentElement;
+    if (!scrollWrap) {
+      return;
+    }
+
+    var availableWidth = scrollWrap.clientWidth;
+    if (!(availableWidth > 0)) {
+      return;
+    }
+
+    var weekCount = Math.max(
+      1,
+      Math.round(toSafeNumber(safeHeatmapEl.getAttribute("data-week-count")))
+    );
+    var gapPx = 2;
+    var totalGap = (weekCount - 1) * gapPx;
+    var computedCell = Math.floor((availableWidth - totalGap) / weekCount);
+    var cellSize = Math.max(3, Math.min(12, computedCell));
+
+    safeHeatmapEl.style.setProperty("--github-heatmap-gap", String(gapPx) + "px");
+    safeHeatmapEl.style.setProperty("--github-heatmap-cell", String(cellSize) + "px");
+  }
+
+  /**
+   * Defer heatmap fitting to animation frame for smoother resize behavior.
+   *
+   * @returns {void}
+   */
+  function scheduleHeatmapFit() {
+    if (resizeRafId !== 0) {
+      return;
+    }
+
+    resizeRafId = window.requestAnimationFrame(function () {
+      resizeRafId = 0;
+      fitHeatmapToContainer();
+    });
+  }
+
+  /**
    * @param {GitHubContributionPayload} payload
    * @param {string} statusMessage
    * @returns {void}
@@ -541,6 +596,7 @@
 
     renderSummary(payload, items, byDate, todayUtc);
     renderHeatmap(days);
+    fitHeatmapToContainer();
     renderLegend();
 
     if (visualsEl) {
@@ -588,6 +644,8 @@
   var cacheEntry = readCacheEntry();
   var hasRenderedCache = false;
   var hasFreshCache = false;
+
+  window.addEventListener("resize", scheduleHeatmapFit, { passive: true });
 
   if (cacheEntry) {
     hasRenderedCache = renderCacheEntry(cacheEntry);

@@ -45,6 +45,12 @@ SKIP_TO_MAIN_LABELS: Final[Mapping[Lang, str]] = {
     "ar": "تَخَطَّ إلى المُحتَوَى الرَّئيسِي",
     "ur": "مرکزی مواد پر جائیں",
 }
+LAST_UPDATED_LABELS: Final[Mapping[Lang, str]] = {
+    "en": "Last updated",
+    "bn": "সর্বশেষ আপডেট",
+    "ar": "آخر تحديث",
+    "ur": "آخری اپڈیٹ",
+}
 OG_LOCALE_BY_LANG: Final[Mapping[Lang, str]] = {
     "en": "en_US",
     "bn": "bn_BD",

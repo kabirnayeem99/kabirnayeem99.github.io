@@ -10,6 +10,7 @@ from .content_schema_error import ContentSchemaError
 from .github_commits_section import GitHubCommitsSection
 from .goodreads_section import GoodreadsSection
 from .header_text import HeaderText
+from .index_action import IndexAction
 from .index_page_locale import IndexPageLocale
 from .index_section import IndexSection
 from .languages_section import LanguagesSection
@@ -37,6 +38,7 @@ __all__ = [
     "GitHubCommitsSection",
     "GoodreadsSection",
     "HeaderText",
+    "IndexAction",
     "IndexPageLocale",
     "IndexSection",
     "LanguagesSection",

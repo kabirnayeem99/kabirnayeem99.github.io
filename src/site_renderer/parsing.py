@@ -17,6 +17,7 @@ from .models import (
     GoodreadsSection,
     GitHubCommitsSection,
     HeaderText,
+    IndexAction,
     IndexPageLocale,
     IndexSection,
     LanguagesSection,
@@ -248,6 +249,35 @@ def parse_article_link(value: object, path: str) -> ArticleLink:
     )
 
 
+def parse_index_action(value: object, path: str) -> IndexAction:
+    """Parse one index-page CTA action."""
+
+    raw = require_mapping(value, path)
+    label = require_string(get_required(raw, "label", path), f"{path}.label")
+    href = require_optional_string(get_optional(raw, "href"), f"{path}.href")
+    page_id_value = get_optional(raw, "page_id")
+    page_id = (
+        parse_page_id(require_string(page_id_value, f"{path}.page_id"), f"{path}.page_id")
+        if page_id_value is not None
+        else None
+    )
+    if (href is None) == (page_id is None):
+        raise ContentSchemaError(f"{path} must define exactly one of href or page_id")
+
+    variant_raw = require_optional_string(get_optional(raw, "variant"), f"{path}.variant")
+    variant = "secondary" if variant_raw is None else variant_raw
+    if variant not in ("primary", "secondary"):
+        raise ContentSchemaError(f"{path}.variant must be 'primary' or 'secondary'")
+    variant_value = "primary" if variant == "primary" else "secondary"
+
+    return IndexAction(
+        label=label,
+        href=href,
+        page_id=page_id,
+        variant=variant_value,
+    )
+
+
 def parse_index_section(value: object, path: str) -> IndexSection:
     """Parse one homepage section."""
 
@@ -256,6 +286,8 @@ def parse_index_section(value: object, path: str) -> IndexSection:
     articles_value = get_optional(raw, "articles")
     contacts_value = get_optional(raw, "contacts")
     paragraphs_value = get_optional(raw, "paragraphs")
+    tags_value = get_optional(raw, "tags")
+    actions_value = get_optional(raw, "actions")
     return IndexSection(
         title=require_string(get_required(raw, "title", path), f"{path}.title"),
         paragraphs=parse_html_tuple(paragraphs_value, f"{path}.paragraphs")
@@ -274,6 +306,13 @@ def parse_index_section(value: object, path: str) -> IndexSection:
         if articles_value is not None
         else (),
         contacts=parse_html_tuple(contacts_value, f"{path}.contacts") if contacts_value is not None else (),
+        tags=parse_string_tuple(tags_value, f"{path}.tags") if tags_value is not None else (),
+        actions=tuple(
+            parse_index_action(item, f"{path}.actions[{index}]")
+            for index, item in enumerate(require_sequence(actions_value, f"{path}.actions"))
+        )
+        if actions_value is not None
+        else (),
     )
 
 
@@ -282,9 +321,17 @@ def parse_index_page_locale(value: object, path: str) -> IndexPageLocale:
 
     raw = require_mapping(value, path)
     sections_value = require_sequence(get_required(raw, "sections", path), f"{path}.sections")
+    top_actions_value = get_optional(raw, "top_actions")
     return IndexPageLocale(
         meta=parse_meta(get_required(raw, "meta", path), f"{path}.meta"),
         header=parse_header(get_required(raw, "header", path), f"{path}.header"),
+        top_actions_title=require_optional_string(get_optional(raw, "top_actions_title"), f"{path}.top_actions_title"),
+        top_actions=tuple(
+            parse_index_action(item, f"{path}.top_actions[{index}]")
+            for index, item in enumerate(require_sequence(top_actions_value, f"{path}.top_actions"))
+        )
+        if top_actions_value is not None
+        else (),
         summary_card=parse_html_tuple(get_required(raw, "summary_card", path), f"{path}.summary_card"),
         sections=tuple(
             parse_index_section(item, f"{path}.sections[{index}]")
@@ -654,5 +701,3 @@ def load_site_content(content_path: str, stdin: TextIO) -> SiteContent:
     except json.JSONDecodeError as error:
         raise ContentSchemaError(f"invalid JSON: {error.msg} at line {error.lineno}, column {error.colno}") from error
     return parse_content_source(raw_value)
-
-
