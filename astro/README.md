@@ -8,12 +8,13 @@ This folder contains Phase 1 and the start of Phase 2 from `../astro_migration.m
 - TypeScript strict mode enabled.
 - GitHub Pages settings configured (`site` and `base`).
 - Baseline lint rule enabled: `@typescript-eslint/no-explicit-any`.
-- Legacy pages are routed through Astro with exact HTML snapshot parity for:
+- Native Astro pages now exist with parity coverage for:
   - `/index.html`, `/work.html`, `/project.html`, `/blog.html`, `/stats.html`
   - `/bn/index.html`, `/bn/work.html`, `/bn/project.html`
   - `/ar/index.html`, `/ar/work.html`, `/ar/project.html`
   - `/ur/index.html`, `/ur/work.html`, `/ur/project.html`
 - Static files are synced from the legacy root into `astro/public` via `npm run sync:legacy-static` (auto-runs in `predev`, `precheck`, `prebuild`).
+- HTML and visual regression checks are available via `npm run parity`.
 
 ## Commands
 
