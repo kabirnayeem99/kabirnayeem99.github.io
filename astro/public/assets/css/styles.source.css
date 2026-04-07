@@ -1,8 +1,8 @@
 @font-face {
   font-family: "EB Garamond";
   src:
-    url("../fonts/eb-garamond/EBGaramond-wght.woff2") format("woff2"),
-    url("../fonts/eb-garamond/EBGaramond-wght.ttf") format("truetype");
+    url("../fonts/english_eb_garamond_wght.woff2") format("woff2"),
+    url("../fonts/english_eb_garamond_wght.ttf") format("truetype");
   font-style: normal;
   font-weight: 400 800;
   font-display: swap;
@@ -26,7 +26,7 @@
 
 @font-face {
   font-family: "Noto Nastaliq Urdu";
-  src: url("../fonts/noto-nastaliq-urdu/NotoNastaliqUrdu-wght.ttf") format("truetype");
+  src: url("../fonts/urdu_noto_nastaliq_wght.ttf") format("truetype");
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
@@ -154,7 +154,7 @@ body {
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.72;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   position: relative;
   min-height: 100vh;
   isolation: isolate;
