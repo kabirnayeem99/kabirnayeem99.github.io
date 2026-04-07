@@ -36,13 +36,13 @@ jobs:
         with:
           node-version: "22"
       - name: Type-check JS
-        run: ./scripts/check-js-types.sh
+        run: python3 src/main.py --check-js-types
       - name: Run JS tests
         run: node --test tests/stats-utils.test.mjs
       - name: Render site
-        run: python3 scripts/render_site.py
+        run: python3 src/main.py --render-site
       - name: Validate links
-        run: ./scripts/validate-links.sh
+        run: python3 src/main.py --validate-links
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

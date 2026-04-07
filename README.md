@@ -27,5 +27,5 @@ Then open `http://localhost:8080`.
 - Run link validation before publishing:
 
 ```bash
-./scripts/validate-links.sh
+python3 src/main.py --validate-links
 ```
