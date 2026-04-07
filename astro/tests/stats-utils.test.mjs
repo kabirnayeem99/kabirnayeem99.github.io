@@ -1,9 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createRequire } from "node:module";
 
-const require = createRequire(import.meta.url);
-const statsUtils = require("../assets/js/stats-utils.js");
+await import(new URL("../public/assets/js/stats-utils.js", import.meta.url).href);
+const statsUtils = globalThis.personPortfolioStatsUtils;
+
+if (!statsUtils) {
+  throw new Error("Stats utils did not attach to globalThis.personPortfolioStatsUtils");
+}
 
 test("toSafeNumber handles invalid inputs", function () {
   assert.equal(statsUtils.toSafeNumber(42), 42);

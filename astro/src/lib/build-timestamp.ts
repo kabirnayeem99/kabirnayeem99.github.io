@@ -6,7 +6,7 @@ export interface BuildTimestamp {
   readonly display: string;
 }
 
-const LEGACY_ROOT = resolve(process.cwd(), "..");
+const ASTRO_ROOT = process.cwd();
 
 function pad2(value: number): string {
   return value.toString().padStart(2, "0");
@@ -40,19 +40,19 @@ function formatDisplay(date: Date): string {
 
 function findLatestTimestampMillis(): number {
   const candidates: string[] = [
-    resolve(LEGACY_ROOT, "content/site-content.json"),
-    resolve(LEGACY_ROOT, "assets/css/styles.source.css"),
+    resolve(ASTRO_ROOT, "src/data/site-content.json"),
+    resolve(ASTRO_ROOT, "public/assets/css/styles.source.css"),
   ];
 
-  const assetJsDir = resolve(LEGACY_ROOT, "assets/js");
+  const assetJsDir = resolve(ASTRO_ROOT, "public/assets/js");
   for (const name of readdirSync(assetJsDir)) {
     if (name.endsWith(".js")) {
       candidates.push(resolve(assetJsDir, name));
     }
   }
 
-  const rendererRoot = resolve(LEGACY_ROOT, "src/site_renderer");
-  const stack: string[] = [rendererRoot];
+  const sourceRoot = resolve(ASTRO_ROOT, "src");
+  const stack: string[] = [sourceRoot];
   while (stack.length > 0) {
     const current = stack.pop();
     if (current === undefined) {
@@ -67,7 +67,7 @@ function findLatestTimestampMillis(): number {
       continue;
     }
 
-    if (current.endsWith(".py")) {
+    if (current.endsWith(".ts") || current.endsWith(".astro")) {
       candidates.push(current);
     }
   }

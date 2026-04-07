@@ -1,12 +1,14 @@
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
-import type { Direction } from "./site-types";
-
-interface MetaText {
-  readonly title: string;
-  readonly description: string;
-  readonly keywords: string;
-}
+import {
+  CONTENT_PATH,
+  asRecord,
+  readDirection,
+  readString,
+  readStringArray,
+  type LocaleInfo,
+  type MetaText,
+  type SiteData,
+} from "./content-loader-shared";
 
 interface HeaderText {
   readonly siteTitle: string;
@@ -67,24 +69,12 @@ interface StatsSections {
   readonly goodreads: GoodreadsSection;
 }
 
-interface LocaleInfo {
-  readonly dir: Direction;
-  readonly author: string;
-  readonly ogImageAlt: string;
-}
-
-interface SiteData {
-  readonly baseUrl: string;
-  readonly personName: string;
-  readonly websiteName: string;
-  readonly twitterSite: string;
-  readonly socialProfiles: readonly string[];
-  readonly googleSiteVerification: string;
+interface StatsSiteData extends SiteData {
   readonly localeEn: LocaleInfo;
 }
 
 export interface StatsPageContent {
-  readonly site: SiteData;
+  readonly site: StatsSiteData;
   readonly meta: MetaText;
   readonly header: HeaderText;
   readonly intro: readonly string[];
@@ -92,50 +82,6 @@ export interface StatsPageContent {
   readonly footerHtml: string;
   readonly homeRoute: string;
   readonly route: string;
-}
-
-const LEGACY_ROOT = resolve(process.cwd(), "..");
-const CONTENT_PATH = resolve(LEGACY_ROOT, "content/site-content.json");
-
-function asRecord(value: unknown, path: string): Record<string, unknown> {
-  if (value === null || typeof value !== "object" || Array.isArray(value)) {
-    throw new Error(`Expected object at ${path}`);
-  }
-  return value as Record<string, unknown>;
-}
-
-function readString(source: Record<string, unknown>, key: string, path: string): string {
-  const value = source[key];
-  if (typeof value !== "string") {
-    throw new Error(`Expected string at ${path}.${key}`);
-  }
-  return value;
-}
-
-function readDirection(source: Record<string, unknown>, key: string, path: string): Direction {
-  const value = readString(source, key, path);
-  if (value !== "ltr" && value !== "rtl") {
-    throw new Error(`Expected direction at ${path}.${key}`);
-  }
-  return value;
-}
-
-function readStringArray(source: Record<string, unknown>, key: string, path: string): readonly string[] {
-  const value = source[key];
-  if (!Array.isArray(value)) {
-    throw new Error(`Expected array at ${path}.${key}`);
-  }
-
-  const output: string[] = [];
-  for (let index = 0; index < value.length; index += 1) {
-    const entry = value[index];
-    if (typeof entry !== "string") {
-      throw new Error(`Expected string at ${path}.${key}[${index}]`);
-    }
-    output.push(entry);
-  }
-
-  return output;
 }
 
 function replaceQueryParams(url: string, replacements: Readonly<Record<string, string>>): string {

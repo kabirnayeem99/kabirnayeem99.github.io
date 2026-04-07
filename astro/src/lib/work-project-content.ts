@@ -1,41 +1,29 @@
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { posix as pathPosix } from "node:path";
-import type { Direction, Lang } from "./site-types";
+import {
+  CONTENT_PATH,
+  asRecord,
+  readDirection,
+  readOptionalString,
+  readOptionalStringArray,
+  readRouteMap,
+  readString,
+  readStringArray,
+  type LocaleInfo,
+  type MetaText,
+  type RouteMap,
+  type SiteData,
+} from "./content-loader-shared";
+import type { Lang } from "./site-types";
 
 export type { Lang } from "./site-types";
-
-interface MetaText {
-  readonly title: string;
-  readonly description: string;
-  readonly keywords: string;
-}
 
 interface HeaderText {
   readonly siteTitle: string;
 }
 
-interface SiteLocaleInfo {
-  readonly dir: Direction;
-  readonly author: string;
-  readonly ogImageAlt: string;
-}
-
-interface SiteData {
-  readonly baseUrl: string;
-  readonly personName: string;
-  readonly websiteName: string;
-  readonly twitterSite: string;
-  readonly socialProfiles: readonly string[];
-  readonly googleSiteVerification: string;
-  readonly locale: SiteLocaleInfo;
-}
-
-interface RouteMap {
-  readonly en: string;
-  readonly bn: string;
-  readonly ar: string;
-  readonly ur: string;
+interface WorkProjectSiteData extends SiteData {
+  readonly locale: LocaleInfo;
 }
 
 export interface ContentCard {
@@ -58,7 +46,7 @@ interface AlternateLink {
 
 interface CommonPageContent {
   readonly lang: Lang;
-  readonly site: SiteData;
+  readonly site: WorkProjectSiteData;
   readonly route: string;
   readonly homeRoute: string;
   readonly pageRoutes: RouteMap;
@@ -77,9 +65,6 @@ export interface ProjectPageContent extends CommonPageContent {
   readonly groups: readonly ProjectGroup[];
 }
 
-const LEGACY_ROOT = resolve(process.cwd(), "..");
-const CONTENT_PATH = resolve(LEGACY_ROOT, "content/site-content.json");
-
 const LANGS = ["en", "bn", "ar", "ur"] as const;
 
 export const OG_LOCALE_BY_LANG: Readonly<Record<Lang, string>> = {
@@ -88,96 +73,6 @@ export const OG_LOCALE_BY_LANG: Readonly<Record<Lang, string>> = {
   ar: "ar_SA",
   ur: "ur_PK",
 };
-
-function asRecord(value: unknown, path: string): Record<string, unknown> {
-  if (value === null || typeof value !== "object" || Array.isArray(value)) {
-    throw new Error(`Expected object at ${path}`);
-  }
-  return value as Record<string, unknown>;
-}
-
-function readString(source: Record<string, unknown>, key: string, path: string): string {
-  const value = source[key];
-  if (typeof value !== "string") {
-    throw new Error(`Expected string at ${path}.${key}`);
-  }
-  return value;
-}
-
-function readOptionalString(source: Record<string, unknown>, key: string, path: string): string | undefined {
-  const value = source[key];
-  if (value === undefined) {
-    return undefined;
-  }
-  if (typeof value !== "string") {
-    throw new Error(`Expected string at ${path}.${key}`);
-  }
-  return value;
-}
-
-function readDirection(source: Record<string, unknown>, key: string, path: string): Direction {
-  const value = readString(source, key, path);
-  if (value !== "ltr" && value !== "rtl") {
-    throw new Error(`Expected direction at ${path}.${key}`);
-  }
-  return value;
-}
-
-function readStringArray(
-  source: Record<string, unknown>,
-  key: string,
-  path: string,
-): readonly string[] {
-  const value = source[key];
-  if (!Array.isArray(value)) {
-    throw new Error(`Expected array at ${path}.${key}`);
-  }
-
-  const output: string[] = [];
-  for (let index = 0; index < value.length; index += 1) {
-    const entry = value[index];
-    if (typeof entry !== "string") {
-      throw new Error(`Expected string at ${path}.${key}[${index}]`);
-    }
-    output.push(entry);
-  }
-
-  return output;
-}
-
-function readOptionalStringArray(
-  source: Record<string, unknown>,
-  key: string,
-  path: string,
-): readonly string[] {
-  const value = source[key];
-  if (value === undefined) {
-    return [];
-  }
-  if (!Array.isArray(value)) {
-    throw new Error(`Expected array at ${path}.${key}`);
-  }
-
-  const output: string[] = [];
-  for (let index = 0; index < value.length; index += 1) {
-    const entry = value[index];
-    if (typeof entry !== "string") {
-      throw new Error(`Expected string at ${path}.${key}[${index}]`);
-    }
-    output.push(entry);
-  }
-
-  return output;
-}
-
-function readRouteMap(source: Record<string, unknown>, path: string): RouteMap {
-  return {
-    en: readString(source, "en", path),
-    bn: readString(source, "bn", path),
-    ar: readString(source, "ar", path),
-    ur: readString(source, "ur", path),
-  };
-}
 
 function readContentCards(
   source: Record<string, unknown>,
@@ -241,7 +136,7 @@ function readProjectGroups(source: Record<string, unknown>, path: string): reado
 
 interface SharedContentContext {
   readonly root: Record<string, unknown>;
-  readonly site: SiteData;
+  readonly site: WorkProjectSiteData;
   readonly routes: Record<string, unknown>;
 }
 

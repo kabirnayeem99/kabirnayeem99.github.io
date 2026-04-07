@@ -1,25 +1,28 @@
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
-import type { Direction, Lang, PageId } from "./site-types";
+import {
+  CONTENT_PATH,
+  asRecord,
+  readDirection,
+  readOptionalString,
+  readOptionalStringArray,
+  readRouteMap,
+  readString,
+  readStringArray,
+  type LocaleInfo,
+  type MetaText,
+  type SiteData,
+} from "./content-loader-shared";
+import type { Lang, PageId } from "./site-types";
 
 export type { Lang, PageId } from "./site-types";
-
-interface MetaText {
-  readonly title: string;
-  readonly description: string;
-  readonly keywords: string;
-}
 
 interface HeaderText {
   readonly siteTitle: string;
   readonly tagline: string;
 }
 
-interface LocaleInfo {
-  readonly dir: Direction;
-  readonly author: string;
+interface IndexLocaleInfo extends LocaleInfo {
   readonly languageSwitcherLabel: string;
-  readonly ogImageAlt: string;
 }
 
 export interface IndexAction {
@@ -73,14 +76,8 @@ interface StatsCompactContent {
   readonly goodreads: GoodreadsSection;
 }
 
-interface SiteData {
-  readonly baseUrl: string;
-  readonly personName: string;
-  readonly websiteName: string;
-  readonly twitterSite: string;
-  readonly socialProfiles: readonly string[];
-  readonly googleSiteVerification: string;
-  readonly locale: LocaleInfo;
+interface IndexSiteData extends SiteData {
+  readonly locale: IndexLocaleInfo;
   readonly languageMenuLabels: Readonly<Record<Lang, string>>;
 }
 
@@ -94,7 +91,7 @@ export interface RouteTable {
 
 export interface IndexPageContent {
   readonly lang: Lang;
-  readonly site: SiteData;
+  readonly site: IndexSiteData;
   readonly routes: RouteTable;
   readonly navigation: readonly PageId[];
   readonly navigationLabels: Readonly<Record<PageId, string>>;
@@ -108,78 +105,6 @@ export interface IndexPageContent {
   readonly route: string;
 }
 
-const LEGACY_ROOT = resolve(process.cwd(), "..");
-const CONTENT_PATH = resolve(LEGACY_ROOT, "content/site-content.json");
-
-function asRecord(value: unknown, path: string): Record<string, unknown> {
-  if (value === null || typeof value !== "object" || Array.isArray(value)) {
-    throw new Error(`Expected object at ${path}`);
-  }
-  return value as Record<string, unknown>;
-}
-
-function readString(source: Record<string, unknown>, key: string, path: string): string {
-  const value = source[key];
-  if (typeof value !== "string") {
-    throw new Error(`Expected string at ${path}.${key}`);
-  }
-  return value;
-}
-
-function readOptionalString(source: Record<string, unknown>, key: string, path: string): string | undefined {
-  const value = source[key];
-  if (value === undefined) {
-    return undefined;
-  }
-  if (typeof value !== "string") {
-    throw new Error(`Expected string at ${path}.${key}`);
-  }
-  return value;
-}
-
-function readDirection(source: Record<string, unknown>, key: string, path: string): Direction {
-  const value = readString(source, key, path);
-  if (value !== "ltr" && value !== "rtl") {
-    throw new Error(`Expected direction at ${path}.${key}`);
-  }
-  return value;
-}
-
-function readStringArray(source: Record<string, unknown>, key: string, path: string): readonly string[] {
-  const value = source[key];
-  if (!Array.isArray(value)) {
-    throw new Error(`Expected array at ${path}.${key}`);
-  }
-  const output: string[] = [];
-  for (let index = 0; index < value.length; index += 1) {
-    const entry = value[index];
-    if (typeof entry !== "string") {
-      throw new Error(`Expected string at ${path}.${key}[${index}]`);
-    }
-    output.push(entry);
-  }
-  return output;
-}
-
-function readOptionalStringArray(source: Record<string, unknown>, key: string, path: string): readonly string[] {
-  const value = source[key];
-  if (value === undefined) {
-    return [];
-  }
-  if (!Array.isArray(value)) {
-    throw new Error(`Expected array at ${path}.${key}`);
-  }
-  const output: string[] = [];
-  for (let index = 0; index < value.length; index += 1) {
-    const entry = value[index];
-    if (typeof entry !== "string") {
-      throw new Error(`Expected string at ${path}.${key}[${index}]`);
-    }
-    output.push(entry);
-  }
-  return output;
-}
-
 function readPageIdArray(source: Record<string, unknown>, key: string, path: string): readonly PageId[] {
   const entries = readStringArray(source, key, path);
   const pageIds: PageId[] = [];
@@ -191,18 +116,6 @@ function readPageIdArray(source: Record<string, unknown>, key: string, path: str
     throw new Error(`Expected page id at ${path}.${key}[${index}]`);
   }
   return pageIds;
-}
-
-function readRouteMap(
-  source: Record<string, unknown>,
-  path: string,
-): Readonly<Record<Lang, string>> {
-  return {
-    en: readString(source, "en", path),
-    bn: readString(source, "bn", path),
-    ar: readString(source, "ar", path),
-    ur: readString(source, "ur", path),
-  };
 }
 
 function readAction(source: Record<string, unknown>, path: string): IndexAction {

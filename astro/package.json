@@ -4,19 +4,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "sync:legacy-static": "node ./scripts/sync-legacy-static.mjs",
-    "predev": "npm run sync:legacy-static",
-    "precheck": "npm run sync:legacy-static",
-    "prebuild": "npm run sync:legacy-static",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "eslint \"src/**/*.{ts,tsx,mts,cts}\"",
-    "parity:html": "npm run build && node ./scripts/check-html-parity.mjs && node ./scripts/check-static-parity.mjs",
-    "parity:visual": "node ./scripts/visual-regression.mjs",
-    "parity": "npm run parity:html && npm run parity:visual"
+    "test": "node --test tests/stats-utils.test.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
