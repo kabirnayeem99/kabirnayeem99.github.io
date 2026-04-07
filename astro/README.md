@@ -1,13 +1,19 @@
 # Astro Migration Workspace
 
-This folder starts Phase 1 of the migration described in `../astro_migration.md`.
+This folder contains Phase 1 and the start of Phase 2 from `../astro_migration.md`.
 
-## Scope in this phase
+## Scope so far
 
 - Astro scaffold isolated in `astro/`.
 - TypeScript strict mode enabled.
 - GitHub Pages settings configured (`site` and `base`).
 - Baseline lint rule enabled: `@typescript-eslint/no-explicit-any`.
+- Legacy pages are routed through Astro with exact HTML snapshot parity for:
+  - `/index.html`, `/work.html`, `/project.html`, `/blog.html`, `/stats.html`
+  - `/bn/index.html`, `/bn/work.html`, `/bn/project.html`
+  - `/ar/index.html`, `/ar/work.html`, `/ar/project.html`
+  - `/ur/index.html`, `/ur/work.html`, `/ur/project.html`
+- Static files are synced from the legacy root into `astro/public` via `npm run sync:legacy-static` (auto-runs in `predev`, `precheck`, `prebuild`).
 
 ## Commands
 

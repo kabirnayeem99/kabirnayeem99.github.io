@@ -1,0 +1,11 @@
+---
+import type { LegacyDocument } from "../lib/legacy-document";
+
+interface Props {
+  readonly document: LegacyDocument;
+}
+
+const { document } = Astro.props;
+---
+
+<Fragment set:html={document.fullHtml} />

@@ -1,0 +1,8 @@
+---
+import LegacySnapshotDocument from "../../components/LegacySnapshotDocument.astro";
+import { readLegacyDocument } from "../../lib/legacy-document";
+
+const document = readLegacyDocument("ur/work.html");
+---
+
+<LegacySnapshotDocument document={document} />
