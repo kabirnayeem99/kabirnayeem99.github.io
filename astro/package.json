@@ -14,7 +14,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "lint": "eslint \"src/**/*.{ts,tsx,mts,cts}\"",
-    "parity:html": "npm run build && node ./scripts/check-html-parity.mjs",
+    "parity:html": "npm run build && node ./scripts/check-html-parity.mjs && node ./scripts/check-static-parity.mjs",
     "parity:visual": "node ./scripts/visual-regression.mjs",
     "parity": "npm run parity:html && npm run parity:visual"
   },
