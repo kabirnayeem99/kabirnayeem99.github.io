@@ -5,13 +5,13 @@ from __future__ import annotations
 import html
 import json
 import posixpath
-import re
 from collections.abc import Mapping
 from typing import Literal
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from .constants import (
     BACK_TO_TOP_LABELS,
+    CLOSE_PAGE_LABELS,
     GENERATED_COMMENT,
     LANGS,
     LAST_UPDATED_LABELS,
@@ -422,6 +422,17 @@ def render_email_social_icon() -> str:
     )
 
 
+def render_forward_arrow_icon() -> str:
+    """Render inline SVG for compact forward-arrow CTA actions."""
+
+    return (
+        '<svg class="action-chip-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" '
+        'xmlns="http://www.w3.org/2000/svg">'
+        '<path d="M9 20L17 12L9 4" stroke="currentColor" stroke-width="2" '
+        'stroke-linecap="round" stroke-linejoin="round"></path></svg>'
+    )
+
+
 def index_email_action(page: IndexPageLocale) -> IndexAction | None:
     """Return the first mailto action configured for homepage quick actions."""
 
@@ -686,28 +697,19 @@ def render_footer(
 ) -> str:
     """Render the page footer."""
 
-    stamped_footer_html = str(footer_html)
-    has_time = re.search(r"<time\b", stamped_footer_html) is not None
-    if has_time:
-        stamped_footer_html = re.sub(
-            r'(<time\b[^>]*datetime=")[^"]*(")',
-            rf"\g<1>{html.escape(build_timestamp_iso)}\g<2>",
-            stamped_footer_html,
-            count=1,
+    main_footer_html = str(footer_html)
+    last_updated_html = (
+        f'{html.escape(LAST_UPDATED_LABELS[lang])} '
+        f'<time datetime="{html.escape(build_timestamp_iso)}">{html.escape(build_timestamp_display)}</time>'
+    )
+    return "\n".join(
+        (
+            "    <footer>",
+            f"      <p class=\"footer-copy\">{main_footer_html}</p>",
+            f"      <p class=\"footer-last-updated\">{last_updated_html}</p>",
+            "    </footer>",
         )
-        stamped_footer_html = re.sub(
-            r"(<time\b[^>]*>).*?(</time>)",
-            rf"\g<1>{html.escape(build_timestamp_display)}\g<2>",
-            stamped_footer_html,
-            count=1,
-            flags=re.DOTALL,
-        )
-    else:
-        stamped_footer_html = (
-            f'{stamped_footer_html} <span class="footer-meta">· {html.escape(LAST_UPDATED_LABELS[lang])} '
-            f'<time datetime="{html.escape(build_timestamp_iso)}">{html.escape(build_timestamp_display)}</time></span>'
-        )
-    return "\n".join(("    <footer>", f"      <p>{stamped_footer_html}</p>", "    </footer>"))
+    )
 
 
 def render_scripts(page_id: PageId, current_output: str) -> str:
@@ -715,8 +717,6 @@ def render_scripts(page_id: PageId, current_output: str) -> str:
 
     default_scripts = (
         "assets/js/image-guard.js",
-        "assets/js/theme-toggle.js",
-        "assets/js/language-switcher.js",
         "assets/js/umami-events.js",
         "assets/js/year.js",
         "assets/js/service-worker-register.js",
@@ -724,8 +724,6 @@ def render_scripts(page_id: PageId, current_output: str) -> str:
     long_page_scripts = (
         "assets/js/image-guard.js",
         "assets/js/back-to-top.js",
-        "assets/js/theme-toggle.js",
-        "assets/js/language-switcher.js",
         "assets/js/umami-events.js",
         "assets/js/year.js",
         "assets/js/service-worker-register.js",
@@ -745,10 +743,8 @@ def render_scripts(page_id: PageId, current_output: str) -> str:
     )
     stats_scripts = (
         "assets/js/image-guard.js",
-        "assets/js/theme-toggle.js",
         "assets/js/stats-theme-embeds.js",
         "assets/js/goodreads-image-fallback.js",
-        "assets/js/language-switcher.js",
         "assets/js/umami-events.js",
         "assets/js/stats-snapshots.js",
         "assets/js/stats-utils.js",
@@ -846,11 +842,15 @@ def render_index_action(
 
     is_external = href.startswith("http://") or href.startswith("https://")
     is_mailto = href.startswith("mailto:")
+    is_page_link = action.page_id is not None
     target_attr = ' target="_blank"' if is_external else ""
     rel_attr = ' rel="noreferrer"' if is_external else ""
     variant_class = "action-chip action-chip--primary" if action.variant == "primary" else "action-chip action-chip--secondary"
+    if is_page_link and action.variant == "secondary":
+        variant_class = f"{variant_class} action-chip--compact-nav"
     icon_markup = ""
     label_text = action.label
+    trailing_icon_markup = ""
     if is_mailto:
         label_text = action.label.lstrip("✉").strip()
         icon_markup = (
@@ -861,10 +861,12 @@ def render_index_action(
             '<rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2" '
             'stroke-linecap="round"></rect></svg>'
         )
+    if is_page_link and action.variant == "secondary":
+        trailing_icon_markup = render_forward_arrow_icon()
 
     return (
         f'            <a class="{variant_class}" href="{html.escape(href)}"{target_attr}{rel_attr}{nav_attr}>'
-        f"{icon_markup}<span>{html.escape(label_text)}</span></a>"
+        f"{icon_markup}<span>{html.escape(label_text)}</span>{trailing_icon_markup}</a>"
     )
 
 
@@ -1342,7 +1344,33 @@ def render_page_heading(header: HeaderText) -> str:
         (
             '      <div class="page-heading">',
             f"        <h1 class=\"site-title site-title--page\">{html.escape(header.site_title)}</h1>",
-            f"        <p class=\"tagline\">{html.escape(header.tagline)}</p>",
+            "      </div>",
+        )
+    )
+
+
+def render_close_heading(
+    routes: RouteTable,
+    header: HeaderText,
+    lang: Lang,
+    current_output: str,
+) -> str:
+    """Render a minimal non-home header with a close control and title."""
+
+    close_label = CLOSE_PAGE_LABELS[lang]
+    home_href = relative_href(current_output, route_for(routes, "index", lang))
+    return "\n".join(
+        (
+            '      <div class="page-closebar">',
+            (
+                f'        <a class="page-close-button" href="{html.escape(home_href)}" '
+                f'aria-label="{html.escape(close_label)}" title="{html.escape(close_label)}">'
+                '<svg class="page-close-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" '
+                'xmlns="http://www.w3.org/2000/svg">'
+                '<path d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006" stroke="currentColor" stroke-width="2.5" '
+                'stroke-linecap="round" stroke-linejoin="round"></path></svg></a>'
+            ),
+            f"        <h1 class=\"site-title site-title--page\">{html.escape(header.site_title)}</h1>",
             "      </div>",
         )
     )
@@ -1380,14 +1408,17 @@ def render_page(
         render_skip_link(lang),
         '  <div class="site">',
         '    <header id="top">',
-        render_header_controls(content.site, content.routes, page_id, lang, route),
-        render_header_identity(header, route) if page_id == "index" else render_page_heading(header),
+        render_header_controls(content.site, content.routes, page_id, lang, route) if page_id == "index" else "",
+        (
+            render_header_identity(header, route)
+            if page_id == "index"
+            else render_close_heading(content.routes, header, lang, route)
+        ),
         (
             render_social_chips(content.site, index_email_action(content.index_page.locales[lang]))
             if page_id == "index"
             else ""
         ),
-        render_nav(content, page_id, lang, route) if page_id != "index" else "",
         "    </header>",
         render_main_for_page(content, page_id, lang, route),
         render_footer(

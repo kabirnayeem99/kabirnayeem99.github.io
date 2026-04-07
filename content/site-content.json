@@ -2,7 +2,7 @@
   "site": {
     "base_url": "https://kabirnayeem99.github.io",
     "person_name": "Naimul Kabir",
-    "website_name": "Naimul Kabir Portfolio",
+    "website_name": "Naimul Kabir | Personal Portfolio",
     "twitter_site": "@kabirnayeem99",
     "social_profiles": [
       "https://github.com/kabirnayeem99",
@@ -126,8 +126,8 @@
       "locales": {
         "en": {
           "meta": {
-            "title": "Naimul Kabir · Software Engineer",
-            "description": "Portfolio of Naimul Kabir, a software engineer focused on Android, iOS, and Kotlin multiplatform apps.",
+            "title": "Naimul Kabir | Personal Portfolio",
+            "description": "Software Engineer · Muslim · Bibliophile · Philomath.",
             "keywords": "Naimul Kabir, Software Engineer, Android Developer, Kotlin Multiplatform, Flutter, Laravel, Mobile Apps"
           },
           "header": {
@@ -1372,7 +1372,7 @@
               "summary": "I don't know why even I have written this!!! Rationalising my switching back to windows from FOSS OS."
             }
           ],
-          "footer_html": "Last updated <time datetime=\"2024-11-02\">2 Nov 2024</time>. Send edits or typos my way."
+          "footer_html": "Send edits or typos my way."
         }
       }
     },
@@ -1450,7 +1450,7 @@
               "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=40&order=d&shelf=read&sort=date_added&widget_id=1771265103"
             }
           },
-          "footer_html": "Last refreshed <time id=\"last-refreshed\" datetime=\"\">Today</time>. Ping me for other data cuts."
+          "footer_html": "Ping me for other data cuts."
         }
       }
     }

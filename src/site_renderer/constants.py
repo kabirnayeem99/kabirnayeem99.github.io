@@ -51,6 +51,12 @@ LAST_UPDATED_LABELS: Final[Mapping[Lang, str]] = {
     "ar": "آخر تحديث",
     "ur": "آخری اپڈیٹ",
 }
+CLOSE_PAGE_LABELS: Final[Mapping[Lang, str]] = {
+    "en": "Close page",
+    "bn": "পাতা বন্ধ করুন",
+    "ar": "إغلاق الصفحة",
+    "ur": "صفحہ بند کریں",
+}
 VIEW_ALL_STATS_LABELS: Final[Mapping[Lang, str]] = {
     "en": "View all stats",
     "bn": "সব স্ট্যাটস দেখুন",

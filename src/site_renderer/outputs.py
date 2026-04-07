@@ -57,7 +57,7 @@ def render_outputs(
     build_now = source_timestamp(root)
     build_date = build_now.date().isoformat()
     build_timestamp_iso = build_now.isoformat(timespec="seconds")
-    build_timestamp_display = build_now.isoformat(sep=" ", timespec="seconds")
+    build_timestamp_display = build_now.strftime("%d/%m/%Y %I:%M:%S %p")
     outputs: dict[str, str] = {}
 
     for page_id in PAGE_IDS:
