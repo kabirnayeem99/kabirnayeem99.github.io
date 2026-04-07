@@ -1,8 +1,81 @@
 ---
-import LegacySnapshotDocument from "../components/LegacySnapshotDocument.astro";
-import { readLegacyDocument } from "../lib/legacy-document";
+import BlogEntriesSection from "../components/page/BlogEntriesSection.astro";
+import ClosePageHeader from "../components/page/ClosePageHeader.astro";
+import HeadSeo from "../components/page/HeadSeo.astro";
+import PageFooter from "../components/page/PageFooter.astro";
+import { computeLegacyBuildTimestamp } from "../lib/build-timestamp";
+import { loadBlogPageContent } from "../lib/blog-content";
+import { CLOSE_PAGE_LABEL, LAST_UPDATED_LABEL, SKIP_TO_MAIN_LABEL } from "../lib/page-labels";
+import { buildSchemaGraphJson } from "../lib/seo";
 
-const document = readLegacyDocument("blog.html");
+const content = loadBlogPageContent();
+const buildTimestamp = computeLegacyBuildTimestamp();
+
+const canonicalUrl = `${content.site.baseUrl}/blog.html`;
+const ogImageUrl = `${content.site.baseUrl}/assets/images/og-card.png`;
+const schemaGraphJson = buildSchemaGraphJson({
+  baseUrl: content.site.baseUrl,
+  websiteName: content.site.websiteName,
+  personName: content.site.personName,
+  canonicalUrl,
+  ogImageUrl,
+  socialProfiles: content.site.socialProfiles,
+});
+
+const alternateLinks = [
+  { hrefLang: "en", href: canonicalUrl },
+  { hrefLang: "x-default", href: canonicalUrl },
+] as const;
+
+const scriptPaths = [
+  "assets/js/image-guard.js",
+  "assets/js/umami-events.js",
+  "assets/js/year.js",
+  "assets/js/service-worker-register.js",
+] as const;
 ---
 
-<LegacySnapshotDocument document={document} />
+<!DOCTYPE html>
+<html lang="en" dir={content.site.localeEn.dir}>
+  <HeadSeo
+    title={content.blog.meta.title}
+    description={content.blog.meta.description}
+    keywords={content.blog.meta.keywords}
+    author={content.site.localeEn.author}
+    canonicalUrl={canonicalUrl}
+    alternateLinks={alternateLinks}
+    ogType="article"
+    ogLocale="en_US"
+    ogLocaleAlternates={[]}
+    ogImageUrl={ogImageUrl}
+    ogImageAlt={content.site.localeEn.ogImageAlt}
+    twitterSite={content.site.twitterSite}
+    schemaGraphJson={schemaGraphJson}
+    googleSiteVerification={content.site.googleSiteVerification}
+    umamiWebsiteId="cdec8895-be63-42d6-a490-12dd2ea8f35c"
+  />
+  <body data-page-id="blog" data-sw-path="service-worker.js">
+    <a class="skip-link" href="#main-content">{SKIP_TO_MAIN_LABEL}</a>
+    <div class="site">
+      <ClosePageHeader
+        homeHref={content.homeRoute}
+        closeLabel={CLOSE_PAGE_LABEL}
+        title={content.blog.title}
+      />
+      <main id="main-content">
+        <BlogEntriesSection articles={content.blog.articles} />
+      </main>
+      <PageFooter
+        footerHtml={content.blog.footerHtml}
+        lastUpdatedLabel={LAST_UPDATED_LABEL}
+        timestampIso={buildTimestamp.iso}
+        timestampDisplay={buildTimestamp.display}
+      />
+    </div>
+    {
+      scriptPaths.map((src) => (
+        <script defer src={src}></script>
+      ))
+    }
+  </body>
+</html>

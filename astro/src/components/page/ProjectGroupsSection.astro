@@ -1,0 +1,25 @@
+---
+import type { ProjectGroup } from "../../lib/work-project-content";
+import HighlightCard from "./HighlightCard.astro";
+
+interface Props {
+  readonly groups: readonly ProjectGroup[];
+}
+
+const { groups } = Astro.props;
+---
+
+{
+  groups.map((group) => (
+    <section>
+      <h2 class="section-title">{group.title}</h2>
+      <div class="highlight-list">
+        {
+          group.items.map((item) => (
+            <HighlightCard card={item} />
+          ))
+        }
+      </div>
+    </section>
+  ))
+}

@@ -1,0 +1,97 @@
+---
+import { THEME_BOOTSTRAP_SCRIPT } from "../../lib/page-labels";
+
+interface AlternateLink {
+  readonly hrefLang: string;
+  readonly href: string;
+}
+
+interface Props {
+  readonly title: string;
+  readonly description: string;
+  readonly keywords: string;
+  readonly author: string;
+  readonly canonicalUrl: string;
+  readonly alternateLinks: readonly AlternateLink[];
+  readonly ogType: "website" | "article";
+  readonly ogLocale: string;
+  readonly ogLocaleAlternates: readonly string[];
+  readonly ogImageUrl: string;
+  readonly ogImageAlt: string;
+  readonly twitterSite: string;
+  readonly schemaGraphJson: string;
+  readonly googleSiteVerification: string;
+  readonly umamiWebsiteId: string;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  author,
+  canonicalUrl,
+  alternateLinks,
+  ogType,
+  ogLocale,
+  ogLocaleAlternates,
+  ogImageUrl,
+  ogImageAlt,
+  twitterSite,
+  schemaGraphJson,
+  googleSiteVerification,
+  umamiWebsiteId,
+} = Astro.props;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <meta name="author" content={author} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonicalUrl} />
+  {
+    alternateLinks.map((link) => (
+      <link rel="alternate" hreflang={link.hrefLang} href={link.href} />
+    ))
+  }
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content={author} />
+  <meta property="og:locale" content={ogLocale} />
+  {
+    ogLocaleAlternates.map((alternateLocale) => (
+      <meta property="og:locale:alternate" content={alternateLocale} />
+    ))
+  }
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={ogImageAlt} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content={twitterSite} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+  <meta name="theme-color" content="#f7f0e1" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <script type="application/ld+json" set:html={schemaGraphJson}></script>
+  <script
+    defer
+    src="https://cloud.umami.is/script.js"
+    data-website-id={umamiWebsiteId}
+  ></script>
+  <script set:html={THEME_BOOTSTRAP_SCRIPT}></script>
+  <link rel="preload" href="assets/css/styles.css" as="style" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+  <link rel="shortcut icon" href="assets/icons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="google-site-verification" content={googleSiteVerification} />
+</head>

@@ -1,0 +1,38 @@
+---
+import type { ContentCard } from "../../lib/work-project-content";
+
+interface Props {
+  readonly card: ContentCard;
+}
+
+const { card } = Astro.props;
+---
+
+<article class="highlight">
+  <h3>
+    {
+      card.href ? (
+        <a href={card.href} target="_blank" rel="noreferrer">{card.title}</a>
+      ) : (
+        card.title
+      )
+    }
+  </h3>
+  {card.meta ? <p class="meta">{card.meta}</p> : null}
+  {
+    card.paragraphs.map((paragraph) => (
+      <p set:html={paragraph}></p>
+    ))
+  }
+  {
+    card.bullets.length > 0 ? (
+      <ul>
+        {
+          card.bullets.map((bullet) => (
+            <li set:html={bullet}></li>
+          ))
+        }
+      </ul>
+    ) : null
+  }
+</article>

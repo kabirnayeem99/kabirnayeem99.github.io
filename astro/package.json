@@ -13,7 +13,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "lint": "eslint \"src/**/*.{ts,tsx,mts,cts}\""
+    "lint": "eslint \"src/**/*.{ts,tsx,mts,cts}\"",
+    "parity:html": "npm run build && node ./scripts/check-html-parity.mjs",
+    "parity:visual": "node ./scripts/visual-regression.mjs",
+    "parity": "npm run parity:html && npm run parity:visual"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
@@ -22,6 +25,10 @@
     "@typescript-eslint/parser": "^8.58.0",
     "astro": "^6.1.4",
     "eslint": "^10.2.0",
+    "parse5": "^8.0.0",
+    "pixelmatch": "^7.1.0",
+    "playwright": "^1.59.1",
+    "pngjs": "^7.0.0",
     "typescript": "^5.9.3"
   }
 }

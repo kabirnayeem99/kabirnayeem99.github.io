@@ -1,0 +1,57 @@
+name: Astro parity checks
+
+on:
+  pull_request:
+    paths:
+      - "astro/**"
+      - "content/**"
+      - "assets/**"
+      - "src/site_renderer/**"
+      - "index.html"
+      - "work.html"
+      - "project.html"
+      - "blog.html"
+      - "stats.html"
+      - "bn/**"
+      - "ar/**"
+      - "ur/**"
+  workflow_dispatch:
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: "astro/package-lock.json"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        working-directory: astro
+        run: npm ci
+
+      - name: Install Playwright browser
+        working-directory: astro
+        run: npx playwright install --with-deps chromium
+
+      - name: Run parity checks
+        working-directory: astro
+        run: npm run parity
+
+      - name: Upload parity artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: astro-parity-artifacts
+          path: |
+            astro/.artifacts
