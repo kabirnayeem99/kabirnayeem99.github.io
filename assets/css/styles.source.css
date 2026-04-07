@@ -297,6 +297,7 @@ header {
   flex-direction: column;
   align-items: flex-start;
   position: relative;
+  z-index: 5;
   padding-bottom: 1rem;
 }
 
@@ -960,10 +961,20 @@ a:focus-visible {
   gap: 0.46rem;
 }
 
+.wakatime-language-topbar {
+  width: 100%;
+  height: 0.46rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--border) 76%, transparent 24%);
+  background: color-mix(in srgb, var(--surface) 84%, transparent 16%);
+  margin-bottom: 0.6rem;
+}
+
 .wakatime-language-chip {
   display: inline-flex;
   align-items: center;
   gap: 0.36rem;
+  min-height: 1.85rem;
   padding: 0.3rem 0.56rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -971,14 +982,15 @@ a:focus-visible {
   color: var(--text-secondary);
   font-size: 0.82rem;
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .wakatime-language-chip-swatch {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  flex-shrink: 0;
+  flex: 0 0 0.5rem;
 }
 
 .wakatime-widget h3 {

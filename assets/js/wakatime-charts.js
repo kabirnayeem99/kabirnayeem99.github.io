@@ -130,6 +130,8 @@
   var summaryEl = /** @type {HTMLElement | null} */ (widget.querySelector('[data-role="summary-cards"]'));
   /** @type {HTMLUListElement | null} */
   var chipsEl = /** @type {HTMLUListElement | null} */ (widget.querySelector('[data-role="language-chips"]'));
+  /** @type {HTMLDivElement | null} */
+  var topBarEl = /** @type {HTMLDivElement | null} */ (widget.querySelector('[data-role="language-topbar"]'));
   var cacheTtlMs = 24 * 60 * 60 * 1000;
   var cacheKey =
     "person-portfolio:wakatime:v1:" +
@@ -495,6 +497,36 @@
   }
 
   /**
+   * @param {LanguageItem[]} languages
+   * @returns {void}
+   */
+  function renderLanguageTopBar(languages) {
+    if (!topBarEl) {
+      return;
+    }
+
+    var segments = languages.slice(0, 8);
+    var total = segments.reduce(function (sum, item) {
+      return sum + item.percent;
+    }, 0);
+    if (total <= 0) {
+      topBarEl.style.background = "transparent";
+      return;
+    }
+
+    var offset = 0;
+    var gradients = segments.map(function (item) {
+      var size = (item.percent / total) * 100;
+      var start = offset;
+      var end = Math.min(100, start + size);
+      offset = end;
+      return item.color + " " + start.toFixed(3) + "% " + end.toFixed(3) + "%";
+    });
+
+    topBarEl.style.background = "linear-gradient(90deg," + gradients.join(",") + ")";
+  }
+
+  /**
    * @param {string} label
    * @param {string} value
    * @returns {HTMLDivElement}
@@ -582,6 +614,7 @@
     }
 
     if (displayMode === "compact") {
+      renderLanguageTopBar(languages);
       renderLanguageChips(languages);
       setStatus("", false);
     } else {

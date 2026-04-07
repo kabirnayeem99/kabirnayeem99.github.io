@@ -413,11 +413,11 @@ def render_email_social_icon() -> str:
     """Render inline SVG icon markup for the email social chip."""
 
     return (
-        '<svg class="social-chip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" '
+        '<svg class="social-chip-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" '
         'xmlns="http://www.w3.org/2000/svg">'
-        '<path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" '
+        '<path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" fill="none" '
         'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>'
-        '<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" '
+        '<rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2" '
         'stroke-linecap="round"></rect></svg>'
     )
 
@@ -854,11 +854,11 @@ def render_index_action(
     if is_mailto:
         label_text = action.label.lstrip("✉").strip()
         icon_markup = (
-            '<svg class="action-chip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" '
+            '<svg class="action-chip-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" '
             'xmlns="http://www.w3.org/2000/svg">'
-            '<path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="currentColor" '
+            '<path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" fill="none" stroke="currentColor" '
             'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>'
-            '<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" '
+            '<rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2" '
             'stroke-linecap="round"></rect></svg>'
         )
 
@@ -916,6 +916,7 @@ def render_compact_wakatime_widget(section: WakaTimeSection) -> tuple[str, ...]:
         ),
         f'            <p class="wakatime-status" data-role="status">{html.escape(section.status_text)}</p>',
         '            <div class="wakatime-visuals" data-role="visuals" hidden>',
+        '              <div class="wakatime-language-topbar" data-role="language-topbar" aria-hidden="true"></div>',
         (
             '              <ul class="wakatime-language-chip-list" data-role="language-chips" '
             f'aria-label="{html.escape(section.aria_label)}"></ul>'

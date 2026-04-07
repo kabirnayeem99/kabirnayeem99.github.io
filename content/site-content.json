@@ -143,8 +143,8 @@
             {
               "title": "Right Now",
               "paragraphs": [
-                "Lately, I've been spending time with Go and getting back into DS & Algo, solving problems on <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> to stay sharp.",
-                "Outside work, reading is pretty much my default source of entertainment. Mostly light novels and thrillers, with occasional detours into philosophy, history, Islamic theology, and politics. I also keep up with tech and current events through blogs and long-form pieces."
+                "Lately, I’ve been working with PHP Laravel on a contract project involving video streaming. Alongside that, I’ve been going deeper into backend work with PostgreSQL, Docker, Go, and PHP, while also picking up QA testing and UI UX basics through courses.",
+                "Outside work, reading is pretty much my single source of entertainment. Mostly light novels and thrillers, with occasional detours into philosophy, history, Islamic theology, and politics. I also keep up with tech and current affairs through blogs and long form writing, spending an unhealthy amount of time on Hacker News."
               ]
             },
             {
@@ -266,8 +266,8 @@
             {
               "title": "বর্তমানে",
               "paragraphs": [
-                "এখন গোল্যাঙ শিখছি। এর বাইরে লিটকোডে একটু সময় দেয়ার চেষ্টা করছি, ডাটা স্ট্রাকচার-অ্যালগরিদম আরেকটু ঝালাই করার জন্যে।",
-                "কাজের বাইরে বিনোদন বলতে আসলে বই পড়া। উপন্যাস, থ্রিলার, ক্রাইম থ্রিলার, মাঝে মাঝে নন-ফিকশন দর্শন, ইতিহাস, ইসলামি বই পত্র পড়ি। নিয়মিত নিউজলেটার আর ব্লগ পড়ার চেষ্টা করি, টেক জগতের হাল-হকিকত সম্পর্কে ওয়াকিবহাল থাকার জন্য।"
+                "ইদানিং আমি লারাভেল নিয়ে কিছু কাজ করছি, একটি চুক্তিভিত্তিক প্রজেক্টে ভিডিও স্ট্রিমিং ফিচার নিয়ে। পাশাপাশি ব্যাকএন্ড ডেভেলপমেন্ট শিখছি নিয়মিত, পোস্টগ্রেসসিকুয়েল, ডকার, গোল্যাং, পিএইচপি, অ্যামাজন এডব্লিউএস ইত্যাদি ইত্যাদি। কিউএ টেস্টিং আর ইউআই-ইউএক্স নিয়ে কোর্সও করছি ইউডেমিতে।",
+                "কাজের বাইরে, বই পড়াই বলতে গেলে আমার বিনোদনের উৎস। বেশিরভাগ সময় কিশোর উপন্যাস, এডভেঞ্চার, থ্রিলার এসব পড়ি, তবে মাঝে মাঝে দর্শন, ইতিহাস, ইসলামী আকীদা, সিয়াসাহ নিয়েও পড়া হয়। প্রযুক্তি ও সমসাময়িক বিষয় নিয়ে নিয়মিত ব্লগ পড়া হয়, বিশেষ করে হ্যাকার নিউজে অনেক বেশী সময় দি।"
               ]
             },
             {
@@ -389,8 +389,8 @@
             {
               "title": "حَالِيًّا",
               "paragraphs": [
-                "أَتَعَلَّمُ حَالِيًّا Go. وَأُحَاوِلُ أَنْ أُخَصِّصَ بَعْضَ ٱلْوَقْتِ لِـ <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> لِمُرَاجَعَةِ هَيَاكِلِ ٱلْبَيَانَاتِ وَٱلْخَوَارِزْمِيَّاتِ.",
-                "خَارِجَ ٱلْعَمَلِ، تَكُونُ ٱلْقِرَاءَةُ هِيَ ٱلْمَصْدَرَ ٱلْأَسَاسِيَّ لِلتَّرْفِيهِ. أَقْرَأُ ٱلرِّوَايَاتِ وَٱلتِّرِيلَر وَٱلجَرَائِمِ، وَمِنْ وَقْتٍ لِآخَر أَقْرَأُ كُتُبًا غَيْرَ رِوَائِيَّةٍ فِي ٱلْفَلْسَفَةِ وَٱلتَّارِيخِ وَٱلْكُتُبِ ٱلْإِسْلَامِيَّةِ. وَأُحَاوِلُ أَيْضًا مُتَابَعَةَ ٱلنَّشَرَاتِ وَٱلْمُدَوَّنَاتِ لِمَعْرِفَةِ آخِرِ مَا يَجْرِي فِي عَالَمِ ٱلتِّقْنِيَّةِ."
+                "فِي الْآوِنَةِ الْأَخِيرَةِ، أَعْمَلُ عَلَى PHP Laravel فِي بَعْضِ الأَعْمَالِ، فِي مَشْرُوعٍ تَعَاقُدِيٍّ يَتَضَمَّنُ video streaming feature. وَبِجَانِبِ ذٰلِكَ، أَتَعَلَّمُ backend development بِشَكْلٍ مُنْتَظِمٍ، مِثْلَ PostgreSQL وَ Docker وَ Go وَ PHP وَ Amazon AWS وَغَيْرِهَا، وَأَدْرُسُ أَيْضًا دُرُوسًا فِي QA testing وَ UI UX عَلَى Udemy.",
+                "خَارِجَ الْعَمَلِ، الْقِرَاءَةُ هِيَ مَصْدَرُ تَرْفِيهِي الْوَحِيدُ. أَقْرَأُ فِي الْغَالِبِ رِوَايَاتٍ لِلْيَافِعِينَ وَ رِوَايَاتٍ مُغَامِرَاتٍ وَ رِوَايَاتٍ مُثِيرَةً، وَأَحْيَانًا أَقْرَأُ فِي الفَلْسَفَةِ وَالتَّارِيخِ وَ العَقِيدَةِ الإِسْلَامِيَّةِ وَ السِّيَاسَةِ. كَمَا أُوَاكِبُ التِّقْنِيَّةَ وَالأَحْدَاثَ الْمُعَاصِرَةَ مِنْ خِلَالِ الْمُدَوَّنَاتِ، وَأَقْضِي وَقْتًا غَيْرَ صِحِّيٍّ كَثِيرًا عَلَى Hacker News."
               ]
             },
             {
@@ -512,8 +512,8 @@
             {
               "title": "فی الحال",
               "paragraphs": [
-                "اس وقت میں Go سیکھ رہا ہوں۔ ساتھ ہی کوشش کرتا ہوں کہ کچھ وقت <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> پر دوں، تاکہ ڈیٹا اسٹرکچر اور الگورتھمز کو دوبارہ مضبوط کر سکوں۔",
-                "کام کے باہر، تفریح کے لیے زیادہ تر پڑھنا ہی ہوتا ہے۔ ناول، تھرلر اور کرائم کہانیاں پڑھتا ہوں، اور کبھی کبھار فلسفہ، تاریخ اور اسلامی کتب بھی۔ ساتھ ہی ٹیک کی دنیا میں کیا چل رہا ہے یہ جاننے کے لیے نیوزلیٹرز اور بلاگز بھی دیکھتا رہتا ہوں۔"
+                "حالیہ دنوں میں، میں PHP Laravel پر کچھ کام کر رہا ہوں، ایک کنٹریکچول پروجیکٹ میں جس میں video streaming فیچر شامل ہے۔ اس کے ساتھ ساتھ، میں backend development باقاعدگی سے سیکھ رہا ہوں، جیسے PostgreSQL، Docker، Go، PHP، اور Amazon AWS وغیرہ۔ ساتھ ہی QA testing اور UI UX کے کورسز بھی Udemy پر کر رہا ہوں۔",
+                "کام کے علاوہ، پڑھنا ہی میری واحد تفریح ہے۔ زیادہ تر کِشور ناول، ایڈونچر، اور سنسنی خیز ناول پڑھتا ہوں، تاہم کبھی کبھار philosophy، history، اسلامی عقیدہ، اور سیاست پر بھی پڑھتا ہوں۔ tech اور current affairs کے لیے باقاعدگی سے blogs پڑھتا ہوں، خاص طور پر Hacker News پر کافی غیر صحت مند وقت گزارتا ہوں۔"
               ]
             },
             {
