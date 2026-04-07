@@ -4,199 +4,199 @@
     "en": {
       "meta": {
         "title": "Blog · Naimul Kabir",
-        "description": "Static blog entries and notes by Naimul Kabir.",
+        "description": "Blogs, notes, and tutorials by Naimul Kabir.",
         "keywords": "Naimul Kabir blog, software engineering articles, mobile development notes"
       },
       "header": {
         "site_title": "Blog",
-        "tagline": "Some of blogs, tutorials, guides, personal experiences & renting..."
+        "tagline": "Blogs, tutorials, guides, personal experiences, and some random notes."
       },
       "articles": [
         {
           "title": "If I Had to Restart My Career as a Mobile Dev",
           "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
           "meta": "Medium · career",
-          "summary": "Some of mistakes I made early in my career as a mobile dev, and some honest suggestions and guidelines for jr. mobile devs or software devs in general."
+          "summary": "Some mistakes I made early in my career, and a few humble words for juniors or newcomers who want to build a career here."
         },
         {
           "title": "Ktor2Curl: convert Ktor requests into curl logs",
           "href": "https://kabirnayeem99.medium.com/ktor2curl-convert-ktor-requests-into-curl-log-3e573d427485",
           "meta": "Medium · tooling",
-          "summary": "A tutorial on the Ktor2Curl, a equivalent of Ok2Curl, but for Ktor and Kotlin Multiplatform, written by me.."
+          "summary": "A tutorial on Ktor2Curl. It works a lot like Ok2Curl, but is built for Ktor and Kotlin Multiplatform."
         },
         {
           "title": "Setup Windows for Android development",
           "href": "https://kabirnayeem99.medium.com/setup-windows-for-android-development-9d27e1a9d9a4",
           "meta": "Medium · environment",
-          "summary": "A guide to make Windows Installation a proper Android Development Work station."
+          "summary": "A guide on setting up a Windows PC properly for Android development."
         },
         {
           "title": "Make Arch look like Ubuntu",
           "href": "https://kabirnayeem99.medium.com/make-arch-look-like-ubuntu-f5b88caf761f",
           "meta": "Medium · desktop tweaks",
-          "summary": "Guide on using themse and fonts to make default Arch+GNOME install look closer to Ubuntu."
+          "summary": "Some notes on changing themes and fonts to give GNOME + Arch a more Ubuntu-like look."
         },
         {
           "title": "Manjaro to Arch conversation",
           "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
           "meta": "Medium · distro hopping",
-          "summary": "Hacky Guide on turning a Manjaro installation into an Arch Install. May not work, after so many years, as both platforms has changed largely after writing this blog."
+          "summary": "A tutorial on using a few tricks to turn Manjaro into Arch. It probably does not work anymore. Written in 2019. My most-read blog."
         },
         {
           "title": "Keep calm, switch back to Windows",
           "href": "https://kabirnayeem99.medium.com/keep-calm-switch-back-to-windows-11f5f636f870",
           "meta": "Medium · productivity",
-          "summary": "I don't know why even I have written this!!! Rationalising my switching back to windows from FOSS OS."
+          "summary": "A pretty pointless piece, honestly. It fits better as a bit of personal diary writing."
         }
       ],
-      "footer_html": "Send edits or typos my way."
+      "footer_html": "If you want to leave a comment, you can do that on Medium. Or email me."
     },
     "bn": {
       "meta": {
         "title": "ব্লগ · নাঈমুল কবির",
-        "description": "নাঈমুল কবিরের ব্লগ, নোটস এবং টিউটোরিয়াল।",
-        "keywords": "নাঈমুল কবির ব্লগ, সফটওয়্যার ইঞ্জিনিয়ারিং, মোবাইল ডেভেলপমেন্ট"
+        "description": "নাঈমুল কবিরের ব্লগ, নোটস ও টিউটোরিয়াল।",
+        "keywords": "নাঈমুল কবির ব্লগ, সফটওয়্যার ইঞ্জিনিয়ারিং, মোবাইল ডেভেলপমেন্ট"
       },
       "header": {
         "site_title": "ব্লগ",
-        "tagline": "ব্লগ, টিউটোরিয়াল, গাইড, ব্যক্তিগত অভিজ্ঞতা এবং কিছু এলোমেলো নোটস।"
+        "tagline": "ব্লগ, টিউটোরিয়াল, গাইড, ব্যক্তিগত অভিজ্ঞতা এবং কিছু এলোমেলো নোটস।"
       },
       "articles": [
         {
           "title": "If I Had to Restart My Career as a Mobile Dev",
           "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
-          "meta": "মিডিয়াম · ক্যারিয়ার",
-          "summary": "মোবাইল ডেভ ক্যারিয়ারের শুরুর ভুলগুলো থেকে শেখা কিছু বিষয়, আর জুনিয়র মোবাইল ডেভেলপার বা সাধারণ সফটওয়্যার ডেভেলপারদের জন্য কিছু সরাসরি পরামর্শ।"
+          "meta": "মিডিয়াম · ক্যারিয়ার",
+          "summary": "আমার ক্যারিয়ারের শুরুর দিকে করা আমার কিছু ভুল, আর জুনিয়র বা নতুন যারা এখানে ক্যারিয়ার করতে চান, তাদের প্রতি এ অধমের সামান্য কিছু কথা।"
         },
         {
           "title": "Ktor2Curl: convert Ktor requests into curl logs",
           "href": "https://kabirnayeem99.medium.com/ktor2curl-convert-ktor-requests-into-curl-log-3e573d427485",
-          "meta": "মিডিয়াম · টুলিং",
-          "summary": "Ktor2Curl নিয়ে একটি টিউটোরিয়াল, যেটা Ok2Curl-এর মতো কাজ করে, তবে Ktor এবং Kotlin Multiplatform-এর জন্য।"
+          "meta": "মিডিয়াম · টুলিং",
+          "summary": "Ktor2Curl এর টিউটোরিয়াল। এটা অনেকটা Ok2Curl-এর মতো কাজ করে, তবে এটা বানানো হয়েছে Ktor এবং Kotlin Multiplatform-এর জন্য।"
         },
         {
           "title": "Setup Windows for Android development",
           "href": "https://kabirnayeem99.medium.com/setup-windows-for-android-development-9d27e1a9d9a4",
-          "meta": "মিডিয়াম · এনভায়রনমেন্ট",
-          "summary": "Windows ইনস্টলেশনকে Android ডেভেলপমেন্টের জন্য একটি ঠিকঠাক ওয়ার্কস্টেশনে রূপান্তরের গাইড।"
+          "meta": "মিডিয়াম · এনভায়রনমেন্ট",
+          "summary": "উইন্ডোজ পিসিতে অ্যান্ড্রয়েড ডেভেলপমেন্টের জন্য সবকিছু সেটআপ করা নিয়ে একটা গাইড।"
         },
         {
           "title": "Make Arch look like Ubuntu",
           "href": "https://kabirnayeem99.medium.com/make-arch-look-like-ubuntu-f5b88caf761f",
-          "meta": "মিডিয়াম · ডেস্কটপ টুইকস",
-          "summary": "থিম আর ফন্ট ব্যবহার করে ডিফল্ট Arch+GNOME সেটআপকে Ubuntu-র কাছাকাছি দেখানোর একটি গাইড।"
+          "meta": "মিডিয়াম · ডেস্কটপ টুইকস",
+          "summary": "থিম আর ফন্ট চেঞ্জ করে গ্নোম+আর্চকে কীভাবে একটা উবুন্টু লুক দেয়া যায়, সেটা নিয়ে কিছু আলাপ।"
         },
         {
           "title": "Manjaro to Arch conversation",
           "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
-          "meta": "মিডিয়াম · ডিস্ট্রো হপিং",
-          "summary": "Manjaro ইনস্টলেশনকে Arch-এ রূপান্তরের একটি হ্যাকি গাইড। অনেক বছর হয়ে গেছে, তাই এখন সব ধাপে কাজ নাও করতে পারে।"
+          "meta": "মিডিয়াম · ডিস্ট্রো হপিং",
+          "summary": "কিছু ট্রিক্স খাটিয়ে মানজারোকে আর্চ বানানো যায়। সে ট্রিক্সগুলা নিয়ে এ টিউটোরিয়াল। এখন সম্ভবত আর কাজ করে না। ২০১৯ এ লেখা। আমার সবচেয়ে বেশী পড়া ব্লগ।"
         },
         {
           "title": "Keep calm, switch back to Windows",
           "href": "https://kabirnayeem99.medium.com/keep-calm-switch-back-to-windows-11f5f636f870",
-          "meta": "মিডিয়াম · প্রোডাক্টিভিটি",
-          "summary": "কেন এটা লিখেছি জানি না! FOSS OS থেকে Windows-এ ফিরে যাওয়ার সিদ্ধান্তকে যুক্তি দিয়ে বোঝানোর চেষ্টা।"
+          "meta": "মিডিয়াম · প্রোডাক্টিভিটি",
+          "summary": "একদম বেহুদা একটা লেখা। বলা যায় কিছু ব্যক্তিগত দিনলীপি হিশেবে মানায় এটা।"
         }
       ],
-      "footer_html": "ভুল দেখলে জানাবেন।"
+      "footer_html": "কোন কমেন্ট করতে হলে মিডিয়ামে করতে পারেন। বা আমাকে ইমেইলেও জানাতে পারেন।"
     },
     "ar": {
       "meta": {
-        "title": "المدونة · نعيمول كبير",
-        "description": "مدوّنة نعيمول كبير: مقالات وملاحظات ودروس عملية.",
-        "keywords": "مدونة نعيمول كبير، هندسة البرمجيات، تطوير الجوال"
+        "title": "ٱلْمُدَوَّنَةُ · نَعِيمُ ٱلْكَبِيرِ",
+        "description": "مُدَوَّنَةُ نَعِيمِ ٱلْكَبِيرِ: مَقَالَاتٌ وَمُلَاحَظَاتٌ وَدُرُوسٌ عَمَلِيَّةٌ.",
+        "keywords": "مُدَوَّنَةُ نَعِيمِ ٱلْكَبِيرِ، هِنْدَسَةُ ٱلْبَرْمَجِيَّاتِ، تَطْوِيرُ ٱلْجَوَّالِ"
       },
       "header": {
-        "site_title": "المدونة",
-        "tagline": "مقالات، أدلة، تجارب شخصية، وملاحظات متفرقة."
+        "site_title": "ٱلْمُدَوَّنَةُ",
+        "tagline": "مَقَالَاتٌ، دَلَائِلُ، تَجَارِبُ شَخْصِيَّةٌ، وَبَعْضُ مُلَاحَظَاتٍ مُتَفَرِّقَةٍ."
       },
       "articles": [
         {
           "title": "If I Had to Restart My Career as a Mobile Dev",
           "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
-          "meta": "ميديوم · مسار مهني",
-          "summary": "بعض الأخطاء التي ارتكبتها في بداياتي كمطوّر جوّال، مع ملاحظات صريحة ونصائح عملية للمطوّرين المبتدئين."
+          "meta": "مِيدِيُوم · مِهْنَةٌ",
+          "summary": "بَعْضُ ٱلْأَخْطَاءِ فِي بَدَايَاتِي كَمُطَوِّرِ جَوَّالٍ، وَبَعْضُ ٱلْمُلَاحَظَاتِ ٱلصَّرِيحَةِ لِلْمُبْتَدِئِينَ."
         },
         {
           "title": "Ktor2Curl: convert Ktor requests into curl logs",
           "href": "https://kabirnayeem99.medium.com/ktor2curl-convert-ktor-requests-into-curl-log-3e573d427485",
-          "meta": "ميديوم · أدوات",
-          "summary": "دليل عملي حول Ktor2Curl، وهو بديل مشابه لـ Ok2Curl لكنه موجّه لـ Ktor وKotlin Multiplatform."
+          "meta": "مِيدِيُوم · أَدَوَاتٌ",
+          "summary": "دَلِيلٌ سَرِيعٌ لِـ Ktor2Curl، وَهُوَ شَبِيهٌ بِـ Ok2Curl وَلَكِنْ لِـ Ktor وَ Kotlin Multiplatform."
         },
         {
           "title": "Setup Windows for Android development",
           "href": "https://kabirnayeem99.medium.com/setup-windows-for-android-development-9d27e1a9d9a4",
-          "meta": "ميديوم · بيئة العمل",
-          "summary": "دليل لتحويل تثبيت Windows إلى بيئة عمل مناسبة لتطوير تطبيقات Android."
+          "meta": "مِيدِيُوم · بِيئَةٌ",
+          "summary": "كَيْفَ تُجَهِّزُ Windows لِيَكُونَ بِيئَةً مُنَاسِبَةً لِتَطْوِيرِ Android."
         },
         {
           "title": "Make Arch look like Ubuntu",
           "href": "https://kabirnayeem99.medium.com/make-arch-look-like-ubuntu-f5b88caf761f",
-          "meta": "ميديوم · تحسينات سطح المكتب",
-          "summary": "شرح لاستخدام الثيمات والخطوط لجعل إعداد Arch+GNOME الافتراضي أقرب في الشكل إلى Ubuntu."
+          "meta": "مِيدِيُوم · تَحْسِينَاتٌ",
+          "summary": "تَعْدِيلُ ٱلثِّيمَاتِ وَٱلْخُطُوطِ لِجَعْلِ Arch + GNOME أَقْرَبَ إِلَى Ubuntu."
         },
         {
           "title": "Manjaro to Arch conversation",
           "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
-          "meta": "ميديوم · التنقل بين التوزيعات",
-          "summary": "دليل تجريبي لتحويل تثبيت Manjaro إلى Arch. قد لا تعمل كل الخطوات الآن بعد تغيّر النظامين مع الوقت."
+          "meta": "مِيدِيُوم · تَنْقُّلٌ",
+          "summary": "طَرِيقَةٌ تَجْرِيبِيَّةٌ لِتَحْوِيلِ Manjaro إِلَى Arch. رُبَّمَا لَمْ تَعُدْ تَعْمَلُ ٱلْآنَ."
         },
         {
           "title": "Keep calm, switch back to Windows",
           "href": "https://kabirnayeem99.medium.com/keep-calm-switch-back-to-windows-11f5f636f870",
-          "meta": "ميديوم · الإنتاجية",
-          "summary": "لا أعرف لماذا كتبت هذا أصلًا! محاولة لتبرير عودتي إلى Windows بعد فترة على أنظمة FOSS."
+          "meta": "مِيدِيُوم · إِنْتَاجِيَّةٌ",
+          "summary": "لَا أَعْرِفُ لِمَاذَا كَتَبْتُ هَذَا! بَعْضُ ٱلْأَفْكَارِ عَنْ ٱلْعَوْدَةِ إِلَى Windows."
         }
       ],
-      "footer_html": "أخبرني إذا وجدت خطأً أو ملاحظة."
+      "footer_html": "أَخْبِرْنِي إِذَا وُجِدَ خَطَأٌ أَوْ مُلَاحَظَةٌ."
     },
     "ur": {
       "meta": {
         "title": "بلاگ · نعیم الکبیر",
-        "description": "نعیم الکبیر کے بلاگز، نوٹس اور عملی گائیڈز۔",
+        "description": "نعیم الکبیر کے بلاگز، نوٹس اور گائیڈز۔",
         "keywords": "نعیم الکبیر بلاگ، سافٹ ویئر انجینئرنگ، موبائل ڈویلپمنٹ"
       },
       "header": {
         "site_title": "بلاگ",
-        "tagline": "بلاگز، ٹیوٹوریلز، گائیڈز، ذاتی تجربات اور کچھ نوٹس۔"
+        "tagline": "بلاگز، ٹیوٹوریلز، گائیڈز، ذاتی تجربات اور کچھ بے ترتیب نوٹس۔"
       },
       "articles": [
         {
           "title": "If I Had to Restart My Career as a Mobile Dev",
           "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
           "meta": "میڈیم · کیریئر",
-          "summary": "موبائل ڈویلپمنٹ کیریئر کے آغاز میں کی گئی غلطیوں سے سیکھے گئے نکات، اور جونیئر موبائل یا سافٹ ویئر ڈویلپرز کے لیے چند واضح مشورے۔"
+          "summary": "ابتدائی کیریئر میں کی گئی غلطیاں، اور نئے ڈویلپرز کے لیے چند سیدھی باتیں۔"
         },
         {
           "title": "Ktor2Curl: convert Ktor requests into curl logs",
           "href": "https://kabirnayeem99.medium.com/ktor2curl-convert-ktor-requests-into-curl-log-3e573d427485",
           "meta": "میڈیم · ٹولنگ",
-          "summary": "Ktor2Curl پر ایک ٹیوٹوریل، جو Ok2Curl جیسا متبادل ہے مگر Ktor اور Kotlin Multiplatform کے لیے۔"
+          "summary": "Ktor2Curl پر ایک مختصر گائیڈ، جو Ok2Curl جیسا ہے مگر Ktor اور Kotlin Multiplatform کے لیے۔"
         },
         {
           "title": "Setup Windows for Android development",
           "href": "https://kabirnayeem99.medium.com/setup-windows-for-android-development-9d27e1a9d9a4",
           "meta": "میڈیم · ماحول",
-          "summary": "Windows انسٹالیشن کو Android ڈویلپمنٹ کے لیے ایک مناسب ورک اسٹیشن بنانے کی رہنمائی۔"
+          "summary": "Windows کو Android ڈویلپمنٹ کے لیے ٹھیک طرح سیٹ اپ کرنے کی گائیڈ۔"
         },
         {
           "title": "Make Arch look like Ubuntu",
           "href": "https://kabirnayeem99.medium.com/make-arch-look-like-ubuntu-f5b88caf761f",
           "meta": "میڈیم · ڈیسک ٹاپ ٹویکس",
-          "summary": "تھیمز اور فونٹس کی مدد سے ڈیفالٹ Arch+GNOME انسٹالیشن کو Ubuntu کے قریب دکھانے کی گائیڈ۔"
+          "summary": "تھیمز اور فونٹس کے ذریعے Arch + GNOME کو Ubuntu جیسا بنانے کا طریقہ۔"
         },
         {
           "title": "Manjaro to Arch conversation",
           "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
           "meta": "میڈیم · ڈسٹریبو ہاپنگ",
-          "summary": "Manjaro انسٹالیشن کو Arch میں تبدیل کرنے کی ایک ہیکّی گائیڈ۔ وقت گزرنے کے ساتھ تبدیلیوں کی وجہ سے اب سب مراحل لازماً کام نہ کریں۔"
+          "summary": "Manjaro کو Arch میں بدلنے کا ایک ہیکّی طریقہ۔ اب شاید کام نہ کرے۔"
         },
         {
           "title": "Keep calm, switch back to Windows",
           "href": "https://kabirnayeem99.medium.com/keep-calm-switch-back-to-windows-11f5f636f870",
           "meta": "میڈیم · پروڈکٹیوٹی",
-          "summary": "مجھے نہیں معلوم میں نے یہ کیوں لکھا! FOSS OS سے Windows پر واپس آنے کے فیصلے کو سمجھانے کی کوشش۔"
+          "summary": "پتہ نہیں کیوں لکھا۔ بس Windows پر واپس آنے کے بارے میں کچھ خیالات۔"
         }
       ],
       "footer_html": "اگر کوئی غلطی ہو تو ضرور بتائیں۔"
