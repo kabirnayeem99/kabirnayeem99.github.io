@@ -174,7 +174,7 @@
               ],
               "actions": [
                 {
-                  "label": "View all work",
+                  "label": "Experiences",
                   "page_id": "work",
                   "variant": "secondary"
                 },
@@ -186,7 +186,7 @@
               ]
             },
             {
-              "title": "Writing & notes",
+              "title": "Blogs",
               "paragraphs": [
                 "Occasional posts on mobile development, Linux, career lessons, and things worth documenting."
               ],
@@ -204,7 +204,7 @@
               ],
               "actions": [
                 {
-                  "label": "View all writing",
+                  "label": "View all blogs",
                   "page_id": "blog",
                   "variant": "secondary"
                 }
@@ -1440,7 +1440,7 @@
               "image_alt": "roadmap.sh"
             },
             "goodreads": {
-              "title": "Goodreads Last Read Books",
+              "title": "Last Read Books",
               "copy": "Some of the books I've read recently.",
               "widget_id": "1771265103",
               "user_id": "45514357",

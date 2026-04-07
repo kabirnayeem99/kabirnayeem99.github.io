@@ -119,6 +119,7 @@
 
   var languagesUrl = widget.getAttribute("data-wakatime-languages-url");
   var summaryUrl = widget.getAttribute("data-wakatime-summary-url");
+  var displayMode = widget.getAttribute("data-wakatime-display") === "compact" ? "compact" : "full";
   /** @type {HTMLElement | null} */
   var statusEl = /** @type {HTMLElement | null} */ (widget.querySelector('[data-role="status"]'));
   /** @type {HTMLElement | null} */
@@ -127,6 +128,8 @@
   var barsEl = /** @type {HTMLOListElement | null} */ (widget.querySelector('[data-role="language-bars"]'));
   /** @type {HTMLElement | null} */
   var summaryEl = /** @type {HTMLElement | null} */ (widget.querySelector('[data-role="summary-cards"]'));
+  /** @type {HTMLUListElement | null} */
+  var chipsEl = /** @type {HTMLUListElement | null} */ (widget.querySelector('[data-role="language-chips"]'));
   var cacheTtlMs = 24 * 60 * 60 * 1000;
   var cacheKey =
     "person-portfolio:wakatime:v1:" +
@@ -220,6 +223,7 @@
 
     statusEl.textContent = message;
     statusEl.classList.toggle("is-error", Boolean(isError));
+    statusEl.hidden = message.length === 0;
   }
 
   /**
@@ -463,6 +467,34 @@
   }
 
   /**
+   * @param {LanguageItem[]} languages
+   * @returns {void}
+   */
+  function renderLanguageChips(languages) {
+    if (!chipsEl) {
+      return;
+    }
+    var safeChipsEl = /** @type {HTMLUListElement} */ (chipsEl);
+
+    safeChipsEl.innerHTML = "";
+    languages.slice(0, 14).forEach(function (item) {
+      var chip = document.createElement("li");
+      chip.className = "wakatime-language-chip";
+
+      var swatch = document.createElement("span");
+      swatch.className = "wakatime-language-chip-swatch";
+      swatch.style.backgroundColor = item.color;
+
+      var name = document.createElement("span");
+      name.textContent = item.name;
+
+      chip.appendChild(swatch);
+      chip.appendChild(name);
+      safeChipsEl.appendChild(chip);
+    });
+  }
+
+  /**
    * @param {string} label
    * @param {string} value
    * @returns {HTMLDivElement}
@@ -549,14 +581,18 @@
       throw new Error("No language data available");
     }
 
-    renderLanguageCharts(languages, summaryPayload);
-    renderSummary(summaryPayload);
+    if (displayMode === "compact") {
+      renderLanguageChips(languages);
+      setStatus("", false);
+    } else {
+      renderLanguageCharts(languages, summaryPayload);
+      renderSummary(summaryPayload);
+      setStatus(statusMessage, false);
+    }
 
     if (visualsEl) {
       visualsEl.hidden = false;
     }
-
-    setStatus(statusMessage, false);
   }
 
   /**

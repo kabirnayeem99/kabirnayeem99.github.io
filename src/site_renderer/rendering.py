@@ -409,8 +409,30 @@ def render_social_icon(platform: str) -> str:
     )
 
 
-def render_social_chips(site: SiteSettings) -> str:
-    """Render bordered social chips with icon + label using site social profile URLs."""
+def render_email_social_icon() -> str:
+    """Render inline SVG icon markup for the email social chip."""
+
+    return (
+        '<svg class="social-chip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" '
+        'xmlns="http://www.w3.org/2000/svg">'
+        '<path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" '
+        'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>'
+        '<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" '
+        'stroke-linecap="round"></rect></svg>'
+    )
+
+
+def index_email_action(page: IndexPageLocale) -> IndexAction | None:
+    """Return the first mailto action configured for homepage quick actions."""
+
+    for action in page.top_actions:
+        if action.href is not None and action.href.startswith("mailto:"):
+            return action
+    return None
+
+
+def render_social_chips(site: SiteSettings, email_action: IndexAction | None = None) -> str:
+    """Render bordered chips with icon + label for email and social profile URLs."""
 
     labels_by_platform: dict[str, str] = {
         "github": "GitHub",
@@ -419,6 +441,16 @@ def render_social_chips(site: SiteSettings) -> str:
         "medium": "Medium",
     }
     lines = ['      <div class="social-chip-row" aria-label="Social links">']
+    if email_action is not None and email_action.href is not None:
+        email_label = email_action.label.lstrip("✉").strip()
+        lines.append(
+            (
+                f'        <a class="social-chip" href="{html.escape(email_action.href)}" '
+                f'aria-label="{html.escape(email_label)}">'
+                f"{render_email_social_icon()}"
+                f'<span>{html.escape(email_label)}</span></a>'
+            )
+        )
     for url in site.social_profiles:
         platform = social_platform_for_url(url)
         if platform is None:
@@ -824,10 +856,10 @@ def render_index_action(
         icon_markup = (
             '<svg class="action-chip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" '
             'xmlns="http://www.w3.org/2000/svg">'
-            '<path d="M12 21V18M7 12H10M17.5 6H7.8C6.11984 6 5.27976 6 4.63803 6.32698C4.07354 6.6146 '
-            '3.6146 7.07354 3.32698 7.63803C3 8.27976 3 9.11984 3 10.8V18H14M17.5 6C19.433 6 21 7.567 '
-            '21 9.5V18H14M17.5 6C15.567 6 14 7.567 14 9.5V18M15 3H12V6" stroke="currentColor" '
-            'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>'
+            '<path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="currentColor" '
+            'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>'
+            '<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" '
+            'stroke-linecap="round"></rect></svg>'
         )
 
     return (
@@ -873,6 +905,26 @@ def render_wakatime_widget(section: WakaTimeSection) -> tuple[str, ...]:
     )
 
 
+def render_compact_wakatime_widget(section: WakaTimeSection) -> tuple[str, ...]:
+    """Render compact WakaTime language chips for the homepage."""
+
+    return (
+        (
+            '          <div class="wakatime-widget" data-wakatime-widget data-wakatime-display="compact" '
+            f'data-wakatime-languages-url="{html.escape(section.languages_url)}" '
+            f'data-wakatime-summary-url="{html.escape(section.summary_url)}">'
+        ),
+        f'            <p class="wakatime-status" data-role="status">{html.escape(section.status_text)}</p>',
+        '            <div class="wakatime-visuals" data-role="visuals" hidden>',
+        (
+            '              <ul class="wakatime-language-chip-list" data-role="language-chips" '
+            f'aria-label="{html.escape(section.aria_label)}"></ul>'
+        ),
+        "            </div>",
+        "          </div>",
+    )
+
+
 def render_goodreads_widget(section: GoodreadsSection) -> tuple[str, ...]:
     """Render the Goodreads widget shell shared by index and stats pages."""
 
@@ -892,16 +944,22 @@ def render_index_stats_sections(
     """Render compact stats sections on the homepage."""
 
     view_all_stats_action = render_index_view_all_stats_action(routes, lang, current_output)
+    home_wakatime_titles: Mapping[Lang, str] = {
+        "en": "Skills & Languages",
+        "bn": "স্কিলস ও ভাষা",
+        "ar": "المهارات واللغات",
+        "ur": "مہارتیں اور زبانیں",
+    }
     lines = [
         "      <section>",
         '        <div class="summary-card stats-card">',
         '          <div class="section-head">',
-        f"            <h2 class=\"section-title\">{html.escape(stats.sections.wakatime.title)}</h2>",
+        f"            <h2 class=\"section-title\">{html.escape(home_wakatime_titles[lang])}</h2>",
         '            <div class="section-actions">',
         f"              {view_all_stats_action}",
         "            </div>",
         "          </div>",
-        *render_wakatime_widget(stats.sections.wakatime),
+        *render_compact_wakatime_widget(stats.sections.wakatime),
         "        </div>",
         "      </section>",
         "      <section>",
@@ -930,7 +988,7 @@ def render_index_main(
 
     lines = ['    <main id="main-content">']
 
-    lines.extend(("      <section>", '        <div class="summary-card">'))
+    lines.extend(("      <section class=\"about-section\">", '        <div class="summary-card summary-card--about">'))
     for paragraph in page.summary_card:
         lines.append(f"          <p>{paragraph}</p>")
     lines.extend(("        </div>", "      </section>"))
@@ -968,13 +1026,6 @@ def render_index_main(
         for contact in section.contacts:
             lines.append(f"        <p>{contact}</p>")
         lines.append("      </section>")
-        if index == 0 and page.top_actions:
-            lines.append('      <section class="inline-cta-section">')
-            lines.append('        <div class="section-actions section-actions--inline">')
-            for action in page.top_actions:
-                lines.append(render_index_action(action, routes, lang, current_output))
-            lines.append("        </div>")
-            lines.append("      </section>")
     lines.extend(render_index_stats_sections(stats, routes, lang, current_output))
     lines.append("    </main>")
     return "\n".join(lines)
@@ -1023,12 +1074,10 @@ def render_blog_main(page: BlogPageLocale) -> str:
     """Render blog page main content."""
 
     lines = ['    <main id="main-content">', "      <section>"]
-    for index, article in enumerate(page.articles):
-        if index > 0:
-            lines.append("        <hr />")
+    for article in page.articles:
         lines.extend(
             (
-                "        <article>",
+                '        <article class="blog-entry">',
                 '          <h2 class="section-title">',
                 (
                     f'            <a href="{html.escape(article.href)}" target="_blank" rel="noreferrer" '
@@ -1126,7 +1175,6 @@ def render_stats_main(page: StatsPageLocale) -> str:
             '        <div class="summary-card stats-card">',
             f"          <h2 class=\"section-title\">{html.escape(stats.learning_path.title)}</h2>",
             f"          <p>{stats.learning_path.copy}</p>",
-            "          <br />",
             (
                 f'          <a href="{html.escape(roadmap_light_href)}" '
                 f'data-theme-light-href="{html.escape(roadmap_light_href)}" '
@@ -1258,6 +1306,19 @@ def render_header_identity(header: HeaderText, current_output: str) -> str:
     )
 
 
+def render_page_heading(header: HeaderText) -> str:
+    """Render compact non-home heading without avatar or social links."""
+
+    return "\n".join(
+        (
+            '      <div class="page-heading">',
+            f"        <h1 class=\"site-title site-title--page\">{html.escape(header.site_title)}</h1>",
+            f"        <p class=\"tagline\">{html.escape(header.tagline)}</p>",
+            "      </div>",
+        )
+    )
+
+
 def render_skip_link(lang: Lang) -> str:
     """Render an accessible skip link for keyboard users."""
 
@@ -1291,8 +1352,12 @@ def render_page(
         '  <div class="site">',
         '    <header id="top">',
         render_header_controls(content.site, content.routes, page_id, lang, route),
-        render_header_identity(header, route),
-        render_social_chips(content.site),
+        render_header_identity(header, route) if page_id == "index" else render_page_heading(header),
+        (
+            render_social_chips(content.site, index_email_action(content.index_page.locales[lang]))
+            if page_id == "index"
+            else ""
+        ),
         render_nav(content, page_id, lang, route) if page_id != "index" else "",
         "    </header>",
         render_main_for_page(content, page_id, lang, route),
