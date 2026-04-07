@@ -55,6 +55,7 @@ interface LearningPathSection {
 interface GoodreadsSection {
   readonly title: string;
   readonly copy: string;
+  readonly statusText: string;
   readonly widgetId: string;
   readonly userId: string;
   readonly userName: string;
@@ -263,6 +264,11 @@ export function loadStatsPageContent(lang: Lang): StatsPageContent {
       goodreads: {
         title: readString(goodreads, "title", `root.pages.stats.locales.${lang}.sections.goodreads`),
         copy: readString(goodreads, "copy", `root.pages.stats.locales.${lang}.sections.goodreads`),
+        statusText: readString(
+          goodreads,
+          "status_text",
+          `root.pages.stats.locales.${lang}.sections.goodreads`,
+        ),
         widgetId: readString(
           goodreads,
           "widget_id",

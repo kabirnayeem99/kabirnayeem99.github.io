@@ -215,11 +215,11 @@ const ogLocaleAlternates = buildOgLocaleAlternates(lang);
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.goodreads.title}</h2>
             <p>{content.sections.goodreads.copy}</p>
-            <p class="goodreads-status" data-goodreads-status>Loading Goodreads books…</p>
+            <p class="goodreads-status" data-goodreads-status>{content.sections.goodreads.statusText}</p>
             <div class="goodreads-widget" id={`gr_grid_widget_${content.sections.goodreads.widgetId}`}></div>
             <p class="goodreads-profile-link">
               <a href={content.sections.goodreads.profileHref} target="_blank" rel="noreferrer"
-                >View full Goodreads shelf</a
+                >{content.sections.goodreads.profileLabel}</a
               >
             </p>
           </div>

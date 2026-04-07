@@ -28,9 +28,9 @@ import {
 } from "../../lib/page-shared";
 import {
   SOCIAL_CHIP_ICON_CLASS_BY_NAME,
-  SOCIAL_CHIP_LABEL_BY_PLATFORM,
   type SocialChipIconName,
   resolveSocialPlatformFromHref,
+  socialChipLabelForPlatform,
 } from "../../lib/social-chip-icons";
 import { buildSchemaGraphJson } from "../../lib/seo";
 import {
@@ -181,10 +181,11 @@ function toSocialChip(action: IndexAction): SocialChip {
 const topSocialChips = content.topActions.map((action) => toSocialChip(action));
 const profileSocialChips = content.site.socialProfiles.map((href) => {
   const platform = resolveSocialPlatformFromHref(href);
+  const label = socialChipLabelForPlatform(platform, lang);
   return {
     href,
-    ariaLabel: SOCIAL_CHIP_LABEL_BY_PLATFORM[platform],
-    text: SOCIAL_CHIP_LABEL_BY_PLATFORM[platform],
+    ariaLabel: label,
+    text: label,
     iconName: platform,
     isExternal: true,
   } as const;
@@ -226,6 +227,13 @@ const goodreadsLoadingByLang = {
   bn: "গুডরিডস বই লোড হচ্ছে…",
   ar: "جارٍ تحميل كتب Goodreads…",
   ur: "Goodreads کی کتابیں لوڈ ہو رہی ہیں…",
+} as const;
+
+const socialRowLabelByLang = {
+  en: "Social links",
+  bn: "সামাজিক লিংকসমূহ",
+  ar: "روابط التواصل الاجتماعي",
+  ur: "سوشل روابط",
 } as const;
 ---
 
@@ -333,7 +341,7 @@ const goodreadsLoadingByLang = {
           </div>
         </div>
 
-        <div class="social-chip-row" aria-label="Social links">
+        <div class="social-chip-row" aria-label={socialRowLabelByLang[lang]}>
           {
             socialChips.map((chip) => (
               <a

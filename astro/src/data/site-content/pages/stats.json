@@ -69,10 +69,233 @@
           "user_name": "Naimul",
           "profile_href": "https://www.goodreads.com/user/show/45514357-naimul-kabir",
           "profile_label": "Naimul Kabir's favorite books »",
-          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=40&order=d&shelf=read&sort=date_added&widget_id=1771265103"
+          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=40&order=d&shelf=read&sort=date_added&widget_id=1771265103",
+          "status_text": "Loading Goodreads books…"
         }
       },
       "footer_html": "Ping me for other data cuts."
+    },
+    "bn": {
+      "meta": {
+        "title": "স্ট্যাটস · নাঈমুল কবির",
+        "description": "নাঈমুল কবিরের পাবলিক কোডিং স্ট্যাটস, প্র্যাকটিস এবং প্রোগ্রেস স্ন্যাপশট।",
+        "keywords": "নাঈমুল কবির স্ট্যাটস, লিটকোড স্ট্যাটস, কোডিং অ্যাক্টিভিটি"
+      },
+      "header": {
+        "site_title": "স্ট্যাটস",
+        "tagline": "ওভারশেয়ারিং, জাস্ট ওভারশেয়ারিং!"
+      },
+      "intro": [
+        "পাবলিক কোডিং অ্যাক্টিভিটি, শেখার অগ্রগতি, আর প্র্যাকটিস মাইলস্টোনের একটি দ্রুত স্ন্যাপশট।"
+      ],
+      "sections": {
+        "wakatime": {
+          "title": "WakaTime স্ট্যাটস",
+          "status_text": "বান্ডেল করা WakaTime স্ন্যাপশট দেখানো হচ্ছে।",
+          "languages_url": "https://wakatime.com/share/@kabirnayeem99/3ee188ec-1b6b-454a-9c7d-12b1d02cf86b.json",
+          "summary_url": "https://wakatime.com/share/@kabirnayeem99/c002cbf8-c46e-46ee-b225-d7b680009c55.json",
+          "aria_label": "ব্যবহারের ভিত্তিতে শীর্ষ ভাষাসমূহ"
+        },
+        "languages": {
+          "title": "Most Used Languages",
+          "intro": "Here are some of the languags I used most, and well-versed in.",
+          "wakatime_copy": "Most written and used Langauges from WakaTime (includes both work and personal)",
+          "wakatime_profile_href": "https://wakatime.com/@877bdd59-77ed-4e91-839b-edf730c4e129",
+          "wakatime_badge_src": "https://wakatime.com/badge/user/877bdd59-77ed-4e91-839b-edf730c4e129.svg",
+          "wakatime_badge_alt": "Total time coded since Feb 12 2021",
+          "wakatime_embed_src": "https://github-readme-stats.vercel.app/api/wakatime?username=kabirnayeem99&hide=xml,groovy,html,text,css,bash,yaml,sh,toml,todo.gitignore,gradle,other,markdown,svg,ps&langs_count=5&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=7&locale=en",
+          "wakatime_embed_alt": "WakaTime Language Usage - kabirnayeem99",
+          "github_copy": "Most written and used Langauges hosted on GitHub (Mostly Personal)",
+          "github_profile_href": "https://github.com/kabirnayeem99",
+          "github_embed_src": "https://github-readme-stats.vercel.app/api/top-langs/?username=kabirnayeem99&hide=html,python,makefile&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=7&locale=en",
+          "github_embed_alt": "GitHub Top Languages - kabirnayeem99"
+        },
+        "github_commits": {
+          "title": "GitHub ব্যক্তিগত কমিটস",
+          "description": "GitHub contributions API থেকে নেওয়া লাইভ পাবলিক কন্ট্রিবিউশন ডাটা।",
+          "status_text": "বান্ডেল করা GitHub স্ন্যাপশট দেখানো হচ্ছে।",
+          "contrib_url": "https://github-contributions-api.jogruber.de/v4/kabirnayeem99",
+          "source_label": "উৎস:",
+          "source_href": "https://github.com/kabirnayeem99",
+          "source_text": "github.com/kabirnayeem99",
+          "heatmap_aria_label": "GitHub-স্টাইল কন্ট্রিবিউশন গ্রাফ",
+          "legend_aria_label": "কন্ট্রিবিউশন ইন্টেনসিটি"
+        },
+        "leetcode": {
+          "title": "LeetCode প্রোফাইল",
+          "copy": "মজার <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> স্ট্যাটস। এখনো শুরুতেই আছি, তাই এই ফলাফলে খুব একটা খুশি না। আশা করি সামনে আরও ভালো হবে।",
+          "thanks": "ধন্যবাদ <a href=\"https://leetcard.jacoblin.cool/\" target=\"_blank\" rel=\"noreferrer\">LeetCard</a>-কে।",
+          "card_src": "https://leetcard.jacoblin.cool/kabirnayeem99?theme=light&font=JetBrains%20Mono&colors=%23FFFFFF%2C%20%2344403C%2C%20%231C1917%2C%20%2378716C%2C%20%23D97706%2C%20%2373AF6F%2C%20%23FACC15%2C%20%23FF5555%2C&ext=heatmap&hide_title=true&disable_animations=true",
+          "card_alt": "LeetCode stats for kabirnayeem99"
+        },
+        "learning_path": {
+          "title": "লার্নিং পাথ",
+          "copy": "নতুন টেকনোলজি শেখার জন্য আমি এখন <a href=\"https://roadmap.sh/\" target=\"_blank\" rel=\"noreferrer\">roadmap.sh</a> ব্যবহার করছি। এখানে সেই অগ্রগতি।",
+          "href": "https://roadmap.sh/card/wide/690713b1b0418a041e32d9c5?variant=light",
+          "image_src": "https://roadmap.sh/card/wide/690713b1b0418a041e32d9c5?variant=light",
+          "image_alt": "roadmap.sh"
+        },
+        "goodreads": {
+          "title": "সর্বশেষ পড়া বই",
+          "copy": "সম্প্রতি যেসব বই পড়েছি, সেখান থেকে কিছু।",
+          "widget_id": "1771265103",
+          "user_id": "45514357",
+          "user_name": "Naimul",
+          "profile_href": "https://www.goodreads.com/user/show/45514357-naimul-kabir",
+          "profile_label": "পুরো Goodreads শেলফ দেখুন",
+          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=40&order=d&shelf=read&sort=date_added&widget_id=1771265103",
+          "status_text": "Goodreads বই লোড হচ্ছে…"
+        }
+      },
+      "footer_html": "অন্য ডেটা কাট চাইলে নক দিন।"
+    },
+    "ar": {
+      "meta": {
+        "title": "الإحصائيات · نعيمول كبير",
+        "description": "إحصائيات علنية عن نشاط نعيمول كبير البرمجي وتقدّم التعلّم والممارسة.",
+        "keywords": "إحصائيات نعيمول كبير، ليت كود، نشاط برمجي"
+      },
+      "header": {
+        "site_title": "الإحصائيات",
+        "tagline": "مشاركة زائدة، نعم زائدة جدًا!"
+      },
+      "intro": [
+        "لقطة سريعة عن النشاط البرمجي العلني، وتقدّم التعلّم، ومحطات الممارسة."
+      ],
+      "sections": {
+        "wakatime": {
+          "title": "إحصائيات WakaTime",
+          "status_text": "يتم عرض لقطة WakaTime المضمّنة.",
+          "languages_url": "https://wakatime.com/share/@kabirnayeem99/3ee188ec-1b6b-454a-9c7d-12b1d02cf86b.json",
+          "summary_url": "https://wakatime.com/share/@kabirnayeem99/c002cbf8-c46e-46ee-b225-d7b680009c55.json",
+          "aria_label": "أكثر اللغات استخدامًا"
+        },
+        "languages": {
+          "title": "Most Used Languages",
+          "intro": "Here are some of the languags I used most, and well-versed in.",
+          "wakatime_copy": "Most written and used Langauges from WakaTime (includes both work and personal)",
+          "wakatime_profile_href": "https://wakatime.com/@877bdd59-77ed-4e91-839b-edf730c4e129",
+          "wakatime_badge_src": "https://wakatime.com/badge/user/877bdd59-77ed-4e91-839b-edf730c4e129.svg",
+          "wakatime_badge_alt": "Total time coded since Feb 12 2021",
+          "wakatime_embed_src": "https://github-readme-stats.vercel.app/api/wakatime?username=kabirnayeem99&hide=xml,groovy,html,text,css,bash,yaml,sh,toml,todo.gitignore,gradle,other,markdown,svg,ps&langs_count=5&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=7&locale=en",
+          "wakatime_embed_alt": "WakaTime Language Usage - kabirnayeem99",
+          "github_copy": "Most written and used Langauges hosted on GitHub (Mostly Personal)",
+          "github_profile_href": "https://github.com/kabirnayeem99",
+          "github_embed_src": "https://github-readme-stats.vercel.app/api/top-langs/?username=kabirnayeem99&hide=html,python,makefile&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=7&locale=en",
+          "github_embed_alt": "GitHub Top Languages - kabirnayeem99"
+        },
+        "github_commits": {
+          "title": "مساهمات GitHub الشخصية",
+          "description": "نشاط مساهمات علني مباشر مأخوذ من واجهة GitHub Contributions API.",
+          "status_text": "يتم عرض لقطة GitHub المضمّنة.",
+          "contrib_url": "https://github-contributions-api.jogruber.de/v4/kabirnayeem99",
+          "source_label": "المصدر:",
+          "source_href": "https://github.com/kabirnayeem99",
+          "source_text": "github.com/kabirnayeem99",
+          "heatmap_aria_label": "مخطط مساهمات بنمط GitHub",
+          "legend_aria_label": "درجة كثافة المساهمات"
+        },
+        "leetcode": {
+          "title": "ملف LeetCode",
+          "copy": "إحصائيات <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> بشكل عفوي. ما زلت في البداية، لذلك المستوى الحالي متواضع. آمل أن يتحسن لاحقًا.",
+          "thanks": "شكرًا لـ <a href=\"https://leetcard.jacoblin.cool/\" target=\"_blank\" rel=\"noreferrer\">LeetCard</a>.",
+          "card_src": "https://leetcard.jacoblin.cool/kabirnayeem99?theme=light&font=JetBrains%20Mono&colors=%23FFFFFF%2C%20%2344403C%2C%20%231C1917%2C%20%2378716C%2C%20%23D97706%2C%20%2373AF6F%2C%20%23FACC15%2C%20%23FF5555%2C&ext=heatmap&hide_title=true&disable_animations=true",
+          "card_alt": "LeetCode stats for kabirnayeem99"
+        },
+        "learning_path": {
+          "title": "مسار التعلّم",
+          "copy": "لتعلّم التقنيات الجديدة أستخدم حاليًا <a href=\"https://roadmap.sh/\" target=\"_blank\" rel=\"noreferrer\">roadmap.sh</a>. وهذه هي نسبة التقدّم هناك.",
+          "href": "https://roadmap.sh/card/wide/690713b1b0418a041e32d9c5?variant=light",
+          "image_src": "https://roadmap.sh/card/wide/690713b1b0418a041e32d9c5?variant=light",
+          "image_alt": "roadmap.sh"
+        },
+        "goodreads": {
+          "title": "آخر الكتب المقروءة",
+          "copy": "بعض الكتب التي قرأتها مؤخرًا.",
+          "widget_id": "1771265103",
+          "user_id": "45514357",
+          "user_name": "Naimul",
+          "profile_href": "https://www.goodreads.com/user/show/45514357-naimul-kabir",
+          "profile_label": "عرض رف Goodreads كاملًا",
+          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=40&order=d&shelf=read&sort=date_added&widget_id=1771265103",
+          "status_text": "جارٍ تحميل كتب Goodreads…"
+        }
+      },
+      "footer_html": "راسلني إذا رغبت في عرض بيانات أخرى."
+    },
+    "ur": {
+      "meta": {
+        "title": "اعدادوشمار · نعیم الکبیر",
+        "description": "نعیم الکبیر کی پبلک کوڈنگ سرگرمی، سیکھنے کی پیش رفت اور پریکٹس کے اعدادوشمار۔",
+        "keywords": "نعیم الکبیر اسٹیٹس، لیٹ کوڈ اسٹیٹس، کوڈنگ سرگرمی"
+      },
+      "header": {
+        "site_title": "اعدادوشمار",
+        "tagline": "اوور شیئرنگ، بس اوور شیئرنگ!"
+      },
+      "intro": [
+        "پبلک کوڈنگ سرگرمی، سیکھنے کی پیش رفت اور پریکٹس مائل اسٹونز کا ایک مختصر سنیپ شاٹ۔"
+      ],
+      "sections": {
+        "wakatime": {
+          "title": "WakaTime اعدادوشمار",
+          "status_text": "بنڈل کیا ہوا WakaTime سنیپ شاٹ دکھایا جا رہا ہے۔",
+          "languages_url": "https://wakatime.com/share/@kabirnayeem99/3ee188ec-1b6b-454a-9c7d-12b1d02cf86b.json",
+          "summary_url": "https://wakatime.com/share/@kabirnayeem99/c002cbf8-c46e-46ee-b225-d7b680009c55.json",
+          "aria_label": "استعمال کے لحاظ سے نمایاں زبانیں"
+        },
+        "languages": {
+          "title": "Most Used Languages",
+          "intro": "Here are some of the languags I used most, and well-versed in.",
+          "wakatime_copy": "Most written and used Langauges from WakaTime (includes both work and personal)",
+          "wakatime_profile_href": "https://wakatime.com/@877bdd59-77ed-4e91-839b-edf730c4e129",
+          "wakatime_badge_src": "https://wakatime.com/badge/user/877bdd59-77ed-4e91-839b-edf730c4e129.svg",
+          "wakatime_badge_alt": "Total time coded since Feb 12 2021",
+          "wakatime_embed_src": "https://github-readme-stats.vercel.app/api/wakatime?username=kabirnayeem99&hide=xml,groovy,html,text,css,bash,yaml,sh,toml,todo.gitignore,gradle,other,markdown,svg,ps&langs_count=5&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=7&locale=en",
+          "wakatime_embed_alt": "WakaTime Language Usage - kabirnayeem99",
+          "github_copy": "Most written and used Langauges hosted on GitHub (Mostly Personal)",
+          "github_profile_href": "https://github.com/kabirnayeem99",
+          "github_embed_src": "https://github-readme-stats.vercel.app/api/top-langs/?username=kabirnayeem99&hide=html,python,makefile&hide_title=true&disable_animations=true&theme=transparent&text_color=2f261a&border_color=e7daca&cache_seconds=76400&border_radius=7&locale=en",
+          "github_embed_alt": "GitHub Top Languages - kabirnayeem99"
+        },
+        "github_commits": {
+          "title": "GitHub ذاتی کمٹس",
+          "description": "GitHub contributions API سے حاصل کردہ لائیو پبلک کنٹریبیوشن سرگرمی۔",
+          "status_text": "بنڈل کیا ہوا GitHub سنیپ شاٹ دکھایا جا رہا ہے۔",
+          "contrib_url": "https://github-contributions-api.jogruber.de/v4/kabirnayeem99",
+          "source_label": "ماخذ:",
+          "source_href": "https://github.com/kabirnayeem99",
+          "source_text": "github.com/kabirnayeem99",
+          "heatmap_aria_label": "GitHub طرز کا کنٹریبیوشن گراف",
+          "legend_aria_label": "کنٹریبیوشن کی شدت"
+        },
+        "leetcode": {
+          "title": "LeetCode پروفائل",
+          "copy": "<a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> کے کچھ سادہ اعدادوشمار۔ ابھی شروعات ہے، اس لیے نتائج کمزور ہیں، امید ہے آگے بہتر ہوں گے۔",
+          "thanks": "شکریہ <a href=\"https://leetcard.jacoblin.cool/\" target=\"_blank\" rel=\"noreferrer\">LeetCard</a>۔",
+          "card_src": "https://leetcard.jacoblin.cool/kabirnayeem99?theme=light&font=JetBrains%20Mono&colors=%23FFFFFF%2C%20%2344403C%2C%20%231C1917%2C%20%2378716C%2C%20%23D97706%2C%20%2373AF6F%2C%20%23FACC15%2C%20%23FF5555%2C&ext=heatmap&hide_title=true&disable_animations=true",
+          "card_alt": "LeetCode stats for kabirnayeem99"
+        },
+        "learning_path": {
+          "title": "لرننگ پاتھ",
+          "copy": "نئی ٹیکنالوجیز سیکھنے کے لیے میں اس وقت <a href=\"https://roadmap.sh/\" target=\"_blank\" rel=\"noreferrer\">roadmap.sh</a> استعمال کر رہا ہوں۔ یہاں اس کی پیش رفت ہے۔",
+          "href": "https://roadmap.sh/card/wide/690713b1b0418a041e32d9c5?variant=light",
+          "image_src": "https://roadmap.sh/card/wide/690713b1b0418a041e32d9c5?variant=light",
+          "image_alt": "roadmap.sh"
+        },
+        "goodreads": {
+          "title": "آخری پڑھی گئی کتابیں",
+          "copy": "حالیہ دنوں میں پڑھی گئی کچھ کتابیں۔",
+          "widget_id": "1771265103",
+          "user_id": "45514357",
+          "user_name": "Naimul",
+          "profile_href": "https://www.goodreads.com/user/show/45514357-naimul-kabir",
+          "profile_label": "مکمل Goodreads شیلف دیکھیں",
+          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=40&order=d&shelf=read&sort=date_added&widget_id=1771265103",
+          "status_text": "Goodreads کی کتابیں لوڈ ہو رہی ہیں…"
+        }
+      },
+      "footer_html": "اگر کسی اور ڈیٹا کٹ کی ضرورت ہو تو بتائیں۔"
     }
   }
 }

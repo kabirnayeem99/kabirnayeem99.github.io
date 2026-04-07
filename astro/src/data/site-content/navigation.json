@@ -9,16 +9,22 @@
   "bn": [
     "index",
     "work",
-    "project"
+    "project",
+    "blog",
+    "stats"
   ],
   "ar": [
     "index",
     "work",
-    "project"
+    "project",
+    "blog",
+    "stats"
   ],
   "ur": [
     "index",
     "work",
-    "project"
+    "project",
+    "blog",
+    "stats"
   ]
 }
