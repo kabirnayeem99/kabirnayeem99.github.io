@@ -51,6 +51,12 @@ LAST_UPDATED_LABELS: Final[Mapping[Lang, str]] = {
     "ar": "آخر تحديث",
     "ur": "آخری اپڈیٹ",
 }
+VIEW_ALL_STATS_LABELS: Final[Mapping[Lang, str]] = {
+    "en": "View all stats",
+    "bn": "সব স্ট্যাটস দেখুন",
+    "ar": "عرض كل الإحصائيات",
+    "ur": "تمام اسٹیٹس دیکھیں",
+}
 OG_LOCALE_BY_LANG: Final[Mapping[Lang, str]] = {
     "en": "en_US",
     "bn": "bn_BD",

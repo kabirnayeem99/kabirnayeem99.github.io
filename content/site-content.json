@@ -244,7 +244,7 @@
             {
               "label": "✉ Send an email",
               "href": "mailto:kabirnayeem.99@gmail.com",
-              "variant": "primary"
+              "variant": "secondary"
             }
           ]
         },
@@ -367,7 +367,7 @@
             {
               "label": "✉ ইমেইল করুন",
               "href": "mailto:kabirnayeem.99@gmail.com",
-              "variant": "primary"
+              "variant": "secondary"
             }
           ]
         },
@@ -490,7 +490,7 @@
             {
               "label": "✉ أرسل بريدًا",
               "href": "mailto:kabirnayeem.99@gmail.com",
-              "variant": "primary"
+              "variant": "secondary"
             }
           ]
         },
@@ -613,7 +613,7 @@
             {
               "label": "✉ ای میل بھیجیں",
               "href": "mailto:kabirnayeem.99@gmail.com",
-              "variant": "primary"
+              "variant": "secondary"
             }
           ]
         }

@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import sys
 from collections.abc import Sequence
+from dataclasses import dataclass
 from pathlib import Path
 from typing import TextIO
 
@@ -13,6 +14,17 @@ from site_renderer.constants import DEFAULT_ROOT, LANGS, PAGE_IDS
 from use_cases.check_js_types import run as run_check_js_types
 from use_cases.render_site import run as run_render_site
 from use_cases.validate_links import run as run_validate_links
+
+
+@dataclass(frozen=True, slots=True)
+class ExecutionPlan:
+    """Resolved command execution plan built from CLI arguments."""
+
+    root: Path
+    run_render_site: bool
+    run_validate_links: bool
+    run_check_js_types: bool
+    render_args: tuple[str, ...]
 
 
 def parse_args(argv: Sequence[str] | None) -> argparse.Namespace:
@@ -63,35 +75,61 @@ def build_render_args(args: argparse.Namespace) -> list[str]:
     return render_args
 
 
-def run(argv: Sequence[str] | None = None, *, stdin: TextIO = sys.stdin) -> int:
-    """Run selected operations and return a process exit status."""
+def missing_operation_error(args: argparse.Namespace) -> str | None:
+    """Return an error when no operation flag is selected."""
 
-    args = parse_args(argv)
-    if not (args.render_site or args.validate_links or args.check_js_types):
-        print(
-            "main.py: no operation selected. Use at least one of --render-site, --validate-links, --check-js-types.",
-            file=sys.stderr,
-        )
-        return 2
+    if args.render_site or args.validate_links or args.check_js_types:
+        return None
+    return (
+        "main.py: no operation selected. Use at least one of "
+        "--render-site, --validate-links, --check-js-types."
+    )
 
-    root = Path(args.root).resolve()
 
-    if args.check_js_types:
-        code = run_check_js_types(root=root)
+def build_execution_plan(args: argparse.Namespace) -> ExecutionPlan:
+    """Resolve all side-effect free execution inputs from raw CLI args."""
+
+    return ExecutionPlan(
+        root=Path(args.root).resolve(),
+        run_render_site=bool(args.render_site),
+        run_validate_links=bool(args.validate_links),
+        run_check_js_types=bool(args.check_js_types),
+        render_args=tuple(build_render_args(args)),
+    )
+
+
+def execute_plan(plan: ExecutionPlan, *, stdin: TextIO) -> int:
+    """Execute the already-resolved plan. Side effects are isolated here."""
+
+    if plan.run_check_js_types:
+        code = run_check_js_types(root=plan.root)
         if code != 0:
             return code
 
-    if args.render_site:
-        code = run_render_site(build_render_args(args), stdin=stdin)
+    if plan.run_render_site:
+        code = run_render_site(plan.render_args, stdin=stdin)
         if code != 0:
             return code
 
-    if args.validate_links:
-        code = run_validate_links(root=root)
+    if plan.run_validate_links:
+        code = run_validate_links(root=plan.root)
         if code != 0:
             return code
 
     return 0
+
+
+def run(argv: Sequence[str] | None = None, *, stdin: TextIO = sys.stdin) -> int:
+    """Run selected operations and return a process exit status."""
+
+    args = parse_args(argv)
+    error = missing_operation_error(args)
+    if error is not None:
+        print(error, file=sys.stderr)
+        return 2
+
+    plan = build_execution_plan(args)
+    return execute_plan(plan, stdin=stdin)
 
 
 def main() -> int:

@@ -23,6 +23,7 @@ from .constants import (
     THEME_BOOTSTRAP_SCRIPT,
     THEME_DARK_LABELS,
     THEME_LIGHT_LABELS,
+    VIEW_ALL_STATS_LABELS,
     HtmlFragment,
     Lang,
     PageId,
@@ -32,6 +33,7 @@ from .models import (
     ArticleLink,
     BlogPageLocale,
     ContentCard,
+    GoodreadsSection,
     HeaderText,
     IndexAction,
     IndexPageLocale,
@@ -42,6 +44,7 @@ from .models import (
     SiteContent,
     SiteSettings,
     StatsPageLocale,
+    WakaTimeSection,
     WorkPageLocale,
 )
 
@@ -695,6 +698,19 @@ def render_scripts(page_id: PageId, current_output: str) -> str:
         "assets/js/year.js",
         "assets/js/service-worker-register.js",
     )
+    index_scripts = (
+        "assets/js/image-guard.js",
+        "assets/js/back-to-top.js",
+        "assets/js/theme-toggle.js",
+        "assets/js/language-switcher.js",
+        "assets/js/umami-events.js",
+        "assets/js/stats-snapshots.js",
+        "assets/js/stats-utils.js",
+        "assets/js/wakatime-charts.js",
+        "assets/js/goodreads-image-fallback.js",
+        "assets/js/year.js",
+        "assets/js/service-worker-register.js",
+    )
     stats_scripts = (
         "assets/js/image-guard.js",
         "assets/js/theme-toggle.js",
@@ -711,7 +727,9 @@ def render_scripts(page_id: PageId, current_output: str) -> str:
     )
     if page_id == "stats":
         paths = stats_scripts
-    elif page_id in ("work", "project", "index"):
+    elif page_id == "index":
+        paths = index_scripts
+    elif page_id in ("work", "project"):
         paths = long_page_scripts
     else:
         paths = default_scripts
@@ -795,18 +813,115 @@ def render_index_action(
         raise ValueError("IndexAction must define href or page_id")
 
     is_external = href.startswith("http://") or href.startswith("https://")
+    is_mailto = href.startswith("mailto:")
     target_attr = ' target="_blank"' if is_external else ""
     rel_attr = ' rel="noreferrer"' if is_external else ""
     variant_class = "action-chip action-chip--primary" if action.variant == "primary" else "action-chip action-chip--secondary"
+    icon_markup = ""
+    label_text = action.label
+    if is_mailto:
+        label_text = action.label.lstrip("✉").strip()
+        icon_markup = (
+            '<svg class="action-chip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" '
+            'xmlns="http://www.w3.org/2000/svg">'
+            '<path d="M12 21V18M7 12H10M17.5 6H7.8C6.11984 6 5.27976 6 4.63803 6.32698C4.07354 6.6146 '
+            '3.6146 7.07354 3.32698 7.63803C3 8.27976 3 9.11984 3 10.8V18H14M17.5 6C19.433 6 21 7.567 '
+            '21 9.5V18H14M17.5 6C15.567 6 14 7.567 14 9.5V18M15 3H12V6" stroke="currentColor" '
+            'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>'
+        )
 
     return (
         f'            <a class="{variant_class}" href="{html.escape(href)}"{target_attr}{rel_attr}{nav_attr}>'
-        f"{html.escape(action.label)}</a>"
+        f"{icon_markup}<span>{html.escape(label_text)}</span></a>"
     )
+
+
+def render_index_view_all_stats_action(routes: RouteTable, lang: Lang, current_output: str) -> str:
+    """Render a localized CTA that links to the full stats page."""
+
+    return render_index_action(
+        IndexAction(
+            label=VIEW_ALL_STATS_LABELS[lang],
+            href=None,
+            page_id="stats",
+            variant="secondary",
+        ),
+        routes,
+        lang,
+        current_output,
+    )
+
+
+def render_wakatime_widget(section: WakaTimeSection) -> tuple[str, ...]:
+    """Render the WakaTime widget shell shared by index and stats pages."""
+
+    return (
+        (
+            '          <div class="wakatime-widget" data-wakatime-widget '
+            f'data-wakatime-languages-url="{html.escape(section.languages_url)}" '
+            f'data-wakatime-summary-url="{html.escape(section.summary_url)}">'
+        ),
+        f'            <p class="wakatime-status" data-role="status">{html.escape(section.status_text)}</p>',
+        '            <div class="wakatime-visuals" data-role="visuals" hidden>',
+        '              <div class="wakatime-summary" data-role="summary-cards"></div>',
+        (
+            '              <ol class="wakatime-bars" data-role="language-bars" '
+            f'aria-label="{html.escape(section.aria_label)}"></ol>'
+        ),
+        "            </div>",
+        "          </div>",
+    )
+
+
+def render_goodreads_widget(section: GoodreadsSection) -> tuple[str, ...]:
+    """Render the Goodreads widget shell shared by index and stats pages."""
+
+    return (
+        f"          <p>{html.escape(section.copy)}</p>",
+        '          <p class="goodreads-status" data-goodreads-status>Loading Goodreads books…</p>',
+        f'          <div class="goodreads-widget" id="gr_grid_widget_{html.escape(section.widget_id)}"></div>',
+    )
+
+
+def render_index_stats_sections(
+    stats: StatsPageLocale,
+    routes: RouteTable,
+    lang: Lang,
+    current_output: str,
+) -> tuple[str, ...]:
+    """Render compact stats sections on the homepage."""
+
+    view_all_stats_action = render_index_view_all_stats_action(routes, lang, current_output)
+    lines = [
+        "      <section>",
+        '        <div class="summary-card stats-card">',
+        '          <div class="section-head">',
+        f"            <h2 class=\"section-title\">{html.escape(stats.sections.wakatime.title)}</h2>",
+        '            <div class="section-actions">',
+        f"              {view_all_stats_action}",
+        "            </div>",
+        "          </div>",
+        *render_wakatime_widget(stats.sections.wakatime),
+        "        </div>",
+        "      </section>",
+        "      <section>",
+        '        <div class="summary-card stats-card">',
+        '          <div class="section-head">',
+        f"            <h2 class=\"section-title\">{html.escape(stats.sections.goodreads.title)}</h2>",
+        '            <div class="section-actions">',
+        f"              {view_all_stats_action}",
+        "            </div>",
+        "          </div>",
+        *render_goodreads_widget(stats.sections.goodreads),
+        "        </div>",
+        "      </section>",
+    ]
+    return tuple(lines)
 
 
 def render_index_main(
     page: IndexPageLocale,
+    stats: StatsPageLocale,
     routes: RouteTable,
     lang: Lang,
     current_output: str,
@@ -814,24 +929,19 @@ def render_index_main(
     """Render homepage main content."""
 
     lines = ['    <main id="main-content">']
-    if page.top_actions:
-        lines.append('      <section class="top-action-section">')
-        if page.top_actions_title is not None:
-            lines.append(f"        <h2 class=\"section-title\">{html.escape(page.top_actions_title)}</h2>")
-        lines.append('        <div class="section-actions section-actions--top">')
-        for action in page.top_actions:
-            lines.append(render_index_action(action, routes, lang, current_output))
-        lines.append("        </div>")
-        lines.append("      </section>")
 
     lines.extend(("      <section>", '        <div class="summary-card">'))
     for paragraph in page.summary_card:
         lines.append(f"          <p>{paragraph}</p>")
     lines.extend(("        </div>", "      </section>"))
-    for section in page.sections:
+    for index, section in enumerate(page.sections):
+        # Skills chips are replaced by homepage WakaTime + Goodreads stats sections.
+        if section.tags:
+            continue
         lines.append("      <section>")
         lines.append('        <div class="section-head">')
-        lines.append(f"          <h2 class=\"section-title\">{html.escape(section.title)}</h2>")
+        title_class = "section-title section-title--minor" if index == 0 else "section-title"
+        lines.append(f"          <h2 class=\"{title_class}\">{html.escape(section.title)}</h2>")
         if section.actions:
             lines.append('          <div class="section-actions">')
             for action in section.actions:
@@ -858,6 +968,14 @@ def render_index_main(
         for contact in section.contacts:
             lines.append(f"        <p>{contact}</p>")
         lines.append("      </section>")
+        if index == 0 and page.top_actions:
+            lines.append('      <section class="inline-cta-section">')
+            lines.append('        <div class="section-actions section-actions--inline">')
+            for action in page.top_actions:
+                lines.append(render_index_action(action, routes, lang, current_output))
+            lines.append("        </div>")
+            lines.append("      </section>")
+    lines.extend(render_index_stats_sections(stats, routes, lang, current_output))
     lines.append("    </main>")
     return "\n".join(lines)
 
@@ -952,20 +1070,7 @@ def render_stats_main(page: StatsPageLocale) -> str:
             "      <section>",
             '        <div class="summary-card stats-card">',
             f"          <h2 class=\"section-title\">{html.escape(stats.wakatime.title)}</h2>",
-            (
-                '          <div class="wakatime-widget" data-wakatime-widget '
-                f'data-wakatime-languages-url="{html.escape(stats.wakatime.languages_url)}" '
-                f'data-wakatime-summary-url="{html.escape(stats.wakatime.summary_url)}">'
-            ),
-            f'            <p class="wakatime-status" data-role="status">{html.escape(stats.wakatime.status_text)}</p>',
-            '            <div class="wakatime-visuals" data-role="visuals" hidden>',
-            '              <div class="wakatime-summary" data-role="summary-cards"></div>',
-            (
-                '              <ol class="wakatime-bars" data-role="language-bars" '
-                f'aria-label="{html.escape(stats.wakatime.aria_label)}"></ol>'
-            ),
-            "            </div>",
-            "          </div>",
+            *render_wakatime_widget(stats.wakatime),
             "        </div>",
             "      </section>",
             "      <section>",
@@ -1037,9 +1142,7 @@ def render_stats_main(page: StatsPageLocale) -> str:
             "      <section>",
             '        <div class="summary-card stats-card">',
             f"          <h2 class=\"section-title\">{html.escape(stats.goodreads.title)}</h2>",
-            f"          <p>{html.escape(stats.goodreads.copy)}</p>",
-            '          <p class="goodreads-status" data-goodreads-status>Loading Goodreads books…</p>',
-            f'          <div class="goodreads-widget" id="gr_grid_widget_{html.escape(stats.goodreads.widget_id)}"></div>',
+            *render_goodreads_widget(stats.goodreads),
             (
                 '          <p class="goodreads-profile-link">'
                 f'<a href="{html.escape(stats.goodreads.profile_href)}" target="_blank" rel="noreferrer">'
@@ -1062,7 +1165,13 @@ def render_main_for_page(
     """Dispatch to the correct page renderer using typed locale data."""
 
     if page_id == "index":
-        return render_index_main(content.index_page.locales[lang], content.routes, lang, current_output)
+        return render_index_main(
+            content.index_page.locales[lang],
+            stats_locale_for_lang(content, lang),
+            content.routes,
+            lang,
+            current_output,
+        )
     if page_id == "work":
         return render_work_main(content.work_page.locales[lang])
     if page_id == "project":
@@ -1070,6 +1179,15 @@ def render_main_for_page(
     if page_id == "blog":
         return render_blog_main(content.blog_page.locales[lang])
     return render_stats_main(content.stats_page.locales[lang])
+
+
+def stats_locale_for_lang(content: SiteContent, lang: Lang) -> StatsPageLocale:
+    """Return localized stats content, falling back to English when unavailable."""
+
+    return content.stats_page.locales.get(
+        lang,
+        content.stats_page.locales.get("en", next(iter(content.stats_page.locales.values()))),
+    )
 
 
 def meta_for_page(content: SiteContent, page_id: PageId, lang: Lang) -> MetaText:
@@ -1119,8 +1237,24 @@ def render_hero(current_output: str) -> str:
 
     logo_href = asset_href(current_output, "assets/images/logo.svg")
     return (
-        '      <img class="hero-illustration" alt="" aria-hidden="true" '
+        '<img class="hero-illustration" alt="" aria-hidden="true" '
         f'src="{html.escape(logo_href)}" width="1024" height="1024" decoding="async" fetchpriority="high" />'
+    )
+
+
+def render_header_identity(header: HeaderText, current_output: str) -> str:
+    """Render the avatar + title row in the header."""
+
+    return "\n".join(
+        (
+            '      <div class="header-identity">',
+            f"        {render_hero(current_output)}",
+            '        <div class="header-identity-copy">',
+            f"          <h1 class=\"site-title\">{html.escape(header.site_title)}</h1>",
+            f"          <p class=\"tagline\">{html.escape(header.tagline)}</p>",
+            "        </div>",
+            "      </div>",
+        )
     )
 
 
@@ -1157,9 +1291,7 @@ def render_page(
         '  <div class="site">',
         '    <header id="top">',
         render_header_controls(content.site, content.routes, page_id, lang, route),
-        render_hero(route),
-        f"      <h1 class=\"site-title\">{html.escape(header.site_title)}</h1>",
-        f"      <p class=\"tagline\">{html.escape(header.tagline)}</p>",
+        render_header_identity(header, route),
         render_social_chips(content.site),
         render_nav(content, page_id, lang, route) if page_id != "index" else "",
         "    </header>",
@@ -1174,8 +1306,8 @@ def render_page(
         render_back_to_top_button(lang) if page_id in ("work", "project", "index") else "",
         render_scripts(page_id, route),
     ]
-    if page_id == "stats":
-        goodreads = content.stats_page.locales[lang].sections.goodreads
+    if page_id in ("stats", "index"):
+        goodreads = stats_locale_for_lang(content, lang).sections.goodreads
         body_lines.append(
             f'  <script src="{html.escape(goodreads.script_src)}" type="text/javascript" charset="utf-8"></script>'
         )
