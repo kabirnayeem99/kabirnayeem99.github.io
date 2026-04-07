@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { posix as pathPosix } from "node:path";
 
 export type Lang = "en" | "bn" | "ar" | "ur";
 type Direction = "ltr" | "rtl";
@@ -354,4 +355,17 @@ export function buildAlternateLinks(
 
 export function buildOgLocaleAlternates(lang: Lang): readonly string[] {
   return LANGS.filter((entry) => entry !== lang).map((entry) => OG_LOCALE_BY_LANG[entry]);
+}
+
+export function relativeHref(fromRoute: string, toRoute: string): string {
+  const fromDir = pathPosix.dirname(fromRoute) || ".";
+  return pathPosix.relative(fromDir, toRoute);
+}
+
+export function routeHref(fromRoute: string, toRoute: string): string {
+  return relativeHref(fromRoute, toRoute);
+}
+
+export function assetHref(currentRoute: string, assetPath: string): string {
+  return relativeHref(currentRoute, assetPath);
 }

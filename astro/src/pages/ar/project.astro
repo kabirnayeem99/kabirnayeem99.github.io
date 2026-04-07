@@ -1,8 +1,108 @@
 ---
-import LegacySnapshotDocument from "../../components/LegacySnapshotDocument.astro";
-import { readLegacyDocument } from "../../lib/legacy-document";
+import BackToTopButton from "../../components/page/BackToTopButton.astro";
+import ClosePageHeader from "../../components/page/ClosePageHeader.astro";
+import HeadSeo from "../../components/page/HeadSeo.astro";
+import PageFooter from "../../components/page/PageFooter.astro";
+import ProjectGroupsSection from "../../components/page/ProjectGroupsSection.astro";
+import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
+import {
+  BACK_TO_TOP_LABEL_BY_LANG,
+  CLOSE_PAGE_LABEL_BY_LANG,
+  LAST_UPDATED_LABEL_BY_LANG,
+  SKIP_TO_MAIN_LABEL_BY_LANG,
+} from "../../lib/page-labels";
+import { buildSchemaGraphJson } from "../../lib/seo";
+import {
+  assetHref,
+  buildAlternateLinks,
+  buildOgLocaleAlternates,
+  loadProjectPageContent,
+  OG_LOCALE_BY_LANG,
+  routeHref,
+} from "../../lib/work-project-content";
 
-const document = readLegacyDocument("ar/project.html");
+const content = loadProjectPageContent("ar");
+const buildTimestamp = computeLegacyBuildTimestamp();
+const lang = content.lang;
+
+const canonicalUrl = `${content.site.baseUrl}/${content.route}`;
+const ogImageUrl = `${content.site.baseUrl}/assets/images/og-card.png`;
+const schemaGraphJson = buildSchemaGraphJson({
+  baseUrl: content.site.baseUrl,
+  websiteName: content.site.websiteName,
+  personName: content.site.personName,
+  canonicalUrl,
+  ogImageUrl,
+  socialProfiles: content.site.socialProfiles,
+});
+
+const alternateLinks = buildAlternateLinks(content.site.baseUrl, content.pageRoutes);
+const ogLocaleAlternates = buildOgLocaleAlternates(lang);
+const homeHref = routeHref(content.route, content.homeRoute);
+const stylesheetHref = assetHref(content.route, "assets/css/styles.css");
+const favicon32Href = assetHref(content.route, "assets/icons/favicon-32x32.png");
+const favicon16Href = assetHref(content.route, "assets/icons/favicon-16x16.png");
+const faviconIcoHref = assetHref(content.route, "assets/icons/favicon.ico");
+const appleTouchIconHref = assetHref(content.route, "assets/icons/apple-touch-icon.png");
+const manifestHref = assetHref(content.route, "site.webmanifest");
+const swPath = assetHref(content.route, "service-worker.js");
+const scriptPaths = [
+  assetHref(content.route, "assets/js/image-guard.js"),
+  assetHref(content.route, "assets/js/back-to-top.js"),
+  assetHref(content.route, "assets/js/umami-events.js"),
+  assetHref(content.route, "assets/js/year.js"),
+  assetHref(content.route, "assets/js/service-worker-register.js"),
+] as const;
 ---
 
-<LegacySnapshotDocument document={document} />
+<!DOCTYPE html>
+<html lang={lang} dir={content.site.locale.dir}>
+  <HeadSeo
+    title={content.meta.title}
+    description={content.meta.description}
+    keywords={content.meta.keywords}
+    author={content.site.locale.author}
+    canonicalUrl={canonicalUrl}
+    alternateLinks={alternateLinks}
+    ogType="article"
+    ogLocale={OG_LOCALE_BY_LANG[lang]}
+    ogLocaleAlternates={ogLocaleAlternates}
+    ogImageUrl={ogImageUrl}
+    ogImageAlt={content.site.locale.ogImageAlt}
+    twitterSite={content.site.twitterSite}
+    schemaGraphJson={schemaGraphJson}
+    googleSiteVerification={content.site.googleSiteVerification}
+    umamiWebsiteId="cdec8895-be63-42d6-a490-12dd2ea8f35c"
+    stylesheetHref={stylesheetHref}
+    favicon32Href={favicon32Href}
+    favicon16Href={favicon16Href}
+    faviconIcoHref={faviconIcoHref}
+    appleTouchIconHref={appleTouchIconHref}
+    manifestHref={manifestHref}
+  />
+  <body data-page-id="project" data-sw-path={swPath}>
+    <a class="skip-link" href="#main-content">{SKIP_TO_MAIN_LABEL_BY_LANG[lang]}</a>
+    <div class="site">
+      <ClosePageHeader
+        homeHref={homeHref}
+        closeLabel={CLOSE_PAGE_LABEL_BY_LANG[lang]}
+        title={content.header.siteTitle}
+      />
+      <main id="main-content">
+        <ProjectGroupsSection groups={content.groups} />
+      </main>
+      <PageFooter
+        footerHtml={content.footerHtml}
+        lastUpdatedLabel={LAST_UPDATED_LABEL_BY_LANG[lang]}
+        timestampIso={buildTimestamp.iso}
+        timestampDisplay={buildTimestamp.display}
+      />
+    </div>
+    <BackToTopButton label={BACK_TO_TOP_LABEL_BY_LANG[lang]} />
+    {
+      scriptPaths.map((src) => (
+        <script defer src={src}></script>
+      ))
+    }
+  </body>
+</html>
