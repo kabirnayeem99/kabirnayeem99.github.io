@@ -404,6 +404,8 @@ header {
   display: block;
   flex-shrink: 0;
   background-color: currentColor;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
   -webkit-mask-image: url("../icons/ui/close.svg");
   mask-image: url("../icons/ui/close.svg");
   -webkit-mask-repeat: no-repeat;
@@ -505,6 +507,8 @@ header {
   display: block;
   flex-shrink: 0;
   background-color: currentColor;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -871,6 +875,8 @@ section:first-of-type {
   flex-shrink: 0;
   display: block;
   background-color: currentColor;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -898,6 +904,8 @@ section:first-of-type {
   display: block;
   flex-shrink: 0;
   background-color: currentColor;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
   -webkit-mask-image: url("../icons/ui/chevron-right.svg");
   mask-image: url("../icons/ui/chevron-right.svg");
   -webkit-mask-repeat: no-repeat;
