@@ -327,16 +327,18 @@ const goodreadsLoadingByLang = {
         </div>
 
         <div class="header-identity">
-          <img
-            class="hero-illustration"
-            alt=""
-            aria-hidden="true"
-            src={logoHref}
-            width="1024"
-            height="1024"
-            decoding="async"
-            fetchpriority="high"
-          />
+          <div class="hero-avatar-card" aria-hidden="true">
+            <img
+              class="hero-illustration"
+              alt=""
+              aria-hidden="true"
+              src={logoHref}
+              width="1024"
+              height="1024"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </div>
           <div class="header-identity-copy">
             <h1 class="site-title">{content.header.siteTitle}</h1>
             <p class="tagline">{content.header.tagline}</p>
