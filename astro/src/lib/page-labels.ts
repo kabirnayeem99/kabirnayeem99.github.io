@@ -1,4 +1,6 @@
-export type Lang = "en" | "bn" | "ar" | "ur";
+import type { Lang } from "./site-types";
+
+export type { Lang } from "./site-types";
 
 export const SKIP_TO_MAIN_LABEL_BY_LANG: Readonly<Record<Lang, string>> = {
   en: "Skip to main content",

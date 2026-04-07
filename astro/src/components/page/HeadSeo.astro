@@ -89,15 +89,22 @@ const {
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImageUrl} />
-  <meta name="theme-color" content="#f7f0e1" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
-  <script type="application/ld+json" set:html={schemaGraphJson}></script>
+  <meta
+    name="theme-color"
+    content="#f7f0e1"
+    media="(prefers-color-scheme: light)"
+  />
+  <meta
+    name="theme-color"
+    content="#1c1917"
+    media="(prefers-color-scheme: dark)"
+  />
+  <script type="application/ld+json" set:html={schemaGraphJson} />
   <script
     defer
     src="https://cloud.umami.is/script.js"
-    data-website-id={umamiWebsiteId}
-  ></script>
-  <script set:html={THEME_BOOTSTRAP_SCRIPT}></script>
+    data-website-id={umamiWebsiteId}></script>
+  <script set:html={THEME_BOOTSTRAP_SCRIPT} />
   <link rel="preload" href={stylesheetHref} as="style" />
   <link rel="stylesheet" href={stylesheetHref} />
   <link rel="icon" type="image/png" sizes="32x32" href={favicon32Href} />

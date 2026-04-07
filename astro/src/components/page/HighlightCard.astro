@@ -12,26 +12,22 @@ const { card } = Astro.props;
   <h3>
     {
       card.href ? (
-        <a href={card.href} target="_blank" rel="noreferrer">{card.title}</a>
+        <a href={card.href} target="_blank" rel="noreferrer">
+          {card.title}
+        </a>
       ) : (
         card.title
       )
     }
   </h3>
   {card.meta ? <p class="meta">{card.meta}</p> : null}
-  {
-    card.paragraphs.map((paragraph) => (
-      <p set:html={paragraph}></p>
-    ))
-  }
+  {card.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
   {
     card.bullets.length > 0 ? (
       <ul>
-        {
-          card.bullets.map((bullet) => (
-            <li set:html={bullet}></li>
-          ))
-        }
+        {card.bullets.map((bullet) => (
+          <li set:html={bullet} />
+        ))}
       </ul>
     ) : null
   }

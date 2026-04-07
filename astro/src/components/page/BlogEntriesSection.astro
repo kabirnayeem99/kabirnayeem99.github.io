@@ -14,22 +14,22 @@ const { articles } = Astro.props;
 ---
 
 <section>
-  {
-    articles.map((article) => (
-      <article class="blog-entry">
-        <h2 class="section-title">
+  <ul class="article-list">
+    {
+      articles.map((article) => (
+        <li class="article-item">
           <a
             href={article.href}
             target="_blank"
             rel="noreferrer"
             data-umami-track-article="true"
           >
-            {article.title}
+            <h3>{article.title}</h3>
+            <p class="meta">{article.meta}</p>
+            <p>{article.summary}</p>
           </a>
-        </h2>
-        <p class="meta">{article.meta}</p>
-        <p>{article.summary}</p>
-      </article>
-    ))
-  }
+        </li>
+      ))
+    }
+  </ul>
 </section>

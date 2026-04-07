@@ -114,7 +114,7 @@
       "ur": "پراجیکٹس"
     },
     "blog": {
-      "en": "Writing"
+      "en": "Blog"
     },
     "stats": {
       "en": "Stats"
@@ -238,7 +238,7 @@
               ]
             }
           ],
-          "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Plain HTML, no frameworks.",
+          "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Developed with Astro.",
           "top_actions_title": "Send me an email",
           "top_actions": [
             {
@@ -361,7 +361,7 @@
               ]
             }
           ],
-          "footer_html": "&copy; <span id=\"year\">২০২৫</span> নাঈমুল কবির। একেবারে শুধু এইচটিএমএল আর সিএসএস দিয়ে বানানো।",
+          "footer_html": "&copy; <span id=\"year\">২০২৫</span> নাঈমুল কবির। Astro দিয়ে তৈরি।",
           "top_actions_title": "আমাকে ইমেইল করুন",
           "top_actions": [
             {
@@ -484,7 +484,7 @@
               ]
             }
           ],
-          "footer_html": "&copy; <span id=\"year\">٢٠٢٥</span> نَعِيمُولُ كَبِير. مَبْنِيٌّ بِـ HTML وَ CSS فَقَط.",
+          "footer_html": "&copy; <span id=\"year\">٢٠٢٥</span> نَعِيمُولُ كَبِير. مُطوَّرٌ باستخدام Astro.",
           "top_actions_title": "راسلني عبر البريد",
           "top_actions": [
             {
@@ -607,7 +607,7 @@
               ]
             }
           ],
-          "footer_html": "&copy; <span id=\"year\">2025</span> نعیم الکبیر۔ سادہ HTML، کوئی فریم ورک نہیں۔",
+          "footer_html": "&copy; <span id=\"year\">2025</span> نعیم الکبیر۔ Astro کے ساتھ تیار کردہ۔",
           "top_actions_title": "مجھے ای میل کریں",
           "top_actions": [
             {
@@ -1326,12 +1326,12 @@
       "locales": {
         "en": {
           "meta": {
-            "title": "Writing · Naimul Kabir",
+            "title": "Blog · Naimul Kabir",
             "description": "Static blog entries and notes by Naimul Kabir.",
             "keywords": "Naimul Kabir blog, software engineering articles, mobile development notes"
           },
           "header": {
-            "site_title": "Writing",
+            "site_title": "Blog",
             "tagline": "Some of blogs, tutorials, guides, personal experiences & renting..."
           },
           "articles": [

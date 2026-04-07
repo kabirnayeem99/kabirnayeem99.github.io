@@ -11,9 +11,16 @@ import {
   LAST_UPDATED_LABEL_BY_LANG,
   SKIP_TO_MAIN_LABEL_BY_LANG,
 } from "../../lib/page-labels";
+import {
+  buildOgImageUrl,
+  buildPageAssetHrefs,
+  PAGE_LAYOUT,
+  ROOT_WORK_PROJECT_SCRIPT_PATHS,
+  resolveRouteScriptPaths,
+  UMAMI_WEBSITE_ID,
+} from "../../lib/page-shared";
 import { buildSchemaGraphJson } from "../../lib/seo";
 import {
-  assetHref,
   buildAlternateLinks,
   buildOgLocaleAlternates,
   loadProjectPageContent,
@@ -26,7 +33,7 @@ const buildTimestamp = computeLegacyBuildTimestamp();
 const lang = content.lang;
 
 const canonicalUrl = `${content.site.baseUrl}/${content.route}`;
-const ogImageUrl = `${content.site.baseUrl}/assets/images/og-card.png`;
+const ogImageUrl = buildOgImageUrl(content.site.baseUrl);
 const schemaGraphJson = buildSchemaGraphJson({
   baseUrl: content.site.baseUrl,
   websiteName: content.site.websiteName,
@@ -39,20 +46,8 @@ const schemaGraphJson = buildSchemaGraphJson({
 const alternateLinks = buildAlternateLinks(content.site.baseUrl, content.pageRoutes);
 const ogLocaleAlternates = buildOgLocaleAlternates(lang);
 const homeHref = routeHref(content.route, content.homeRoute);
-const stylesheetHref = assetHref(content.route, "assets/css/styles.css");
-const favicon32Href = assetHref(content.route, "assets/icons/favicon-32x32.png");
-const favicon16Href = assetHref(content.route, "assets/icons/favicon-16x16.png");
-const faviconIcoHref = assetHref(content.route, "assets/icons/favicon.ico");
-const appleTouchIconHref = assetHref(content.route, "assets/icons/apple-touch-icon.png");
-const manifestHref = assetHref(content.route, "site.webmanifest");
-const swPath = assetHref(content.route, "service-worker.js");
-const scriptPaths = [
-  assetHref(content.route, "assets/js/image-guard.js"),
-  assetHref(content.route, "assets/js/back-to-top.js"),
-  assetHref(content.route, "assets/js/umami-events.js"),
-  assetHref(content.route, "assets/js/year.js"),
-  assetHref(content.route, "assets/js/service-worker-register.js"),
-] as const;
+const pageAssets = buildPageAssetHrefs(content.route);
+const scriptPaths = resolveRouteScriptPaths(content.route, ROOT_WORK_PROJECT_SCRIPT_PATHS);
 ---
 
 <!DOCTYPE html>
@@ -72,23 +67,25 @@ const scriptPaths = [
     twitterSite={content.site.twitterSite}
     schemaGraphJson={schemaGraphJson}
     googleSiteVerification={content.site.googleSiteVerification}
-    umamiWebsiteId="cdec8895-be63-42d6-a490-12dd2ea8f35c"
-    stylesheetHref={stylesheetHref}
-    favicon32Href={favicon32Href}
-    favicon16Href={favicon16Href}
-    faviconIcoHref={faviconIcoHref}
-    appleTouchIconHref={appleTouchIconHref}
-    manifestHref={manifestHref}
+    umamiWebsiteId={UMAMI_WEBSITE_ID}
+    stylesheetHref={pageAssets.stylesheetHref}
+    favicon32Href={pageAssets.favicon32Href}
+    favicon16Href={pageAssets.favicon16Href}
+    faviconIcoHref={pageAssets.faviconIcoHref}
+    appleTouchIconHref={pageAssets.appleTouchIconHref}
+    manifestHref={pageAssets.manifestHref}
   />
-  <body data-page-id="project" data-sw-path={swPath}>
-    <a class="skip-link" href="#main-content">{SKIP_TO_MAIN_LABEL_BY_LANG[lang]}</a>
-    <div class="site">
+  <body data-page-id="project" data-sw-path={pageAssets.swPath}>
+    <a class={PAGE_LAYOUT.skipLinkClass} href={`#${PAGE_LAYOUT.mainContentId}`}>
+      {SKIP_TO_MAIN_LABEL_BY_LANG[lang]}
+    </a>
+    <div class={PAGE_LAYOUT.siteClass}>
       <ClosePageHeader
         homeHref={homeHref}
         closeLabel={CLOSE_PAGE_LABEL_BY_LANG[lang]}
         title={content.header.siteTitle}
       />
-      <main id="main-content">
+      <main id={PAGE_LAYOUT.mainContentId}>
         <ProjectGroupsSection groups={content.groups} />
       </main>
       <PageFooter

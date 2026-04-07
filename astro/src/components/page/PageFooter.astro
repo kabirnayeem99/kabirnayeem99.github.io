@@ -6,12 +6,14 @@ interface Props {
   readonly timestampDisplay: string;
 }
 
-const { footerHtml, lastUpdatedLabel, timestampIso, timestampDisplay } = Astro.props;
+const { footerHtml, lastUpdatedLabel, timestampIso, timestampDisplay } =
+  Astro.props;
 ---
 
 <footer>
-  <p class="footer-copy" set:html={footerHtml}></p>
-  <p class="footer-last-updated"
-    >{lastUpdatedLabel} <time datetime={timestampIso}>{timestampDisplay}</time></p
-  >
+  <p class="footer-copy" set:html={footerHtml} />
+  <p class="footer-last-updated">
+    {lastUpdatedLabel}
+    <time datetime={timestampIso}>{timestampDisplay}</time>
+  </p>
 </footer>

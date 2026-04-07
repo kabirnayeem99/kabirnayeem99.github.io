@@ -1,9 +1,8 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import type { Direction, Lang, PageId } from "./site-types";
 
-export type Lang = "en" | "bn" | "ar" | "ur";
-export type PageId = "index" | "work" | "project" | "blog" | "stats";
-type Direction = "ltr" | "rtl";
+export type { Lang, PageId } from "./site-types";
 
 interface MetaText {
   readonly title: string;

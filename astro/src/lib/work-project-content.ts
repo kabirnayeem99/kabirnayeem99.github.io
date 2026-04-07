@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { posix as pathPosix } from "node:path";
+import type { Direction, Lang } from "./site-types";
 
-export type Lang = "en" | "bn" | "ar" | "ur";
-type Direction = "ltr" | "rtl";
+export type { Lang } from "./site-types";
 
 interface MetaText {
   readonly title: string;

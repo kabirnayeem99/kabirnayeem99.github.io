@@ -14,11 +14,9 @@ const { groups } = Astro.props;
     <section>
       <h2 class="section-title">{group.title}</h2>
       <div class="highlight-list">
-        {
-          group.items.map((item) => (
-            <HighlightCard card={item} />
-          ))
-        }
+        {group.items.map((item) => (
+          <HighlightCard card={item} />
+        ))}
       </div>
     </section>
   ))

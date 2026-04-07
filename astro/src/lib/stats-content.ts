@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-
-type Direction = "ltr" | "rtl";
+import type { Direction } from "./site-types";
 
 interface MetaText {
   readonly title: string;

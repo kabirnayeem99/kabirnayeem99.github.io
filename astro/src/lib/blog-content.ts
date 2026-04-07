@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-
-export type Direction = "ltr" | "rtl";
+import type { Direction } from "./site-types";
 
 interface BlogArticle {
   readonly title: string;

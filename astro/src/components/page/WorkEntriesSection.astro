@@ -13,16 +13,12 @@ const { summary, sectionTitle, entries } = Astro.props;
 
 <section>
   <div class="summary-card">
-    <p set:html={summary}></p>
+    <p set:html={summary} />
   </div>
 </section>
 <section>
   <h2 class="section-title">{sectionTitle}</h2>
   <div class="highlight-list">
-    {
-      entries.map((entry) => (
-        <HighlightCard card={entry} />
-      ))
-    }
+    {entries.map((entry) => <HighlightCard card={entry} />)}
   </div>
 </section>

@@ -10,23 +10,12 @@ const { homeHref, closeLabel, title } = Astro.props;
 
 <header id="top">
   <div class="page-closebar">
-    <a class="page-close-button" href={homeHref} aria-label={closeLabel} title={closeLabel}
-      ><svg
-        class="page-close-icon"
-        viewBox="0 0 24 24"
-        fill="none"
-        aria-hidden="true"
-        focusable="false"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></path>
-      </svg></a
+    <a
+      class="page-close-button"
+      href={homeHref}
+      aria-label={closeLabel}
+      title={closeLabel}
+      ><span class="page-close-icon" aria-hidden="true"></span></a
     >
     <h1 class="site-title site-title--page">{title}</h1>
   </div>
