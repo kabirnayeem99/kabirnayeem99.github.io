@@ -1,0 +1,25 @@
+---
+import { basePath, defaultLocale, siteUrl, supportedLocales } from "../config/site";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Astro Migration Workspace</title>
+    <meta
+      name="description"
+      content="Phase 1 Astro migration workspace for the PersonPortfolio site."
+    />
+    <link rel="canonical" href={siteUrl + basePath} />
+  </head>
+  <body>
+    <main>
+      <h1>Astro migration workspace</h1>
+      <p>This scaffold is intentionally minimal and does not replace legacy pages yet.</p>
+      <p>Default locale: {defaultLocale}</p>
+      <p>Supported locales: {supportedLocales.join(", ")}</p>
+    </main>
+  </body>
+</html>

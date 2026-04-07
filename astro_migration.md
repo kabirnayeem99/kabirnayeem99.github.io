@@ -29,25 +29,25 @@ If any required input is missing, document it explicitly in the migration notes 
 Fill this section from the actual repository before implementation starts.
 
 ```text
-Legacy source root: [INSERT]
-Main entry points/pages: [INSERT]
-Python templating system: [INSERT exact tool/path, e.g. Jinja2 in ./templates]
-Template partials/includes: [INSERT]
-CSS entry files: [INSERT]
-JS files: [INSERT]
-Assets root: [INSERT]
-Locale files and format: [INSERT]
-Supported locales: [INSERT]
-Default locale: [INSERT]
-Current localized route pattern: [INSERT]
-RTL locales: [INSERT, e.g. ar, ur]
-SEO/meta source: [INSERT]
-Umami script location: [INSERT]
-Umami website ID: [INSERT]
-Current custom analytics events: [INSERT]
+Legacy source root: `/Users/kabir/Projects/PersonPortfolio`
+Main entry points/pages: `index.html`, `work.html`, `project.html`, `blog.html`, `stats.html`; localized: `bn/index.html`, `bn/work.html`, `bn/project.html`, `ar/index.html`, `ar/work.html`, `ar/project.html`, `ur/index.html`, `ur/work.html`, `ur/project.html`
+Python templating system: custom Python renderer (string-based HTML assembly in `src/site_renderer/rendering.py`), invoked via `python3 src/main.py --render-site`
+Template partials/includes: no template-engine partial files; reusable render helpers live in `src/site_renderer/rendering.py` (`render_head`, `render_nav`, `render_footer`, `render_scripts`, and page-specific `render_*_main`)
+CSS entry files: source `assets/css/styles.source.css`; generated/minified output `assets/css/styles.css`
+JS files: `assets/js/*.js` (13 files) plus generated `service-worker.js`
+Assets root: `assets/` (`assets/css`, `assets/js`, `assets/fonts`, `assets/icons`, `assets/images`)
+Locale files and format: centralized JSON content source `content/site-content.json` with typed per-page locale payloads and route maps
+Supported locales: `en`, `bn`, `ar`, `ur`
+Default locale: `en` (inferred from canonical root route and `x-default` generation behavior)
+Current localized route pattern: English pages at root (`/index.html`, `/work.html`, `/project.html`, `/blog.html`, `/stats.html`); localized pages under `/{locale}/` for `bn`, `ar`, `ur` on `index/work/project`
+RTL locales: `ar`, `ur`
+SEO/meta source: generated in `src/site_renderer/rendering.py` (`render_head`, `render_schema_graph`, `render_sitemap`) from `content/site-content.json`
+Umami script location: hardcoded in `src/site_renderer/rendering.py` (`render_head`) as `https://cloud.umami.is/script.js`
+Umami website ID: `cdec8895-be63-42d6-a490-12dd2ea8f35c` (hardcoded in `render_head`)
+Current custom analytics events: `nav-click`, `article-click`, `language-change`, `stats-section-click`, `theme-change` (from `assets/js/umami-events.js`)
 Deployment target: GitHub Pages
-Production base URL: [INSERT]
-Repo name / base path: [INSERT]
+Production base URL: `https://kabirnayeem99.github.io`
+Repo name / base path: `PersonPortfolio` / `/` (base path inferred from production URL not including a repo subpath)
 ```
 
 Do this inventory first. The migration must follow it.
