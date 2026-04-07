@@ -1,0 +1,198 @@
+[
+  {
+    "route": "/index.html",
+    "viewport": "desktop",
+    "diffPixels": 3,
+    "totalPixels": 2592000,
+    "diffRatio": 0.0000011574074074074074
+  },
+  {
+    "route": "/work.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/project.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/blog.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/stats.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/bn/index.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/bn/work.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/bn/project.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ar/index.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ar/work.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ar/project.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ur/index.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ur/work.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ur/project.html",
+    "viewport": "desktop",
+    "diffPixels": 0,
+    "totalPixels": 2592000,
+    "diffRatio": 0
+  },
+  {
+    "route": "/index.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/work.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/project.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/blog.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/stats.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/bn/index.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/bn/work.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/bn/project.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ar/index.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ar/work.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ar/project.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ur/index.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ur/work.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  },
+  {
+    "route": "/ur/project.html",
+    "viewport": "mobile",
+    "diffPixels": 0,
+    "totalPixels": 329160,
+    "diffRatio": 0
+  }
+]

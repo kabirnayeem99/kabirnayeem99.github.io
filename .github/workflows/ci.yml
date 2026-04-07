@@ -1,0 +1,54 @@
+name: Astro CI
+
+on:
+  pull_request:
+    paths:
+      - "astro/**"
+      - ".github/workflows/ci.yml"
+      - ".github/workflows/static.yml"
+  push:
+    branches: ["main"]
+    paths:
+      - "astro/**"
+      - ".github/workflows/ci.yml"
+      - ".github/workflows/static.yml"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: astro
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: "astro/package-lock.json"
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run check
+
+      - name: Unit tests
+        run: npm run test
+
+      - name: Build
+        run: npm run build
