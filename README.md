@@ -6,7 +6,7 @@ Multilingual portfolio site built and deployed with Astro.
 
 - App source: `astro/src`
 - Static assets: `astro/public`
-- Content data: `astro/src/data/site-content.json`
+- Content data: `astro/src/data/site-content/`
 
 ## Development
 

@@ -1,0 +1,45 @@
+{
+  "base_url": "https://kabirnayeem99.github.io",
+  "person_name": "Naimul Kabir",
+  "website_name": "Naimul Kabir | Personal Portfolio",
+  "twitter_site": "@kabirnayeem99",
+  "social_profiles": [
+    "https://github.com/kabirnayeem99",
+    "https://www.linkedin.com/in/kabirnayeem99/",
+    "https://kabirnayeem99.medium.com/",
+    "https://leetcode.com/u/kabirnayeem99/"
+  ],
+  "google_site_verification": "F9rV_qmMTwOKM_FXW_y4CvXUPVctz-VO_e1zY757H8w",
+  "language_menu_labels": {
+    "en": "English",
+    "bn": "বাংলা",
+    "ur": "اردو",
+    "ar": "اَلْعَرَبِيَّةُ"
+  },
+  "locales": {
+    "en": {
+      "dir": "ltr",
+      "author": "Naimul Kabir",
+      "language_switcher_label": "Change language",
+      "og_image_alt": "Naimul Kabir logo"
+    },
+    "bn": {
+      "dir": "ltr",
+      "author": "নাঈমুল কবির",
+      "language_switcher_label": "ভাষা পরিবর্তন",
+      "og_image_alt": "নাঈমুল কবিরের লোগো"
+    },
+    "ar": {
+      "dir": "rtl",
+      "author": "نَعِيم الكبير",
+      "language_switcher_label": "تغيير اللغة",
+      "og_image_alt": "شعار نَعِيم الكبير"
+    },
+    "ur": {
+      "dir": "rtl",
+      "author": "نَعِیمُ الْکَبِیر",
+      "language_switcher_label": "زبان تبدیل کریں",
+      "og_image_alt": "نَعِیمُ الْکَبِیر لوگو"
+    }
+  }
+}

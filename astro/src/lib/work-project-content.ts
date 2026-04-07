@@ -1,8 +1,7 @@
-import { readFileSync } from "node:fs";
 import { posix as pathPosix } from "node:path";
 import {
-  CONTENT_PATH,
   asRecord,
+  loadSiteContentRoot,
   readDirection,
   readOptionalString,
   readOptionalStringArray,
@@ -135,14 +134,13 @@ function readProjectGroups(source: Record<string, unknown>, path: string): reado
 }
 
 interface SharedContentContext {
-  readonly root: Record<string, unknown>;
+  readonly root: ReturnType<typeof loadSiteContentRoot>;
   readonly site: WorkProjectSiteData;
   readonly routes: Record<string, unknown>;
 }
 
 function loadSharedContext(lang: Lang): SharedContentContext {
-  const raw = JSON.parse(readFileSync(CONTENT_PATH, "utf-8")) as unknown;
-  const root = asRecord(raw, "root");
+  const root = loadSiteContentRoot();
 
   const site = asRecord(root.site, "root.site");
   const siteLocales = asRecord(site.locales, "root.site.locales");

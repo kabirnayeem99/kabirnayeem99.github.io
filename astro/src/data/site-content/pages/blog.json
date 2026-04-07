@@ -1,0 +1,55 @@
+{
+  "og_type": "article",
+  "locales": {
+    "en": {
+      "meta": {
+        "title": "Blog · Naimul Kabir",
+        "description": "Static blog entries and notes by Naimul Kabir.",
+        "keywords": "Naimul Kabir blog, software engineering articles, mobile development notes"
+      },
+      "header": {
+        "site_title": "Blog",
+        "tagline": "Some of blogs, tutorials, guides, personal experiences & renting..."
+      },
+      "articles": [
+        {
+          "title": "If I Had to Restart My Career as a Mobile Dev",
+          "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
+          "meta": "Medium · career",
+          "summary": "Some of mistakes I made early in my career as a mobile dev, and some honest suggestions and guidelines for jr. mobile devs or software devs in general."
+        },
+        {
+          "title": "Ktor2Curl: convert Ktor requests into curl logs",
+          "href": "https://kabirnayeem99.medium.com/ktor2curl-convert-ktor-requests-into-curl-log-3e573d427485",
+          "meta": "Medium · tooling",
+          "summary": "A tutorial on the Ktor2Curl, a equivalent of Ok2Curl, but for Ktor and Kotlin Multiplatform, written by me.."
+        },
+        {
+          "title": "Setup Windows for Android development",
+          "href": "https://kabirnayeem99.medium.com/setup-windows-for-android-development-9d27e1a9d9a4",
+          "meta": "Medium · environment",
+          "summary": "A guide to make Windows Installation a proper Android Development Work station."
+        },
+        {
+          "title": "Make Arch look like Ubuntu",
+          "href": "https://kabirnayeem99.medium.com/make-arch-look-like-ubuntu-f5b88caf761f",
+          "meta": "Medium · desktop tweaks",
+          "summary": "Guide on using themse and fonts to make default Arch+GNOME install look closer to Ubuntu."
+        },
+        {
+          "title": "Manjaro to Arch conversation",
+          "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
+          "meta": "Medium · distro hopping",
+          "summary": "Hacky Guide on turning a Manjaro installation into an Arch Install. May not work, after so many years, as both platforms has changed largely after writing this blog."
+        },
+        {
+          "title": "Keep calm, switch back to Windows",
+          "href": "https://kabirnayeem99.medium.com/keep-calm-switch-back-to-windows-11f5f636f870",
+          "meta": "Medium · productivity",
+          "summary": "I don't know why even I have written this!!! Rationalising my switching back to windows from FOSS OS."
+        }
+      ],
+      "footer_html": "Send edits or typos my way."
+    }
+  }
+}

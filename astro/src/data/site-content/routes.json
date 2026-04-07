@@ -1,0 +1,26 @@
+{
+  "index": {
+    "en": "index.html",
+    "bn": "bn/index.html",
+    "ar": "ar/index.html",
+    "ur": "ur/index.html"
+  },
+  "work": {
+    "en": "work.html",
+    "bn": "bn/work.html",
+    "ar": "ar/work.html",
+    "ur": "ur/work.html"
+  },
+  "project": {
+    "en": "project.html",
+    "bn": "bn/project.html",
+    "ar": "ar/project.html",
+    "ur": "ur/project.html"
+  },
+  "blog": {
+    "en": "blog.html"
+  },
+  "stats": {
+    "en": "stats.html"
+  }
+}

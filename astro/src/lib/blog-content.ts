@@ -1,7 +1,6 @@
-import { readFileSync } from "node:fs";
 import {
-  CONTENT_PATH,
   asRecord,
+  loadSiteContentRoot,
   readDirection,
   readString,
   readStringArray,
@@ -56,8 +55,7 @@ function readBlogArticles(source: Record<string, unknown>, key: string, path: st
 }
 
 export function loadBlogPageContent(): BlogPageContent {
-  const raw = JSON.parse(readFileSync(CONTENT_PATH, "utf-8")) as unknown;
-  const root = asRecord(raw, "root");
+  const root = loadSiteContentRoot();
 
   const site = asRecord(root.site, "root.site");
   const siteLocales = asRecord(site.locales, "root.site.locales");

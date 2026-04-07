@@ -1,0 +1,498 @@
+{
+  "og_type": "website",
+  "locales": {
+    "en": {
+      "meta": {
+        "title": "Naimul Kabir | Personal Portfolio",
+        "description": "Software Engineer · Muslim · Bibliophile · Philomath.",
+        "keywords": "Naimul Kabir, Software Engineer, Android Developer, Kotlin Multiplatform, Flutter, Laravel, Mobile Apps"
+      },
+      "header": {
+        "site_title": "Naimul Kabir",
+        "tagline": "Muslim · Software Engineer · Bibliophile · Philomath"
+      },
+      "summary_card": [
+        "Software engineer focused on Android, iOS, Flutter, and Kotlin Multiplatform. I build cross-platform products with native-level performance, reliability, and maintainability.",
+        "Comfortable across the stack (full-stack) when needed.",
+        "Currently at <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">Syarah</a>, building internal supply-chain systems and tooling. Open to remote roles and contract work."
+      ],
+      "sections": [
+        {
+          "title": "Right Now",
+          "paragraphs": [
+            "Lately, I’ve been working with PHP Laravel on a contract project involving video streaming. Alongside that, I’ve been going deeper into backend work with PostgreSQL, Docker, Go, and PHP, while also picking up QA testing and UI UX basics through courses.",
+            "Outside work, reading is pretty much my single source of entertainment. Mostly light novels and thrillers, with occasional detours into philosophy, history, Islamic theology, and politics. I also keep up with tech and current affairs through blogs and long form writing, spending an unhealthy amount of time on Hacker News."
+          ]
+        },
+        {
+          "title": "Selected works",
+          "highlights": [
+            {
+              "title": "Internal camera SDK with Machine Learning at Syarah",
+              "meta": "2023 - Present",
+              "paragraphs": [
+                "Built an in-house camera SDK with sensor-based validation and YOLOv8-powered angle checks to improve car image capture for supply-chain inspections. Also developed an internal upload service SDK designed to stay reliable under unstable network conditions and extreme heat."
+              ]
+            },
+            {
+              "title": "Rewritten most popular Islamic App in Bangladesh",
+              "meta": "2022 - 2023",
+              "paragraphs": [
+                "Helped modernize the Al-Hadith app, one of Bangladesh's most-downloaded Islamic apps, while maintaining the legacy Android build and supporting its Flutter rewrite for a large user base."
+              ]
+            },
+            {
+              "title": "Contract work and services",
+              "meta": "Ongoing",
+              "paragraphs": [
+                "Working with small businesses on web design, digital marketing, and Amazon FBA tooling, alongside contract development for larger products like Marriott Bonvoy, BaseHubs, PatientAccess, and Jobamax. Also integrated the Sunmi Printer SDK into a Cordova hybrid app."
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "label": "Experiences",
+              "page_id": "work",
+              "variant": "secondary"
+            },
+            {
+              "label": "View all projects",
+              "page_id": "project",
+              "variant": "secondary"
+            }
+          ]
+        },
+        {
+          "title": "Blogs",
+          "paragraphs": [
+            "Occasional posts on mobile development, Linux, career lessons, and things worth documenting."
+          ],
+          "articles": [
+            {
+              "title": "If I Had to Restart My Career as a Mobile Dev",
+              "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
+              "summary": "Lessons from my early mistakes, plus practical advice for jr. mobile developers."
+            },
+            {
+              "title": "Manjaro to Arch conversation",
+              "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
+              "summary": "Might be one of my most read blog (around ~8k view & ~4k read) A rough guide on turning a Manjaro install into Arch. Old now, but still a fun read if you like Linux experiments."
+            }
+          ],
+          "actions": [
+            {
+              "label": "View all blogs",
+              "page_id": "blog",
+              "variant": "secondary"
+            }
+          ]
+        },
+        {
+          "title": "Skills & Technologies",
+          "paragraphs": [
+            "Core tools and technologies I use across mobile, backend, and product work."
+          ],
+          "tags": [
+            "Kotlin",
+            "Android",
+            "iOS",
+            "Flutter",
+            "Dart",
+            "Kotlin Multiplatform",
+            "Jetpack Compose",
+            "Swift",
+            "Laravel",
+            "Go",
+            "Java",
+            "Python",
+            "SQL",
+            "PostgreSQL",
+            "Redis",
+            "Firebase",
+            "Git",
+            "Linux",
+            "Docker"
+          ]
+        }
+      ],
+      "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Developed with Astro.",
+      "top_actions_title": "Send me an email",
+      "top_actions": [
+        {
+          "label": "✉ Send an email",
+          "href": "mailto:kabirnayeem.99@gmail.com",
+          "variant": "secondary"
+        }
+      ]
+    },
+    "bn": {
+      "meta": {
+        "title": "নাঈমুল কবির · সফটওয়্যার ইঞ্জিনিয়ার",
+        "description": "নাঈমুল কবিরের পোর্টফোলিও: অ্যান্ড্রয়েড, আইওএস, ফ্লাটার ও কটলিন মাল্টিপ্ল্যাটফর্মে কাজ করা একজন সফটওয়্যার ইঞ্জিনিয়ার।",
+        "keywords": "নাঈমুল কবির, সফটওয়্যার ইঞ্জিনিয়ার, অ্যান্ড্রয়েড ডেভেলপার, কটলিন মাল্টিপ্ল্যাটফর্ম, ফ্লাটার, লারাভেল, মোবাইল অ্যাপ"
+      },
+      "header": {
+        "site_title": "নাঈমুল কবির",
+        "tagline": "মুসলিম · সফটওয়্যার ইঞ্জিনিয়ার · বইপোকা · জিজ্ঞাসু"
+      },
+      "summary_card": [
+        "পেশায় সফটওয়্যার ইঞ্জিনিয়ার। মূলত মোবাইল অ্যাপ বানাই। প্রয়োজনে কখনও কখনও ফুল স্ট্যাকে কাজেরও অভিজ্ঞতা আছে।",
+        "বর্তমানে <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">সাইয়ারাহ</a> নামে জর্দানের একটা স্টার্টআপে মোবাইল ডেভেলপার হিশেবে কর্মরত আছি, রিমোটে।"
+      ],
+      "sections": [
+        {
+          "title": "বর্তমানে",
+          "paragraphs": [
+            "ইদানিং আমি লারাভেল নিয়ে কিছু কাজ করছি, একটি চুক্তিভিত্তিক প্রজেক্টে ভিডিও স্ট্রিমিং ফিচার নিয়ে। পাশাপাশি ব্যাকএন্ড ডেভেলপমেন্ট শিখছি নিয়মিত, পোস্টগ্রেসসিকুয়েল, ডকার, গোল্যাং, পিএইচপি, অ্যামাজন এডব্লিউএস ইত্যাদি ইত্যাদি। কিউএ টেস্টিং আর ইউআই-ইউএক্স নিয়ে কোর্সও করছি ইউডেমিতে।",
+            "কাজের বাইরে, বই পড়াই বলতে গেলে আমার বিনোদনের উৎস। বেশিরভাগ সময় কিশোর উপন্যাস, এডভেঞ্চার, থ্রিলার এসব পড়ি, তবে মাঝে মাঝে দর্শন, ইতিহাস, ইসলামী আকীদা, সিয়াসাহ নিয়েও পড়া হয়। প্রযুক্তি ও সমসাময়িক বিষয় নিয়ে নিয়মিত ব্লগ পড়া হয়, বিশেষ করে হ্যাকার নিউজে অনেক বেশী সময় দি।"
+          ]
+        },
+        {
+          "title": "নির্বাচিত কাজ",
+          "highlights": [
+            {
+              "title": "সাইয়ারাহতে মেশিন লার্নিংসহ ইন্টারনাল ক্যামেরা এসডিকে",
+              "meta": "২০২৩ - বর্তমান",
+              "paragraphs": [
+                "ইন-হাউস ক্যামেরা এসডিকে নিয়ে কাজ করেছি, যেটা আবার সেন্সর বেসড ভ্যালিডেশন আছে, আবার YOLOv8 আর মেশিন লার্নিং ব্যবহার করে গাড়ির অ্যাঙ্গেল চেক করে দেখে ছবি ঠিক উঠেছে কি না। আবার মরুভূমির পরিবেশের কথা মাথায় রেখে একটা আপলোড এসডিকেতেও কাজ করেছি, যেটা আনস্ট্যাবল নেটওয়ার্ক আর প্রচন্ড হিটের কথা মাথায় রেখে বানানো। "
+              ]
+            },
+            {
+              "title": "বাংলাদেশের সবচেয়ে জনপ্রিয় ইসলামি অ্যাপগুলোর একটার আধুনিকায়ন",
+              "meta": "২০২২ - ২০২৩",
+              "paragraphs": [
+                "বাংলাদেশের সবচেয়ে বেশি ডাউনলোড হওয়া ইসলামি অ্যাপগুলোর একটা আল-হাদিস। আমি এটা পুরোটা ফ্লাটারে নতুন করে লিখতে কাজ করেছি, যাতে আইওএস অ্যান্ড্রয়েড দুটোই সাপোর্ট করা যায়।"
+              ]
+            },
+            {
+              "title": "চুক্তিভিত্তিক",
+              "meta": "চলমান",
+              "paragraphs": [
+                "ছোট ব্যবসার জন্য চুক্তিভিত্তিক বিভিন্ন প্রজেক্টে কাজ করছি। যেমন, প্যাশেন্ট এক্সেস নামে একটা ডাক্তার এপয়েন্টমেন্ট, জবাম্যাক্স নামে জব প্ল্যাটফর্ম, সুপার ডিল কেএসএ নামে একটা সৌদি ঘড়ির ইকমার্স সাইট, একটা পিওএসে সুনমি প্রিন্টার এসডিকে সাপোর্ট ইত্যাদি ইত্যাদি। "
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "label": "সব কাজ দেখুন",
+              "page_id": "work",
+              "variant": "secondary"
+            },
+            {
+              "label": "সব প্রজেক্ট দেখুন",
+              "page_id": "project",
+              "variant": "secondary"
+            }
+          ]
+        },
+        {
+          "title": "লেখালেখি ও নোটস",
+          "paragraphs": [
+            "মোবাইল ডেভেলপমেন্ট, লিনাক্স, ক্যারিয়ার আর বিভিন্ন ছাইপাশ নিয়ে লিখি।"
+          ],
+          "articles": [
+            {
+              "title": "If I Had to Restart My Career as a Mobile Dev",
+              "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
+              "summary": "ক্যারিয়ারের শুরুর দিকের ভুলগুলো থেকে শেখা কিছু বিষয়, আর জুনিয়র মোবাইল ডেভেলপারদের জন্য কিছু বাস্তব পরামর্শ।"
+            },
+            {
+              "title": "Manjaro to Arch conversation",
+              "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
+              "summary": "সম্ভবত আমার সবচেয়ে বেশী পড়া ব্লগ। শুধু মিডিয়ামেই এটা ৮,০০০ এর মত ভিউ পেয়েছে,  ৪,০০০ মানুষ পড়েছে। এখন আর এতদিন পর এটা আর কাজ করার কথা না, তবুও আগ্রহীরা পড়তে পারেন।"
+            }
+          ],
+          "actions": [
+            {
+              "label": "সব লেখা দেখুন",
+              "page_id": "blog",
+              "variant": "secondary"
+            }
+          ]
+        },
+        {
+          "title": "স্কিলস ও টেকনোলজি",
+          "paragraphs": [
+            "মোবাইল, ব্যাকএন্ড এবং প্রোডাক্ট কাজের জন্য যেসব টুল ও টেকনোলজি বেশি ব্যবহার করি।"
+          ],
+          "tags": [
+            "Kotlin",
+            "Android",
+            "iOS",
+            "Flutter",
+            "Dart",
+            "Kotlin Multiplatform",
+            "Jetpack Compose",
+            "Swift",
+            "Laravel",
+            "Go",
+            "Java",
+            "Python",
+            "SQL",
+            "PostgreSQL",
+            "Redis",
+            "Firebase",
+            "Git",
+            "Linux",
+            "Docker"
+          ]
+        }
+      ],
+      "footer_html": "&copy; <span id=\"year\">২০২৫</span> নাঈমুল কবির। Astro দিয়ে তৈরি।",
+      "top_actions_title": "আমাকে ইমেইল করুন",
+      "top_actions": [
+        {
+          "label": "✉ ইমেইল করুন",
+          "href": "mailto:kabirnayeem.99@gmail.com",
+          "variant": "secondary"
+        }
+      ]
+    },
+    "ar": {
+      "meta": {
+        "title": "نَعِيمُولُ كَبِير · مُهَنْدِسُ بَرْمَجِيَّاتٍ",
+        "description": "مِلَفُّ نَعِيمُولِ كَبِير: مُهَنْدِسُ بَرْمَجِيَّاتٍ يَعْمَلُ عَلَىٰ أَنْدْرُوِيد، آي أُو إِس، فْلَاتَر، وَكُوتْلِين مُلْتِي بْلَاتْفُورْم.",
+        "keywords": "نَعِيمُول كَبِير، مُهَنْدِس بَرْمَجِيَّات، مُطَوِّر أَنْدْرُوِيد، كُوتْلِين مُلْتِي بْلَاتْفُورْم، فْلَاتَر، لَارَافِيل، تَطْبِيقَات مُوبَايِل"
+      },
+      "header": {
+        "site_title": "نَعِيمُولُ كَبِير",
+        "tagline": "مُسْلِم · مُهَنْدِسُ بَرْمَجِيَّاتٍ · مُحِبُّ القِرَاءَةِ · فُضُولِيّ"
+      },
+      "summary_card": [
+        "أَعْمَلُ كَمُهَنْدِسِ بَرْمَجِيَّاتٍ، وَأُرَكِّزُ غَالِبًا عَلَىٰ تَطْوِيرِ تَطْبِيقَاتِ ٱلْمُوبَايِل. وَلَدَيَّ بَعْضُ ٱلْخِبْرَةِ فِي ٱلْعَمَلِ عَلَىٰ ٱلْفُلِّ سْتَاكِ عِنْدَ ٱلْحَاجَةِ.",
+        "حَالِيًّا أَعْمَلُ عَنْ بُعْدٍ كَمُطَوِّرِ مُوبَايِل فِي شَرِكَةِ <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">سَيَّارَة</a>، وَهِيَ شَرِكَةٌ نَاشِئَةٌ فِي ٱلْأُرْدُنِّ."
+      ],
+      "sections": [
+        {
+          "title": "حَالِيًّا",
+          "paragraphs": [
+            "فِي الْآوِنَةِ الْأَخِيرَةِ، أَعْمَلُ عَلَى PHP Laravel فِي بَعْضِ الأَعْمَالِ، فِي مَشْرُوعٍ تَعَاقُدِيٍّ يَتَضَمَّنُ video streaming feature. وَبِجَانِبِ ذٰلِكَ، أَتَعَلَّمُ backend development بِشَكْلٍ مُنْتَظِمٍ، مِثْلَ PostgreSQL وَ Docker وَ Go وَ PHP وَ Amazon AWS وَغَيْرِهَا، وَأَدْرُسُ أَيْضًا دُرُوسًا فِي QA testing وَ UI UX عَلَى Udemy.",
+            "خَارِجَ الْعَمَلِ، الْقِرَاءَةُ هِيَ مَصْدَرُ تَرْفِيهِي الْوَحِيدُ. أَقْرَأُ فِي الْغَالِبِ رِوَايَاتٍ لِلْيَافِعِينَ وَ رِوَايَاتٍ مُغَامِرَاتٍ وَ رِوَايَاتٍ مُثِيرَةً، وَأَحْيَانًا أَقْرَأُ فِي الفَلْسَفَةِ وَالتَّارِيخِ وَ العَقِيدَةِ الإِسْلَامِيَّةِ وَ السِّيَاسَةِ. كَمَا أُوَاكِبُ التِّقْنِيَّةَ وَالأَحْدَاثَ الْمُعَاصِرَةَ مِنْ خِلَالِ الْمُدَوَّنَاتِ، وَأَقْضِي وَقْتًا غَيْرَ صِحِّيٍّ كَثِيرًا عَلَى Hacker News."
+          ]
+        },
+        {
+          "title": "أعمال مختارة",
+          "highlights": [
+            {
+              "title": "حُزْمَةُ كاميرا داخليّة مع تَعَلُّم الآلة في سَيَّارَة",
+              "meta": "2023 - حتى الآن",
+              "paragraphs": [
+                "بَنَيتُ حُزْمَةَ كاميرا داخليّةً مع تَحقُّقٍ يعتمدُ على الحَسّاساتِ وفَحصِ الزوايا عبر YOLOv8 لِتَحسينِ التِقاطِ صُوَرِ السَّياراتِ في فُحوصاتِ سَلاسِلِ الإمداد. كما طوَّرتُ حُزْمَةَ رَفعٍ داخليّةً مُصمَّمةً لِتَبقى موثوقةً مع الشَّبكاتِ غيرِ المُستقرّةِ والحَرارةِ الشَّديدة."
+              ]
+            },
+            {
+              "title": "تَحديثُ أَشهَرِ تَطبيقٍ إسلاميٍّ في بِنغلاديش",
+              "meta": "2022 - 2023",
+              "paragraphs": [
+                "ساعَدتُ في تحديثِ تطبيقِ «الحديث»، وهو مِن أَكثرِ التَّطبيقاتِ الإسلاميّةِ تَحميلًا في بِنغلاديش، مع الاستمرارِ في صيانةِ بُنيةِ أندرويد القديمة ودَعمِ إِعادةِ كتابتِه بفلاتر لِقاعدةِ مُستخدمينَ كبيرة."
+              ]
+            },
+            {
+              "title": "أَعمالٌ تَعاقديّة وخِدمات",
+              "meta": "مُستَمِرّ",
+              "paragraphs": [
+                "عَمِلتُ مع شَرِكاتٍ صغيرةٍ في تَصميمِ الويب والتَّسويقِ الرَّقمي وأدواتِ Amazon FBA، إلى جانبِ تَطويرٍ تَعاقديٍّ لِمُنتجاتٍ أَكبر مثل Marriott Bonvoy وBaseHubs وPatientAccess وJobamax. كما دَمَجتُ Sunmi Printer SDK داخلَ تطبيقٍ هجينٍ مبنيٍّ على Cordova."
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "label": "عرض كل الأعمال",
+              "page_id": "work",
+              "variant": "secondary"
+            },
+            {
+              "label": "عرض كل المشاريع",
+              "page_id": "project",
+              "variant": "secondary"
+            }
+          ]
+        },
+        {
+          "title": "ٱلْكِتَابَةُ وَٱلْمُلَاحَظَاتُ",
+          "paragraphs": [
+            "أَكْتُبُ عَنْ تَطْوِيرِ ٱلْمُوبَايِلِ، لِينُكْس، ٱلْمَسَارِ ٱلْمِهْنِيِّ، وَأَشْيَاءَ أُخْرَىٰ مُتَفَرِّقَةً."
+          ],
+          "articles": [
+            {
+              "title": "If I Had to Restart My Career as a Mobile Dev",
+              "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
+              "summary": "بَعْضُ ٱلدُّرُوسِ مِنْ أَخْطَاءِ بَدَايَةِ مَسِيرَتِي، مَعَ نَصَائِحَ عَمَلِيَّةٍ لِمُطَوِّرِي ٱلْمُوبَايِلِ ٱلْمُبْتَدِئِينَ."
+            },
+            {
+              "title": "Manjaro to Arch conversation",
+              "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
+              "summary": "غَالِبًا هَذَا أَكْثَرُ مَقَالٍ تَمَّتْ قِرَاءَتُهُ. حَصَلَ عَلَىٰ حَوَالَي ٨٠٠٠ مُشَاهَدَةٍ وَقَرَأَهُ نَحْوُ ٤٠٠٠ شَخْصٍ عَلَىٰ مِيدْيُوم. رُبَّمَا لَمْ يَعُدْ يَعْمَلُ كَمَا كَانَ بِسَبَبِ مُرُورِ ٱلْوَقْتِ، لٰكِنْ مَنْ يَهْتَمُّ يُمْكِنُهُ ٱلِاطِّلَاعُ عَلَيْهِ."
+            }
+          ],
+          "actions": [
+            {
+              "label": "عرض كل الكتابات",
+              "page_id": "blog",
+              "variant": "secondary"
+            }
+          ]
+        },
+        {
+          "title": "المهارات والتقنيات",
+          "paragraphs": [
+            "أهم الأدوات والتقنيات التي أستخدمها في تطوير الجوال والباك إند وبناء المنتجات."
+          ],
+          "tags": [
+            "Kotlin",
+            "Android",
+            "iOS",
+            "Flutter",
+            "Dart",
+            "Kotlin Multiplatform",
+            "Jetpack Compose",
+            "Swift",
+            "Laravel",
+            "Go",
+            "Java",
+            "Python",
+            "SQL",
+            "PostgreSQL",
+            "Redis",
+            "Firebase",
+            "Git",
+            "Linux",
+            "Docker"
+          ]
+        }
+      ],
+      "footer_html": "&copy; <span id=\"year\">٢٠٢٥</span> نَعِيمُولُ كَبِير. مُطوَّرٌ باستخدام Astro.",
+      "top_actions_title": "راسلني عبر البريد",
+      "top_actions": [
+        {
+          "label": "✉ أرسل بريدًا",
+          "href": "mailto:kabirnayeem.99@gmail.com",
+          "variant": "secondary"
+        }
+      ]
+    },
+    "ur": {
+      "meta": {
+        "title": "نعیم الکبیر · سافٹ ویئر انجینئر",
+        "description": "نعیم الکبیر کا پورٹ فولیو، ایک ایسے سافٹ ویئر انجینئر کا جو اینڈرائیڈ، آئی او ایس، فْلَٹَر اور کاٹلِن ملٹی پلیٹ فارم پر کام کرتا ہے۔",
+        "keywords": "نعیم الکبیر، سافٹ ویئر انجینئر، اینڈرائیڈ ڈویلپر، کاٹلِن ملٹی پلیٹ فارم، فْلَٹَر، لاراوِل، موبائل ایپس"
+      },
+      "header": {
+        "site_title": "نعیم الکبیر",
+        "tagline": "مسلمان · سافٹ ویئر انجینئر · کتاب دوست · سیکھنے کا شوقین"
+      },
+      "summary_card": [
+        "میں اینڈرائیڈ، آئی او ایس، فْلَٹَر اور کاٹلِن ملٹی پلیٹ فارم پر کام کرنے والا موبائل سافٹ ویئر انجینئر ہوں۔ کارکردگی، اعتماد اور مینٹینیبلٹی پر نیٹو سطح کی توجہ کے ساتھ کراس پلیٹ فارم پراڈکٹس بناتا ہوں۔",
+        "اس وقت <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">سیارہ</a> میں اندرونی سپلائی چین ایپس اور ٹولنگ پر کام کر رہا ہوں۔ ریموٹ رولز اور کنٹریکٹ کام کے لیے دستیاب ہوں۔"
+      ],
+      "sections": [
+        {
+          "title": "فی الحال",
+          "paragraphs": [
+            "حالیہ دنوں میں، میں PHP Laravel پر کچھ کام کر رہا ہوں، ایک کنٹریکچول پروجیکٹ میں جس میں video streaming فیچر شامل ہے۔ اس کے ساتھ ساتھ، میں backend development باقاعدگی سے سیکھ رہا ہوں، جیسے PostgreSQL، Docker، Go، PHP، اور Amazon AWS وغیرہ۔ ساتھ ہی QA testing اور UI UX کے کورسز بھی Udemy پر کر رہا ہوں۔",
+            "کام کے علاوہ، پڑھنا ہی میری واحد تفریح ہے۔ زیادہ تر کِشور ناول، ایڈونچر، اور سنسنی خیز ناول پڑھتا ہوں، تاہم کبھی کبھار philosophy، history، اسلامی عقیدہ، اور سیاست پر بھی پڑھتا ہوں۔ tech اور current affairs کے لیے باقاعدگی سے blogs پڑھتا ہوں، خاص طور پر Hacker News پر کافی غیر صحت مند وقت گزارتا ہوں۔"
+          ]
+        },
+        {
+          "title": "منتخب کام",
+          "highlights": [
+            {
+              "title": "سیارہ میں مشین لرننگ کے ساتھ داخلی کیمرا SDK",
+              "meta": "2023 - تا حال",
+              "paragraphs": [
+                "سپلائی چین انسپیکشنز کے لیے سنسر پر مبنی ویلیڈیشن اور YOLOv8 پر مبنی اینگل چیکس کے ساتھ ایک اِن ہاؤس کیمرا SDK بنایا۔ ساتھ ہی ایک داخلی اپ لوڈ سروس SDK بھی تیار کیا جو غیر مستحکم نیٹ ورک اور شدید گرمی میں بھی قابلِ اعتماد رہے۔"
+              ]
+            },
+            {
+              "title": "بنگلہ دیش کی مقبول ترین اسلامی ایپس میں سے ایک کی جدید کاری",
+              "meta": "2022 - 2023",
+              "paragraphs": [
+                "الحدیث ایپ کو جدید بنانے میں کام کیا، جو بنگلہ دیش کی سب سے زیادہ ڈاؤن لوڈ ہونے والی اسلامی ایپس میں سے ایک ہے۔ لیگیسی اینڈرائیڈ بلڈ کو برقرار رکھتے ہوئے اس کی Flutter ری رائٹ کو بھی بڑی یوزر بیس کے لیے سپورٹ کیا۔"
+              ]
+            },
+            {
+              "title": "کنٹریکٹ کام اور سروسز",
+              "meta": "جاری",
+              "paragraphs": [
+                "چھوٹے کاروباروں کے لیے ویب ڈیزائن، ڈیجیٹل مارکیٹنگ اور Amazon FBA ٹولنگ پر کام کیا۔ ساتھ ہی Marriott Bonvoy، BaseHubs، PatientAccess اور Jobamax جیسے بڑے پراڈکٹس پر کنٹریکٹ ڈویلپمنٹ کی۔ Cordova کی ایک ہائبرڈ ایپ میں Sunmi Printer SDK بھی اِنٹیگریٹ کیا۔"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "label": "تمام کام دیکھیں",
+              "page_id": "work",
+              "variant": "secondary"
+            },
+            {
+              "label": "تمام پراجیکٹس دیکھیں",
+              "page_id": "project",
+              "variant": "secondary"
+            }
+          ]
+        },
+        {
+          "title": "تحریریں اور نوٹس",
+          "paragraphs": [
+            "موبائل ڈویلپمنٹ، Linux، کیریئر سے سیکھی گئی باتوں، اور اُن چیزوں پر کبھی کبھار لکھتا ہوں جو ریکارڈ میں رہنی چاہییں۔"
+          ],
+          "articles": [
+            {
+              "title": "If I Had to Restart My Career as a Mobile Dev",
+              "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
+              "summary": "کیریئر کے شروع کی غلطیوں سے سیکھے گئے سبق، اور نئے موبائل ڈویلپرز کے لیے چند عملی مشورے۔"
+            },
+            {
+              "title": "Manjaro to Arch conversation",
+              "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
+              "summary": "Manjaro انسٹال کو Arch میں بدلنے کی ایک کھردری مگر مفید گائیڈ۔ اب کافی پرانی ہے، مگر Linux کے تجربات پسند ہوں تو اب بھی اچھی لگتی ہے۔"
+            }
+          ],
+          "actions": [
+            {
+              "label": "تمام تحریریں دیکھیں",
+              "page_id": "blog",
+              "variant": "secondary"
+            }
+          ]
+        },
+        {
+          "title": "مہارتیں اور ٹیکنالوجیز",
+          "paragraphs": [
+            "موبائل، بیک اینڈ اور پروڈکٹ ورک میں جن بنیادی ٹولز اور ٹیکنالوجیز پر میں کام کرتا ہوں۔"
+          ],
+          "tags": [
+            "Kotlin",
+            "Android",
+            "iOS",
+            "Flutter",
+            "Dart",
+            "Kotlin Multiplatform",
+            "Jetpack Compose",
+            "Swift",
+            "Laravel",
+            "Go",
+            "Java",
+            "Python",
+            "SQL",
+            "PostgreSQL",
+            "Redis",
+            "Firebase",
+            "Git",
+            "Linux",
+            "Docker"
+          ]
+        }
+      ],
+      "footer_html": "&copy; <span id=\"year\">2025</span> نعیم الکبیر۔ Astro کے ساتھ تیار کردہ۔",
+      "top_actions_title": "مجھے ای میل کریں",
+      "top_actions": [
+        {
+          "label": "✉ ای میل بھیجیں",
+          "href": "mailto:kabirnayeem.99@gmail.com",
+          "variant": "secondary"
+        }
+      ]
+    }
+  }
+}

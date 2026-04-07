@@ -92,7 +92,7 @@ const pageAssets = buildPageAssetHrefs(content.route);
     <BackToTopButton label={BACK_TO_TOP_LABEL} />
     {
       scriptPaths.map((src) => (
-        <script defer src={src}></script>
+        <script is:inline defer src={src}></script>
       ))
     }
   </body>

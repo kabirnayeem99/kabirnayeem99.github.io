@@ -98,7 +98,7 @@ const scriptPaths = resolveRouteScriptPaths(content.route, ROOT_WORK_PROJECT_SCR
     <BackToTopButton label={BACK_TO_TOP_LABEL_BY_LANG[lang]} />
     {
       scriptPaths.map((src) => (
-        <script defer src={src}></script>
+        <script is:inline defer src={src}></script>
       ))
     }
   </body>

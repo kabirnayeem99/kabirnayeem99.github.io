@@ -11,7 +11,7 @@ Repository guidance for Gemini or other AI/code agents.
 ## Key paths
 
 - App/pages/components: `astro/src`
-- Content data: `astro/src/data/site-content.json`
+- Content data: `astro/src/data/site-content/`
 - Public assets: `astro/public/assets`
 - Workflow configs: `.github/workflows`
 

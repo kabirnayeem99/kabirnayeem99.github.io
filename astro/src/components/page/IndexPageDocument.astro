@@ -547,8 +547,8 @@ const goodreadsLoadingByLang = {
     </div>
 
     <BackToTopButton label={BACK_TO_TOP_LABEL_BY_LANG[lang]} />
-    {renderedScriptPaths.map((src) => <script defer src={src} />)}
-    <script
+    {renderedScriptPaths.map((src) => <script is:inline defer src={src} />)}
+    <script is:inline
       src={content.statsCompact.goodreads.scriptSrc}
       type="text/javascript"
       charset="utf-8"></script>

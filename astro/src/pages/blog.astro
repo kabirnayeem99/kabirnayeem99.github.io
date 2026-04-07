@@ -83,7 +83,7 @@ const pageAssets = buildPageAssetHrefs(content.blogRoute);
     </div>
     {
       scriptPaths.map((src) => (
-        <script defer src={src}></script>
+        <script is:inline defer src={src}></script>
       ))
     }
   </body>

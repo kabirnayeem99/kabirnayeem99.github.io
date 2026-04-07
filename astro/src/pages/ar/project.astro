@@ -102,6 +102,6 @@ const scriptPaths = resolveRouteScriptPaths(
       />
     </div>
     <BackToTopButton label={BACK_TO_TOP_LABEL_BY_LANG[lang]} />
-    {scriptPaths.map((src) => <script defer src={src} />)}
+    {scriptPaths.map((src) => <script is:inline defer src={src} />)}
   </body>
 </html>

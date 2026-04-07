@@ -211,9 +211,9 @@ const pageAssets = buildPageAssetHrefs(content.route);
     </div>
     {
       scriptPaths.map((src) => (
-        <script defer src={src}></script>
+        <script is:inline defer src={src}></script>
       ))
     }
-    <script src={content.sections.goodreads.scriptSrc} type="text/javascript" charset="utf-8"></script>
+    <script is:inline src={content.sections.goodreads.scriptSrc} type="text/javascript" charset="utf-8"></script>
   </body>
 </html>

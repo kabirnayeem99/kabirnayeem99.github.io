@@ -1,7 +1,67 @@
+import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import type { Direction, Lang } from "./site-types";
 
-export const CONTENT_PATH = resolve(process.cwd(), "src/data/site-content.json");
+const CONTENT_DIR = resolve(process.cwd(), "src/data/site-content");
+const PAGE_IDS = ["index", "work", "project", "blog", "stats"] as const;
+
+const SHARED_CONTENT_FILE_PATHS = [
+  resolve(CONTENT_DIR, "site.json"),
+  resolve(CONTENT_DIR, "routes.json"),
+  resolve(CONTENT_DIR, "navigation.json"),
+  resolve(CONTENT_DIR, "navigation-labels.json"),
+] as const;
+
+export function listSiteContentFilePaths(): readonly string[] {
+  const pageFilePaths = PAGE_IDS.map((pageId) => resolve(CONTENT_DIR, "pages", `${pageId}.json`));
+  return [...SHARED_CONTENT_FILE_PATHS, ...pageFilePaths];
+}
+
+interface SiteContentRoot {
+  readonly site: Record<string, unknown>;
+  readonly routes: Record<string, unknown>;
+  readonly navigation: Record<string, unknown>;
+  readonly navigation_labels: Record<string, unknown>;
+  readonly pages: Readonly<Record<(typeof PAGE_IDS)[number], Record<string, unknown>>>;
+}
+
+let siteContentCache: SiteContentRoot | undefined;
+
+function readJsonObject(filePath: string, pathLabel: string): Record<string, unknown> {
+  const raw = JSON.parse(readFileSync(filePath, "utf-8")) as unknown;
+  return asRecord(raw, pathLabel);
+}
+
+export function loadSiteContentRoot(): SiteContentRoot {
+  if (siteContentCache !== undefined) {
+    return siteContentCache;
+  }
+
+  const site = readJsonObject(resolve(CONTENT_DIR, "site.json"), "root.site");
+  const routes = readJsonObject(resolve(CONTENT_DIR, "routes.json"), "root.routes");
+  const navigation = readJsonObject(resolve(CONTENT_DIR, "navigation.json"), "root.navigation");
+  const navigationLabels = readJsonObject(
+    resolve(CONTENT_DIR, "navigation-labels.json"),
+    "root.navigation_labels",
+  );
+
+  const pages: Record<(typeof PAGE_IDS)[number], Record<string, unknown>> = {
+    index: readJsonObject(resolve(CONTENT_DIR, "pages/index.json"), "root.pages.index"),
+    work: readJsonObject(resolve(CONTENT_DIR, "pages/work.json"), "root.pages.work"),
+    project: readJsonObject(resolve(CONTENT_DIR, "pages/project.json"), "root.pages.project"),
+    blog: readJsonObject(resolve(CONTENT_DIR, "pages/blog.json"), "root.pages.blog"),
+    stats: readJsonObject(resolve(CONTENT_DIR, "pages/stats.json"), "root.pages.stats"),
+  };
+
+  siteContentCache = {
+    site,
+    routes,
+    navigation,
+    navigation_labels: navigationLabels,
+    pages,
+  };
+  return siteContentCache;
+}
 
 export interface MetaText {
   readonly title: string;

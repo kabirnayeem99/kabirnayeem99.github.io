@@ -1,5 +1,6 @@
 import { readdirSync, statSync } from "node:fs";
 import { resolve } from "node:path";
+import { listSiteContentFilePaths } from "./content-loader-shared";
 
 export interface BuildTimestamp {
   readonly iso: string;
@@ -40,7 +41,7 @@ function formatDisplay(date: Date): string {
 
 function findLatestTimestampMillis(): number {
   const candidates: string[] = [
-    resolve(ASTRO_ROOT, "src/data/site-content.json"),
+    ...listSiteContentFilePaths(),
     resolve(ASTRO_ROOT, "public/assets/css/styles.source.css"),
   ];
 
