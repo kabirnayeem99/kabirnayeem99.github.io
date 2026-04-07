@@ -1,0 +1,554 @@
+---
+import BackToTopButton from "./BackToTopButton.astro";
+import HeadSeo from "./HeadSeo.astro";
+import HighlightCard from "./HighlightCard.astro";
+import PageFooter from "./PageFooter.astro";
+import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
+import {
+  loadIndexPageContent,
+  type IndexAction,
+  type Lang,
+  type PageId,
+} from "../../lib/index-content";
+import {
+  BACK_TO_TOP_LABEL_BY_LANG,
+  LAST_UPDATED_LABEL_BY_LANG,
+  SKIP_TO_MAIN_LABEL_BY_LANG,
+  THEME_DARK_LABEL_BY_LANG,
+  THEME_LIGHT_LABEL_BY_LANG,
+  VIEW_ALL_STATS_LABEL_BY_LANG,
+} from "../../lib/page-labels";
+import {
+  buildOgImageUrl,
+  buildPageAssetHrefs,
+  PAGE_LAYOUT,
+  ROOT_INDEX_SCRIPT_PATHS,
+  resolveRouteScriptPaths,
+  UMAMI_WEBSITE_ID,
+} from "../../lib/page-shared";
+import {
+  SOCIAL_CHIP_ICON_CLASS_BY_NAME,
+  type SocialChipIconName,
+  resolveSocialPlatformFromHref,
+  socialChipLabelForPlatform,
+} from "../../lib/social-chip-icons";
+import { buildSchemaGraphJson } from "../../lib/seo";
+import {
+  assetHref,
+  buildOgLocaleAlternates,
+  OG_LOCALE_BY_LANG,
+  routeHref,
+} from "../../lib/work-project-content";
+
+interface Props {
+  readonly lang: Lang;
+}
+
+const { lang } = Astro.props as Props;
+const content = loadIndexPageContent(lang);
+const buildTimestamp = computeLegacyBuildTimestamp();
+const currentRoute = content.route;
+
+const canonicalUrl =
+  lang === "en"
+    ? `${content.site.baseUrl}/`
+    : `${content.site.baseUrl}/${content.route}`;
+const ogImageUrl = buildOgImageUrl(content.site.baseUrl);
+const schemaGraphJson = buildSchemaGraphJson({
+  baseUrl: content.site.baseUrl,
+  websiteName: content.site.websiteName,
+  personName: content.site.personName,
+  canonicalUrl,
+  ogImageUrl,
+  socialProfiles: content.site.socialProfiles,
+});
+
+const alternateLinks = [
+  { hrefLang: "en", href: `${content.site.baseUrl}/` },
+  {
+    hrefLang: "bn",
+    href: `${content.site.baseUrl}/${content.routes.index.bn}`,
+  },
+  {
+    hrefLang: "ar",
+    href: `${content.site.baseUrl}/${content.routes.index.ar}`,
+  },
+  {
+    hrefLang: "ur",
+    href: `${content.site.baseUrl}/${content.routes.index.ur}`,
+  },
+  { hrefLang: "x-default", href: `${content.site.baseUrl}/` },
+] as const;
+
+const ogLocaleAlternates = buildOgLocaleAlternates(lang);
+const menuId = `language-menu-index-${lang}`;
+
+const scriptPaths = ROOT_INDEX_SCRIPT_PATHS;
+
+const renderedScriptPaths = resolveRouteScriptPaths(currentRoute, scriptPaths);
+const pageAssets = buildPageAssetHrefs(currentRoute);
+const logoHref = assetHref(currentRoute, "assets/images/logo.svg");
+
+function routeForAction(pageId: PageId): string {
+  return content.routes[pageId][lang];
+}
+
+interface ResolvedAction {
+  readonly href: string;
+  readonly navPageId?: PageId;
+  readonly isExternal: boolean;
+  readonly isMailto: boolean;
+  readonly variantClass: string;
+  readonly labelText: string;
+  readonly showTrailingArrow: boolean;
+}
+
+function stripMailPrefix(label: string): string {
+  return label.replace(/^✉\s*/, "");
+}
+
+function resolveAction(action: IndexAction): ResolvedAction {
+  let href = action.href;
+  let navPageId: PageId | undefined;
+  if (action.pageId !== undefined) {
+    href = routeHref(currentRoute, routeForAction(action.pageId));
+    navPageId = action.pageId;
+  }
+  if (href === undefined) {
+    throw new Error("Index action missing href and pageId");
+  }
+
+  const isExternal = href.startsWith("http://") || href.startsWith("https://");
+  const isMailto = href.startsWith("mailto:");
+  const isPageLink = navPageId !== undefined;
+
+  let variantClass =
+    action.variant === "primary"
+      ? "action-chip action-chip--primary"
+      : "action-chip action-chip--secondary";
+  if (isPageLink && action.variant === "secondary") {
+    variantClass = `${variantClass} action-chip--compact-nav`;
+  }
+
+  const resolved: {
+    href: string;
+    isExternal: boolean;
+    isMailto: boolean;
+    variantClass: string;
+    labelText: string;
+    showTrailingArrow: boolean;
+    navPageId?: PageId;
+  } = {
+    href,
+    isExternal,
+    isMailto,
+    variantClass,
+    labelText: isMailto ? stripMailPrefix(action.label) : action.label,
+    showTrailingArrow: isPageLink && action.variant === "secondary",
+  };
+  if (navPageId !== undefined) {
+    resolved.navPageId = navPageId;
+  }
+  return resolved;
+}
+
+interface SocialChip {
+  readonly href: string;
+  readonly ariaLabel: string;
+  readonly text: string;
+  readonly iconName: SocialChipIconName;
+  readonly isExternal: boolean;
+}
+
+function toSocialChip(action: IndexAction): SocialChip {
+  const resolved = resolveAction(action);
+  if (resolved.navPageId !== undefined) {
+    throw new Error("Top social actions cannot be page links");
+  }
+  if (!resolved.isMailto) {
+    throw new Error("Top social actions must use a mailto href");
+  }
+
+  return {
+    href: resolved.href,
+    ariaLabel: resolved.labelText,
+    text: resolved.labelText,
+    iconName: "email",
+    isExternal: false,
+  };
+}
+
+const topSocialChips = content.topActions.map((action) => toSocialChip(action));
+const profileSocialChips = content.site.socialProfiles.map((href) => {
+  const platform = resolveSocialPlatformFromHref(href);
+  const label = socialChipLabelForPlatform(platform, lang);
+  return {
+    href,
+    ariaLabel: label,
+    text: label,
+    iconName: platform,
+    isExternal: true,
+  } as const;
+});
+const socialChips: readonly SocialChip[] = [
+  ...topSocialChips,
+  ...profileSocialChips,
+];
+
+const viewAllStatsAction: IndexAction = {
+  label: VIEW_ALL_STATS_LABEL_BY_LANG[lang],
+  pageId: "stats",
+  variant: "secondary",
+};
+
+const homeWakaTimeTitleByLang = {
+  en: "Skills & Languages",
+  bn: "স্কিলস ও ভাষা",
+  ar: "المهارات واللغات",
+  ur: "مہارتیں اور زبانیں",
+} as const;
+
+const homeGoodreadsTitleByLang = {
+  en: "Last Read Books",
+  bn: "সর্বশেষ পড়া বই",
+  ar: "آخِرُ الكُتُبِ المَقْرُوءَةِ",
+  ur: "آخری پڑھی گئی کتابیں",
+} as const;
+
+const goodreadsCopyByLang = {
+  en: "Some of the books I've read recently.",
+  bn: "সম্প্রতি যেসব বই পড়েছি, সেখান থেকে কিছু।",
+  ar: "بعض الكتب التي قرأتها مؤخرًا.",
+  ur: "حالیہ دنوں میں پڑھی گئی کچھ کتابیں۔",
+} as const;
+
+const goodreadsLoadingByLang = {
+  en: "Loading Goodreads books…",
+  bn: "গুডরিডস বই লোড হচ্ছে…",
+  ar: "جارٍ تحميل كتب Goodreads…",
+  ur: "Goodreads کی کتابیں لوڈ ہو رہی ہیں…",
+} as const;
+
+const socialRowLabelByLang = {
+  en: "Social links",
+  bn: "সামাজিক লিংকসমূহ",
+  ar: "روابط التواصل الاجتماعي",
+  ur: "سوشل روابط",
+} as const;
+---
+
+<!doctype html>
+<html lang={lang} dir={content.site.locale.dir}>
+  <HeadSeo
+    title={content.meta.title}
+    description={content.meta.description}
+    keywords={content.meta.keywords}
+    author={content.site.locale.author}
+    canonicalUrl={canonicalUrl}
+    alternateLinks={alternateLinks}
+    ogType="website"
+    ogLocale={OG_LOCALE_BY_LANG[lang]}
+    ogLocaleAlternates={ogLocaleAlternates}
+    ogImageUrl={ogImageUrl}
+    ogImageAlt={content.site.locale.ogImageAlt}
+    twitterSite={content.site.twitterSite}
+    schemaGraphJson={schemaGraphJson}
+    googleSiteVerification={content.site.googleSiteVerification}
+    umamiWebsiteId={UMAMI_WEBSITE_ID}
+    stylesheetHref={pageAssets.stylesheetHref}
+    favicon32Href={pageAssets.favicon32Href}
+    favicon16Href={pageAssets.favicon16Href}
+    faviconIcoHref={pageAssets.faviconIcoHref}
+    appleTouchIconHref={pageAssets.appleTouchIconHref}
+    manifestHref={pageAssets.manifestHref}
+  />
+  <body data-page-id="index" data-sw-path={pageAssets.swPath}>
+    <a class={PAGE_LAYOUT.skipLinkClass} href={`#${PAGE_LAYOUT.mainContentId}`}>
+      {SKIP_TO_MAIN_LABEL_BY_LANG[lang]}
+    </a>
+    <div class={PAGE_LAYOUT.siteClass}>
+      <header id="top">
+        <div class="header-controls">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label={THEME_DARK_LABEL_BY_LANG[lang]}
+            title={THEME_DARK_LABEL_BY_LANG[lang]}
+            aria-pressed="false"
+            data-theme-toggle
+            data-dark-label={THEME_DARK_LABEL_BY_LANG[lang]}
+            data-light-label={THEME_LIGHT_LABEL_BY_LANG[lang]}
+          >
+            <span
+              class="theme-toggle-icon"
+              aria-hidden="true"
+              data-theme-toggle-icon>☾</span
+            >
+          </button>
+          <div class="language-switcher" data-language-switcher>
+            <button
+              class="language-switcher-button"
+              type="button"
+              aria-label={content.site.locale.languageSwitcherLabel}
+              aria-controls={menuId}
+              aria-expanded="false"
+              aria-haspopup="true"
+              title={content.site.locale.languageSwitcherLabel}
+              data-language-switcher-button
+            >
+              <span aria-hidden="true" class="language-switcher-globe"></span>
+            </button>
+            <div
+              class="language-menu"
+              id={menuId}
+              hidden
+              data-language-switcher-menu
+            >
+              {
+                (["en", "bn", "ar", "ur"] as const).map((localeCode) => (
+                  <a
+                    href={routeHref(
+                      currentRoute,
+                      content.routes.index[localeCode],
+                    )}
+                    lang={localeCode}
+                    aria-current={localeCode === lang ? "page" : undefined}
+                  >
+                    {content.site.languageMenuLabels[localeCode]}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="header-identity">
+          <div class="hero-avatar-card" aria-hidden="true">
+            <img
+              class="hero-illustration"
+              alt=""
+              aria-hidden="true"
+              src={logoHref}
+              width="1024"
+              height="1024"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </div>
+          <div class="header-identity-copy">
+            <h1 class="site-title">{content.header.siteTitle}</h1>
+            <p class="tagline">{content.header.tagline}</p>
+          </div>
+        </div>
+
+        <div class="social-chip-row" aria-label={socialRowLabelByLang[lang]}>
+          {
+            socialChips.map((chip) => (
+              <a
+                class="social-chip"
+                href={chip.href}
+                target={chip.isExternal ? "_blank" : undefined}
+                rel={chip.isExternal ? "noreferrer" : undefined}
+                aria-label={chip.ariaLabel}
+              >
+                <span
+                  class={`social-chip-icon ${SOCIAL_CHIP_ICON_CLASS_BY_NAME[chip.iconName]}`}
+                  aria-hidden="true"
+                />
+                <span>{chip.text}</span>
+              </a>
+            ))
+          }
+        </div>
+      </header>
+
+      <main id={PAGE_LAYOUT.mainContentId}>
+        <section class="about-section">
+          <div class="summary-card summary-card--about">
+            {content.summaryCard.map((paragraph) => <p set:html={paragraph} />)}
+          </div>
+        </section>
+
+        {
+          content.sections.map((section, sectionIndex) =>
+            section.tags.length > 0 ? null : (
+              <section>
+                <div class="section-head">
+                  <h2
+                    class={
+                      sectionIndex === 0
+                        ? "section-title section-title--minor"
+                        : "section-title"
+                    }
+                  >
+                    {section.title}
+                  </h2>
+                  {section.actions.length > 0 ? (
+                    <div class="section-actions">
+                      {section.actions.map((action) => {
+                        const resolved = resolveAction(action);
+                        return (
+                          <a
+                            class={resolved.variantClass}
+                            href={resolved.href}
+                            target={resolved.isExternal ? "_blank" : undefined}
+                            rel={resolved.isExternal ? "noreferrer" : undefined}
+                            data-nav-page-id={resolved.navPageId}
+                          >
+                            {resolved.isMailto ? (
+                              <span
+                                class="action-chip-icon action-chip-icon--mail"
+                                aria-hidden="true"
+                              />
+                            ) : null}
+                            <span>{resolved.labelText}</span>
+                            {resolved.showTrailingArrow ? (
+                              <span
+                                class="action-chip-arrow"
+                                aria-hidden="true"
+                              />
+                            ) : null}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                </div>
+                {section.paragraphs.map((paragraph) => (
+                  <p set:html={paragraph} />
+                ))}
+                {section.highlights.length > 0 ? (
+                  <div class="highlight-list">
+                    {section.highlights.map((highlight) => (
+                      <HighlightCard card={highlight} />
+                    ))}
+                  </div>
+                ) : null}
+                {section.articles.length > 0 ? (
+                  <ul class="article-list">
+                    {section.articles.map((article) => (
+                      <li class="article-item">
+                        <a
+                          href={article.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          data-umami-track-article="true"
+                        >
+                          <h3>{article.title}</h3>
+                          <p>{article.summary}</p>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                {section.contacts.map((contact) => (
+                  <p>{contact}</p>
+                ))}
+              </section>
+            ),
+          )
+        }
+
+        <section>
+          <div class="summary-card stats-card">
+            <div class="section-head">
+              <h2 class="section-title">{homeWakaTimeTitleByLang[lang]}</h2>
+              <div class="section-actions">
+                {
+                  (() => {
+                    const resolved = resolveAction(viewAllStatsAction);
+                    return (
+                      <a
+                        class={resolved.variantClass}
+                        href={resolved.href}
+                        data-nav-page-id={resolved.navPageId}
+                      >
+                        <span>{resolved.labelText}</span>
+                        <span class="action-chip-arrow" aria-hidden="true" />
+                      </a>
+                    );
+                  })()
+                }
+              </div>
+            </div>
+            <div
+              class="wakatime-widget"
+              data-wakatime-widget
+              data-wakatime-display="compact"
+              data-wakatime-languages-url={content.statsCompact.wakatime
+                .languagesUrl}
+              data-wakatime-summary-url={content.statsCompact.wakatime
+                .summaryUrl}
+            >
+              <p class="wakatime-status" data-role="status">
+                {content.statsCompact.wakatime.statusText}
+              </p>
+              <div class="wakatime-visuals" data-role="visuals" hidden>
+                <div
+                  class="wakatime-language-topbar"
+                  data-role="language-topbar"
+                  aria-hidden="true"
+                >
+                </div>
+                <ul
+                  class="wakatime-language-chip-list"
+                  data-role="language-chips"
+                  aria-label={content.statsCompact.wakatime.ariaLabel}
+                >
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="summary-card stats-card">
+            <div class="section-head">
+              <h2 class="section-title">{homeGoodreadsTitleByLang[lang]}</h2>
+              <div class="section-actions">
+                {
+                  (() => {
+                    const resolved = resolveAction(viewAllStatsAction);
+                    return (
+                      <a
+                        class={resolved.variantClass}
+                        href={resolved.href}
+                        data-nav-page-id={resolved.navPageId}
+                      >
+                        <span>{resolved.labelText}</span>
+                        <span class="action-chip-arrow" aria-hidden="true" />
+                      </a>
+                    );
+                  })()
+                }
+              </div>
+            </div>
+            <p>{goodreadsCopyByLang[lang]}</p>
+            <p class="goodreads-status" data-goodreads-status>
+              {goodreadsLoadingByLang[lang]}
+            </p>
+            <div
+              class="goodreads-widget"
+              id={`gr_grid_widget_${content.statsCompact.goodreads.widgetId}`}
+            >
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <PageFooter
+        footerHtml={content.footerHtml}
+        lastUpdatedLabel={LAST_UPDATED_LABEL_BY_LANG[lang]}
+        timestampIso={buildTimestamp.iso}
+        timestampDisplay={buildTimestamp.display}
+      />
+    </div>
+
+    <BackToTopButton label={BACK_TO_TOP_LABEL_BY_LANG[lang]} />
+    {renderedScriptPaths.map((src) => <script is:inline defer src={src} />)}
+    <script is:inline
+      src={content.statsCompact.goodreads.scriptSrc}
+      type="text/javascript"
+      charset="utf-8"></script>
+  </body>
+</html>

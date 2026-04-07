@@ -1,0 +1,24 @@
+---
+import type { ContentCard } from "../../lib/work-project-content";
+import HighlightCard from "./HighlightCard.astro";
+
+interface Props {
+  readonly summary: string;
+  readonly sectionTitle: string;
+  readonly entries: readonly ContentCard[];
+}
+
+const { summary, sectionTitle, entries } = Astro.props;
+---
+
+<section>
+  <div class="summary-card">
+    <p set:html={summary} />
+  </div>
+</section>
+<section>
+  <h2 class="section-title">{sectionTitle}</h2>
+  <div class="highlight-list">
+    {entries.map((entry) => <HighlightCard card={entry} />)}
+  </div>
+</section>

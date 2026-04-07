@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://kabirnayeem99.github.io/sitemap.xml

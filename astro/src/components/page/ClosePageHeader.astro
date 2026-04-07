@@ -1,0 +1,22 @@
+---
+interface Props {
+  readonly homeHref: string;
+  readonly closeLabel: string;
+  readonly title: string;
+}
+
+const { homeHref, closeLabel, title } = Astro.props;
+---
+
+<header id="top">
+  <div class="page-closebar">
+    <a
+      class="page-close-button"
+      href={homeHref}
+      aria-label={closeLabel}
+      title={closeLabel}
+      ><span class="page-close-icon" aria-hidden="true"></span></a
+    >
+    <h1 class="site-title site-title--page">{title}</h1>
+  </div>
+</header>

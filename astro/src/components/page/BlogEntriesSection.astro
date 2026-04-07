@@ -1,0 +1,35 @@
+---
+interface BlogArticle {
+  readonly title: string;
+  readonly href: string;
+  readonly meta: string;
+  readonly summary: string;
+}
+
+interface Props {
+  readonly articles: readonly BlogArticle[];
+}
+
+const { articles } = Astro.props;
+---
+
+<section>
+  <ul class="article-list">
+    {
+      articles.map((article) => (
+        <li class="article-item">
+          <a
+            href={article.href}
+            target="_blank"
+            rel="noreferrer"
+            data-umami-track-article="true"
+          >
+            <h3>{article.title}</h3>
+            <p class="meta">{article.meta}</p>
+            <p>{article.summary}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
