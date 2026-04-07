@@ -1,0 +1,518 @@
+---
+import BackToTopButton from "./BackToTopButton.astro";
+import HeadSeo from "./HeadSeo.astro";
+import HighlightCard from "./HighlightCard.astro";
+import PageFooter from "./PageFooter.astro";
+import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
+import { loadIndexPageContent, type IndexAction, type Lang, type PageId } from "../../lib/index-content";
+import { readLegacyDocument } from "../../lib/legacy-document";
+import {
+  BACK_TO_TOP_LABEL_BY_LANG,
+  LAST_UPDATED_LABEL_BY_LANG,
+  SKIP_TO_MAIN_LABEL_BY_LANG,
+  THEME_DARK_LABEL_BY_LANG,
+  THEME_LIGHT_LABEL_BY_LANG,
+  VIEW_ALL_STATS_LABEL_BY_LANG,
+} from "../../lib/page-labels";
+import { buildSchemaGraphJson } from "../../lib/seo";
+import { assetHref, buildOgLocaleAlternates, OG_LOCALE_BY_LANG, routeHref } from "../../lib/work-project-content";
+
+interface Props {
+  readonly lang: Lang;
+}
+
+const { lang } = Astro.props as Props;
+const content = loadIndexPageContent(lang);
+const buildTimestamp = computeLegacyBuildTimestamp();
+const currentRoute = content.route;
+
+const canonicalUrl =
+  lang === "en" ? `${content.site.baseUrl}/` : `${content.site.baseUrl}/${content.route}`;
+const ogImageUrl = `${content.site.baseUrl}/assets/images/og-card.png`;
+const schemaGraphJson = buildSchemaGraphJson({
+  baseUrl: content.site.baseUrl,
+  websiteName: content.site.websiteName,
+  personName: content.site.personName,
+  canonicalUrl,
+  ogImageUrl,
+  socialProfiles: content.site.socialProfiles,
+});
+
+const alternateLinks = [
+  { hrefLang: "en", href: `${content.site.baseUrl}/` },
+  { hrefLang: "bn", href: `${content.site.baseUrl}/${content.routes.index.bn}` },
+  { hrefLang: "ar", href: `${content.site.baseUrl}/${content.routes.index.ar}` },
+  { hrefLang: "ur", href: `${content.site.baseUrl}/${content.routes.index.ur}` },
+  { hrefLang: "x-default", href: `${content.site.baseUrl}/` },
+] as const;
+
+const ogLocaleAlternates = buildOgLocaleAlternates(lang);
+const menuId = `language-menu-index-${lang}`;
+
+const scriptPaths = [
+  "assets/js/image-guard.js",
+  "assets/js/back-to-top.js",
+  "assets/js/theme-toggle.js",
+  "assets/js/language-switcher.js",
+  "assets/js/umami-events.js",
+  "assets/js/stats-snapshots.js",
+  "assets/js/stats-utils.js",
+  "assets/js/wakatime-charts.js",
+  "assets/js/goodreads-image-fallback.js",
+  "assets/js/year.js",
+  "assets/js/service-worker-register.js",
+] as const;
+
+const renderedScriptPaths = scriptPaths.map((path) => assetHref(currentRoute, path));
+const stylesheetHref = assetHref(currentRoute, "assets/css/styles.css");
+const favicon32Href = assetHref(currentRoute, "assets/icons/favicon-32x32.png");
+const favicon16Href = assetHref(currentRoute, "assets/icons/favicon-16x16.png");
+const faviconIcoHref = assetHref(currentRoute, "assets/icons/favicon.ico");
+const appleTouchIconHref = assetHref(currentRoute, "assets/icons/apple-touch-icon.png");
+const manifestHref = assetHref(currentRoute, "site.webmanifest");
+const swPath = assetHref(currentRoute, "service-worker.js");
+const logoHref = assetHref(currentRoute, "assets/images/logo.svg");
+
+function routeForAction(pageId: PageId): string {
+  switch (pageId) {
+    case "index":
+    case "work":
+    case "project":
+      return content.routes[pageId][lang];
+    case "blog":
+    case "stats":
+      return content.routes[pageId].en;
+    default: {
+      const exhaustiveCheck: never = pageId;
+      throw new Error(`No routes available for page ${exhaustiveCheck}`);
+    }
+  }
+}
+
+interface ResolvedAction {
+  readonly href: string;
+  readonly navPageId?: PageId;
+  readonly isExternal: boolean;
+  readonly isMailto: boolean;
+  readonly variantClass: string;
+  readonly labelText: string;
+  readonly showTrailingArrow: boolean;
+}
+
+function resolveAction(action: IndexAction): ResolvedAction {
+  let href = action.href;
+  let navPageId: PageId | undefined;
+  if (action.pageId !== undefined) {
+    href = routeHref(currentRoute, routeForAction(action.pageId));
+    navPageId = action.pageId;
+  }
+  if (href === undefined) {
+    throw new Error("Index action missing href and pageId");
+  }
+
+  const isExternal = href.startsWith("http://") || href.startsWith("https://");
+  const isMailto = href.startsWith("mailto:");
+  const isPageLink = navPageId !== undefined;
+
+  let variantClass =
+    action.variant === "primary" ? "action-chip action-chip--primary" : "action-chip action-chip--secondary";
+  if (isPageLink && action.variant === "secondary") {
+    variantClass = `${variantClass} action-chip--compact-nav`;
+  }
+
+  const resolved: {
+    href: string;
+    isExternal: boolean;
+    isMailto: boolean;
+    variantClass: string;
+    labelText: string;
+    showTrailingArrow: boolean;
+    navPageId?: PageId;
+  } = {
+    href,
+    isExternal,
+    isMailto,
+    variantClass,
+    labelText: isMailto ? action.label.replace(/^✉\s*/, "") : action.label,
+    showTrailingArrow: isPageLink && action.variant === "secondary",
+  };
+  if (navPageId !== undefined) {
+    resolved.navPageId = navPageId;
+  }
+  return resolved;
+}
+
+function extractLegacySocialChipRow(fullHtml: string): string {
+  const match = fullHtml.match(/<div class="social-chip-row" aria-label="Social links">[\s\S]*?<\/div>/);
+  if (match === null) {
+    throw new Error("Could not find social chip row in legacy index snapshot");
+  }
+  return match[0];
+}
+
+const legacyIndexPath = lang === "en" ? "index.html" : `${lang}/index.html`;
+const legacyIndex = readLegacyDocument(legacyIndexPath);
+const socialChipRowHtml = extractLegacySocialChipRow(legacyIndex.fullHtml);
+
+const viewAllStatsAction: IndexAction = {
+  label: VIEW_ALL_STATS_LABEL_BY_LANG[lang],
+  pageId: "stats",
+  variant: "secondary",
+};
+
+const homeWakaTimeTitleByLang = {
+  en: "Skills & Languages",
+  bn: "স্কিলস ও ভাষা",
+  ar: "المهارات واللغات",
+  ur: "مہارتیں اور زبانیں",
+} as const;
+
+const homeGoodreadsTitleByLang = {
+  en: "Last Read Books",
+  bn: "সর্বশেষ পড়া বই",
+  ar: "آخِرُ الكُتُبِ المَقْرُوءَةِ",
+  ur: "آخری پڑھی گئی کتابیں",
+} as const;
+
+const goodreadsCopyByLang = {
+  en: "Some of the books I've read recently.",
+  bn: "সম্প্রতি যেসব বই পড়েছি, সেখান থেকে কিছু।",
+  ar: "بعض الكتب التي قرأتها مؤخرًا.",
+  ur: "حالیہ دنوں میں پڑھی گئی کچھ کتابیں۔",
+} as const;
+
+const goodreadsLoadingByLang = {
+  en: "Loading Goodreads books…",
+  bn: "গুডরিডস বই লোড হচ্ছে…",
+  ar: "جارٍ تحميل كتب Goodreads…",
+  ur: "Goodreads کی کتابیں لوڈ ہو رہی ہیں…",
+} as const;
+---
+
+<!DOCTYPE html>
+<html lang={lang} dir={content.site.locale.dir}>
+  <HeadSeo
+    title={content.meta.title}
+    description={content.meta.description}
+    keywords={content.meta.keywords}
+    author={content.site.locale.author}
+    canonicalUrl={canonicalUrl}
+    alternateLinks={alternateLinks}
+    ogType="website"
+    ogLocale={OG_LOCALE_BY_LANG[lang]}
+    ogLocaleAlternates={ogLocaleAlternates}
+    ogImageUrl={ogImageUrl}
+    ogImageAlt={content.site.locale.ogImageAlt}
+    twitterSite={content.site.twitterSite}
+    schemaGraphJson={schemaGraphJson}
+    googleSiteVerification={content.site.googleSiteVerification}
+    umamiWebsiteId="cdec8895-be63-42d6-a490-12dd2ea8f35c"
+    stylesheetHref={stylesheetHref}
+    favicon32Href={favicon32Href}
+    favicon16Href={favicon16Href}
+    faviconIcoHref={faviconIcoHref}
+    appleTouchIconHref={appleTouchIconHref}
+    manifestHref={manifestHref}
+  />
+  <body data-page-id="index" data-sw-path={swPath}>
+    <a class="skip-link" href="#main-content">{SKIP_TO_MAIN_LABEL_BY_LANG[lang]}</a>
+    <div class="site">
+      <header id="top">
+        <div class="header-controls">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label={THEME_DARK_LABEL_BY_LANG[lang]}
+            title={THEME_DARK_LABEL_BY_LANG[lang]}
+            aria-pressed="false"
+            data-theme-toggle
+            data-dark-label={THEME_DARK_LABEL_BY_LANG[lang]}
+            data-light-label={THEME_LIGHT_LABEL_BY_LANG[lang]}
+          >
+            <span class="theme-toggle-icon" aria-hidden="true" data-theme-toggle-icon>☾</span>
+          </button>
+          <div class="language-switcher" data-language-switcher>
+            <button
+              class="language-switcher-button"
+              type="button"
+              aria-label={content.site.locale.languageSwitcherLabel}
+              aria-controls={menuId}
+              aria-expanded="false"
+              aria-haspopup="true"
+              title={content.site.locale.languageSwitcherLabel}
+              data-language-switcher-button
+            >
+              <span aria-hidden="true" class="language-switcher-globe"></span>
+            </button>
+            <div class="language-menu" id={menuId} hidden data-language-switcher-menu>
+              {
+                (["en", "bn", "ar", "ur"] as const).map((localeCode) => (
+                  <a
+                    href={routeHref(currentRoute, content.routes.index[localeCode])}
+                    lang={localeCode}
+                    aria-current={localeCode === lang ? "page" : undefined}
+                  >
+                    {content.site.languageMenuLabels[localeCode]}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="header-identity">
+          <img
+            class="hero-illustration"
+            alt=""
+            aria-hidden="true"
+            src={logoHref}
+            width="1024"
+            height="1024"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <div class="header-identity-copy">
+            <h1 class="site-title">{content.header.siteTitle}</h1>
+            <p class="tagline">{content.header.tagline}</p>
+          </div>
+        </div>
+
+        <Fragment set:html={socialChipRowHtml} />
+
+      </header>
+
+      <main id="main-content">
+        <section class="about-section">
+          <div class="summary-card summary-card--about">
+            {
+              content.summaryCard.map((paragraph) => (
+                <p set:html={paragraph}></p>
+              ))
+            }
+          </div>
+        </section>
+
+        {
+          content.sections.map((section, sectionIndex) =>
+            section.tags.length > 0 ? null : (
+              <section>
+                <div class="section-head">
+                  <h2 class={sectionIndex === 0 ? "section-title section-title--minor" : "section-title"}>
+                    {section.title}
+                  </h2>
+                  {
+                    section.actions.length > 0 ? (
+                      <div class="section-actions">
+                        {
+                          section.actions.map((action) => {
+                            const resolved = resolveAction(action);
+                            return (
+                              <a
+                                class={resolved.variantClass}
+                                href={resolved.href}
+                                target={resolved.isExternal ? "_blank" : undefined}
+                                rel={resolved.isExternal ? "noreferrer" : undefined}
+                                data-nav-page-id={resolved.navPageId}
+                              >
+                                {
+                                  resolved.isMailto ? (
+                                    <svg
+                                      class="action-chip-icon"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      aria-hidden="true"
+                                      focusable="false"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      ></path>
+                                      <rect
+                                        x="3"
+                                        y="5"
+                                        width="18"
+                                        height="14"
+                                        rx="2"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                      ></rect>
+                                    </svg>
+                                  ) : null
+                                }
+                                <span>{resolved.labelText}</span>
+                                {
+                                  resolved.showTrailingArrow ? (
+                                    <svg
+                                      class="action-chip-arrow"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      aria-hidden="true"
+                                      focusable="false"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M9 20L17 12L9 4"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      ></path>
+                                    </svg>
+                                  ) : null
+                                }
+                              </a>
+                            );
+                          })
+                        }
+                      </div>
+                    ) : null
+                  }
+                </div>
+                {section.paragraphs.map((paragraph) => <p set:html={paragraph}></p>)}
+                {
+                  section.highlights.length > 0 ? (
+                    <div class="highlight-list">
+                      {section.highlights.map((highlight) => <HighlightCard card={highlight} />)}
+                    </div>
+                  ) : null
+                }
+                {
+                  section.articles.length > 0 ? (
+                    <ul class="article-list">
+                      {
+                        section.articles.map((article) => (
+                          <li class="article-item">
+                            <a
+                              href={article.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              data-umami-track-article="true"
+                            >
+                              <h3>{article.title}</h3>
+                              <p>{article.summary}</p>
+                            </a>
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  ) : null
+                }
+                {section.contacts.map((contact) => <p>{contact}</p>)}
+              </section>
+            ),
+          )
+        }
+
+        <section>
+          <div class="summary-card stats-card">
+            <div class="section-head">
+              <h2 class="section-title">{homeWakaTimeTitleByLang[lang]}</h2>
+              <div class="section-actions">
+                {(() => {
+                  const resolved = resolveAction(viewAllStatsAction);
+                  return (
+                    <a class={resolved.variantClass} href={resolved.href} data-nav-page-id={resolved.navPageId}>
+                      <span>{resolved.labelText}</span>
+                      <svg
+                        class="action-chip-arrow"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                        focusable="false"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 20L17 12L9 4"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </svg>
+                    </a>
+                  );
+                })()}
+              </div>
+            </div>
+            <div
+              class="wakatime-widget"
+              data-wakatime-widget
+              data-wakatime-display="compact"
+              data-wakatime-languages-url={content.statsCompact.wakatime.languagesUrl}
+              data-wakatime-summary-url={content.statsCompact.wakatime.summaryUrl}
+            >
+              <p class="wakatime-status" data-role="status">{content.statsCompact.wakatime.statusText}</p>
+              <div class="wakatime-visuals" data-role="visuals" hidden>
+                <div class="wakatime-language-topbar" data-role="language-topbar" aria-hidden="true"></div>
+                <ul
+                  class="wakatime-language-chip-list"
+                  data-role="language-chips"
+                  aria-label={content.statsCompact.wakatime.ariaLabel}
+                ></ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="summary-card stats-card">
+            <div class="section-head">
+              <h2 class="section-title">{homeGoodreadsTitleByLang[lang]}</h2>
+              <div class="section-actions">
+                {(() => {
+                  const resolved = resolveAction(viewAllStatsAction);
+                  return (
+                    <a class={resolved.variantClass} href={resolved.href} data-nav-page-id={resolved.navPageId}>
+                      <span>{resolved.labelText}</span>
+                      <svg
+                        class="action-chip-arrow"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                        focusable="false"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 20L17 12L9 4"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </svg>
+                    </a>
+                  );
+                })()}
+              </div>
+            </div>
+            <p>{goodreadsCopyByLang[lang]}</p>
+            <p class="goodreads-status" data-goodreads-status>{goodreadsLoadingByLang[lang]}</p>
+            <div class="goodreads-widget" id={`gr_grid_widget_${content.statsCompact.goodreads.widgetId}`}></div>
+          </div>
+        </section>
+      </main>
+
+      <PageFooter
+        footerHtml={content.footerHtml}
+        lastUpdatedLabel={LAST_UPDATED_LABEL_BY_LANG[lang]}
+        timestampIso={buildTimestamp.iso}
+        timestampDisplay={buildTimestamp.display}
+      />
+    </div>
+
+    <BackToTopButton label={BACK_TO_TOP_LABEL_BY_LANG[lang]} />
+    {
+      renderedScriptPaths.map((src) => (
+        <script defer src={src}></script>
+      ))
+    }
+    <script src={content.statsCompact.goodreads.scriptSrc} type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>
