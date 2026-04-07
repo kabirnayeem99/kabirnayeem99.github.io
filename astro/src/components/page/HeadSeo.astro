@@ -1,0 +1,116 @@
+---
+import { THEME_BOOTSTRAP_SCRIPT } from "../../lib/page-labels";
+
+interface AlternateLink {
+  readonly hrefLang: string;
+  readonly href: string;
+}
+
+interface Props {
+  readonly title: string;
+  readonly description: string;
+  readonly keywords: string;
+  readonly author: string;
+  readonly canonicalUrl: string;
+  readonly alternateLinks: readonly AlternateLink[];
+  readonly ogType: "website" | "article";
+  readonly ogLocale: string;
+  readonly ogLocaleAlternates: readonly string[];
+  readonly ogImageUrl: string;
+  readonly ogImageAlt: string;
+  readonly twitterSite: string;
+  readonly schemaGraphJson: string;
+  readonly googleSiteVerification: string;
+  readonly umamiWebsiteId: string;
+  readonly stylesheetHref?: string;
+  readonly favicon32Href?: string;
+  readonly favicon16Href?: string;
+  readonly faviconIcoHref?: string;
+  readonly appleTouchIconHref?: string;
+  readonly manifestHref?: string;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  author,
+  canonicalUrl,
+  alternateLinks,
+  ogType,
+  ogLocale,
+  ogLocaleAlternates,
+  ogImageUrl,
+  ogImageAlt,
+  twitterSite,
+  schemaGraphJson,
+  googleSiteVerification,
+  umamiWebsiteId,
+  stylesheetHref = "assets/css/styles.css",
+  favicon32Href = "assets/icons/favicon-32x32.png",
+  favicon16Href = "assets/icons/favicon-16x16.png",
+  faviconIcoHref = "assets/icons/favicon.ico",
+  appleTouchIconHref = "assets/icons/apple-touch-icon.png",
+  manifestHref = "site.webmanifest",
+} = Astro.props;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <meta name="author" content={author} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonicalUrl} />
+  {
+    alternateLinks.map((link) => (
+      <link rel="alternate" hreflang={link.hrefLang} href={link.href} />
+    ))
+  }
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content={author} />
+  <meta property="og:locale" content={ogLocale} />
+  {
+    ogLocaleAlternates.map((alternateLocale) => (
+      <meta property="og:locale:alternate" content={alternateLocale} />
+    ))
+  }
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={ogImageAlt} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content={twitterSite} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+  <meta
+    name="theme-color"
+    content="#f7f0e1"
+    media="(prefers-color-scheme: light)"
+  />
+  <meta
+    name="theme-color"
+    content="#1c1917"
+    media="(prefers-color-scheme: dark)"
+  />
+  <script is:inline type="application/ld+json" set:html={schemaGraphJson} />
+  <script is:inline
+    defer
+    src="https://cloud.umami.is/script.js"
+    data-website-id={umamiWebsiteId}></script>
+  <script is:inline set:html={THEME_BOOTSTRAP_SCRIPT} />
+  <link rel="preload" href={stylesheetHref} as="style" />
+  <link rel="stylesheet" href={stylesheetHref} />
+  <link rel="icon" type="image/png" sizes="32x32" href={favicon32Href} />
+  <link rel="icon" type="image/png" sizes="16x16" href={favicon16Href} />
+  <link rel="shortcut icon" href={faviconIcoHref} />
+  <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIconHref} />
+  <link rel="manifest" href={manifestHref} />
+  <meta name="google-site-verification" content={googleSiteVerification} />
+</head>

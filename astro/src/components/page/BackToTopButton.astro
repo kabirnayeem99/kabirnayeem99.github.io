@@ -1,0 +1,16 @@
+---
+interface Props {
+  readonly label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<button
+  class="back-to-top"
+  type="button"
+  data-back-to-top
+  hidden
+  aria-label={label}
+  title={label}><span aria-hidden="true">↑</span></button
+>

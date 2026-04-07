@@ -1,0 +1,225 @@
+{
+  "og_type": "article",
+  "locales": {
+    "en": {
+      "meta": {
+        "title": "Work · Naimul Kabir",
+        "description": "Timeline of work experience for Naimul Kabir across Syarah, MaxCode Lab, and more.",
+        "keywords": "Naimul Kabir work experience, Android engineer, Kotlin developer, mobile software engineer"
+      },
+      "header": {
+        "site_title": "Work",
+        "tagline": "Teams, products, and the problems I worked on."
+      },
+      "summary": "A concise snapshot of where I've worked and what I shipped.",
+      "section_title": "Experience",
+      "entries": [
+        {
+          "title": "Syarah · Mobile Software Engineer",
+          "meta": "Jun 2023 - Present · Remote",
+          "paragraphs": [
+            "Automotive platform serving the Middle East."
+          ],
+          "bullets": [
+            "Built an in-house camera SDK using Kotlin, device sensors, and YOLOv8-based validation -> improved car-image capture quality and angle validation for supply-chain workflows.",
+            "Developed an internal upload service SDK on top of WorkManager -> made uploads more reliable under unstable network conditions and extreme heat.",
+            "Worked on internal mobile tools for automotive operations -> supported day-to-day inspection and logistics flows used across the business."
+          ]
+        },
+        {
+          "title": "MaxCode Lab (IRD Foundation) · Mobile App Developer",
+          "meta": "Oct 2022 - Sep 2023 · On-site",
+          "paragraphs": [
+            "Worked on Al-Hadith, one of Bangladesh's most widely used Islamic apps."
+          ],
+          "bullets": [
+            "Maintained and modernized the app using Android and Flutter -> improved reliability and prepared the product for long-term growth.",
+            "Led the migration from legacy Android code to Flutter -> made the codebase easier to maintain while preserving content accuracy for a large user base."
+          ]
+        },
+        {
+          "title": "Fiverr · Freelance Flutter Engineer",
+          "meta": "Mar 2023 - Jul 2023 · Remote",
+          "bullets": [
+            "Fixed production issues in Flutter apps across short client engagements -> shipped stable updates without heavy rewrites.",
+            "Built a OneDrive integration package with Flutter and Microsoft auth flows -> filled a gap where documentation and package support were limited."
+          ]
+        },
+        {
+          "title": "DevStation39 · Android Developer",
+          "meta": "Aug 2021 - Sep 2022 · Remote",
+          "bullets": [
+            "Contributed to multiple Android apps across Kotlin, RxJava, Firebase, ParseSDK, and other legacy stacks -> delivered features across very different products and codebases.",
+            "Worked as a contractor while finishing university -> built a strong base in shipping production mobile apps under real client constraints."
+          ]
+        }
+      ],
+      "footer_html": "Need more detail? Email <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>."
+    },
+    "bn": {
+      "meta": {
+        "title": "কর্মজীবন · নাঈমুল কবির",
+        "description": "সাইয়ারাহ, MaxCode Lab এবং আরও কিছু জায়গায় নাঈমুল কবিরের কাজের অভিজ্ঞতার টাইমলাইন।",
+        "keywords": "নাঈমুল কবির কর্মজীবন, অ্যান্ড্রয়েড ইঞ্জিনিয়ার, কটলিন ডেভেলপার, মোবাইল সফটওয়্যার ইঞ্জিনিয়ার"
+      },
+      "header": {
+        "site_title": "কর্মজীবন",
+        "tagline": "টিম, প্রোডাক্ট আর যেসব সমস্যা নিয়ে কাজ করেছি।"
+      },
+      "summary": "যেসব জায়গায় কাজ করেছি, আর সেখানে কী ধরনের সমস্যা নিয়ে কাজ করেছি।",
+      "section_title": "অভিজ্ঞতা",
+      "entries": [
+        {
+          "title": "সাইয়ারাহ · মোবাইল সফটওয়্যার ইঞ্জিনিয়ার",
+          "meta": "জুন ২০২৩ - বর্তমান · রিমোট",
+          "paragraphs": [
+            "মধ্যপ্রাচ্যভিত্তিক অটোমোটিভ প্ল্যাটফর্ম।"
+          ],
+          "bullets": [
+            "কটলিন, ডিভাইস সেন্সর আর YOLOv8-ভিত্তিক ভ্যালিডেশন দিয়ে ইন-হাউস ক্যামেরা SDK তৈরি করেছি -> সাপ্লাই-চেইন ওয়ার্কফ্লোতে গাড়ির ছবি তোলা আর অ্যাঙ্গেল ভ্যালিডেশন আরও নির্ভরযোগ্য হয়েছে।",
+            "WorkManager-এর উপর ইন্টারনাল আপলোড সার্ভিস SDK তৈরি করেছি -> অস্থির নেটওয়ার্ক আর চরম গরমেও আপলোড আরও নির্ভরযোগ্য হয়েছে।",
+            "অটোমোটিভ অপারেশনের জন্য ইন্টারনাল মোবাইল টুলসে কাজ করেছি -> ব্যবসার দৈনন্দিন ইন্সপেকশন আর লজিস্টিকস ফ্লো সাপোর্ট করেছে।"
+          ]
+        },
+        {
+          "title": "MaxCode Lab (IRD Foundation) · মোবাইল অ্যাপ ডেভেলপার",
+          "meta": "অক্টোবর ২০২২ - সেপ্টেম্বর ২০২৩ · অনসাইট",
+          "paragraphs": [
+            "বাংলাদেশের সবচেয়ে বেশি ব্যবহৃত ইসলামি অ্যাপগুলোর একটি, আল-হাদিস নিয়ে কাজ করেছি।"
+          ],
+          "bullets": [
+            "Android আর Flutter ব্যবহার করে অ্যাপটি মেইনটেইন ও আধুনিক করেছি -> নির্ভরযোগ্যতা বেড়েছে এবং দীর্ঘমেয়াদি উন্নয়নের ভিত্তি তৈরি হয়েছে।",
+            "লিগ্যাসি Android কোডবেস থেকে Flutter-এ মাইগ্রেশন নেতৃত্ব দিয়েছি -> বড় ইউজারবেসের জন্য কনটেন্টের সঠিকতা রেখে কোডবেস রক্ষণাবেক্ষণ সহজ হয়েছে।"
+          ]
+        },
+        {
+          "title": "Fiverr · ফ্রিল্যান্স Flutter ইঞ্জিনিয়ার",
+          "meta": "মার্চ ২০২৩ - জুলাই ২০২৩ · রিমোট",
+          "bullets": [
+            "স্বল্পমেয়াদি ক্লায়েন্ট কাজগুলোতে Flutter অ্যাপের প্রোডাকশন সমস্যা ঠিক করেছি -> বড় রিরাইট ছাড়াই স্থিতিশীল আপডেট শিপ হয়েছে।",
+            "Flutter আর Microsoft auth flow দিয়ে OneDrive integration package তৈরি করেছি -> যেখানে ডকুমেন্টেশন আর package support সীমিত ছিল, সেই ঘাটতি পূরণ হয়েছে।"
+          ]
+        },
+        {
+          "title": "DevStation39 · অ্যান্ড্রয়েড ডেভেলপার",
+          "meta": "আগস্ট ২০২১ - সেপ্টেম্বর ২০২২ · রিমোট",
+          "bullets": [
+            "Kotlin, RxJava, Firebase, ParseSDK আর অন্য লিগ্যাসি স্ট্যাক জুড়ে একাধিক Android অ্যাপে কাজ করেছি -> একেবারে ভিন্ন ধরনের প্রোডাক্ট আর কোডবেসে ফিচার ডেলিভার করতে পেরেছি।",
+            "বিশ্ববিদ্যালয় শেষ করার সময় কনট্র্যাক্টর হিসেবে কাজ করেছি -> বাস্তব ক্লায়েন্ট কনস্ট্রেইন্টের মধ্যে প্রোডাকশন মোবাইল অ্যাপ শিপ করার শক্ত ভিত্তি তৈরি হয়েছে।"
+          ]
+        }
+      ],
+      "footer_html": "আরও বিস্তারিত জানতে ইমেইল করুন <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>।"
+    },
+    "ar": {
+      "meta": {
+        "title": "العَمَل · نَعيم الكبير",
+        "description": "خَطٌّ زَمَنِيٌّ لِخِبراتِ نَعيم الكبير في سَيَّارَة وMaxCode Lab وغيرِها.",
+        "keywords": "نَعيم الكبير، خِبرة العَمَل، مُهندِس أندرويد، مُطوِّر كوتلن، مُهندِس برمجيّات للجوال"
+      },
+      "header": {
+        "site_title": "العَمَل",
+        "tagline": "الفِرَقُ والمُنتَجاتُ والمشكلاتُ الّتي عَمِلتُ عليها."
+      },
+      "summary": "الأماكنُ الّتي عَمِلتُ فيها ونوعيّةُ المشكلاتِ الّتي تَعامَلتُ معها هناك.",
+      "section_title": "الخِبرة",
+      "entries": [
+        {
+          "title": "سَيَّارَة · مُهندِس برمجيّات للجوال",
+          "meta": "يونيو 2023 - حتى الآن · عن بُعد",
+          "paragraphs": [
+            "مِنصّةُ سياراتٍ تَخدِمُ الشَّرقَ الأوسَط."
+          ],
+          "bullets": [
+            "بَنَيتُ حُزْمَةَ كاميرا داخليّةً باستخدامِ Kotlin وحَسّاساتِ الجهاز وتَحقُّقٍ قائمٍ على YOLOv8 -> حَسَّنَت جَودةَ التِقاطِ صُوَرِ السَّياراتِ ودِقَّةَ التَّحقُّقِ من الزوايا في تَدَفُّقاتِ سَلاسِلِ الإمداد.",
+            "طوَّرتُ حُزْمَةَ رَفعٍ داخليّةً فوق WorkManager -> جَعَلَت الرَّفعَ أَكثرَ اعتماديّةً مع الشَّبكاتِ غيرِ المُستقرّةِ والحَرارةِ الشَّديدة.",
+            "عَمِلتُ على أَدواتٍ داخليّةٍ لِعَمَليّاتِ السيارات -> دَعَمَت تَدَفُّقاتِ الفَحصِ واليوميّاتِ اللوجستيّةِ المُستخدَمةَ في العَمَل."
+          ]
+        },
+        {
+          "title": "MaxCode Lab (IRD Foundation) · مُطوِّر تطبيقات الجوال",
+          "meta": "أكتوبر 2022 - سبتمبر 2023 · حضوري",
+          "paragraphs": [
+            "عَمِلتُ على تطبيقِ «الحديث»، وهو مِن أَكثرِ التَّطبيقاتِ الإسلاميّةِ استخدامًا في بِنغلاديش."
+          ],
+          "bullets": [
+            "حافَظتُ على التَّطبيقِ وطوَّرتُه باستخدامِ Android وFlutter -> زادَتِ الاعتماديّةُ وتَجَهَّزَ المُنتَجُ لِلنُّموِّ على المدى الطَّويل.",
+            "قُدتُ الانتقالَ من قاعدةِ Android القديمة إلى Flutter -> صارَتِ الصيانةُ أَسهَلَ مع الحِفاظِ على دِقَّةِ المُحتوى لِقاعدةِ مُستخدمينَ كبيرة."
+          ]
+        },
+        {
+          "title": "Fiverr · مُهندِس Flutter مُستقلّ",
+          "meta": "مارس 2023 - يوليو 2023 · عن بُعد",
+          "bullets": [
+            "أَصلحتُ مشكلاتِ الإنتاجِ في تطبيقاتِ Flutter عبر تَعاقداتٍ قصيرة -> صَدَرَت تحديثاتٌ مُستقرّةٌ من دونِ إِعاداتِ كتابةٍ كبيرة.",
+            "بَنَيتُ حُزْمَةَ تَكامُلٍ مع OneDrive باستخدامِ Flutter وتَدَفُّقاتِ Microsoft auth -> سَدَّت فَجوةً كان فيها التوثيقُ ودَعمُ الحُزَمِ محدودَين."
+          ]
+        },
+        {
+          "title": "DevStation39 · مُطوِّر أندرويد",
+          "meta": "أغسطس 2021 - سبتمبر 2022 · عن بُعد",
+          "bullets": [
+            "ساهَمتُ في عِدَّةِ تطبيقاتِ أندرويد عبر Kotlin وRxJava وFirebase وParseSDK وغيرها من البِيئاتِ القَديمة -> أَنجزتُ مِيّزاتٍ لِمُنتجاتٍ وقواعدِ شِفرةٍ مُختلفةٍ جِدًّا.",
+            "عَمِلتُ كَمُتعاقدٍ أثناءَ إِنهاءِ الدِّراسةِ الجامعيّة -> بَنَيتُ أساسًا قويًّا في شَحنِ تطبيقاتِ الجوالِ الإنتاجيّةِ تحتَ قيودِ العُملاءِ الفعليّة."
+          ]
+        }
+      ],
+      "footer_html": "تُريدُ مَزيدًا من التَّفاصيل؟ أَرسِل رِسالةً إلى <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>."
+    },
+    "ur": {
+      "meta": {
+        "title": "کام · نعیم الکبیر",
+        "description": "سیارہ، MaxCode Lab اور دوسری جگہوں میں نعیم الکبیر کے کام کے تجربے کی ٹائم لائن۔",
+        "keywords": "نعیم الکبیر کام کا تجربہ، اینڈرائیڈ انجینئر، کاٹلِن ڈویلپر، موبائل سافٹ ویئر انجینئر"
+      },
+      "header": {
+        "site_title": "کام",
+        "tagline": "ٹیمیں، پراڈکٹس، اور وہ مسائل جن پر میں نے کام کیا۔"
+      },
+      "summary": "وہ جگہیں جہاں میں نے کام کیا، اور وہاں کس نوعیت کے مسائل پر کام کیا۔",
+      "section_title": "تجربہ",
+      "entries": [
+        {
+          "title": "سیارہ · موبائل سافٹ ویئر انجینئر",
+          "meta": "جون 2023 - تا حال · ریموٹ",
+          "paragraphs": [
+            "مشرقِ وسطیٰ کی آٹو موٹیو پلیٹ فارم۔"
+          ],
+          "bullets": [
+            "Kotlin، ڈیوائس سنسرز اور YOLOv8 پر مبنی ویلیڈیشن کے ساتھ اِن ہاؤس کیمرا SDK بنایا -> سپلائی چین ورک فلو میں گاڑیوں کی تصاویر اور اینگل ویلیڈیشن کا معیار بہتر ہوا۔",
+            "WorkManager کے اوپر ایک داخلی اپ لوڈ سروس SDK تیار کیا -> غیر مستحکم نیٹ ورک اور شدید گرمی میں اپ لوڈ زیادہ قابلِ اعتماد ہوئے۔",
+            "آٹو موٹیو آپریشنز کے لیے داخلی موبائل ٹولز پر کام کیا -> کاروبار میں روزمرہ انسپیکشن اور لاجسٹکس فلو کو سپورٹ ملا۔"
+          ]
+        },
+        {
+          "title": "MaxCode Lab (IRD Foundation) · موبائل ایپ ڈویلپر",
+          "meta": "اکتوبر 2022 - ستمبر 2023 · آن سائٹ",
+          "paragraphs": [
+            "الحدیث ایپ پر کام کیا، جو بنگلہ دیش کی سب سے زیادہ استعمال ہونے والی اسلامی ایپس میں سے ایک ہے۔"
+          ],
+          "bullets": [
+            "Android اور Flutter کے ساتھ ایپ کو مینٹین اور جدید بنایا -> اعتماد بہتر ہوا اور پراڈکٹ طویل مدتی ترقی کے لیے تیار ہوا۔",
+            "لیگیسی Android کوڈبیس سے Flutter کی طرف مائیگریشن لیڈ کی -> بڑے یوزر بیس کے لیے مواد کی درستگی برقرار رکھتے ہوئے کوڈبیس سنبھالنا آسان ہوا۔"
+          ]
+        },
+        {
+          "title": "Fiverr · فری لانس Flutter انجینئر",
+          "meta": "مارچ 2023 - جولائی 2023 · ریموٹ",
+          "bullets": [
+            "مختصر کلائنٹ انگیجمنٹس میں Flutter ایپس کے پروڈکشن مسائل ٹھیک کیے -> بڑے ری رائٹس کے بغیر مستحکم اپ ڈیٹس شِپ ہوئیں۔",
+            "Flutter اور Microsoft auth flows کے ساتھ OneDrive integration package بنایا -> جہاں documentation اور package support محدود تھی وہاں خلا پُر ہوا۔"
+          ]
+        },
+        {
+          "title": "DevStation39 · اینڈرائیڈ ڈویلپر",
+          "meta": "اگست 2021 - ستمبر 2022 · ریموٹ",
+          "bullets": [
+            "Kotlin، RxJava، Firebase، ParseSDK اور دوسرے لیگیسی اسٹیکس کے ساتھ کئی Android ایپس میں کام کیا -> بہت مختلف پراڈکٹس اور کوڈبیسز میں فیچرز ڈلیور کیے۔",
+            "یونیورسٹی ختم کرتے ہوئے کنٹریکٹر کے طور پر کام کیا -> حقیقی کلائنٹ پابندیوں کے اندر پروڈکشن موبائل ایپس شِپ کرنے کی مضبوط بنیاد بنی۔"
+          ]
+        }
+      ],
+      "footer_html": "مزید تفصیل چاہیے؟ ای میل کریں <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>۔"
+    }
+  }
+}

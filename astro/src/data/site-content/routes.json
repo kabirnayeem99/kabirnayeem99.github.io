@@ -1,0 +1,32 @@
+{
+  "index": {
+    "en": "index.html",
+    "bn": "bn.html",
+    "ar": "ar.html",
+    "ur": "ur.html"
+  },
+  "work": {
+    "en": "work.html",
+    "bn": "bn/work.html",
+    "ar": "ar/work.html",
+    "ur": "ur/work.html"
+  },
+  "project": {
+    "en": "project.html",
+    "bn": "bn/project.html",
+    "ar": "ar/project.html",
+    "ur": "ur/project.html"
+  },
+  "blog": {
+    "en": "blog.html",
+    "bn": "bn/blog.html",
+    "ar": "ar/blog.html",
+    "ur": "ur/blog.html"
+  },
+  "stats": {
+    "en": "stats.html",
+    "bn": "bn/stats.html",
+    "ar": "ar/stats.html",
+    "ur": "ur/stats.html"
+  }
+}
