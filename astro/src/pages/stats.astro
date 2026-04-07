@@ -1,8 +1,216 @@
 ---
-import LegacySnapshotDocument from "../components/LegacySnapshotDocument.astro";
-import { readLegacyDocument } from "../lib/legacy-document";
+import ClosePageHeader from "../components/page/ClosePageHeader.astro";
+import HeadSeo from "../components/page/HeadSeo.astro";
+import PageFooter from "../components/page/PageFooter.astro";
+import { computeLegacyBuildTimestamp } from "../lib/build-timestamp";
+import { CLOSE_PAGE_LABEL, LAST_UPDATED_LABEL, SKIP_TO_MAIN_LABEL } from "../lib/page-labels";
+import { buildSchemaGraphJson } from "../lib/seo";
+import { loadStatsPageContent, statsEmbedThemeSources } from "../lib/stats-content";
 
-const document = readLegacyDocument("stats.html");
+const content = loadStatsPageContent();
+const buildTimestamp = computeLegacyBuildTimestamp();
+const canonicalUrl = `${content.site.baseUrl}/${content.route}`;
+const ogImageUrl = `${content.site.baseUrl}/assets/images/og-card.png`;
+const schemaGraphJson = buildSchemaGraphJson({
+  baseUrl: content.site.baseUrl,
+  websiteName: content.site.websiteName,
+  personName: content.site.personName,
+  canonicalUrl,
+  ogImageUrl,
+  socialProfiles: content.site.socialProfiles,
+});
+
+const alternateLinks = [
+  { hrefLang: "en", href: canonicalUrl },
+  { hrefLang: "x-default", href: canonicalUrl },
+] as const;
+
+const [leetcodeLightSrc, leetcodeDarkSrc] = statsEmbedThemeSources(
+  content.sections.leetcode.cardSrc,
+  "leetcode",
+);
+const [roadmapLightSrc, roadmapDarkSrc] = statsEmbedThemeSources(
+  content.sections.learningPath.imageSrc,
+  "roadmap",
+);
+const [roadmapLightHref, roadmapDarkHref] = statsEmbedThemeSources(
+  content.sections.learningPath.href,
+  "roadmap",
+);
+
+const scriptPaths = [
+  "assets/js/image-guard.js",
+  "assets/js/stats-theme-embeds.js",
+  "assets/js/goodreads-image-fallback.js",
+  "assets/js/umami-events.js",
+  "assets/js/stats-snapshots.js",
+  "assets/js/stats-utils.js",
+  "assets/js/wakatime-charts.js",
+  "assets/js/github-commits.js",
+  "assets/js/year.js",
+  "assets/js/service-worker-register.js",
+] as const;
 ---
 
-<LegacySnapshotDocument document={document} />
+<!DOCTYPE html>
+<html lang="en" dir={content.site.localeEn.dir}>
+  <HeadSeo
+    title={content.meta.title}
+    description={content.meta.description}
+    keywords={content.meta.keywords}
+    author={content.site.localeEn.author}
+    canonicalUrl={canonicalUrl}
+    alternateLinks={alternateLinks}
+    ogType="article"
+    ogLocale="en_US"
+    ogLocaleAlternates={[]}
+    ogImageUrl={ogImageUrl}
+    ogImageAlt={content.site.localeEn.ogImageAlt}
+    twitterSite={content.site.twitterSite}
+    schemaGraphJson={schemaGraphJson}
+    googleSiteVerification={content.site.googleSiteVerification}
+    umamiWebsiteId="cdec8895-be63-42d6-a490-12dd2ea8f35c"
+  />
+  <body data-page-id="stats" data-sw-path="service-worker.js">
+    <a class="skip-link" href="#main-content">{SKIP_TO_MAIN_LABEL}</a>
+    <div class="site">
+      <ClosePageHeader
+        homeHref={content.homeRoute}
+        closeLabel={CLOSE_PAGE_LABEL}
+        title={content.header.siteTitle}
+      />
+      <main id="main-content">
+        <section>
+          {content.intro.map((paragraph) => <p>{paragraph}</p>)}
+        </section>
+        <section>
+          <div class="summary-card stats-card">
+            <h2 class="section-title">{content.sections.wakatime.title}</h2>
+            <div
+              class="wakatime-widget"
+              data-wakatime-widget
+              data-wakatime-languages-url={content.sections.wakatime.languagesUrl}
+              data-wakatime-summary-url={content.sections.wakatime.summaryUrl}
+            >
+              <p class="wakatime-status" data-role="status">{content.sections.wakatime.statusText}</p>
+              <div class="wakatime-visuals" data-role="visuals" hidden>
+                <div class="wakatime-summary" data-role="summary-cards"></div>
+                <ol
+                  class="wakatime-bars"
+                  data-role="language-bars"
+                  aria-label={content.sections.wakatime.ariaLabel}
+                ></ol>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="summary-card stats-card">
+            <h2 class="section-title">{content.sections.githubCommits.title}</h2>
+            <p>{content.sections.githubCommits.description}</p>
+            <div
+              class="github-commits-widget"
+              data-github-commits-widget
+              data-github-contrib-url={content.sections.githubCommits.contribUrl}
+            >
+              <p class="github-commits-status" data-role="status">
+                {content.sections.githubCommits.statusText}
+              </p>
+              <div class="github-commits-visuals" data-role="visuals" hidden>
+                <div class="github-commits-summary" data-role="summary-cards"></div>
+                <div class="github-heatmap-wrap">
+                  <div class="github-heatmap-scroll">
+                    <div
+                      class="github-heatmap"
+                      data-role="heatmap"
+                      aria-label={content.sections.githubCommits.heatmapAriaLabel}
+                    ></div>
+                  </div>
+                  <div
+                    class="github-heatmap-legend"
+                    data-role="legend"
+                    aria-label={content.sections.githubCommits.legendAriaLabel}
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <p class="meta">
+              {content.sections.githubCommits.sourceLabel}{" "}
+              <a href={content.sections.githubCommits.sourceHref} target="_blank" rel="noreferrer"
+                >{content.sections.githubCommits.sourceText}</a
+              >
+            </p>
+          </div>
+        </section>
+        <section>
+          <div class="summary-card stats-card">
+            <h2 class="section-title">{content.sections.leetcode.title}</h2>
+            <p set:html={content.sections.leetcode.copy}></p>
+            <p><sub set:html={content.sections.leetcode.thanks}></sub></p>
+            <img
+              data-hide-section-on-error="true"
+              class="stats-embed stats-embed--leetcode-card"
+              src={leetcodeLightSrc}
+              data-theme-light-src={leetcodeLightSrc}
+              data-theme-dark-src={leetcodeDarkSrc}
+              alt={content.sections.leetcode.cardAlt}
+              width="500"
+              height="250"
+              decoding="async"
+              loading="lazy"
+            />
+          </div>
+        </section>
+        <section>
+          <div class="summary-card stats-card">
+            <h2 class="section-title">{content.sections.learningPath.title}</h2>
+            <p set:html={content.sections.learningPath.copy}></p>
+            <a
+              href={roadmapLightHref}
+              data-theme-light-href={roadmapLightHref}
+              data-theme-dark-href={roadmapDarkHref}
+            >
+              <img
+                data-hide-section-on-error="true"
+                class="stats-embed stats-embed--roadmap-card"
+                src={roadmapLightSrc}
+                data-theme-light-src={roadmapLightSrc}
+                data-theme-dark-src={roadmapDarkSrc}
+                alt={content.sections.learningPath.imageAlt}
+                width="1130"
+                height="380"
+                decoding="async"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+        <section>
+          <div class="summary-card stats-card">
+            <h2 class="section-title">{content.sections.goodreads.title}</h2>
+            <p>{content.sections.goodreads.copy}</p>
+            <p class="goodreads-status" data-goodreads-status>Loading Goodreads books…</p>
+            <div class="goodreads-widget" id={`gr_grid_widget_${content.sections.goodreads.widgetId}`}></div>
+            <p class="goodreads-profile-link">
+              <a href={content.sections.goodreads.profileHref} target="_blank" rel="noreferrer"
+                >View full Goodreads shelf</a
+              >
+            </p>
+          </div>
+        </section>
+      </main>
+      <PageFooter
+        footerHtml={content.footerHtml}
+        lastUpdatedLabel={LAST_UPDATED_LABEL}
+        timestampIso={buildTimestamp.iso}
+        timestampDisplay={buildTimestamp.display}
+      />
+    </div>
+    {
+      scriptPaths.map((src) => (
+        <script defer src={src}></script>
+      ))
+    }
+    <script src={content.sections.goodreads.scriptSrc} type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>
