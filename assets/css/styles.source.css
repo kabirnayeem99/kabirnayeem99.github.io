@@ -263,6 +263,15 @@ body[data-page-id="index"] .site {
   z-index: 1;
 }
 
+.site > header {
+  z-index: 100;
+  isolation: isolate;
+}
+
+.site > main {
+  z-index: 1;
+}
+
 @keyframes background-blob-drift {
   from {
     transform: translate3d(-0.6%, -0.4%, 0) scale(1);
@@ -297,8 +306,11 @@ header {
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  z-index: 5;
   padding-bottom: 1rem;
+}
+
+.site.is-language-menu-open > header {
+  padding-bottom: 11rem;
 }
 
 .header-controls {
@@ -308,7 +320,7 @@ header {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  z-index: 40;
+  z-index: 200;
 }
 
 .header-identity {
@@ -442,6 +454,7 @@ nav a:focus-visible {
 
 .language-switcher {
   position: relative;
+  z-index: 250;
 }
 
 .language-switcher-button,
@@ -531,7 +544,8 @@ nav a:focus-visible {
   box-shadow: var(--shadow);
   display: grid;
   gap: 0.35rem;
-  z-index: 20;
+  z-index: 300;
+  transform: translateZ(0);
 }
 
 .language-menu[hidden] {

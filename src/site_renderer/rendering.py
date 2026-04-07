@@ -926,12 +926,18 @@ def render_compact_wakatime_widget(section: WakaTimeSection) -> tuple[str, ...]:
     )
 
 
-def render_goodreads_widget(section: GoodreadsSection) -> tuple[str, ...]:
+def render_goodreads_widget(
+    section: GoodreadsSection,
+    copy_text: str | None = None,
+    loading_text: str | None = None,
+) -> tuple[str, ...]:
     """Render the Goodreads widget shell shared by index and stats pages."""
 
+    copy = section.copy if copy_text is None else copy_text
+    status = "Loading Goodreads books…" if loading_text is None else loading_text
     return (
-        f"          <p>{html.escape(section.copy)}</p>",
-        '          <p class="goodreads-status" data-goodreads-status>Loading Goodreads books…</p>',
+        f"          <p>{html.escape(copy)}</p>",
+        f'          <p class="goodreads-status" data-goodreads-status>{html.escape(status)}</p>',
         f'          <div class="goodreads-widget" id="gr_grid_widget_{html.escape(section.widget_id)}"></div>',
     )
 
@@ -951,6 +957,24 @@ def render_index_stats_sections(
         "ar": "المهارات واللغات",
         "ur": "مہارتیں اور زبانیں",
     }
+    home_goodreads_titles: Mapping[Lang, str] = {
+        "en": "Last Read Books",
+        "bn": "সর্বশেষ পড়া বই",
+        "ar": "آخِرُ الكُتُبِ المَقْرُوءَةِ",
+        "ur": "آخری پڑھی گئی کتابیں",
+    }
+    home_goodreads_copy: Mapping[Lang, str] = {
+        "en": "Some of the books I've read recently.",
+        "bn": "সম্প্রতি যেসব বই পড়েছি, সেখান থেকে কিছু।",
+        "ar": "بعض الكتب التي قرأتها مؤخرًا.",
+        "ur": "حالیہ دنوں میں پڑھی گئی کچھ کتابیں۔",
+    }
+    home_goodreads_loading: Mapping[Lang, str] = {
+        "en": "Loading Goodreads books…",
+        "bn": "গুডরিডস বই লোড হচ্ছে…",
+        "ar": "جارٍ تحميل كتب Goodreads…",
+        "ur": "Goodreads کی کتابیں لوڈ ہو رہی ہیں…",
+    }
     lines = [
         "      <section>",
         '        <div class="summary-card stats-card">',
@@ -966,12 +990,16 @@ def render_index_stats_sections(
         "      <section>",
         '        <div class="summary-card stats-card">',
         '          <div class="section-head">',
-        f"            <h2 class=\"section-title\">{html.escape(stats.sections.goodreads.title)}</h2>",
+        f"            <h2 class=\"section-title\">{html.escape(home_goodreads_titles[lang])}</h2>",
         '            <div class="section-actions">',
         f"              {view_all_stats_action}",
         "            </div>",
         "          </div>",
-        *render_goodreads_widget(stats.sections.goodreads),
+        *render_goodreads_widget(
+            stats.sections.goodreads,
+            copy_text=home_goodreads_copy[lang],
+            loading_text=home_goodreads_loading[lang],
+        ),
         "        </div>",
         "      </section>",
     ]

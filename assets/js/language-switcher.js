@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var button = candidateButton;
     /** @type {HTMLElement} */
     var menu = candidateMenu;
+    /** @type {HTMLElement | null} */
+    var site = /** @type {HTMLElement | null} */ (switcher.closest(".site"));
 
     /** @type {HTMLAnchorElement | null} */
     var firstLink = /** @type {HTMLAnchorElement | null} */ (menu.querySelector("a"));
@@ -37,6 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
       button.setAttribute("aria-expanded", "false");
       menu.hidden = true;
       switcher.classList.remove("is-open");
+      if (site instanceof HTMLElement) {
+        site.classList.remove("is-language-menu-open");
+      }
     }
 
     /**
@@ -48,6 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
       button.setAttribute("aria-expanded", "true");
       menu.hidden = false;
       switcher.classList.add("is-open");
+      if (site instanceof HTMLElement) {
+        site.classList.add("is-language-menu-open");
+      }
     }
 
     button.addEventListener("click", function () {
