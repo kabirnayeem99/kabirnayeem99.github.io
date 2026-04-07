@@ -5,7 +5,6 @@ import HighlightCard from "./HighlightCard.astro";
 import PageFooter from "./PageFooter.astro";
 import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
 import { loadIndexPageContent, type IndexAction, type Lang, type PageId } from "../../lib/index-content";
-import { readLegacyDocument } from "../../lib/legacy-document";
 import {
   BACK_TO_TOP_LABEL_BY_LANG,
   LAST_UPDATED_LABEL_BY_LANG,
@@ -14,6 +13,12 @@ import {
   THEME_LIGHT_LABEL_BY_LANG,
   VIEW_ALL_STATS_LABEL_BY_LANG,
 } from "../../lib/page-labels";
+import {
+  EMAIL_SOCIAL_CHIP_ICON_SVG,
+  SOCIAL_CHIP_ICON_SVG_BY_PLATFORM,
+  SOCIAL_CHIP_LABEL_BY_PLATFORM,
+  resolveSocialPlatformFromHref,
+} from "../../lib/social-chip-icons";
 import { buildSchemaGraphJson } from "../../lib/seo";
 import { assetHref, buildOgLocaleAlternates, OG_LOCALE_BY_LANG, routeHref } from "../../lib/work-project-content";
 
@@ -99,6 +104,10 @@ interface ResolvedAction {
   readonly showTrailingArrow: boolean;
 }
 
+function stripMailPrefix(label: string): string {
+  return label.replace(/^✉\s*/, "");
+}
+
 function resolveAction(action: IndexAction): ResolvedAction {
   let href = action.href;
   let navPageId: PageId | undefined;
@@ -133,7 +142,7 @@ function resolveAction(action: IndexAction): ResolvedAction {
     isExternal,
     isMailto,
     variantClass,
-    labelText: isMailto ? action.label.replace(/^✉\s*/, "") : action.label,
+    labelText: isMailto ? stripMailPrefix(action.label) : action.label,
     showTrailingArrow: isPageLink && action.variant === "secondary",
   };
   if (navPageId !== undefined) {
@@ -142,17 +151,44 @@ function resolveAction(action: IndexAction): ResolvedAction {
   return resolved;
 }
 
-function extractLegacySocialChipRow(fullHtml: string): string {
-  const match = fullHtml.match(/<div class="social-chip-row" aria-label="Social links">[\s\S]*?<\/div>/);
-  if (match === null) {
-    throw new Error("Could not find social chip row in legacy index snapshot");
-  }
-  return match[0];
+interface SocialChip {
+  readonly href: string;
+  readonly ariaLabel: string;
+  readonly text: string;
+  readonly iconSvg: string;
+  readonly isExternal: boolean;
 }
 
-const legacyIndexPath = lang === "en" ? "index.html" : `${lang}/index.html`;
-const legacyIndex = readLegacyDocument(legacyIndexPath);
-const socialChipRowHtml = extractLegacySocialChipRow(legacyIndex.fullHtml);
+function toSocialChip(action: IndexAction): SocialChip {
+  const resolved = resolveAction(action);
+  if (resolved.navPageId !== undefined) {
+    throw new Error("Top social actions cannot be page links");
+  }
+  if (!resolved.isMailto) {
+    throw new Error("Top social actions must use a mailto href");
+  }
+
+  return {
+    href: resolved.href,
+    ariaLabel: resolved.labelText,
+    text: resolved.labelText,
+    iconSvg: EMAIL_SOCIAL_CHIP_ICON_SVG,
+    isExternal: false,
+  };
+}
+
+const topSocialChips = content.topActions.map((action) => toSocialChip(action));
+const profileSocialChips = content.site.socialProfiles.map((href) => {
+  const platform = resolveSocialPlatformFromHref(href);
+  return {
+    href,
+    ariaLabel: SOCIAL_CHIP_LABEL_BY_PLATFORM[platform],
+    text: SOCIAL_CHIP_LABEL_BY_PLATFORM[platform],
+    iconSvg: SOCIAL_CHIP_ICON_SVG_BY_PLATFORM[platform],
+    isExternal: true,
+  } as const;
+});
+const socialChips: readonly SocialChip[] = [...topSocialChips, ...profileSocialChips];
 
 const viewAllStatsAction: IndexAction = {
   label: VIEW_ALL_STATS_LABEL_BY_LANG[lang],
@@ -277,7 +313,22 @@ const goodreadsLoadingByLang = {
           </div>
         </div>
 
-        <Fragment set:html={socialChipRowHtml} />
+        <div class="social-chip-row" aria-label="Social links">
+          {
+            socialChips.map((chip) => (
+              <a
+                class="social-chip"
+                href={chip.href}
+                target={chip.isExternal ? "_blank" : undefined}
+                rel={chip.isExternal ? "noreferrer" : undefined}
+                aria-label={chip.ariaLabel}
+              >
+                <Fragment set:html={chip.iconSvg} />
+                <span>{chip.text}</span>
+              </a>
+            ))
+          }
+        </div>
 
       </header>
 
