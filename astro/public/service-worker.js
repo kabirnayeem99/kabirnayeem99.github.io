@@ -11,22 +11,28 @@
  * - Includes WebWorker lib reference for editor + @ts-check type resolution.
  * - Event handlers use explicit JSDoc parameter types for stricter checks.
  */
-const PRECACHE_NAME = "person-portfolio-precache-20260407-v2";
-const RUNTIME_CACHE_NAME = "person-portfolio-runtime-20260407-v2";
+const PRECACHE_NAME = "person-portfolio-precache-20260407-v5";
+const RUNTIME_CACHE_NAME = "person-portfolio-runtime-20260407-v5";
 const PRECACHE_URLS = [
   "/",
   "/index.html",
-  "/ar/index.html",
+  "/ar.html",
+  "/ar/blog.html",
   "/ar/project.html",
+  "/ar/stats.html",
   "/ar/work.html",
   "/blog.html",
-  "/bn/index.html",
+  "/bn.html",
+  "/bn/blog.html",
   "/bn/project.html",
+  "/bn/stats.html",
   "/bn/work.html",
   "/project.html",
   "/stats.html",
-  "/ur/index.html",
+  "/ur.html",
+  "/ur/blog.html",
   "/ur/project.html",
+  "/ur/stats.html",
   "/ur/work.html",
   "/work.html",
   "/assets/css/styles.css",

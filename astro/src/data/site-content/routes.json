@@ -1,9 +1,9 @@
 {
   "index": {
     "en": "index.html",
-    "bn": "bn/index.html",
-    "ar": "ar/index.html",
-    "ur": "ur/index.html"
+    "bn": "bn.html",
+    "ar": "ar.html",
+    "ur": "ur.html"
   },
   "work": {
     "en": "work.html",
@@ -18,9 +18,15 @@
     "ur": "ur/project.html"
   },
   "blog": {
-    "en": "blog.html"
+    "en": "blog.html",
+    "bn": "bn/blog.html",
+    "ar": "ar/blog.html",
+    "ur": "ur/blog.html"
   },
   "stats": {
-    "en": "stats.html"
+    "en": "stats.html",
+    "bn": "bn/stats.html",
+    "ar": "ar/stats.html",
+    "ur": "ur/stats.html"
   }
 }

@@ -45,7 +45,13 @@ export function buildSeoFileContext(): SeoFileContext {
       { href: `${baseUrl}/${routes.project.ar}`, priority: "0.6" },
       { href: `${baseUrl}/${routes.project.ur}`, priority: "0.6" },
       { href: `${baseUrl}/${routes.blog.en}`, priority: "0.8" },
+      { href: `${baseUrl}/${routes.blog.bn}`, priority: "0.7" },
+      { href: `${baseUrl}/${routes.blog.ar}`, priority: "0.6" },
+      { href: `${baseUrl}/${routes.blog.ur}`, priority: "0.6" },
       { href: `${baseUrl}/${routes.stats.en}`, priority: "0.8" },
+      { href: `${baseUrl}/${routes.stats.bn}`, priority: "0.7" },
+      { href: `${baseUrl}/${routes.stats.ar}`, priority: "0.6" },
+      { href: `${baseUrl}/${routes.stats.ur}`, priority: "0.6" },
     ],
   };
 }

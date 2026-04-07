@@ -83,11 +83,11 @@
   --lift-1: translateY(-0.5px);
   --lift-2: translateY(-1px);
   --scale-1: scale(1.003);
-  --radius-xs: 0.32rem;
-  --radius-sm: 0.48rem;
-  --radius-md: 0.62rem;
-  --radius-lg: 0.8rem;
-  --radius-xl: 1rem;
+  --radius-xs: 0.28rem;
+  --radius-sm: 0.42rem;
+  --radius-md: 0.56rem;
+  --radius-lg: 0.72rem;
+  --radius-xl: 0.9rem;
 }
 
 html[data-theme="dark"] {

@@ -84,8 +84,8 @@ export interface RouteTable {
   readonly index: Readonly<Record<Lang, string>>;
   readonly work: Readonly<Record<Lang, string>>;
   readonly project: Readonly<Record<Lang, string>>;
-  readonly blog: Readonly<Record<"en", string>>;
-  readonly stats: Readonly<Record<"en", string>>;
+  readonly blog: Readonly<Record<Lang, string>>;
+  readonly stats: Readonly<Record<Lang, string>>;
 }
 
 export interface IndexPageContent {
@@ -279,12 +279,8 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
     index: readRouteMap(asRecord(routesRaw.index, "root.routes.index"), "root.routes.index"),
     work: readRouteMap(asRecord(routesRaw.work, "root.routes.work"), "root.routes.work"),
     project: readRouteMap(asRecord(routesRaw.project, "root.routes.project"), "root.routes.project"),
-    blog: {
-      en: readString(asRecord(routesRaw.blog, "root.routes.blog"), "en", "root.routes.blog"),
-    },
-    stats: {
-      en: readString(asRecord(routesRaw.stats, "root.routes.stats"), "en", "root.routes.stats"),
-    },
+    blog: readRouteMap(asRecord(routesRaw.blog, "root.routes.blog"), "root.routes.blog"),
+    stats: readRouteMap(asRecord(routesRaw.stats, "root.routes.stats"), "root.routes.stats"),
   };
 
   const navigationRaw = asRecord(root.navigation, "root.navigation");

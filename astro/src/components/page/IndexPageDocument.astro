@@ -90,19 +90,7 @@ const pageAssets = buildPageAssetHrefs(currentRoute);
 const logoHref = assetHref(currentRoute, "assets/images/logo.svg");
 
 function routeForAction(pageId: PageId): string {
-  switch (pageId) {
-    case "index":
-    case "work":
-    case "project":
-      return content.routes[pageId][lang];
-    case "blog":
-    case "stats":
-      return content.routes[pageId].en;
-    default: {
-      const exhaustiveCheck: never = pageId;
-      throw new Error(`No routes available for page ${exhaustiveCheck}`);
-    }
-  }
+  return content.routes[pageId][lang];
 }
 
 interface ResolvedAction {

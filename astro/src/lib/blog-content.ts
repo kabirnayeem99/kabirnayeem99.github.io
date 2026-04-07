@@ -2,12 +2,15 @@ import {
   asRecord,
   loadSiteContentRoot,
   readDirection,
+  readRouteMap,
   readString,
   readStringArray,
   type LocaleInfo,
   type MetaText,
+  type RouteMap,
   type SiteData,
 } from "./content-loader-shared";
+import type { Lang } from "./site-types";
 
 interface BlogArticle {
   readonly title: string;
@@ -17,7 +20,7 @@ interface BlogArticle {
 }
 
 interface BlogSiteData extends SiteData {
-  readonly localeEn: LocaleInfo;
+  readonly locale: LocaleInfo;
 }
 
 interface BlogPageData {
@@ -28,10 +31,12 @@ interface BlogPageData {
 }
 
 export interface BlogPageContent {
+  readonly lang: Lang;
   readonly site: BlogSiteData;
   readonly blog: BlogPageData;
   readonly homeRoute: string;
-  readonly blogRoute: string;
+  readonly route: string;
+  readonly pageRoutes: RouteMap;
 }
 
 function readBlogArticles(source: Record<string, unknown>, key: string, path: string): readonly BlogArticle[] {
@@ -54,25 +59,26 @@ function readBlogArticles(source: Record<string, unknown>, key: string, path: st
   return output;
 }
 
-export function loadBlogPageContent(): BlogPageContent {
+export function loadBlogPageContent(lang: Lang): BlogPageContent {
   const root = loadSiteContentRoot();
 
   const site = asRecord(root.site, "root.site");
   const siteLocales = asRecord(site.locales, "root.site.locales");
-  const localeEnRaw = asRecord(siteLocales.en, "root.site.locales.en");
+  const localeRaw = asRecord(siteLocales[lang], `root.site.locales.${lang}`);
 
   const routes = asRecord(root.routes, "root.routes");
-  const routeIndex = asRecord(routes.index, "root.routes.index");
-  const routeBlog = asRecord(routes.blog, "root.routes.blog");
+  const routeIndex = readRouteMap(asRecord(routes.index, "root.routes.index"), "root.routes.index");
+  const routeBlog = readRouteMap(asRecord(routes.blog, "root.routes.blog"), "root.routes.blog");
 
   const pages = asRecord(root.pages, "root.pages");
   const blogPage = asRecord(pages.blog, "root.pages.blog");
   const blogLocales = asRecord(blogPage.locales, "root.pages.blog.locales");
-  const blogEn = asRecord(blogLocales.en, "root.pages.blog.locales.en");
-  const blogMeta = asRecord(blogEn.meta, "root.pages.blog.locales.en.meta");
-  const blogHeader = asRecord(blogEn.header, "root.pages.blog.locales.en.header");
+  const blogLocale = asRecord(blogLocales[lang] ?? blogLocales.en, `root.pages.blog.locales.${lang}`);
+  const blogMeta = asRecord(blogLocale.meta, `root.pages.blog.locales.${lang}.meta`);
+  const blogHeader = asRecord(blogLocale.header, `root.pages.blog.locales.${lang}.header`);
 
   return {
+    lang,
     site: {
       baseUrl: readString(site, "base_url", "root.site"),
       personName: readString(site, "person_name", "root.site"),
@@ -80,23 +86,24 @@ export function loadBlogPageContent(): BlogPageContent {
       twitterSite: readString(site, "twitter_site", "root.site"),
       socialProfiles: readStringArray(site, "social_profiles", "root.site"),
       googleSiteVerification: readString(site, "google_site_verification", "root.site"),
-      localeEn: {
-        dir: readDirection(localeEnRaw, "dir", "root.site.locales.en"),
-        author: readString(localeEnRaw, "author", "root.site.locales.en"),
-        ogImageAlt: readString(localeEnRaw, "og_image_alt", "root.site.locales.en"),
+      locale: {
+        dir: readDirection(localeRaw, "dir", `root.site.locales.${lang}`),
+        author: readString(localeRaw, "author", `root.site.locales.${lang}`),
+        ogImageAlt: readString(localeRaw, "og_image_alt", `root.site.locales.${lang}`),
       },
     },
     blog: {
       meta: {
-        title: readString(blogMeta, "title", "root.pages.blog.locales.en.meta"),
-        description: readString(blogMeta, "description", "root.pages.blog.locales.en.meta"),
-        keywords: readString(blogMeta, "keywords", "root.pages.blog.locales.en.meta"),
+        title: readString(blogMeta, "title", `root.pages.blog.locales.${lang}.meta`),
+        description: readString(blogMeta, "description", `root.pages.blog.locales.${lang}.meta`),
+        keywords: readString(blogMeta, "keywords", `root.pages.blog.locales.${lang}.meta`),
       },
-      title: readString(blogHeader, "site_title", "root.pages.blog.locales.en.header"),
-      articles: readBlogArticles(blogEn, "articles", "root.pages.blog.locales.en"),
-      footerHtml: readString(blogEn, "footer_html", "root.pages.blog.locales.en"),
+      title: readString(blogHeader, "site_title", `root.pages.blog.locales.${lang}.header`),
+      articles: readBlogArticles(blogLocale, "articles", `root.pages.blog.locales.${lang}`),
+      footerHtml: readString(blogLocale, "footer_html", `root.pages.blog.locales.${lang}`),
     },
-    homeRoute: readString(routeIndex, "en", "root.routes.index"),
-    blogRoute: readString(routeBlog, "en", "root.routes.blog"),
+    homeRoute: routeIndex[lang],
+    route: routeBlog[lang],
+    pageRoutes: routeBlog,
   };
 }

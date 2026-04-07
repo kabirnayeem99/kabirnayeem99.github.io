@@ -26,6 +26,7 @@ interface SiteContentRoot {
 }
 
 let siteContentCache: SiteContentRoot | undefined;
+const useInMemoryCache = process.env.NODE_ENV === "production";
 
 function readJsonObject(filePath: string, pathLabel: string): Record<string, unknown> {
   const raw = JSON.parse(readFileSync(filePath, "utf-8")) as unknown;
@@ -33,7 +34,7 @@ function readJsonObject(filePath: string, pathLabel: string): Record<string, unk
 }
 
 export function loadSiteContentRoot(): SiteContentRoot {
-  if (siteContentCache !== undefined) {
+  if (useInMemoryCache && siteContentCache !== undefined) {
     return siteContentCache;
   }
 
@@ -53,14 +54,17 @@ export function loadSiteContentRoot(): SiteContentRoot {
     stats: readJsonObject(resolve(CONTENT_DIR, "pages/stats.json"), "root.pages.stats"),
   };
 
-  siteContentCache = {
+  const siteContentRoot: SiteContentRoot = {
     site,
     routes,
     navigation,
     navigation_labels: navigationLabels,
     pages,
   };
-  return siteContentCache;
+  if (useInMemoryCache) {
+    siteContentCache = siteContentRoot;
+  }
+  return siteContentRoot;
 }
 
 export interface MetaText {
