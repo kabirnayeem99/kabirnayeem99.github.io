@@ -25,10 +25,10 @@
 }
 
 @font-face {
-  font-family: "Noto Nastaliq Urdu";
-  src: url("../fonts/urdu_noto_nastaliq_wght.ttf") format("truetype");
+  font-family: "Urdu Pak Nastaleeq";
+  src: url("../fonts/urdu_pak_nastaleeq_regular.ttf") format("truetype");
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 400;
   font-display: swap;
 }
 
@@ -231,7 +231,7 @@ html:lang(ar) body {
 }
 
 html:lang(ur) body {
-  font-family: "Noto Nastaliq Urdu", serif;
+  font-family: "Urdu Pak Nastaleeq", serif;
   line-height: 1.95;
 }
 
@@ -752,7 +752,7 @@ nav a:focus-visible {
 }
 
 .language-menu a[lang="ur"] {
-  font-family: "Noto Nastaliq Urdu", serif;
+  font-family: "Urdu Pak Nastaleeq", serif;
 }
 
 .language-menu a:hover,

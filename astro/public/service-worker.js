@@ -54,7 +54,7 @@ const PRECACHE_URLS = [
   "/assets/fonts/bangla_noto_serif_regular.ttf",
   "/assets/fonts/english_eb_garamond_wght.ttf",
   "/assets/fonts/english_eb_garamond_wght.woff2",
-  "/assets/fonts/urdu_noto_nastaliq_wght.ttf",
+  "/assets/fonts/urdu_pak_nastaleeq_regular.ttf",
   "/assets/icons/android-chrome-192x192.png",
   "/assets/icons/android-chrome-512x512.png",
   "/assets/icons/apple-touch-icon.png",
