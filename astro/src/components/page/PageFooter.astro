@@ -13,7 +13,7 @@ const { footerHtml, lastUpdatedLabel, timestampIso, timestampDisplay } =
 <footer>
   <p class="footer-copy" set:html={footerHtml} />
   <p class="footer-last-updated">
-    {lastUpdatedLabel}
-    <time datetime={timestampIso}>{timestampDisplay}</time>
+    {`${lastUpdatedLabel}, `}
+    <time datetime={timestampIso}>{timestampDisplay}</time>.
   </p>
 </footer>

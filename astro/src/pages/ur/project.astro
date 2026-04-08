@@ -29,7 +29,7 @@ import {
 } from "../../lib/work-project-content";
 
 const content = loadProjectPageContent("ur");
-const buildTimestamp = computeLegacyBuildTimestamp();
+const buildTimestamp = computeLegacyBuildTimestamp("ur");
 const lang = content.lang;
 
 const canonicalUrl = `${content.site.baseUrl}/${content.route}`;

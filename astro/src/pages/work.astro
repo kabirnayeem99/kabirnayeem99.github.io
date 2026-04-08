@@ -27,7 +27,7 @@ import {
 } from "../lib/work-project-content";
 
 const content = loadWorkPageContent("en");
-const buildTimestamp = computeLegacyBuildTimestamp();
+const buildTimestamp = computeLegacyBuildTimestamp("en");
 
 const canonicalUrl = `${content.site.baseUrl}/${content.route}`;
 const ogImageUrl = buildOgImageUrl(content.site.baseUrl);

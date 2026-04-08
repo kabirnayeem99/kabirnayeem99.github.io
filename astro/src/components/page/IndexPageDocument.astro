@@ -46,7 +46,7 @@ interface Props {
 
 const { lang } = Astro.props as Props;
 const content = loadIndexPageContent(lang);
-const buildTimestamp = computeLegacyBuildTimestamp();
+const buildTimestamp = computeLegacyBuildTimestamp(lang);
 const currentRoute = content.route;
 
 const canonicalUrl =

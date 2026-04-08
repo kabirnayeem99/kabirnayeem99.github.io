@@ -31,7 +31,7 @@ interface Props {
 
 const { lang } = Astro.props as Props;
 const content = loadStatsPageContent(lang);
-const buildTimestamp = computeLegacyBuildTimestamp();
+const buildTimestamp = computeLegacyBuildTimestamp(lang);
 const canonicalUrl = `${content.site.baseUrl}/${content.route}`;
 const ogImageUrl = buildOgImageUrl(content.site.baseUrl);
 const schemaGraphJson = buildSchemaGraphJson({
