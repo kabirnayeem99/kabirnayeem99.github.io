@@ -1,7 +1,13 @@
 import { readdirSync, statSync } from "node:fs";
 import { resolve } from "node:path";
-import { listSiteContentFilePaths } from "./content-loader-shared";
-import type { Lang } from "./site-types";
+import {
+  asRecord,
+  listSiteContentFilePaths,
+  loadSiteContentRoot,
+  readLocaleInfo,
+  type SiteLocaleBuildTimestamp,
+} from "./content-loader-shared";
+import { DEFAULT_LANG, INTL_LOCALE_BY_LANG, LANGS, type Lang } from "./locale-config";
 
 export interface BuildTimestamp {
   readonly iso: string;
@@ -12,32 +18,7 @@ const ASTRO_ROOT = process.cwd();
 const DHAKA_TIME_ZONE = "Asia/Dhaka";
 const DHAKA_UTC_OFFSET = "+06:00";
 let latestTimestampMillisCache: number | undefined;
-
-const LOCALE_BY_LANG: Readonly<Record<Lang, string>> = {
-  en: "en-US",
-  bn: "bn-BD",
-  ar: "ar",
-  ur: "ur-PK",
-};
-
-const BUILT_AND_DEPLOYED_LABEL_BY_LANG: Readonly<Record<Lang, string>> = {
-  en: "built and deployed at",
-  bn: "বিল্ড ও ডিপ্লয় করা হয়েছে",
-  ar: "تم البناء والنشر في",
-  ur: "بلڈ اور ڈپلائے کیا گیا",
-};
-
-interface DayPeriodLabels {
-  readonly morning: string;
-  readonly evening: string;
-}
-
-const DAY_PERIOD_LABELS_BY_LANG: Readonly<Record<Lang, DayPeriodLabels>> = {
-  en: { morning: "Morning", evening: "Evening" },
-  bn: { morning: "সকাল", evening: "সন্ধ্যা" },
-  ar: { morning: "صباحًا", evening: "مساءً" },
-  ur: { morning: "صبح", evening: "شام" },
-};
+let buildTimestampTextByLangCache: Readonly<Record<Lang, SiteLocaleBuildTimestamp>> | undefined;
 
 interface DhakaDateParts {
   readonly year: number;
@@ -134,10 +115,9 @@ function formatLocalizedMonth(date: Date, locale: string): string {
 }
 
 function formatDisplay(date: Date, lang: Lang): string {
-  const locale = LOCALE_BY_LANG[lang];
+  const locale = INTL_LOCALE_BY_LANG[lang];
   const parts = extractDhakaDateParts(date);
-  const dateLabel = BUILT_AND_DEPLOYED_LABEL_BY_LANG[lang];
-  const dayPeriodLabels = DAY_PERIOD_LABELS_BY_LANG[lang];
+  const buildTimestampText = readBuildTimestampText(lang);
 
   const day = formatLocalizedNumber(parts.day, locale, 1);
   const month = formatLocalizedMonth(date, locale);
@@ -148,9 +128,28 @@ function formatDisplay(date: Date, lang: Lang): string {
   const hour = formatLocalizedNumber(hour12, locale, 2);
   const minute = formatLocalizedNumber(parts.minute, locale, 2);
   const second = formatLocalizedNumber(parts.second, locale, 2);
-  const dayPeriod = hour24 >= 12 ? dayPeriodLabels.evening : dayPeriodLabels.morning;
+  const dayPeriod = hour24 >= 12 ? buildTimestampText.dayPeriod.evening : buildTimestampText.dayPeriod.morning;
 
-  return `${dateLabel} ${day} ${month} ${year} ${hour}:${minute}:${second} ${amPm} (${dayPeriod})`;
+  return `${buildTimestampText.prefix} ${day} ${month} ${year} ${hour}:${minute}:${second} ${amPm} (${dayPeriod})`;
+}
+
+function readBuildTimestampText(lang: Lang): SiteLocaleBuildTimestamp {
+  if (buildTimestampTextByLangCache !== undefined) {
+    return buildTimestampTextByLangCache[lang];
+  }
+
+  const root = loadSiteContentRoot();
+  const site = asRecord(root.site, "root.site");
+  const siteLocales = asRecord(site.locales, "root.site.locales");
+  const textByLang = {} as Record<Lang, SiteLocaleBuildTimestamp>;
+
+  for (const locale of LANGS) {
+    const localeRaw = asRecord(siteLocales[locale], `root.site.locales.${locale}`);
+    textByLang[locale] = readLocaleInfo(localeRaw, `root.site.locales.${locale}`).buildTimestamp;
+  }
+
+  buildTimestampTextByLangCache = textByLang;
+  return buildTimestampTextByLangCache[lang];
 }
 
 function findLatestTimestampMillis(): number {
@@ -201,7 +200,7 @@ function findLatestTimestampMillis(): number {
   return latestTimestampMillisCache;
 }
 
-export function computeLegacyBuildTimestamp(lang: Lang = "en"): BuildTimestamp {
+export function computeLegacyBuildTimestamp(lang: Lang = DEFAULT_LANG): BuildTimestamp {
   const latest = findLatestTimestampMillis();
   const date = new Date(latest === 0 ? Date.now() : latest);
   return {

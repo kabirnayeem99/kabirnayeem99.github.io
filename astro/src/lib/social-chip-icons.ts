@@ -1,5 +1,3 @@
-import type { Lang } from "./site-types";
-
 export type SocialPlatform = "github" | "linkedin" | "medium" | "leetcode";
 
 export type SocialChipIconName = "email" | SocialPlatform;
@@ -13,42 +11,6 @@ export const SOCIAL_CHIP_ICON_CLASS_BY_NAME: Readonly<
   medium: "social-chip-icon--medium",
   leetcode: "social-chip-icon--leetcode",
 };
-
-const SOCIAL_CHIP_LABEL_BY_PLATFORM_AND_LANG: Readonly<
-  Record<Lang, Readonly<Record<SocialPlatform, string>>>
-> = {
-  en: {
-    github: "GitHub",
-    linkedin: "LinkedIn",
-    medium: "Medium",
-    leetcode: "LeetCode",
-  },
-  bn: {
-    github: "গিটহাব",
-    linkedin: "লিঙ্কডইন",
-    medium: "মিডিয়াম",
-    leetcode: "লিটকোড",
-  },
-  ar: {
-    github: "غِيتْهَاب",
-    linkedin: "لِينْكِدْإِنْ",
-    medium: "مِيدِيُوم",
-    leetcode: "لِيتْكُود",
-  },
-  ur: {
-    github: "گِٹ ہَب",
-    linkedin: "لنکڈ اِن",
-    medium: "میڈیم",
-    leetcode: "لیٹ کوڈ",
-  },
-};
-
-export function socialChipLabelForPlatform(
-  platform: SocialPlatform,
-  lang: Lang,
-): string {
-  return SOCIAL_CHIP_LABEL_BY_PLATFORM_AND_LANG[lang][platform];
-}
 
 function parseHostname(href: string): string {
   let parsedUrl: URL;

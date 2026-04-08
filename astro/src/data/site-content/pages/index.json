@@ -123,7 +123,9 @@
           "href": "mailto:kabirnayeem.99@gmail.com",
           "variant": "secondary"
         }
-      ]
+      ],
+      "view_all_stats_label": "View all stats",
+      "social_row_label": "Social links"
     },
     "bn": {
       "meta": {
@@ -227,7 +229,9 @@
           "href": "mailto:kabirnayeem.99@gmail.com",
           "variant": "secondary"
         }
-      ]
+      ],
+      "view_all_stats_label": "সবগুলো পরিসংখ্যান দেখুন",
+      "social_row_label": "সামাজিক লিংকসমূহ"
     },
     "ar": {
       "meta": {
@@ -296,7 +300,9 @@
           ]
         }
       ],
-      "footer_html": "&copy; <span id=\"year\">٢٠٢٥</span> نَعِيمُولُ كَبِير."
+      "footer_html": "&copy; <span id=\"year\">٢٠٢٥</span> نَعِيمُولُ كَبِير.",
+      "view_all_stats_label": "عرض كل الإحصائيات",
+      "social_row_label": "روابط التواصل الاجتماعي"
     },
     "ur": {
       "meta": {
@@ -351,7 +357,9 @@
           ]
         }
       ],
-      "footer_html": "&copy; <span id=\"year\">2025</span> نعیم الکبیر"
+      "footer_html": "&copy; <span id=\"year\">2025</span> نعیم الکبیر",
+      "view_all_stats_label": "تمام اسٹیٹس دیکھیں",
+      "social_row_label": "سوشل روابط"
     }
   }
 }

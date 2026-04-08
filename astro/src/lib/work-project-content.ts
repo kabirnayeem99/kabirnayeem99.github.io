@@ -2,7 +2,7 @@ import { posix as pathPosix } from "node:path";
 import {
   asRecord,
   loadSiteContentRoot,
-  readDirection,
+  readLocaleInfo,
   readOptionalString,
   readOptionalStringArray,
   readRouteMap,
@@ -13,9 +13,10 @@ import {
   type RouteMap,
   type SiteData,
 } from "./content-loader-shared";
-import type { Lang } from "./site-types";
+import { LANGS, OG_LOCALE_BY_LANG, type Lang } from "./locale-config";
 
-export type { Lang } from "./site-types";
+export type { Lang } from "./locale-config";
+export { OG_LOCALE_BY_LANG } from "./locale-config";
 
 interface HeaderText {
   readonly siteTitle: string;
@@ -63,15 +64,6 @@ export interface WorkPageContent extends CommonPageContent {
 export interface ProjectPageContent extends CommonPageContent {
   readonly groups: readonly ProjectGroup[];
 }
-
-const LANGS = ["en", "bn", "ar", "ur"] as const;
-
-export const OG_LOCALE_BY_LANG: Readonly<Record<Lang, string>> = {
-  en: "en_US",
-  bn: "bn_BD",
-  ar: "ar_SA",
-  ur: "ur_PK",
-};
 
 function readContentCards(
   source: Record<string, unknown>,
@@ -156,11 +148,7 @@ function loadSharedContext(lang: Lang): SharedContentContext {
       twitterSite: readString(site, "twitter_site", "root.site"),
       socialProfiles: readStringArray(site, "social_profiles", "root.site"),
       googleSiteVerification: readString(site, "google_site_verification", "root.site"),
-      locale: {
-        dir: readDirection(siteLocale, "dir", `root.site.locales.${lang}`),
-        author: readString(siteLocale, "author", `root.site.locales.${lang}`),
-        ogImageAlt: readString(siteLocale, "og_image_alt", `root.site.locales.${lang}`),
-      },
+      locale: readLocaleInfo(siteLocale, `root.site.locales.${lang}`),
     },
     routes,
   };

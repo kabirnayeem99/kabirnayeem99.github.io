@@ -1,8 +1,7 @@
 @font-face {
   font-family: "EB Garamond";
   src:
-    url("../fonts/english_eb_garamond_wght.woff2") format("woff2"),
-    url("../fonts/english_eb_garamond_wght.ttf") format("truetype");
+    url("../fonts/english_eb_garamond_wght.woff2") format("woff2");
   font-style: normal;
   font-weight: 400 800;
   font-display: swap;
@@ -11,8 +10,7 @@
 @font-face {
   font-family: "Scheherazade New";
   src:
-    url("../fonts/arabi_scheherazade_new_regular.woff") format("woff"),
-    url("../fonts/arabi_scheherazade_new_regular.ttf") format("truetype");
+    url("../fonts/arabi_scheherazade_new_regular.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -21,8 +19,7 @@
 @font-face {
   font-family: "Scheherazade New";
   src:
-    url("../fonts/arabi_scheherazade_new_bold.woff2") format("woff2"),
-    url("../fonts/arabi_scheherazade_new_bold.ttf") format("truetype");
+    url("../fonts/arabi_scheherazade_new_bold.woff2") format("woff2");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -31,8 +28,7 @@
 @font-face {
   font-family: "Urdu Pak Nastaleeq";
   src:
-    url("../fonts/urdu_pak_nastaleeq_regular.woff2") format("woff2"),
-    url("../fonts/urdu_pak_nastaleeq_regular.ttf") format("truetype");
+    url("../fonts/urdu_pak_nastaleeq_regular.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -41,8 +37,7 @@
 @font-face {
   font-family: "Noto Serif Bengali";
   src:
-    url("../fonts/bangla_noto_serif_regular.woff2") format("woff2"),
-    url("../fonts/bangla_noto_serif_regular.ttf") format("truetype");
+    url("../fonts/bangla_noto_serif_regular.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;

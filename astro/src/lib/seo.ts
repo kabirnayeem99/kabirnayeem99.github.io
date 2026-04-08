@@ -1,3 +1,5 @@
+import { LANGS } from "./locale-config";
+
 export interface SchemaGraphInput {
   readonly baseUrl: string;
   readonly websiteName: string;
@@ -21,7 +23,7 @@ export function buildSchemaGraphJson(input: SchemaGraphInput): string {
         url: `${input.baseUrl}/`,
         name: input.websiteName,
         publisher: { "@id": `${input.baseUrl}/#person` },
-        inLanguage: ["en", "bn", "ar", "ur"],
+        inLanguage: [...LANGS],
       },
       {
         "@type": "Person",

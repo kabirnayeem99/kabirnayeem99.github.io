@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import type { Direction, Lang } from "./site-types";
+import { LANGS, PAGE_IDS, type Lang } from "./locale-config";
+import type { Direction } from "./site-types";
 
 const CONTENT_DIR = resolve(process.cwd(), "src/data/site-content");
-const PAGE_IDS = ["index", "work", "project", "blog", "stats"] as const;
 
 const SHARED_CONTENT_FILE_PATHS = [
   resolve(CONTENT_DIR, "site.json"),
@@ -73,10 +73,38 @@ export interface MetaText {
   readonly keywords: string;
 }
 
+export interface SiteLocaleUiLabels {
+  readonly skipToMain: string;
+  readonly closePage: string;
+  readonly lastUpdated: string;
+  readonly backToTop: string;
+  readonly themeDark: string;
+  readonly themeLight: string;
+}
+
+export interface SiteLocaleBuildTimestamp {
+  readonly prefix: string;
+  readonly dayPeriod: {
+    readonly morning: string;
+    readonly evening: string;
+  };
+}
+
+export interface SiteSocialPlatformLabels {
+  readonly github: string;
+  readonly linkedin: string;
+  readonly medium: string;
+  readonly leetcode: string;
+}
+
 export interface LocaleInfo {
   readonly dir: Direction;
   readonly author: string;
+  readonly languageSwitcherLabel: string;
   readonly ogImageAlt: string;
+  readonly labels: SiteLocaleUiLabels;
+  readonly buildTimestamp: SiteLocaleBuildTimestamp;
+  readonly socialPlatformLabels: SiteSocialPlatformLabels;
 }
 
 export interface SiteData {
@@ -171,11 +199,49 @@ export function readOptionalStringArray(
   return output;
 }
 
+export function readLangStringMap(source: Record<string, unknown>, path: string): Readonly<Record<Lang, string>> {
+  const output: Record<Lang, string> = {} as Record<Lang, string>;
+  for (const lang of LANGS) {
+    output[lang] = readString(source, lang, path);
+  }
+  return output;
+}
+
 export function readRouteMap(source: Record<string, unknown>, path: string): RouteMap {
+  return readLangStringMap(source, path);
+}
+
+export function readLocaleInfo(source: Record<string, unknown>, path: string): LocaleInfo {
+  const labels = asRecord(source.labels, `${path}.labels`);
+  const buildTimestamp = asRecord(source.build_timestamp, `${path}.build_timestamp`);
+  const dayPeriod = asRecord(buildTimestamp.day_period, `${path}.build_timestamp.day_period`);
+  const socialPlatformLabels = asRecord(source.social_platform_labels, `${path}.social_platform_labels`);
+
   return {
-    en: readString(source, "en", path),
-    bn: readString(source, "bn", path),
-    ar: readString(source, "ar", path),
-    ur: readString(source, "ur", path),
+    dir: readDirection(source, "dir", path),
+    author: readString(source, "author", path),
+    languageSwitcherLabel: readString(source, "language_switcher_label", path),
+    ogImageAlt: readString(source, "og_image_alt", path),
+    labels: {
+      skipToMain: readString(labels, "skip_to_main", `${path}.labels`),
+      closePage: readString(labels, "close_page", `${path}.labels`),
+      lastUpdated: readString(labels, "last_updated", `${path}.labels`),
+      backToTop: readString(labels, "back_to_top", `${path}.labels`),
+      themeDark: readString(labels, "theme_dark", `${path}.labels`),
+      themeLight: readString(labels, "theme_light", `${path}.labels`),
+    },
+    buildTimestamp: {
+      prefix: readString(buildTimestamp, "prefix", `${path}.build_timestamp`),
+      dayPeriod: {
+        morning: readString(dayPeriod, "morning", `${path}.build_timestamp.day_period`),
+        evening: readString(dayPeriod, "evening", `${path}.build_timestamp.day_period`),
+      },
+    },
+    socialPlatformLabels: {
+      github: readString(socialPlatformLabels, "github", `${path}.social_platform_labels`),
+      linkedin: readString(socialPlatformLabels, "linkedin", `${path}.social_platform_labels`),
+      medium: readString(socialPlatformLabels, "medium", `${path}.social_platform_labels`),
+      leetcode: readString(socialPlatformLabels, "leetcode", `${path}.social_platform_labels`),
+    },
   };
 }

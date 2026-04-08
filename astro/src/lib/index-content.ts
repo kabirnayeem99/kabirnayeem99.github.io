@@ -1,7 +1,8 @@
 import {
   asRecord,
   loadSiteContentRoot,
-  readDirection,
+  readLangStringMap,
+  readLocaleInfo,
   readOptionalString,
   readOptionalStringArray,
   readRouteMap,
@@ -11,17 +12,13 @@ import {
   type MetaText,
   type SiteData,
 } from "./content-loader-shared";
-import type { Lang, PageId } from "./site-types";
+import { PAGE_IDS, type Lang, type PageId } from "./locale-config";
 
-export type { Lang, PageId } from "./site-types";
+export type { Lang, PageId } from "./locale-config";
 
 interface HeaderText {
   readonly siteTitle: string;
   readonly tagline: string;
-}
-
-interface IndexLocaleInfo extends LocaleInfo {
-  readonly languageSwitcherLabel: string;
 }
 
 export interface IndexAction {
@@ -66,6 +63,7 @@ interface WakaTimeSection {
 interface GoodreadsSection {
   readonly title: string;
   readonly copy: string;
+  readonly statusText: string;
   readonly widgetId: string;
   readonly scriptSrc: string;
 }
@@ -76,7 +74,7 @@ interface StatsCompactContent {
 }
 
 interface IndexSiteData extends SiteData {
-  readonly locale: IndexLocaleInfo;
+  readonly locale: LocaleInfo;
   readonly languageMenuLabels: Readonly<Record<Lang, string>>;
 }
 
@@ -99,16 +97,22 @@ export interface IndexPageContent {
   readonly summaryCard: readonly string[];
   readonly sections: readonly IndexSection[];
   readonly topActions: readonly IndexAction[];
+  readonly socialRowLabel: string;
+  readonly viewAllStatsLabel: string;
   readonly footerHtml: string;
   readonly statsCompact: StatsCompactContent;
   readonly route: string;
+}
+
+function isPageId(value: string): value is PageId {
+  return PAGE_IDS.some((pageId) => pageId === value);
 }
 
 function readPageIdArray(source: Record<string, unknown>, key: string, path: string): readonly PageId[] {
   const entries = readStringArray(source, key, path);
   const pageIds: PageId[] = [];
   for (const [index, entry] of entries.entries()) {
-    if (entry === "index" || entry === "work" || entry === "project" || entry === "blog" || entry === "stats") {
+    if (isPageId(entry)) {
       pageIds.push(entry);
       continue;
     }
@@ -132,13 +136,7 @@ function readAction(source: Record<string, unknown>, path: string): IndexAction 
 
   let pageId: PageId | undefined;
   if (pageIdRaw !== undefined) {
-    if (
-      pageIdRaw === "index" ||
-      pageIdRaw === "work" ||
-      pageIdRaw === "project" ||
-      pageIdRaw === "blog" ||
-      pageIdRaw === "stats"
-    ) {
+    if (typeof pageIdRaw === "string" && isPageId(pageIdRaw)) {
       pageId = pageIdRaw;
     } else {
       throw new Error(`Expected page id at ${path}.page_id`);
@@ -326,12 +324,12 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
     ),
     blog: readString(
       asRecord(navigationLabelsRaw.blog, "root.navigation_labels.blog"),
-      "en",
+      lang,
       "root.navigation_labels.blog",
     ),
     stats: readString(
       asRecord(navigationLabelsRaw.stats, "root.navigation_labels.stats"),
-      "en",
+      lang,
       "root.navigation_labels.stats",
     ),
   };
@@ -345,22 +343,8 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
       twitterSite: readString(site, "twitter_site", "root.site"),
       socialProfiles: readStringArray(site, "social_profiles", "root.site"),
       googleSiteVerification: readString(site, "google_site_verification", "root.site"),
-      locale: {
-        dir: readDirection(localeRaw, "dir", `root.site.locales.${lang}`),
-        author: readString(localeRaw, "author", `root.site.locales.${lang}`),
-        languageSwitcherLabel: readString(
-          localeRaw,
-          "language_switcher_label",
-          `root.site.locales.${lang}`,
-        ),
-        ogImageAlt: readString(localeRaw, "og_image_alt", `root.site.locales.${lang}`),
-      },
-      languageMenuLabels: {
-        en: readString(languageMenuLabelsRaw, "en", "root.site.language_menu_labels"),
-        bn: readString(languageMenuLabelsRaw, "bn", "root.site.language_menu_labels"),
-        ar: readString(languageMenuLabelsRaw, "ar", "root.site.language_menu_labels"),
-        ur: readString(languageMenuLabelsRaw, "ur", "root.site.language_menu_labels"),
-      },
+      locale: readLocaleInfo(localeRaw, `root.site.locales.${lang}`),
+      languageMenuLabels: readLangStringMap(languageMenuLabelsRaw, "root.site.language_menu_labels"),
     },
     routes,
     navigation,
@@ -377,6 +361,8 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
     summaryCard: readStringArray(indexLocale, "summary_card", `root.pages.index.locales.${lang}`),
     sections: readIndexSections(indexLocale, `root.pages.index.locales.${lang}`),
     topActions: readActions(indexLocale, "top_actions", `root.pages.index.locales.${lang}`),
+    socialRowLabel: readString(indexLocale, "social_row_label", `root.pages.index.locales.${lang}`),
+    viewAllStatsLabel: readString(indexLocale, "view_all_stats_label", `root.pages.index.locales.${lang}`),
     footerHtml: readString(indexLocale, "footer_html", `root.pages.index.locales.${lang}`),
     statsCompact: {
       wakatime: {
@@ -407,6 +393,11 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
         copy: readString(
           statsGoodreads,
           "copy",
+          `root.pages.stats.locales.${lang}.sections.goodreads`,
+        ),
+        statusText: readString(
+          statsGoodreads,
+          "status_text",
           `root.pages.stats.locales.${lang}.sections.goodreads`,
         ),
         widgetId: readString(

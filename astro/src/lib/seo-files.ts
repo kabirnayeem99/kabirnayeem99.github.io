@@ -1,5 +1,6 @@
 import { computeLegacyBuildTimestamp } from "./build-timestamp";
 import { loadIndexPageContent } from "./index-content";
+import { DEFAULT_LANG, LANGS, type Lang } from "./locale-config";
 
 type SitemapPriority = "1.0" | "0.8" | "0.7" | "0.6";
 
@@ -14,6 +15,13 @@ export interface SeoFileContext {
   readonly sitemapEntries: readonly SitemapEntry[];
 }
 
+const DEFAULT_PRIORITY_BY_LANG: Readonly<Record<Lang, SitemapPriority>> = {
+  en: "0.8",
+  bn: "0.7",
+  ar: "0.6",
+  ur: "0.6",
+};
+
 function buildLastModifiedDate(): string {
   const timestamp = computeLegacyBuildTimestamp();
   const [datePart] = timestamp.iso.split("T");
@@ -24,34 +32,33 @@ function buildLastModifiedDate(): string {
 }
 
 export function buildSeoFileContext(): SeoFileContext {
-  const indexPage = loadIndexPageContent("en");
+  const indexPage = loadIndexPageContent(DEFAULT_LANG);
   const baseUrl = indexPage.site.baseUrl;
   const routes = indexPage.routes;
+  const sitemapEntries: SitemapEntry[] = [{ href: `${baseUrl}/`, priority: "1.0" }];
+
+  for (const lang of LANGS) {
+    if (lang === DEFAULT_LANG) {
+      continue;
+    }
+    sitemapEntries.push({
+      href: `${baseUrl}/${routes.index[lang]}`,
+      priority: DEFAULT_PRIORITY_BY_LANG[lang],
+    });
+  }
+
+  for (const pageId of ["work", "project", "blog", "stats"] as const) {
+    for (const lang of LANGS) {
+      sitemapEntries.push({
+        href: `${baseUrl}/${routes[pageId][lang]}`,
+        priority: DEFAULT_PRIORITY_BY_LANG[lang],
+      });
+    }
+  }
 
   return {
     baseUrl,
     lastModifiedDate: buildLastModifiedDate(),
-    sitemapEntries: [
-      { href: `${baseUrl}/`, priority: "1.0" },
-      { href: `${baseUrl}/${routes.index.bn}`, priority: "0.7" },
-      { href: `${baseUrl}/${routes.index.ar}`, priority: "0.6" },
-      { href: `${baseUrl}/${routes.index.ur}`, priority: "0.6" },
-      { href: `${baseUrl}/${routes.work.en}`, priority: "0.8" },
-      { href: `${baseUrl}/${routes.work.bn}`, priority: "0.7" },
-      { href: `${baseUrl}/${routes.work.ar}`, priority: "0.6" },
-      { href: `${baseUrl}/${routes.work.ur}`, priority: "0.6" },
-      { href: `${baseUrl}/${routes.project.en}`, priority: "0.8" },
-      { href: `${baseUrl}/${routes.project.bn}`, priority: "0.7" },
-      { href: `${baseUrl}/${routes.project.ar}`, priority: "0.6" },
-      { href: `${baseUrl}/${routes.project.ur}`, priority: "0.6" },
-      { href: `${baseUrl}/${routes.blog.en}`, priority: "0.8" },
-      { href: `${baseUrl}/${routes.blog.bn}`, priority: "0.7" },
-      { href: `${baseUrl}/${routes.blog.ar}`, priority: "0.6" },
-      { href: `${baseUrl}/${routes.blog.ur}`, priority: "0.6" },
-      { href: `${baseUrl}/${routes.stats.en}`, priority: "0.8" },
-      { href: `${baseUrl}/${routes.stats.bn}`, priority: "0.7" },
-      { href: `${baseUrl}/${routes.stats.ar}`, priority: "0.6" },
-      { href: `${baseUrl}/${routes.stats.ur}`, priority: "0.6" },
-    ],
+    sitemapEntries,
   };
 }

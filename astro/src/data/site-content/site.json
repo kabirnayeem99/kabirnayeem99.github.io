@@ -21,25 +21,109 @@
       "dir": "ltr",
       "author": "Naimul Kabir",
       "language_switcher_label": "Change language",
-      "og_image_alt": "Naimul Kabir logo"
+      "og_image_alt": "Naimul Kabir logo",
+      "labels": {
+        "skip_to_main": "Skip to main content",
+        "close_page": "Close page",
+        "last_updated": "Last updated",
+        "back_to_top": "Back to top",
+        "theme_dark": "Switch to dark mode",
+        "theme_light": "Switch to light mode"
+      },
+      "build_timestamp": {
+        "prefix": "built and deployed at",
+        "day_period": {
+          "morning": "Morning",
+          "evening": "Evening"
+        }
+      },
+      "social_platform_labels": {
+        "github": "GitHub",
+        "linkedin": "LinkedIn",
+        "medium": "Medium",
+        "leetcode": "LeetCode"
+      }
     },
     "bn": {
       "dir": "ltr",
       "author": "নাঈমুল কবির",
       "language_switcher_label": "ভাষা পরিবর্তন",
-      "og_image_alt": "নাঈমুল কবিরের ছবি"
+      "og_image_alt": "নাঈমুল কবিরের ছবি",
+      "labels": {
+        "skip_to_main": "মূল অংশে যান",
+        "close_page": "পাতা বন্ধ করুন",
+        "last_updated": "হালনাগাদ করা হয়েছে",
+        "back_to_top": "উপরে ফিরে যান",
+        "theme_dark": "ডার্ক মোডে যান",
+        "theme_light": "লাইট মোডে যান"
+      },
+      "build_timestamp": {
+        "prefix": "বিল্ড ও ডিপ্লয় করা হয়েছে",
+        "day_period": {
+          "morning": "সকাল",
+          "evening": "সন্ধ্যা"
+        }
+      },
+      "social_platform_labels": {
+        "github": "গিটহাব",
+        "linkedin": "লিঙ্কডইন",
+        "medium": "মিডিয়াম",
+        "leetcode": "লিটকোড"
+      }
     },
     "ar": {
       "dir": "rtl",
       "author": "نَعِيمُ ٱلْكَبِيرِ",
       "language_switcher_label": "تَغْيِيرُ ٱللُّغَةِ",
-      "og_image_alt": "شِعَارُ نَعِيمِ ٱلْكَبِيرِ"
+      "og_image_alt": "شِعَارُ نَعِيمِ ٱلْكَبِيرِ",
+      "labels": {
+        "skip_to_main": "تَخَطَّ إلى المُحتَوَى الرَّئيسِي",
+        "close_page": "إغلاق الصفحة",
+        "last_updated": "آخر تحديث",
+        "back_to_top": "العَودَةُ إلى الأَعلى",
+        "theme_dark": "التَّحوُّلُ إلى الوَضعِ الدَّاكِن",
+        "theme_light": "التَّحوُّلُ إلى الوَضعِ الفاتِح"
+      },
+      "build_timestamp": {
+        "prefix": "تم البناء والنشر في",
+        "day_period": {
+          "morning": "صباحًا",
+          "evening": "مساءً"
+        }
+      },
+      "social_platform_labels": {
+        "github": "غِيتْهَاب",
+        "linkedin": "لِينْكِدْإِنْ",
+        "medium": "مِيدِيُوم",
+        "leetcode": "لِيتْكُود"
+      }
     },
     "ur": {
       "dir": "rtl",
       "author": "نَعِیمُ الْکَبِیر",
       "language_switcher_label": "زبان تبدیل کریں",
-      "og_image_alt": "نَعِیمُ الْکَبِیر لوگو"
+      "og_image_alt": "نَعِیمُ الْکَبِیر لوگو",
+      "labels": {
+        "skip_to_main": "مرکزی مواد پر جائیں",
+        "close_page": "صفحہ بند کریں",
+        "last_updated": "آخری اپڈیٹ",
+        "back_to_top": "اوپر واپس جائیں",
+        "theme_dark": "ڈارک موڈ پر جائیں",
+        "theme_light": "لائٹ موڈ پر جائیں"
+      },
+      "build_timestamp": {
+        "prefix": "بلڈ اور ڈپلائے کیا گیا",
+        "day_period": {
+          "morning": "صبح",
+          "evening": "شام"
+        }
+      },
+      "social_platform_labels": {
+        "github": "گِٹ ہَب",
+        "linkedin": "لنکڈ اِن",
+        "medium": "میڈیم",
+        "leetcode": "لیٹ کوڈ"
+      }
     }
   }
 }

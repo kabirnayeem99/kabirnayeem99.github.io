@@ -6,12 +6,6 @@ import PageFooter from "../../components/page/PageFooter.astro";
 import ProjectGroupsSection from "../../components/page/ProjectGroupsSection.astro";
 import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
 import {
-  BACK_TO_TOP_LABEL_BY_LANG,
-  CLOSE_PAGE_LABEL_BY_LANG,
-  LAST_UPDATED_LABEL_BY_LANG,
-  SKIP_TO_MAIN_LABEL_BY_LANG,
-} from "../../lib/page-labels";
-import {
   buildOgImageUrl,
   buildPageAssetHrefs,
   PAGE_LAYOUT,
@@ -47,7 +41,9 @@ const alternateLinks = buildAlternateLinks(
 );
 const ogLocaleAlternates = buildOgLocaleAlternates(lang);
 const homeHref = routeHref(content.route, content.homeRoute);
-const pageAssets = buildPageAssetHrefs(content.route);---
+const pageAssets = buildPageAssetHrefs(content.route);
+const uiLabels = content.site.locale.labels;
+---
 
 <!doctype html>
 <html lang={lang} dir={content.site.locale.dir}>
@@ -76,12 +72,12 @@ const pageAssets = buildPageAssetHrefs(content.route);---
   />
   <body data-page-id="project" data-sw-path={pageAssets.swPath}>
     <a class={PAGE_LAYOUT.skipLinkClass} href={`#${PAGE_LAYOUT.mainContentId}`}>
-      {SKIP_TO_MAIN_LABEL_BY_LANG[lang]}
+      {uiLabels.skipToMain}
     </a>
     <div class={PAGE_LAYOUT.siteClass}>
       <ClosePageHeader
         homeHref={homeHref}
-        closeLabel={CLOSE_PAGE_LABEL_BY_LANG[lang]}
+        closeLabel={uiLabels.closePage}
         title={content.header.siteTitle}
       />
       <main id={PAGE_LAYOUT.mainContentId}>
@@ -89,12 +85,12 @@ const pageAssets = buildPageAssetHrefs(content.route);---
       </main>
       <PageFooter
         footerHtml={content.footerHtml}
-        lastUpdatedLabel={LAST_UPDATED_LABEL_BY_LANG[lang]}
+        lastUpdatedLabel={uiLabels.lastUpdated}
         timestampIso={buildTimestamp.iso}
         timestampDisplay={buildTimestamp.display}
       />
     </div>
-    <BackToTopButton label={BACK_TO_TOP_LABEL_BY_LANG[lang]} />
+    <BackToTopButton label={uiLabels.backToTop} />
     <script>
       import "../../scripts/entries/work-project-page";
     </script>

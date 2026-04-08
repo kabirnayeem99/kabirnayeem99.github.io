@@ -4,11 +4,6 @@ import HeadSeo from "./HeadSeo.astro";
 import PageFooter from "./PageFooter.astro";
 import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
 import {
-  CLOSE_PAGE_LABEL_BY_LANG,
-  LAST_UPDATED_LABEL_BY_LANG,
-  SKIP_TO_MAIN_LABEL_BY_LANG,
-} from "../../lib/page-labels";
-import {
   buildOgImageUrl,
   buildPageAssetHrefs,
   PAGE_LAYOUT,
@@ -17,6 +12,7 @@ import {
 import { buildSchemaGraphJson } from "../../lib/seo";
 import { loadStatsPageContent, statsEmbedThemeSources } from "../../lib/stats-content";
 import {
+  buildAlternateLinks,
   buildOgLocaleAlternates,
   OG_LOCALE_BY_LANG,
   routeHref,
@@ -41,13 +37,7 @@ const schemaGraphJson = buildSchemaGraphJson({
   socialProfiles: content.site.socialProfiles,
 });
 
-const alternateLinks = [
-  { hrefLang: "en", href: `${content.site.baseUrl}/${content.pageRoutes.en}` },
-  { hrefLang: "bn", href: `${content.site.baseUrl}/${content.pageRoutes.bn}` },
-  { hrefLang: "ar", href: `${content.site.baseUrl}/${content.pageRoutes.ar}` },
-  { hrefLang: "ur", href: `${content.site.baseUrl}/${content.pageRoutes.ur}` },
-  { hrefLang: "x-default", href: `${content.site.baseUrl}/${content.pageRoutes.en}` },
-] as const;
+const alternateLinks = buildAlternateLinks(content.site.baseUrl, content.pageRoutes);
 
 const [leetcodeLightSrc, leetcodeDarkSrc] = statsEmbedThemeSources(
   content.sections.leetcode.cardSrc,
@@ -65,6 +55,7 @@ const [roadmapLightHref, roadmapDarkHref] = statsEmbedThemeSources(
 const homeHref = routeHref(content.route, content.homeRoute);
 const pageAssets = buildPageAssetHrefs(content.route);
 const ogLocaleAlternates = buildOgLocaleAlternates(lang);
+const uiLabels = content.site.locale.labels;
 ---
 
 <!DOCTYPE html>
@@ -98,12 +89,12 @@ const ogLocaleAlternates = buildOgLocaleAlternates(lang);
     data-goodreads-script-src={content.sections.goodreads.scriptSrc}
   >
     <a class={PAGE_LAYOUT.skipLinkClass} href={`#${PAGE_LAYOUT.mainContentId}`}>
-      {SKIP_TO_MAIN_LABEL_BY_LANG[lang]}
+      {uiLabels.skipToMain}
     </a>
     <div class={PAGE_LAYOUT.siteClass}>
       <ClosePageHeader
         homeHref={homeHref}
-        closeLabel={CLOSE_PAGE_LABEL_BY_LANG[lang]}
+        closeLabel={uiLabels.closePage}
         title={content.header.siteTitle}
       />
       <main id={PAGE_LAYOUT.mainContentId}>
@@ -228,7 +219,7 @@ const ogLocaleAlternates = buildOgLocaleAlternates(lang);
       </main>
       <PageFooter
         footerHtml={content.footerHtml}
-        lastUpdatedLabel={LAST_UPDATED_LABEL_BY_LANG[lang]}
+        lastUpdatedLabel={uiLabels.lastUpdated}
         timestampIso={buildTimestamp.iso}
         timestampDisplay={buildTimestamp.display}
       />

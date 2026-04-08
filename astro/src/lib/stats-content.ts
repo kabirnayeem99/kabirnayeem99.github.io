@@ -1,7 +1,7 @@
 import {
   asRecord,
   loadSiteContentRoot,
-  readDirection,
+  readLocaleInfo,
   readRouteMap,
   readString,
   readStringArray,
@@ -153,11 +153,7 @@ export function loadStatsPageContent(lang: Lang): StatsPageContent {
       twitterSite: readString(site, "twitter_site", "root.site"),
       socialProfiles: readStringArray(site, "social_profiles", "root.site"),
       googleSiteVerification: readString(site, "google_site_verification", "root.site"),
-      locale: {
-        dir: readDirection(localeRaw, "dir", `root.site.locales.${lang}`),
-        author: readString(localeRaw, "author", `root.site.locales.${lang}`),
-        ogImageAlt: readString(localeRaw, "og_image_alt", `root.site.locales.${lang}`),
-      },
+      locale: readLocaleInfo(localeRaw, `root.site.locales.${lang}`),
     },
     meta: {
       title: readString(meta, "title", `root.pages.stats.locales.${lang}.meta`),
