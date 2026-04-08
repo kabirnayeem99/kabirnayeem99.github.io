@@ -56,6 +56,7 @@ interface LanguageItem {
 }
 
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+const SVG_NS = "http://www.w3.org/2000/svg";
 
 const EXCLUDED_LANGUAGE_NAMES: ReadonlySet<string> = new Set([
   "html",
@@ -125,6 +126,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const statusEl = widget.querySelector<HTMLElement>('[data-role="status"]');
   const visualsEl = widget.querySelector<HTMLElement>('[data-role="visuals"]');
+  const languageChartEl = widget.querySelector<HTMLElement>('[data-role="language-chart"]');
+  const languageDonutEl = widget.querySelector<HTMLElement>('[data-role="language-donut"]');
+  const languageDonutCenterEl = widget.querySelector<HTMLElement>('[data-role="language-donut-center"]');
   const barsEl = widget.querySelector<HTMLOListElement>('[data-role="language-bars"]');
   const summaryEl = widget.querySelector<HTMLElement>('[data-role="summary-cards"]');
   const chipsEl = widget.querySelector<HTMLUListElement>('[data-role="language-chips"]');
@@ -267,56 +271,129 @@ document.addEventListener("DOMContentLoaded", () => {
       .sort((left, right) => right.percent - left.percent);
   };
 
-  const createLanguageRow = (item: LanguageItem, trackedSeconds: number): HTMLLIElement => {
-    const row = document.createElement("li");
-    row.className = "wakatime-bar-row";
+  interface DonutSegmentUi {
+    readonly path: SVGPathElement;
+    readonly offsetX: number;
+    readonly offsetY: number;
+  }
 
-    const head = document.createElement("div");
-    head.className = "wakatime-bar-head";
+  const toRadians = (degrees: number): number => (degrees * Math.PI) / 180;
 
-    const name = document.createElement("span");
-    name.className = "wakatime-name";
+  const polarToCartesian = (
+    centerX: number,
+    centerY: number,
+    radius: number,
+    angleDegrees: number,
+  ): { readonly x: number; readonly y: number } => {
+    return {
+      x: centerX + radius * Math.cos(toRadians(angleDegrees)),
+      y: centerY + radius * Math.sin(toRadians(angleDegrees)),
+    };
+  };
 
-    const swatch = document.createElement("span");
-    swatch.className = "wakatime-swatch";
-    swatch.style.backgroundColor = item.color;
+  const describeArcPath = (
+    centerX: number,
+    centerY: number,
+    radius: number,
+    startAngle: number,
+    endAngle: number,
+  ): string => {
+    const start = polarToCartesian(centerX, centerY, radius, startAngle);
+    const end = polarToCartesian(centerX, centerY, radius, endAngle);
+    const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0;
+    return `M ${start.x.toFixed(3)} ${start.y.toFixed(3)} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${end.x.toFixed(3)} ${end.y.toFixed(3)}`;
+  };
 
-    const label = document.createElement("span");
-    label.textContent = item.name;
-
-    name.appendChild(swatch);
-    name.appendChild(label);
-
-    const metrics = document.createElement("span");
-    metrics.className = "wakatime-metrics";
-
-    const percent = document.createElement("span");
-    percent.className = "wakatime-percent";
-    percent.textContent = formatPercent(item.percent);
-    metrics.appendChild(percent);
-
-    if (trackedSeconds > 0) {
-      const time = document.createElement("span");
-      time.className = "wakatime-time";
-      time.textContent = `~${formatDuration((trackedSeconds * item.percent) / 100)}`;
-      metrics.appendChild(time);
+  const buildDonutSegments = (segments: readonly LanguageItem[]): readonly DonutSegmentUi[] => {
+    if (!(languageDonutEl instanceof HTMLElement)) {
+      return [];
     }
 
-    head.appendChild(name);
-    head.appendChild(metrics);
+    const total = segments.reduce((sum, item) => sum + item.percent, 0);
+    if (total <= 0) {
+      languageDonutEl.innerHTML = "";
+      return [];
+    }
 
-    const track = document.createElement("div");
-    track.className = "wakatime-track";
+    const svg = document.createElementNS(SVG_NS, "svg");
+    svg.setAttribute("viewBox", "0 0 200 200");
+    svg.setAttribute("class", "wakatime-donut-svg");
+    svg.setAttribute("aria-hidden", "true");
 
-    const fill = document.createElement("div");
-    fill.className = "wakatime-fill";
-    fill.style.width = `${Math.min(item.percent, 100)}%`;
-    fill.style.backgroundColor = item.color;
+    const group = document.createElementNS(SVG_NS, "g");
+    group.setAttribute("class", "wakatime-donut-segments");
 
-    track.appendChild(fill);
-    row.appendChild(head);
-    row.appendChild(track);
+    const donutSegments: DonutSegmentUi[] = [];
+    const radius = 68;
+    const gapDegrees = 3.2;
+    let currentAngle = -90;
 
+    segments.forEach((item) => {
+      const segmentAngle = (item.percent / total) * 360;
+      const arcAngle = Math.max(0, segmentAngle - gapDegrees);
+
+      if (arcAngle <= 0.15) {
+        currentAngle += segmentAngle;
+        return;
+      }
+
+      const startAngle = currentAngle + gapDegrees / 2;
+      const endAngle = currentAngle + segmentAngle - gapDegrees / 2;
+      const midAngle = (startAngle + endAngle) / 2;
+
+      const path = document.createElementNS(SVG_NS, "path");
+      path.setAttribute("class", "wakatime-donut-segment");
+      path.setAttribute("d", describeArcPath(100, 100, radius, startAngle, endAngle));
+      path.setAttribute("stroke", item.color);
+      path.setAttribute("fill", "none");
+
+      group.appendChild(path);
+
+      donutSegments.push({
+        path,
+        offsetX: Math.cos(toRadians(midAngle)) * 2.4,
+        offsetY: Math.sin(toRadians(midAngle)) * 2.4,
+      });
+
+      currentAngle += segmentAngle;
+    });
+
+    svg.appendChild(group);
+    languageDonutEl.innerHTML = "";
+    languageDonutEl.appendChild(svg);
+
+    return donutSegments;
+  };
+
+  const activateDonutSegment = (segment: DonutSegmentUi): void => {
+    segment.path.classList.add("is-active");
+    segment.path.style.transform = `translate(${segment.offsetX.toFixed(2)}px, ${segment.offsetY.toFixed(2)}px) scale(1.02)`;
+  };
+
+  const deactivateDonutSegment = (segment: DonutSegmentUi): void => {
+    segment.path.classList.remove("is-active");
+    segment.path.style.transform = "";
+  };
+
+  const createLegendRow = (item: LanguageItem): HTMLLIElement => {
+    const row = document.createElement("li");
+    row.className = "wakatime-language-chip wakatime-legend-item";
+
+    const swatch = document.createElement("span");
+    swatch.className = "wakatime-language-chip-swatch";
+    swatch.style.backgroundColor = item.color;
+
+    const name = document.createElement("span");
+    name.className = "wakatime-legend-name";
+    name.textContent = item.name;
+
+    const percent = document.createElement("span");
+    percent.className = "wakatime-legend-percent";
+    percent.textContent = formatPercent(item.percent);
+
+    row.appendChild(swatch);
+    row.appendChild(name);
+    row.appendChild(percent);
     return row;
   };
 
@@ -328,12 +405,64 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    const chartSegments = languages.slice(0, 6);
+    const donutSegments = buildDonutSegments(chartSegments);
     barsEl.innerHTML = "";
     const trackedSeconds = totalTrackedSeconds(summaryPayload);
 
-    languages.slice(0, 10).forEach((item) => {
-      barsEl.appendChild(createLanguageRow(item, trackedSeconds));
+    chartSegments.forEach((item, index) => {
+      const row = createLegendRow(item);
+      row.setAttribute("tabindex", "0");
+      const donutSegment = donutSegments[index];
+
+      const activate = (): void => {
+        row.classList.add("is-active");
+        if (donutSegment) {
+          activateDonutSegment(donutSegment);
+        }
+      };
+
+      const deactivate = (): void => {
+        row.classList.remove("is-active");
+        if (donutSegment) {
+          deactivateDonutSegment(donutSegment);
+        }
+      };
+
+      row.addEventListener("mouseenter", activate);
+      row.addEventListener("mouseleave", deactivate);
+      row.addEventListener("focus", activate);
+      row.addEventListener("blur", deactivate);
+
+      if (donutSegment) {
+        donutSegment.path.addEventListener("mouseenter", activate);
+        donutSegment.path.addEventListener("mouseleave", deactivate);
+      }
+
+      barsEl.appendChild(row);
     });
+
+    if (languageDonutEl instanceof HTMLElement) {
+      const segmentsLabel = chartSegments
+        .map((item) => `${item.name}: ${formatPercent(item.percent)}`)
+        .join(", ");
+      languageDonutEl.setAttribute("aria-label", `Language share donut chart: ${segmentsLabel}`);
+      languageDonutEl.setAttribute("title", `Top language share: ${segmentsLabel}`);
+    }
+
+    if (languageDonutCenterEl instanceof HTMLElement) {
+      languageDonutCenterEl.innerHTML = "";
+
+      const value = document.createElement("span");
+      value.className = "wakatime-donut-value";
+      value.textContent = trackedSeconds > 0 ? formatDuration(trackedSeconds) : "n/a";
+
+      languageDonutCenterEl.appendChild(value);
+    }
+
+    if (languageChartEl instanceof HTMLElement) {
+      languageChartEl.hidden = false;
+    }
   };
 
   const renderLanguageChips = (languages: readonly LanguageItem[]): void => {

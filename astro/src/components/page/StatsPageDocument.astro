@@ -113,11 +113,15 @@ const uiLabels = content.site.locale.labels;
               <p class="wakatime-status" data-role="status">{content.sections.wakatime.statusText}</p>
               <div class="wakatime-visuals" data-role="visuals" hidden>
                 <div class="wakatime-summary" data-role="summary-cards"></div>
-                <ol
-                  class="wakatime-bars"
-                  data-role="language-bars"
-                  aria-label={content.sections.wakatime.ariaLabel}
-                ></ol>
+                <div class="wakatime-language-chart" data-role="language-chart">
+                  <div class="wakatime-donut" data-role="language-donut"></div>
+                  <div class="wakatime-donut-center" data-role="language-donut-center"></div>
+                  <ol
+                    class="wakatime-legend"
+                    data-role="language-bars"
+                    aria-label={content.sections.wakatime.ariaLabel}
+                  ></ol>
+                </div>
               </div>
             </div>
           </div>

@@ -1271,25 +1271,172 @@ a:focus-visible {
   gap: 1rem;
 }
 
-.wakatime-bars {
+.wakatime-language-chart {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "donut"
+    "legend";
+  justify-items: center;
+  align-items: center;
+  gap: 0.78rem;
+  width: 100%;
+}
+
+.wakatime-donut {
+  grid-area: donut;
+  --wakatime-donut-scale: 1;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface-elevated) 92%, #dbeafe 8%);
+  position: relative;
+  justify-self: stretch;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent 18%);
+  transform: scale(var(--wakatime-donut-scale));
+  transform-origin: center;
+  transition: transform 220ms var(--ease-smooth);
+  will-change: transform;
+}
+
+.wakatime-donut::before {
+  content: none;
+}
+
+.wakatime-donut::after {
+  content: "";
+  position: absolute;
+  inset: 26%;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 90%, #fae8ff 10%);
+  border: 1px solid color-mix(in srgb, var(--border) 84%, transparent 16%);
+  z-index: 2;
+}
+
+.wakatime-donut-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: visible;
+}
+
+.wakatime-donut-segment {
+  stroke-width: 30;
+  stroke-linecap: round;
+  fill: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform 220ms var(--ease-smooth),
+    stroke-width 220ms var(--ease-smooth),
+    filter 220ms var(--ease-smooth),
+    opacity 220ms var(--ease-smooth);
+  vector-effect: non-scaling-stroke;
+}
+
+.wakatime-donut-segment.is-active,
+.wakatime-donut-segment:hover {
+  stroke-width: 34;
+  filter: saturate(0.95) brightness(1.02);
+}
+
+.wakatime-language-chart:hover .wakatime-donut,
+.wakatime-donut:focus-visible {
+  --wakatime-donut-scale: 1.02;
+}
+
+.wakatime-donut-center {
+  grid-area: donut;
+  z-index: 3;
+  justify-self: center;
+  align-self: center;
+  display: grid;
+  text-align: center;
+  gap: 0.1rem;
+  pointer-events: none;
+}
+
+.wakatime-donut-value {
+  font-size: clamp(1.44rem, 1.18rem + 1vw, 2.08rem);
+  line-height: 1;
+  font-weight: 760;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.wakatime-donut-label {
+  font-size: 0.72rem;
+  line-height: 1.05;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 650;
+}
+
+.wakatime-legend {
+  grid-area: legend;
   list-style: none;
-  margin: 0;
+  margin: 0.1rem 0 0;
   padding: 0;
-  display: grid;
-  gap: 0.75rem;
-}
-
-.wakatime-bar-row {
-  display: grid;
-  gap: 0.4rem;
-}
-
-.wakatime-bar-head {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.6rem;
-  font-size: 0.95rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.wakatime-legend-item {
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-smooth),
+    border-color var(--dur-fast) var(--ease-smooth),
+    background-color var(--dur-fast) var(--ease-smooth);
+}
+
+.wakatime-legend .wakatime-language-chip {
+  min-height: 1.52rem;
+  padding: 0.2rem 0.44rem;
+  gap: 0.28rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  background: color-mix(in srgb, var(--surface-elevated) 88%, #dbeafe 12%);
+  border-color: color-mix(in srgb, var(--border) 84%, transparent 16%);
+  color: var(--text-secondary);
+}
+
+.wakatime-legend .wakatime-language-chip-swatch {
+  width: 0.42rem;
+  height: 0.42rem;
+  flex: 0 0 0.42rem;
+}
+
+.wakatime-legend-name {
+  max-width: 8.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wakatime-legend-percent {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.wakatime-legend-item:hover,
+.wakatime-legend-item.is-active,
+.wakatime-legend-item:focus-visible {
+  transform: translateY(-1px);
+}
+
+.wakatime-legend-item.is-active .wakatime-language-chip,
+.wakatime-legend-item:hover .wakatime-language-chip,
+.wakatime-legend-item:focus-visible .wakatime-language-chip {
+  border-color: color-mix(in srgb, var(--accent-border) 52%, var(--border) 48%);
+  background: color-mix(in srgb, var(--surface-elevated) 84%, #fde68a 16%);
 }
 
 .wakatime-name {
@@ -1322,44 +1469,73 @@ a:focus-visible {
   font-size: 0.85rem;
 }
 
-.wakatime-track {
-  width: 100%;
-  height: 12px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: var(--wakatime-track);
-}
+@media (max-width: 680px) {
+  .wakatime-donut::after {
+    inset: 29%;
+  }
 
-.wakatime-fill {
-  height: 100%;
-  border-radius: inherit;
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  .wakatime-legend .wakatime-language-chip {
+    max-width: 100%;
+  }
 }
 
 .wakatime-summary {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
+  gap: 0.72rem;
 }
 
 .wakatime-card {
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--control-gradient), var(--surface);
+  position: relative;
+  overflow: hidden;
+  padding: 0.86rem 0.96rem 0.92rem;
+  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent 22%);
+  border-radius: calc(var(--radius-md) + 0.05rem);
+  background: linear-gradient(156deg,
+      color-mix(in srgb, var(--surface-elevated) 90%, transparent 10%) 0%,
+      color-mix(in srgb, var(--media-surface) 72%, transparent 28%) 100%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 54%, transparent 46%),
+    0 8px 18px color-mix(in srgb, var(--text) 6%, transparent 94%);
+  transition: transform var(--dur-base) var(--ease-smooth),
+    border-color var(--dur-fast) var(--ease-smooth),
+    box-shadow var(--dur-fast) var(--ease-smooth);
+}
+
+.wakatime-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg,
+      color-mix(in srgb, var(--glass-highlight) 55%, transparent 45%) 0%,
+      transparent 42%);
+  pointer-events: none;
+}
+
+.wakatime-card:hover {
+  border-color: color-mix(in srgb, var(--accent-border) 62%, var(--border) 38%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 56%, transparent 44%),
+    0 12px 22px color-mix(in srgb, var(--text) 8%, transparent 92%);
+  transform: var(--lift-1);
 }
 
 .wakatime-card-label {
-  font-size: 0.85rem;
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 650;
 }
 
 .wakatime-card-value {
-  margin-top: 0.25rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--accent);
+  margin-top: 0.32rem;
+  font-size: clamp(1.16rem, 1.03rem + 0.5vw, 1.46rem);
+  font-weight: 760;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 
 .github-commits-widget {
@@ -1387,43 +1563,90 @@ a:focus-visible {
 
 .github-commits-summary {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
+  gap: 0.72rem;
 }
 
 .github-commits-card {
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--control-gradient), var(--surface);
+  position: relative;
+  overflow: hidden;
+  padding: 0.86rem 0.96rem 0.92rem;
+  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent 22%);
+  border-radius: calc(var(--radius-md) + 0.05rem);
+  background: linear-gradient(156deg,
+      color-mix(in srgb, var(--surface-elevated) 90%, transparent 10%) 0%,
+      color-mix(in srgb, var(--media-surface) 72%, transparent 28%) 100%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 54%, transparent 46%),
+    0 8px 18px color-mix(in srgb, var(--text) 6%, transparent 94%);
+  transition: transform var(--dur-base) var(--ease-smooth),
+    border-color var(--dur-fast) var(--ease-smooth),
+    box-shadow var(--dur-fast) var(--ease-smooth);
+}
+
+.github-commits-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg,
+      color-mix(in srgb, var(--glass-highlight) 55%, transparent 45%) 0%,
+      transparent 42%);
+  pointer-events: none;
+}
+
+.github-commits-card:hover {
+  border-color: color-mix(in srgb, var(--accent-border) 62%, var(--border) 38%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 56%, transparent 44%),
+    0 12px 22px color-mix(in srgb, var(--text) 8%, transparent 92%);
+  transform: var(--lift-1);
 }
 
 .github-commits-card-label {
-  font-size: 0.85rem;
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 650;
 }
 
 .github-commits-card-value {
-  margin-top: 0.25rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--accent);
+  margin-top: 0.32rem;
+  font-size: clamp(1.16rem, 1.03rem + 0.5vw, 1.46rem);
+  font-weight: 760;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 
 .github-heatmap-wrap {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.8rem;
+  padding: 0.86rem 0.9rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent 22%);
+  border-radius: var(--radius-md);
+  background: linear-gradient(162deg,
+      color-mix(in srgb, var(--surface-elevated) 88%, transparent 12%) 0%,
+      color-mix(in srgb, var(--media-surface) 72%, transparent 28%) 100%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 54%, transparent 46%),
+    0 8px 18px color-mix(in srgb, var(--text) 5%, transparent 95%);
 }
 
 .github-heatmap-scroll {
   overflow: hidden;
-  padding-bottom: 0;
+  padding: 0.5rem 0.44rem 0.38rem;
+  border: 1px solid color-mix(in srgb, var(--border) 74%, transparent 26%);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--surface) 84%, transparent 16%) 0%,
+      color-mix(in srgb, var(--media-surface) 72%, transparent 28%) 100%);
 }
 
 .github-heatmap {
-  --github-heatmap-cell: 10px;
-  --github-heatmap-gap: 2px;
+  --github-heatmap-cell: 11px;
+  --github-heatmap-gap: 3px;
   display: grid;
   grid-template-rows: repeat(7, var(--github-heatmap-cell));
   grid-auto-flow: column;
@@ -1437,29 +1660,40 @@ a:focus-visible {
 .github-heatmap-dot {
   width: var(--github-heatmap-cell);
   height: var(--github-heatmap-cell);
-  border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  transition: transform 0.12s ease, filter 0.12s ease;
+  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--surface-elevated) 72%, transparent 28%);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 40%, transparent 60%);
+  transition: transform var(--dur-fast) var(--ease-smooth),
+    filter var(--dur-fast) var(--ease-smooth),
+    box-shadow var(--dur-fast) var(--ease-smooth);
 }
 
 .github-heatmap-dot:hover {
-  transform: scale(1.15);
-  filter: brightness(1.1);
+  transform: scale(1.18);
+  filter: saturate(1.06) brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 52%, transparent 48%),
+    0 3px 8px color-mix(in srgb, var(--text) 12%, transparent 88%);
   z-index: 10;
 }
 
 .github-heatmap-dot.is-future {
-  background-color: var(--github-heatmap-bg) !important;
-  border-color: transparent;
+  background-color: color-mix(in srgb, var(--github-heatmap-bg) 72%, var(--surface) 28%) !important;
+  border-color: color-mix(in srgb, var(--border) 46%, transparent 54%);
 }
 
 .github-heatmap-legend {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
+  width: fit-content;
+  padding: 0.3rem 0.54rem;
+  border: 1px solid color-mix(in srgb, var(--border) 72%, transparent 28%);
+  border-radius: 999px;
+  background: var(--chip-gradient), var(--surface);
   color: var(--text-muted);
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-size: 0.78rem;
+  font-weight: 650;
 }
 
 .github-heatmap-legend-label {
@@ -1467,9 +1701,10 @@ a:focus-visible {
 }
 
 .github-heatmap-legend-swatch {
-  width: 11px;
-  height: 11px;
-  border-radius: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid color-mix(in srgb, var(--surface-elevated) 74%, transparent 26%);
 }
 
 .goodreads-widget {
