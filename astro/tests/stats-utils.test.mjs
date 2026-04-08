@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-await import(new URL("../public/assets/js/stats-utils.js", import.meta.url).href);
+await import(new URL("../src/scripts/modules/stats-utils.js", import.meta.url).href);
 const statsUtils = globalThis.personPortfolioStatsUtils;
 
 if (!statsUtils) {

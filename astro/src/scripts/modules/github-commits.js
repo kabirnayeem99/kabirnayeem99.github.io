@@ -522,10 +522,12 @@
         dot.style.backgroundColor = "transparent";
       } else {
         var level = levelFromCount(day.count, maxCount);
+        /** @type {string} */
+        var color = greenScale[level] ?? "#ebedf0";
         var label =
           formatNumber(day.count) + " contributions on " + formatDate(day.date);
 
-        dot.style.backgroundColor = greenScale[level];
+        dot.style.backgroundColor = color;
         dot.setAttribute("aria-label", label);
         dot.title = label;
       }

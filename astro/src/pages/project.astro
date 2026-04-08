@@ -15,7 +15,6 @@ import {
   buildOgImageUrl,
   buildPageAssetHrefs,
   PAGE_LAYOUT,
-  ROOT_WORK_PROJECT_SCRIPT_PATHS,
   UMAMI_WEBSITE_ID,
 } from "../lib/page-shared";
 import { buildSchemaGraphJson } from "../lib/seo";
@@ -42,7 +41,6 @@ const schemaGraphJson = buildSchemaGraphJson({
 
 const alternateLinks = buildAlternateLinks(content.site.baseUrl, content.pageRoutes);
 const ogLocaleAlternates = buildOgLocaleAlternates(content.lang);
-const scriptPaths = ROOT_WORK_PROJECT_SCRIPT_PATHS;
 const pageAssets = buildPageAssetHrefs(content.route);
 ---
 
@@ -90,10 +88,8 @@ const pageAssets = buildPageAssetHrefs(content.route);
       />
     </div>
     <BackToTopButton label={BACK_TO_TOP_LABEL} />
-    {
-      scriptPaths.map((src) => (
-        <script is:inline defer src={src}></script>
-      ))
-    }
+    <script>
+      import "../scripts/entries/work-project-page.js";
+    </script>
   </body>
 </html>

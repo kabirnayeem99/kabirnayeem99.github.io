@@ -17,55 +17,6 @@ export const PAGE_LAYOUT = {
   mainContentId: "main-content",
 } as const;
 
-export const ROOT_WORK_PROJECT_SCRIPT_PATHS = [
-  "assets/js/image-guard.js",
-  "assets/js/back-to-top.js",
-  "assets/js/umami-events.js",
-  "assets/js/year.js",
-  "assets/js/service-worker-register.js",
-] as const;
-
-export const ROOT_BLOG_SCRIPT_PATHS = [
-  "assets/js/image-guard.js",
-  "assets/js/umami-events.js",
-  "assets/js/year.js",
-  "assets/js/service-worker-register.js",
-] as const;
-
-export const ROOT_STATS_SCRIPT_PATHS = [
-  "assets/js/image-guard.js",
-  "assets/js/stats-theme-embeds.js",
-  "assets/js/goodreads-image-fallback.js",
-  "assets/js/umami-events.js",
-  "assets/js/stats-snapshots.js",
-  "assets/js/stats-utils.js",
-  "assets/js/wakatime-charts.js",
-  "assets/js/github-commits.js",
-  "assets/js/year.js",
-  "assets/js/service-worker-register.js",
-] as const;
-
-export const ROOT_INDEX_SCRIPT_PATHS = [
-  "assets/js/image-guard.js",
-  "assets/js/back-to-top.js",
-  "assets/js/theme-toggle.js",
-  "assets/js/language-switcher.js",
-  "assets/js/umami-events.js",
-  "assets/js/stats-snapshots.js",
-  "assets/js/stats-utils.js",
-  "assets/js/wakatime-charts.js",
-  "assets/js/goodreads-image-fallback.js",
-  "assets/js/year.js",
-  "assets/js/service-worker-register.js",
-] as const;
-
-export function resolveRouteScriptPaths(
-  currentRoute: string,
-  relativeScriptPaths: readonly string[],
-): readonly string[] {
-  return relativeScriptPaths.map((path) => assetHref(currentRoute, path));
-}
-
 export function buildOgImageUrl(baseUrl: string): string {
   return `${baseUrl}/${OG_IMAGE_PATH}`;
 }

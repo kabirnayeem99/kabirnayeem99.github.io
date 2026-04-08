@@ -22,8 +22,6 @@ import {
   buildOgImageUrl,
   buildPageAssetHrefs,
   PAGE_LAYOUT,
-  ROOT_INDEX_SCRIPT_PATHS,
-  resolveRouteScriptPaths,
   UMAMI_WEBSITE_ID,
 } from "../../lib/page-shared";
 import {
@@ -83,9 +81,6 @@ const alternateLinks = [
 const ogLocaleAlternates = buildOgLocaleAlternates(lang);
 const menuId = `language-menu-index-${lang}`;
 
-const scriptPaths = ROOT_INDEX_SCRIPT_PATHS;
-
-const renderedScriptPaths = resolveRouteScriptPaths(currentRoute, scriptPaths);
 const pageAssets = buildPageAssetHrefs(currentRoute);
 const logoHref = assetHref(currentRoute, "assets/images/logo.svg");
 
@@ -262,7 +257,11 @@ const socialRowLabelByLang = {
     appleTouchIconHref={pageAssets.appleTouchIconHref}
     manifestHref={pageAssets.manifestHref}
   />
-  <body data-page-id="index" data-sw-path={pageAssets.swPath}>
+  <body
+    data-page-id="index"
+    data-sw-path={pageAssets.swPath}
+    data-goodreads-script-src={content.statsCompact.goodreads.scriptSrc}
+  >
     <a class={PAGE_LAYOUT.skipLinkClass} href={`#${PAGE_LAYOUT.mainContentId}`}>
       {SKIP_TO_MAIN_LABEL_BY_LANG[lang]}
     </a>
@@ -545,10 +544,8 @@ const socialRowLabelByLang = {
     </div>
 
     <BackToTopButton label={BACK_TO_TOP_LABEL_BY_LANG[lang]} />
-    {renderedScriptPaths.map((src) => <script is:inline defer src={src} />)}
-    <script is:inline
-      src={content.statsCompact.goodreads.scriptSrc}
-      type="text/javascript"
-      charset="utf-8"></script>
+    <script>
+      import "../../scripts/entries/index-page.js";
+    </script>
   </body>
 </html>

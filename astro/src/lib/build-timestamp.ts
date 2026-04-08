@@ -11,6 +11,7 @@ export interface BuildTimestamp {
 const ASTRO_ROOT = process.cwd();
 const DHAKA_TIME_ZONE = "Asia/Dhaka";
 const DHAKA_UTC_OFFSET = "+06:00";
+let latestTimestampMillisCache: number | undefined;
 
 const LOCALE_BY_LANG: Readonly<Record<Lang, string>> = {
   en: "en-US",
@@ -153,17 +154,14 @@ function formatDisplay(date: Date, lang: Lang): string {
 }
 
 function findLatestTimestampMillis(): number {
+  if (latestTimestampMillisCache !== undefined) {
+    return latestTimestampMillisCache;
+  }
+
   const candidates: string[] = [
     ...listSiteContentFilePaths(),
     resolve(ASTRO_ROOT, "public/assets/css/styles.source.css"),
   ];
-
-  const assetJsDir = resolve(ASTRO_ROOT, "public/assets/js");
-  for (const name of readdirSync(assetJsDir)) {
-    if (name.endsWith(".js")) {
-      candidates.push(resolve(assetJsDir, name));
-    }
-  }
 
   const sourceRoot = resolve(ASTRO_ROOT, "src");
   const stack: string[] = [sourceRoot];
@@ -181,7 +179,12 @@ function findLatestTimestampMillis(): number {
       continue;
     }
 
-    if (current.endsWith(".ts") || current.endsWith(".astro")) {
+    if (
+      current.endsWith(".ts") ||
+      current.endsWith(".astro") ||
+      current.endsWith(".js") ||
+      current.endsWith(".mjs")
+    ) {
       candidates.push(current);
     }
   }
@@ -194,7 +197,8 @@ function findLatestTimestampMillis(): number {
     }
   }
 
-  return latest;
+  latestTimestampMillisCache = latest;
+  return latestTimestampMillisCache;
 }
 
 export function computeLegacyBuildTimestamp(lang: Lang = "en"): BuildTimestamp {

@@ -1,5 +1,9 @@
 ---
 import { THEME_BOOTSTRAP_SCRIPT } from "../../lib/page-labels";
+import {
+  resolveCanonicalHostname,
+  shouldLoadUmamiScript,
+} from "../../lib/runtime-host-gating";
 
 interface AlternateLink {
   readonly hrefLang: string;
@@ -54,19 +58,12 @@ const {
   manifestHref = "site.webmanifest",
 } = Astro.props;
 
-function resolveCanonicalHostname(url: string): string | null {
-  try {
-    return new URL(url).hostname;
-  } catch {
-    return null;
-  }
-}
-
 const canonicalHostname = resolveCanonicalHostname(canonicalUrl);
-const shouldLoadUmami =
-  import.meta.env.PROD &&
-  umamiWebsiteId.trim().length > 0 &&
-  canonicalHostname !== null;
+const shouldLoadUmami = shouldLoadUmamiScript(
+  import.meta.env.PROD,
+  umamiWebsiteId,
+  canonicalHostname,
+);
 ---
 
 <head>
@@ -78,6 +75,7 @@ const shouldLoadUmami =
   <meta name="author" content={author} />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href={canonicalUrl} />
+  <meta name="person-portfolio-site-hostname" content={canonicalHostname ?? ""} />
   {
     alternateLinks.map((link) => (
       <link rel="alternate" hreflang={link.hrefLang} href={link.href} />

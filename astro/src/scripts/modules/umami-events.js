@@ -1,4 +1,9 @@
 // @ts-check
+import {
+  isProductionHostMatch,
+  readExpectedSiteHostname,
+} from "../../lib/runtime-host-gating";
+
 /**
  * Umami interaction tracking for navigation, theme, language, articles, and
  * stats section engagement.
@@ -6,14 +11,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   /** @typedef {{ track: (eventName: string, eventData?: Record<string, string>) => void }} UmamiApi */
   /** @typedef {Window & { umami?: UmamiApi }} UmamiWindow */
-  var localDevelopmentHosts = new Set(["localhost", "127.0.0.1", "::1", "[::1]"]);
-
-  /**
-   * @returns {boolean}
-   */
-  function isLocalDevelopmentHost() {
-    return localDevelopmentHosts.has(window.location.hostname);
-  }
+  var expectedHostname = readExpectedSiteHostname();
+  var trackingHostAllowed = isProductionHostMatch(expectedHostname, window.location.hostname);
 
   /**
    * @returns {UmamiApi | null}
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
    * @returns {void}
    */
   function track(eventName, payload) {
-    if (isLocalDevelopmentHost()) {
+    if (!trackingHostAllowed) {
       return;
     }
     var umami = getUmami();

@@ -14,8 +14,6 @@ import {
   buildOgImageUrl,
   buildPageAssetHrefs,
   PAGE_LAYOUT,
-  ROOT_BLOG_SCRIPT_PATHS,
-  resolveRouteScriptPaths,
   UMAMI_WEBSITE_ID,
 } from "../../lib/page-shared";
 import { buildSchemaGraphJson } from "../../lib/seo";
@@ -54,7 +52,6 @@ const alternateLinks = [
 ] as const;
 
 const homeHref = routeHref(content.route, content.homeRoute);
-const scriptPaths = resolveRouteScriptPaths(content.route, ROOT_BLOG_SCRIPT_PATHS);
 const pageAssets = buildPageAssetHrefs(content.route);
 const ogLocaleAlternates = buildOgLocaleAlternates(lang);
 ---
@@ -104,10 +101,8 @@ const ogLocaleAlternates = buildOgLocaleAlternates(lang);
         timestampDisplay={buildTimestamp.display}
       />
     </div>
-    {
-      scriptPaths.map((src) => (
-        <script is:inline defer src={src}></script>
-      ))
-    }
+    <script>
+      import "../../scripts/entries/blog-page.js";
+    </script>
   </body>
 </html>
