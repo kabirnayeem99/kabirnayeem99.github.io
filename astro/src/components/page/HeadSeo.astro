@@ -53,6 +53,20 @@ const {
   appleTouchIconHref = "assets/icons/apple-touch-icon.png",
   manifestHref = "site.webmanifest",
 } = Astro.props;
+
+function resolveCanonicalHostname(url: string): string | null {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return null;
+  }
+}
+
+const canonicalHostname = resolveCanonicalHostname(canonicalUrl);
+const shouldLoadUmami =
+  import.meta.env.PROD &&
+  umamiWebsiteId.trim().length > 0 &&
+  canonicalHostname !== null;
 ---
 
 <head>
@@ -100,11 +114,16 @@ const {
     media="(prefers-color-scheme: dark)"
   />
   <script is:inline type="application/ld+json" set:html={schemaGraphJson} />
-  <script
-    is:inline
-    defer
-    src="https://cloud.umami.is/script.js"
-    data-website-id={umamiWebsiteId}></script>
+  {
+    shouldLoadUmami ? (
+      <script
+        is:inline
+        defer
+        src="https://cloud.umami.is/script.js"
+        data-website-id={umamiWebsiteId}
+        data-domains={canonicalHostname}></script>
+    ) : null
+  }
   <script is:inline set:html={THEME_BOOTSTRAP_SCRIPT} />
   <link rel="preload" href={stylesheetHref} as="style" />
   <link rel="stylesheet" href={stylesheetHref} />
