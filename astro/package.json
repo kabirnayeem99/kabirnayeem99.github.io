@@ -10,7 +10,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "lint": "eslint \"src/**/*.{ts,tsx,mts,cts}\"",
-    "test": "node --test tests/stats-utils.test.mjs"
+    "test": "node --experimental-strip-types --test tests/stats-utils.test.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",

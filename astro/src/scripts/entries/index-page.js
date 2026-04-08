@@ -1,9 +1,0 @@
-import "./common-page.js";
-import "../modules/back-to-top.js";
-import "../modules/theme-toggle.js";
-import "../modules/language-switcher.js";
-import "../modules/stats-snapshots.js";
-import "../modules/stats-utils.js";
-import "../modules/wakatime-charts.js";
-import "../modules/goodreads-image-fallback.js";
-import "../modules/goodreads-loader.js";
