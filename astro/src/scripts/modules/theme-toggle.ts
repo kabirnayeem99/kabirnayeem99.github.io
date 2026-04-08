@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const icon = button.querySelector<HTMLElement>("[data-theme-toggle-icon]");
+  const icon = button.querySelector<HTMLImageElement>("[data-theme-toggle-icon]");
   const storageKey = "person-portfolio-theme";
 
   const persistTheme = (theme: Theme): void => {
@@ -44,8 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
       button.title = nextLabel;
     }
 
-    if (icon instanceof HTMLElement) {
-      icon.textContent = isDark ? "☀" : "☾";
+    if (icon instanceof HTMLImageElement) {
+      const darkModeIconSrc = button.dataset.darkIconSrc;
+      const lightModeIconSrc = button.dataset.lightIconSrc;
+      const nextIconSrc = isDark ? darkModeIconSrc : lightModeIconSrc;
+      if (typeof nextIconSrc === "string" && nextIconSrc.length > 0) {
+        icon.src = nextIconSrc;
+      }
     }
   };
 

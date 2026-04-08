@@ -669,8 +669,9 @@ nav a:focus-visible {
 }
 
 .theme-toggle-icon {
-  line-height: 1;
-  transform: translateY(-0.02em);
+  width: 1rem;
+  height: 1rem;
+  display: block;
 }
 
 .language-switcher-globe {

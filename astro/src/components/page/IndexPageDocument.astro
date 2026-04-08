@@ -70,6 +70,8 @@ const uiLabels = content.site.locale.labels;
 
 const pageAssets = buildPageAssetHrefs(currentRoute);
 const logoHref = assetHref(currentRoute, "assets/images/logo.svg");
+const darkModeIconHref = assetHref(currentRoute, "icons/theme-dark.svg");
+const lightModeIconHref = assetHref(currentRoute, "icons/theme-light.svg");
 
 function routeForAction(pageId: PageId): string {
   return content.routes[pageId][lang];
@@ -229,12 +231,18 @@ const viewAllStatsAction: IndexAction = {
             data-theme-toggle
             data-dark-label={uiLabels.themeDark}
             data-light-label={uiLabels.themeLight}
+            data-dark-icon-src={darkModeIconHref}
+            data-light-icon-src={lightModeIconHref}
           >
-            <span
+            <img
               class="theme-toggle-icon"
+              src={lightModeIconHref}
+              alt=""
+              width="18"
+              height="18"
               aria-hidden="true"
-              data-theme-toggle-icon>☾</span
-            >
+              data-theme-toggle-icon
+            />
           </button>
           <div class="language-switcher" data-language-switcher>
             <button
