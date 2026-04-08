@@ -4,7 +4,9 @@ export type SocialPlatform = "github" | "linkedin" | "medium" | "leetcode";
 
 export type SocialChipIconName = "email" | SocialPlatform;
 
-export const SOCIAL_CHIP_ICON_CLASS_BY_NAME: Readonly<Record<SocialChipIconName, string>> = {
+export const SOCIAL_CHIP_ICON_CLASS_BY_NAME: Readonly<
+  Record<SocialChipIconName, string>
+> = {
   email: "social-chip-icon--email",
   github: "social-chip-icon--github",
   linkedin: "social-chip-icon--linkedin",
@@ -24,18 +26,18 @@ const SOCIAL_CHIP_LABEL_BY_PLATFORM_AND_LANG: Readonly<
   bn: {
     github: "গিটহাব",
     linkedin: "লিঙ্কডইন",
-    medium: "মিডিয়াম",
+    medium: "মিডিয়াম",
     leetcode: "লিটকোড",
   },
   ar: {
-    github: "غيت هاب",
-    linkedin: "لينكدإن",
-    medium: "ميديوم",
-    leetcode: "ليت كود",
+    github: "غِيتْهَاب",
+    linkedin: "لِينْكِدْإِنْ",
+    medium: "مِيدِيُوم",
+    leetcode: "لِيتْكُود",
   },
   ur: {
-    github: "گٹ ہب",
-    linkedin: "لنکڈاِن",
+    github: "گِٹ ہَب",
+    linkedin: "لنکڈ اِن",
     medium: "میڈیم",
     leetcode: "لیٹ کوڈ",
   },

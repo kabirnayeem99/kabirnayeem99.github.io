@@ -18,7 +18,7 @@ export const CLOSE_PAGE_LABEL_BY_LANG: Readonly<Record<Lang, string>> = {
 
 export const LAST_UPDATED_LABEL_BY_LANG: Readonly<Record<Lang, string>> = {
   en: "Last updated",
-  bn: "সর্বশেষ আপডেট",
+  bn: "হালনাগাদ করা হয়েছে",
   ar: "آخر تحديث",
   ur: "آخری اپڈیٹ",
 };
@@ -46,7 +46,7 @@ export const THEME_LIGHT_LABEL_BY_LANG: Readonly<Record<Lang, string>> = {
 
 export const VIEW_ALL_STATS_LABEL_BY_LANG: Readonly<Record<Lang, string>> = {
   en: "View all stats",
-  bn: "সব স্ট্যাটস দেখুন",
+  bn: "সবগুলো পরিসংখ্যান দেখুন",
   ar: "عرض كل الإحصائيات",
   ur: "تمام اسٹیٹس دیکھیں",
 };

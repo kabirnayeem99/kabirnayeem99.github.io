@@ -4,25 +4,25 @@
     "en": {
       "meta": {
         "title": "Projects · Naimul Kabir",
-        "description": "Selected Android, iOS, Kotlin Multiplatform, and Flutter projects by Naimul Kabir.",
+        "description": "A selection of projects by Naimul Kabir.",
         "keywords": "Naimul Kabir projects, Android apps, Flutter apps, Kotlin Multiplatform, Ktor library"
       },
       "header": {
         "site_title": "Projects",
-        "tagline": "Selected work across mobile apps, backend systems, and developer tools."
+        "tagline": "Some projects I’ve worked on. Employer-side work is not listed here."
       },
       "groups": [
         {
-          "title": "Libraries & tools",
+          "title": "Libraries & Tools",
           "items": [
             {
               "title": "Ktor2Curl",
               "href": "https://github.com/kabirnayeem99/Ktor2Curl",
               "meta": "2024 - Kotlin · Server/Client",
               "paragraphs": [
-                "Mirrors each Ktor request as a curl command for faster debugging.",
+                "On native Android, there is a library called Ok2Curl for debugging OkHttp requests. It logs requests as curl commands, which can then be run in a terminal or shared with the backend team. Since Ktor did not have something like that, I built this for my own use.",
                 "<strong>Tech stack:</strong> Kotlin, Ktor",
-                "<strong>Why it matters:</strong> Makes requests easier to inspect, reproduce, and share without digging through logs."
+                "<strong>Why it matters:</strong> Makes it easy to extract curl commands from API requests, run them manually, or share them with the backend team."
               ]
             },
             {
@@ -30,9 +30,9 @@
               "href": "https://github.com/kabirnayeem99/kVinInfo",
               "meta": "2024 - Kotlin · Multiplatform",
               "paragraphs": [
-                "Pure Kotlin VIN validation, decoding, and mock generation library.",
+                "A VIN library written in pure Kotlin. It can validate VIN numbers, verify checksums, and also generate mock VINs.",
                 "<strong>Tech stack:</strong> Kotlin Multiplatform",
-                "<strong>Why it matters:</strong> Keeps VIN-related logic portable across platforms without adding extra dependencies."
+                "<strong>Why it matters:</strong> Anyone working with VIN-related workflows can use it to validate VINs easily or generate mock VINs for testing."
               ]
             }
           ]
@@ -41,13 +41,13 @@
           "title": "Backend",
           "items": [
             {
-              "title": "সমবায় নথি",
+              "title": "সমবায় নথি",
               "href": "https://samabay.multazim.solutions/dashboard",
-              "meta": "2022 - PHP · Laravel",
+              "meta": "2025 - PHP · Laravel",
               "paragraphs": [
-                "SaaS platform for local cooperative societies to manage records and payments.",
+                "Built to help local cooperative societies digitize their records and workflow.",
                 "<strong>Tech stack:</strong> PHP, Laravel",
-                "<strong>Why it matters:</strong> Helps smaller organizations move paper-heavy workflows into a usable digital system."
+                "<strong>Why it matters:</strong> Smaller cooperative groups can move their work into a simple digital system without much friction."
               ]
             }
           ]
@@ -60,9 +60,9 @@
               "href": "https://github.com/kabirnayeem99/islam_qa_org_android",
               "meta": "2022 - Kotlin · Jetpack Compose",
               "paragraphs": [
-                "Unofficial Android client for IslamQA.org with offline search, bookmarks, and background sync.",
+                "The app scraped content from IslamQA.org directly on mobile and stored it locally in a database so users could search it easily. Later I stopped updating it out of respect for IslamQA’s privacy policy.",
                 "<strong>Tech stack:</strong> Kotlin, Jetpack Compose, WorkManager",
-                "<strong>Why it matters:</strong> Makes a large knowledge base easier to use on mobile, including in low-connectivity situations."
+                "<strong>Why it matters:</strong> Makes fatwas accessible offline, anytime, from anywhere."
               ]
             },
             {
@@ -70,9 +70,9 @@
               "href": "https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US",
               "meta": "2022 - Dart · Flutter",
               "paragraphs": [
-                "Mobile app for reading and searching 49k+ Bangla hadith.",
+                "One of the most popular Islamic apps in Bangladesh. A mobile app for reading and searching more than 49,000 Bangla hadith. I had the chance to do a large part of the Flutter rewrite more or less on my own. Alhamdulillah.",
                 "<strong>Tech stack:</strong> Dart, Flutter",
-                "<strong>Why it matters:</strong> Keeps a widely used Islamic reference app fast, maintainable, and accessible to a large Bangla-speaking audience."
+                "<strong>Why it matters:</strong> The app originally supported Android only. After the Flutter rewrite, an iOS version could be added, and the UI could be refreshed as well."
               ]
             },
             {
@@ -80,9 +80,9 @@
               "href": "https://play.google.com/store/apps/details?id=com.basehubs.app&hl=en",
               "meta": "2021 - Kotlin · Clean Architecture",
               "paragraphs": [
-                "Connects military families with local businesses and services.",
-                "<strong>Tech stack:</strong> Kotlin, Clean Architecture, Firebase, Parse",
-                "<strong>Why it matters:</strong> Supports a focused community use-case with a modular mobile codebase."
+                "Built mainly to help military families access information about local businesses.",
+                "<strong>Tech stack:</strong> Kotlin, Clean Architecture, Firebase, Parse SDK",
+                "<strong>Why it matters:</strong> Supports local business discovery for a specific community."
               ]
             },
             {
@@ -90,44 +90,44 @@
               "href": "https://play.google.com/store/apps/details?id=com.thefivenetwork.five&hl=en",
               "meta": "2021 - Kotlin · Multi-module",
               "paragraphs": [
-                "Mentorship platform connecting young talent with mentors through a structured mobile experience.",
+                "This was the Android app for Boulevard’s mentorship program, a software-based mentorship and workforce development platform. Students or people early in their careers could get guidance, coaching, networking, and similar support from experienced mentors. The app itself was built as a native Android multi-module project.",
                 "<strong>Tech stack:</strong> Kotlin, multi-module Android",
-                "<strong>Why it matters:</strong> Built to keep mentorship workflows and notifications reliable as the app grew."
+                "<strong>Why it matters:</strong> Included fairly complex features like course modules and one-to-one mentorship flows."
               ]
             },
             {
               "title": "Marriott Bonvoy",
               "href": "https://play.google.com/store/apps/details?id=com.marriott.mrt&hl=en",
-              "meta": "2022 - Android · Experiment",
+              "meta": "2022 · Android · Experiment",
               "paragraphs": [
-                "Contributed to booking and experiment-driven flows inside a large-scale travel app.",
+                "Marriott International’s own app, mainly tied to its loyalty program, where hotel customers can sign up as members and access certain benefits. It is a fairly large-scale travel app. I got to work, in a limited capacity, on some A/B testing related features there.",
                 "<strong>Tech stack:</strong> Android",
-                "<strong>Why it matters:</strong> Shipping in a product used by millions requires careful changes, instrumentation, and stability."
+                "<strong>Why it matters:</strong> This was basically my first chance to work on a product with a very large user base and real scale."
               ]
             },
             {
               "title": "PatientAccess",
               "meta": "2021 - Android · Healthcare",
               "paragraphs": [
-                "Worked on appointment-booking flows in a healthcare app.",
-                "<strong>Tech stack:</strong> Android, Firestore, Jetpack",
-                "<strong>Why it matters:</strong> Healthcare apps need clear UX and careful handling of sensitive user data."
+                "This was a healthcare app. I had the chance to work on some parts like doctor appointment flows and map integration.",
+                "<strong>Tech stack:</strong> Android, Firestore, Jetpack, Google Maps",
+                "<strong>Why it matters:</strong> Fairly simple app overall, but early in my career it helped me learn a few useful things, especially around Google Maps work."
               ]
             }
           ]
         }
       ],
-      "footer_html": "More projects live on <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a>."
+      "footer_html": "More projects are on <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a>."
     },
     "bn": {
       "meta": {
         "title": "প্রজেক্ট · নাঈমুল কবির",
-        "description": "নাঈমুল কবিরের বাছাই করা Android, iOS, Kotlin Multiplatform আর Flutter প্রজেক্ট।",
-        "keywords": "নাঈমুল কবির প্রজেক্ট, অ্যান্ড্রয়েড অ্যাপ, ফ্লাটার অ্যাপ, কটলিন মাল্টিপ্ল্যাটফর্ম, Ktor লাইব্রেরি"
+        "description": "নাঈমুল কবিরের বাছাই করা কিছু প্রজেক্ট।",
+        "keywords": "নাঈমুল কবির প্রজেক্ট, অ্যান্ড্রয়েড অ্যাপ, ফ্লাটার অ্যাপ, কটলিন মাল্টিপ্ল্যাটফর্ম, কেটর লাইব্রেরি"
       },
       "header": {
         "site_title": "প্রজেক্ট",
-        "tagline": "মোবাইল অ্যাপ, ব্যাকএন্ড সিস্টেম আর ডেভেলপার টুলস মিলিয়ে কিছু বাছাই করা কাজ।"
+        "tagline": "আমার কাজ করা কিছু প্রজেক্ট। এখানে কোন এম্প্লয়ারের অধীনে করা কাজগুলো রাখা হয়নি।"
       },
       "groups": [
         {
@@ -138,9 +138,9 @@
               "href": "https://github.com/kabirnayeem99/Ktor2Curl",
               "meta": "২০২৪ - কটলিন · সার্ভার/ক্লায়েন্ট",
               "paragraphs": [
-                "ডিবাগিং দ্রুত করার জন্য প্রতিটি Ktor request-কে curl command হিসেবে মিরর করে।",
+                "নেটিভ অ্যান্ড্রয়েডে OkHttp রিকুয়েস্ট ডিবাগ করার জন্য Ok2Curl নামে একটা লাইব্রেরি আছে। যেটা দিয়ে রিকুয়েস্টের cURL কমান্ড লগ করা যায় যেটা আবার টার্মিনালে রান করা যেতো বা ব্যাকএন্ডে সাথে শেয়ার করা যায়। যেহেতু Ktor এ এমন কিছু ছিলো না। আমি ব্যক্তিগত ব্যবহারের জন্য এটা ডেভেলপ করেছিলাম।",
                 "<strong>টেক স্ট্যাক:</strong> Kotlin, Ktor",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> লগের ভেতর খোঁজাখুঁজি ছাড়াই request inspect, reproduce আর share করা সহজ করে।"
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> ইজিলি এপিআই রিকুয়েস্টের cURL কমান্ড বের করে নিজে রান করা যায় বা ব্যাকএন্ড টিমের সাথে শেয়ার করা যায়।"
               ]
             },
             {
@@ -148,9 +148,9 @@
               "href": "https://github.com/kabirnayeem99/kVinInfo",
               "meta": "২০২৪ - কটলিন · মাল্টিপ্ল্যাটফর্ম",
               "paragraphs": [
-                "খাঁটি Kotlin-এ লেখা VIN validation, decoding আর mock generation library।",
-                "<strong>টেক স্ট্যাক:</strong> Kotlin Multiplatform",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> অতিরিক্ত dependency ছাড়া VIN-সংক্রান্ত লজিককে বিভিন্ন প্ল্যাটফর্মে ব্যবহারযোগ্য রাখে।"
+                "পিউর কটলিনে লেখা একটা ভিন লাইব্রেরি। এটা দিয়ে ভিন নাম্বার ভ্যালিডেট করা যায়, চেকসাম চেক করা যায়। আবার মক ভিন নাম্বারও জেনারেট করা যায়।",
+                "<strong>টেক স্ট্যাক:</strong> কটলিন মাল্টিপ্ল্যাটফর্ম",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> ভিন নিয়ে যারা কাজ করেন, তারা এ লাইব্রেরি দিয়ে ইজিলি ভিন ভ্যালিডেট বা টেস্টের জন্য মক ভিন জেনারেট করতে পারবেন।"
               ]
             }
           ]
@@ -159,13 +159,13 @@
           "title": "ব্যাকএন্ড",
           "items": [
             {
-              "title": "সমবায় নথি",
+              "title": "সমবায় নথি",
               "href": "https://samabay.multazim.solutions/dashboard",
-              "meta": "২০২২ - পিএইচপি · লারাভেল",
+              "meta": "২০২৫ - পিএইচপি · লারাভেল",
               "paragraphs": [
-                "স্থানীয় সমবায় সমিতির রেকর্ড আর পেমেন্ট ম্যানেজ করার জন্য SaaS প্ল্যাটফর্ম।",
-                "<strong>টেক স্ট্যাক:</strong> PHP, Laravel",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> ছোট প্রতিষ্ঠানগুলোর কাগজ-নির্ভর ওয়ার্কফ্লোকে ব্যবহারযোগ্য ডিজিটাল সিস্টেমে আনতে সাহায্য করে।"
+                "স্থানীয় সমবায় সমিতির ডাটাগুলো ডিজিটালাইজ করার জন্য ডেভেলপ করা।",
+                "<strong>টেক স্ট্যাক:</strong> পিএইচপি, লারাভেল",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> ছোট সমবায় সমিতিগুলো খুব সহজে তাদের কাজগুলো ডিজিটালাইজ করতে পারবে।"
               ]
             }
           ]
@@ -178,9 +178,9 @@
               "href": "https://github.com/kabirnayeem99/islam_qa_org_android",
               "meta": "২০২২ - কটলিন · জেটপ্যাক কম্পোজ",
               "paragraphs": [
-                "অফলাইন সার্চ, বুকমার্ক আর ব্যাকগ্রাউন্ড সিঙ্কসহ IslamQA.org-এর জন্য আনঅফিশিয়াল Android client।",
-                "<strong>টেক স্ট্যাক:</strong> Kotlin, Jetpack Compose, WorkManager",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> বড় একটি জ্ঞানভাণ্ডারকে মোবাইলে, বিশেষ করে দুর্বল নেটওয়ার্কেও, আরও সহজে ব্যবহারযোগ্য করে।"
+                "ইসলামকিউএ ডট অর্গের ডাটাগুলো মোবাইলেই স্ক্র্যাপ করে ডাটাবেসে সেভ করে রাখে। যেটা ইউজার সহজে সার্চ করে দেখতে পারবে। তবে ইসলামকিউএর প্রাইভেসি পলিসির প্রতি সম্মান রেখে এটা পরে আর আপডেট করা হয়নি।",
+                "<strong>টেক স্ট্যাক:</strong> কটলিন, জেটপ্যাক কম্পোজ, ওয়ার্কম্যানেজার",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> ফতোয়া খুব সহজে অফলাইনে যেকোন সময় যেকোন জায়গা থেকে এক্সেস করা যাবে।"
               ]
             },
             {
@@ -188,9 +188,9 @@
               "href": "https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US",
               "meta": "২০২২ - ডার্ট · ফ্লাটার",
               "paragraphs": [
-                "৪৯ হাজারের বেশি বাংলা হাদিস পড়া আর সার্চ করার জন্য মোবাইল অ্যাপ।",
-                "<strong>টেক স্ট্যাক:</strong> Dart, Flutter",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> ব্যাপকভাবে ব্যবহৃত একটি ইসলামি রেফারেন্স অ্যাপকে দ্রুত, রক্ষণাবেক্ষণযোগ্য আর বাংলা ভাষাভাষীদের জন্য সহজলভ্য রাখে।"
+                "বাংলাদেশে সবচেয়ে জনপ্রীয় ইসলামি অ্যাপগুলোর একটা। ৪৯ হাজারের বেশি বাংলা হাদিস পড়া আর সার্চ করার জন্য মোবাইল অ্যাপ। তাদের ফ্লাটারে রিরাইটের কাজটা অনেকাংশে একা করার সুযোগ হয়েছিলো। আলহমাদুলিল্লাহ।",
+                "<strong>টেক স্ট্যাক:</strong> ডার্ট, ফ্লাটার",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> জনপ্রীয় ইসলামি অ্যাপটা আগে শুধু অ্যান্ড্রয়েড সাপোর্ট থাকলেও, ফ্লাটারে লেখার পর আইওএস ভার্শন এড করা গেছে আর ইউআইও আপডেট করা গেছে।"
               ]
             },
             {
@@ -198,9 +198,9 @@
               "href": "https://play.google.com/store/apps/details?id=com.basehubs.app&hl=en",
               "meta": "২০২১ - কটলিন · ক্লিন আর্কিটেকচার",
               "paragraphs": [
-                "মিলিটারি পরিবারগুলোকে স্থানীয় ব্যবসা আর সেবার সঙ্গে যুক্ত করে।",
-                "<strong>টেক স্ট্যাক:</strong> Kotlin, Clean Architecture, Firebase, Parse",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> নির্দিষ্ট একটি কমিউনিটি ইউজ-কেসকে মডুলার মোবাইল কোডবেসের মাধ্যমে সাপোর্ট করে।"
+                "মিলিটারি ফ্যামিলিকে লোকাল বিজনেসগুলোর ডাটাতে এক্সেস দেয়াই মূল লক্ষ্য।",
+                "<strong>টেক স্ট্যাক:</strong> কটলিন, ক্লিন আর্কিটেকচার, ফায়ারবেস, পার্স এসডিকে",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> লোকাল বিজনেস সাপোর্ট।"
               ]
             },
             {
@@ -208,28 +208,28 @@
               "href": "https://play.google.com/store/apps/details?id=com.thefivenetwork.five&hl=en",
               "meta": "২০২১ - কটলিন · মাল্টি-মডিউল",
               "paragraphs": [
-                "স্ট্রাকচার্ড মোবাইল অভিজ্ঞতার মাধ্যমে তরুণদের সঙ্গে মেন্টরদের যুক্ত করা মেন্টরশিপ প্ল্যাটফর্ম।",
-                "<strong>টেক স্ট্যাক:</strong> Kotlin, multi-module Android",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> অ্যাপ বড় হওয়ার সঙ্গে সঙ্গে মেন্টরশিপ ওয়ার্কফ্লো আর নোটিফিকেশনকে নির্ভরযোগ্য রাখতে তৈরি।"
+                "অবুলেভার্ড (Boulevard) নামে একটা প্রতিষ্ঠান যারা সফটওয়্যার ভিত্তিক মেন্টরশিপ আর ওয়ার্কফোর্স ডেভেলপমেন্ট প্ল্যাটফর্ম এটা তাদের মেন্টরশিপ প্রোগ্রামের অ্যান্ড্রয়েড অ্যাপ। ছাত্র বা ক্যারিয়ারের শুরুর দিকে থাকা কেউ অভিজ্ঞ কারও থেকে ক্যারিয়ার গাইডেন্স, কোচিং, নেটওয়ার্কিংসহ নানা সুবিধা নিতে পারবে। অ্যাপটা মূলত মাল্টিমডিউল ছিলো, আর নেটিভ অ্যান্ড্রয়েডে ডেভেলপ করা।",
+                "<strong>টেক স্ট্যাক:</strong> কটলিন, মাল্টি-মডিউল অ্যান্ড্রয়েড",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> এখানে কোর্স মডিউল, ওয়ান-টু-ওয়ান মেন্টরশিপসহ বিভিন্ন কমপ্লেক্স ফিচার ছিলো।"
               ]
             },
             {
               "title": "Marriott Bonvoy",
               "href": "https://play.google.com/store/apps/details?id=com.marriott.mrt&hl=en",
-              "meta": "২০২২ - অ্যান্ড্রয়েড · এক্সপেরিমেন্ট",
+              "meta": "২০২২ · অ্যান্ড্রয়েড · এক্সপেরিমেন্ট",
               "paragraphs": [
-                "বড় স্কেলের ট্র্যাভেল অ্যাপের ভেতরে booking আর experiment-driven flow-তে অবদান রেখেছি।",
-                "<strong>টেক স্ট্যাক:</strong> Android",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> মিলিয়ন ব্যবহারকারীর প্রোডাক্টে কাজ মানে পরিবর্তন, instrumentation আর stability খুব হিসেব করে শিপ করা।"
+                "ম্যারিয়ট ইন্টারন্যাশনলের নিজস্ব অ্যাপ। মূলত এটা লয়্যালিটি প্রোগ্রামের অংশ, যেখানে হোটেল কাস্টমাররা মেম্বারশিপ নিতে পারবে, আর কিছু সুবিধা পাবে। বেশ বড় স্কেলের ট্র্যাভেল অ্যাপ। এখানে কিছু এবি টেস্টিং ফিচার নিয়ে স্বল্প পরিসরে কাজ করেছি।",
+                "<strong>টেক স্ট্যাক:</strong> অ্যান্ড্রয়েড",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> মূলত এত লার্জ ইউজার বেস আর লার্জ স্কেলের অ্যাপে কাজ করার প্রথম সুযোগ ছিলো।"
               ]
             },
             {
               "title": "PatientAccess",
               "meta": "২০২১ - অ্যান্ড্রয়েড · হেলথকেয়ার",
               "paragraphs": [
-                "একটি healthcare app-এ appointment-booking flow-তে কাজ করেছি।",
-                "<strong>টেক স্ট্যাক:</strong> Android, Firestore, Jetpack",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> healthcare অ্যাপে পরিষ্কার UX আর সংবেদনশীল ব্যবহারকারী ডেটা সাবধানে হ্যান্ডেল করা জরুরি।"
+                "এটা মূলত একটা হেলথকেয়ার অ্যাপ ছিলো। ডাক্তার অ্যাপয়েন্টমেন্ট ফ্লো আর ম্যাপ ইন্টেগ্রেশনের মত কিছু অংশে আমার কাজ করার সুযোগ হয়েছে।",
+                "<strong>টেক স্ট্যাক:</strong> অ্যান্ড্রয়েড, ফায়ারস্টোর, জেটপ্যাক, গুগল ম্যাপ",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> সিম্পল অ্যাপ, তবে গুগল ম্যাপে কাজ করে ক্যারিয়ারের শুরুর দিক হিশেবে কিছু বিষয় শেখা হয়েছে।"
               ]
             }
           ]
@@ -239,144 +239,144 @@
     },
     "ar": {
       "meta": {
-        "title": "المَشاريع · نَعيم الكبير",
-        "description": "مَشاريعُ مُختارةٌ في Android وiOS وكوتلن متعدِّد المنصّات وFlutter، أَنجزها نَعيم الكبير.",
-        "keywords": "نَعيم الكبير، المَشاريع، تَطبيقات أندرويد، Flutter، كوتلن متعدِّد المنصّات، Ktor"
+        "title": "ٱلْمَشَارِيعُ · نَعِيمُ ٱلْكَبِيرِ",
+        "description": "بَعْضُ ٱلْمَشَارِيعِ ٱلْمُخْتَارَةِ لِنَعِيمِ ٱلْكَبِيرِ.",
+        "keywords": "مَشَارِيعُ نَعِيمِ ٱلْكَبِيرِ، تَطْبِيقَاتُ أَنْدْرُوِيد، تَطْبِيقَاتُ فْلَاتَر، كُوتْلِين مُتَعَدِّدُ ٱلْمَنَصَّاتِ، مَكْتَبَةُ Ktor"
       },
       "header": {
-        "site_title": "المَشاريع",
-        "tagline": "أَعمالٌ مُختارةٌ عبر تَطبيقاتِ الجوالِ والأنظمةِ الخلفيّةِ وأدواتِ المطوِّرين."
+        "site_title": "ٱلْمَشَارِيعُ",
+        "tagline": "بَعْضُ ٱلْمَشَارِيعِ ٱلَّتِي عَمِلْتُ عَلَيْهَا. أَعْمَالُ ٱلشَّرِكَاتِ أَوِ ٱلْعَمَلُ تَحْتَ أَيِّ صَاحِبِ عَمَلٍ لَيْسَتْ مَوْجُودَةً هُنَا."
       },
       "groups": [
         {
-          "title": "المَكتَبات والأدوات",
+          "title": "ٱلْمَكْتَبَاتُ وَٱلْأَدَوَاتُ",
           "items": [
             {
               "title": "Ktor2Curl",
               "href": "https://github.com/kabirnayeem99/Ktor2Curl",
-              "meta": "2024 - كوتلن · خادِم/عَميل",
+              "meta": "2024 - كُوتْلِين · خَادِم/عَمِيل",
               "paragraphs": [
-                "يُحوِّلُ كُلَّ طَلَبٍ في Ktor إلى أَمرِ curl لِتَسريعِ التَّصحيح.",
-                "<strong>التِّقنيّات:</strong> Kotlin, Ktor",
-                "<strong>لِماذا يَهُمّ:</strong> يَجعلُ الطَّلباتِ أَسهلَ في الفَحصِ وإِعادةِ الإِنتاجِ والمُشاركةِ من دونِ التَّنقيبِ داخلَ السِّجِلّات."
+                "فِي أَنْدْرُوِيد ٱلنِّيتِف، هُنَاكَ مَكْتَبَةٌ ٱسْمُهَا Ok2Curl لِتَصْحِيحِ طَلَبَاتِ OkHttp. هٰذِهِ ٱلْمَكْتَبَةُ تُخْرِجُ أَمْرَ cURL لِلطَّلَب، وَيُمْكِنُ تَشْغِيلُهُ فِي ٱلطَّرْفِيَّةِ أَوْ مُشَارَكَتُهُ مَعَ فَرِيقِ ٱلْبَاكْ إِنْد. وَلِأَنَّ Ktor لَمْ يَكُنْ فِيهِ شَيْءٌ مِثْلُ هٰذَا، طَوَّرْتُهُ لِٱسْتِعْمَالِي ٱلشَّخْصِيِّ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> Kotlin, Ktor",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يُسَهِّلُ إِخْرَاجَ أَوَامِرِ cURL مِنْ طَلَبَاتِ API، وَتَشْغِيلَهَا يَدَوِيًّا، أَوْ مُشَارَكَتَهَا مَعَ فَرِيقِ ٱلْبَاكْ إِنْد."
               ]
             },
             {
               "title": "kVINInfo",
               "href": "https://github.com/kabirnayeem99/kVinInfo",
-              "meta": "2024 - كوتلن · مُتعدِّد المَنصّات",
+              "meta": "2024 - كُوتْلِين · مُتَعَدِّدُ ٱلْمَنَصَّاتِ",
               "paragraphs": [
-                "مَكتبةٌ خالِصةٌ بِكوتلن لِلتَّحقُّقِ من VIN وفَكِّه وتَوليدِ بياناتٍ تَجريبيّة.",
-                "<strong>التِّقنيّات:</strong> Kotlin Multiplatform",
-                "<strong>لِماذا يَهُمّ:</strong> تُبقي مَنطِقَ VIN قابِلًا لِلنَّقلِ بينَ المَنصّاتِ من دونِ إِضافةِ تَبَعيّاتٍ زائِدة."
+                "مَكْتَبَةُ VIN مَكْتُوبَةٌ بِكُوتْلِين خَالِص. يُمْكِنُ بِهَا ٱلتَّحَقُّقُ مِنْ رَقْمِ VIN، وَفَحْصُ ٱلْـ checksum، وَتَوْلِيدُ أَرْقَامِ VIN تَجْرِيبِيَّةٍ أَيْضًا.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> Kotlin Multiplatform",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> ٱلَّذِينَ يَعْمَلُونَ عَلَى VIN يُمْكِنُهُمْ ٱسْتِعْمَالُ هٰذِهِ ٱلْمَكْتَبَةِ لِلتَّحَقُّقِ مِنْ VIN بِسُهُولَةٍ أَوْ لِتَوْلِيدِ VIN تَجْرِيبِيٍّ لِلِاخْتِبَارِ."
               ]
             }
           ]
         },
         {
-          "title": "الخَلفيّة",
+          "title": "ٱلْبَاكْ إِنْد",
           "items": [
             {
-              "title": "সমবায় নথি",
+              "title": "সমবায় নথি",
               "href": "https://samabay.multazim.solutions/dashboard",
-              "meta": "2022 - بي إتش بي · لارافيل",
+              "meta": "2025 - بِي إِتش بِي · لَارَافِيل",
               "paragraphs": [
-                "مِنصَّةُ SaaS لِلجَمعيّاتِ التَّعاونيّةِ المَحلّيّةِ لِإدارةِ السِّجِلّاتِ والدَّفعات.",
-                "<strong>التِّقنيّات:</strong> PHP, Laravel",
-                "<strong>لِماذا يَهُمّ:</strong> تُساعِدُ المُؤسَّساتِ الصَّغيرةَ على نَقلِ تَدَفُّقاتِها الوَرَقيّةِ إلى نِظامٍ رَقميٍّ قابِلٍ لِلاستِخدام."
+                "طُوِّرَ هٰذَا لِتَحْوِيلِ بَيَانَاتِ ٱلْجَمْعِيَّاتِ ٱلتَّعَاوُنِيَّةِ ٱلْمَحَلِّيَّةِ إِلَى نِظَامٍ رَقْمِيٍّ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> PHP, Laravel",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يُمْكِنُ لِلْجَمْعِيَّاتِ ٱلصَّغِيرَةِ أَنْ تُدِيرَ أَعْمَالَهَا رَقْمِيًّا بِسُهُولَةٍ."
               ]
             }
           ]
         },
         {
-          "title": "تَطبيقاتُ الجوال",
+          "title": "تَطْبِيقَاتُ ٱلْمُوبَايِل",
           "items": [
             {
               "title": "IslamQA Android",
               "href": "https://github.com/kabirnayeem99/islam_qa_org_android",
-              "meta": "2022 - كوتلن · Jetpack Compose",
+              "meta": "2022 - كُوتْلِين · جِتْبَاكْ كُمْبُوز",
               "paragraphs": [
-                "عَميلُ أندرويد غيرُ رَسميٍّ لِمَوقِعِ IslamQA.org مع بَحثٍ دونَ اتّصالٍ وإِشاراتٍ مَحفوظةٍ ومُزامنةٍ خَلفيّة.",
-                "<strong>التِّقنيّات:</strong> Kotlin, Jetpack Compose, WorkManager",
-                "<strong>لِماذا يَهُمّ:</strong> يَجعلُ قاعدةَ مَعرِفةٍ كبيرةً أَسهلَ في الاستِخدامِ على الجوال، خُصوصًا مع ضَعفِ الاتّصال."
+                "كَانَ هٰذَا ٱلتَّطْبِيقُ يَسْحَبُ بَيَانَاتِ IslamQA.org عَلَى ٱلْمُوبَايِل نَفْسِهِ وَيُخَزِّنُهَا فِي قَاعِدَةِ بَيَانَاتٍ مَحَلِّيَّةٍ، حَتَّى يَسْهُلَ عَلَى ٱلْمُسْتَعْمِلِ ٱلْبَحْثُ فِيهَا. وَلٰكِنْ ٱحْتِرَامًا لِسِيَاسَةِ ٱلْخُصُوصِيَّةِ فِي IslamQA، لَمْ أُوَاصِلْ تَحْدِيثَهُ بَعْدَ ذٰلِكَ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> Kotlin, Jetpack Compose, WorkManager",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يَجْعَلُ ٱلْفَتَاوَى مُتَاحَةً أُوفْلَايْن، فِي أَيِّ وَقْتٍ وَمِنْ أَيِّ مَكَانٍ."
               ]
             },
             {
               "title": "আল হাদিস",
               "href": "https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US",
-              "meta": "2022 - دارت · فلاتر",
+              "meta": "2022 - دَارْت · فْلَاتَر",
               "paragraphs": [
-                "تَطبيقٌ لِقِراءةِ أَكثرَ من 49 أَلفِ حَديثٍ بِنغاليٍّ والبحثِ فيه.",
-                "<strong>التِّقنيّات:</strong> Dart, Flutter",
-                "<strong>لِماذا يَهُمّ:</strong> يُبقي تَطبيقًا إسلاميًّا مَرجِعيًّا واسعَ الاستِخدامِ سريعًا وقابلًا لِلصيانةِ ومُتاحًا لِجُمهورٍ بِنغاليٍّ كبير."
+                "هٰذَا مِنْ أَشْهَرِ ٱلتَّطْبِيقَاتِ ٱلْإِسْلَامِيَّةِ فِي بَنْغَلَادِيش. تَطْبِيقٌ لِقِرَاءَةِ أَكْثَرَ مِنْ 49 أَلْفِ حَدِيثٍ بِٱلْبَنْغَلِيَّةِ وَٱلْبَحْثِ فِيهَا. وَقَدْ أُتِيحَ لِي أَنْ أَقُومَ بِجُزْءٍ كَبِيرٍ مِنْ إِعَادَةِ كِتَابَتِهِ بِـ Flutter شِبْهَ وَحْدِي. ٱلْحَمْدُ لِلّٰهِ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> Dart, Flutter",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> كَانَ ٱلتَّطْبِيقُ يَدْعَمُ أَنْدْرُوِيد فَقَطْ، وَلَكِنْ بَعْدَ إِعَادَةِ كِتَابَتِهِ بِـ Flutter أَصْبَحَ مُمْكِنًا إِضَافَةُ نُسْخَةِ iOS وَتَحْدِيثُ ٱلْوَاجِهَةِ أَيْضًا."
               ]
             },
             {
               "title": "BaseHubs",
               "href": "https://play.google.com/store/apps/details?id=com.basehubs.app&hl=en",
-              "meta": "2021 - كوتلن · مِعمارِيَّةٌ نَظيفة",
+              "meta": "2021 - كُوتْلِين · كْلِينْ آَرْكِتِكْتْشَر",
               "paragraphs": [
-                "يَربِطُ العائلاتِ العسكريّةَ بالأَعمالِ والخِدماتِ المَحلّيّة.",
-                "<strong>التِّقنيّات:</strong> Kotlin, Clean Architecture, Firebase, Parse",
-                "<strong>لِماذا يَهُمّ:</strong> يَدعَمُ حالةَ استِخدامٍ مُحدَّدةً لِمُجتَمَعٍ مُعيَّنٍ عبرَ قاعدةِ شِفرةٍ مَعياريّةٍ لِلجوال."
+                "ٱلْهَدَفُ ٱلرَّئِيسِيُّ مِنْهُ هُوَ إِتَاحَةُ بَيَانَاتِ ٱلْأَعْمَالِ ٱلْمَحَلِّيَّةِ لِلْعَائِلَاتِ ٱلْعَسْكَرِيَّةِ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> Kotlin, Clean Architecture, Firebase, Parse SDK",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> دَعْمُ ٱلْأَعْمَالِ ٱلْمَحَلِّيَّةِ."
               ]
             },
             {
               "title": "Boulevard Mentorship",
               "href": "https://play.google.com/store/apps/details?id=com.thefivenetwork.five&hl=en",
-              "meta": "2021 - كوتلن · مُتعدِّد الحُزَم",
+              "meta": "2021 - كُوتْلِين · مُتَعَدِّدُ ٱلْمُودْيُولَاتِ",
               "paragraphs": [
-                "مِنصَّةُ إِرشادٍ تَربِطُ المَواهِبَ الشّابّةَ بالمُرشدينَ عبرَ تَجرِبةٍ مُنظَّمةٍ على الجوال.",
-                "<strong>التِّقنيّات:</strong> Kotlin, multi-module Android",
-                "<strong>لِماذا يَهُمّ:</strong> صُمِّمَت لِتُبقي تَدَفُّقاتِ الإِرشادِ والتَّنبيهاتِ موثوقةً مع نُموِّ التَّطبيق."
+                "Boulevard هِيَ جِهَةٌ تُقَدِّمُ مَنْصَّةً لِلْإِرْشَادِ وَتَطْوِيرِ ٱلْقُوَى ٱلْعَامِلَةِ بِٱلِاعْتِمَادِ عَلَى ٱلْبَرْمَجِيَّاتِ، وَهٰذَا هُوَ تَطْبِيقُ أَنْدْرُوِيد ٱلْخَاصُّ بِبَرْنَامَجِهِمْ فِي ٱلْإِرْشَادِ. يُمْكِنُ لِلطَّالِبِ أَوْ لِمَنْ هُوَ فِي بَدَايَةِ مَسَارِهِ ٱلْمِهْنِيِّ أَنْ يَحْصُلَ عَلَى ٱلتَّوْجِيهِ وَٱلْكُوتْشِنْغ وَٱلتَّوَاصُلِ ٱلْمِهْنِيِّ وَغَيْرِ ذٰلِكَ مِنْ شَخْصٍ أَكْثَرَ خِبْرَةً. وَٱلتَّطْبِيقُ نَفْسُهُ كَانَ مُتَعَدِّدَ ٱلْمُودْيُولَاتِ وَمَبْنِيًّا بِأَنْدْرُوِيد نِيتِف.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> Kotlin, multi-module Android",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> كَانَ فِيهِ فِيتْشَرَاتٌ مُعَقَّدَةٌ نِسْبِيًّا، مِثْلَ ٱلْمُودْيُولَاتِ ٱلتَّعْلِيمِيَّةِ وَٱلْإِرْشَادِ وَاحِدٌ لِوَاحِدٍ."
               ]
             },
             {
               "title": "Marriott Bonvoy",
               "href": "https://play.google.com/store/apps/details?id=com.marriott.mrt&hl=en",
-              "meta": "2022 - أندرويد · تَجارِب",
+              "meta": "2022 · أَنْدْرُوِيد · إِكْسْبِيرِيمِنْت",
               "paragraphs": [
-                "ساهَمتُ في مَساراتِ الحَجزِ والتَّجارِبِ الدافعةِ لِلتَّغييراتِ داخلَ تَطبيقِ سَفَرٍ واسعِ النِّطاق.",
-                "<strong>التِّقنيّات:</strong> Android",
-                "<strong>لِماذا يَهُمّ:</strong> العَمَلُ داخلَ مُنتَجٍ يَستخدِمُه الملايينُ يَتطلّبُ تَغييراتٍ مَحسوبةً ورَصدًا دَقيقًا واستِقرارًا عالِيًا."
+                "هٰذَا هُوَ تَطْبِيقُ Marriott International ٱلرَّسْمِيُّ. فِي ٱلْأَصْلِ هُوَ جُزْءٌ مِنْ بَرْنَامَجِ ٱلْوَلَاءِ، حَيْثُ يُمْكِنُ لِزَبَائِنِ ٱلْفَنَادِقِ ٱلِانْضِمَامُ كَأَعْضَاءَ وَٱلْحُصُولُ عَلَى بَعْضِ ٱلْمَزَايَا. وَهُوَ تَطْبِيقُ سَفَرٍ كَبِيرُ ٱلنِّطَاقِ. عَمِلْتُ هُنَاكَ عَلَى بَعْضِ فِيتْشَرَاتِ A/B testing عَلَى نِطَاقٍ مَحْدُودٍ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> Android",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> كَانَتْ هٰذِهِ أَوَّلَ فُرْصَةٍ لِي لِلْعَمَلِ عَلَى تَطْبِيقٍ بِهٰذَا ٱلْحَجْمِ وَبِقَاعِدَةِ مُسْتَعْمِلِينَ كَبِيرَةٍ جِدًّا."
               ]
             },
             {
               "title": "PatientAccess",
-              "meta": "2021 - أندرويد · الرِّعايةُ الصِّحِّيّة",
+              "meta": "2021 - أَنْدْرُوِيد · هِلْثْكِير",
               "paragraphs": [
-                "عَمِلتُ على مَساراتِ حَجزِ المَواعيدِ في تَطبيقٍ صِحِّيّ.",
-                "<strong>التِّقنيّات:</strong> Android, Firestore, Jetpack",
-                "<strong>لِماذا يَهُمّ:</strong> تَطبيقاتُ الرِّعايةِ الصِّحِّيّةِ تَحتاجُ إلى وُضوحِ التَّجرِبةِ والتَّعامُلِ الحَذِرِ مع بَياناتِ المُستخدمينَ الحَسّاسَة."
+                "فِي ٱلْأَصْلِ كَانَ هٰذَا تَطْبِيقًا لِلرِّعَايَةِ ٱلصِّحِّيَّةِ. وَقَدْ أُتِيحَ لِي أَنْ أَعْمَلَ عَلَى بَعْضِ ٱلْأَجْزَاءِ مِثْلَ مَسَارَاتِ حَجْزِ ٱلطَّبِيبِ وَدَمْجِ ٱلْخَرَائِطِ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> Android, Firestore, Jetpack, Google Maps",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> هُوَ تَطْبِيقٌ بَسِيطٌ نِسْبِيًّا، وَلَكِنَّهُ فِي بَدَايَةِ مَسِيرَتِي عَلَّمَنِي بَعْضَ ٱلْأَشْيَاءِ ٱلْمُفِيدَةِ، خُصُوصًا فِي ٱلْعَمَلِ عَلَى Google Maps."
               ]
             }
           ]
         }
       ],
-      "footer_html": "المَزيدُ من المَشاريعِ على <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a>."
+      "footer_html": "هُنَاكَ مَشَارِيعُ أُخْرَىٰ أَيْضًا عَلَى <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a>."
     },
     "ur": {
       "meta": {
         "title": "پراجیکٹس · نعیم الکبیر",
-        "description": "نعیم الکبیر کے منتخب Android، iOS، کاٹلِن ملٹی پلیٹ فارم اور Flutter پراجیکٹس۔",
-        "keywords": "نعیم الکبیر پراجیکٹس، اینڈرائیڈ ایپس، Flutter ایپس، کاٹلِن ملٹی پلیٹ فارم، Ktor لائبریری"
+        "description": "نعیم الکبیر کے کچھ چنے ہوئے پراجیکٹس۔",
+        "keywords": "نعیم الکبیر پراجیکٹس، اینڈرائیڈ ایپس، فلیٹر ایپس، کاٹلِن ملٹی پلیٹ فارم، کیٹر لائبریری"
       },
       "header": {
         "site_title": "پراجیکٹس",
-        "tagline": "موبائل ایپس، بیک اینڈ سسٹمز اور ڈویلپر ٹولز میں سے کچھ منتخب کام۔"
+        "tagline": "کچھ پراجیکٹس جن پر میں نے کام کیا۔ یہاں کسی ایمپلائر کے تحت کیے گئے کام شامل نہیں ہیں۔"
       },
       "groups": [
         {
-          "title": "لائبریریز اور ٹولز",
+          "title": "لائبریریاں اور ٹولز",
           "items": [
             {
               "title": "Ktor2Curl",
               "href": "https://github.com/kabirnayeem99/Ktor2Curl",
               "meta": "2024 - کاٹلِن · سرور/کلائنٹ",
               "paragraphs": [
-                "تیز ڈیبگنگ کے لیے ہر Ktor request کو curl command کے طور پر mirror کرتا ہے۔",
+                "نیٹو اینڈرائیڈ میں OkHttp requests debug کرنے کے لیے Ok2Curl نام کی ایک لائبریری ہے۔ اس سے request کا cURL command log کیا جا سکتا ہے، جسے پھر terminal میں چلایا جا سکتا ہے یا backend ٹیم کے ساتھ share کیا جا سکتا ہے۔ چونکہ Ktor میں ایسی کوئی چیز نہیں تھی، میں نے یہ اپنے ذاتی استعمال کے لیے بنائی۔",
                 "<strong>ٹیک اسٹیک:</strong> Kotlin, Ktor",
-                "<strong>اہمیت:</strong> logs میں کھوج کے بغیر requests کو inspect، reproduce اور share کرنا آسان بناتا ہے۔"
+                "<strong>کیوں اہم ہے:</strong> API requests کے cURL commands آسانی سے نکال کر خود run کیے جا سکتے ہیں یا backend ٹیم کے ساتھ share کیے جا سکتے ہیں۔"
               ]
             },
             {
@@ -384,9 +384,9 @@
               "href": "https://github.com/kabirnayeem99/kVinInfo",
               "meta": "2024 - کاٹلِن · ملٹی پلیٹ فارم",
               "paragraphs": [
-                "خالص Kotlin میں VIN validation، decoding اور mock generation library۔",
+                "خالص Kotlin میں لکھی گئی ایک VIN لائبریری۔ اس سے VIN نمبر validate کیے جا سکتے ہیں، checksum check کیا جا سکتا ہے، اور mock VIN نمبر بھی generate کیے جا سکتے ہیں۔",
                 "<strong>ٹیک اسٹیک:</strong> Kotlin Multiplatform",
-                "<strong>اہمیت:</strong> اضافی dependencies کے بغیر VIN سے متعلق منطق کو مختلف پلیٹ فارمز پر قابلِ استعمال رکھتا ہے۔"
+                "<strong>کیوں اہم ہے:</strong> جو لوگ VIN کے ساتھ کام کرتے ہیں، وہ اس لائبریری سے آسانی سے VIN validate کر سکتے ہیں یا testing کے لیے mock VIN generate کر سکتے ہیں۔"
               ]
             }
           ]
@@ -395,13 +395,13 @@
           "title": "بیک اینڈ",
           "items": [
             {
-              "title": "সমবায় নথি",
+              "title": "সমবায় নথি",
               "href": "https://samabay.multazim.solutions/dashboard",
-              "meta": "2022 - پی ایچ پی · لاراوِل",
+              "meta": "2025 - پی ایچ پی · لاراول",
               "paragraphs": [
-                "مقامی کوآپریٹو سوسائٹیوں کے ریکارڈ اور ادائیگیوں کے انتظام کے لیے SaaS پلیٹ فارم۔",
+                "مقامی کوآپریٹو سوسائٹیوں کے ڈیٹا کو ڈیجیٹلائز کرنے کے لیے بنایا گیا۔",
                 "<strong>ٹیک اسٹیک:</strong> PHP, Laravel",
-                "<strong>اہمیت:</strong> چھوٹی تنظیموں کے کاغذی ورک فلو کو ایک قابلِ استعمال ڈیجیٹل سسٹم میں منتقل کرنے میں مدد دیتا ہے۔"
+                "<strong>کیوں اہم ہے:</strong> چھوٹی کوآپریٹو سوسائٹیاں بہت آسانی سے اپنا کام ڈیجیٹل سسٹم میں لا سکیں گی۔"
               ]
             }
           ]
@@ -414,19 +414,19 @@
               "href": "https://github.com/kabirnayeem99/islam_qa_org_android",
               "meta": "2022 - کاٹلِن · جیٹ پیک کمپوز",
               "paragraphs": [
-                "IslamQA.org کے لیے غیر رسمی Android client، جس میں offline search، bookmarks اور background sync شامل ہیں۔",
+                "IslamQA.org کا مواد موبائل پر ہی scrape کر کے local database میں save کر دیتا تھا، تاکہ user آسانی سے search کر سکے۔ لیکن IslamQA کی privacy policy کا احترام کرتے ہوئے بعد میں اسے update نہیں کیا گیا۔",
                 "<strong>ٹیک اسٹیک:</strong> Kotlin, Jetpack Compose, WorkManager",
-                "<strong>اہمیت:</strong> ایک بڑے علمی ذخیرے کو موبائل پر، خاص طور پر کمزور کنیکٹیویٹی میں، زیادہ قابلِ استعمال بناتا ہے۔"
+                "<strong>کیوں اہم ہے:</strong> فتاویٰ کو آسانی سے offline، کسی بھی وقت، کسی بھی جگہ سے access کیا جا سکتا ہے۔"
               ]
             },
             {
               "title": "আল হাদিস",
               "href": "https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US",
-              "meta": "2022 - ڈارٹ · Flutter",
+              "meta": "2022 - ڈارٹ · فلیٹر",
               "paragraphs": [
-                "49 ہزار سے زیادہ بنگالی احادیث پڑھنے اور تلاش کرنے کے لیے موبائل ایپ۔",
+                "بنگلہ دیش کی سب سے مقبول اسلامی ایپس میں سے ایک۔ 49 ہزار سے زیادہ بنگالی احادیث پڑھنے اور search کرنے کے لیے mobile app۔ اس کے Flutter rewrite کا کافی بڑا حصہ تقریباً اکیلے کرنے کا موقع ملا تھا۔ الحمدللہ۔",
                 "<strong>ٹیک اسٹیک:</strong> Dart, Flutter",
-                "<strong>اہمیت:</strong> ایک وسیع پیمانے پر استعمال ہونے والی اسلامی ریفرنس ایپ کو تیز، قابلِ مینٹیننس اور بڑے بنگالی بولنے والے حلقے کے لیے قابلِ رسائی رکھتا ہے۔"
+                "<strong>کیوں اہم ہے:</strong> یہ مشہور اسلامی ایپ پہلے صرف اینڈرائیڈ پر تھی، لیکن Flutter rewrite کے بعد iOS version بھی شامل کیا جا سکا، اور UI بھی update ہو گیا۔"
               ]
             },
             {
@@ -434,9 +434,9 @@
               "href": "https://play.google.com/store/apps/details?id=com.basehubs.app&hl=en",
               "meta": "2021 - کاٹلِن · کلین آرکیٹیکچر",
               "paragraphs": [
-                "فوجی خاندانوں کو مقامی کاروباروں اور خدمات سے جوڑتا ہے۔",
-                "<strong>ٹیک اسٹیک:</strong> Kotlin, Clean Architecture, Firebase, Parse",
-                "<strong>اہمیت:</strong> ایک مخصوص کمیونٹی use-case کو ماڈیولر موبائل کوڈبیس کے ساتھ سپورٹ کرتا ہے۔"
+                "اس کا بنیادی مقصد military families کو local businesses کے data تک رسائی دینا تھا۔",
+                "<strong>ٹیک اسٹیک:</strong> Kotlin, Clean Architecture, Firebase, Parse SDK",
+                "<strong>کیوں اہم ہے:</strong> local business support."
               ]
             },
             {
@@ -444,34 +444,34 @@
               "href": "https://play.google.com/store/apps/details?id=com.thefivenetwork.five&hl=en",
               "meta": "2021 - کاٹلِن · ملٹی ماڈیول",
               "paragraphs": [
-                "ایک mentorship platform جو نوجوان ٹیلنٹ کو structured mobile experience کے ذریعے mentors سے ملاتا ہے۔",
+                "Boulevard نام کا ایک ادارہ software-based mentorship اور workforce development platform چلاتا ہے۔ یہ ان کے mentorship program کی Android app تھی۔ طالب علم یا career کے شروع میں موجود کوئی شخص کسی تجربہ کار فرد سے career guidance، coaching، networking اور اسی طرح کی دوسری سہولتیں لے سکتا تھا۔ ایپ خود multi-module تھی اور native Android میں develop کی گئی تھی۔",
                 "<strong>ٹیک اسٹیک:</strong> Kotlin, multi-module Android",
-                "<strong>اہمیت:</strong> ایپ کے بڑھنے کے ساتھ mentorship workflows اور notifications کو قابلِ اعتماد رکھنے کے لیے بنایا گیا۔"
+                "<strong>کیوں اہم ہے:</strong> اس میں course modules، one-to-one mentorship اور دوسرے نسبتاً complex features تھے۔"
               ]
             },
             {
               "title": "Marriott Bonvoy",
               "href": "https://play.google.com/store/apps/details?id=com.marriott.mrt&hl=en",
-              "meta": "2022 - اینڈرائیڈ · experiment",
+              "meta": "2022 · اینڈرائیڈ · ایکسپیریمنٹ",
               "paragraphs": [
-                "ایک بڑے travel app کے اندر booking اور experiment-driven flows میں حصہ لیا۔",
+                "Marriott International کی اپنی ایپ۔ اصل میں یہ loyalty program کا حصہ ہے، جہاں hotel customers membership لے سکتے ہیں اور کچھ سہولتیں حاصل کر سکتے ہیں۔ کافی بڑے scale کی travel app تھی۔ یہاں کچھ A/B testing features پر محدود سطح پر کام کیا۔",
                 "<strong>ٹیک اسٹیک:</strong> Android",
-                "<strong>اہمیت:</strong> لاکھوں صارفین والے پراڈکٹ میں کام کرنے کا مطلب ہے تبدیلیاں، instrumentation اور stability بہت احتیاط سے ship کرنا۔"
+                "<strong>کیوں اہم ہے:</strong> اتنے بڑے user base اور بڑے scale کی app پر کام کرنے کا یہ پہلا موقع تھا۔"
               ]
             },
             {
               "title": "PatientAccess",
-              "meta": "2021 - اینڈرائیڈ · healthcare",
+              "meta": "2021 - اینڈرائیڈ · ہیلتھ کیئر",
               "paragraphs": [
-                "ایک healthcare app میں appointment-booking flows پر کام کیا۔",
-                "<strong>ٹیک اسٹیک:</strong> Android, Firestore, Jetpack",
-                "<strong>اہمیت:</strong> healthcare ایپس میں واضح UX اور حساس صارف ڈیٹا کے ساتھ بہت محتاط برتاؤ ضروری ہوتا ہے۔"
+                "یہ بنیادی طور پر ایک healthcare app تھی۔ doctor appointment flow اور map integration جیسے کچھ حصوں پر کام کرنے کا موقع ملا۔",
+                "<strong>ٹیک اسٹیک:</strong> Android, Firestore, Jetpack, Google Maps",
+                "<strong>کیوں اہم ہے:</strong> کافی simple app تھی، لیکن career کے شروع میں Google Maps پر کام کرتے ہوئے کچھ مفید چیزیں سیکھنے کو ملیں۔"
               ]
             }
           ]
         }
       ],
-      "footer_html": "مزید پراجیکٹس <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a> پر موجود ہیں۔"
+      "footer_html": "مزید پراجیکٹس <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a> پر بھی ہیں۔"
     }
   }
 }
