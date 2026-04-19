@@ -2,6 +2,18 @@
 
 Multilingual portfolio site built and deployed with Astro.
 
+## AI tooling (lean-ctx + jcodemunch)
+
+- Shared agent policy: `LEAN-CTX.md`
+- Gemini project MCP config: `.gemini/settings.json`
+- Local jCodeMunch index storage: `.code-index/`
+
+First-time index from repo root:
+
+```bash
+CODE_INDEX_PATH="$PWD/.code-index" jcodemunch-mcp index "$PWD"
+```
+
 ## Workspace
 
 - App source: `astro/src`

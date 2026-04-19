@@ -56,6 +56,19 @@ export function buildSeoFileContext(): SeoFileContext {
     }
   }
 
+  sitemapEntries.push(
+    { href: `${baseUrl}/llms.txt`, priority: "0.7" },
+    { href: `${baseUrl}/index.md`, priority: "0.7" },
+    { href: `${baseUrl}/work.md`, priority: "0.6" },
+    { href: `${baseUrl}/project.md`, priority: "0.6" },
+    { href: `${baseUrl}/blog.md`, priority: "0.6" },
+    { href: `${baseUrl}/stats.md`, priority: "0.6" },
+    { href: `${baseUrl}/docs/api`, priority: "0.7" },
+    { href: `${baseUrl}/docs/api.json`, priority: "0.6" },
+    { href: `${baseUrl}/.well-known/api-catalog`, priority: "0.6" },
+    { href: `${baseUrl}/.well-known/mcp/server-card.json`, priority: "0.6" },
+  );
+
   return {
     baseUrl,
     lastModifiedDate: buildLastModifiedDate(),

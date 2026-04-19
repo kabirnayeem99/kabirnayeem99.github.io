@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "lean-ctx": {
+      "command": "lean-ctx",
+      "args": []
+    },
+    "jcodemunch": {
+      "command": "jcodemunch-mcp",
+      "args": [],
+      "env": {
+        "CODE_INDEX_PATH": "$PWD/.code-index"
+      }
+    }
+  }
+}

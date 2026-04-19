@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import BackToTopButton from "./BackToTopButton.astro";
 import HeadSeo from "./HeadSeo.astro";
 import HighlightCard from "./HighlightCard.astro";
 import PageFooter from "./PageFooter.astro";
+import heroLogo from "../../assets/images/logo.svg";
 import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
 import {
   loadIndexPageContent,
@@ -69,7 +71,6 @@ const menuId = `language-menu-index-${lang}`;
 const uiLabels = content.site.locale.labels;
 
 const pageAssets = buildPageAssetHrefs(currentRoute);
-const logoHref = assetHref(currentRoute, "assets/images/logo.svg");
 const darkModeIconHref = assetHref(currentRoute, "icons/theme-dark.svg");
 const lightModeIconHref = assetHref(currentRoute, "icons/theme-light.svg");
 
@@ -282,14 +283,13 @@ const viewAllStatsAction: IndexAction = {
         </div>
 
         <div class="header-identity">
-          <div class="hero-avatar-card" aria-hidden="true">
-            <img
+          <div class="hero-avatar-card">
+            <Image
               class="hero-illustration"
-              alt=""
-              aria-hidden="true"
-              src={logoHref}
-              width="1024"
-              height="1024"
+              alt={content.site.locale.ogImageAlt}
+              src={heroLogo}
+              width={1024}
+              height={1024}
               decoding="async"
               fetchpriority="high"
             />

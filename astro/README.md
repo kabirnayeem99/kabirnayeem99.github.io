@@ -2,6 +2,14 @@
 
 Astro is the only site pipeline in this repository.
 
+## AI tooling note
+
+`lean-ctx` and `jcodemunch` are configured at repository root. Run MCP/indexing commands from the root directory (not `astro/`), using:
+
+```bash
+CODE_INDEX_PATH="$PWD/.code-index" jcodemunch-mcp index "$PWD"
+```
+
 ## Commands
 
 ```bash

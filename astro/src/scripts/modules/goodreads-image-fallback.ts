@@ -61,6 +61,21 @@ document.addEventListener("DOMContentLoaded", () => {
     return candidates.filter((candidate) => candidate !== source);
   };
 
+  const ensureAltText = (image: HTMLImageElement): void => {
+    const existingAlt = image.getAttribute("alt");
+    if (typeof existingAlt === "string" && existingAlt.trim().length > 0) {
+      return;
+    }
+
+    const link = image.closest("a");
+    const linkTitle = link?.getAttribute("title")?.trim();
+    const fallbackAlt =
+      typeof linkTitle === "string" && linkTitle.length > 0
+        ? `Book cover for ${linkTitle}`
+        : "Goodreads book cover";
+    image.setAttribute("alt", fallbackAlt);
+  };
+
   const installFallbackMetadata = (image: HTMLImageElement): void => {
     if (image.dataset.goodreadsFallbackReady === "true") {
       return;
@@ -78,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     image.loading = "lazy";
     image.decoding = "async";
     image.referrerPolicy = "no-referrer";
+    ensureAltText(image);
   };
 
   const applyNextFallback = (image: HTMLImageElement): boolean => {

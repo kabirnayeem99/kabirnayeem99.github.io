@@ -85,3 +85,4 @@ dist
 !.yarn/sdks
 !.yarn/versions
 !.yarn/cache
+.code-index/

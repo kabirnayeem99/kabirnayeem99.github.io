@@ -1,5 +1,7 @@
 # GEMINI.md
 
+@LEAN-CTX.md
+
 Repository guidance for Gemini or other AI/code agents.
 
 ## Stack and scope
@@ -14,6 +16,14 @@ Repository guidance for Gemini or other AI/code agents.
 - Content data: `astro/src/data/site-content/`
 - Public assets: `astro/public/assets`
 - Workflow configs: `.github/workflows`
+
+## MCP tooling
+
+- Gemini project MCP config lives in `.gemini/settings.json`.
+- Enabled servers: `lean-ctx` and `jcodemunch`.
+- jCodeMunch uses a repo-local index path: `.code-index/` via `CODE_INDEX_PATH`.
+- First-time index command:
+  - `CODE_INDEX_PATH="$PWD/.code-index" jcodemunch-mcp index "$PWD"`
 
 ## Build and validation
 

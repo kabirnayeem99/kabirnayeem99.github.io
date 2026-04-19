@@ -13,7 +13,39 @@ export function scriptSafeJson(value: object): string {
   return JSON.stringify(value).replace("</script", "<\\/script");
 }
 
+function normalizeSameAsProfiles(profiles: readonly string[]): readonly string[] {
+  const seen = new Set<string>();
+  const output: string[] = [];
+
+  for (const profile of profiles) {
+    const candidate = profile.trim();
+    if (candidate.length === 0) {
+      continue;
+    }
+
+    let parsed: URL;
+    try {
+      parsed = new URL(candidate);
+    } catch {
+      continue;
+    }
+
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      continue;
+    }
+
+    const normalized = parsed.toString();
+    if (!seen.has(normalized)) {
+      seen.add(normalized);
+      output.push(normalized);
+    }
+  }
+
+  return output;
+}
+
 export function buildSchemaGraphJson(input: SchemaGraphInput): string {
+  const sameAsProfiles = normalizeSameAsProfiles(input.socialProfiles);
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -22,6 +54,7 @@ export function buildSchemaGraphJson(input: SchemaGraphInput): string {
         "@id": `${input.baseUrl}/#website`,
         url: `${input.baseUrl}/`,
         name: input.websiteName,
+        sameAs: sameAsProfiles,
         publisher: { "@id": `${input.baseUrl}/#person` },
         inLanguage: [...LANGS],
       },
@@ -31,7 +64,7 @@ export function buildSchemaGraphJson(input: SchemaGraphInput): string {
         name: input.personName,
         url: input.canonicalUrl,
         image: input.ogImageUrl,
-        sameAs: [...input.socialProfiles],
+        sameAs: sameAsProfiles,
       },
     ],
   };

@@ -412,7 +412,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     chartSegments.forEach((item, index) => {
       const row = createLegendRow(item);
-      row.setAttribute("tabindex", "0");
       const donutSegment = donutSegments[index];
 
       const activate = (): void => {
@@ -431,8 +430,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       row.addEventListener("mouseenter", activate);
       row.addEventListener("mouseleave", deactivate);
-      row.addEventListener("focus", activate);
-      row.addEventListener("blur", deactivate);
 
       if (donutSegment) {
         donutSegment.path.addEventListener("mouseenter", activate);

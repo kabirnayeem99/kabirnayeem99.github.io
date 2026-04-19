@@ -4,6 +4,10 @@ import {
   resolveCanonicalHostname,
   shouldLoadUmamiScript,
 } from "../../lib/runtime-host-gating";
+import {
+  AGENT_DISCOVERY_LINKS,
+  type AgentDiscoveryLink,
+} from "../../lib/agent-discovery";
 
 interface AlternateLink {
   readonly hrefLang: string;
@@ -32,6 +36,7 @@ interface Props {
   readonly faviconIcoHref?: string;
   readonly appleTouchIconHref?: string;
   readonly manifestHref?: string;
+  readonly discoveryLinks?: readonly AgentDiscoveryLink[];
 }
 
 const {
@@ -56,6 +61,7 @@ const {
   faviconIcoHref = "assets/icons/favicon.ico",
   appleTouchIconHref = "assets/icons/apple-touch-icon.png",
   manifestHref = "site.webmanifest",
+  discoveryLinks = AGENT_DISCOVERY_LINKS,
 } = Astro.props;
 
 const canonicalHostname = resolveCanonicalHostname(canonicalUrl);
@@ -75,6 +81,11 @@ const shouldLoadUmami = shouldLoadUmamiScript(
   <meta name="author" content={author} />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href={canonicalUrl} />
+  {
+    discoveryLinks.map((link) => (
+      <link rel={link.rel} href={link.href} type={link.type} title={link.title} />
+    ))
+  }
   <meta name="person-portfolio-site-hostname" content={canonicalHostname ?? ""} />
   {
     alternateLinks.map((link) => (

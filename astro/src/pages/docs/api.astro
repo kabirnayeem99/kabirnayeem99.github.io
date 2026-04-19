@@ -1,0 +1,85 @@
+---
+import {
+  AGENT_DISCOVERY_LINKS,
+  toAbsoluteDiscoveryHref,
+} from "../../lib/agent-discovery";
+import { buildSeoFileContext } from "../../lib/seo-files";
+
+const { baseUrl } = buildSeoFileContext();
+const canonicalUrl = `${baseUrl}/docs/api`;
+const resources = AGENT_DISCOVERY_LINKS.map((link) => ({
+  ...link,
+  href: toAbsoluteDiscoveryHref(baseUrl, link.href),
+}));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Service Discovery Docs | Kabir Nayeem Portfolio</title>
+    <meta
+      name="description"
+      content="Machine- and human-readable service discovery resources for Kabir Nayeem's portfolio site."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    {
+      AGENT_DISCOVERY_LINKS.map((link) => (
+        <link rel={link.rel} href={link.href} type={link.type} title={link.title} />
+      ))
+    }
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+
+      body {
+        margin: 0;
+        font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+        line-height: 1.6;
+      }
+
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      code {
+        font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Service Discovery</h1>
+      <p>
+        This Astro portfolio is published as a static site on GitHub Pages. It
+        exposes discovery resources for automated clients and agents.
+      </p>
+      <h2>Discovery Resources</h2>
+      <ul>
+        {
+          resources.map((resource) => (
+            <li>
+              <a href={resource.href}>{resource.href}</a> ({resource.rel})
+              {resource.type ? ` - ${resource.type}` : ""}
+            </li>
+          ))
+        }
+      </ul>
+      <h2>Header Limitation on GitHub Pages</h2>
+      <p>
+        GitHub Pages does not provide custom HTTP response headers for static
+        HTML routes, so homepage discovery links are also emitted in HTML
+        <code>&lt;link rel=...&gt;</code> tags.
+      </p>
+      <p>
+        If you put a reverse proxy/CDN in front of GitHub Pages, add equivalent
+        <code>Link</code> response headers there for strict header-based checks.
+      </p>
+    </main>
+  </body>
+</html>
