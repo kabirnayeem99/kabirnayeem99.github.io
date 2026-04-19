@@ -31,8 +31,8 @@ export function GET(): Response {
   const body = `${explicitAllowBlocks}
 
 User-agent: *
-Allow: /
 Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
 
 Sitemap: ${baseUrl}/sitemap.xml
 `;
