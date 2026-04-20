@@ -45,23 +45,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const applyAll = (theme: Theme): void => {
+  const applyThemeUpdates = (theme: Theme): void => {
     applyThemeToEmbeds(theme);
     applyThemeToEmbedLinks(theme);
   };
 
-  applyAll(currentTheme());
+  applyThemeUpdates(currentTheme());
 
   document.addEventListener("site-theme-change", (event: Event) => {
     if (event instanceof CustomEvent) {
       const detail = (event as CustomEvent<SiteThemeChangeDetail>).detail;
       if (detail?.theme === "light" || detail?.theme === "dark") {
-        applyAll(detail.theme);
+        applyThemeUpdates(detail.theme);
         return;
       }
     }
 
-    applyAll(currentTheme());
+    applyThemeUpdates(currentTheme());
   });
 });
 
