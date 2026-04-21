@@ -2,6 +2,7 @@
 import ClosePageHeader from "./ClosePageHeader.astro";
 import HeadSeo from "./HeadSeo.astro";
 import PageFooter from "./PageFooter.astro";
+import goodreadsSnapshot from "../../data/site-content/goodreads-snapshot.json";
 import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
 import {
   buildOgImageUrl,
@@ -12,6 +13,7 @@ import {
 import { buildSchemaGraphJson } from "../../lib/seo";
 import { loadStatsPageContent, statsEmbedThemeSources } from "../../lib/stats-content";
 import {
+  assetHref,
   buildAlternateLinks,
   buildOgLocaleAlternates,
   OG_LOCALE_BY_LANG,
@@ -56,6 +58,16 @@ const homeHref = routeHref(content.route, content.homeRoute);
 const pageAssets = buildPageAssetHrefs(content.route);
 const ogLocaleAlternates = buildOgLocaleAlternates(lang);
 const uiLabels = content.site.locale.labels;
+const goodreadsScriptSource = (() => {
+  try {
+    const parsed = new URL(content.sections.goodreads.scriptSrc);
+    parsed.searchParams.set("num_books", "300");
+    return parsed.toString();
+  } catch {
+    return content.sections.goodreads.scriptSrc;
+  }
+})();
+const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
 ---
 
 <!DOCTYPE html>
@@ -86,7 +98,7 @@ const uiLabels = content.site.locale.labels;
   <body
     data-page-id="stats"
     data-sw-path={pageAssets.swPath}
-    data-goodreads-script-src={content.sections.goodreads.scriptSrc}
+    data-goodreads-script-src={goodreadsScriptSource}
   >
     <a class={PAGE_LAYOUT.skipLinkClass} href={`#${PAGE_LAYOUT.mainContentId}`}>
       {uiLabels.skipToMain}
@@ -211,8 +223,22 @@ const uiLabels = content.site.locale.labels;
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.goodreads.title}</h2>
             <p>{content.sections.goodreads.copy}</p>
-            <p class="goodreads-status" data-goodreads-status>{content.sections.goodreads.statusText}</p>
-            <div class="goodreads-widget" id={`gr_grid_widget_${content.sections.goodreads.widgetId}`}></div>
+            <div class="goodreads-widget" id={`gr_grid_widget_${content.sections.goodreads.widgetId}`}>
+              <div class="gr_grid_container">
+                {goodreadsBooks.map((book) => (
+                  <div class="gr_grid_book_container">
+                    <a title={book.title} rel="nofollow noreferrer" href={book.href} target="_blank">
+                      <img
+                        alt={book.alt}
+                        src={assetHref(content.route, book.imageLocal.replace(/^\/+/, ""))}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
             <p class="goodreads-profile-link">
               <a href={content.sections.goodreads.profileHref} target="_blank" rel="noreferrer"
                 >{content.sections.goodreads.profileLabel}</a
