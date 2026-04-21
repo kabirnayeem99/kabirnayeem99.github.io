@@ -3,10 +3,6 @@ name: Deploy Astro to Pages
 on:
   push:
     branches: ["main"]
-    paths:
-      - "astro/**"
-      - ".github/workflows/deploy.yml"
-      - ".github/workflows/ci.yml"
   workflow_dispatch:
 
 permissions:
@@ -61,7 +57,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: astro/dist
+          path: ./astro/dist
 
       - name: Deploy to GitHub Pages
         id: deployment

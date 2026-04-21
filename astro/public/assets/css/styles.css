@@ -1285,18 +1285,14 @@ a:focus-visible {
 
 .wakatime-donut {
   grid-area: donut;
-  --wakatime-donut-scale: 1;
   width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--surface-elevated) 92%, #dbeafe 8%);
+  background: color-mix(in srgb, var(--surface-elevated) 94%, #dbeafe 6%);
   position: relative;
   justify-self: stretch;
   border: 1px solid color-mix(in srgb, var(--border) 82%, transparent 18%);
-  transform: scale(var(--wakatime-donut-scale));
-  transform-origin: center;
-  transition: transform 220ms var(--ease-smooth);
-  will-change: transform;
+  overflow: hidden;
 }
 
 .wakatime-donut::before {
@@ -1304,13 +1300,7 @@ a:focus-visible {
 }
 
 .wakatime-donut::after {
-  content: "";
-  position: absolute;
-  inset: 26%;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--surface) 90%, #fae8ff 10%);
-  border: 1px solid color-mix(in srgb, var(--border) 84%, transparent 16%);
-  z-index: 2;
+  content: none;
 }
 
 .wakatime-donut-svg {
@@ -1323,39 +1313,38 @@ a:focus-visible {
 }
 
 .wakatime-donut-segment {
-  stroke-width: 30;
-  stroke-linecap: round;
-  fill: none;
+  cursor: pointer;
   transform-box: fill-box;
   transform-origin: center;
   transition:
-    transform 220ms var(--ease-smooth),
-    stroke-width 220ms var(--ease-smooth),
-    filter 220ms var(--ease-smooth),
-    opacity 220ms var(--ease-smooth);
-  vector-effect: non-scaling-stroke;
+    transform 180ms var(--ease-smooth),
+    filter 180ms var(--ease-smooth),
+    opacity 180ms var(--ease-smooth);
 }
 
 .wakatime-donut-segment.is-active,
 .wakatime-donut-segment:hover {
-  stroke-width: 34;
-  filter: saturate(0.95) brightness(1.02);
+  filter: brightness(1.06) saturate(1.04);
 }
 
 .wakatime-language-chart:hover .wakatime-donut,
 .wakatime-donut:focus-visible {
-  --wakatime-donut-scale: 1.02;
+  outline: none;
+}
+
+.wakatime-pie-label {
+  font-size: 8.8px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  fill: #fff;
+  paint-order: stroke;
+  stroke: color-mix(in srgb, #111827 72%, transparent 28%);
+  stroke-width: 1.8px;
+  pointer-events: none;
 }
 
 .wakatime-donut-center {
-  grid-area: donut;
-  z-index: 3;
-  justify-self: center;
-  align-self: center;
-  display: grid;
-  text-align: center;
-  gap: 0.1rem;
-  pointer-events: none;
+  display: none;
 }
 
 .wakatime-donut-value {

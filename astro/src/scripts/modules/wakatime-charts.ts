@@ -271,11 +271,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .sort((left, right) => right.percent - left.percent);
   };
 
-  interface DonutSegmentUi {
-    readonly path: SVGPathElement;
-    readonly offsetX: number;
-    readonly offsetY: number;
-  }
+interface DonutSegmentUi {
+  readonly path: SVGPathElement;
+  readonly offsetX: number;
+  readonly offsetY: number;
+}
 
   const toRadians = (degrees: number): number => (degrees * Math.PI) / 180;
 
@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const start = polarToCartesian(centerX, centerY, radius, startAngle);
     const end = polarToCartesian(centerX, centerY, radius, endAngle);
     const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0;
-    return `M ${start.x.toFixed(3)} ${start.y.toFixed(3)} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${end.x.toFixed(3)} ${end.y.toFixed(3)}`;
+    return `M ${centerX.toFixed(3)} ${centerY.toFixed(3)} L ${start.x.toFixed(3)} ${start.y.toFixed(3)} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${end.x.toFixed(3)} ${end.y.toFixed(3)} Z`;
   };
 
   const buildDonutSegments = (segments: readonly LanguageItem[]): readonly DonutSegmentUi[] => {
@@ -324,35 +324,45 @@ document.addEventListener("DOMContentLoaded", () => {
     group.setAttribute("class", "wakatime-donut-segments");
 
     const donutSegments: DonutSegmentUi[] = [];
-    const radius = 68;
-    const gapDegrees = 3.2;
+    const radius = 86;
     let currentAngle = -90;
 
     segments.forEach((item) => {
       const segmentAngle = (item.percent / total) * 360;
-      const arcAngle = Math.max(0, segmentAngle - gapDegrees);
-
-      if (arcAngle <= 0.15) {
+      if (segmentAngle <= 0.01) {
         currentAngle += segmentAngle;
         return;
       }
 
-      const startAngle = currentAngle + gapDegrees / 2;
-      const endAngle = currentAngle + segmentAngle - gapDegrees / 2;
+      const startAngle = currentAngle;
+      const endAngle = currentAngle + segmentAngle;
       const midAngle = (startAngle + endAngle) / 2;
 
       const path = document.createElementNS(SVG_NS, "path");
       path.setAttribute("class", "wakatime-donut-segment");
       path.setAttribute("d", describeArcPath(100, 100, radius, startAngle, endAngle));
-      path.setAttribute("stroke", item.color);
-      path.setAttribute("fill", "none");
+      path.setAttribute("fill", item.color);
+      path.setAttribute("stroke", "color-mix(in srgb, var(--surface) 92%, white 8%)");
+      path.setAttribute("stroke-width", "1");
 
       group.appendChild(path);
 
+      if (item.percent >= 6) {
+        const labelPoint = polarToCartesian(100, 100, radius * 0.62, midAngle);
+        const label = document.createElementNS(SVG_NS, "text");
+        label.setAttribute("class", "wakatime-pie-label");
+        label.setAttribute("x", labelPoint.x.toFixed(2));
+        label.setAttribute("y", labelPoint.y.toFixed(2));
+        label.setAttribute("text-anchor", "middle");
+        label.setAttribute("dominant-baseline", "middle");
+        label.textContent = formatPercent(item.percent);
+        group.appendChild(label);
+      }
+
       donutSegments.push({
         path,
-        offsetX: Math.cos(toRadians(midAngle)) * 2.4,
-        offsetY: Math.sin(toRadians(midAngle)) * 2.4,
+        offsetX: Math.cos(toRadians(midAngle)) * 3.2,
+        offsetY: Math.sin(toRadians(midAngle)) * 3.2,
       });
 
       currentAngle += segmentAngle;
@@ -367,7 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const activateDonutSegment = (segment: DonutSegmentUi): void => {
     segment.path.classList.add("is-active");
-    segment.path.style.transform = `translate(${segment.offsetX.toFixed(2)}px, ${segment.offsetY.toFixed(2)}px) scale(1.02)`;
+    segment.path.style.transform = `translate(${segment.offsetX.toFixed(2)}px, ${segment.offsetY.toFixed(2)}px) scale(1.01)`;
   };
 
   const deactivateDonutSegment = (segment: DonutSegmentUi): void => {
@@ -443,7 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const segmentsLabel = chartSegments
         .map((item) => `${item.name}: ${formatPercent(item.percent)}`)
         .join(", ");
-      languageDonutEl.setAttribute("aria-label", `Language share donut chart: ${segmentsLabel}`);
+      languageDonutEl.setAttribute("aria-label", `Language share pie chart: ${segmentsLabel}`);
       languageDonutEl.setAttribute("title", `Top language share: ${segmentsLabel}`);
     }
 
