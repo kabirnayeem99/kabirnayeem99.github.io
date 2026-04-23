@@ -5,6 +5,7 @@ import HeadSeo from "./HeadSeo.astro";
 import HighlightCard from "./HighlightCard.astro";
 import PageFooter from "./PageFooter.astro";
 import heroLogo from "../../assets/images/logo.svg";
+import profileQr from "../../assets/images/profile-qr.svg";
 import goodreadsSnapshot from "../../data/site-content/goodreads-snapshot.json";
 import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
 import {
@@ -295,16 +296,31 @@ const viewAllStatsAction: IndexAction = {
 
         <div class="header-identity">
           <div class="hero-avatar-card">
-            <Image
-              class="hero-illustration"
-              alt={content.site.locale.ogImageAlt}
-              src={heroLogo}
-              width={1024}
-              height={1024}
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-            />
+            <div class="hero-avatar-flip">
+              <div class="hero-avatar-face hero-avatar-face--front">
+                <Image
+                  class="hero-illustration"
+                  alt={content.site.locale.ogImageAlt}
+                  src={heroLogo}
+                  width={1024}
+                  height={1024}
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                />
+              </div>
+              <div class="hero-avatar-face hero-avatar-face--back" aria-hidden="true">
+                <Image
+                  class="hero-qr-code"
+                  alt=""
+                  src={profileQr}
+                  width={512}
+                  height={512}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
           </div>
           <div class="header-identity-copy">
             <h1 class="site-title">{content.header.siteTitle}</h1>

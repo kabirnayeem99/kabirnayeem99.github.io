@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="448" height="448" viewBox="0 0 512 512" xml:space="preserve">
+<desc>Created with Fabric.js 5.3.0</desc>
+<defs>
+</defs>
+<rect x="0" y="0" width="100%" height="100%" fill="rgba(161, 98, 7, 0)"></rect>
+<g transform="matrix(1 0 0 1 256 256)"  >
+<rect style="stroke: rgb(161,98,7); stroke-width: 2; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0; fill-rule: nonzero; opacity: 1;"  x="-255" y="-255" rx="32" ry="32" width="510" height="510" />
+</g>
+<g transform="matrix(1 0 0 1 256 256)"  >
+<g style=""   >
+		<g transform="matrix(1 0 0 1 0 0)" clip-path="url(#CLIPPATH_43)"  >
+<clipPath id="CLIPPATH_43" >
+	<rect transform="matrix(1 0 0 1 0 0)" id="clip-path-background-color-43" x="-244" y="-244" rx="0" ry="0" width="488" height="488" />
+</clipPath>
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(161,98,7); fill-opacity: 0; fill-rule: nonzero; opacity: 1;"  x="-244" y="-244" rx="0" ry="0" width="488" height="488" />
+</g>
+		<g transform="matrix(1 0 0 1 0 0)" clip-path="url(#CLIPPATH_44)"  >
+<clipPath id="CLIPPATH_44" >
+		<circle transform="matrix(1 0 0 1 -96 -224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 -224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 -224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 -224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 -224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 -224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 -224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 -224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 -224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 -224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 -208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 -208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 -208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 -208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 -208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 -208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 -192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 -192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 -192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 -192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 -192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 -176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 -176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 -176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 -176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 -176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 -176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 48 -176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 -176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 -160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 -160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 -160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 -160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 -160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 -160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 -144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 -144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 -144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 -144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 -144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 -144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 -144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 -144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 -128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 -128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 -128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 -128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 -128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 -128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 -128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 -112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 -112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 -112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 -112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 -112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 48 -112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 -112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 -112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -224 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -192 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -176 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -144 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -128 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -112 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 48 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 128 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 176 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 224 -96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -208 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -192 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -176 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -160 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -112 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 128 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 224 -80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -224 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -160 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -128 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -112 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 48 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 -64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -208 -48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -192 -48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -160 -48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 -48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 -48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 -48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 -48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 -48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 224 -48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -208 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -144 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -128 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 48 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 176 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 -32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -208 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -160 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -112 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 128 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 224 -16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -224 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -176 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -160 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -144 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -128 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -112 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 224 0)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -224 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -192 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -112 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 128 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 16)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -224 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -176 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -160 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -128 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -112 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 176 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 32)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -176 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 176 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 48)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -224 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -192 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -176 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -144 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -128 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 64)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -176 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -112 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 48 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 80)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -208 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -176 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -128 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 48 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 128 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 176 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 96)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 176 112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 224 112)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 128 128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 176 128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 128)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 0 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 176 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 224 144)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 48 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 128 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 160)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 32 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 176 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 224 176)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -48 192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 48 192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 192 192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 224 192)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -80 208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 128 208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 176 208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 208)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -96 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -64 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -32 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 -16 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 16 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 64 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 80 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 96 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 112 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 144 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 160 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+		<circle transform="matrix(1 0 0 1 208 224)" id="clip-path-dot-color-43" cx="0" cy="0" r="8" />
+</clipPath>
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(161,98,7); fill-rule: nonzero; opacity: 1;"  x="-244" y="-244" rx="0" ry="0" width="488" height="488" />
+</g>
+		<g transform="matrix(1 0 0 1 -176 -176)" clip-path="url(#CLIPPATH_45)"  >
+<clipPath id="CLIPPATH_45" >
+	<path transform="matrix(1 0 0 1 0 0) translate(-68, -68)" id="clip-path-corners-square-color-0-0-43" d="M 12 52 L 12 84 C 12 106.09138999323173 29.908610006768264 124 52 124 L 84 124 C 106.09138999323173 124 124 106.09138999323173 124 84 L 124 52 C 124 29.908610006768264 106.09138999323173 12 84 12 L 52 12 C 29.908610006768264 12 12 29.908610006768264 12 52 M 52 28 L 84 28 C 97.25483399593904 28 108 38.74516600406095 108 51.99999999999999 L 108 84 C 108 97.25483399593904 97.25483399593904 108 84 108 L 52 108 C 38.745166004060955 108 28 97.25483399593904 28 84 L 28 52 C 28 38.745166004060955 38.745166004060955 28 52 28" stroke-linecap="round" />
+</clipPath>
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(161,98,7); fill-rule: nonzero; opacity: 1;"  x="-56" y="-56" rx="0" ry="0" width="112" height="112" />
+</g>
+		<g transform="matrix(1 0 0 1 -176 -176)" clip-path="url(#CLIPPATH_46)"  >
+<clipPath id="CLIPPATH_46" >
+		<path transform="matrix(0 -1 1 0 -16 -16) translate(-52, -52)" id="clip-path-corners-dot-color-0-0-43" d="M 44 44 L 44 60 L 60 60 C 60 51.16344400270731 52.83655599729269 44 44 44" stroke-linecap="round" />
+		<rect transform="matrix(1 0 0 1 0 -16)" id="clip-path-corners-dot-color-0-0-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<path transform="matrix(1 0 0 1 16 -16) translate(-84, -52)" id="clip-path-corners-dot-color-0-0-43" d="M 76 44 L 76 60 L 92 60 C 92 51.16344400270731 84.83655599729269 44 76 44" stroke-linecap="round" />
+		<rect transform="matrix(1 0 0 1 -16 0)" id="clip-path-corners-dot-color-0-0-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<rect transform="matrix(1 0 0 1 0 0)" id="clip-path-corners-dot-color-0-0-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<rect transform="matrix(1 0 0 1 16 0)" id="clip-path-corners-dot-color-0-0-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<path transform="matrix(-1 0 0 -1 -16 16) translate(-52, -84)" id="clip-path-corners-dot-color-0-0-43" d="M 44 76 L 44 92 L 60 92 C 60 83.16344400270731 52.83655599729269 76 44 76" stroke-linecap="round" />
+		<rect transform="matrix(1 0 0 1 0 16)" id="clip-path-corners-dot-color-0-0-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<path transform="matrix(0 1 -1 0 16 16) translate(-84, -84)" id="clip-path-corners-dot-color-0-0-43" d="M 76 76 L 76 92 L 92 92 C 92 83.16344400270731 84.83655599729269 76 76 76" stroke-linecap="round" />
+</clipPath>
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(161,98,7); fill-rule: nonzero; opacity: 1;"  x="-24" y="-24" rx="0" ry="0" width="48" height="48" />
+</g>
+		<g transform="matrix(1 0 0 1 176 -176)" clip-path="url(#CLIPPATH_47)"  >
+<clipPath id="CLIPPATH_47" >
+	<path transform="matrix(0 1 -1 0 0 0) translate(-420, -68)" id="clip-path-corners-square-color-1-0-43" d="M 364 52 L 364 84 C 364 106.09138999323173 381.90861000676824 124 404 124 L 436 124 C 458.09138999323176 124 476 106.09138999323173 476 84 L 476 52 C 476 29.908610006768264 458.09138999323176 12 436 12 L 404 12 C 381.90861000676824 12 364 29.908610006768264 364 52 M 404 28 L 436 28 C 449.25483399593907 28 460 38.74516600406095 460 51.99999999999999 L 460 84 C 460 97.25483399593904 449.25483399593907 108 436 108 L 404 108 C 390.74516600406093 108 380 97.25483399593904 380 84 L 380 52 C 380 38.745166004060955 390.74516600406093 28 404 28" stroke-linecap="round" />
+</clipPath>
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(161,98,7); fill-rule: nonzero; opacity: 1;"  x="-56" y="-56" rx="0" ry="0" width="112" height="112" />
+</g>
+		<g transform="matrix(1 0 0 1 176 -176)" clip-path="url(#CLIPPATH_48)"  >
+<clipPath id="CLIPPATH_48" >
+		<path transform="matrix(0 -1 1 0 -16 -16) translate(-404, -52)" id="clip-path-corners-dot-color-1-0-43" d="M 396 44 L 396 60 L 412 60 C 412 51.16344400270731 404.8365559972927 44 396 44" stroke-linecap="round" />
+		<rect transform="matrix(1 0 0 1 0 -16)" id="clip-path-corners-dot-color-1-0-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<path transform="matrix(1 0 0 1 16 -16) translate(-436, -52)" id="clip-path-corners-dot-color-1-0-43" d="M 428 44 L 428 60 L 444 60 C 444 51.16344400270731 436.8365559972927 44 428 44" stroke-linecap="round" />
+		<rect transform="matrix(1 0 0 1 -16 0)" id="clip-path-corners-dot-color-1-0-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<rect transform="matrix(1 0 0 1 0 0)" id="clip-path-corners-dot-color-1-0-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<rect transform="matrix(1 0 0 1 16 0)" id="clip-path-corners-dot-color-1-0-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<path transform="matrix(-1 0 0 -1 -16 16) translate(-404, -84)" id="clip-path-corners-dot-color-1-0-43" d="M 396 76 L 396 92 L 412 92 C 412 83.16344400270731 404.8365559972927 76 396 76" stroke-linecap="round" />
+		<rect transform="matrix(1 0 0 1 0 16)" id="clip-path-corners-dot-color-1-0-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<path transform="matrix(0 1 -1 0 16 16) translate(-436, -84)" id="clip-path-corners-dot-color-1-0-43" d="M 428 76 L 428 92 L 444 92 C 444 83.16344400270731 436.8365559972927 76 428 76" stroke-linecap="round" />
+</clipPath>
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(161,98,7); fill-rule: nonzero; opacity: 1;"  x="-24" y="-24" rx="0" ry="0" width="48" height="48" />
+</g>
+		<g transform="matrix(1 0 0 1 -176 176)" clip-path="url(#CLIPPATH_49)"  >
+<clipPath id="CLIPPATH_49" >
+	<path transform="matrix(0 -1 1 0 0 0) translate(-68, -420)" id="clip-path-corners-square-color-0-1-43" d="M 12 404 L 12 436 C 12 458.09138999323176 29.908610006768264 476 52 476 L 84 476 C 106.09138999323173 476 124 458.09138999323176 124 436 L 124 404 C 124 381.90861000676824 106.09138999323173 364 84 364 L 52 364 C 29.908610006768264 364 12 381.90861000676824 12 404 M 52 380 L 84 380 C 97.25483399593904 380 108 390.74516600406093 108 404 L 108 436 C 108 449.25483399593907 97.25483399593904 460 84 460 L 52 460 C 38.745166004060955 460 28 449.25483399593907 28 436 L 28 404 C 28 390.74516600406093 38.745166004060955 380 52 380" stroke-linecap="round" />
+</clipPath>
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(161,98,7); fill-rule: nonzero; opacity: 1;"  x="-56" y="-56" rx="0" ry="0" width="112" height="112" />
+</g>
+		<g transform="matrix(1 0 0 1 -176 176)" clip-path="url(#CLIPPATH_50)"  >
+<clipPath id="CLIPPATH_50" >
+		<path transform="matrix(0 -1 1 0 -16 -16) translate(-52, -404)" id="clip-path-corners-dot-color-0-1-43" d="M 44 396 L 44 412 L 60 412 C 60 403.1634440027073 52.83655599729269 396 44 396" stroke-linecap="round" />
+		<rect transform="matrix(1 0 0 1 0 -16)" id="clip-path-corners-dot-color-0-1-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<path transform="matrix(1 0 0 1 16 -16) translate(-84, -404)" id="clip-path-corners-dot-color-0-1-43" d="M 76 396 L 76 412 L 92 412 C 92 403.1634440027073 84.83655599729269 396 76 396" stroke-linecap="round" />
+		<rect transform="matrix(1 0 0 1 -16 0)" id="clip-path-corners-dot-color-0-1-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<rect transform="matrix(1 0 0 1 0 0)" id="clip-path-corners-dot-color-0-1-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<rect transform="matrix(1 0 0 1 16 0)" id="clip-path-corners-dot-color-0-1-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<path transform="matrix(-1 0 0 -1 -16 16) translate(-52, -436)" id="clip-path-corners-dot-color-0-1-43" d="M 44 428 L 44 444 L 60 444 C 60 435.1634440027073 52.83655599729269 428 44 428" stroke-linecap="round" />
+		<rect transform="matrix(1 0 0 1 0 16)" id="clip-path-corners-dot-color-0-1-43" x="-8" y="-8" rx="0" ry="0" width="16" height="16" />
+		<path transform="matrix(0 1 -1 0 16 16) translate(-84, -436)" id="clip-path-corners-dot-color-0-1-43" d="M 76 428 L 76 444 L 92 444 C 92 435.1634440027073 84.83655599729269 428 76 428" stroke-linecap="round" />
+</clipPath>
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(161,98,7); fill-rule: nonzero; opacity: 1;"  x="-24" y="-24" rx="0" ry="0" width="48" height="48" />
+</g>
+</g>
+</g>
+</svg>

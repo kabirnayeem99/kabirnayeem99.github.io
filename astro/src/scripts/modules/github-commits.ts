@@ -366,7 +366,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const gapPx = 2;
     const totalGap = (weekCount - 1) * gapPx;
     const computedCell = Math.floor((availableWidth - totalGap) / weekCount);
-    const cellSize = Math.max(3, Math.min(12, computedCell));
+    // Keep contribution cells readable on mobile and allow horizontal scroll when needed.
+    const cellSize = Math.max(8, Math.min(14, computedCell));
 
     heatmapEl.style.setProperty("--github-heatmap-gap", `${gapPx}px`);
     heatmapEl.style.setProperty("--github-heatmap-cell", `${cellSize}px`);

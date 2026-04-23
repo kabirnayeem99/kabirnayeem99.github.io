@@ -344,6 +344,8 @@ interface DonutSegmentUi {
       path.setAttribute("fill", item.color);
       path.setAttribute("stroke", "color-mix(in srgb, var(--surface) 92%, white 8%)");
       path.setAttribute("stroke-width", "1");
+      path.setAttribute("stroke-linecap", "round");
+      path.setAttribute("stroke-linejoin", "round");
 
       group.appendChild(path);
 

@@ -200,6 +200,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
             <h2 class="section-title">{content.sections.learningPath.title}</h2>
             <p set:html={content.sections.learningPath.copy}></p>
             <a
+              class="stats-embed-link stats-embed-link--roadmap"
               href={roadmapLightHref}
               data-theme-light-href={roadmapLightHref}
               data-theme-dark-href={roadmapDarkHref}
