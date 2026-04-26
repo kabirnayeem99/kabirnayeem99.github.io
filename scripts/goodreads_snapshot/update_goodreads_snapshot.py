@@ -28,8 +28,9 @@ DEFAULT_WIDGET_URL = (
     "?cover_size=medium&hide_link=&hide_title=true&num_books=300"
     "&order=d&shelf=read&sort=date_added&widget_id=1771265103"
 )
-DEFAULT_SNAPSHOT_PATH = Path("astro/src/data/site-content/goodreads-snapshot.json")
-DEFAULT_IMAGES_DIR = Path("astro/public/assets/images/goodreads")
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_SNAPSHOT_PATH = REPO_ROOT / "astro/src/data/site-content/goodreads-snapshot.json"
+DEFAULT_IMAGES_DIR = REPO_ROOT / "astro/public/assets/images/goodreads"
 DEFAULT_TIMEOUT_SECONDS = 20
 
 
@@ -297,4 +298,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
