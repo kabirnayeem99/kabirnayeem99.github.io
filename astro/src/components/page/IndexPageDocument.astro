@@ -4,6 +4,8 @@ import BackToTopButton from "./BackToTopButton.astro";
 import HeadSeo from "./HeadSeo.astro";
 import HighlightCard from "./HighlightCard.astro";
 import PageFooter from "./PageFooter.astro";
+import PageNav from "./PageNav.astro";
+import { buildMainNav } from "../../lib/main-nav";
 import heroLogo from "../../assets/images/logo.svg";
 import profileQr from "../../assets/images/profile-qr.svg";
 import goodreadsSnapshot from "../../data/site-content/goodreads-snapshot.json";
@@ -309,7 +311,10 @@ const viewAllStatsAction: IndexAction = {
                   fetchpriority="high"
                 />
               </div>
-              <div class="hero-avatar-face hero-avatar-face--back" aria-hidden="true">
+              <div
+                class="hero-avatar-face hero-avatar-face--back"
+                aria-hidden="true"
+              >
                 <Image
                   class="hero-qr-code"
                   alt=""
@@ -347,6 +352,8 @@ const viewAllStatsAction: IndexAction = {
             ))
           }
         </div>
+
+        <PageNav items={buildMainNav(currentRoute)} />
       </header>
 
       <main id={PAGE_LAYOUT.mainContentId}>
@@ -439,7 +446,9 @@ const viewAllStatsAction: IndexAction = {
         <section>
           <div class="summary-card stats-card">
             <div class="section-head">
-              <h2 class="section-title">{content.statsCompact.wakatime.title}</h2>
+              <h2 class="section-title">
+                {content.statsCompact.wakatime.title}
+              </h2>
               <div class="section-actions">
                 {
                   (() => {
@@ -491,7 +500,9 @@ const viewAllStatsAction: IndexAction = {
         <section>
           <div class="summary-card stats-card">
             <div class="section-head">
-              <h2 class="section-title">{content.statsCompact.goodreads.title}</h2>
+              <h2 class="section-title">
+                {content.statsCompact.goodreads.title}
+              </h2>
               <div class="section-actions">
                 {
                   (() => {
@@ -516,23 +527,28 @@ const viewAllStatsAction: IndexAction = {
               id={`gr_grid_widget_${content.statsCompact.goodreads.widgetId}`}
             >
               <div class="gr_grid_container">
-                {goodreadsBooks.map((book) => (
-                  <div class="gr_grid_book_container">
-                    <a
-                      title={book.title}
-                      rel="nofollow noreferrer"
-                      href={book.href}
-                      target="_blank"
-                    >
-                      <img
-                        alt={book.alt}
-                        src={assetHref(currentRoute, book.imageLocal.replace(/^\/+/, ""))}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </a>
-                  </div>
-                ))}
+                {
+                  goodreadsBooks.map((book) => (
+                    <div class="gr_grid_book_container">
+                      <a
+                        title={book.title}
+                        rel="nofollow noreferrer"
+                        href={book.href}
+                        target="_blank"
+                      >
+                        <img
+                          alt={book.alt}
+                          src={assetHref(
+                            currentRoute,
+                            book.imageLocal.replace(/^\/+/, ""),
+                          )}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </a>
+                    </div>
+                  ))
+                }
               </div>
             </div>
           </div>

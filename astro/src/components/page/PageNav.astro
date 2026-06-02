@@ -1,0 +1,24 @@
+---
+import type { MainNavItem } from "../../lib/main-nav";
+
+interface Props {
+  readonly items: readonly MainNavItem[];
+  readonly ariaLabel?: string;
+}
+
+const { items, ariaLabel = "Primary" } = Astro.props as Props;
+---
+
+<nav class="page-nav" aria-label={ariaLabel}>
+  {
+    items.map((item) => (
+      <a
+        class="page-nav-link"
+        href={item.href}
+        aria-current={item.isCurrent ? "page" : undefined}
+      >
+        {item.label}
+      </a>
+    ))
+  }
+</nav>

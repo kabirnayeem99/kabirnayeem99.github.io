@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" preserveAspectRatio="none">
+  <defs>
+    <filter id="bristle" x="-6%" y="-35%" width="112%" height="170%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.09" numOctaves="3" seed="11" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <g filter="url(#bristle)">
+    <path d="M 44,36 C 48,10 110,4 170,5 C 228,6 292,12 308,30 C 316,40 308,58 282,63 C 236,70 90,72 52,62 C 26,55 18,44 36,36 C 38,34 40,33 44,36 Z"
+          fill="none" stroke="#2563eb" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    <path d="M 38,33 C 32,28 30,34 44,36"
+          fill="none" stroke="#2563eb" stroke-width="10" stroke-linecap="round" opacity="0.82"/>
+  </g>
+</svg>

@@ -1,11 +1,16 @@
 ---
+import PageNav from "./PageNav.astro";
+import { buildMainNav } from "../../lib/main-nav";
+
 interface Props {
   readonly homeHref: string;
   readonly closeLabel: string;
   readonly title: string;
+  readonly currentRoute: string;
 }
 
-const { homeHref, closeLabel, title } = Astro.props;
+const { homeHref, closeLabel, title, currentRoute } = Astro.props;
+const navItems = buildMainNav(currentRoute);
 ---
 
 <header id="top">
@@ -19,4 +24,5 @@ const { homeHref, closeLabel, title } = Astro.props;
     >
     <h1 class="site-title site-title--page">{title}</h1>
   </div>
+  <PageNav items={navItems} />
 </header>

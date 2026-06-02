@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 24" preserveAspectRatio="none">
+  <defs>
+    <filter id="bristle" x="-4%" y="-30%" width="108%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.014 0.55" numOctaves="3" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="0.42" stop-color="#93c5fd"/>
+      <stop offset="0.78" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <g filter="url(#bristle)">
+    <path d="M4,12 C70,4 150,7 240,9 C272,9.6 296,11 314,9.5 L314,16 C296,17.5 272,16 240,16 C150,18 70,17 6,21 Z" fill="url(#ink)" opacity="0.88"/>
+    <path d="M6,10 C90,5 190,8 314,9" stroke="#bfdbfe" stroke-width="0.8" fill="none" opacity="0.38" stroke-linecap="round"/>
+    <path d="M8,17 C100,15 200,16 314,14" stroke="#60a5fa" stroke-width="0.7" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M40,13 C130,10 220,12 300,12" stroke="#93c5fd" stroke-width="0.5" fill="none" opacity="0.22" stroke-linecap="round"/>
+  </g>
+</svg>

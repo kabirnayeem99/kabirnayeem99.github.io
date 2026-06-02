@@ -107,6 +107,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
       <ClosePageHeader
         homeHref={homeHref}
         closeLabel={uiLabels.closePage}
+        currentRoute={content.route}
         title={content.header.siteTitle}
       />
       <main id={PAGE_LAYOUT.mainContentId}>

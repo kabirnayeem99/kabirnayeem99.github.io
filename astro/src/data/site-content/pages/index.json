@@ -9,18 +9,18 @@
       },
       "header": {
         "site_title": "Naimul Kabir",
-        "tagline": "Muslim · Software Engineer · Bibliophile · Philomath"
+        "tagline": "Muslim< · Software Engineer · Bibliophile · Philomath"
       },
       "summary_card": [
-        "Software engineer focused on Android, iOS, Flutter, and Kotlin Multiplatform. I build cross-platform products with native-level performance, reliability, and maintainability.",
-        "Comfortable across the stack (full-stack) when needed.",
-        "Currently at <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">Syarah</a>, building internal supply-chain systems and tooling. Open to remote roles and contract work."
+        "Software engineer focused on <mark>Android, iOS, Flutter, and Kotlin Multiplatform</mark>. I build cross-platform apps with native-level performance, reliability, and maintainability.",
+        "Comfortable across the stack <mark>(full-stack)</mark> when needed.",
+        "Currently at <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">Syarah</a>, building internal supply-chain systems and tooling. Open to <mark>remote roles and contract work</mark>."
       ],
       "sections": [
         {
           "title": "Right Now",
           "paragraphs": [
-            "Lately, I’ve been working with PHP Laravel on a contract project involving video streaming. Alongside that, I’ve been going deeper into backend work with PostgreSQL, Docker, Go, and PHP, while also picking up QA testing and UI UX basics through courses.",
+            "Lately, I've been working on some contract project involving <mark>PHP Laravel</mark>, Video Streaming and AI voice evaluation. Alongside that, I've been going deeper into backend work with PostgreSQL, Docker, Go, and PHP, while also picking up QA testing and UI UX basics through courses.",
             "Outside work, reading is pretty much my single source of entertainment. Mostly light novels and thrillers, with occasional detours into philosophy, history, Islamic theology, and politics. I also keep up with tech and current affairs through blogs and long form writing, spending an unhealthy amount of time on Hacker News."
           ]
         },
