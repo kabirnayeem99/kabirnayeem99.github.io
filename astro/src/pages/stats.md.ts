@@ -34,7 +34,7 @@ export function GET(): Response {
   lines.push("");
   lines.push(`## ${toMarkdownText(content.sections.leetcode.title)}`);
   lines.push(`- ${toMarkdownText(content.sections.leetcode.copy)}`);
-  lines.push(`- Card: ${content.sections.leetcode.cardSrc}`);
+  lines.push(`- API: ${content.sections.leetcode.apiUrl}`);
 
   lines.push("");
   lines.push(`## ${toMarkdownText(content.sections.learningPath.title)}`);
