@@ -64,7 +64,7 @@
           "image_alt": "roadmap.sh"
         },
         "goodreads": {
-          "title": "These Books Were Read Recently",
+          "title": "Recently Read Books",
           "copy": "These books were read recently. Or I had read them before and only added them to Goodreads recently.",
           "widget_id": "1771265103",
           "user_id": "45514357",
@@ -73,6 +73,17 @@
           "profile_label": "You can check the full Goodreads shelf. A good chunk of the books I’ve read are there.",
           "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_added&widget_id=1771265103",
           "status_text": "Fetching my Goodreads shelf, might take a moment…"
+        },
+        "github_profile": {
+          "title": "GitHub Repositories",
+          "status_text": "Loading GitHub profile…",
+          "repos_api_url": "https://api.github.com/users/kabirnayeem99/repos?per_page=100&type=owner",
+          "prs_api_url": "https://api.github.com/search/issues?q=author:kabirnayeem99+type:pr+state:closed",
+          "issues_api_url": "https://api.github.com/search/issues?q=author:kabirnayeem99+type:issue",
+          "source_href": "https://github.com/kabirnayeem99",
+          "source_text": "github.com/kabirnayeem99",
+          "repos_aria_label": "Most starred GitHub repositories",
+          "language_aria_label": "Programming language distribution across GitHub repositories"
         }
       },
       "footer_html": "Need any more data? You can knock. Inbox is open."
@@ -149,6 +160,17 @@
           "profile_label": "পুরো গুডরিডস শেলফ দেখতে পারেন, মোটামুটি পড়া বইয়ের অনেগুলোই এখানে আছে।",
           "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_added&widget_id=1771265103",
           "status_text": "গুডরিডস থেকে আমার শেলফ নেমে আসছে, একটু সময় লাগবে…"
+        },
+        "github_profile": {
+          "title": "GitHub রিপোজিটরি",
+          "status_text": "GitHub প্রোফাইল লোড হচ্ছে…",
+          "repos_api_url": "https://api.github.com/users/kabirnayeem99/repos?per_page=100&type=owner",
+          "prs_api_url": "https://api.github.com/search/issues?q=author:kabirnayeem99+type:pr+state:closed",
+          "issues_api_url": "https://api.github.com/search/issues?q=author:kabirnayeem99+type:issue",
+          "source_href": "https://github.com/kabirnayeem99",
+          "source_text": "github.com/kabirnayeem99",
+          "repos_aria_label": "সবচেয়ে বেশি স্টার পাওয়া GitHub রিপোজিটরি",
+          "language_aria_label": "GitHub রিপোজিটরিগুলোতে প্রোগ্রামিং ভাষার বিতরণ"
         }
       },
       "footer_html": "আর কোন ডাটা লাগলে, নক দিতে পারেন। ইমেইল খোলা আছে।"
@@ -225,6 +247,17 @@
           "profile_label": "يُمْكِنُكَ رُؤْيَةُ رَفِّ Goodreads كَامِلًا، فَأَكْثَرُ ٱلْكُتُبِ ٱلَّتِي قَرَأْتُهَا مَوْجُودَةٌ هُنَاكَ.",
           "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_added&widget_id=1771265103",
           "status_text": "يَجْرِي جَلْبُ رَفِّي مِنْ Goodreads، قَدْ يَسْتَغْرِقُ ٱلْأَمْرُ قَلِيلًا…"
+        },
+        "github_profile": {
+          "title": "مُسْتَوْدَعَاتُ GitHub",
+          "status_text": "جَارٍ تَحْمِيلُ مِلَفِّ GitHub…",
+          "repos_api_url": "https://api.github.com/users/kabirnayeem99/repos?per_page=100&type=owner",
+          "prs_api_url": "https://api.github.com/search/issues?q=author:kabirnayeem99+type:pr+state:closed",
+          "issues_api_url": "https://api.github.com/search/issues?q=author:kabirnayeem99+type:issue",
+          "source_href": "https://github.com/kabirnayeem99",
+          "source_text": "github.com/kabirnayeem99",
+          "repos_aria_label": "أَكْثَرُ مُسْتَوْدَعَاتِ GitHub نُجُومًا",
+          "language_aria_label": "تَوْزِيعُ لُغَاتِ ٱلْبَرْمَجَةِ عَبْرَ مُسْتَوْدَعَاتِ GitHub"
         }
       },
       "footer_html": "إِذَا أَرَدْتَ بَيَانَاتٍ أُخْرَىٰ، فَيُمْكِنُكَ مُرَاسَلَتِي. ٱلْبَرِيدُ مَفْتُوحٌ."
@@ -301,6 +334,17 @@
           "profile_label": "پورا Goodreads شیلف دیکھ سکتے ہیں، پڑھی ہوئی کافی کتابیں وہاں موجود ہیں۔",
           "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_added&widget_id=1771265103",
           "status_text": "Goodreads سے میرا شیلف آ رہا ہے، تھوڑا وقت لگے گا…"
+        },
+        "github_profile": {
+          "title": "GitHub ریپوزیٹریز",
+          "status_text": "GitHub پروفائل لوڈ ہو رہی ہے…",
+          "repos_api_url": "https://api.github.com/users/kabirnayeem99/repos?per_page=100&type=owner",
+          "prs_api_url": "https://api.github.com/search/issues?q=author:kabirnayeem99+type:pr+state:closed",
+          "issues_api_url": "https://api.github.com/search/issues?q=author:kabirnayeem99+type:issue",
+          "source_href": "https://github.com/kabirnayeem99",
+          "source_text": "github.com/kabirnayeem99",
+          "repos_aria_label": "سب سے زیادہ ستارے والی GitHub ریپوزیٹریز",
+          "language_aria_label": "GitHub ریپوزیٹریز میں پروگرامنگ زبانوں کی تقسیم"
         }
       },
       "footer_html": "اور کوئی ڈیٹا چاہیے ہو تو دستک دے سکتے ہیں۔ ای میل کھلا ہے۔"

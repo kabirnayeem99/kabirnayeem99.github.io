@@ -45,6 +45,7 @@ interface HeatmapDay {
 const WEEKS_TO_SHOW = 53;
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 const HEATMAP_SCALE = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"] as const;
+const SVG_NS = "http://www.w3.org/2000/svg";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
@@ -384,6 +385,73 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  const renderYearlyChart = (payload: GitHubContributionPayload): void => {
+    const yearlyEl = widget.querySelector<HTMLElement>('[data-role="yearly-chart"]');
+    if (!(yearlyEl instanceof HTMLElement)) {
+      return;
+    }
+
+    const yearlyTotals = isRecord(payload.total) ? payload.total : {};
+    const entries = Object.entries(yearlyTotals)
+      .map(([year, count]) => ({ year, count: Math.max(0, Math.round(toSafeNumber(count))) }))
+      .sort((a, b) => Number(a.year) - Number(b.year));
+
+    if (entries.length === 0) {
+      yearlyEl.innerHTML = "";
+      return;
+    }
+
+    const maxCount = entries.reduce((max, e) => Math.max(max, e.count), 0);
+    const colW = 36;
+    const chartH = 110;
+    const barMaxH = 72;
+    const totalW = entries.length * colW;
+    const svgH = chartH + 22;
+
+    const svg = document.createElementNS(SVG_NS, "svg");
+    svg.setAttribute("viewBox", `0 0 ${totalW} ${svgH}`);
+    svg.setAttribute("class", "github-yearly-chart");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Contributions per year");
+
+    entries.forEach((entry, index) => {
+      const barH = maxCount > 0 ? Math.max(3, Math.round((entry.count / maxCount) * barMaxH)) : 3;
+      const barW = 20;
+      const barX = index * colW + (colW - barW) / 2;
+      const barY = chartH - barH;
+
+      const rect = document.createElementNS(SVG_NS, "rect");
+      rect.setAttribute("x", String(barX));
+      rect.setAttribute("y", String(barY));
+      rect.setAttribute("width", String(barW));
+      rect.setAttribute("height", String(barH));
+      rect.setAttribute("rx", "3");
+      rect.setAttribute("fill", "#40c463");
+      rect.setAttribute("class", "github-yearly-bar");
+      rect.setAttribute("aria-label", `${entry.year}: ${formatNumber(entry.count)}`);
+      svg.appendChild(rect);
+
+      const countText = document.createElementNS(SVG_NS, "text");
+      countText.setAttribute("x", String(index * colW + colW / 2));
+      countText.setAttribute("y", String(barY - 4));
+      countText.setAttribute("text-anchor", "middle");
+      countText.setAttribute("class", "github-yearly-label");
+      countText.textContent = formatNumber(entry.count);
+      svg.appendChild(countText);
+
+      const yearText = document.createElementNS(SVG_NS, "text");
+      yearText.setAttribute("x", String(index * colW + colW / 2));
+      yearText.setAttribute("y", String(chartH + 15));
+      yearText.setAttribute("text-anchor", "middle");
+      yearText.setAttribute("class", "github-yearly-year");
+      yearText.textContent = entry.year;
+      svg.appendChild(yearText);
+    });
+
+    yearlyEl.innerHTML = "";
+    yearlyEl.appendChild(svg);
+  };
+
   const render = (payload: GitHubContributionPayload, statusMessage: string): void => {
     const todayUtc = toUtcDateOnly(new Date());
     const items = normalizeContributions(payload, todayUtc);
@@ -391,6 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const days = buildHeatmapDays(byDate, todayUtc);
 
     renderSummary(payload, items, byDate, todayUtc);
+    renderYearlyChart(payload);
     renderHeatmap(days);
     fitHeatmapToContainer();
     renderLegend();

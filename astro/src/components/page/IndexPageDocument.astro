@@ -80,7 +80,7 @@ const lightModeIconHref = assetHref(currentRoute, "icons/theme-light.svg");
 const goodreadsScriptSource = (() => {
   try {
     const parsed = new URL(content.statsCompact.goodreads.scriptSrc);
-    parsed.searchParams.set("num_books", "50");
+    parsed.searchParams.set("num_books", "11");
     return parsed.toString();
   } catch {
     return content.statsCompact.goodreads.scriptSrc;
@@ -192,7 +192,8 @@ const socialChips: readonly SocialChip[] = [
   ...topSocialChips,
   ...profileSocialChips,
 ];
-const goodreadsBooks = goodreadsSnapshot.books.slice(0, 50);
+const goodreadsBooks = goodreadsSnapshot.books.slice(0, 11);
+const statsBooksHref = `${routeHref(currentRoute, routeForAction("stats"))}#gr_grid_widget_${content.statsCompact.goodreads.widgetId}`;
 
 const viewAllStatsAction: IndexAction = {
   label: content.viewAllStatsLabel,
@@ -525,6 +526,7 @@ const viewAllStatsAction: IndexAction = {
             <div
               class="goodreads-widget"
               id={`gr_grid_widget_${content.statsCompact.goodreads.widgetId}`}
+              data-stats-books-href={statsBooksHref}
             >
               <div class="gr_grid_container">
                 {
@@ -549,6 +551,9 @@ const viewAllStatsAction: IndexAction = {
                     </div>
                   ))
                 }
+                <div class="gr_grid_book_placeholder">
+                  <a href={statsBooksHref}>Browse all my reads</a>
+                </div>
               </div>
             </div>
           </div>

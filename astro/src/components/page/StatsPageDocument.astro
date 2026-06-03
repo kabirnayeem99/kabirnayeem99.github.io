@@ -147,6 +147,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
               </p>
               <div class="github-commits-visuals" data-role="visuals" hidden>
                 <div class="github-commits-summary" data-role="summary-cards"></div>
+                <div class="github-yearly-wrap" data-role="yearly-chart"></div>
                 <div class="github-heatmap-wrap">
                   <div class="github-heatmap-scroll">
                     <div
@@ -168,6 +169,42 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
               <a href={content.sections.githubCommits.sourceHref} target="_blank" rel="noreferrer"
                 >{content.sections.githubCommits.sourceText}</a
               >
+            </p>
+          </div>
+        </section>
+        <section>
+          <div class="summary-card stats-card">
+            <h2 class="section-title">{content.sections.githubProfile.title}</h2>
+            <div
+              class="github-profile-widget"
+              data-github-profile-widget
+              data-repos-api-url={content.sections.githubProfile.reposApiUrl}
+              data-prs-api-url={content.sections.githubProfile.prsApiUrl}
+              data-issues-api-url={content.sections.githubProfile.issuesApiUrl}
+            >
+              <p class="github-profile-status" data-role="status">
+                {content.sections.githubProfile.statusText}
+              </p>
+              <div class="github-profile-visuals" data-role="visuals" hidden>
+                <div class="github-profile-summary" data-role="summary-cards"></div>
+                <div
+                  class="github-repos-grid"
+                  data-role="repos"
+                  aria-label={content.sections.githubProfile.reposAriaLabel}
+                ></div>
+                <div
+                  class="github-profile-lang-section"
+                  aria-label={content.sections.githubProfile.languageAriaLabel}
+                >
+                  <div class="github-profile-donut" data-role="language-donut"></div>
+                  <ol class="github-profile-lang-legend" data-role="language-legend"></ol>
+                </div>
+              </div>
+            </div>
+            <p class="meta">
+              <a href={content.sections.githubProfile.sourceHref} target="_blank" rel="noreferrer">
+                {content.sections.githubProfile.sourceText}
+              </a>
             </p>
           </div>
         </section>

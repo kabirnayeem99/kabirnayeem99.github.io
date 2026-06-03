@@ -146,6 +146,10 @@ export function loadStatsPageContent(lang: Lang): StatsPageContent {
     `root.pages.stats.locales.${lang}.sections.learning_path`,
   );
   const goodreads = asRecord(sections.goodreads, `root.pages.stats.locales.${lang}.sections.goodreads`);
+  const githubProfile = asRecord(
+    sections.github_profile,
+    `root.pages.stats.locales.${lang}.sections.github_profile`,
+  );
 
   return {
     lang,
@@ -291,6 +295,53 @@ export function loadStatsPageContent(lang: Lang): StatsPageContent {
           goodreads,
           "script_src",
           `root.pages.stats.locales.${lang}.sections.goodreads`,
+        ),
+      },
+      githubProfile: {
+        title: readString(
+          githubProfile,
+          "title",
+          `root.pages.stats.locales.${lang}.sections.github_profile`,
+        ),
+        statusText: readString(
+          githubProfile,
+          "status_text",
+          `root.pages.stats.locales.${lang}.sections.github_profile`,
+        ),
+        reposApiUrl: readString(
+          githubProfile,
+          "repos_api_url",
+          `root.pages.stats.locales.${lang}.sections.github_profile`,
+        ),
+        prsApiUrl: readString(
+          githubProfile,
+          "prs_api_url",
+          `root.pages.stats.locales.${lang}.sections.github_profile`,
+        ),
+        issuesApiUrl: readString(
+          githubProfile,
+          "issues_api_url",
+          `root.pages.stats.locales.${lang}.sections.github_profile`,
+        ),
+        sourceHref: readString(
+          githubProfile,
+          "source_href",
+          `root.pages.stats.locales.${lang}.sections.github_profile`,
+        ),
+        sourceText: readString(
+          githubProfile,
+          "source_text",
+          `root.pages.stats.locales.${lang}.sections.github_profile`,
+        ),
+        reposAriaLabel: readString(
+          githubProfile,
+          "repos_aria_label",
+          `root.pages.stats.locales.${lang}.sections.github_profile`,
+        ),
+        languageAriaLabel: readString(
+          githubProfile,
+          "language_aria_label",
+          `root.pages.stats.locales.${lang}.sections.github_profile`,
         ),
       },
     },

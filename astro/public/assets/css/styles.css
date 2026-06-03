@@ -1325,11 +1325,15 @@ html[data-theme="dark"] .wakatime-widget h3 {
     transform var(--dur-base) var(--ease-smooth);
 }
 
-.summary-card:hover,
+.summary-card:hover {
+  border-color: color-mix(in srgb, var(--accent-border) 72%, var(--border) 28%);
+  transform: var(--lift-1);
+}
+
 .wakatime-widget:hover,
 .github-commits-widget:hover,
-.leetcode-widget:hover {
-  border-color: color-mix(in srgb, var(--accent-border) 72%, var(--border) 28%);
+.leetcode-widget:hover,
+.github-profile-widget:hover {
   transform: var(--lift-1);
 }
 
@@ -1368,9 +1372,9 @@ html[data-theme="dark"] .wakatime-widget h3 {
   margin-top: 1rem;
   padding: 1.25rem 1.25rem 1.25rem 1.5rem;
   border: none;
-  border-left: 2px solid var(--accent);
   border-radius: 0;
   background: transparent;
+  position: relative;
 }
 
 .leetcode-status {
@@ -1397,13 +1401,13 @@ html[data-theme="dark"] .wakatime-widget h3 {
 
 .leetcode-card {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding: 0.86rem 0.96rem 0.92rem;
   border: none;
-  border-top: 2px solid var(--accent);
   border-radius: 0;
   background: transparent;
   transition: transform var(--dur-base) var(--ease-smooth);
+  --card-stripe: var(--accent);
 }
 
 .leetcode-card::before {
@@ -1421,15 +1425,15 @@ html[data-theme="dark"] .wakatime-widget h3 {
 }
 
 .leetcode-card--easy {
-  border-top-color: #22c55e;
+  --card-stripe: #22c55e;
 }
 
 .leetcode-card--medium {
-  border-top-color: #f59e0b;
+  --card-stripe: #f59e0b;
 }
 
 .leetcode-card--hard {
-  border-top-color: #ef4444;
+  --card-stripe: #ef4444;
 }
 
 .leetcode-card-label {
@@ -1561,9 +1565,9 @@ html[data-theme="dark"] .wakatime-widget h3 {
   margin-top: 1rem;
   padding: 1.25rem 1.25rem 1.25rem 1.5rem;
   border: none;
-  border-left: 2px solid var(--accent);
   border-radius: 0;
   background: transparent;
+  position: relative;
 }
 
 .wakatime-widget[data-wakatime-display="compact"] {
@@ -1643,19 +1647,29 @@ html[data-theme="dark"] .wakatime-widget h3 {
     "donut"
     "legend";
   justify-items: center;
-  align-items: center;
-  gap: 0.78rem;
+  align-items: start;
+  gap: 0.9rem;
   width: 100%;
+  padding: 0.9rem 0.8rem;
+  background: linear-gradient(162deg,
+      color-mix(in srgb, var(--surface-elevated) 88%, transparent 12%) 0%,
+      color-mix(in srgb, var(--media-surface) 72%, transparent 28%) 100%);
+  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent 22%);
+  border-radius: var(--radius-md);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 54%, transparent 46%),
+    0 4px 12px color-mix(in srgb, var(--text) 4%, transparent 96%);
 }
 
 .wakatime-donut {
   grid-area: donut;
   width: 100%;
+  max-width: 180px;
   aspect-ratio: 1;
   border-radius: 50%;
   background: color-mix(in srgb, var(--surface-elevated) 94%, #dbeafe 6%);
   position: relative;
-  justify-self: stretch;
+  justify-self: center;
   border: none;
   overflow: hidden;
 }
@@ -1734,13 +1748,14 @@ html[data-theme="dark"] .wakatime-widget h3 {
 .wakatime-legend {
   grid-area: legend;
   list-style: none;
-  margin: 0.1rem 0 0;
+  margin: 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.4rem;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
   width: 100%;
+  align-self: center;
 }
 
 .wakatime-legend-item {
@@ -1751,29 +1766,38 @@ html[data-theme="dark"] .wakatime-widget h3 {
 }
 
 .wakatime-legend .wakatime-language-chip {
-  height: 1.52rem;
-  min-height: 1.52rem;
-  padding: 0.2rem 0.44rem;
-  gap: 0.28rem;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 650;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  background: color-mix(in srgb, var(--surface-elevated) 88%, #dbeafe 12%);
-  border-color: color-mix(in srgb, var(--border) 84%, transparent 16%);
+  height: auto;
+  min-height: unset;
+  padding: 0.32rem 0;
+  gap: 0.5rem;
+  border-radius: 0;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+  background: transparent;
   color: var(--text-secondary);
   box-sizing: border-box;
+  width: 100%;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 38%, transparent 62%);
+}
+
+.wakatime-legend-item:last-child .wakatime-language-chip {
+  border-bottom: none;
 }
 
 .wakatime-legend .wakatime-language-chip-swatch {
-  width: 0.42rem;
-  height: 0.42rem;
-  flex: 0 0 0.42rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: 0 0 10px;
 }
 
 .wakatime-legend-name {
-  max-width: 8.8rem;
+  flex: 1;
+  font-weight: 650;
+  color: var(--text);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1794,8 +1818,8 @@ html[data-theme="dark"] .wakatime-widget h3 {
 .wakatime-legend-item.is-active .wakatime-language-chip,
 .wakatime-legend-item:hover .wakatime-language-chip,
 .wakatime-legend-item:focus-visible .wakatime-language-chip {
-  border-color: color-mix(in srgb, var(--accent-border) 52%, var(--border) 48%);
-  background: color-mix(in srgb, var(--surface-elevated) 84%, #fde68a 16%);
+  background: color-mix(in srgb, var(--surface-elevated) 50%, transparent 50%);
+  border-bottom-color: color-mix(in srgb, var(--border) 38%, transparent 62%);
 }
 
 .wakatime-name {
@@ -1846,13 +1870,13 @@ html[data-theme="dark"] .wakatime-widget h3 {
 
 .wakatime-card {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding: 0.86rem 0.96rem 0.92rem;
   border: none;
-  border-top: 2px solid var(--accent);
   border-radius: 0;
   background: color-mix(in srgb, var(--surface-elevated) 60%, transparent 40%);
   transition: transform var(--dur-base) var(--ease-smooth);
+  --card-stripe: var(--accent);
 }
 
 .wakatime-card::before {
@@ -1891,9 +1915,9 @@ html[data-theme="dark"] .wakatime-widget h3 {
   margin-top: 1rem;
   padding: 1.25rem 1.25rem 1.25rem 1.5rem;
   border: none;
-  border-left: 2px solid var(--accent);
   border-radius: 0;
   background: transparent;
+  position: relative;
 }
 
 .github-commits-status {
@@ -1922,7 +1946,7 @@ html[data-theme="dark"] .wakatime-widget h3 {
   overflow: visible;
   padding: 0.86rem 0.96rem 0.92rem;
   border: none;
-  border-top: 2px solid var(--accent);
+  --card-stripe: var(--accent);
   border-radius: 0;
   background: transparent;
   transition: transform var(--dur-base) var(--ease-smooth);
@@ -2103,6 +2127,346 @@ html[data-theme="dark"] .wakatime-widget h3 {
 
 .gr_grid_container {
   display: flow-root;
+}
+
+.gr_grid_book_placeholder {
+  float: left;
+  width: 98px;
+  height: 147px;
+  padding: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1.5px dashed color-mix(in srgb, var(--border) 80%, transparent 20%);
+}
+
+.gr_grid_book_placeholder a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  border-radius: inherit;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.gr_grid_book_placeholder a:hover {
+  background: color-mix(in srgb, var(--surface-elevated) 80%, transparent 20%);
+  color: var(--text);
+}
+
+.github-yearly-wrap {
+  padding: 0.86rem 0.9rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent 22%);
+  border-radius: var(--radius-md);
+  background: linear-gradient(162deg,
+      color-mix(in srgb, var(--surface-elevated) 88%, transparent 12%) 0%,
+      color-mix(in srgb, var(--media-surface) 72%, transparent 28%) 100%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 54%, transparent 46%),
+    0 8px 18px color-mix(in srgb, var(--text) 5%, transparent 95%);
+  overflow-x: auto;
+}
+
+.github-yearly-chart {
+  display: block;
+  width: 100%;
+  min-width: max-content;
+}
+
+.github-yearly-bar {
+  transition: filter var(--dur-fast) var(--ease-smooth);
+}
+
+.github-yearly-bar:hover {
+  filter: brightness(1.18) saturate(1.1);
+}
+
+.github-yearly-label {
+  font-size: 6.5px;
+  fill: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.github-yearly-year {
+  font-size: 7.5px;
+  fill: var(--text-muted);
+}
+
+.github-profile-widget {
+  margin-top: 1rem;
+  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  position: relative;
+}
+
+.github-profile-status {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.github-profile-status.is-error {
+  color: #dc2626;
+}
+
+.github-profile-visuals {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.github-profile-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
+  gap: 0.72rem;
+}
+
+.github-profile-card {
+  position: relative;
+  overflow: visible;
+  padding: 0.86rem 0.96rem 0.92rem;
+  border: none;
+  --card-stripe: var(--accent);
+  border-radius: 0;
+  background: transparent;
+  transition: transform var(--dur-base) var(--ease-smooth);
+}
+
+.github-profile-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg,
+      color-mix(in srgb, var(--glass-highlight) 55%, transparent 45%) 0%,
+      transparent 42%);
+  pointer-events: none;
+}
+
+.github-profile-card:hover {
+  transform: var(--lift-1);
+}
+
+.github-profile-card-label {
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 650;
+}
+
+.github-profile-card-value {
+  margin-top: 0.32rem;
+  font-size: clamp(1.16rem, 1.03rem + 0.5vw, 1.46rem);
+  font-weight: 760;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.github-repos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.72rem;
+}
+
+.github-repo-card {
+  position: relative;
+  padding: 0.86rem 0.96rem 0.92rem;
+  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent 22%);
+  border-radius: var(--radius-md);
+  background: linear-gradient(162deg,
+      color-mix(in srgb, var(--surface-elevated) 88%, transparent 12%) 0%,
+      color-mix(in srgb, var(--media-surface) 72%, transparent 28%) 100%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 48%, transparent 52%),
+    0 4px 12px color-mix(in srgb, var(--text) 4%, transparent 96%);
+  transition: transform var(--dur-base) var(--ease-smooth),
+    box-shadow var(--dur-base) var(--ease-smooth);
+}
+
+.github-repo-card:hover {
+  transform: var(--lift-1);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 52%, transparent 48%),
+    0 12px 22px color-mix(in srgb, var(--text) 8%, transparent 92%);
+}
+
+.github-repo-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.github-repo-card-name {
+  font-size: 0.88rem;
+  font-weight: 650;
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.github-repo-card-name:hover {
+  text-decoration: underline;
+  color: var(--accent);
+}
+
+.github-repo-card-stars {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.github-repo-card-desc {
+  margin: 0.42rem 0 0;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.github-repo-card-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: var(--text-muted);
+}
+
+.github-repo-card-lang-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.github-profile-lang-section {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+@media (max-width: 480px) {
+  .github-profile-lang-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.github-profile-donut {
+  width: 100%;
+  max-width: 140px;
+}
+
+.github-profile-donut-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.github-profile-lang-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.github-profile-lang-item {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  font-size: 0.78rem;
+}
+
+.github-profile-lang-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.github-profile-lang-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.github-profile-lang-count {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.wakatime-card::after,
+.github-commits-card::after,
+.leetcode-card::after,
+.github-profile-card::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  right: -7px;
+  top: -2px;
+  height: 8px;
+  background: var(--card-stripe, var(--accent));
+  -webkit-mask: url("../icons/brush-2.svg?v=5") no-repeat center / 100% 100%;
+  mask: url("../icons/brush-2.svg?v=5") no-repeat center / 100% 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.wakatime-widget::before,
+.github-commits-widget::before,
+.leetcode-widget::before,
+.github-profile-widget::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6%;
+  bottom: 6%;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--accent) 16%,
+    var(--accent) 84%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+@media (min-width: 560px) {
+  .wakatime-language-chart {
+    grid-template-columns: 160px 1fr;
+    grid-template-areas: "donut legend";
+    align-items: center;
+    gap: 1.2rem;
+    justify-items: start;
+  }
+
+  .wakatime-donut {
+    max-width: 160px;
+    justify-self: start;
+  }
 }
 
 footer {

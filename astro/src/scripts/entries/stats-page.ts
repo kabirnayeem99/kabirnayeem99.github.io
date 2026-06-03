@@ -4,6 +4,7 @@ import "../modules/stats-snapshots";
 import "../modules/stats-utils";
 import "../modules/wakatime-charts";
 import "../modules/github-commits";
+import "../modules/github-profile";
 import "../modules/leetcode-stats";
 import "../modules/goodreads-image-fallback";
 import "../modules/goodreads-loader";
