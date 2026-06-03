@@ -39,9 +39,11 @@ interface GitHubCommitsSection {
 interface LeetCodeSection {
   readonly title: string;
   readonly copy: string;
-  readonly thanks: string;
-  readonly cardSrc: string;
-  readonly cardAlt: string;
+  readonly username: string;
+  readonly apiUrl: string;
+  readonly profileHref: string;
+  readonly profileLabel: string;
+  readonly statusText: string;
 }
 
 interface LearningPathSection {
@@ -64,9 +66,22 @@ interface GoodreadsSection {
   readonly scriptSrc: string;
 }
 
+interface GitHubProfileSection {
+  readonly title: string;
+  readonly statusText: string;
+  readonly reposApiUrl: string;
+  readonly prsApiUrl: string;
+  readonly issuesApiUrl: string;
+  readonly sourceHref: string;
+  readonly sourceText: string;
+  readonly reposAriaLabel: string;
+  readonly languageAriaLabel: string;
+}
+
 interface StatsSections {
   readonly wakatime: WakaTimeSection;
   readonly githubCommits: GitHubCommitsSection;
+  readonly githubProfile: GitHubProfileSection;
   readonly leetcode: LeetCodeSection;
   readonly learningPath: LearningPathSection;
   readonly goodreads: GoodreadsSection;
@@ -97,19 +112,7 @@ function replaceQueryParams(url: string, replacements: Readonly<Record<string, s
   return parsed.toString();
 }
 
-export function statsEmbedThemeSources(
-  lightUrl: string,
-  provider: "leetcode" | "roadmap",
-): readonly [string, string] {
-  if (provider === "leetcode") {
-    const darkColors = "#3F3A36,#D6D3D1,#F5F5F4,#A8A29E,#FB923C,#73AF6F,#FACC15,#FF5555,";
-    const darkUrl = replaceQueryParams(lightUrl, {
-      theme: "dark",
-      colors: darkColors,
-    });
-    return [lightUrl, darkUrl];
-  }
-
+export function statsEmbedThemeSources(lightUrl: string): readonly [string, string] {
   const darkUrl = replaceQueryParams(lightUrl, { variant: "dark" });
   return [lightUrl, darkUrl];
 }
@@ -234,9 +237,11 @@ export function loadStatsPageContent(lang: Lang): StatsPageContent {
       leetcode: {
         title: readString(leetcode, "title", `root.pages.stats.locales.${lang}.sections.leetcode`),
         copy: readString(leetcode, "copy", `root.pages.stats.locales.${lang}.sections.leetcode`),
-        thanks: readString(leetcode, "thanks", `root.pages.stats.locales.${lang}.sections.leetcode`),
-        cardSrc: readString(leetcode, "card_src", `root.pages.stats.locales.${lang}.sections.leetcode`),
-        cardAlt: readString(leetcode, "card_alt", `root.pages.stats.locales.${lang}.sections.leetcode`),
+        username: readString(leetcode, "username", `root.pages.stats.locales.${lang}.sections.leetcode`),
+        apiUrl: readString(leetcode, "api_url", `root.pages.stats.locales.${lang}.sections.leetcode`),
+        profileHref: readString(leetcode, "profile_href", `root.pages.stats.locales.${lang}.sections.leetcode`),
+        profileLabel: readString(leetcode, "profile_label", `root.pages.stats.locales.${lang}.sections.leetcode`),
+        statusText: readString(leetcode, "status_text", `root.pages.stats.locales.${lang}.sections.leetcode`),
       },
       learningPath: {
         title: readString(

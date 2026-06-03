@@ -1319,14 +1319,16 @@ html[data-theme="dark"] .wakatime-widget h3 {
 
 .summary-card,
 .wakatime-widget,
-.github-commits-widget {
+.github-commits-widget,
+.leetcode-widget {
   transition: border-color var(--dur-fast) var(--ease-smooth),
     transform var(--dur-base) var(--ease-smooth);
 }
 
 .summary-card:hover,
 .wakatime-widget:hover,
-.github-commits-widget:hover {
+.github-commits-widget:hover,
+.leetcode-widget:hover {
   border-color: color-mix(in srgb, var(--accent-border) 72%, var(--border) 28%);
   transform: var(--lift-1);
 }
@@ -1360,6 +1362,185 @@ html[data-theme="dark"] .wakatime-widget h3 {
   aspect-ratio: 500 / 250;
   object-fit: cover;
   object-position: center;
+}
+
+.leetcode-widget {
+  margin-top: 1rem;
+  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+  border: none;
+  border-left: 2px solid var(--accent);
+  border-radius: 0;
+  background: transparent;
+}
+
+.leetcode-status {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.leetcode-status.is-error {
+  color: #dc2626;
+}
+
+.leetcode-visuals {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.leetcode-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.72rem;
+}
+
+.leetcode-card {
+  position: relative;
+  overflow: hidden;
+  padding: 0.86rem 0.96rem 0.92rem;
+  border: none;
+  border-top: 2px solid var(--accent);
+  border-radius: 0;
+  background: transparent;
+  transition: transform var(--dur-base) var(--ease-smooth);
+}
+
+.leetcode-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg,
+      color-mix(in srgb, var(--glass-highlight) 55%, transparent 45%) 0%,
+      transparent 42%);
+  pointer-events: none;
+}
+
+.leetcode-card:hover {
+  transform: var(--lift-1);
+}
+
+.leetcode-card--easy {
+  border-top-color: #22c55e;
+}
+
+.leetcode-card--medium {
+  border-top-color: #f59e0b;
+}
+
+.leetcode-card--hard {
+  border-top-color: #ef4444;
+}
+
+.leetcode-card-label {
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 650;
+}
+
+.leetcode-card-value {
+  margin-top: 0.32rem;
+  font-size: clamp(1.16rem, 1.03rem + 0.5vw, 1.46rem);
+  font-weight: 760;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.leetcode-card--primary .leetcode-card-value {
+  position: relative;
+  display: inline-block;
+}
+
+.leetcode-card--primary .leetcode-card-value::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  right: -6px;
+  bottom: -2px;
+  height: 13px;
+  transform: rotate(-0.5deg);
+  background: color-mix(in srgb, var(--highlight) 50%, transparent 50%);
+  -webkit-mask: url("../icons/brush-1.svg?v=5") no-repeat center / 100% 100%;
+  mask: url("../icons/brush-1.svg?v=5") no-repeat center / 100% 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.leetcode-difficulty {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.leetcode-difficulty-bar {
+  display: flex;
+  height: 7px;
+  border-radius: 999px;
+  overflow: hidden;
+  gap: 3px;
+}
+
+.leetcode-difficulty-segment {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  transition: filter var(--dur-base) var(--ease-smooth);
+}
+
+.leetcode-difficulty-segment--easy {
+  background: #22c55e;
+}
+
+.leetcode-difficulty-segment--medium {
+  background: #f59e0b;
+}
+
+.leetcode-difficulty-segment--hard {
+  background: #ef4444;
+}
+
+.leetcode-difficulty-bar:hover .leetcode-difficulty-segment {
+  filter: saturate(1.1) brightness(1.08);
+}
+
+.leetcode-difficulty-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.72rem;
+}
+
+.leetcode-difficulty-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.36rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.leetcode-difficulty-swatch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.leetcode-difficulty-legend-item--easy .leetcode-difficulty-swatch {
+  background: #22c55e;
+}
+
+.leetcode-difficulty-legend-item--medium .leetcode-difficulty-swatch {
+  background: #f59e0b;
+}
+
+.leetcode-difficulty-legend-item--hard .leetcode-difficulty-swatch {
+  background: #ef4444;
 }
 
 .stats-embed--roadmap-card {

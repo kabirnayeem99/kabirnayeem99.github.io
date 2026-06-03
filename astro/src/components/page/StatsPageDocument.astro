@@ -41,17 +41,11 @@ const schemaGraphJson = buildSchemaGraphJson({
 
 const alternateLinks = buildAlternateLinks(content.site.baseUrl, content.pageRoutes);
 
-const [leetcodeLightSrc, leetcodeDarkSrc] = statsEmbedThemeSources(
-  content.sections.leetcode.cardSrc,
-  "leetcode",
-);
 const [roadmapLightSrc, roadmapDarkSrc] = statsEmbedThemeSources(
   content.sections.learningPath.imageSrc,
-  "roadmap",
 );
 const [roadmapLightHref, roadmapDarkHref] = statsEmbedThemeSources(
   content.sections.learningPath.href,
-  "roadmap",
 );
 
 const homeHref = routeHref(content.route, content.homeRoute);
@@ -181,19 +175,22 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.leetcode.title}</h2>
             <p set:html={content.sections.leetcode.copy}></p>
-            <p><sub set:html={content.sections.leetcode.thanks}></sub></p>
-            <img
-              data-hide-section-on-error="true"
-              class="stats-embed stats-embed--leetcode-card"
-              src={leetcodeLightSrc}
-              data-theme-light-src={leetcodeLightSrc}
-              data-theme-dark-src={leetcodeDarkSrc}
-              alt={content.sections.leetcode.cardAlt}
-              width="500"
-              height="250"
-              decoding="async"
-              loading="lazy"
-            />
+            <div
+              class="leetcode-widget"
+              data-leetcode-widget
+              data-leetcode-api-url={content.sections.leetcode.apiUrl}
+            >
+              <p class="leetcode-status" data-role="status">{content.sections.leetcode.statusText}</p>
+              <div class="leetcode-visuals" data-role="visuals" hidden>
+                <div class="leetcode-summary" data-role="summary-cards"></div>
+                <div class="leetcode-difficulty" data-role="difficulty"></div>
+              </div>
+            </div>
+            <p class="meta">
+              <a href={content.sections.leetcode.profileHref} target="_blank" rel="noreferrer">
+                {content.sections.leetcode.profileLabel}
+              </a>
+            </p>
           </div>
         </section>
         <section>

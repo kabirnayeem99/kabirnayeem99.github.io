@@ -50,9 +50,11 @@
         "leetcode": {
           "title": "LeetCode Profile",
           "copy": "I started solving problems on <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> for a while. Then sometimes I feel a bit discouraged, so I stop. Then I start again. The stats are not that great anyway. Funny stats. Still very early, so I’m not too happy with the results yet. Hopefully it gets better later.",
-          "thanks": "Thanks to <a href=\"https://leetcard.jacoblin.cool/\" target=\"_blank\" rel=\"noreferrer\">LeetCard</a>.",
-          "card_src": "https://leetcard.jacoblin.cool/kabirnayeem99?theme=light&font=JetBrains%20Mono&colors=%23FFFFFF%2C%20%2344403C%2C%20%231C1917%2C%20%2378716C%2C%20%23D97706%2C%20%2373AF6F%2C%20%23FACC15%2C%20%23FF5555%2C&ext=heatmap&hide_title=true&disable_animations=true",
-          "card_alt": "LeetCode stats for kabirnayeem99"
+          "username": "kabirnayeem99",
+          "api_url": "https://alfa-leetcode-api.onrender.com/kabirnayeem99",
+          "profile_href": "https://leetcode.com/u/kabirnayeem99/",
+          "profile_label": "View LeetCode profile",
+          "status_text": "Loading LeetCode stats…"
         },
         "learning_path": {
           "title": "Learning Path",
@@ -124,9 +126,11 @@
         "leetcode": {
           "title": "লিটকোড প্রোফাইল",
           "copy": "<a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">লিটকোডে</a>  মাঝে কিছুদিন প্রবলেম সলভ করা শুরু করেছিলাম। আবার মাঝে মাঝে একটু হতাশ লাগে, তাই বন্ধ করে দি। আবার শুরু করি। তবে পরিসংখ্যান খুব একটা ভালো না। মজার স্ট্যাটস। এখনো শুরুতেই আছি, তাই এই ফলাফলে খুব একটা খুশি না। আশা করি সামনে আরও ভালো হবে।",
-          "thanks": "ধন্যবাদ <a href=\"https://leetcard.jacoblin.cool/\" target=\"_blank\" rel=\"noreferrer\">লিটকার্ড</a>-কে।",
-          "card_src": "https://leetcard.jacoblin.cool/kabirnayeem99?theme=light&font=JetBrains%20Mono&colors=%23FFFFFF%2C%20%2344403C%2C%20%231C1917%2C%20%2378716C%2C%20%23D97706%2C%20%2373AF6F%2C%20%23FACC15%2C%20%23FF5555%2C&ext=heatmap&hide_title=true&disable_animations=true",
-          "card_alt": "LeetCode stats for kabirnayeem99"
+          "username": "kabirnayeem99",
+          "api_url": "https://alfa-leetcode-api.onrender.com/kabirnayeem99",
+          "profile_href": "https://leetcode.com/u/kabirnayeem99/",
+          "profile_label": "লিটকোড প্রোফাইল দেখুন",
+          "status_text": "LeetCode স্ট্যাটস লোড হচ্ছে…"
         },
         "learning_path": {
           "title": "লার্নিং পাথ",
@@ -198,9 +202,11 @@
         "leetcode": {
           "title": "مِلَفُّ LeetCode",
           "copy": "بَدَأْتُ حَلَّ ٱلْمَسَائِلِ عَلَى <a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> لِفَتْرَةٍ. ثُمَّ أَشْعُرُ أَحْيَانًا بِبَعْضِ ٱلْإِحْبَاطِ، فَأَتَوَقَّفُ. ثُمَّ أَبْدَأُ مِنْ جَدِيدٍ. وَٱلْإِحْصَائِيَّاتُ لَيْسَتْ جَيِّدَةً جِدًّا أَصْلًا. إِحْصَائِيَّاتٌ مُضْحِكَةٌ. أَنَا مَا زِلْتُ فِي ٱلْبِدَايَةِ، فَلِذٰلِكَ لَسْتُ رَاضِيًا كَثِيرًا عَنْ هٰذِهِ ٱلنَّتَائِجِ. أَرْجُو أَنْ يَتَحَسَّنَ ٱلْأَمْرُ فِيمَا بَعْدُ.",
-          "thanks": "شُكْرًا لِـ <a href=\"https://leetcard.jacoblin.cool/\" target=\"_blank\" rel=\"noreferrer\">LeetCard</a>.",
-          "card_src": "https://leetcard.jacoblin.cool/kabirnayeem99?theme=light&font=JetBrains%20Mono&colors=%23FFFFFF%2C%20%2344403C%2C%20%231C1917%2C%20%2378716C%2C%20%23D97706%2C%20%2373AF6F%2C%20%23FACC15%2C%20%23FF5555%2C&ext=heatmap&hide_title=true&disable_animations=true",
-          "card_alt": "LeetCode stats for kabirnayeem99"
+          "username": "kabirnayeem99",
+          "api_url": "https://alfa-leetcode-api.onrender.com/kabirnayeem99",
+          "profile_href": "https://leetcode.com/u/kabirnayeem99/",
+          "profile_label": "عَرْضُ مِلَفِّ LeetCode",
+          "status_text": "جَارٍ تَحْمِيلُ إِحْصَائِيَّاتِ LeetCode…"
         },
         "learning_path": {
           "title": "مَسَارُ ٱلتَّعَلُّمِ",
@@ -272,9 +278,11 @@
         "leetcode": {
           "title": "LeetCode پروفائل",
           "copy": "<a href=\"https://leetcode.com/u/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LeetCode</a> پر کچھ دن مسئلے حل کرنا شروع کیا تھا۔ پھر کبھی کبھی تھوڑی مایوسی لگتی ہے، تو چھوڑ دیتا ہوں۔ پھر دوبارہ شروع کرتا ہوں۔ بہرحال اعداد و شمار خاص اچھے نہیں۔ مزے کے اسٹیٹس ہیں۔ ابھی تو شروعات ہی ہے، اس لیے ان نتائج سے زیادہ خوش نہیں ہوں۔ امید ہے آگے بہتر ہوگا۔",
-          "thanks": "شکریہ <a href=\"https://leetcard.jacoblin.cool/\" target=\"_blank\" rel=\"noreferrer\">LeetCard</a>۔",
-          "card_src": "https://leetcard.jacoblin.cool/kabirnayeem99?theme=light&font=JetBrains%20Mono&colors=%23FFFFFF%2C%20%2344403C%2C%20%231C1917%2C%20%2378716C%2C%20%23D97706%2C%20%2373AF6F%2C%20%23FACC15%2C%20%23FF5555%2C&ext=heatmap&hide_title=true&disable_animations=true",
-          "card_alt": "LeetCode stats for kabirnayeem99"
+          "username": "kabirnayeem99",
+          "api_url": "https://alfa-leetcode-api.onrender.com/kabirnayeem99",
+          "profile_href": "https://leetcode.com/u/kabirnayeem99/",
+          "profile_label": "LeetCode پروفائل دیکھیں",
+          "status_text": "LeetCode اعداد و شمار لوڈ ہو رہے ہیں…"
         },
         "learning_path": {
           "title": "لرننگ پاتھ",
