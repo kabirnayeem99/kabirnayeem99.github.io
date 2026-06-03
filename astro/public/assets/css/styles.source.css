@@ -1461,6 +1461,33 @@ html[data-theme="dark"] .wakatime-widget h3 {
   gap: 1rem;
 }
 
+.skills-card {
+  border-radius: 12px !important;
+  border: 1px solid color-mix(in srgb, var(--border) 28%, transparent) !important;
+  box-shadow: none !important;
+}
+
+.skill-tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.82rem;
+  border: 1px solid color-mix(in srgb, var(--border) 28%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-elevated) 90%, var(--accent-bg) 10%);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
 .wakatime-language-chart {
   display: grid;
   grid-template-columns: 1fr;

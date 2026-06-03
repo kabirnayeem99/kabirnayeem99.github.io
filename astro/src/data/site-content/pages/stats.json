@@ -16,11 +16,11 @@
       ],
       "sections": {
         "wakatime": {
-          "title": "Programming Languages",
+          "title": "Skills & Languages",
           "status_text": "WakaTime has been tracking all kinds of my coding for a while now, probably since 2021 (or was it 2023!).",
           "languages_url": "https://wakatime.com/share/@kabirnayeem99/3ee188ec-1b6b-454a-9c7d-12b1d02cf86b.json",
           "summary_url": "https://wakatime.com/share/@kabirnayeem99/c002cbf8-c46e-46ee-b225-d7b680009c55.json",
-          "aria_label": "Programming languages I wrote the most code in"
+          "aria_label": "Coding languages I wrote the most code in"
         },
         "languages": {
           "title": "Programming Languages I’ve Written the Most Code In",

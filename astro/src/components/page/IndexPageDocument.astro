@@ -200,6 +200,14 @@ const viewAllStatsAction: IndexAction = {
   pageId: "stats",
   variant: "secondary",
 };
+
+const skillChips = [
+  "Kotlin", "Swift", "Dart", "Python", "PHP", "Go", "TypeScript", "SQL",
+  "Android", "iOS", "Flutter", "Kotlin Multiplatform", "macOS",
+  "Laravel", "Computer Vision", "Linux CLI",
+  "Agile", "Scrum", "Kanban",
+  "Bangla", "Urdu", "English",
+] as const;
 ---
 
 <!doctype html>
@@ -445,7 +453,7 @@ const viewAllStatsAction: IndexAction = {
         }
 
         <section>
-          <div class="summary-card stats-card">
+          <div class="summary-card stats-card skills-card">
             <div class="section-head">
               <h2 class="section-title">
                 {content.statsCompact.wakatime.title}
@@ -468,32 +476,10 @@ const viewAllStatsAction: IndexAction = {
                 }
               </div>
             </div>
-            <div
-              class="wakatime-widget"
-              data-wakatime-widget
-              data-wakatime-display="compact"
-              data-wakatime-languages-url={content.statsCompact.wakatime
-                .languagesUrl}
-              data-wakatime-summary-url={content.statsCompact.wakatime
-                .summaryUrl}
-            >
-              <p class="wakatime-status" data-role="status">
-                {content.statsCompact.wakatime.statusText}
-              </p>
-              <div class="wakatime-visuals" data-role="visuals" hidden>
-                <div
-                  class="wakatime-language-topbar"
-                  data-role="language-topbar"
-                  aria-hidden="true"
-                >
-                </div>
-                <ul
-                  class="wakatime-language-chip-list"
-                  data-role="language-chips"
-                  aria-label={content.statsCompact.wakatime.ariaLabel}
-                >
-                </ul>
-              </div>
+            <div class="skill-tag-cloud">
+              {skillChips.map((skill) => (
+                <span class="skill-tag">{skill}</span>
+              ))}
             </div>
           </div>
         </section>
