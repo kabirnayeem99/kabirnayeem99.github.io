@@ -20,6 +20,7 @@ import {
   routeHref,
 } from "../../lib/work-project-content";
 import type { Lang } from "../../lib/site-types";
+import csvRaw from "../../assets/data/monkeytype_stats_exports.csv?raw";
 
 interface Props {
   readonly lang: Lang;
@@ -37,6 +38,7 @@ const schemaGraphJson = buildSchemaGraphJson({
   canonicalUrl,
   ogImageUrl,
   socialProfiles: content.site.socialProfiles,
+  lang,
 });
 
 const alternateLinks = buildAlternateLinks(content.site.baseUrl, content.pageRoutes);
@@ -61,6 +63,36 @@ const goodreadsScriptSource = (() => {
     return content.sections.goodreads.scriptSrc;
   }
 })();
+const typingStats = (() => {
+  const lines = (csvRaw as string).trim().split("\n").slice(1);
+  const rows = lines
+    .map((line) => {
+      const cols = line.split(",");
+      return {
+        wpm: parseFloat(cols[2] ?? ""),
+        acc: parseFloat(cols[3] ?? ""),
+        consistency: parseFloat(cols[5] ?? ""),
+      };
+    })
+    .filter((r) => !isNaN(r.wpm) && r.wpm > 0);
+  if (rows.length === 0) return null;
+  const total = rows.length;
+  const pbWpm = Math.max(...rows.map((r) => r.wpm));
+  const avgWpm = rows.reduce((s, r) => s + r.wpm, 0) / total;
+  const avgAcc = rows.reduce((s, r) => s + r.acc, 0) / total;
+  const avgConsistency = rows.reduce((s, r) => s + r.consistency, 0) / total;
+  const recent = rows.slice(0, 10);
+  const recentAvg = recent.reduce((s, r) => s + r.wpm, 0) / recent.length;
+  return {
+    total,
+    pbWpm: pbWpm.toFixed(1),
+    avgWpm: avgWpm.toFixed(1),
+    avgAcc: avgAcc.toFixed(1),
+    avgConsistency: avgConsistency.toFixed(1),
+    recentAvg: recentAvg.toFixed(1),
+  };
+})();
+
 const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
 ---
 
@@ -73,7 +105,15 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
     author={content.site.locale.author}
     canonicalUrl={canonicalUrl}
     alternateLinks={alternateLinks}
-    ogType="article"
+    ogType="website"
+    preconnectHrefs={[
+      "https://wakatime.com",
+      "https://api.github.com",
+      "https://github-contributions-api.jogruber.de",
+      "https://alfa-leetcode-api.onrender.com",
+      "https://roadmap.sh",
+      "https://www.goodreads.com",
+    ]}
     ogLocale={OG_LOCALE_BY_LANG[lang]}
     ogLocaleAlternates={ogLocaleAlternates}
     ogImageUrl={ogImageUrl}
@@ -228,6 +268,40 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
                 {content.sections.leetcode.profileLabel}
               </a>
             </p>
+          </div>
+        </section>
+        <section>
+          <div class="summary-card stats-card">
+            <h2 class="section-title">Typing Speed</h2>
+            <p>
+              Tracked on{" "}
+              <a href="https://monkeytype.com/profile/kabirnayeem99" target="_blank" rel="noreferrer">Monkeytype</a> — 60-second tests,
+              English with punctuation.{typingStats ? ` ${typingStats.total} tests recorded.` : ""}
+            </p>
+            {typingStats && (
+              <div class="leetcode-summary">
+                <div class="leetcode-card leetcode-card--primary">
+                  <div class="leetcode-card-label">Personal Best</div>
+                  <div class="leetcode-card-value">{typingStats.pbWpm} WPM</div>
+                </div>
+                <div class="leetcode-card">
+                  <div class="leetcode-card-label">Recent Avg (10)</div>
+                  <div class="leetcode-card-value">{typingStats.recentAvg} WPM</div>
+                </div>
+                <div class="leetcode-card">
+                  <div class="leetcode-card-label">All-Time Avg</div>
+                  <div class="leetcode-card-value">{typingStats.avgWpm} WPM</div>
+                </div>
+                <div class="leetcode-card">
+                  <div class="leetcode-card-label">Avg Accuracy</div>
+                  <div class="leetcode-card-value">{typingStats.avgAcc}%</div>
+                </div>
+                <div class="leetcode-card">
+                  <div class="leetcode-card-label">Avg Consistency</div>
+                  <div class="leetcode-card-value">{typingStats.avgConsistency}%</div>
+                </div>
+              </div>
+            )}
           </div>
         </section>
         <section>

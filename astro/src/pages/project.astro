@@ -31,6 +31,7 @@ const schemaGraphJson = buildSchemaGraphJson({
   canonicalUrl,
   ogImageUrl,
   socialProfiles: content.site.socialProfiles,
+  lang: content.lang,
 });
 
 const alternateLinks = buildAlternateLinks(content.site.baseUrl, content.pageRoutes);
@@ -48,7 +49,7 @@ const uiLabels = content.site.locale.labels;
     author={content.site.locale.author}
     canonicalUrl={canonicalUrl}
     alternateLinks={alternateLinks}
-    ogType="article"
+    ogType="website"
     ogLocale={OG_LOCALE_BY_LANG[content.lang]}
     ogLocaleAlternates={ogLocaleAlternates}
     ogImageUrl={ogImageUrl}

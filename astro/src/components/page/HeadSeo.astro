@@ -37,6 +37,7 @@ interface Props {
   readonly appleTouchIconHref?: string;
   readonly manifestHref?: string;
   readonly discoveryLinks?: readonly AgentDiscoveryLink[];
+  readonly preconnectHrefs?: readonly string[];
 }
 
 const {
@@ -62,6 +63,7 @@ const {
   appleTouchIconHref = "assets/icons/apple-touch-icon.png",
   manifestHref = "site.webmanifest",
   discoveryLinks = AGENT_DISCOVERY_LINKS,
+  preconnectHrefs = [] as readonly string[],
 } = Astro.props;
 
 const canonicalHostname = resolveCanonicalHostname(canonicalUrl);
@@ -73,6 +75,7 @@ const shouldLoadUmami = shouldLoadUmamiScript(
 ---
 
 <head>
+  {preconnectHrefs.map((href) => <link rel="preconnect" href={href} crossorigin />)}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
@@ -104,11 +107,13 @@ const shouldLoadUmami = shouldLoadUmamiScript(
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content={ogImageAlt} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content={twitterSite} />
+  <meta name="twitter:creator" content={twitterSite} />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImageUrl} />

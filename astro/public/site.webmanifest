@@ -1,6 +1,13 @@
 {
     "name": "Naimul Kabir Portfolio",
     "short_name": "NaimulKabir",
+    "description": "Personal portfolio of Naimul Kabir — software engineer, bibliophile, and philomath.",
+    "id": "/",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "theme_color": "#2f261a",
+    "background_color": "#f7f0e1",
     "icons": [
         {
             "src": "/assets/icons/android-chrome-192x192.png",
@@ -12,7 +19,7 @@
             "src": "/assets/icons/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png",
-            "purpose": "any"
+            "purpose": "any maskable"
         },
         {
             "src": "/assets/images/logo.svg",
@@ -21,7 +28,27 @@
             "purpose": "any"
         }
     ],
-    "theme_color": "#2f261a",
-    "background_color": "#f7f0e1",
-    "display": "standalone"
+    "shortcuts": [
+        {
+            "name": "Stats",
+            "short_name": "Stats",
+            "description": "Coding activity, typing speed, reading list, and more",
+            "url": "/stats.html",
+            "icons": [{ "src": "/assets/icons/android-chrome-192x192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Work",
+            "short_name": "Work",
+            "description": "Work history and experience",
+            "url": "/work.html",
+            "icons": [{ "src": "/assets/icons/android-chrome-192x192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Projects",
+            "short_name": "Projects",
+            "description": "Personal and open-source projects",
+            "url": "/project.html",
+            "icons": [{ "src": "/assets/icons/android-chrome-192x192.png", "sizes": "192x192" }]
+        }
+    ]
 }

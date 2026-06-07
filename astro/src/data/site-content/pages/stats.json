@@ -1,11 +1,11 @@
 {
-  "og_type": "article",
+  "og_type": "website",
   "locales": {
     "en": {
       "meta": {
         "title": "Stats · Naimul Kabir",
         "description": "Public coding stats, practice, and all kinds of necessary and unnecessary numbers by Naimul Kabir.",
-        "keywords": "Naimul Kabir stats, LeetCode stats, coding activity"
+        "keywords": "Naimul Kabir stats, LeetCode stats, coding activity, WakaTime, GitHub stats, typing speed, Monkeytype, reading list, coding time, developer stats"
       },
       "header": {
         "site_title": "Stats",
@@ -92,7 +92,7 @@
       "meta": {
         "title": "পরিসংখ্যান · নাঈমুল কবির",
         "description": "নাঈমুল কবিরের পাবলিক কোডিং পরিসংখ্যান, অনুশীলন এবং প্রয়োজনীয় অপ্রয়োজনীয় সব পরিসংখ্যান।",
-        "keywords": "নাঈমুল কবির পরিসংখ্যান, লিটকোড পরিসংখ্যান, কোডিং অ্যাক্টিভিটি"
+        "keywords": "নাঈমুল কবির পরিসংখ্যান, LeetCode পরিসংখ্যান, কোডিং অ্যাক্টিভিটি, WakaTime, গিটহাব পরিসংখ্যান, টাইপিং স্পিড, Monkeytype, পড়ার তালিকা, ডেভেলপার পরিসংখ্যান"
       },
       "header": {
         "site_title": "পরিসংখ্যান",
@@ -179,7 +179,7 @@
       "meta": {
         "title": "ٱلْإِحْصَائِيَّاتُ · نَعِيمُولُ كَبِير",
         "description": "إِحْصَائِيَّاتُ نَعِيمُولِ كَبِير ٱلْعَلَنِيَّةُ فِي ٱلْبَرْمَجَةِ وَٱلتَّمْرِينِ، وَكُلُّ ٱلْأَرْقَامِ ٱلضَّرُورِيَّةِ وَغَيْرِ ٱلضَّرُورِيَّةِ.",
-        "keywords": "إِحْصَائِيَّاتُ نَعِيمُولِ كَبِير، لِيتْ كُود، نَشَاطُ ٱلْبَرْمَجَةِ"
+        "keywords": "إِحْصَائِيَّاتُ نَعِيمِ ٱلْكَبِيرِ، LeetCode، نَشَاطُ ٱلْبَرْمَجَةِ، WakaTime، إِحْصَائِيَّاتُ GitHub، سُرْعَةُ ٱلطِّبَاعَةِ، Monkeytype، قَائِمَةُ ٱلْقِرَاءَةِ، وَقْتُ ٱلْبَرْمَجَةِ"
       },
       "header": {
         "site_title": "ٱلْإِحْصَائِيَّاتُ",
@@ -266,7 +266,7 @@
       "meta": {
         "title": "اعداد و شمار · نعیم الکبیر",
         "description": "نعیم الکبیر کے پبلک کوڈنگ اعداد و شمار، پریکٹس، اور ضروری غیر ضروری ہر قسم کے نمبر۔",
-        "keywords": "نعیم الکبیر اعداد و شمار، لیٹ کوڈ اعداد و شمار، کوڈنگ سرگرمی"
+        "keywords": "نعیم الکبیر اعداد و شمار، LeetCode اعداد و شمار، کوڈنگ سرگرمی، WakaTime، GitHub اعداد و شمار، ٹائپنگ اسپیڈ، Monkeytype، مطالعہ کی فہرست، کوڈنگ وقت"
       },
       "header": {
         "site_title": "اعداد و شمار",
