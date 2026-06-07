@@ -232,6 +232,7 @@ const skillChips = [
     googleSiteVerification={content.site.googleSiteVerification}
     umamiWebsiteId={UMAMI_WEBSITE_ID}
     stylesheetHref={pageAssets.stylesheetHref}
+    faviconSvgHref={pageAssets.faviconSvgHref}
     favicon32Href={pageAssets.favicon32Href}
     favicon16Href={pageAssets.favicon16Href}
     faviconIcoHref={pageAssets.faviconIcoHref}
@@ -280,6 +281,7 @@ const skillChips = [
               aria-expanded="false"
               aria-haspopup="true"
               title={content.site.locale.languageSwitcherLabel}
+              popovertarget={menuId}
               data-language-switcher-button
             >
               <span aria-hidden="true" class="language-switcher-globe"></span>
@@ -287,6 +289,7 @@ const skillChips = [
             <div
               class="language-menu"
               id={menuId}
+              popover="auto"
               hidden
               data-language-switcher-menu
             >

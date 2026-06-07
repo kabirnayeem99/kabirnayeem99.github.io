@@ -812,6 +812,14 @@ html[data-theme="dark"] .theme-toggle-icon {
   display: none;
 }
 
+@supports (selector(:popover-open)) {
+  .language-menu[popover] {
+    position: fixed;
+    inset: unset;
+    margin: 0;
+  }
+}
+
 .language-menu a {
   display: flex;
   align-items: center;

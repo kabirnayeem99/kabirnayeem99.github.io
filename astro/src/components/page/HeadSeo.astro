@@ -31,6 +31,7 @@ interface Props {
   readonly googleSiteVerification: string;
   readonly umamiWebsiteId: string;
   readonly stylesheetHref?: string;
+  readonly faviconSvgHref?: string;
   readonly favicon32Href?: string;
   readonly favicon16Href?: string;
   readonly faviconIcoHref?: string;
@@ -58,6 +59,7 @@ const {
   googleSiteVerification,
   umamiWebsiteId,
   stylesheetHref = "assets/css/styles.css",
+  faviconSvgHref = "/assets/icons/favicon.svg",
   favicon32Href = "assets/icons/favicon-32x32.png",
   favicon16Href = "assets/icons/favicon-16x16.png",
   faviconIcoHref = "assets/icons/favicon.ico",
@@ -74,6 +76,13 @@ const shouldLoadUmami = shouldLoadUmamiScript(
   umamiWebsiteId,
   canonicalHostname,
 );
+const feedHref = (() => {
+  try {
+    return `${new URL(canonicalUrl).origin}/feed.xml`;
+  } catch {
+    return undefined;
+  }
+})();
 ---
 
 <head>
@@ -86,6 +95,7 @@ const shouldLoadUmami = shouldLoadUmamiScript(
   <meta name="author" content={author} />
   <meta name="robots" content={robots} />
   <link rel="canonical" href={canonicalUrl} />
+  {feedHref && <link rel="alternate" type="application/rss+xml" title="Blog — Naimul Kabir" href={feedHref} />}
   {
     discoveryLinks.map((link) => (
       <link rel={link.rel} href={link.href} type={link.type} title={link.title} />
@@ -129,6 +139,7 @@ const shouldLoadUmami = shouldLoadUmamiScript(
     content="#1c1917"
     media="(prefers-color-scheme: dark)"
   />
+  <meta name="color-scheme" content="light dark" />
   <script is:inline type="application/ld+json" set:html={schemaGraphJson} />
   {
     shouldLoadUmami ? (
@@ -143,6 +154,7 @@ const shouldLoadUmami = shouldLoadUmamiScript(
   <script is:inline set:html={THEME_BOOTSTRAP_SCRIPT} />
   <link rel="preload" href={stylesheetHref} as="style" />
   <link rel="stylesheet" href={stylesheetHref} />
+  <link rel="icon" type="image/svg+xml" href={faviconSvgHref} />
   <link rel="icon" type="image/png" sizes="32x32" href={favicon32Href} />
   <link rel="icon" type="image/png" sizes="16x16" href={favicon16Href} />
   <link rel="shortcut icon" href={faviconIcoHref} />
