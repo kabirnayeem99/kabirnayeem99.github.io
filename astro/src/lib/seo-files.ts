@@ -67,6 +67,9 @@ export function buildSeoFileContext(): SeoFileContext {
     { href: `${baseUrl}/docs/api.json`, priority: "0.6" },
     { href: `${baseUrl}/.well-known/api-catalog`, priority: "0.6" },
     { href: `${baseUrl}/.well-known/mcp/server-card.json`, priority: "0.6" },
+    { href: `${baseUrl}/llms-full.txt`, priority: "0.6" },
+    { href: `${baseUrl}/.well-known/agent-skills.json`, priority: "0.6" },
+    { href: `${baseUrl}/.well-known/agent-card.json`, priority: "0.6" },
   );
 
   return {

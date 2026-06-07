@@ -11,7 +11,7 @@ import {
   PAGE_LAYOUT,
   UMAMI_WEBSITE_ID,
 } from "../../lib/page-shared";
-import { buildSchemaGraphJson } from "../../lib/seo";
+import { buildBreadcrumb, buildSchemaGraphJson } from "../../lib/seo";
 import {
   buildAlternateLinks,
   buildOgLocaleAlternates,
@@ -34,6 +34,9 @@ const schemaGraphJson = buildSchemaGraphJson({
   ogImageUrl,
   socialProfiles: content.site.socialProfiles,
   lang,
+  pageTitle: content.meta.title,
+  pageDescription: content.meta.description,
+  breadcrumb: buildBreadcrumb("project", lang),
 });
 
 const alternateLinks = buildAlternateLinks(content.site.baseUrl, content.pageRoutes);

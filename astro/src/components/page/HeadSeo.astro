@@ -38,6 +38,7 @@ interface Props {
   readonly manifestHref?: string;
   readonly discoveryLinks?: readonly AgentDiscoveryLink[];
   readonly preconnectHrefs?: readonly string[];
+  readonly robots?: string;
 }
 
 const {
@@ -64,6 +65,7 @@ const {
   manifestHref = "site.webmanifest",
   discoveryLinks = AGENT_DISCOVERY_LINKS,
   preconnectHrefs = [] as readonly string[],
+  robots = "index, follow",
 } = Astro.props;
 
 const canonicalHostname = resolveCanonicalHostname(canonicalUrl);
@@ -82,7 +84,7 @@ const shouldLoadUmami = shouldLoadUmamiScript(
   <meta name="description" content={description} />
   <meta name="keywords" content={keywords} />
   <meta name="author" content={author} />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content={robots} />
   <link rel="canonical" href={canonicalUrl} />
   {
     discoveryLinks.map((link) => (

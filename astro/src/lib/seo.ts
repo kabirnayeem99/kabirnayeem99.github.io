@@ -1,4 +1,7 @@
+import navigationLabels from "../data/site-content/navigation-labels.json";
 import { LANGS } from "./locale-config";
+
+type BreadcrumbPageId = "work" | "project" | "blog" | "stats";
 
 export interface SchemaGraphInput {
   readonly baseUrl: string;
@@ -8,6 +11,23 @@ export interface SchemaGraphInput {
   readonly ogImageUrl: string;
   readonly socialProfiles: readonly string[];
   readonly lang?: string;
+  readonly pageTitle?: string;
+  readonly pageDescription?: string;
+  readonly breadcrumb?: {
+    readonly homeLabel: string;
+    readonly pageLabel: string;
+  };
+}
+
+export function buildBreadcrumb(
+  pageId: BreadcrumbPageId,
+  lang: string,
+): { readonly homeLabel: string; readonly pageLabel: string } {
+  const labels = navigationLabels as Record<string, Record<string, string>>;
+  return {
+    homeLabel: labels["index"]?.[lang] ?? "Home",
+    pageLabel: labels[pageId]?.[lang] ?? pageId,
+  };
 }
 
 const PERSON_FIELDS_BY_LANG: Partial<Record<string, { jobTitle: string; description: string }>> = {
@@ -66,44 +86,82 @@ export function buildSchemaGraphJson(input: SchemaGraphInput): string {
     jobTitle: "Software Engineer",
     description: "Software Engineer · Muslim · Bibliophile · Philomath",
   };
+
+  const webPageNode: Record<string, unknown> = {
+    "@type": "WebPage",
+    "@id": `${input.canonicalUrl}#webpage`,
+    url: input.canonicalUrl,
+    isPartOf: { "@id": `${input.baseUrl}/#website` },
+    about: { "@id": `${input.baseUrl}/#person` },
+  };
+  if (input.pageTitle !== undefined) webPageNode["name"] = input.pageTitle;
+  if (input.pageDescription !== undefined) webPageNode["description"] = input.pageDescription;
+  if (input.breadcrumb !== undefined) {
+    webPageNode["breadcrumb"] = { "@id": `${input.canonicalUrl}#breadcrumb` };
+  }
+
+  const graphNodes: object[] = [
+    {
+      "@type": "WebSite",
+      "@id": `${input.baseUrl}/#website`,
+      url: `${input.baseUrl}/`,
+      name: input.websiteName,
+      sameAs: sameAsProfiles,
+      publisher: { "@id": `${input.baseUrl}/#person` },
+      inLanguage: [...LANGS],
+    },
+    {
+      "@type": "Person",
+      "@id": `${input.baseUrl}/#person`,
+      name: input.personName,
+      url: `${input.baseUrl}/`,
+      image: input.ogImageUrl,
+      sameAs: sameAsProfiles,
+      jobTitle: personFields.jobTitle,
+      description: personFields.description,
+      worksFor: {
+        "@type": "Organization",
+        name: "Syarah",
+        url: "https://syarah.com/",
+      },
+      knowsAbout: [
+        "Android Development",
+        "Kotlin",
+        "Kotlin Multiplatform",
+        "Flutter",
+        "iOS Development",
+        "PHP",
+        "Laravel",
+        "Software Engineering",
+      ],
+    },
+    webPageNode,
+  ];
+
+  if (input.breadcrumb !== undefined) {
+    graphNodes.push({
+      "@type": "BreadcrumbList",
+      "@id": `${input.canonicalUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: input.breadcrumb.homeLabel,
+          item: `${input.baseUrl}/`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: input.breadcrumb.pageLabel,
+          item: input.canonicalUrl,
+        },
+      ],
+    });
+  }
+
   const graph = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": `${input.baseUrl}/#website`,
-        url: `${input.baseUrl}/`,
-        name: input.websiteName,
-        sameAs: sameAsProfiles,
-        publisher: { "@id": `${input.baseUrl}/#person` },
-        inLanguage: [...LANGS],
-      },
-      {
-        "@type": "Person",
-        "@id": `${input.baseUrl}/#person`,
-        name: input.personName,
-        url: `${input.baseUrl}/`,
-        image: input.ogImageUrl,
-        sameAs: sameAsProfiles,
-        jobTitle: personFields.jobTitle,
-        description: personFields.description,
-        worksFor: {
-          "@type": "Organization",
-          name: "Syarah",
-          url: "https://syarah.com/",
-        },
-        knowsAbout: [
-          "Android Development",
-          "Kotlin",
-          "Kotlin Multiplatform",
-          "Flutter",
-          "iOS Development",
-          "PHP",
-          "Laravel",
-          "Software Engineering",
-        ],
-      },
-    ],
+    "@graph": graphNodes,
   };
 
   return scriptSafeJson(graph);

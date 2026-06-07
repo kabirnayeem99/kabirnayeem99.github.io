@@ -10,7 +10,7 @@ import {
   PAGE_LAYOUT,
   UMAMI_WEBSITE_ID,
 } from "../../lib/page-shared";
-import { buildSchemaGraphJson } from "../../lib/seo";
+import { buildBreadcrumb, buildSchemaGraphJson } from "../../lib/seo";
 import { loadStatsPageContent, statsEmbedThemeSources } from "../../lib/stats-content";
 import {
   assetHref,
@@ -39,6 +39,9 @@ const schemaGraphJson = buildSchemaGraphJson({
   ogImageUrl,
   socialProfiles: content.site.socialProfiles,
   lang,
+  pageTitle: content.meta.title,
+  pageDescription: content.meta.description,
+  breadcrumb: buildBreadcrumb("stats", lang),
 });
 
 const alternateLinks = buildAlternateLinks(content.site.baseUrl, content.pageRoutes);
@@ -157,7 +160,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
               data-wakatime-languages-url={content.sections.wakatime.languagesUrl}
               data-wakatime-summary-url={content.sections.wakatime.summaryUrl}
             >
-              <p class="wakatime-status" data-role="status">{content.sections.wakatime.statusText}</p>
+              <p class="wakatime-status" data-role="status" role="status">{content.sections.wakatime.statusText}</p>
               <div class="wakatime-visuals" data-role="visuals" hidden>
                 <div class="wakatime-summary" data-role="summary-cards"></div>
                 <div class="wakatime-language-chart" data-role="language-chart">
@@ -182,7 +185,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
               data-github-commits-widget
               data-github-contrib-url={content.sections.githubCommits.contribUrl}
             >
-              <p class="github-commits-status" data-role="status">
+              <p class="github-commits-status" data-role="status" role="status">
                 {content.sections.githubCommits.statusText}
               </p>
               <div class="github-commits-visuals" data-role="visuals" hidden>
@@ -222,7 +225,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
               data-prs-api-url={content.sections.githubProfile.prsApiUrl}
               data-issues-api-url={content.sections.githubProfile.issuesApiUrl}
             >
-              <p class="github-profile-status" data-role="status">
+              <p class="github-profile-status" data-role="status" role="status">
                 {content.sections.githubProfile.statusText}
               </p>
               <div class="github-profile-visuals" data-role="visuals" hidden>
@@ -257,7 +260,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
               data-leetcode-widget
               data-leetcode-api-url={content.sections.leetcode.apiUrl}
             >
-              <p class="leetcode-status" data-role="status">{content.sections.leetcode.statusText}</p>
+              <p class="leetcode-status" data-role="status" role="status">{content.sections.leetcode.statusText}</p>
               <div class="leetcode-visuals" data-role="visuals" hidden>
                 <div class="leetcode-summary" data-role="summary-cards"></div>
                 <div class="leetcode-difficulty" data-role="difficulty"></div>
