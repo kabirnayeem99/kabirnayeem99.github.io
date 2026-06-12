@@ -71,7 +71,7 @@
           "user_name": "Naimul",
           "profile_href": "https://www.goodreads.com/user/show/45514357-naimul-kabir",
           "profile_label": "You can check the full Goodreads shelf. A good chunk of the books I’ve read are there.",
-          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_added&widget_id=1771265103",
+          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_read&widget_id=1771265103",
           "status_text": "Fetching my Goodreads shelf, might take a moment…"
         },
         "github_profile": {
@@ -158,7 +158,7 @@
           "user_name": "Naimul",
           "profile_href": "https://www.goodreads.com/user/show/45514357-naimul-kabir",
           "profile_label": "পুরো গুডরিডস শেলফ দেখতে পারেন, মোটামুটি পড়া বইয়ের অনেগুলোই এখানে আছে।",
-          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_added&widget_id=1771265103",
+          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_read&widget_id=1771265103",
           "status_text": "গুডরিডস থেকে আমার শেলফ নেমে আসছে, একটু সময় লাগবে…"
         },
         "github_profile": {
@@ -245,7 +245,7 @@
           "user_name": "Naimul",
           "profile_href": "https://www.goodreads.com/user/show/45514357-naimul-kabir",
           "profile_label": "يُمْكِنُكَ رُؤْيَةُ رَفِّ Goodreads كَامِلًا، فَأَكْثَرُ ٱلْكُتُبِ ٱلَّتِي قَرَأْتُهَا مَوْجُودَةٌ هُنَاكَ.",
-          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_added&widget_id=1771265103",
+          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_read&widget_id=1771265103",
           "status_text": "يَجْرِي جَلْبُ رَفِّي مِنْ Goodreads، قَدْ يَسْتَغْرِقُ ٱلْأَمْرُ قَلِيلًا…"
         },
         "github_profile": {
@@ -332,7 +332,7 @@
           "user_name": "Naimul",
           "profile_href": "https://www.goodreads.com/user/show/45514357-naimul-kabir",
           "profile_label": "پورا Goodreads شیلف دیکھ سکتے ہیں، پڑھی ہوئی کافی کتابیں وہاں موجود ہیں۔",
-          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_added&widget_id=1771265103",
+          "script_src": "https://www.goodreads.com/review/grid_widget/45514357.Naimul's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=300&order=d&shelf=read&sort=date_read&widget_id=1771265103",
           "status_text": "Goodreads سے میرا شیلف آ رہا ہے، تھوڑا وقت لگے گا…"
         },
         "github_profile": {
