@@ -1,5 +1,16 @@
 _id,isPb,wpm,acc,rawWpm,consistency,charStats,mode,mode2,quoteLength,restartCount,testDuration,afkDuration,incompleteTestSeconds,punctuation,numbers,language,funbox,difficulty,lazyMode,blindMode,bailedOut,tags,timestamp
-6a2529a2e350e3df15e34ebf,false,83.4,97.22,83.4,69.56,417;0;0;0,time,60,-1,0,60,0,0,true,false,english,,normal,false,false,false,,1780820384753
+6a2e7f79477ba014a76b3436,false,90.6,98.27,90.6,77.92,453;0;0;0,time,60,-1,0,60,0,0,true,false,english,,normal,false,false,false,,1781432185000
+6a2e633ba9a08085ac13c654,false,87.6,98.21,87.6,73.45,438;0;0;0,time,60,-1,0,60,0,0,true,false,english,,normal,false,false,false,,1781424955000
+6a2e5effa9a08085ac13a556,false,81,96.45,81,66.5,405;0;0;0,time,60,-1,0,60,0,0,true,false,english,,normal,false,false,false,,1781423871000
+6a2ab802b09034fd2691c76a,false,87.81,96.93,87.81,73.01,439;0;0;0,time,60,-1,0,59.99,0,0,true,false,english,,normal,false,false,false,,1781184514000
+6a2ab71cb09034fd2691bd3d,false,81.21,97.37,81.21,69.8,406;0;0;0,time,60,-1,0,59.99,0,0,true,false,english,,normal,false,false,false,,1781184284000
+6a2a6728b09034fd268eb5cc,false,85.59,97.95,85.59,70.27,428;0;0;0,time,60,-1,0,60.01,0,0,true,false,english,,normal,false,false,false,,1781163816000
+6a2a668ab09034fd268eb055,false,87.2,97.32,87.2,64.62,436;0;0;0,time,60,-1,0,60,0,0,true,false,english,,normal,false,false,false,,1781163658000
+6a2a6649b09034fd268eadec,false,85.4,97.96,85.4,70.84,427;0;0;0,time,60,-1,0,60,0,0,true,false,english,,normal,false,false,false,,1781163593000
+6a27caa968023481c974e8a1,false,88.61,95.55,90.02,69.61,443;3;1;0,time,60,-1,0,59.99,0,0,true,false,english,,normal,false,false,false,,1780992681000
+6a27c97268023481c974dd98,false,87.79,97.16,89.39,72.01,439;2;0;1,time,60,-1,0,60.01,0,0,true,false,english,,normal,false,false,false,,1780992370000
+6a27c92c68023481c974dafe,false,79.8,95.7,79.8,70.71,399;0;0;0,time,60,-1,0,60,0,0,true,false,english,,normal,false,false,false,,1780992300000
+6a2529a2e350e3df15e34ebf,false,83.4,97.22,83.4,69.56,417;0;0;0,time,60,-1,0,60,0,0,true,false,english,,normal,false,false,false,,1780820386000
 6a2518f3e350e3df15e2d6a0,false,77.41,93.59,79.61,64.38,387;5;1;0,time,60,-1,0,59.99,0,0,true,false,english,,normal,false,false,false,,1780816115000
 6a2518a0e350e3df15e2d442,false,89,98.24,89,77.12,445;0;0;0,time,60,-1,0,60,0,0,true,false,english,,normal,false,false,false,,1780816032000
 6a2517e7e350e3df15e2cf17,false,85.6,97.97,86.6,70.32,428;1;0;1,time,60,-1,0,60,0,0,true,false,english,,normal,false,false,false,,1780815847000
