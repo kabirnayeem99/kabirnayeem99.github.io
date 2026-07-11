@@ -808,10 +808,14 @@ html[data-theme="dark"] .theme-toggle-icon {
   border-radius: var(--radius-md);
   background: var(--panel-gradient), var(--surface);
   box-shadow: var(--shadow);
-  display: grid;
+  display: none;
   gap: 0.35rem;
   z-index: 300;
   transform: translateZ(0);
+}
+
+.language-switcher.is-open .language-menu {
+  display: grid;
 }
 
 .language-menu[hidden] {
