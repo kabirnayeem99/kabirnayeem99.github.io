@@ -1,9 +1,9 @@
 {
   "index": {
     "en": "index.html",
-    "bn": "bn.html",
-    "ar": "ar.html",
-    "ur": "ur.html"
+    "bn": "bn/index.html",
+    "ar": "ar/index.html",
+    "ur": "ur/index.html"
   },
   "work": {
     "en": "work.html",

@@ -1,0 +1,88 @@
+---
+import { LANGS, type Lang } from "../../lib/locale-config";
+import { routeHref } from "../../lib/work-project-content";
+
+interface Props {
+  readonly currentRoute: string;
+  readonly darkModeIconHref: string;
+  readonly lang: Lang;
+  readonly languageLinks: Readonly<Record<Lang, string>>;
+  readonly languageMenuId: string;
+  readonly languageMenuLabels: Readonly<Record<Lang, string>>;
+  readonly languageSwitcherLabel: string;
+  readonly lightModeIconHref: string;
+  readonly themeDarkLabel: string;
+  readonly themeLightLabel: string;
+}
+
+const {
+  currentRoute,
+  darkModeIconHref,
+  lang,
+  languageLinks,
+  languageMenuId,
+  languageMenuLabels,
+  languageSwitcherLabel,
+  lightModeIconHref,
+  themeDarkLabel,
+  themeLightLabel,
+} = Astro.props as Props;
+---
+
+<div class="header-controls">
+  <button
+    class="theme-toggle"
+    type="button"
+    aria-label={themeDarkLabel}
+    title={themeDarkLabel}
+    aria-pressed="false"
+    data-theme-toggle
+    data-dark-label={themeDarkLabel}
+    data-light-label={themeLightLabel}
+    data-dark-icon-src={darkModeIconHref}
+    data-light-icon-src={lightModeIconHref}
+  >
+    <img
+      class="theme-toggle-icon"
+      src={lightModeIconHref}
+      alt=""
+      width="18"
+      height="18"
+      aria-hidden="true"
+      data-theme-toggle-icon
+    />
+  </button>
+  <div class="language-switcher" data-language-switcher>
+    <button
+      class="language-switcher-button"
+      type="button"
+      aria-label={languageSwitcherLabel}
+      aria-controls={languageMenuId}
+      aria-expanded="false"
+      aria-haspopup="true"
+      title={languageSwitcherLabel}
+      popovertarget={languageMenuId}
+      data-language-switcher-button
+    >
+      <span aria-hidden="true" class="language-switcher-globe"></span>
+    </button>
+    <div
+      class="language-menu"
+      id={languageMenuId}
+      popover="auto"
+      data-language-switcher-menu
+    >
+      {
+        LANGS.map((localeCode) => (
+          <a
+            href={routeHref(currentRoute, languageLinks[localeCode])}
+            lang={localeCode}
+            aria-current={localeCode === lang ? "page" : undefined}
+          >
+            {languageMenuLabels[localeCode]}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>

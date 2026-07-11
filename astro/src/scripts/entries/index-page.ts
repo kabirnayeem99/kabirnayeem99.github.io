@@ -1,7 +1,5 @@
 import "./common-page";
 import "../modules/back-to-top";
-import "../modules/theme-toggle";
-import "../modules/language-switcher";
 import "../modules/stats-snapshots";
 import "../modules/stats-utils";
 import "../modules/wakatime-charts";

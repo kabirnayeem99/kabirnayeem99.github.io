@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const firstLink = menu.querySelector<HTMLAnchorElement>("a");
 
     if ("showPopover" in HTMLElement.prototype) {
+      menu.hidden = false;
       menu.addEventListener("toggle", (rawEvent) => {
         const event = rawEvent as { newState: string };
         const isOpen = event.newState === "open";

@@ -362,6 +362,12 @@ header {
   padding-inline-end: 4.8rem;
 }
 
+.page-header-top {
+  position: relative;
+  min-height: 2.75rem;
+  padding-inline-end: 5.5rem;
+}
+
 .page-closebar {
   margin-top: 0.18rem;
   display: inline-flex;
@@ -2735,18 +2741,27 @@ html[data-theme="dark"] .action-chip--primary:focus-visible {
 /* main page navigation — brutalist bordered row */
 .page-nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   margin-top: 0.9rem;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .page-closebar + .page-nav {
   margin-top: 1rem;
 }
 
+.page-nav::-webkit-scrollbar {
+  display: none;
+}
+
 .page-nav-link {
   display: inline-flex;
   align-items: center;
+  flex: 0 0 auto;
   padding: 0.32rem 0.7rem;
   border: none;
   background: transparent;

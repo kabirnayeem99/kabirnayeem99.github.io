@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import BackToTopButton from "./BackToTopButton.astro";
+import HeaderControls from "./HeaderControls.astro";
 import HeadSeo from "./HeadSeo.astro";
 import HighlightCard from "./HighlightCard.astro";
 import PageFooter from "./PageFooter.astro";
@@ -249,67 +250,18 @@ const skillChips = [
     </a>
     <div class={PAGE_LAYOUT.siteClass}>
       <header id="top">
-        <div class="header-controls">
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-label={uiLabels.themeDark}
-            title={uiLabels.themeDark}
-            aria-pressed="false"
-            data-theme-toggle
-            data-dark-label={uiLabels.themeDark}
-            data-light-label={uiLabels.themeLight}
-            data-dark-icon-src={darkModeIconHref}
-            data-light-icon-src={lightModeIconHref}
-          >
-            <img
-              class="theme-toggle-icon"
-              src={lightModeIconHref}
-              alt=""
-              width="18"
-              height="18"
-              aria-hidden="true"
-              data-theme-toggle-icon
-            />
-          </button>
-          <div class="language-switcher" data-language-switcher>
-            <button
-              class="language-switcher-button"
-              type="button"
-              aria-label={content.site.locale.languageSwitcherLabel}
-              aria-controls={menuId}
-              aria-expanded="false"
-              aria-haspopup="true"
-              title={content.site.locale.languageSwitcherLabel}
-              popovertarget={menuId}
-              data-language-switcher-button
-            >
-              <span aria-hidden="true" class="language-switcher-globe"></span>
-            </button>
-            <div
-              class="language-menu"
-              id={menuId}
-              popover="auto"
-              hidden
-              data-language-switcher-menu
-            >
-              {
-                LANGS.map((localeCode) => (
-                  <a
-                    href={routeHref(
-                      currentRoute,
-                      content.routes.index[localeCode],
-                    )}
-                    lang={localeCode}
-                    aria-current={localeCode === lang ? "page" : undefined}
-                  >
-                    {content.site.languageMenuLabels[localeCode]}
-                  </a>
-                ))
-              }
-            </div>
-          </div>
-        </div>
+        <HeaderControls
+          currentRoute={currentRoute}
+          darkModeIconHref={darkModeIconHref}
+          lang={lang}
+          languageLinks={content.routes.index}
+          languageMenuId={menuId}
+          languageMenuLabels={content.site.languageMenuLabels}
+          languageSwitcherLabel={content.site.locale.languageSwitcherLabel}
+          lightModeIconHref={lightModeIconHref}
+          themeDarkLabel={uiLabels.themeDark}
+          themeLightLabel={uiLabels.themeLight}
+        />
 
         <div class="header-identity">
           <div class="hero-avatar-card">
