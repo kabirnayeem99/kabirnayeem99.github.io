@@ -4,6 +4,11 @@
 
 Repository guidance for AI/code agents.
 
+## Agent index
+
+- `.claude/agents/writing-translation-localization.md` - writing, rewriting, translation, localization, style adaptation, and website/article rewrites
+- `.codex/agents`, `.gemini/agents`, and `.opencode/agents` should mirror `.claude/agents`
+
 ## Stack and scope
 
 - This repository is Astro-only.
