@@ -234,6 +234,33 @@ const skillChips = [
   "Agile", "Scrum", "Kanban",
   "Bangla", "Urdu", "English",
 ] as const;
+
+const visibleSections = content.sections.filter((section) => section.tags.length === 0);
+const [leadSection, ...remainingSections] = visibleSections;
+
+function buildSectionClassName(
+  section: (typeof visibleSections)[number],
+  role: "lead" | "default" = "default",
+): string {
+  const classNames = ["index-section"];
+  if (role === "lead") {
+    classNames.push("index-section--lead");
+  }
+  if (section.highlights.length > 0) {
+    classNames.push("index-section--showcase");
+  }
+  if (section.articles.length > 0) {
+    classNames.push("index-section--editorial");
+  }
+  if (
+    section.highlights.length === 0 &&
+    section.articles.length === 0 &&
+    section.paragraphs.length > 0
+  ) {
+    classNames.push("index-section--notes");
+  }
+  return classNames.join(" ");
+}
 ---
 
 <!doctype html>
@@ -358,26 +385,69 @@ const skillChips = [
       </header>
 
       <main id={PAGE_LAYOUT.mainContentId}>
-        <section class="about-section">
-          <div class="summary-card summary-card--about">
-            {content.summaryCard.map((paragraph) => <p set:html={paragraph} />)}
-          </div>
-        </section>
+        <div class="intro-stage">
+          <section class="about-section intro-stage-primary">
+            <div class="summary-card summary-card--about">
+              {content.summaryCard.map((paragraph) => <p set:html={paragraph} />)}
+            </div>
+          </section>
+
+          {
+            leadSection ? (
+              <section
+                class={`${buildSectionClassName(leadSection, "lead")} intro-stage-secondary`}
+              >
+                <div class="section-head">
+                  <h2 class="section-title section-title--minor">
+                    {leadSection.title}
+                  </h2>
+                  {leadSection.actions.length > 0 ? (
+                    <div class="section-actions">
+                      {leadSection.actions.map((action) => {
+                        const resolved = resolveAction(action);
+                        return (
+                          <a
+                            class={resolved.variantClass}
+                            href={resolved.href}
+                            target={resolved.isExternal ? "_blank" : undefined}
+                            rel={resolved.isExternal ? "noreferrer" : undefined}
+                            data-nav-page-id={resolved.navPageId}
+                          >
+                            {resolved.isMailto ? (
+                              <span
+                                class="action-chip-icon action-chip-icon--mail"
+                                aria-hidden="true"
+                              />
+                            ) : null}
+                            <span>{resolved.labelText}</span>
+                            {resolved.showTrailingArrow ? (
+                              <span
+                                class="action-chip-arrow"
+                                aria-hidden="true"
+                              />
+                            ) : null}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                </div>
+                {leadSection.paragraphs.map((paragraph) => (
+                  <p set:html={paragraph} />
+                ))}
+                {leadSection.contacts.map((contact) => (
+                  <p>{contact}</p>
+                ))}
+              </section>
+            ) : null
+          }
+        </div>
 
         {
-          content.sections.map((section, sectionIndex) =>
-            section.tags.length > 0 ? null : (
-              <section>
+          remainingSections.map((section) => (
+              <section class={buildSectionClassName(section)}>
                 <div class="section-head">
-                  <h2
-                    class={
-                      sectionIndex === 0
-                        ? "section-title section-title--minor"
-                        : "section-title"
-                    }
-                  >
-                    {section.title}
-                  </h2>
+                  <h2 class="section-title">{section.title}</h2>
                   {section.actions.length > 0 ? (
                     <div class="section-actions">
                       {section.actions.map((action) => {
@@ -440,11 +510,10 @@ const skillChips = [
                   <p>{contact}</p>
                 ))}
               </section>
-            ),
-          )
+            ))
         }
 
-        <section>
+        <section class="index-section index-section--stats">
           <div class="summary-card stats-card skills-card">
             <div class="section-head">
               <h2 class="section-title">
@@ -476,7 +545,7 @@ const skillChips = [
           </div>
         </section>
 
-        <section>
+        <section class="index-section index-section--books">
           <div class="summary-card stats-card">
             <div class="section-head">
               <h2 class="section-title">
