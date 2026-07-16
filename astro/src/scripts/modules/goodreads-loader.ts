@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const cacheTtlMs = 24 * 60 * 60 * 1000;
   const widgetId = widget.id || "default";
   const cacheKey = `goodreads-widget-cache:v3:${widgetId}:${encodeURIComponent(scriptSource)}`;
 
@@ -117,14 +116,11 @@ document.addEventListener("DOMContentLoaded", () => {
     applyIndexBookLimit();
   };
 
-  const now = Date.now();
   const cached = readCache();
-  const isFreshCache =
-    cached !== null &&
-    cached.scriptSource === scriptSource &&
-    now - cached.fetchedAt < cacheTtlMs;
+  const hasMatchingCache = cached !== null && cached.scriptSource === scriptSource;
 
-  if (isFreshCache && cached !== null) {
+  // Server-rendered snapshot is visible first; cache is an immediate local upgrade.
+  if (hasMatchingCache && cached !== null) {
     widget.innerHTML = cached.html;
     applyIndexBookLimit();
   }
@@ -133,8 +129,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('script[data-goodreads-widget="true"]') !== null
   );
 
-  // Call Goodreads at most once per 24h for each widget/script variant.
-  if (isFreshCache || hasInjectedWidgetScript()) {
+  // Refresh from Goodreads after the static and cached layers. If it fails, either
+  // earlier layer remains in place instead of leaving the shelf empty.
+  if (hasInjectedWidgetScript()) {
     return;
   }
 
@@ -153,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Goodreads script populates #gr_grid_widget_*; cache then apply UI limit.
       window.setTimeout(writeCache, 150);
     });
+    script.addEventListener("error", applyIndexBookLimit);
     document.body?.appendChild(script);
   };
 

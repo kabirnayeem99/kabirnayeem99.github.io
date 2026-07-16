@@ -4381,3 +4381,93 @@ body[data-page-id="blog"] main::before {
   body[data-page-id="blog"] main::after { inset-inline-end: 0; right: auto; top: 14rem; }
   body[data-page-id="blog"] main::before { inset-inline-start: 0; left: auto; top: 4rem; }
 }
+
+/* The cloud repeats like a notebook margin stamp, not a background pattern. */
+.margin-doodle--cloud {
+  background: var(--mark-blue);
+  -webkit-mask-image: url("../icons/doodles/hand-drawn-clouds.svg");
+  mask-image: url("../icons/doodles/hand-drawn-clouds.svg");
+}
+
+body[data-page-id="index"] .margin-doodle--cloud {
+  top: 22rem;
+  inset-inline-start: clamp(1rem, 8vw, 10rem);
+  width: clamp(6.5rem, 13vw, 12rem);
+  opacity: 0.4;
+  transform: rotate(-9deg);
+}
+
+body[data-page-id="stats"] .margin-doodle--cloud {
+  top: 39rem;
+  inset-inline-end: clamp(1rem, 7vw, 9rem);
+  width: clamp(4.5rem, 8vw, 7.5rem);
+  background: var(--mark-red);
+  opacity: 0.54;
+  transform: rotate(16deg);
+}
+
+body[data-page-id="blog"] .margin-doodle--cloud {
+  top: 42rem;
+  inset-inline-start: clamp(1rem, 10vw, 13rem);
+  width: clamp(5.5rem, 10vw, 9.5rem);
+  background: var(--mark-yellow);
+  opacity: 0.58;
+  transform: rotate(7deg);
+}
+
+@media (max-width: 720px) {
+  .margin-doodle--cloud { width: 3.4rem !important; opacity: 0.25 !important; }
+  body[data-page-id="index"] .margin-doodle--cloud { top: 21rem; inset-inline-start: 0; }
+  body[data-page-id="stats"] .margin-doodle--cloud { top: 35rem; inset-inline-end: 0; }
+  body[data-page-id="blog"] .margin-doodle--cloud { top: 32rem; inset-inline-start: 0; }
+}
+
+/* Let the title's brush stroke cross the lower letterforms like a marked page. */
+.site-title::after {
+  inset-inline-start: -0.45rem;
+  inset-inline-end: -1.15rem;
+  bottom: 0.34rem;
+  z-index: 1;
+  height: clamp(1.05rem, 2.15vw, 1.55rem);
+  background: var(--brush-stroke);
+  opacity: 0.94;
+  transform: rotate(-1.7deg);
+}
+
+/* One locale-aware type family across editorial, display, and UI text. */
+:root {
+  --font-site: "EB Garamond", Georgia, "Times New Roman", serif;
+  --font-body: var(--font-site);
+  --font-display: var(--font-site);
+  --font-detail: var(--font-site);
+}
+
+html:lang(bn) { --font-site: "Noto Serif Bengali", serif; }
+html:lang(ar) { --font-site: "Scheherazade New", serif; }
+html:lang(ur) { --font-site: "Urdu Pak Nastaleeq", serif; }
+
+/* Preserve the original compact masthead proportions. */
+.site-title {
+  font-family: "Anton", "Noto Serif Bengali", "Scheherazade New", "Urdu Pak Nastaleeq", Impact, "Arial Narrow", sans-serif;
+}
+
+/* Covers read as a dense shelf; titles replace serial-number decoration. */
+.gr_grid_container,
+.stats-bookshelf .gr_grid_container {
+  gap: 0.52rem 0.38rem;
+}
+
+.gr_grid_book_container,
+.gr_grid_container {
+  counter-increment: none;
+  counter-reset: none;
+}
+
+.gr_grid_book_container a::before {
+  content: none;
+}
+
+@media (max-width: 480px) {
+  .gr_grid_container,
+  .stats-bookshelf .gr_grid_container { gap: 0.62rem 0.42rem; }
+}
