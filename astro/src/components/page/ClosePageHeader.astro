@@ -1,21 +1,12 @@
 ---
-import HeaderControls from "./HeaderControls.astro";
 import PageNav from "./PageNav.astro";
 import { buildMainNav } from "../../lib/main-nav";
-import { type Lang } from "../../lib/locale-config";
-import { asRecord, loadSiteContentRoot, readLangStringMap } from "../../lib/content-loader-shared";
-import { assetHref } from "../../lib/work-project-content";
 
 interface Props {
   readonly homeHref: string;
   readonly closeLabel: string;
   readonly title: string;
   readonly currentRoute: string;
-  readonly lang: Lang;
-  readonly languageSwitcherLabel: string;
-  readonly pageRoutes: Readonly<Record<Lang, string>>;
-  readonly themeDarkLabel: string;
-  readonly themeLightLabel: string;
 }
 
 const {
@@ -23,22 +14,8 @@ const {
   closeLabel,
   title,
   currentRoute,
-  lang,
-  languageSwitcherLabel,
-  pageRoutes,
-  themeDarkLabel,
-  themeLightLabel,
 } = Astro.props as Props;
 const navItems = buildMainNav(currentRoute);
-const siteRoot = loadSiteContentRoot();
-const site = asRecord(siteRoot.site, "root.site");
-const languageMenuLabels = readLangStringMap(
-  asRecord(site.language_menu_labels, "root.site.language_menu_labels"),
-  "root.site.language_menu_labels",
-);
-const darkModeIconHref = assetHref(currentRoute, "icons/theme-dark.svg");
-const lightModeIconHref = assetHref(currentRoute, "icons/theme-light.svg");
-const languageMenuId = `language-menu-${title.toLowerCase().replace(/\s+/g, "-")}-${lang}`;
 ---
 
 <header id="top">
@@ -53,18 +30,6 @@ const languageMenuId = `language-menu-${title.toLowerCase().replace(/\s+/g, "-")
       >
       <h1 class="site-title site-title--page">{title}</h1>
     </div>
-    <HeaderControls
-      currentRoute={currentRoute}
-      darkModeIconHref={darkModeIconHref}
-      lang={lang}
-      languageLinks={pageRoutes}
-      languageMenuId={languageMenuId}
-      languageMenuLabels={languageMenuLabels}
-      languageSwitcherLabel={languageSwitcherLabel}
-      lightModeIconHref={lightModeIconHref}
-      themeDarkLabel={themeDarkLabel}
-      themeLightLabel={themeLightLabel}
-    />
   </div>
   <PageNav items={navItems} />
 </header>

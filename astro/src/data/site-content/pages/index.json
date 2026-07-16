@@ -28,10 +28,12 @@
           "title": "Selected works",
           "highlights": [
             {
-              "title": "Internal camera SDK with Machine Learning at Syarah",
+              "title": "On-Device Computer Vision, ML Systems & Reliable Image Uploads at Syarah",
               "meta": "2023 - Present",
               "paragraphs": [
-                "Built an in-house camera SDK with sensor-based validation and YOLOv8-powered angle checks to improve car image capture for supply-chain inspections. Also developed an internal upload service SDK designed to stay reliable under unstable network conditions and extreme heat."
+                "Conceived, planned, and delivered a lightweight, on-device ML car-photo classification system using a custom-trained 42-class MobileNetV3 LiteRT/TFLite model. Integrated across bulk upload, image validation, and live camera workflows, it significantly reduced photography time and human classification errors.",
+                "Built a real-time Android VIN scanner using CameraX, LiteRT, and ML Kit, with a lightweight custom-trained quantized detector and a complex VIN recognition algorithm covering OCR validation, checksum repair, and character-confusion recovery.",
+                "Also developed a reliable upload manager that substantially reduced image loss during transfers."
               ]
             },
             {
@@ -153,10 +155,12 @@
           "title": "নির্বাচিত কাজ",
           "highlights": [
             {
-              "title": "সাইয়ারাহতে মেশিন লার্নিংসহ ইন্টারনাল ক্যামেরা এসডিকে",
+              "title": "সাইয়ারাহতে অন-ডিভাইস কম্পিউটার ভিশন, এমএল সিস্টেম আর নির্ভরযোগ্য ইমেজ আপলোড",
               "meta": "২০২৩ - বর্তমান",
               "paragraphs": [
-                "ইন্সপেকশনে আসা গাড়িগুলোর ডাটা এন্ট্রি, ছবি তোলা এবং ড্যামেজ ডকুমেন্টেশনের জন্য একটা ইন-হাউজ ক্যামেরা এসডিকে নিয়ে কাজ করেছি। সেখানে YOLOv8 দিয়ে কিছু মেশিন লার্নিংও ব্যবহার করা হয়েছে, যাতে ছবি তোলার সময় গাড়ির কোন অংশ ফোকাসে আছে তা বোঝা যায়। এছাড়া একটা ইন-হাউজ আপলোড এসডিকেও ডেভেলপ করেছি, যা অস্থিতিশীল নেটওয়ার্ক ও তীব্র গরমেও নির্ভরযোগ্যভাবে কাজ করে।"
+                "ভাবনা থেকে শুরু করে ডেলিভারি পর্যন্ত, আমি একটা হালকা অন-ডিভাইস এমএল সিস্টেম বানিয়েছি, যেটা গাড়ির ছবি ৪২টি ক্যাটাগরিতে আলাদা করতে পারে। এর ভেতরে ছিল কাস্টম-ট্রেইন করা MobileNetV3 LiteRT/TFLite মডেল। বাল্ক আপলোড, ইমেজ ভ্যালিডেশন আর লাইভ ক্যামেরা ফ্লো জুড়ে এটা বসানো হয়েছে। ফলে ছবি তুলতে সময় কমেছে, আর মানুষের ভুলে ভুল ক্যাটাগরিতে ছবি পড়ার ঘটনাও অনেক কমেছে।",
+                "এ ছাড়া CameraX, LiteRT আর ML Kit ব্যবহার করে অ্যান্ড্রয়েডে রিয়েল-টাইম VIN স্ক্যানারও বানিয়েছি। সেখানে ছিল নিজে ট্রেইন করা হালকা quantized detector, আর তার সঙ্গে এমন এক VIN recognition algorithm, যেটা OCR validation, checksum repair, আর দেখতে কাছাকাছি অক্ষরের গোলমালও সামলাতে পারে।",
+                "আরও একটা জিনিস করেছি। ইমেজ ট্রান্সফারের সময় ছবি হারিয়ে যাওয়া কমানোর জন্য একটা নির্ভরযোগ্য upload manager বানিয়েছি। এতে আপলোড অনেক বেশি ভরসাযোগ্য হয়েছে।"
               ]
             },
             {
@@ -259,10 +263,12 @@
           "title": "أَعْمَالٌ مُخْتَارَةٌ",
           "highlights": [
             {
-              "title": "SDK كَامِيرَا دَاخِلِيّ مَعَ تَعَلُّمِ ٱلْآلَةِ",
+              "title": "رُؤْيَةٌ حَاسُوبِيَّةٌ عَلَى ٱلْجِهَازِ، وَأَنْظِمَةُ تَعَلُّمٍ آلِيٍّ، وَرَفْعٌ مَوْثُوقٌ لِلصُّوَرِ فِي سَيَّارَة",
               "meta": "2023 - حَتَّى ٱلْآن",
               "paragraphs": [
-                "عَمِلْتُ عَلَىٰ SDK كَامِيرَا دَاخِلِيّ لِتَوْثِيقِ ٱلْأَعْطَالِ وَتَصْوِيرِ ٱلسَّيَّارَاتِ، مَعَ فَحْصِ زَوَايَا بِـ YOLOv8. وَكَذٰلِكَ طَوَّرْتُ SDK لِلرَّفْعِ يَعْمَلُ بِشَكْلٍ مُسْتَقِرّ حَتَّى مَعَ ٱلشَّبَكَاتِ ٱلضَّعِيفَةِ وَٱلْحَرَارَةِ ٱلشَّدِيدَةِ."
+                "قُمْتُ بِتَصَوُّرِ وَتَخْطِيطِ وَتَنْفِيذِ نِظَامٍ خَفِيفٍ لِتَصْنِيفِ صُوَرِ ٱلسَّيَّارَاتِ بِٱلِاعْتِمَادِ عَلَى ٱلتَّعَلُّمِ ٱلْآلِيِّ عَلَى ٱلْجِهَازِ، وَذٰلِكَ بِٱسْتِخْدَامِ نَمُوذَجٍ مُخَصَّصٍ مُدَرَّبٍ مِنْ MobileNetV3 LiteRT/TFLite بِاثْنَتَيْنِ وَأَرْبَعِينَ فِئَةً. وَجَرَى دَمْجُهُ فِي مَسَارَاتِ ٱلرَّفْعِ ٱلْجَمَاعِيِّ، وَتَحَقُّقِ ٱلصُّوَرِ، وَسَيْرِ ٱلْكَامِيرَا ٱلْمُبَاشِرِ، فَخَفَّضَ زَمَنَ ٱلتَّصْوِيرِ بِشَكْلٍ مَلْحُوظٍ، وَقَلَّلَ أَخْطَاءَ ٱلتَّصْنِيفِ ٱلْبَشَرِيَّةَ، وَهٰذَا صِرَاحَةً فَرَقَ مَعَنَا.",
+                "وَبَنَيْتُ أَيْضًا مَاسِحَ VIN فَوْرِيًّا عَلَى أَنْدْرُوِيد بِٱلِاعْتِمَادِ عَلَى CameraX وَLiteRT وَML Kit، مَعَ كَاشِفٍ مُكَمَّمٍ خَفِيفٍ مُدَرَّبٍ تَدْرِيبًا مُخَصَّصًا، وَخَوَارِزْمِيَّةٍ مُعَقَّدَةٍ لِلتَّعَرُّفِ عَلَى VIN تَشْمَلُ ٱلْتَحَقُّقَ مِنْ OCR، وَإِصْلَاحَ ٱلْـ checksum، وَمُعَالَجَةَ ٱلِٱلْتِبَاسِ بَيْنَ ٱلْأَحْرُفِ ٱلْمُتَشَابِهَةِ.",
+                "وَطَوَّرْتُ كَذٰلِكَ مُدِيرَ رَفْعٍ مَوْثُوقًا سَاهَمَ بِشَكْلٍ كَبِيرٍ فِي تَقْلِيلِ فُقْدَانِ ٱلصُّوَرِ أَثْنَاءَ عَمَلِيَّاتِ ٱلنَّقْلِ."
               ]
             },
             {
@@ -330,10 +336,12 @@
           "title": "منتخب کام",
           "highlights": [
             {
-              "title": "اندرونی کیمرا SDK مع مشین لرننگ",
+              "title": "سیارہ میں آن ڈیوائس کمپیوٹر وژن، ایم ایل سسٹمز اور قابلِ اعتماد امیج اپ لوڈز",
               "meta": "2023 - تا حال",
               "paragraphs": [
-                "سپلائی چین انسپیکشن کے لیے ایک کیمرا SDK بنایا، جس میں YOLOv8 کے ذریعے اینگل چیک بھی ہے۔ ساتھ ایک اپ لوڈ سسٹم بھی بنایا جو خراب نیٹ ورک میں بھی ٹھیک کام کرے۔"
+                "میں نے ابتدا سے آخر تک ایک ہلکا آن ڈیوائس ایم ایل سسٹم ڈیزائن اور ڈیلیور کیا، جو گاڑیوں کی تصاویر کو 42 الگ کلاسز میں پہچانتا ہے۔ اس کے لیے custom-trained MobileNetV3 LiteRT/TFLite model استعمال کیا گیا۔ اسے bulk upload، image validation اور live camera workflows میں integrate کیا گیا، جس سے تصویر لینے کا وقت واضح طور پر کم ہوا اور انسانی classification mistakes بھی خاصی گھٹ گئیں۔",
+                "اسی کے ساتھ CameraX، LiteRT اور ML Kit استعمال کرتے ہوئے ایک real-time Android VIN scanner بھی بنایا۔ اس میں custom-trained quantized detector تھا، اور ایک نسبتاً پیچیدہ VIN recognition algorithm بھی، جو OCR validation، checksum repair اور ملتے جلتے حروف کی گڑبڑ کو سنبھال لیتا ہے۔",
+                "مزید یہ کہ ایک reliable upload manager بھی بنایا، جس سے transfer کے دوران تصاویر کے ضائع ہونے کے مسئلے میں نمایاں کمی آئی۔"
               ]
             }
           ],
