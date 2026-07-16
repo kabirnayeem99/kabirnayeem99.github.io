@@ -148,11 +148,11 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
         currentRoute={content.route}
         title={content.header.siteTitle}
       />
-      <main id={PAGE_LAYOUT.mainContentId}>
-        <section>
+      <main id={PAGE_LAYOUT.mainContentId} class="stats-report">
+        <section class="stats-report-intro">
           {content.intro.map((paragraph) => <p>{paragraph}</p>)}
         </section>
-        <section>
+        <section class="stats-report-section stats-report-section--wakatime">
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.wakatime.title}</h2>
             <div
@@ -177,7 +177,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
             </div>
           </div>
         </section>
-        <section>
+        <section class="stats-report-section stats-report-section--github">
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.githubCommits.title}</h2>
             <p>{content.sections.githubCommits.description}</p>
@@ -216,7 +216,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
             </p>
           </div>
         </section>
-        <section>
+        <section class="stats-report-section stats-report-section--profile">
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.githubProfile.title}</h2>
             <div
@@ -252,7 +252,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
             </p>
           </div>
         </section>
-        <section>
+        <section class="stats-report-section stats-report-section--leetcode">
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.leetcode.title}</h2>
             <p set:html={content.sections.leetcode.copy}></p>
@@ -274,7 +274,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
             </p>
           </div>
         </section>
-        <section>
+        <section class="stats-report-section stats-report-section--typing">
           <div class="summary-card stats-card">
             <h2 class="section-title">Typing Speed</h2>
             <p>
@@ -308,7 +308,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
             )}
           </div>
         </section>
-        <section>
+        <section class="stats-report-section stats-report-section--learning">
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.learningPath.title}</h2>
             <p set:html={content.sections.learningPath.copy}></p>
@@ -333,8 +333,8 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
             </a>
           </div>
         </section>
-        <section>
-          <div class="summary-card stats-card">
+        <section class="stats-report-section stats-report-section--books">
+          <div class="summary-card stats-card stats-bookshelf">
             <h2 class="section-title">{content.sections.goodreads.title}</h2>
             <p>{content.sections.goodreads.copy}</p>
             <div class="goodreads-widget" id={`gr_grid_widget_${content.sections.goodreads.widgetId}`}>
@@ -342,13 +342,14 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
                 {goodreadsBooks.map((book) => (
                   <div class="gr_grid_book_container">
                     <a title={book.title} rel="nofollow noreferrer" href={book.href} target="_blank">
-                      <img
-                        alt={book.alt}
+                        <img
+                          alt={book.alt}
                         src={assetHref(content.route, book.imageLocal.replace(/^\/+/, ""))}
                         loading="lazy"
-                        decoding="async"
-                      />
-                    </a>
+                          decoding="async"
+                        />
+                        <span class="book-catalogue-title">{book.title}</span>
+                      </a>
                   </div>
                 ))}
               </div>

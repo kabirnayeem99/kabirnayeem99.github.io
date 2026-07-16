@@ -545,8 +545,8 @@ function buildSectionClassName(
           </div>
         </section>
 
-        <section class="index-section index-section--books">
-          <div class="summary-card stats-card">
+        <section class="index-section index-section--books books-shelf-section">
+          <div class="summary-card stats-card books-shelf stats-bookshelf">
             <div class="section-head">
               <h2 class="section-title">
                 {content.statsCompact.goodreads.title}
@@ -585,21 +585,22 @@ function buildSectionClassName(
                         href={book.href}
                         target="_blank"
                       >
-                        <img
-                          alt={book.alt}
+                          <img
+                            alt={book.alt}
                           src={assetHref(
                             currentRoute,
                             book.imageLocal.replace(/^\/+/, ""),
                           )}
                           loading="lazy"
-                          decoding="async"
-                        />
-                      </a>
+                            decoding="async"
+                          />
+                          <span class="book-catalogue-title">{book.title}</span>
+                        </a>
                     </div>
                   ))
                 }
                 <div class="gr_grid_book_placeholder">
-                  <a href={statsBooksHref}>Browse all my reads</a>
+                  <a href={statsBooksHref} aria-label="Browse all my books">All books</a>
                 </div>
               </div>
             </div>

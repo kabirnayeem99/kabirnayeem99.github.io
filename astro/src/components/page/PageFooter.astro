@@ -10,7 +10,7 @@ const { footerHtml, lastUpdatedLabel, timestampIso, timestampDisplay } =
   Astro.props;
 ---
 
-<footer>
+<footer class="site-colophon">
   <p class="footer-copy" set:html={footerHtml} />
   <p class="footer-last-updated">
     {`${lastUpdatedLabel}, `}
