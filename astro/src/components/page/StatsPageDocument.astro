@@ -11,6 +11,7 @@ import {
   UMAMI_WEBSITE_ID,
 } from "../../lib/page-shared";
 import { buildBreadcrumb, buildSchemaGraphJson } from "../../lib/seo";
+import { transliterateLocalizedText } from "../../lib/content-loader-shared";
 import { loadStatsPageContent, statsEmbedThemeSources } from "../../lib/stats-content";
 import {
   assetHref,
@@ -96,7 +97,51 @@ const typingStats = (() => {
   };
 })();
 
-const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
+const typingCopy =
+  lang === "ar"
+    ? {
+        title: "سُرْعَةُ ٱلطِّبَاعَةِ",
+        trackedOn: "يَتِمُّ تَتَبُّعُهَا عَلَىٰ",
+        summary: "ٱخْتِبَارَاتٌ لِمُدَّةِ سِتِّينَ ثَانِيَةً بِٱلْإِنْجِلِيزِيَّةِ مَعَ عَلامَاتِ ٱلتَّرْقِيمِ.",
+        recorded: "ٱخْتِبَارًا مُسَجَّلًا.",
+        personalBest: "أَفْضَلُ نَتِيجَةٍ",
+        recentAverage: "مُتَوَسِّطُ ٱلْأَخِيرِ (١٠)",
+        allTimeAverage: "مُتَوَسِّطُ كُلِّ ٱلْوَقْتِ",
+        accuracy: "مُتَوَسِّطُ ٱلدِّقَّةِ",
+        consistency: "مُتَوَسِّطُ ٱلِانْتِظَامِ",
+        wpm: "كَلِمَة/د",
+      }
+    : lang === "ur"
+      ? {
+          title: "ٹائپنگ کی رفتار",
+          trackedOn: "اس کا ریکارڈ",
+          summary: "پر موجود ہے: ساٹھ سیکنڈ کے انگریزی ٹیسٹ، رموزِ اوقاف کے ساتھ۔",
+          recorded: "ٹیسٹ محفوظ ہیں۔",
+          personalBest: "ذاتی بہترین",
+          recentAverage: "حالیہ اوسط (۱۰)",
+          allTimeAverage: "مجموعی اوسط",
+          accuracy: "اوسط درستگی",
+          consistency: "اوسط یکسانیت",
+          wpm: "لفظ/منٹ",
+        }
+      : {
+          title: "Typing Speed",
+          trackedOn: "Tracked on",
+          summary: "60-second tests, English with punctuation.",
+          recorded: "tests recorded.",
+          personalBest: "Personal Best",
+          recentAverage: "Recent Avg (10)",
+          allTimeAverage: "All-Time Avg",
+          accuracy: "Avg Accuracy",
+          consistency: "Avg Consistency",
+          wpm: "WPM",
+        };
+
+const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
+  ...book,
+  title: transliterateLocalizedText(book.title, lang),
+  alt: transliterateLocalizedText(book.alt, lang),
+}));
 ---
 
 <!DOCTYPE html>
@@ -149,6 +194,10 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
         title={content.header.siteTitle}
       />
       <main id={PAGE_LAYOUT.mainContentId} class="stats-report">
+        <span class="margin-doodle margin-doodle--reader" aria-hidden="true"></span>
+        <span class="margin-doodle margin-doodle--book" aria-hidden="true"></span>
+        <span class="margin-doodle margin-doodle--arrow" aria-hidden="true"></span>
+        <span class="margin-doodle margin-doodle--cloud" aria-hidden="true"></span>
         <section class="stats-report-intro">
           {content.intro.map((paragraph) => <p>{paragraph}</p>)}
         </section>
@@ -276,32 +325,34 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300);
         </section>
         <section class="stats-report-section stats-report-section--typing">
           <div class="summary-card stats-card">
-            <h2 class="section-title">Typing Speed</h2>
+            <h2 class="section-title">{typingCopy.title}</h2>
             <p>
-              Tracked on{" "}
-              <a href="https://monkeytype.com/profile/kabirnayeem99" target="_blank" rel="noreferrer">Monkeytype</a> — 60-second tests,
-              English with punctuation.{typingStats ? ` ${typingStats.total} tests recorded.` : ""}
+              {typingCopy.trackedOn}{" "}
+              <a href="https://monkeytype.com/profile/kabirnayeem99" target="_blank" rel="noreferrer">
+                {lang === "ar" ? "مَنْكِي تَايْب" : lang === "ur" ? "منکی ٹائپ" : "Monkeytype"}
+              </a>{" "}
+              {typingCopy.summary}{typingStats ? ` ${typingStats.total} ${typingCopy.recorded}` : ""}
             </p>
             {typingStats && (
               <div class="leetcode-summary">
                 <div class="leetcode-card leetcode-card--primary">
-                  <div class="leetcode-card-label">Personal Best</div>
-                  <div class="leetcode-card-value">{typingStats.pbWpm} WPM</div>
+                  <div class="leetcode-card-label">{typingCopy.personalBest}</div>
+                  <div class="leetcode-card-value">{typingStats.pbWpm} {typingCopy.wpm}</div>
                 </div>
                 <div class="leetcode-card">
-                  <div class="leetcode-card-label">Recent Avg (10)</div>
-                  <div class="leetcode-card-value">{typingStats.recentAvg} WPM</div>
+                  <div class="leetcode-card-label">{typingCopy.recentAverage}</div>
+                  <div class="leetcode-card-value">{typingStats.recentAvg} {typingCopy.wpm}</div>
                 </div>
                 <div class="leetcode-card">
-                  <div class="leetcode-card-label">All-Time Avg</div>
-                  <div class="leetcode-card-value">{typingStats.avgWpm} WPM</div>
+                  <div class="leetcode-card-label">{typingCopy.allTimeAverage}</div>
+                  <div class="leetcode-card-value">{typingStats.avgWpm} {typingCopy.wpm}</div>
                 </div>
                 <div class="leetcode-card">
-                  <div class="leetcode-card-label">Avg Accuracy</div>
+                  <div class="leetcode-card-label">{typingCopy.accuracy}</div>
                   <div class="leetcode-card-value">{typingStats.avgAcc}%</div>
                 </div>
                 <div class="leetcode-card">
-                  <div class="leetcode-card-label">Avg Consistency</div>
+                  <div class="leetcode-card-label">{typingCopy.consistency}</div>
                   <div class="leetcode-card-value">{typingStats.avgConsistency}%</div>
                 </div>
               </div>

@@ -5,6 +5,112 @@ import type { Direction } from "./site-types";
 
 const CONTENT_DIR = resolve(process.cwd(), "src/data/site-content");
 
+const LATIN_TO_ARABIC: Readonly<Record<string, string>> = {
+  a: "ا",
+  b: "ب",
+  c: "ك",
+  d: "د",
+  e: "ي",
+  f: "ف",
+  g: "گ",
+  h: "ه",
+  i: "ي",
+  j: "ج",
+  k: "ك",
+  l: "ل",
+  m: "م",
+  n: "ن",
+  o: "و",
+  p: "پ",
+  q: "ك",
+  r: "ر",
+  s: "س",
+  t: "ت",
+  u: "و",
+  v: "ڤ",
+  w: "و",
+  x: "كس",
+  y: "ي",
+  z: "ز",
+};
+
+const LATIN_TO_URDU: Readonly<Record<string, string>> = {
+  a: "ا",
+  b: "ب",
+  c: "ک",
+  d: "د",
+  e: "ی",
+  f: "ف",
+  g: "گ",
+  h: "ہ",
+  i: "ی",
+  j: "ج",
+  k: "ک",
+  l: "ل",
+  m: "م",
+  n: "ن",
+  o: "و",
+  p: "پ",
+  q: "ک",
+  r: "ر",
+  s: "س",
+  t: "ٹ",
+  u: "و",
+  v: "و",
+  w: "و",
+  x: "کس",
+  y: "ی",
+  z: "ز",
+};
+
+const CONTENT_IDENTIFIERS = new Set([
+  "api_url",
+  "dir",
+  "href",
+  "page_id",
+  "profile_href",
+  "script_src",
+  "user_id",
+  "variant",
+  "widget_id",
+]);
+
+function transliterateLatinText(value: string, alphabet: Readonly<Record<string, string>>): string {
+  return value.replace(/[A-Za-z]+/g, (word) =>
+    [...word.toLowerCase()].map((character) => alphabet[character] ?? character).join(""),
+  );
+}
+
+function transliterateVisibleHtml(value: string, alphabet: Readonly<Record<string, string>>): string {
+  return value
+    .split(/(<[^>]*>|&[A-Za-z]+;)/g)
+    .map((part) => (part.startsWith("<") || part.startsWith("&") ? part : transliterateLatinText(part, alphabet)))
+    .join("");
+}
+
+function localizeLatinScript(value: string, key: string, path: string): string {
+  if (CONTENT_IDENTIFIERS.has(key) || /^(https?:|mailto:)/.test(value)) {
+    return value;
+  }
+  if (path.includes(".locales.ar")) {
+    return transliterateVisibleHtml(value, LATIN_TO_ARABIC);
+  }
+  if (path.includes(".locales.ur")) {
+    return transliterateVisibleHtml(value, LATIN_TO_URDU);
+  }
+  return value;
+}
+
+export function transliterateLocalizedText(value: string, lang: Lang): string {
+  if (lang === "ar") {
+    return transliterateVisibleHtml(value, LATIN_TO_ARABIC);
+  }
+  if (lang === "ur") {
+    return transliterateVisibleHtml(value, LATIN_TO_URDU);
+  }
+  return value;
+}
+
 const SHARED_CONTENT_FILE_PATHS = [
   resolve(CONTENT_DIR, "site.json"),
   resolve(CONTENT_DIR, "routes.json"),
@@ -130,7 +236,7 @@ export function readString(source: Record<string, unknown>, key: string, path: s
   if (typeof value !== "string") {
     throw new Error(`Expected string at ${path}.${key}`);
   }
-  return value;
+  return localizeLatinScript(value, key, path);
 }
 
 export function readOptionalString(
@@ -145,7 +251,7 @@ export function readOptionalString(
   if (typeof value !== "string") {
     throw new Error(`Expected string at ${path}.${key}`);
   }
-  return value;
+  return localizeLatinScript(value, key, path);
 }
 
 export function readDirection(source: Record<string, unknown>, key: string, path: string): Direction {
@@ -171,7 +277,7 @@ export function readStringArray(
     if (typeof entry !== "string") {
       throw new Error(`Expected string at ${path}.${key}[${index}]`);
     }
-    output.push(entry);
+    output.push(localizeLatinScript(entry, key, path));
   }
   return output;
 }
@@ -194,7 +300,7 @@ export function readOptionalStringArray(
     if (typeof entry !== "string") {
       throw new Error(`Expected string at ${path}.${key}[${index}]`);
     }
-    output.push(entry);
+    output.push(localizeLatinScript(entry, key, path));
   }
   return output;
 }

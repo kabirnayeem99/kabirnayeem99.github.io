@@ -124,7 +124,18 @@ function formatDisplay(date: Date, lang: Lang): string {
   const year = formatLocalizedNumber(parts.year, locale, 1);
   const hour24 = parts.hour24;
   const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
-  const amPm = hour24 >= 12 ? "PM" : "AM";
+  const amPm =
+    lang === "ar"
+      ? hour24 >= 12
+        ? "م"
+        : "ص"
+      : lang === "ur"
+        ? hour24 >= 12
+          ? "شام"
+          : "صبح"
+        : hour24 >= 12
+          ? "PM"
+          : "AM";
   const hour = formatLocalizedNumber(hour12, locale, 2);
   const minute = formatLocalizedNumber(parts.minute, locale, 2);
   const second = formatLocalizedNumber(parts.second, locale, 2);

@@ -8,6 +8,19 @@ The existing warm-paper, forest-green, and ochre palette remains the visual
 anchor. The redesign should make the content feel like a personal working
 archive rather than a stack of generic portfolio sections.
 
+## July 2026 Refinement: Annotated Reading Desk
+
+The visual system is deliberately denser than the earlier report treatment.
+Sections use uneven, compact intervals and stacked print rules rather than broad
+empty fields. Forest green remains the anchor, while brick red, library blue,
+ochre, and faded tape differentiate functional areas: actions, navigation,
+catalogue frames, and data sections.
+
+Book covers behave like a marked catalogue: hard ink frames, alternating colour
+offsets, shelf numbers, tight captions, and a cover-sized archive link. Brush
+strokes are reserved for headings and actions so they read as annotations rather
+than a generic background effect.
+
 ## System
 
 - Genre: editorial brutalism.
