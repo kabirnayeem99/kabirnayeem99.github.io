@@ -10,18 +10,16 @@ const { items, ariaLabel = "Primary" } = Astro.props as Props;
 ---
 
 <nav class="page-nav" aria-label={ariaLabel}>
+  <p class="page-nav-kicker" aria-hidden="true">Explore</p>
   <div class="page-nav-track">
     {
-      items.map((item, index) => (
+      items.map((item) => (
         <a
           class="page-nav-link"
           href={item.href}
           aria-current={item.isCurrent ? "page" : undefined}
         >
-          <span class="page-nav-link-index" aria-hidden="true">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <span class="page-nav-link-label">{item.label}</span>
+          {item.label}
         </a>
       ))
     }
