@@ -1,5 +1,6 @@
 import "./common-page";
 import "../modules/back-to-top";
+import "../modules/hero-avatar-toggle";
 import "../modules/stats-snapshots";
 import "../modules/stats-utils";
 import "../modules/wakatime-charts";

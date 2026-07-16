@@ -1,0 +1,182 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - button "Switch to dark mode" [ref=e6] [cursor=pointer]
+        - button "Change language" [ref=e9] [cursor=pointer]
+      - generic [ref=e11]:
+        - img "Naimul Kabir logo" [ref=e15]
+        - generic [ref=e17]:
+          - heading "Naimul Kabir" [level=1] [ref=e18]
+          - paragraph [ref=e19]: Muslim · Software Engineer · Bibliophile · Philomath
+      - generic "Social links" [ref=e20]:
+        - link "Send an email" [ref=e21] [cursor=pointer]:
+          - /url: mailto:kabirnayeem.99@gmail.com
+        - link "GitHub" [ref=e24] [cursor=pointer]:
+          - /url: https://github.com/kabirnayeem99
+        - link "LinkedIn" [ref=e27] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/kabirnayeem99/
+        - link "Medium" [ref=e30] [cursor=pointer]:
+          - /url: https://kabirnayeem99.medium.com/
+        - link "LeetCode" [ref=e33] [cursor=pointer]:
+          - /url: https://leetcode.com/u/kabirnayeem99/
+      - navigation "Primary" [ref=e36]:
+        - link "Home" [ref=e37] [cursor=pointer]:
+          - /url: index.html
+        - link "Work" [ref=e38] [cursor=pointer]:
+          - /url: work.html
+        - link "Projects" [ref=e39] [cursor=pointer]:
+          - /url: project.html
+        - link "Blog" [ref=e40] [cursor=pointer]:
+          - /url: blog.html
+        - link "Stats" [ref=e41] [cursor=pointer]:
+          - /url: stats.html
+    - main [ref=e42]:
+      - generic [ref=e44]:
+        - paragraph [ref=e45]:
+          - text: Software engineer focused on
+          - mark [ref=e46]: Android, iOS, Flutter, and Kotlin Multiplatform
+          - text: . I build cross-platform apps with native-level performance, reliability, and maintainability.
+        - paragraph [ref=e47]:
+          - text: Comfortable working across the stack
+          - mark [ref=e48]: (full-stack)
+          - text: when a project calls for it.
+        - paragraph [ref=e49]:
+          - text: Currently at
+          - link "Syarah" [ref=e50] [cursor=pointer]:
+            - /url: https://syarah.com/
+          - text: ", building internal supply-chain systems and tooling. Open to"
+          - mark [ref=e51]: remote roles and contract work
+          - text: .
+      - generic [ref=e52]:
+        - heading "Right Now" [level=2] [ref=e54]
+        - paragraph [ref=e55]:
+          - text: Lately, I've been working on a contract project involving
+          - mark [ref=e56]: PHP Laravel
+          - text: ", video streaming, and AI voice evaluation. Alongside that, I've been going deeper into backend work with PostgreSQL, Docker, Go, and PHP, while also building a foundation in QA testing and UI/UX through courses."
+        - paragraph [ref=e57]: Outside work, reading is pretty much my single source of entertainment. Mostly light novels and thrillers, with occasional detours into philosophy, history, Islamic theology, and politics. I also keep up with tech and current affairs through blogs and long form writing, spending an unhealthy amount of time on Hacker News.
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - heading "Selected works" [level=2] [ref=e60]
+          - generic [ref=e61]:
+            - link "Experiences" [ref=e62] [cursor=pointer]:
+              - /url: work.html
+            - link "View all projects" [ref=e65] [cursor=pointer]:
+              - /url: project.html
+        - generic [ref=e68]:
+          - article [ref=e69]:
+            - heading "On-Device Computer Vision, ML Systems & Reliable Image Uploads at Syarah" [level=3] [ref=e70]
+            - paragraph [ref=e71]: 2023 - Present
+            - paragraph [ref=e72]: Conceived, planned, and delivered a lightweight, on-device ML car-photo classification system using a custom-trained 42-class MobileNetV3 LiteRT/TFLite model. Integrated across bulk upload, image validation, and live camera workflows, it significantly reduced photography time and human classification errors.
+            - paragraph [ref=e73]: Built a real-time Android VIN scanner using CameraX, LiteRT, and ML Kit, with a lightweight custom-trained quantized detector and a complex VIN recognition algorithm covering OCR validation, checksum repair, and character-confusion recovery.
+            - paragraph [ref=e74]: Also developed a reliable upload manager that substantially reduced image loss during transfers.
+          - article [ref=e75]:
+            - heading "Helped Rebuild a Leading Islamic App in Bangladesh" [level=3] [ref=e76]
+            - paragraph [ref=e77]: 2022 - 2023
+            - paragraph [ref=e78]: Helped modernize the Al-Hadith app, one of Bangladesh's most-downloaded Islamic apps, while maintaining the legacy Android build and supporting its Flutter rewrite for a large user base.
+          - article [ref=e79]:
+            - heading "Contract work and services" [level=3] [ref=e80]
+            - paragraph [ref=e81]: Ongoing
+            - paragraph [ref=e82]: Working with small businesses on web design, digital marketing, and Amazon FBA tooling, alongside contract development for larger products like Marriott Bonvoy, BaseHubs, PatientAccess, and Jobamax. Also integrated the Sunmi Printer SDK into a Cordova hybrid app.
+      - generic [ref=e83]:
+        - generic [ref=e84]:
+          - heading "Blogs" [level=2] [ref=e85]
+          - link "View all blogs" [ref=e87] [cursor=pointer]:
+            - /url: blog.html
+        - paragraph [ref=e90]: Occasional posts on mobile development, Linux, career lessons, and things worth documenting.
+        - list [ref=e91]:
+          - listitem [ref=e92]:
+            - link [ref=e93] [cursor=pointer]:
+              - /url: https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8
+              - heading "If I Had to Restart My Career as a Mobile Dev" [level=3] [ref=e94]
+              - paragraph [ref=e95]: Lessons from my early mistakes, plus practical advice for junior mobile developers.
+          - listitem [ref=e96]:
+            - link [ref=e97] [cursor=pointer]:
+              - /url: https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6
+              - heading "Manjaro to Arch conversion" [level=3] [ref=e98]
+              - paragraph [ref=e99]: One of my most-read posts, with around 8k views and 4k reads. It's a rough guide to turning a Manjaro install into Arch. Old now, but still a fun read if you like Linux experiments.
+      - generic [ref=e101]:
+        - generic [ref=e102]:
+          - heading "Skills & Languages" [level=2] [ref=e103]
+          - link "View all stats" [ref=e105] [cursor=pointer]:
+            - /url: stats.html
+        - generic [ref=e108]:
+          - generic [ref=e109]: Kotlin
+          - generic [ref=e110]: Swift
+          - generic [ref=e111]: Dart
+          - generic [ref=e112]: Python
+          - generic [ref=e113]: PHP
+          - generic [ref=e114]: Go
+          - generic [ref=e115]: TypeScript
+          - generic [ref=e116]: SQL
+          - generic [ref=e117]: Android
+          - generic [ref=e118]: iOS
+          - generic [ref=e119]: Flutter
+          - generic [ref=e120]: Kotlin Multiplatform
+          - generic [ref=e121]: macOS
+          - generic [ref=e122]: Laravel
+          - generic [ref=e123]: Computer Vision
+          - generic [ref=e124]: Linux CLI
+          - generic [ref=e125]: Agile
+          - generic [ref=e126]: Scrum
+          - generic [ref=e127]: Kanban
+          - generic [ref=e128]: Bangla
+          - generic [ref=e129]: Urdu
+          - generic [ref=e130]: English
+      - generic [ref=e132]:
+        - generic [ref=e133]:
+          - heading "Recently Read Books" [level=2] [ref=e134]
+          - link "View all stats" [ref=e136] [cursor=pointer]:
+            - /url: stats.html
+        - paragraph [ref=e139]: These books were read recently. Or I had read them before and only added them to Goodreads recently.
+        - generic [ref=e141]:
+          - link [ref=e143] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8772671406?utm_medium=api&utm_source=grid_widget
+            - img "Pines" [ref=e144]
+          - link [ref=e146] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8739471110?utm_medium=api&utm_source=grid_widget
+            - img "অপেক্ষা" [ref=e147]
+          - link [ref=e149] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8738345900?utm_medium=api&utm_source=grid_widget
+            - img "দাঁড়কাকের সংসার কিংবা মাঝে মাঝে তব দেখা পাই" [ref=e150]
+          - link [ref=e152] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8738082231?utm_medium=api&utm_source=grid_widget
+            - img "নীল অপরাজিতা" [ref=e153]
+          - link [ref=e155] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8737807762?utm_medium=api&utm_source=grid_widget
+            - img "Five Little Pigs" [ref=e156]
+          - link [ref=e158] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8722739391?utm_medium=api&utm_source=grid_widget
+            - img "Tumi Amay Dekechile Chutir Nimontrone" [ref=e159]
+          - link [ref=e161] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8704223374?utm_medium=api&utm_source=grid_widget
+            - img "The Murder of Roger Ackroyd" [ref=e162]
+          - link [ref=e164] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8701707816?utm_medium=api&utm_source=grid_widget
+            - 'img "Deliverance from Error: Five Key Texts Including His Spiritual Autobiography, al-Munqidh min al-Dalal" [ref=e165]'
+          - link [ref=e167] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8697950643?utm_medium=api&utm_source=grid_widget
+            - img "Stoner" [ref=e168]
+          - link [ref=e170] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8685072509?utm_medium=api&utm_source=grid_widget
+            - img "Death on the Nile" [ref=e171]
+          - link [ref=e173] [cursor=pointer]:
+            - /url: https://www.goodreads.com/review/show/8675899722?utm_medium=api&utm_source=grid_widget
+            - img "Murder on the Orient Express" [ref=e174]
+          - link "Browse all my reads" [ref=e176] [cursor=pointer]:
+            - /url: stats.html#gr_grid_widget_1771265103
+    - contentinfo [ref=e177]:
+      - paragraph [ref=e178]: © 2026 Naimul Kabir. Developed with Astro.
+      - paragraph [ref=e179]:
+        - text: Last updated,
+        - time [ref=e180]: built and deployed at 16 July 2026 08:09:35 PM (Evening)
+        - text: .
+  - button "Back to top":
+    - generic: ↑
+  - generic [ref=e183]:
+    - button [ref=e184]
+    - button [ref=e190]
+    - button [ref=e194]
+    - button [ref=e199]
