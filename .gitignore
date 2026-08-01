@@ -86,3 +86,5 @@ dist
 !.yarn/versions
 !.yarn/cache
 .code-index/
+__pycache__/
+*.pyc

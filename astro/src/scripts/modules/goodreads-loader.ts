@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isIndexPage = document.body?.getAttribute("data-page-id") === "index";
   const statsBooksHref = widget.dataset.statsBooksHref ?? null;
-  const INDEX_BOOK_LIMIT = 11;
+  const INDEX_BOOK_LIMIT = 16;
 
   const applyIndexBookLimit = (): void => {
     if (!isIndexPage || typeof statsBooksHref !== "string" || statsBooksHref.length === 0) {

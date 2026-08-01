@@ -10,6 +10,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import UTC, datetime
+from io import BytesIO
+import hashlib
 import json
 import re
 import shutil
@@ -20,6 +22,14 @@ from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 from urllib.request import Request, urlopen
+
+try:
+    from PIL import Image
+except ImportError as exc:  # pragma: no cover - environment guard
+    raise SystemExit(
+        "Pillow is required to convert cover images to WebP.\n"
+        "Install it with: pip install -r scripts/goodreads_snapshot/requirements.txt"
+    ) from exc
 
 
 DEFAULT_WIDGET_URL = (
@@ -93,14 +103,14 @@ def _safe_slug(value: str, max_length: int = 60) -> str:
     return slug[:max_length] or "book"
 
 
-def _extract_extension(image_url: str) -> str:
-    match = re.search(r"\.([a-zA-Z0-9]+)(?:$|[?#])", image_url)
-    if not match:
-        return ".jpg"
-    ext = f".{match.group(1).lower()}"
-    if ext not in {".jpg", ".jpeg", ".png", ".webp", ".gif"}:
-        return ".jpg"
-    return ext
+def _extract_book_id(image_url: str) -> str:
+    """Return Goodreads' own book id embedded in the cover URL, so a given book
+    always maps to the same local file name across runs, regardless of shelf order."""
+    basename = urlparse(image_url).path.rsplit("/", 1)[-1]
+    match = re.match(r"(\d+)", basename)
+    if match:
+        return match.group(1)
+    return hashlib.sha1(image_url.encode("utf-8")).hexdigest()[:10]
 
 
 def _parse_books(widget_html: str) -> list[BookEntry]:
@@ -110,14 +120,15 @@ def _parse_books(widget_html: str) -> list[BookEntry]:
     )
 
     books: list[BookEntry] = []
-    for index, match in enumerate(pattern.finditer(widget_html), start=1):
+    for match in pattern.finditer(widget_html):
         title = unescape(match.group(1)).strip()
         href = unescape(match.group(2)).strip()
         alt = unescape(match.group(3)).strip()
         image_url = unescape(match.group(4)).strip()
 
-        ext = _extract_extension(image_url)
-        file_name = f"{index:03d}-{_safe_slug(alt or title)}{ext}"
+        # Keyed by Goodreads' book id (not shelf position), so re-running the script
+        # never renames an unchanged book's cover. Every cover is re-encoded to WebP.
+        file_name = f"{_extract_book_id(image_url)}-{_safe_slug(alt or title)}.webp"
         books.append(
             BookEntry(
                 title=title,
@@ -132,6 +143,18 @@ def _parse_books(widget_html: str) -> list[BookEntry]:
     if not books:
         raise SnapshotUpdateError("No books were parsed from Goodreads widget HTML.")
     return books
+
+
+def _convert_to_webp(content: bytes, url: str, quality: int = 75) -> bytes:
+    try:
+        with Image.open(BytesIO(content)) as image:
+            if image.mode not in ("RGB", "RGBA"):
+                image = image.convert("RGBA" if "A" in image.getbands() else "RGB")
+            buffer = BytesIO()
+            image.save(buffer, format="WEBP", quality=quality, method=6)
+            return buffer.getvalue()
+    except Exception as exc:
+        raise SnapshotUpdateError(f"Failed to convert image to WebP: {url}\n{exc}") from exc
 
 
 def _download_image(url: str, destination: Path, timeout_seconds: int) -> None:
@@ -153,7 +176,7 @@ def _download_image(url: str, destination: Path, timeout_seconds: int) -> None:
     if not content:
         raise SnapshotUpdateError(f"Downloaded empty image: {url}")
 
-    destination.write_bytes(content)
+    destination.write_bytes(_convert_to_webp(content, url))
 
 
 def _snapshot_payload(books: list[BookEntry]) -> dict[str, Any]:

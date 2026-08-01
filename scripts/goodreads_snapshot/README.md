@@ -14,6 +14,14 @@ This script lets you regenerate the local snapshot/covers safely whenever you wa
 - If any network/parse/download step fails, existing snapshot and images are preserved.
 - Files are only replaced after all new data is downloaded and assembled successfully.
 
+## Setup
+
+Requires Pillow to convert covers to WebP:
+
+```bash
+pip install -r scripts/goodreads_snapshot/requirements.txt
+```
+
 ## Run
 
 From repo root:
@@ -21,6 +29,9 @@ From repo root:
 ```bash
 python3 scripts/goodreads_snapshot/update_goodreads_snapshot.py
 ```
+
+Every downloaded cover is re-encoded to WebP before it's written to
+`astro/public/assets/images/goodreads/`, so local cover files always have a `.webp` extension.
 
 Optional flags:
 

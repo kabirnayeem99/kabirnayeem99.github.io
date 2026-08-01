@@ -1,1573 +1,1573 @@
 {
-  "generatedAt": "2026-07-30T11:33:34.720189Z",
+  "generatedAt": "2026-08-01T15:41:46.803160Z",
   "books": [
+    {
+      "title": "The A.B.C. Murders (Hercule Poirot, #13)",
+      "href": "https://www.goodreads.com/review/show/8817504116?utm_medium=api&utm_source=grid_widget",
+      "alt": "The A.B.C. Murders",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1389733983l/16322._SX98_.jpg",
+      "imageLocal": "/assets/images/goodreads/16322-the-a-b-c-murders.webp",
+      "imageFileName": "16322-the-a-b-c-murders.webp"
+    },
     {
       "title": "After the Funeral (Hercule Poirot, #33)",
       "href": "https://www.goodreads.com/review/show/8811576095?utm_medium=api&utm_source=grid_widget",
       "alt": "After the Funeral",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1384881992l/527744._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/001-after-the-funeral.jpg",
-      "imageFileName": "001-after-the-funeral.jpg"
+      "imageLocal": "/assets/images/goodreads/527744-after-the-funeral.webp",
+      "imageFileName": "527744-after-the-funeral.webp"
     },
     {
       "title": "Tell Me When You Feel Something",
       "href": "https://www.goodreads.com/review/show/8790412769?utm_medium=api&utm_source=grid_widget",
       "alt": "Tell Me When You Feel Something",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1612197945l/55473955._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/002-tell-me-when-you-feel-something.jpg",
-      "imageFileName": "002-tell-me-when-you-feel-something.jpg"
+      "imageLocal": "/assets/images/goodreads/55473955-tell-me-when-you-feel-something.webp",
+      "imageFileName": "55473955-tell-me-when-you-feel-something.webp"
     },
     {
       "title": "The Silent Patient",
       "href": "https://www.goodreads.com/review/show/8785709169?utm_medium=api&utm_source=grid_widget",
       "alt": "The Silent Patient",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1668782119l/40097951._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/003-the-silent-patient.jpg",
-      "imageFileName": "003-the-silent-patient.jpg"
+      "imageLocal": "/assets/images/goodreads/40097951-the-silent-patient.webp",
+      "imageFileName": "40097951-the-silent-patient.webp"
     },
     {
       "title": "শঙ্খনীল কারাগার",
       "href": "https://www.goodreads.com/review/show/8780090323?utm_medium=api&utm_source=grid_widget",
       "alt": "শঙ্খনীল কারাগার",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1363093925l/14759169._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/004-book.jpg",
-      "imageFileName": "004-book.jpg"
+      "imageLocal": "/assets/images/goodreads/14759169-book.webp",
+      "imageFileName": "14759169-book.webp"
     },
     {
       "title": "The Last Town (Wayward Pines, #3)",
       "href": "https://www.goodreads.com/review/show/8778212333?utm_medium=api&utm_source=grid_widget",
       "alt": "The Last Town",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1399508172l/20423680._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/005-the-last-town.jpg",
-      "imageFileName": "005-the-last-town.jpg"
+      "imageLocal": "/assets/images/goodreads/20423680-the-last-town.webp",
+      "imageFileName": "20423680-the-last-town.webp"
     },
     {
       "title": "Wayward (Wayward Pines, #2)",
       "href": "https://www.goodreads.com/review/show/8772674262?utm_medium=api&utm_source=grid_widget",
       "alt": "Wayward",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388363926l/17920175._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/006-wayward.jpg",
-      "imageFileName": "006-wayward.jpg"
+      "imageLocal": "/assets/images/goodreads/17920175-wayward.webp",
+      "imageFileName": "17920175-wayward.webp"
     },
     {
       "title": "Pines (Wayward Pines, #1)",
       "href": "https://www.goodreads.com/review/show/8772671406?utm_medium=api&utm_source=grid_widget",
       "alt": "Pines",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1471617928l/15096164._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/007-pines.jpg",
-      "imageFileName": "007-pines.jpg"
+      "imageLocal": "/assets/images/goodreads/15096164-pines.webp",
+      "imageFileName": "15096164-pines.webp"
     },
     {
       "title": "অপেক্ষা",
       "href": "https://www.goodreads.com/review/show/8739471110?utm_medium=api&utm_source=grid_widget",
       "alt": "অপেক্ষা",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1361294299l/17402048._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/008-book.jpg",
-      "imageFileName": "008-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17402048-book.webp",
+      "imageFileName": "17402048-book.webp"
     },
     {
       "title": "দাঁড়কাকের সংসার কিংবা মাঝে মাঝে তব দেখা পাই",
       "href": "https://www.goodreads.com/review/show/8738345900?utm_medium=api&utm_source=grid_widget",
       "alt": "দাঁড়কাকের সংসার কিংবা মাঝে মাঝে তব দেখা পাই",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1677342526l/14759453._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/009-book.jpg",
-      "imageFileName": "009-book.jpg"
+      "imageLocal": "/assets/images/goodreads/14759453-book.webp",
+      "imageFileName": "14759453-book.webp"
     },
     {
       "title": "নীল অপরাজিতা",
       "href": "https://www.goodreads.com/review/show/8738082231?utm_medium=api&utm_source=grid_widget",
       "alt": "নীল অপরাজিতা",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1416636551l/23528051._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/010-book.jpg",
-      "imageFileName": "010-book.jpg"
+      "imageLocal": "/assets/images/goodreads/23528051-book.webp",
+      "imageFileName": "23528051-book.webp"
     },
     {
       "title": "Five Little Pigs (Hercule Poirot, #24)",
       "href": "https://www.goodreads.com/review/show/8737807762?utm_medium=api&utm_source=grid_widget",
       "alt": "Five Little Pigs",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1429422068l/121648._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/011-five-little-pigs.jpg",
-      "imageFileName": "011-five-little-pigs.jpg"
+      "imageLocal": "/assets/images/goodreads/121648-five-little-pigs.webp",
+      "imageFileName": "121648-five-little-pigs.webp"
     },
     {
       "title": "Tumi Amay Dekechile Chutir Nimontrone",
       "href": "https://www.goodreads.com/review/show/8722739391?utm_medium=api&utm_source=grid_widget",
       "alt": "Tumi Amay Dekechile Chutir Nimontrone",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1699356805l/87083814._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/012-tumi-amay-dekechile-chutir-nimontrone.jpg",
-      "imageFileName": "012-tumi-amay-dekechile-chutir-nimontrone.jpg"
+      "imageLocal": "/assets/images/goodreads/87083814-tumi-amay-dekechile-chutir-nimontrone.webp",
+      "imageFileName": "87083814-tumi-amay-dekechile-chutir-nimontrone.webp"
     },
     {
       "title": "The Murder of Roger Ackroyd (Hercule Poirot, #4)",
       "href": "https://www.goodreads.com/review/show/8704223374?utm_medium=api&utm_source=grid_widget",
       "alt": "The Murder of Roger Ackroyd",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1389734015l/16328._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/013-the-murder-of-roger-ackroyd.jpg",
-      "imageFileName": "013-the-murder-of-roger-ackroyd.jpg"
+      "imageLocal": "/assets/images/goodreads/16328-the-murder-of-roger-ackroyd.webp",
+      "imageFileName": "16328-the-murder-of-roger-ackroyd.webp"
     },
     {
       "title": "Deliverance from Error: Five Key Texts Including His Spiritual Autobiography, al-Munqidh min al-Dalal",
       "href": "https://www.goodreads.com/review/show/8701707816?utm_medium=api&utm_source=grid_widget",
       "alt": "Deliverance from Error: Five Key Texts Including His Spiritual Autobiography, al-Munqidh min al-Dalal",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328840117l/471717._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/014-deliverance-from-error-five-key-texts-including-his-spiritua.jpg",
-      "imageFileName": "014-deliverance-from-error-five-key-texts-including-his-spiritua.jpg"
+      "imageLocal": "/assets/images/goodreads/471717-deliverance-from-error-five-key-texts-including-his-spiritua.webp",
+      "imageFileName": "471717-deliverance-from-error-five-key-texts-including-his-spiritua.webp"
     },
     {
       "title": "Stoner",
       "href": "https://www.goodreads.com/review/show/8697950643?utm_medium=api&utm_source=grid_widget",
       "alt": "Stoner",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1742326950l/166997._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/015-stoner.jpg",
-      "imageFileName": "015-stoner.jpg"
+      "imageLocal": "/assets/images/goodreads/166997-stoner.webp",
+      "imageFileName": "166997-stoner.webp"
     },
     {
       "title": "Death on the Nile (Hercule Poirot, #18)",
       "href": "https://www.goodreads.com/review/show/8685072509?utm_medium=api&utm_source=grid_widget",
       "alt": "Death on the Nile",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1486837149l/131359._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/016-death-on-the-nile.jpg",
-      "imageFileName": "016-death-on-the-nile.jpg"
+      "imageLocal": "/assets/images/goodreads/131359-death-on-the-nile.webp",
+      "imageFileName": "131359-death-on-the-nile.webp"
     },
     {
       "title": "Murder on the Orient Express (Hercule Poirot, #10)",
       "href": "https://www.goodreads.com/review/show/8675899722?utm_medium=api&utm_source=grid_widget",
       "alt": "Murder on the Orient Express",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733926500l/853510._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/017-murder-on-the-orient-express.jpg",
-      "imageFileName": "017-murder-on-the-orient-express.jpg"
+      "imageLocal": "/assets/images/goodreads/853510-murder-on-the-orient-express.webp",
+      "imageFileName": "853510-murder-on-the-orient-express.webp"
     },
     {
       "title": "The Book of Cold Cases",
       "href": "https://www.goodreads.com/review/show/8656353775?utm_medium=api&utm_source=grid_widget",
       "alt": "The Book of Cold Cases",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1624553583l/58371432._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/018-the-book-of-cold-cases.jpg",
-      "imageFileName": "018-the-book-of-cold-cases.jpg"
+      "imageLocal": "/assets/images/goodreads/58371432-the-book-of-cold-cases.webp",
+      "imageFileName": "58371432-the-book-of-cold-cases.webp"
     },
     {
       "title": "The 7½ Deaths of Evelyn Hardcastle",
       "href": "https://www.goodreads.com/review/show/8644171444?utm_medium=api&utm_source=grid_widget",
       "alt": "The 7½ Deaths of Evelyn Hardcastle",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1506896221l/36337550._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/019-the-7-deaths-of-evelyn-hardcastle.jpg",
-      "imageFileName": "019-the-7-deaths-of-evelyn-hardcastle.jpg"
+      "imageLocal": "/assets/images/goodreads/36337550-the-7-deaths-of-evelyn-hardcastle.webp",
+      "imageFileName": "36337550-the-7-deaths-of-evelyn-hardcastle.webp"
     },
     {
       "title": "The Secret History",
       "href": "https://www.goodreads.com/review/show/8641697897?utm_medium=api&utm_source=grid_widget",
       "alt": "The Secret History",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1751820530l/29044._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/020-the-secret-history.jpg",
-      "imageFileName": "020-the-secret-history.jpg"
+      "imageLocal": "/assets/images/goodreads/29044-the-secret-history.webp",
+      "imageFileName": "29044-the-secret-history.webp"
     },
     {
       "title": "The Match (Wilde, #2)",
       "href": "https://www.goodreads.com/review/show/8641629266?utm_medium=api&utm_source=grid_widget",
       "alt": "The Match",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1633046442l/58340968._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/021-the-match.jpg",
-      "imageFileName": "021-the-match.jpg"
+      "imageLocal": "/assets/images/goodreads/58340968-the-match.webp",
+      "imageFileName": "58340968-the-match.webp"
     },
     {
       "title": "I Let You Go",
       "href": "https://www.goodreads.com/review/show/8624700231?utm_medium=api&utm_source=grid_widget",
       "alt": "I Let You Go",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474522974l/30689367._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/022-i-let-you-go.jpg",
-      "imageFileName": "022-i-let-you-go.jpg"
+      "imageLocal": "/assets/images/goodreads/30689367-i-let-you-go.webp",
+      "imageFileName": "30689367-i-let-you-go.webp"
     },
     {
       "title": "Then She Was Gone",
       "href": "https://www.goodreads.com/review/show/8617047875?utm_medium=api&utm_source=grid_widget",
       "alt": "Then She Was Gone",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1741291185l/35297426._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/023-then-she-was-gone.jpg",
-      "imageFileName": "023-then-she-was-gone.jpg"
+      "imageLocal": "/assets/images/goodreads/35297426-then-she-was-gone.webp",
+      "imageFileName": "35297426-then-she-was-gone.webp"
     },
     {
       "title": "Malice (Detective Kaga, #1)",
       "href": "https://www.goodreads.com/review/show/8610707083?utm_medium=api&utm_source=grid_widget",
       "alt": "Malice",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1497270264l/20613611._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/024-malice.jpg",
-      "imageFileName": "024-malice.jpg"
+      "imageLocal": "/assets/images/goodreads/20613611-malice.webp",
+      "imageFileName": "20613611-malice.webp"
     },
     {
       "title": "Man's Search for Meaning",
       "href": "https://www.goodreads.com/review/show/8605785110?utm_medium=api&utm_source=grid_widget",
       "alt": "Man's Search for Meaning",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1535419394l/4069._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/025-man-s-search-for-meaning.jpg",
-      "imageFileName": "025-man-s-search-for-meaning.jpg"
+      "imageLocal": "/assets/images/goodreads/4069-man-s-search-for-meaning.webp",
+      "imageFileName": "4069-man-s-search-for-meaning.webp"
     },
     {
       "title": "Sharp Objects",
       "href": "https://www.goodreads.com/review/show/8600346369?utm_medium=api&utm_source=grid_widget",
       "alt": "Sharp Objects",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1475695315l/18045891._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/026-sharp-objects.jpg",
-      "imageFileName": "026-sharp-objects.jpg"
+      "imageLocal": "/assets/images/goodreads/18045891-sharp-objects.webp",
+      "imageFileName": "18045891-sharp-objects.webp"
     },
     {
       "title": "The Devotion of Suspect X (Detective Galileo, #1)",
       "href": "https://www.goodreads.com/review/show/8595381774?utm_medium=api&utm_source=grid_widget",
       "alt": "The Devotion of Suspect X",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1312051518l/8686068._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/027-the-devotion-of-suspect-x.jpg",
-      "imageFileName": "027-the-devotion-of-suspect-x.jpg"
+      "imageLocal": "/assets/images/goodreads/8686068-the-devotion-of-suspect-x.webp",
+      "imageFileName": "8686068-the-devotion-of-suspect-x.webp"
     },
     {
       "title": "Hatchet (Brian's Saga, #1)",
       "href": "https://www.goodreads.com/review/show/8585466554?utm_medium=api&utm_source=grid_widget",
       "alt": "Hatchet",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1385297074l/50._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/028-hatchet.jpg",
-      "imageFileName": "028-hatchet.jpg"
+      "imageLocal": "/assets/images/goodreads/50-hatchet.webp",
+      "imageFileName": "50-hatchet.webp"
     },
     {
       "title": "The Kind Worth Saving (Henry Kimball/Lily Kintner, #2)",
       "href": "https://www.goodreads.com/review/show/8583541832?utm_medium=api&utm_source=grid_widget",
       "alt": "The Kind Worth Saving",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1658955075l/60916172._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/029-the-kind-worth-saving.jpg",
-      "imageFileName": "029-the-kind-worth-saving.jpg"
+      "imageLocal": "/assets/images/goodreads/60916172-the-kind-worth-saving.webp",
+      "imageFileName": "60916172-the-kind-worth-saving.webp"
     },
     {
       "title": "The Kind Worth Killing (Henry Kimball/Lily Kintner, #1)",
       "href": "https://www.goodreads.com/review/show/8579005238?utm_medium=api&utm_source=grid_widget",
       "alt": "The Kind Worth Killing",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1417981750l/21936809._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/030-the-kind-worth-killing.jpg",
-      "imageFileName": "030-the-kind-worth-killing.jpg"
+      "imageLocal": "/assets/images/goodreads/21936809-the-kind-worth-killing.webp",
+      "imageFileName": "21936809-the-kind-worth-killing.webp"
     },
     {
       "title": "Before I Go to Sleep",
       "href": "https://www.goodreads.com/review/show/8575817942?utm_medium=api&utm_source=grid_widget",
       "alt": "Before I Go to Sleep",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1358353512l/9736930._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/031-before-i-go-to-sleep.jpg",
-      "imageFileName": "031-before-i-go-to-sleep.jpg"
+      "imageLocal": "/assets/images/goodreads/9736930-before-i-go-to-sleep.webp",
+      "imageFileName": "9736930-before-i-go-to-sleep.webp"
     },
     {
       "title": "The Way of Men",
       "href": "https://www.goodreads.com/review/show/8569313997?utm_medium=api&utm_source=grid_widget",
       "alt": "The Way of Men",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1336876467l/13572289._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/032-the-way-of-men.jpg",
-      "imageFileName": "032-the-way-of-men.jpg"
+      "imageLocal": "/assets/images/goodreads/13572289-the-way-of-men.webp",
+      "imageFileName": "13572289-the-way-of-men.webp"
     },
     {
       "title": "No Exit",
       "href": "https://www.goodreads.com/review/show/8569295406?utm_medium=api&utm_source=grid_widget",
       "alt": "No Exit",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1498539883l/35522836._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/033-no-exit.jpg",
-      "imageFileName": "033-no-exit.jpg"
+      "imageLocal": "/assets/images/goodreads/35522836-no-exit.webp",
+      "imageFileName": "35522836-no-exit.webp"
     },
     {
       "title": "The Saturday Night Ghost Club",
       "href": "https://www.goodreads.com/review/show/8546422725?utm_medium=api&utm_source=grid_widget",
       "alt": "The Saturday Night Ghost Club",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1518115122l/36911680._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/034-the-saturday-night-ghost-club.jpg",
-      "imageFileName": "034-the-saturday-night-ghost-club.jpg"
+      "imageLocal": "/assets/images/goodreads/36911680-the-saturday-night-ghost-club.webp",
+      "imageFileName": "36911680-the-saturday-night-ghost-club.webp"
     },
     {
       "title": "This Is Our Story",
       "href": "https://www.goodreads.com/review/show/8542213374?utm_medium=api&utm_source=grid_widget",
       "alt": "This Is Our Story",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1452621783l/23341252._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/035-this-is-our-story.jpg",
-      "imageFileName": "035-this-is-our-story.jpg"
+      "imageLocal": "/assets/images/goodreads/23341252-this-is-our-story.webp",
+      "imageFileName": "23341252-this-is-our-story.webp"
     },
     {
       "title": "The Chalk Man",
       "href": "https://www.goodreads.com/review/show/8541238765?utm_medium=api&utm_source=grid_widget",
       "alt": "The Chalk Man",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1568852018l/35356382._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/036-the-chalk-man.jpg",
-      "imageFileName": "036-the-chalk-man.jpg"
+      "imageLocal": "/assets/images/goodreads/35356382-the-chalk-man.webp",
+      "imageFileName": "35356382-the-chalk-man.webp"
     },
     {
       "title": "Let the Right One In",
       "href": "https://www.goodreads.com/review/show/8538445430?utm_medium=api&utm_source=grid_widget",
       "alt": "Let the Right One In",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327893384l/943402._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/037-let-the-right-one-in.jpg",
-      "imageFileName": "037-let-the-right-one-in.jpg"
+      "imageLocal": "/assets/images/goodreads/943402-let-the-right-one-in.webp",
+      "imageFileName": "943402-let-the-right-one-in.webp"
     },
     {
       "title": "Summer of Night (Seasons of Horror, #1)",
       "href": "https://www.goodreads.com/review/show/8527208647?utm_medium=api&utm_source=grid_widget",
       "alt": "Summer of Night",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1400270646l/11279._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/038-summer-of-night.jpg",
-      "imageFileName": "038-summer-of-night.jpg"
+      "imageLocal": "/assets/images/goodreads/11279-summer-of-night.webp",
+      "imageFileName": "11279-summer-of-night.webp"
     },
     {
       "title": "The Body",
       "href": "https://www.goodreads.com/review/show/8526789053?utm_medium=api&utm_source=grid_widget",
       "alt": "The Body",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1527495506l/38926465._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/039-the-body.jpg",
-      "imageFileName": "039-the-body.jpg"
+      "imageLocal": "/assets/images/goodreads/38926465-the-body.webp",
+      "imageFileName": "38926465-the-body.webp"
     },
     {
       "title": "December Park",
       "href": "https://www.goodreads.com/review/show/8518678127?utm_medium=api&utm_source=grid_widget",
       "alt": "December Park",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1395145819l/17802356._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/040-december-park.jpg",
-      "imageFileName": "040-december-park.jpg"
+      "imageLocal": "/assets/images/goodreads/17802356-december-park.webp",
+      "imageFileName": "17802356-december-park.webp"
     },
     {
       "title": "Dark Places",
       "href": "https://www.goodreads.com/review/show/8518678116?utm_medium=api&utm_source=grid_widget",
       "alt": "Dark Places",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1354988288l/5886881._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/041-dark-places.jpg",
-      "imageFileName": "041-dark-places.jpg"
+      "imageLocal": "/assets/images/goodreads/5886881-dark-places.webp",
+      "imageFileName": "5886881-dark-places.webp"
     },
     {
       "title": "NOS4A2",
       "href": "https://www.goodreads.com/review/show/8513790428?utm_medium=api&utm_source=grid_widget",
       "alt": "NOS4A2",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1369591617l/15729539._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/042-nos4a2.jpg",
-      "imageFileName": "042-nos4a2.jpg"
+      "imageLocal": "/assets/images/goodreads/15729539-nos4a2.webp",
+      "imageFileName": "15729539-nos4a2.webp"
     },
     {
       "title": "The Dip: A Little Book That Teaches You When to Quit (and When to Stick)",
       "href": "https://www.goodreads.com/review/show/8496984914?utm_medium=api&utm_source=grid_widget",
       "alt": "The Dip: A Little Book That Teaches You When to Quit",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1311282216l/324748._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/043-the-dip-a-little-book-that-teaches-you-when-to-quit.jpg",
-      "imageFileName": "043-the-dip-a-little-book-that-teaches-you-when-to-quit.jpg"
+      "imageLocal": "/assets/images/goodreads/324748-the-dip-a-little-book-that-teaches-you-when-to-quit.webp",
+      "imageFileName": "324748-the-dip-a-little-book-that-teaches-you-when-to-quit.webp"
     },
     {
       "title": "King, Warrior, Magician, Lover: Rediscovering the Archetypes of the Mature Masculine ― A Classic Jungian Psychology Guide to Shadow Work",
       "href": "https://www.goodreads.com/review/show/8472302555?utm_medium=api&utm_source=grid_widget",
       "alt": "King, Warrior, Magician, Lover: Rediscovering the Archetypes of the Mature Masculine ― A Classic Jungian Psychology Guide to Shadow Work",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1384259565l/91781._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/044-king-warrior-magician-lover-rediscovering-the-archetypes-of-.jpg",
-      "imageFileName": "044-king-warrior-magician-lover-rediscovering-the-archetypes-of-.jpg"
+      "imageLocal": "/assets/images/goodreads/91781-king-warrior-magician-lover-rediscovering-the-archetypes-of-.webp",
+      "imageFileName": "91781-king-warrior-magician-lover-rediscovering-the-archetypes-of-.webp"
     },
     {
       "title": "Stop People Pleasing: Be Assertive, Stop Caring What Others Think, Beat Your Guilt, & Stop Being a Pushover",
       "href": "https://www.goodreads.com/review/show/8471519246?utm_medium=api&utm_source=grid_widget",
       "alt": "Stop People Pleasing: Be Assertive, Stop Caring What Others Think, Beat Your Guilt, & Stop Being a Pushover",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1535020754l/41439687._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/045-stop-people-pleasing-be-assertive-stop-caring-what-others-th.jpg",
-      "imageFileName": "045-stop-people-pleasing-be-assertive-stop-caring-what-others-th.jpg"
+      "imageLocal": "/assets/images/goodreads/41439687-stop-people-pleasing-be-assertive-stop-caring-what-others-th.webp",
+      "imageFileName": "41439687-stop-people-pleasing-be-assertive-stop-caring-what-others-th.webp"
     },
     {
       "title": "আফগানিস্তানের ইতিহাস (৩য় খন্ড)",
       "href": "https://www.goodreads.com/review/show/8442545355?utm_medium=api&utm_source=grid_widget",
       "alt": "আফগানিস্তানের ইতিহাস",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1689145329l/188055609._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/046-book.jpg",
-      "imageFileName": "046-book.jpg"
+      "imageLocal": "/assets/images/goodreads/188055609-book.webp",
+      "imageFileName": "188055609-book.webp"
     },
     {
       "title": "আফগানিস্তানের ইতিহাস (২য় খন্ড)",
       "href": "https://www.goodreads.com/review/show/8442544846?utm_medium=api&utm_source=grid_widget",
       "alt": "আফগানিস্তানের ইতিহাস",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1689145174l/188054954._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/047-book.jpg",
-      "imageFileName": "047-book.jpg"
+      "imageLocal": "/assets/images/goodreads/188054954-book.webp",
+      "imageFileName": "188054954-book.webp"
     },
     {
       "title": "আফগানিস্তানের ইতিহাস (১ম খন্ড)",
       "href": "https://www.goodreads.com/review/show/8442542310?utm_medium=api&utm_source=grid_widget",
       "alt": "আফগানিস্তানের ইতিহাস",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1689145029l/61190736._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/048-book.jpg",
-      "imageFileName": "048-book.jpg"
+      "imageLocal": "/assets/images/goodreads/61190736-book.webp",
+      "imageFileName": "61190736-book.webp"
     },
     {
       "title": "Billy Summers",
       "href": "https://www.goodreads.com/review/show/8355531292?utm_medium=api&utm_source=grid_widget",
       "alt": "Billy Summers",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1618151020l/56852407._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/049-billy-summers.jpg",
-      "imageFileName": "049-billy-summers.jpg"
+      "imageLocal": "/assets/images/goodreads/56852407-billy-summers.webp",
+      "imageFileName": "56852407-billy-summers.webp"
     },
     {
       "title": "Boy's Life",
       "href": "https://www.goodreads.com/review/show/8352509911?utm_medium=api&utm_source=grid_widget",
       "alt": "Boy's Life",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1509393911l/36505403._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/050-boy-s-life.jpg",
-      "imageFileName": "050-boy-s-life.jpg"
+      "imageLocal": "/assets/images/goodreads/36505403-boy-s-life.webp",
+      "imageFileName": "36505403-boy-s-life.webp"
     },
     {
       "title": "The Pragmatic Programmer: From Journeyman to Master",
       "href": "https://www.goodreads.com/review/show/8346697971?utm_medium=api&utm_source=grid_widget",
       "alt": "The Pragmatic Programmer: From Journeyman to Master",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1401432508l/4099._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/051-the-pragmatic-programmer-from-journeyman-to-master.jpg",
-      "imageFileName": "051-the-pragmatic-programmer-from-journeyman-to-master.jpg"
+      "imageLocal": "/assets/images/goodreads/4099-the-pragmatic-programmer-from-journeyman-to-master.webp",
+      "imageFileName": "4099-the-pragmatic-programmer-from-journeyman-to-master.webp"
     },
     {
       "title": "Jerusalem's Lot",
       "href": "https://www.goodreads.com/review/show/8323339549?utm_medium=api&utm_source=grid_widget",
       "alt": "Jerusalem's Lot",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1502473565l/36002545._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/052-jerusalem-s-lot.jpg",
-      "imageFileName": "052-jerusalem-s-lot.jpg"
+      "imageLocal": "/assets/images/goodreads/36002545-jerusalem-s-lot.webp",
+      "imageFileName": "36002545-jerusalem-s-lot.webp"
     },
     {
       "title": "I Hunt Killers (I Hunt Killers, #1)",
       "href": "https://www.goodreads.com/review/show/8315285650?utm_medium=api&utm_source=grid_widget",
       "alt": "I Hunt Killers",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1333289403l/7766027._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/053-i-hunt-killers.jpg",
-      "imageFileName": "053-i-hunt-killers.jpg"
+      "imageLocal": "/assets/images/goodreads/7766027-i-hunt-killers.webp",
+      "imageFileName": "7766027-i-hunt-killers.webp"
     },
     {
       "title": "Big Driver",
       "href": "https://www.goodreads.com/review/show/8288504996?utm_medium=api&utm_source=grid_widget",
       "alt": "Big Driver",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1429726367l/22844168._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/054-big-driver.jpg",
-      "imageFileName": "054-big-driver.jpg"
+      "imageLocal": "/assets/images/goodreads/22844168-big-driver.webp",
+      "imageFileName": "22844168-big-driver.webp"
     },
     {
       "title": "1922",
       "href": "https://www.goodreads.com/review/show/8286524398?utm_medium=api&utm_source=grid_widget",
       "alt": "1922",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1515983078l/22844166._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/055-1922.jpg",
-      "imageFileName": "055-1922.jpg"
+      "imageLocal": "/assets/images/goodreads/22844166-1922.webp",
+      "imageFileName": "22844166-1922.webp"
     },
     {
       "title": "Lost (Joseph O'Loughlin #2)",
       "href": "https://www.goodreads.com/review/show/8218203799?utm_medium=api&utm_source=grid_widget",
       "alt": "Lost",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1392582846l/18453116._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/056-lost.jpg",
-      "imageFileName": "056-lost.jpg"
+      "imageLocal": "/assets/images/goodreads/18453116-lost.webp",
+      "imageFileName": "18453116-lost.webp"
     },
     {
       "title": "Suspect (Joseph O'Loughlin, #1)",
       "href": "https://www.goodreads.com/review/show/8218199056?utm_medium=api&utm_source=grid_widget",
       "alt": "Suspect",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1361387524l/477362._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/057-suspect.jpg",
-      "imageFileName": "057-suspect.jpg"
+      "imageLocal": "/assets/images/goodreads/477362-suspect.webp",
+      "imageFileName": "477362-suspect.webp"
     },
     {
       "title": "No Time for Goodbye (No Time For Goodbye, #1)",
       "href": "https://www.goodreads.com/review/show/8209190245?utm_medium=api&utm_source=grid_widget",
       "alt": "No Time for Goodbye",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1182031065l/1225261._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/058-no-time-for-goodbye.jpg",
-      "imageFileName": "058-no-time-for-goodbye.jpg"
+      "imageLocal": "/assets/images/goodreads/1225261-no-time-for-goodbye.webp",
+      "imageFileName": "1225261-no-time-for-goodbye.webp"
     },
     {
       "title": "Not Quite Dead Yet",
       "href": "https://www.goodreads.com/review/show/8180537240?utm_medium=api&utm_source=grid_widget",
       "alt": "Not Quite Dead Yet",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739418770l/220223963._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/059-not-quite-dead-yet.jpg",
-      "imageFileName": "059-not-quite-dead-yet.jpg"
+      "imageLocal": "/assets/images/goodreads/220223963-not-quite-dead-yet.webp",
+      "imageFileName": "220223963-not-quite-dead-yet.webp"
     },
     {
       "title": "The Sun Down Motel",
       "href": "https://www.goodreads.com/review/show/8180019926?utm_medium=api&utm_source=grid_widget",
       "alt": "The Sun Down Motel",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1570443079l/45885644._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/060-the-sun-down-motel.jpg",
-      "imageFileName": "060-the-sun-down-motel.jpg"
+      "imageLocal": "/assets/images/goodreads/45885644-the-sun-down-motel.webp",
+      "imageFileName": "45885644-the-sun-down-motel.webp"
     },
     {
       "title": "The Couple Next Door",
       "href": "https://www.goodreads.com/review/show/8163568683?utm_medium=api&utm_source=grid_widget",
       "alt": "The Couple Next Door",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1471502242l/28815474._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/061-the-couple-next-door.jpg",
-      "imageFileName": "061-the-couple-next-door.jpg"
+      "imageLocal": "/assets/images/goodreads/28815474-the-couple-next-door.webp",
+      "imageFileName": "28815474-the-couple-next-door.webp"
     },
     {
       "title": "The Boy from the Woods (Wilde, #1)",
       "href": "https://www.goodreads.com/review/show/8160736654?utm_medium=api&utm_source=grid_widget",
       "alt": "The Boy from the Woods",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1575400945l/51204046._SX98_SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/062-the-boy-from-the-woods.jpg",
-      "imageFileName": "062-the-boy-from-the-woods.jpg"
+      "imageLocal": "/assets/images/goodreads/51204046-the-boy-from-the-woods.webp",
+      "imageFileName": "51204046-the-boy-from-the-woods.webp"
     },
     {
       "title": "Fool Me Once (Detective Sami Kierce, #1)",
       "href": "https://www.goodreads.com/review/show/8160637963?utm_medium=api&utm_source=grid_widget",
       "alt": "Fool Me Once",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443190440l/26109394._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/063-fool-me-once.jpg",
-      "imageFileName": "063-fool-me-once.jpg"
+      "imageLocal": "/assets/images/goodreads/26109394-fool-me-once.webp",
+      "imageFileName": "26109394-fool-me-once.webp"
     },
     {
       "title": "The Inmate",
       "href": "https://www.goodreads.com/review/show/8145347196?utm_medium=api&utm_source=grid_widget",
       "alt": "The Inmate",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1653271523l/61149872._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/064-the-inmate.jpg",
-      "imageFileName": "064-the-inmate.jpg"
+      "imageLocal": "/assets/images/goodreads/61149872-the-inmate.webp",
+      "imageFileName": "61149872-the-inmate.webp"
     },
     {
       "title": "Good Girl, Bad Blood (A Good Girl's Guide to Murder, #2)",
       "href": "https://www.goodreads.com/review/show/8145343510?utm_medium=api&utm_source=grid_widget",
       "alt": "Good Girl, Bad Blood",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1588319723l/51335759._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/065-good-girl-bad-blood.jpg",
-      "imageFileName": "065-good-girl-bad-blood.jpg"
+      "imageLocal": "/assets/images/goodreads/51335759-good-girl-bad-blood.webp",
+      "imageFileName": "51335759-good-girl-bad-blood.webp"
     },
     {
       "title": "A Good Girl's Guide to Murder (A Good Girl's Guide to Murder, #1)",
       "href": "https://www.goodreads.com/review/show/8145342649?utm_medium=api&utm_source=grid_widget",
       "alt": "A Good Girl's Guide to Murder",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1545494980l/40916679._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/066-a-good-girl-s-guide-to-murder.jpg",
-      "imageFileName": "066-a-good-girl-s-guide-to-murder.jpg"
+      "imageLocal": "/assets/images/goodreads/40916679-a-good-girl-s-guide-to-murder.webp",
+      "imageFileName": "40916679-a-good-girl-s-guide-to-murder.webp"
     },
     {
       "title": "And Then There Were None",
       "href": "https://www.goodreads.com/review/show/8142463523?utm_medium=api&utm_source=grid_widget",
       "alt": "And Then There Were None",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1638425885l/16299._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/067-and-then-there-were-none.jpg",
-      "imageFileName": "067-and-then-there-were-none.jpg"
+      "imageLocal": "/assets/images/goodreads/16299-and-then-there-were-none.webp",
+      "imageFileName": "16299-and-then-there-were-none.webp"
     },
     {
       "title": "Tell No One",
       "href": "https://www.goodreads.com/review/show/8135864826?utm_medium=api&utm_source=grid_widget",
       "alt": "Tell No One",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1421365049l/43933._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/068-tell-no-one.jpg",
-      "imageFileName": "068-tell-no-one.jpg"
+      "imageLocal": "/assets/images/goodreads/43933-tell-no-one.webp",
+      "imageFileName": "43933-tell-no-one.webp"
     },
     {
       "title": "The Stranger",
       "href": "https://www.goodreads.com/review/show/8135863824?utm_medium=api&utm_source=grid_widget",
       "alt": "The Stranger",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1408564426l/22571540._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/069-the-stranger.jpg",
-      "imageFileName": "069-the-stranger.jpg"
+      "imageLocal": "/assets/images/goodreads/22571540-the-stranger.webp",
+      "imageFileName": "22571540-the-stranger.webp"
     },
     {
       "title": "The Wife Upstairs",
       "href": "https://www.goodreads.com/review/show/8123531623?utm_medium=api&utm_source=grid_widget",
       "alt": "The Wife Upstairs",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1585383133l/52636419._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/070-the-wife-upstairs.jpg",
-      "imageFileName": "070-the-wife-upstairs.jpg"
+      "imageLocal": "/assets/images/goodreads/52636419-the-wife-upstairs.webp",
+      "imageFileName": "52636419-the-wife-upstairs.webp"
     },
     {
       "title": "The Girl With the Dragon Tattoo (Millennium, #1)",
       "href": "https://www.goodreads.com/review/show/8109355717?utm_medium=api&utm_source=grid_widget",
       "alt": "The Girl With the Dragon Tattoo",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1684638853l/2429135._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/071-the-girl-with-the-dragon-tattoo.jpg",
-      "imageFileName": "071-the-girl-with-the-dragon-tattoo.jpg"
+      "imageLocal": "/assets/images/goodreads/2429135-the-girl-with-the-dragon-tattoo.webp",
+      "imageFileName": "2429135-the-girl-with-the-dragon-tattoo.webp"
     },
     {
       "title": "The Hunting Party",
       "href": "https://www.goodreads.com/review/show/8106208137?utm_medium=api&utm_source=grid_widget",
       "alt": "The Hunting Party",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1569862373l/37642030._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/072-the-hunting-party.jpg",
-      "imageFileName": "072-the-hunting-party.jpg"
+      "imageLocal": "/assets/images/goodreads/37642030-the-hunting-party.webp",
+      "imageFileName": "37642030-the-hunting-party.webp"
     },
     {
       "title": "The Paris Apartment",
       "href": "https://www.goodreads.com/review/show/8106207582?utm_medium=api&utm_source=grid_widget",
       "alt": "The Paris Apartment",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645550948l/58468990._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/073-the-paris-apartment.jpg",
-      "imageFileName": "073-the-paris-apartment.jpg"
+      "imageLocal": "/assets/images/goodreads/58468990-the-paris-apartment.webp",
+      "imageFileName": "58468990-the-paris-apartment.webp"
     },
     {
       "title": "The Guest List",
       "href": "https://www.goodreads.com/review/show/8088198501?utm_medium=api&utm_source=grid_widget",
       "alt": "The Guest List",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1591461181l/52656911._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/074-the-guest-list.jpg",
-      "imageFileName": "074-the-guest-list.jpg"
+      "imageLocal": "/assets/images/goodreads/52656911-the-guest-list.webp",
+      "imageFileName": "52656911-the-guest-list.webp"
     },
     {
       "title": "Gone Girl",
       "href": "https://www.goodreads.com/review/show/8072499743?utm_medium=api&utm_source=grid_widget",
       "alt": "Gone Girl",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1554086139l/19288043._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/075-gone-girl.jpg",
-      "imageFileName": "075-gone-girl.jpg"
+      "imageLocal": "/assets/images/goodreads/19288043-gone-girl.webp",
+      "imageFileName": "19288043-gone-girl.webp"
     },
     {
       "title": "Enchiridion",
       "href": "https://www.goodreads.com/review/show/8067312788?utm_medium=api&utm_source=grid_widget",
       "alt": "Enchiridion",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1405982394l/24615._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/076-enchiridion.jpg",
-      "imageFileName": "076-enchiridion.jpg"
+      "imageLocal": "/assets/images/goodreads/24615-enchiridion.webp",
+      "imageFileName": "24615-enchiridion.webp"
     },
     {
       "title": "The Dry (Aaron Falk, #1)",
       "href": "https://www.goodreads.com/review/show/8062088159?utm_medium=api&utm_source=grid_widget",
       "alt": "The Dry",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1456113132l/27824826._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/077-the-dry.jpg",
-      "imageFileName": "077-the-dry.jpg"
+      "imageLocal": "/assets/images/goodreads/27824826-the-dry.webp",
+      "imageFileName": "27824826-the-dry.webp"
     },
     {
       "title": "মিসির আলি দশ",
       "href": "https://www.goodreads.com/review/show/8061614074?utm_medium=api&utm_source=grid_widget",
       "alt": "মিসির আলি দশ",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1708923286l/161997267._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/078-book.jpg",
-      "imageFileName": "078-book.jpg"
+      "imageLocal": "/assets/images/goodreads/161997267-book.webp",
+      "imageFileName": "161997267-book.webp"
     },
     {
       "title": "হিমু, মিসির আলি ও অন্যান্য...",
       "href": "https://www.goodreads.com/review/show/8061613944?utm_medium=api&utm_source=grid_widget",
       "alt": "হিমু, মিসির আলি ও অন্যান্য...",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1646841642l/60580948._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/079-book.jpg",
-      "imageFileName": "079-book.jpg"
+      "imageLocal": "/assets/images/goodreads/60580948-book.webp",
+      "imageFileName": "60580948-book.webp"
     },
     {
       "title": "যখন নামিবে আঁধার (মিসির আলি, #20)",
       "href": "https://www.goodreads.com/review/show/8061613774?utm_medium=api&utm_source=grid_widget",
       "alt": "যখন নামিবে আঁধার",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1442326158l/13503601._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/080-book.jpg",
-      "imageFileName": "080-book.jpg"
+      "imageLocal": "/assets/images/goodreads/13503601-book.webp",
+      "imageFileName": "13503601-book.webp"
     },
     {
       "title": "অনীশ (মিসির আলি, #8)",
       "href": "https://www.goodreads.com/review/show/8061613540?utm_medium=api&utm_source=grid_widget",
       "alt": "অনীশ",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1371907247l/17570913._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/081-book.jpg",
-      "imageFileName": "081-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17570913-book.webp",
+      "imageFileName": "17570913-book.webp"
     },
     {
       "title": "বিপদ (মিসির আলি, #7)",
       "href": "https://www.goodreads.com/review/show/8061613414?utm_medium=api&utm_source=grid_widget",
       "alt": "বিপদ",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1364115256l/17671414._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/082-book.jpg",
-      "imageFileName": "082-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17671414-book.webp",
+      "imageFileName": "17671414-book.webp"
     },
     {
       "title": "ভয় (মিসির আলি, #6)",
       "href": "https://www.goodreads.com/review/show/8061613272?utm_medium=api&utm_source=grid_widget",
       "alt": "ভয়",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1355409926l/16579569._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/083-book.jpg",
-      "imageFileName": "083-book.jpg"
+      "imageLocal": "/assets/images/goodreads/16579569-book.webp",
+      "imageFileName": "16579569-book.webp"
     },
     {
       "title": "তন্দ্রাবিলাস (মিসির আলি, #11)",
       "href": "https://www.goodreads.com/review/show/8061613086?utm_medium=api&utm_source=grid_widget",
       "alt": "তন্দ্রাবিলাস",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1364117705l/17671455._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/084-book.jpg",
-      "imageFileName": "084-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17671455-book.webp",
+      "imageFileName": "17671455-book.webp"
     },
     {
       "title": "আমি এবং আমরা (মিসির আলি, #10)",
       "href": "https://www.goodreads.com/review/show/8061612903?utm_medium=api&utm_source=grid_widget",
       "alt": "আমি এবং আমরা",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1363968245l/17406982._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/085-book.jpg",
-      "imageFileName": "085-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17406982-book.webp",
+      "imageFileName": "17406982-book.webp"
     },
     {
       "title": "নিশীথিনী (মিসির আলি, #2, দেবী, #2)",
       "href": "https://www.goodreads.com/review/show/8061612551?utm_medium=api&utm_source=grid_widget",
       "alt": "নিশীথিনী",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1278476973l/8547493._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/086-book.jpg",
-      "imageFileName": "086-book.jpg"
+      "imageLocal": "/assets/images/goodreads/8547493-book.webp",
+      "imageFileName": "8547493-book.webp"
     },
     {
       "title": "জগুমামা রহস্য সমগ্র ৫",
       "href": "https://www.goodreads.com/review/show/8061600639?utm_medium=api&utm_source=grid_widget",
       "alt": "জগুমামা রহস্য সমগ্র ৫",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1740604794l/228488973._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/087-book.jpg",
-      "imageFileName": "087-book.jpg"
+      "imageLocal": "/assets/images/goodreads/228488973-book.webp",
+      "imageFileName": "228488973-book.webp"
     },
     {
       "title": "জগুমামা রহস্য সমগ্র ৪",
       "href": "https://www.goodreads.com/review/show/8061600322?utm_medium=api&utm_source=grid_widget",
       "alt": "জগুমামা রহস্য সমগ্র ৪",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1740604358l/39912698._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/088-book.jpg",
-      "imageFileName": "088-book.jpg"
+      "imageLocal": "/assets/images/goodreads/39912698-book.webp",
+      "imageFileName": "39912698-book.webp"
     },
     {
       "title": "জগুমামা রহস্য সমগ্র ২",
       "href": "https://www.goodreads.com/review/show/8061600099?utm_medium=api&utm_source=grid_widget",
       "alt": "জগুমামা রহস্য সমগ্র ২",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1476457097l/32608339._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/089-book.jpg",
-      "imageFileName": "089-book.jpg"
+      "imageLocal": "/assets/images/goodreads/32608339-book.webp",
+      "imageFileName": "32608339-book.webp"
     },
     {
       "title": "Five Survive",
       "href": "https://www.goodreads.com/review/show/8061572795?utm_medium=api&utm_source=grid_widget",
       "alt": "Five Survive",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1664370443l/61313902._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/090-five-survive.jpg",
-      "imageFileName": "090-five-survive.jpg"
+      "imageLocal": "/assets/images/goodreads/61313902-five-survive.webp",
+      "imageFileName": "61313902-five-survive.webp"
     },
     {
       "title": "All the Sinners Bleed",
       "href": "https://www.goodreads.com/review/show/8061572383?utm_medium=api&utm_source=grid_widget",
       "alt": "All the Sinners Bleed",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1663544598l/61884832._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/091-all-the-sinners-bleed.jpg",
-      "imageFileName": "091-all-the-sinners-bleed.jpg"
+      "imageLocal": "/assets/images/goodreads/61884832-all-the-sinners-bleed.webp",
+      "imageFileName": "61884832-all-the-sinners-bleed.webp"
     },
     {
       "title": "The Perfect Son",
       "href": "https://www.goodreads.com/review/show/8059132873?utm_medium=api&utm_source=grid_widget",
       "alt": "The Perfect Son",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1570489697l/52616342._SX98_SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/092-the-perfect-son.jpg",
-      "imageFileName": "092-the-perfect-son.jpg"
+      "imageLocal": "/assets/images/goodreads/52616342-the-perfect-son.webp",
+      "imageFileName": "52616342-the-perfect-son.webp"
     },
     {
       "title": "The Lake at the End of the World",
       "href": "https://www.goodreads.com/review/show/8059131174?utm_medium=api&utm_source=grid_widget",
       "alt": "The Lake at the End of the World",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1437135323l/25926174.jpg",
-      "imageLocal": "/assets/images/goodreads/093-the-lake-at-the-end-of-the-world.jpg",
-      "imageFileName": "093-the-lake-at-the-end-of-the-world.jpg"
+      "imageLocal": "/assets/images/goodreads/25926174-the-lake-at-the-end-of-the-world.webp",
+      "imageFileName": "25926174-the-lake-at-the-end-of-the-world.webp"
     },
     {
       "title": "Jagumama Rahasya Samagra : Volume 3",
       "href": "https://www.goodreads.com/review/show/8059130585?utm_medium=api&utm_source=grid_widget",
       "alt": "Jagumama Rahasya Samagra : Volume 3",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1754736783l/239940598._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/094-jagumama-rahasya-samagra-volume-3.jpg",
-      "imageFileName": "094-jagumama-rahasya-samagra-volume-3.jpg"
+      "imageLocal": "/assets/images/goodreads/239940598-jagumama-rahasya-samagra-volume-3.webp",
+      "imageFileName": "239940598-jagumama-rahasya-samagra-volume-3.webp"
     },
     {
       "title": "জগুমামা রহস্য সমগ্র ১",
       "href": "https://www.goodreads.com/review/show/8059130355?utm_medium=api&utm_source=grid_widget",
       "alt": "জগুমামা রহস্য সমগ্র ১",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1569423197l/49450409._SX98_SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/095-book.jpg",
-      "imageFileName": "095-book.jpg"
+      "imageLocal": "/assets/images/goodreads/49450409-book.webp",
+      "imageFileName": "49450409-book.webp"
     },
     {
       "title": "রবীন্দ্রনাথ এখানে কখনও খেতে আসেননি",
       "href": "https://www.goodreads.com/review/show/8059127143?utm_medium=api&utm_source=grid_widget",
       "alt": "রবীন্দ্রনাথ এখানে কখনও খেতে আসেননি",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1518282101l/24747127._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/096-book.jpg",
-      "imageFileName": "096-book.jpg"
+      "imageLocal": "/assets/images/goodreads/24747127-book.webp",
+      "imageFileName": "24747127-book.webp"
     },
     {
       "title": "The Housemaid (The Housemaid, #1)",
       "href": "https://www.goodreads.com/review/show/8059126383?utm_medium=api&utm_source=grid_widget",
       "alt": "The Housemaid",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1646534743l/60556912._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/097-the-housemaid.jpg",
-      "imageFileName": "097-the-housemaid.jpg"
+      "imageLocal": "/assets/images/goodreads/60556912-the-housemaid.webp",
+      "imageFileName": "60556912-the-housemaid.webp"
     },
     {
       "title": "অন্যভুবন (মিসির আলি, #4)",
       "href": "https://www.goodreads.com/review/show/8059125633?utm_medium=api&utm_source=grid_widget",
       "alt": "অন্যভুবন",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1364111485l/17671362._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/098-book.jpg",
-      "imageFileName": "098-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17671362-book.webp",
+      "imageFileName": "17671362-book.webp"
     },
     {
       "title": "Cannibal Reign: A Post-Apocalyptic Horror Thriller Where the Only Law Is 'Eat or Be Eaten' (Harper Thriller)",
       "href": "https://www.goodreads.com/review/show/8059124767?utm_medium=api&utm_source=grid_widget",
       "alt": "Cannibal Reign: A Post-Apocalyptic Horror Thriller Where the Only Law Is 'Eat or Be Eaten'",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1335900720l/13426200._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/099-cannibal-reign-a-post-apocalyptic-horror-thriller-where-the-.jpg",
-      "imageFileName": "099-cannibal-reign-a-post-apocalyptic-horror-thriller-where-the-.jpg"
+      "imageLocal": "/assets/images/goodreads/13426200-cannibal-reign-a-post-apocalyptic-horror-thriller-where-the-.webp",
+      "imageFileName": "13426200-cannibal-reign-a-post-apocalyptic-horror-thriller-where-the-.webp"
     },
     {
       "title": "When She Was Good (Cyrus Haven, #2)",
       "href": "https://www.goodreads.com/review/show/8059124426?utm_medium=api&utm_source=grid_widget",
       "alt": "When She Was Good",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1576421622l/52767515._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/100-when-she-was-good.jpg",
-      "imageFileName": "100-when-she-was-good.jpg"
+      "imageLocal": "/assets/images/goodreads/52767515-when-she-was-good.webp",
+      "imageFileName": "52767515-when-she-was-good.webp"
     },
     {
       "title": "Good Girl, Bad Girl (Cyrus Haven, #1)",
       "href": "https://www.goodreads.com/review/show/8059122168?utm_medium=api&utm_source=grid_widget",
       "alt": "Good Girl, Bad Girl",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1563106568l/43320218._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/101-good-girl-bad-girl.jpg",
-      "imageFileName": "101-good-girl-bad-girl.jpg"
+      "imageLocal": "/assets/images/goodreads/43320218-good-girl-bad-girl.webp",
+      "imageFileName": "43320218-good-girl-bad-girl.webp"
     },
     {
       "title": "Mile 81",
       "href": "https://www.goodreads.com/review/show/3256234725?utm_medium=api&utm_source=grid_widget",
       "alt": "Mile 81",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1407138212l/12070846._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/102-mile-81.jpg",
-      "imageFileName": "102-mile-81.jpg"
+      "imageLocal": "/assets/images/goodreads/12070846-mile-81.webp",
+      "imageFileName": "12070846-mile-81.webp"
     },
     {
       "title": "Hear the Wind Sing (The Rat, #1)",
       "href": "https://www.goodreads.com/review/show/3249252397?utm_medium=api&utm_source=grid_widget",
       "alt": "Hear the Wind Sing",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1209948233l/226973._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/103-hear-the-wind-sing.jpg",
-      "imageFileName": "103-hear-the-wind-sing.jpg"
+      "imageLocal": "/assets/images/goodreads/226973-hear-the-wind-sing.webp",
+      "imageFileName": "226973-hear-the-wind-sing.webp"
     },
     {
       "title": "Blockchain: The Next Everything",
       "href": "https://www.goodreads.com/review/show/3247558695?utm_medium=api&utm_source=grid_widget",
       "alt": "Blockchain: The Next Everything",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1552505140l/42454141._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/104-blockchain-the-next-everything.jpg",
-      "imageFileName": "104-blockchain-the-next-everything.jpg"
+      "imageLocal": "/assets/images/goodreads/42454141-blockchain-the-next-everything.webp",
+      "imageFileName": "42454141-blockchain-the-next-everything.webp"
     },
     {
       "title": "The Art of Communicating",
       "href": "https://www.goodreads.com/review/show/3247420059?utm_medium=api&utm_source=grid_widget",
       "alt": "The Art of Communicating",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1364845277l/17331360._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/105-the-art-of-communicating.jpg",
-      "imageFileName": "105-the-art-of-communicating.jpg"
+      "imageLocal": "/assets/images/goodreads/17331360-the-art-of-communicating.webp",
+      "imageFileName": "17331360-the-art-of-communicating.webp"
     },
     {
       "title": "মনোজদের অদ্ভুত বাড়ি (অদ্ভুতুড়ে, #1)",
       "href": "https://www.goodreads.com/review/show/3241088377?utm_medium=api&utm_source=grid_widget",
       "alt": "মনোজদের অদ্ভুত বাড়ি",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1465764756l/15720202._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/106-book.jpg",
-      "imageFileName": "106-book.jpg"
+      "imageLocal": "/assets/images/goodreads/15720202-book.webp",
+      "imageFileName": "15720202-book.webp"
     },
     {
       "title": "AI Superpowers: China, Silicon Valley, and the New World Order",
       "href": "https://www.goodreads.com/review/show/3241078976?utm_medium=api&utm_source=grid_widget",
       "alt": "AI Superpowers: China, Silicon Valley, and the New World Order",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1521228712l/38242135._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/107-ai-superpowers-china-silicon-valley-and-the-new-world-order.jpg",
-      "imageFileName": "107-ai-superpowers-china-silicon-valley-and-the-new-world-order.jpg"
+      "imageLocal": "/assets/images/goodreads/38242135-ai-superpowers-china-silicon-valley-and-the-new-world-order.webp",
+      "imageFileName": "38242135-ai-superpowers-china-silicon-valley-and-the-new-world-order.webp"
     },
     {
       "title": "One Piece, Volume 32: Love Song",
       "href": "https://www.goodreads.com/review/show/3239767539?utm_medium=api&utm_source=grid_widget",
       "alt": "One Piece, Volume 32: Love Song",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1572271714l/6801645._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/108-one-piece-volume-32-love-song.jpg",
-      "imageFileName": "108-one-piece-volume-32-love-song.jpg"
+      "imageLocal": "/assets/images/goodreads/6801645-one-piece-volume-32-love-song.webp",
+      "imageFileName": "6801645-one-piece-volume-32-love-song.webp"
     },
     {
       "title": "The Strange Library",
       "href": "https://www.goodreads.com/review/show/3207369132?utm_medium=api&utm_source=grid_widget",
       "alt": "The Strange Library",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1419549475l/23128304._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/109-the-strange-library.jpg",
-      "imageFileName": "109-the-strange-library.jpg"
+      "imageLocal": "/assets/images/goodreads/23128304-the-strange-library.webp",
+      "imageFileName": "23128304-the-strange-library.webp"
     },
     {
       "title": "On MisEducation (Critical Perspectives)",
       "href": "https://www.goodreads.com/review/show/3104107267?utm_medium=api&utm_source=grid_widget",
       "alt": "On MisEducation",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1349070446l/12631._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/110-on-miseducation.jpg",
-      "imageFileName": "110-on-miseducation.jpg"
+      "imageLocal": "/assets/images/goodreads/12631-on-miseducation.webp",
+      "imageFileName": "12631-on-miseducation.webp"
     },
     {
       "title": "Shikwa and Jawab-i-Shikwa: Iqbal's Dialogue with Allah",
       "href": "https://www.goodreads.com/review/show/3046401187?utm_medium=api&utm_source=grid_widget",
       "alt": "Shikwa and Jawab-i-Shikwa: Iqbal's Dialogue with Allah",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1492449134l/109205._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/111-shikwa-and-jawab-i-shikwa-iqbal-s-dialogue-with-allah.jpg",
-      "imageFileName": "111-shikwa-and-jawab-i-shikwa-iqbal-s-dialogue-with-allah.jpg"
+      "imageLocal": "/assets/images/goodreads/109205-shikwa-and-jawab-i-shikwa-iqbal-s-dialogue-with-allah.webp",
+      "imageFileName": "109205-shikwa-and-jawab-i-shikwa-iqbal-s-dialogue-with-allah.webp"
     },
     {
       "title": "The Spirit of Islam",
       "href": "https://www.goodreads.com/review/show/3046192633?utm_medium=api&utm_source=grid_widget",
       "alt": "The Spirit of Islam",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327806792l/9031966._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/112-the-spirit-of-islam.jpg",
-      "imageFileName": "112-the-spirit-of-islam.jpg"
+      "imageLocal": "/assets/images/goodreads/9031966-the-spirit-of-islam.webp",
+      "imageFileName": "9031966-the-spirit-of-islam.webp"
     },
     {
       "title": "Pather Panchali (পথের পাঁচালী) (অপুর পাঁচালী #1)",
       "href": "https://www.goodreads.com/review/show/3046148402?utm_medium=api&utm_source=grid_widget",
       "alt": "Pather Panchali (পথের পাঁচালী)",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1571300498l/53003404._SX98_SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/113-pather-panchali.jpg",
-      "imageFileName": "113-pather-panchali.jpg"
+      "imageLocal": "/assets/images/goodreads/53003404-pather-panchali.webp",
+      "imageFileName": "53003404-pather-panchali.webp"
     },
     {
       "title": "দুধভাতে উৎপাত",
       "href": "https://www.goodreads.com/review/show/3035886111?utm_medium=api&utm_source=grid_widget",
       "alt": "দুধভাতে উৎপাত",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1544759842l/7827467._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/114-book.jpg",
-      "imageFileName": "114-book.jpg"
+      "imageLocal": "/assets/images/goodreads/7827467-book.webp",
+      "imageFileName": "7827467-book.webp"
     },
     {
       "title": "The Outsider",
       "href": "https://www.goodreads.com/review/show/3026726087?utm_medium=api&utm_source=grid_widget",
       "alt": "The Outsider",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1435772042l/15686._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/115-the-outsider.jpg",
-      "imageFileName": "115-the-outsider.jpg"
+      "imageLocal": "/assets/images/goodreads/15686-the-outsider.webp",
+      "imageFileName": "15686-the-outsider.webp"
     },
     {
       "title": "নিষিদ্ধ লোবান",
       "href": "https://www.goodreads.com/review/show/3023565432?utm_medium=api&utm_source=grid_widget",
       "alt": "নিষিদ্ধ লোবান",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1475232816l/17728204._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/116-book.jpg",
-      "imageFileName": "116-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17728204-book.webp",
+      "imageFileName": "17728204-book.webp"
     },
     {
       "title": "Dreams from My Father: A Story of Race and Inheritance",
       "href": "https://www.goodreads.com/review/show/3016771583?utm_medium=api&utm_source=grid_widget",
       "alt": "Dreams from My Father: A Story of Race and Inheritance",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1352340675l/88061._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/117-dreams-from-my-father-a-story-of-race-and-inheritance.jpg",
-      "imageFileName": "117-dreams-from-my-father-a-story-of-race-and-inheritance.jpg"
+      "imageLocal": "/assets/images/goodreads/88061-dreams-from-my-father-a-story-of-race-and-inheritance.webp",
+      "imageFileName": "88061-dreams-from-my-father-a-story-of-race-and-inheritance.webp"
     },
     {
       "title": "ভাল্লাগে না",
       "href": "https://www.goodreads.com/review/show/3015954750?utm_medium=api&utm_source=grid_widget",
       "alt": "ভাল্লাগে না",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1551004000l/44101947._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/118-book.jpg",
-      "imageFileName": "118-book.jpg"
+      "imageLocal": "/assets/images/goodreads/44101947-book.webp",
+      "imageFileName": "44101947-book.webp"
     },
     {
       "title": "স্টুডেন্ট হ্যাকস",
       "href": "https://www.goodreads.com/review/show/3015954700?utm_medium=api&utm_source=grid_widget",
       "alt": "স্টুডেন্ট হ্যাকস",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1552402625l/44415809._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/119-book.jpg",
-      "imageFileName": "119-book.jpg"
+      "imageLocal": "/assets/images/goodreads/44415809-book.webp",
+      "imageFileName": "44415809-book.webp"
     },
     {
       "title": "নেভার স্টপ লার্নিং",
       "href": "https://www.goodreads.com/review/show/3015954655?utm_medium=api&utm_source=grid_widget",
       "alt": "নেভার স্টপ লার্নিং",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1519410497l/38596161._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/120-book.jpg",
-      "imageFileName": "120-book.jpg"
+      "imageLocal": "/assets/images/goodreads/38596161-book.webp",
+      "imageFileName": "38596161-book.webp"
     },
     {
       "title": "তারাশঙ্কর বন্দ্যোপাধ্যায়ের স্বনির্বাচিত গল্প",
       "href": "https://www.goodreads.com/review/show/3013068222?utm_medium=api&utm_source=grid_widget",
       "alt": "তারাশঙ্কর বন্দ্যোপাধ্যায়ের স্বনির্বাচিত গল্প",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1486804221l/34224946._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/121-book.jpg",
-      "imageFileName": "121-book.jpg"
+      "imageLocal": "/assets/images/goodreads/34224946-book.webp",
+      "imageFileName": "34224946-book.webp"
     },
     {
       "title": "লাল নীল দীপাবলি বা বাঙলা সাহিত্যের জীবনী",
       "href": "https://www.goodreads.com/review/show/3013067028?utm_medium=api&utm_source=grid_widget",
       "alt": "লাল নীল দীপাবলি বা বাঙলা সাহিত্যের জীবনী",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348028646l/16034612._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/122-book.jpg",
-      "imageFileName": "122-book.jpg"
+      "imageLocal": "/assets/images/goodreads/16034612-book.webp",
+      "imageFileName": "16034612-book.webp"
     },
     {
       "title": "Selected Poems of Ezra Pound",
       "href": "https://www.goodreads.com/review/show/3007543546?utm_medium=api&utm_source=grid_widget",
       "alt": "Selected Poems of Ezra Pound",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386924283l/65345._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/123-selected-poems-of-ezra-pound.jpg",
-      "imageFileName": "123-selected-poems-of-ezra-pound.jpg"
+      "imageLocal": "/assets/images/goodreads/65345-selected-poems-of-ezra-pound.webp",
+      "imageFileName": "65345-selected-poems-of-ezra-pound.webp"
     },
     {
       "title": "رباعيات خيام",
       "href": "https://www.goodreads.com/review/show/2981556082?utm_medium=api&utm_source=grid_widget",
       "alt": "رباعيات خيام",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1441007730l/716696._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/124-book.jpg",
-      "imageFileName": "124-book.jpg"
+      "imageLocal": "/assets/images/goodreads/716696-book.webp",
+      "imageFileName": "716696-book.webp"
     },
     {
       "title": "Sapiens: A Brief History of Humankind",
       "href": "https://www.goodreads.com/review/show/2950099916?utm_medium=api&utm_source=grid_widget",
       "alt": "Sapiens: A Brief History of Humankind",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1703329310l/23692271._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/125-sapiens-a-brief-history-of-humankind.jpg",
-      "imageFileName": "125-sapiens-a-brief-history-of-humankind.jpg"
+      "imageLocal": "/assets/images/goodreads/23692271-sapiens-a-brief-history-of-humankind.webp",
+      "imageFileName": "23692271-sapiens-a-brief-history-of-humankind.webp"
     },
     {
       "title": "Hands-On Programming with R: Write Your Own Functions and Simulations",
       "href": "https://www.goodreads.com/review/show/2950099616?utm_medium=api&utm_source=grid_widget",
       "alt": "Hands-On Programming with R: Write Your Own Functions and Simulations",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1456689384l/22779823._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/126-hands-on-programming-with-r-write-your-own-functions-and-sim.jpg",
-      "imageFileName": "126-hands-on-programming-with-r-write-your-own-functions-and-sim.jpg"
+      "imageLocal": "/assets/images/goodreads/22779823-hands-on-programming-with-r-write-your-own-functions-and-sim.webp",
+      "imageFileName": "22779823-hands-on-programming-with-r-write-your-own-functions-and-sim.webp"
     },
     {
       "title": "মান্টোর শ্রেষ্ঠ গল্প",
       "href": "https://www.goodreads.com/review/show/2912851256?utm_medium=api&utm_source=grid_widget",
       "alt": "মান্টোর শ্রেষ্ঠ গল্প",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1463503029l/30216890._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/127-book.jpg",
-      "imageFileName": "127-book.jpg"
+      "imageLocal": "/assets/images/goodreads/30216890-book.webp",
+      "imageFileName": "30216890-book.webp"
     },
     {
       "title": "Django for Beginners: Build websites with Python and Django",
       "href": "https://www.goodreads.com/review/show/2912849591?utm_medium=api&utm_source=grid_widget",
       "alt": "Django for Beginners: Build websites with Python and Django",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1519767216l/38825280._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/128-django-for-beginners-build-websites-with-python-and-django.jpg",
-      "imageFileName": "128-django-for-beginners-build-websites-with-python-and-django.jpg"
+      "imageLocal": "/assets/images/goodreads/38825280-django-for-beginners-build-websites-with-python-and-django.webp",
+      "imageFileName": "38825280-django-for-beginners-build-websites-with-python-and-django.webp"
     },
     {
       "title": "A Clockwork Orange",
       "href": "https://www.goodreads.com/review/show/2911914863?utm_medium=api&utm_source=grid_widget",
       "alt": "A Clockwork Orange",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1549260060l/41817486._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/129-a-clockwork-orange.jpg",
-      "imageFileName": "129-a-clockwork-orange.jpg"
+      "imageLocal": "/assets/images/goodreads/41817486-a-clockwork-orange.webp",
+      "imageFileName": "41817486-a-clockwork-orange.webp"
     },
     {
       "title": "The Bible, the Quran and Science",
       "href": "https://www.goodreads.com/review/show/2896490722?utm_medium=api&utm_source=grid_widget",
       "alt": "The Bible, the Quran and Science",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1677811455l/23328886._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/130-the-bible-the-quran-and-science.jpg",
-      "imageFileName": "130-the-bible-the-quran-and-science.jpg"
+      "imageLocal": "/assets/images/goodreads/23328886-the-bible-the-quran-and-science.webp",
+      "imageFileName": "23328886-the-bible-the-quran-and-science.webp"
     },
     {
       "title": "Django for Beginners: Build websites with Python and Django",
       "href": "https://www.goodreads.com/review/show/2868372453?utm_medium=api&utm_source=grid_widget",
       "alt": "Django for Beginners: Build websites with Python and Django",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1533951075l/41108453._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/131-django-for-beginners-build-websites-with-python-and-django.jpg",
-      "imageFileName": "131-django-for-beginners-build-websites-with-python-and-django.jpg"
+      "imageLocal": "/assets/images/goodreads/41108453-django-for-beginners-build-websites-with-python-and-django.webp",
+      "imageFileName": "41108453-django-for-beginners-build-websites-with-python-and-django.webp"
     },
     {
       "title": "শহীদ কাদরীর কবিতা",
       "href": "https://www.goodreads.com/review/show/2847274813?utm_medium=api&utm_source=grid_widget",
       "alt": "শহীদ কাদরীর কবিতা",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1414453746l/23460893._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/132-book.jpg",
-      "imageFileName": "132-book.jpg"
+      "imageLocal": "/assets/images/goodreads/23460893-book.webp",
+      "imageFileName": "23460893-book.webp"
     },
     {
       "title": "পাশ্চাত্য দর্শনের ইতিহাস ১ : থেলিস থেকে হিউম",
       "href": "https://www.goodreads.com/review/show/2847271948?utm_medium=api&utm_source=grid_widget",
       "alt": "পাশ্চাত্য দর্শনের ইতিহাস ১ : থেলিস থেকে হিউম",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1415560039l/23520850._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/133-book.jpg",
-      "imageFileName": "133-book.jpg"
+      "imageLocal": "/assets/images/goodreads/23520850-book.webp",
+      "imageFileName": "23520850-book.webp"
     },
     {
       "title": "A History of Western Philosophy",
       "href": "https://www.goodreads.com/review/show/2847271676?utm_medium=api&utm_source=grid_widget",
       "alt": "A History of Western Philosophy",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1709106488l/243685._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/134-a-history-of-western-philosophy.jpg",
-      "imageFileName": "134-a-history-of-western-philosophy.jpg"
+      "imageLocal": "/assets/images/goodreads/243685-a-history-of-western-philosophy.webp",
+      "imageFileName": "243685-a-history-of-western-philosophy.webp"
     },
     {
       "title": "কিছু শৈশব",
       "href": "https://www.goodreads.com/review/show/2847271254?utm_medium=api&utm_source=grid_widget",
       "alt": "কিছু শৈশব",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1360758042l/17371407._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/135-book.jpg",
-      "imageFileName": "135-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17371407-book.webp",
+      "imageFileName": "17371407-book.webp"
     },
     {
       "title": "আহমদ ছফার সাক্ষাৎকার সমগ্র",
       "href": "https://www.goodreads.com/review/show/2831284928?utm_medium=api&utm_source=grid_widget",
       "alt": "আহমদ ছফার সাক্ষাৎকার সমগ্র",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1436295951l/25867763._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/136-book.jpg",
-      "imageFileName": "136-book.jpg"
+      "imageLocal": "/assets/images/goodreads/25867763-book.webp",
+      "imageFileName": "25867763-book.webp"
     },
     {
       "title": "ফুড কনফারেন্স",
       "href": "https://www.goodreads.com/review/show/2826332588?utm_medium=api&utm_source=grid_widget",
       "alt": "ফুড কনফারেন্স",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1365936234l/17797003._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/137-book.jpg",
-      "imageFileName": "137-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17797003-book.webp",
+      "imageFileName": "17797003-book.webp"
     },
     {
       "title": "The Case of Charles Dexter Ward",
       "href": "https://www.goodreads.com/review/show/2807908377?utm_medium=api&utm_source=grid_widget",
       "alt": "The Case of Charles Dexter Ward",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1385837737l/129327._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/138-the-case-of-charles-dexter-ward.jpg",
-      "imageFileName": "138-the-case-of-charles-dexter-ward.jpg"
+      "imageLocal": "/assets/images/goodreads/129327-the-case-of-charles-dexter-ward.webp",
+      "imageFileName": "129327-the-case-of-charles-dexter-ward.webp"
     },
     {
       "title": "The Revival Of The Religious Sciences",
       "href": "https://www.goodreads.com/review/show/2793105453?utm_medium=api&utm_source=grid_widget",
       "alt": "The Revival Of The Religious Sciences",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1549140783l/2742176._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/139-the-revival-of-the-religious-sciences.jpg",
-      "imageFileName": "139-the-revival-of-the-religious-sciences.jpg"
+      "imageLocal": "/assets/images/goodreads/2742176-the-revival-of-the-religious-sciences.webp",
+      "imageFileName": "2742176-the-revival-of-the-religious-sciences.webp"
     },
     {
       "title": "Les Fleurs du Mal",
       "href": "https://www.goodreads.com/review/show/2782669630?utm_medium=api&utm_source=grid_widget",
       "alt": "Les Fleurs du Mal",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388667125l/203220._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/140-les-fleurs-du-mal.jpg",
-      "imageFileName": "140-les-fleurs-du-mal.jpg"
+      "imageLocal": "/assets/images/goodreads/203220-les-fleurs-du-mal.webp",
+      "imageFileName": "203220-les-fleurs-du-mal.webp"
     },
     {
       "title": "শার্ল‌ বোদলেয়ার: তাঁর কবিতা",
       "href": "https://www.goodreads.com/review/show/2781218184?utm_medium=api&utm_source=grid_widget",
       "alt": "শার্ল‌ বোদলেয়ার: তাঁর কবিতা",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1709317903l/29925010._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/141-book.jpg",
-      "imageFileName": "141-book.jpg"
+      "imageLocal": "/assets/images/goodreads/29925010-book.webp",
+      "imageFileName": "29925010-book.webp"
     },
     {
       "title": "Selected poems of Nirmalendu Goon",
       "href": "https://www.goodreads.com/review/show/2775813079?utm_medium=api&utm_source=grid_widget",
       "alt": "Selected poems of Nirmalendu Goon",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1698015357l/2426557._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/142-selected-poems-of-nirmalendu-goon.jpg",
-      "imageFileName": "142-selected-poems-of-nirmalendu-goon.jpg"
+      "imageLocal": "/assets/images/goodreads/2426557-selected-poems-of-nirmalendu-goon.webp",
+      "imageFileName": "2426557-selected-poems-of-nirmalendu-goon.webp"
     },
     {
       "title": "The Linux Command Line: A Complete Introduction",
       "href": "https://www.goodreads.com/review/show/2775812629?utm_medium=api&utm_source=grid_widget",
       "alt": "The Linux Command Line: A Complete Introduction",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1344692678l/11724436._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/143-the-linux-command-line-a-complete-introduction.jpg",
-      "imageFileName": "143-the-linux-command-line-a-complete-introduction.jpg"
+      "imageLocal": "/assets/images/goodreads/11724436-the-linux-command-line-a-complete-introduction.webp",
+      "imageFileName": "11724436-the-linux-command-line-a-complete-introduction.webp"
     },
     {
       "title": "সুধীন্দ্রনাথ দত্তের শ্রেষ্ঠ কবিতা",
       "href": "https://www.goodreads.com/review/show/2767488700?utm_medium=api&utm_source=grid_widget",
       "alt": "সুধীন্দ্রনাথ দত্তের শ্রেষ্ঠ কবিতা",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1483700948l/33804621._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/144-book.jpg",
-      "imageFileName": "144-book.jpg"
+      "imageLocal": "/assets/images/goodreads/33804621-book.webp",
+      "imageFileName": "33804621-book.webp"
     },
     {
       "title": "আধুনিক ইউরোপ",
       "href": "https://www.goodreads.com/review/show/2767485569?utm_medium=api&utm_source=grid_widget",
       "alt": "আধুনিক ইউরোপ",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1469374273l/31209409._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/145-book.jpg",
-      "imageFileName": "145-book.jpg"
+      "imageLocal": "/assets/images/goodreads/31209409-book.webp",
+      "imageFileName": "31209409-book.webp"
     },
     {
       "title": "তিন নায়কের কলঙ্ক",
       "href": "https://www.goodreads.com/review/show/2634741350?utm_medium=api&utm_source=grid_widget",
       "alt": "তিন নায়কের কলঙ্ক",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1432353747l/25382882._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/146-book.jpg",
-      "imageFileName": "146-book.jpg"
+      "imageLocal": "/assets/images/goodreads/25382882-book.webp",
+      "imageFileName": "25382882-book.webp"
     },
     {
       "title": "কথোপকথন",
       "href": "https://www.goodreads.com/review/show/2622810242?utm_medium=api&utm_source=grid_widget",
       "alt": "কথোপকথন",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1688366895l/22441201._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/147-book.jpg",
-      "imageFileName": "147-book.jpg"
+      "imageLocal": "/assets/images/goodreads/22441201-book.webp",
+      "imageFileName": "22441201-book.webp"
     },
     {
       "title": "Tamerlane the Earth Shaker",
       "href": "https://www.goodreads.com/review/show/2622740818?utm_medium=api&utm_source=grid_widget",
       "alt": "Tamerlane the Earth Shaker",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1267261801l/5024595._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/148-tamerlane-the-earth-shaker.jpg",
-      "imageFileName": "148-tamerlane-the-earth-shaker.jpg"
+      "imageLocal": "/assets/images/goodreads/5024595-tamerlane-the-earth-shaker.webp",
+      "imageFileName": "5024595-tamerlane-the-earth-shaker.webp"
     },
     {
       "title": "The Prophet",
       "href": "https://www.goodreads.com/review/show/2620397012?utm_medium=api&utm_source=grid_widget",
       "alt": "The Prophet",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1355046521l/2547._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/149-the-prophet.jpg",
-      "imageFileName": "149-the-prophet.jpg"
+      "imageLocal": "/assets/images/goodreads/2547-the-prophet.webp",
+      "imageFileName": "2547-the-prophet.webp"
     },
     {
       "title": "The Egyptians",
       "href": "https://www.goodreads.com/review/show/2620393847?utm_medium=api&utm_source=grid_widget",
       "alt": "The Egyptians",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1228367661l/41836._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/150-the-egyptians.jpg",
-      "imageFileName": "150-the-egyptians.jpg"
+      "imageLocal": "/assets/images/goodreads/41836-the-egyptians.webp",
+      "imageFileName": "41836-the-egyptians.webp"
     },
     {
       "title": "শ্রেষ্ঠ প্রবন্ধ",
       "href": "https://www.goodreads.com/review/show/2620393232?utm_medium=api&utm_source=grid_widget",
       "alt": "শ্রেষ্ঠ প্রবন্ধ",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1667067444l/10966213._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/151-book.jpg",
-      "imageFileName": "151-book.jpg"
+      "imageLocal": "/assets/images/goodreads/10966213-book.webp",
+      "imageFileName": "10966213-book.webp"
     },
     {
       "title": "The Mahabharata Quest: The Alexander Secret",
       "href": "https://www.goodreads.com/review/show/2612679714?utm_medium=api&utm_source=grid_widget",
       "alt": "The Mahabharata Quest: The Alexander Secret",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1413028822l/23354495._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/152-the-mahabharata-quest-the-alexander-secret.jpg",
-      "imageFileName": "152-the-mahabharata-quest-the-alexander-secret.jpg"
+      "imageLocal": "/assets/images/goodreads/23354495-the-mahabharata-quest-the-alexander-secret.webp",
+      "imageFileName": "23354495-the-mahabharata-quest-the-alexander-secret.webp"
     },
     {
       "title": "The Metamorphosis",
       "href": "https://www.goodreads.com/review/show/2577645666?utm_medium=api&utm_source=grid_widget",
       "alt": "The Metamorphosis",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1646444605l/485894._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/153-the-metamorphosis.jpg",
-      "imageFileName": "153-the-metamorphosis.jpg"
+      "imageLocal": "/assets/images/goodreads/485894-the-metamorphosis.webp",
+      "imageFileName": "485894-the-metamorphosis.webp"
     },
     {
       "title": "Amazonia",
       "href": "https://www.goodreads.com/review/show/2577642544?utm_medium=api&utm_source=grid_widget",
       "alt": "Amazonia",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1440044334l/294047._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/154-amazonia.jpg",
-      "imageFileName": "154-amazonia.jpg"
+      "imageLocal": "/assets/images/goodreads/294047-amazonia.webp",
+      "imageFileName": "294047-amazonia.webp"
     },
     {
       "title": "Inside the Criminal Mind",
       "href": "https://www.goodreads.com/review/show/2559837209?utm_medium=api&utm_source=grid_widget",
       "alt": "Inside the Criminal Mind",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388202756l/587876._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/155-inside-the-criminal-mind.jpg",
-      "imageFileName": "155-inside-the-criminal-mind.jpg"
+      "imageLocal": "/assets/images/goodreads/587876-inside-the-criminal-mind.webp",
+      "imageFileName": "587876-inside-the-criminal-mind.webp"
     },
     {
       "title": "Life of Pi",
       "href": "https://www.goodreads.com/review/show/2557585781?utm_medium=api&utm_source=grid_widget",
       "alt": "Life of Pi",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1631251689l/4214._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/156-life-of-pi.jpg",
-      "imageFileName": "156-life-of-pi.jpg"
+      "imageLocal": "/assets/images/goodreads/4214-life-of-pi.webp",
+      "imageFileName": "4214-life-of-pi.webp"
     },
     {
       "title": "When Daddy Was a Little Boy",
       "href": "https://www.goodreads.com/review/show/2557581727?utm_medium=api&utm_source=grid_widget",
       "alt": "When Daddy Was a Little Boy",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327774299l/6672414._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/157-when-daddy-was-a-little-boy.jpg",
-      "imageFileName": "157-when-daddy-was-a-little-boy.jpg"
+      "imageLocal": "/assets/images/goodreads/6672414-when-daddy-was-a-little-boy.webp",
+      "imageFileName": "6672414-when-daddy-was-a-little-boy.webp"
     },
     {
       "title": "টেনিদা সমগ্র",
       "href": "https://www.goodreads.com/review/show/2546932772?utm_medium=api&utm_source=grid_widget",
       "alt": "টেনিদা সমগ্র",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1307524663l/11590099._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/158-book.jpg",
-      "imageFileName": "158-book.jpg"
+      "imageLocal": "/assets/images/goodreads/11590099-book.webp",
+      "imageFileName": "11590099-book.webp"
     },
     {
       "title": "Harry Potter and the Sorcerer's Stone (Harry Potter, #1)",
       "href": "https://www.goodreads.com/review/show/2545805170?utm_medium=api&utm_source=grid_widget",
       "alt": "Harry Potter and the Sorcerer's Stone",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474154022l/3._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/159-harry-potter-and-the-sorcerer-s-stone.jpg",
-      "imageFileName": "159-harry-potter-and-the-sorcerer-s-stone.jpg"
+      "imageLocal": "/assets/images/goodreads/3-harry-potter-and-the-sorcerer-s-stone.webp",
+      "imageFileName": "3-harry-potter-and-the-sorcerer-s-stone.webp"
     },
     {
       "title": "A Practical Guide to Linux Commands, Editors, and Shell Programming",
       "href": "https://www.goodreads.com/review/show/2545791507?utm_medium=api&utm_source=grid_widget",
       "alt": "A Practical Guide to Linux Commands, Editors, and Shell Programming",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1387701723l/617170._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/160-a-practical-guide-to-linux-commands-editors-and-shell-progra.jpg",
-      "imageFileName": "160-a-practical-guide-to-linux-commands-editors-and-shell-progra.jpg"
+      "imageLocal": "/assets/images/goodreads/617170-a-practical-guide-to-linux-commands-editors-and-shell-progra.webp",
+      "imageFileName": "617170-a-practical-guide-to-linux-commands-editors-and-shell-progra.webp"
     },
     {
       "title": "Inside RAW: The story of India's secret service",
       "href": "https://www.goodreads.com/review/show/2540761233?utm_medium=api&utm_source=grid_widget",
       "alt": "Inside RAW: The story of India's secret service",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1515553443l/4488292._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/161-inside-raw-the-story-of-india-s-secret-service.jpg",
-      "imageFileName": "161-inside-raw-the-story-of-india-s-secret-service.jpg"
+      "imageLocal": "/assets/images/goodreads/4488292-inside-raw-the-story-of-india-s-secret-service.webp",
+      "imageFileName": "4488292-inside-raw-the-story-of-india-s-secret-service.webp"
     },
     {
       "title": "জলপুত্র",
       "href": "https://www.goodreads.com/review/show/2507581712?utm_medium=api&utm_source=grid_widget",
       "alt": "জলপুত্র",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1344496091l/15810599._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/162-book.jpg",
-      "imageFileName": "162-book.jpg"
+      "imageLocal": "/assets/images/goodreads/15810599-book.webp",
+      "imageFileName": "15810599-book.webp"
     },
     {
       "title": "বিশ্ব রাজনীতির ১০০ বছর",
       "href": "https://www.goodreads.com/review/show/2507581096?utm_medium=api&utm_source=grid_widget",
       "alt": "বিশ্ব রাজনীতির ১০০ বছর",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1470038460l/31307659._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/163-book.jpg",
-      "imageFileName": "163-book.jpg"
+      "imageLocal": "/assets/images/goodreads/31307659-book.webp",
+      "imageFileName": "31307659-book.webp"
     },
     {
       "title": "ক্রাচের কর্নেল",
       "href": "https://www.goodreads.com/review/show/2507580955?utm_medium=api&utm_source=grid_widget",
       "alt": "ক্রাচের কর্নেল",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1517626392l/17448353._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/164-book.jpg",
-      "imageFileName": "164-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17448353-book.webp",
+      "imageFileName": "17448353-book.webp"
     },
     {
       "title": "The Old Man and the Sea",
       "href": "https://www.goodreads.com/review/show/2507580480?utm_medium=api&utm_source=grid_widget",
       "alt": "The Old Man and the Sea",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1329189714l/2165._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/165-the-old-man-and-the-sea.jpg",
-      "imageFileName": "165-the-old-man-and-the-sea.jpg"
+      "imageLocal": "/assets/images/goodreads/2165-the-old-man-and-the-sea.webp",
+      "imageFileName": "2165-the-old-man-and-the-sea.webp"
     },
     {
       "title": "ছেলেবেলা",
       "href": "https://www.goodreads.com/review/show/2507580192?utm_medium=api&utm_source=grid_widget",
       "alt": "ছেলেবেলা",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1485598768l/34035539._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/166-book.jpg",
-      "imageFileName": "166-book.jpg"
+      "imageLocal": "/assets/images/goodreads/34035539-book.webp",
+      "imageFileName": "34035539-book.webp"
     },
     {
       "title": "টাইম মেশিন",
       "href": "https://www.goodreads.com/review/show/2507580007?utm_medium=api&utm_source=grid_widget",
       "alt": "টাইম মেশিন",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1614000419l/28382530._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/167-book.jpg",
-      "imageFileName": "167-book.jpg"
+      "imageLocal": "/assets/images/goodreads/28382530-book.webp",
+      "imageFileName": "28382530-book.webp"
     },
     {
       "title": "The Da Vinci Code (Robert Langdon, #2)",
       "href": "https://www.goodreads.com/review/show/2504451672?utm_medium=api&utm_source=grid_widget",
       "alt": "The Da Vinci Code",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1720313229l/968._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/168-the-da-vinci-code.jpg",
-      "imageFileName": "168-the-da-vinci-code.jpg"
+      "imageLocal": "/assets/images/goodreads/968-the-da-vinci-code.webp",
+      "imageFileName": "968-the-da-vinci-code.webp"
     },
     {
       "title": "Inferno (Robert Langdon, #4)",
       "href": "https://www.goodreads.com/review/show/2504451196?utm_medium=api&utm_source=grid_widget",
       "alt": "Inferno",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1534070896l/17212231._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/169-inferno.jpg",
-      "imageFileName": "169-inferno.jpg"
+      "imageLocal": "/assets/images/goodreads/17212231-inferno.webp",
+      "imageFileName": "17212231-inferno.webp"
     },
     {
       "title": "হাফিজের কবিতা",
       "href": "https://www.goodreads.com/review/show/2497240359?utm_medium=api&utm_source=grid_widget",
       "alt": "হাফিজের কবিতা",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1468638387l/31131031._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/170-book.jpg",
-      "imageFileName": "170-book.jpg"
+      "imageLocal": "/assets/images/goodreads/31131031-book.webp",
+      "imageFileName": "31131031-book.webp"
     },
     {
       "title": "The Shining (The Shining, #1)",
       "href": "https://www.goodreads.com/review/show/2497237770?utm_medium=api&utm_source=grid_widget",
       "alt": "The Shining",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1353277730l/11588._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/171-the-shining.jpg",
-      "imageFileName": "171-the-shining.jpg"
+      "imageLocal": "/assets/images/goodreads/11588-the-shining.webp",
+      "imageFileName": "11588-the-shining.webp"
     },
     {
       "title": "The 100: A Ranking of the Most Influential Persons in History",
       "href": "https://www.goodreads.com/review/show/2491064663?utm_medium=api&utm_source=grid_widget",
       "alt": "The 100: A Ranking of the Most Influential Persons in History",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348011005l/108449._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/172-the-100-a-ranking-of-the-most-influential-persons-in-history.jpg",
-      "imageFileName": "172-the-100-a-ranking-of-the-most-influential-persons-in-history.jpg"
+      "imageLocal": "/assets/images/goodreads/108449-the-100-a-ranking-of-the-most-influential-persons-in-history.webp",
+      "imageFileName": "108449-the-100-a-ranking-of-the-most-influential-persons-in-history.webp"
     },
     {
       "title": "দত্তা",
       "href": "https://www.goodreads.com/review/show/2491046108?utm_medium=api&utm_source=grid_widget",
       "alt": "দত্তা",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1495465493l/35196464._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/173-book.jpg",
-      "imageFileName": "173-book.jpg"
+      "imageLocal": "/assets/images/goodreads/35196464-book.webp",
+      "imageFileName": "35196464-book.webp"
     },
     {
       "title": "পুফি (মিসির আলি, #19)",
       "href": "https://www.goodreads.com/review/show/2485254529?utm_medium=api&utm_source=grid_widget",
       "alt": "পুফি",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1346833475l/15990604._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/174-book.jpg",
-      "imageFileName": "174-book.jpg"
+      "imageLocal": "/assets/images/goodreads/15990604-book.webp",
+      "imageFileName": "15990604-book.webp"
     },
     {
       "title": "বাঙালি মুসলমানের মন",
       "href": "https://www.goodreads.com/review/show/2483976786?utm_medium=api&utm_source=grid_widget",
       "alt": "বাঙালি মুসলমানের মন",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1376415266l/17800229._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/175-book.jpg",
-      "imageFileName": "175-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17800229-book.webp",
+      "imageFileName": "17800229-book.webp"
     },
     {
       "title": "লালসালু",
       "href": "https://www.goodreads.com/review/show/2419040888?utm_medium=api&utm_source=grid_widget",
       "alt": "লালসালু",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1695168855l/17393040._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/176-book.jpg",
-      "imageFileName": "176-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17393040-book.webp",
+      "imageFileName": "17393040-book.webp"
     },
     {
       "title": "কাকতাড়ুয়া",
       "href": "https://www.goodreads.com/review/show/2419039992?utm_medium=api&utm_source=grid_widget",
       "alt": "কাকতাড়ুয়া",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1395687611l/21539898._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/177-book.jpg",
-      "imageFileName": "177-book.jpg"
+      "imageLocal": "/assets/images/goodreads/21539898-book.webp",
+      "imageFileName": "21539898-book.webp"
     },
     {
       "title": "White Fang",
       "href": "https://www.goodreads.com/review/show/2419037983?utm_medium=api&utm_source=grid_widget",
       "alt": "White Fang",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1475878443l/43035._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/178-white-fang.jpg",
-      "imageFileName": "178-white-fang.jpg"
+      "imageLocal": "/assets/images/goodreads/43035-white-fang.webp",
+      "imageFileName": "43035-white-fang.webp"
     },
     {
       "title": "The Conquest of Happiness",
       "href": "https://www.goodreads.com/review/show/2416312162?utm_medium=api&utm_source=grid_widget",
       "alt": "The Conquest of Happiness",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1356451345l/51783._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/179-the-conquest-of-happiness.jpg",
-      "imageFileName": "179-the-conquest-of-happiness.jpg"
+      "imageLocal": "/assets/images/goodreads/51783-the-conquest-of-happiness.webp",
+      "imageFileName": "51783-the-conquest-of-happiness.webp"
     },
     {
       "title": "গাভী বিত্তান্ত",
       "href": "https://www.goodreads.com/review/show/2385600623?utm_medium=api&utm_source=grid_widget",
       "alt": "গাভী বিত্তান্ত",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1718779254l/17402541._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/180-book.jpg",
-      "imageFileName": "180-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17402541-book.webp",
+      "imageFileName": "17402541-book.webp"
     },
     {
       "title": "Killing Floor (Jack Reacher, #1)",
       "href": "https://www.goodreads.com/review/show/2384332878?utm_medium=api&utm_source=grid_widget",
       "alt": "Killing Floor",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1399313258l/78129._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/181-killing-floor.jpg",
-      "imageFileName": "181-killing-floor.jpg"
+      "imageLocal": "/assets/images/goodreads/78129-killing-floor.webp",
+      "imageFileName": "78129-killing-floor.webp"
     },
     {
       "title": "চারমূর্তি (টেনিদা, #1)",
       "href": "https://www.goodreads.com/review/show/2383207277?utm_medium=api&utm_source=grid_widget",
       "alt": "চারমূর্তি",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1431000403l/22748281._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/182-book.jpg",
-      "imageFileName": "182-book.jpg"
+      "imageLocal": "/assets/images/goodreads/22748281-book.webp",
+      "imageFileName": "22748281-book.webp"
     },
     {
       "title": "রক্তাক্ত প্রান্তর",
       "href": "https://www.goodreads.com/review/show/2383207120?utm_medium=api&utm_source=grid_widget",
       "alt": "রক্তাক্ত প্রান্তর",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1433240080l/18926871._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/183-book.jpg",
-      "imageFileName": "183-book.jpg"
+      "imageLocal": "/assets/images/goodreads/18926871-book.webp",
+      "imageFileName": "18926871-book.webp"
     },
     {
       "title": "কবর",
       "href": "https://www.goodreads.com/review/show/2383206960?utm_medium=api&utm_source=grid_widget",
       "alt": "কবর",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1362762164l/17564819._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/184-book.jpg",
-      "imageFileName": "184-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17564819-book.webp",
+      "imageFileName": "17564819-book.webp"
     },
     {
       "title": "শ্রেষ্ঠ গল্প",
       "href": "https://www.goodreads.com/review/show/2383206713?utm_medium=api&utm_source=grid_widget",
       "alt": "শ্রেষ্ঠ গল্প",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1448527760l/17557147._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/185-book.jpg",
-      "imageFileName": "185-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17557147-book.webp",
+      "imageFileName": "17557147-book.webp"
     },
     {
       "title": "চাচা কাহিনী",
       "href": "https://www.goodreads.com/review/show/2383206601?utm_medium=api&utm_source=grid_widget",
       "alt": "চাচা কাহিনী",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1362639930l/15778722._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/186-book.jpg",
-      "imageFileName": "186-book.jpg"
+      "imageLocal": "/assets/images/goodreads/15778722-book.webp",
+      "imageFileName": "15778722-book.webp"
     },
     {
       "title": "দেশে বিদেশে",
       "href": "https://www.goodreads.com/review/show/2383206508?utm_medium=api&utm_source=grid_widget",
       "alt": "দেশে বিদেশে",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423391771l/6422836._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/187-book.jpg",
-      "imageFileName": "187-book.jpg"
+      "imageLocal": "/assets/images/goodreads/6422836-book.webp",
+      "imageFileName": "6422836-book.webp"
     },
     {
       "title": "একাত্তরের দিনগুলি",
       "href": "https://www.goodreads.com/review/show/2383206375?utm_medium=api&utm_source=grid_widget",
       "alt": "একাত্তরের দিনগুলি",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1289977897l/8998388._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/188-book.jpg",
-      "imageFileName": "188-book.jpg"
+      "imageLocal": "/assets/images/goodreads/8998388-book.webp",
+      "imageFileName": "8998388-book.webp"
     },
     {
       "title": "দুষ্টু ছেলের দল",
       "href": "https://www.goodreads.com/review/show/2383206227?utm_medium=api&utm_source=grid_widget",
       "alt": "দুষ্টু ছেলের দল",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1520185859l/14876049._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/189-book.jpg",
-      "imageFileName": "189-book.jpg"
+      "imageLocal": "/assets/images/goodreads/14876049-book.webp",
+      "imageFileName": "14876049-book.webp"
     },
     {
       "title": "আধ ডজন স্কুল",
       "href": "https://www.goodreads.com/review/show/2383206066?utm_medium=api&utm_source=grid_widget",
       "alt": "আধ ডজন স্কুল",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1419008963l/17371097._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/190-book.jpg",
-      "imageFileName": "190-book.jpg"
+      "imageLocal": "/assets/images/goodreads/17371097-book.webp",
+      "imageFileName": "17371097-book.webp"
     },
     {
       "title": "তিতুনি এবং তিতুনি",
       "href": "https://www.goodreads.com/review/show/2383205403?utm_medium=api&utm_source=grid_widget",
       "alt": "তিতুনি এবং তিতুনি",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1453647140l/28687360._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/191-book.jpg",
-      "imageFileName": "191-book.jpg"
+      "imageLocal": "/assets/images/goodreads/28687360-book.webp",
+      "imageFileName": "28687360-book.webp"
     },
     {
       "title": "শুকনো ফুল রঙিন ফুল",
       "href": "https://www.goodreads.com/review/show/2383205321?utm_medium=api&utm_source=grid_widget",
       "alt": "শুকনো ফুল রঙিন ফুল",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1312738417l/12317501._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/192-book.jpg",
-      "imageFileName": "192-book.jpg"
+      "imageLocal": "/assets/images/goodreads/12317501-book.webp",
+      "imageFileName": "12317501-book.webp"
     },
     {
       "title": "আঁখি এবং আমরা ক'জন",
       "href": "https://www.goodreads.com/review/show/2383205147?utm_medium=api&utm_source=grid_widget",
       "alt": "আঁখি এবং আমরা ক'জন",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1438351556l/20798860._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/193-book.jpg",
-      "imageFileName": "193-book.jpg"
+      "imageLocal": "/assets/images/goodreads/20798860-book.webp",
+      "imageFileName": "20798860-book.webp"
     },
     {
       "title": "থিওরি অফ রিলেটিভিটি",
       "href": "https://www.goodreads.com/review/show/2383205061?utm_medium=api&utm_source=grid_widget",
       "alt": "থিওরি অফ রিলেটিভিটি",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1298127397l/4785929._SY160_.jpg",
-      "imageLocal": "/assets/images/goodreads/194-book.jpg",
-      "imageFileName": "194-book.jpg"
+      "imageLocal": "/assets/images/goodreads/4785929-book.webp",
+      "imageFileName": "4785929-book.webp"
     },
     {
       "title": "একটুখানি বিজ্ঞান",
       "href": "https://www.goodreads.com/review/show/2383204964?utm_medium=api&utm_source=grid_widget",
       "alt": "একটুখানি বিজ্ঞান",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1363785387l/4785898._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/195-book.jpg",
-      "imageFileName": "195-book.jpg"
-    },
-    {
-      "title": "নিউরনে অনুরণন",
-      "href": "https://www.goodreads.com/review/show/2383204940?utm_medium=api&utm_source=grid_widget",
-      "alt": "নিউরনে অনুরণন",
-      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1407221917l/22874527._SX98_.jpg",
-      "imageLocal": "/assets/images/goodreads/196-book.jpg",
-      "imageFileName": "196-book.jpg"
+      "imageLocal": "/assets/images/goodreads/4785898-book.webp",
+      "imageFileName": "4785898-book.webp"
     }
   ]
 }

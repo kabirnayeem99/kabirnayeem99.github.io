@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1280, height: 1200 } });
+await page.goto('http://localhost:4328/', { waitUntil: 'domcontentloaded', timeout: 15000 });
+await page.locator('.goodreads-widget').scrollIntoViewIfNeeded();
+await page.waitForTimeout(1000);
+const box = await page.locator('.goodreads-widget').boundingBox();
+await page.screenshot({ path: 'books-check.png', clip: box });
+const count = await page.locator('.gr_grid_book_container').count();
+console.log('book tiles:', count);
+await browser.close();
