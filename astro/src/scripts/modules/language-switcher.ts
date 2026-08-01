@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const firstLink = menu.querySelector<HTMLAnchorElement>("a");
 
     if ("showPopover" in HTMLElement.prototype) {
-      menu.hidden = false;
       menu.addEventListener("toggle", (rawEvent) => {
         const event = rawEvent as { newState: string };
         const isOpen = event.newState === "open";
@@ -47,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
         switcher.classList.add("is-open");
         site?.classList.add("is-language-menu-open");
       };
+
+      closeMenu();
 
       button.addEventListener("click", () => {
         const isOpen = button.getAttribute("aria-expanded") === "true";
