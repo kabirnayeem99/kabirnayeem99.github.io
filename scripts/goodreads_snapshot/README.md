@@ -33,11 +33,16 @@ python3 scripts/goodreads_snapshot/update_goodreads_snapshot.py
 Every downloaded cover is re-encoded to WebP before it's written to
 `astro/public/assets/images/goodreads/`, so local cover files always have a `.webp` extension.
 
+Data comes from the Goodreads RSS shelf feed (`review/list_rss`), paginated automatically to
+pull the full shelf. The feed key is baked in as a default; override it with `--rss-key` or the
+`GOODREADS_RSS_KEY` env var if it ever needs to change.
+
 Optional flags:
 
 ```bash
 python3 scripts/goodreads_snapshot/update_goodreads_snapshot.py \
-  --num-books 300 \
+  --user-id 45514357 \
+  --shelf read \
   --timeout-seconds 20
 ```
 

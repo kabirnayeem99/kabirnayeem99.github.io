@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch Goodreads widget data and atomically refresh local snapshot assets.
+"""Fetch Goodreads RSS shelf data and atomically refresh local snapshot assets.
 
 This script is intentionally fail-safe:
 - It never mutates the existing snapshot JSON or image folder until every fetch/download succeeds.
@@ -8,19 +8,20 @@ This script is intentionally fail-safe:
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from datetime import UTC, datetime
-from io import BytesIO
 import hashlib
 import json
+import os
 import re
 import shutil
 import tempfile
-from html import unescape
+import xml.etree.ElementTree as ET
+from dataclasses import dataclass
+from datetime import UTC, datetime
+from io import BytesIO
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
-from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
+from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 try:
@@ -32,12 +33,11 @@ except ImportError as exc:  # pragma: no cover - environment guard
     ) from exc
 
 
-DEFAULT_WIDGET_URL = (
-    "https://www.goodreads.com/review/grid_widget/"
-    "45514357.Naimul's%20bookshelf:%20read"
-    "?cover_size=medium&hide_link=&hide_title=true&num_books=300"
-    "&order=d&shelf=read&sort=date_added&widget_id=1771265103"
-)
+DEFAULT_USER_ID = "45514357"
+DEFAULT_SHELF = "read"
+DEFAULT_RSS_KEY = "vczeXplDHew9rE4s_wldedzW9hHtIKtz82vXO2kqmwmXaDlI"
+RSS_KEY_ENV_VAR = "GOODREADS_RSS_KEY"
+RSS_PAGE_SIZE = 200
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SNAPSHOT_PATH = REPO_ROOT / "astro/src/data/site-content/goodreads-snapshot.json"
 DEFAULT_IMAGES_DIR = REPO_ROOT / "astro/public/assets/images/goodreads"
@@ -58,12 +58,9 @@ class BookEntry:
     image_file_name: str
 
 
-def _build_widget_url(base_url: str, num_books: int) -> str:
-    parsed = urlparse(base_url)
-    query_items = dict(parse_qsl(parsed.query, keep_blank_values=True))
-    query_items["num_books"] = str(num_books)
-    new_query = urlencode(query_items, doseq=True)
-    return urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_query, parsed.fragment))
+def _build_rss_url(user_id: str, rss_key: str, shelf: str, page: int) -> str:
+    query = urlencode({"key": rss_key, "shelf": shelf, "per_page": RSS_PAGE_SIZE, "page": page})
+    return f"https://www.goodreads.com/review/list_rss/{user_id}?{query}"
 
 
 def _http_get_text(url: str, timeout_seconds: int) -> str:
@@ -76,24 +73,10 @@ def _http_get_text(url: str, timeout_seconds: int) -> str:
     )
     try:
         with urlopen(request, timeout=timeout_seconds) as response:
-            return response.read().decode("utf-8", errors="replace")
+            body: bytes = response.read()
     except (HTTPError, URLError, TimeoutError) as exc:
         raise SnapshotUpdateError(f"Failed to fetch URL: {url}\n{exc}") from exc
-
-
-def _extract_widget_html(widget_js: str) -> str:
-    match = re.search(r"var widget_code = '([\s\S]*?)'\s*\n\s*var widget_div", widget_js)
-    if not match:
-        raise SnapshotUpdateError("Could not parse Goodreads widget payload from script response.")
-
-    escaped = match.group(1)
-    # Goodreads widget payload uses simple JS escaping.
-    return (
-        escaped.replace("\\n", "\n")
-        .replace('\\"', '"')
-        .replace("\\/", "/")
-        .replace("\\'", "'")
-    )
+    return body.decode("utf-8", errors="replace")
 
 
 def _safe_slug(value: str, max_length: int = 60) -> str:
@@ -103,45 +86,64 @@ def _safe_slug(value: str, max_length: int = 60) -> str:
     return slug[:max_length] or "book"
 
 
-def _extract_book_id(image_url: str) -> str:
-    """Return Goodreads' own book id embedded in the cover URL, so a given book
-    always maps to the same local file name across runs, regardless of shelf order."""
-    basename = urlparse(image_url).path.rsplit("/", 1)[-1]
-    match = re.match(r"(\d+)", basename)
-    if match:
-        return match.group(1)
-    return hashlib.sha1(image_url.encode("utf-8")).hexdigest()[:10]
+def _item_text(item: ET.Element, tag: str) -> str:
+    node = item.find(tag)
+    return (node.text or "").strip() if node is not None else ""
 
 
-def _parse_books(widget_html: str) -> list[BookEntry]:
-    pattern = re.compile(
-        r'<div class="gr_grid_book_container"><a title="([^"]*)"[^>]*href="([^"]*)"[^>]*>'
-        r'<img alt="([^"]*)"[^>]*src="([^"]*)"[^>]*></a></div>'
-    )
+def _parse_rss_items(rss_xml: str) -> list[BookEntry]:
+    try:
+        root = ET.fromstring(rss_xml)
+    except ET.ParseError as exc:
+        raise SnapshotUpdateError(f"Failed to parse Goodreads RSS feed: {exc}") from exc
 
     books: list[BookEntry] = []
-    for match in pattern.finditer(widget_html):
-        title = unescape(match.group(1)).strip()
-        href = unescape(match.group(2)).strip()
-        alt = unescape(match.group(3)).strip()
-        image_url = unescape(match.group(4)).strip()
+    for item in root.iterfind("./channel/item"):
+        title = _item_text(item, "title")
+        href = _item_text(item, "link")
+        book_id = _item_text(item, "book_id")
+        image_url = _item_text(item, "book_large_image_url") or _item_text(
+            item, "book_medium_image_url"
+        )
 
-        # Keyed by Goodreads' book id (not shelf position), so re-running the script
+        if not title or not href or not image_url:
+            continue
+
+        # Keyed by Goodreads' own book id (not shelf position), so re-running the script
         # never renames an unchanged book's cover. Every cover is re-encoded to WebP.
-        file_name = f"{_extract_book_id(image_url)}-{_safe_slug(alt or title)}.webp"
+        book_id = book_id or hashlib.sha1(image_url.encode("utf-8")).hexdigest()[:10]
+        file_name = f"{book_id}-{_safe_slug(title)}.webp"
         books.append(
             BookEntry(
                 title=title,
                 href=href,
-                alt=alt,
+                alt=title,
                 image_url=image_url,
                 image_local=f"/assets/images/goodreads/{file_name}",
                 image_file_name=file_name,
             )
         )
 
+    return books
+
+
+def _fetch_all_books(
+    user_id: str, rss_key: str, shelf: str, timeout_seconds: int
+) -> list[BookEntry]:
+    books: list[BookEntry] = []
+    page = 1
+    while True:
+        page_url = _build_rss_url(user_id, rss_key, shelf, page)
+        page_xml = _http_get_text(page_url, timeout_seconds=timeout_seconds)
+        page_books = _parse_rss_items(page_xml)
+        books.extend(page_books)
+
+        if len(page_books) < RSS_PAGE_SIZE:
+            break
+        page += 1
+
     if not books:
-        raise SnapshotUpdateError("No books were parsed from Goodreads widget HTML.")
+        raise SnapshotUpdateError("No books were parsed from Goodreads RSS feed.")
     return books
 
 
@@ -220,19 +222,20 @@ def _atomic_replace_dir(new_dir: Path, target_dir: Path) -> None:
 
 
 def update_snapshot(
-    widget_url: str,
-    num_books: int,
+    user_id: str,
+    rss_key: str,
+    shelf: str,
     snapshot_path: Path,
     images_dir: Path,
     timeout_seconds: int,
 ) -> tuple[int, str]:
-    if num_books <= 0:
-        raise SnapshotUpdateError("--num-books must be > 0")
+    if not rss_key:
+        raise SnapshotUpdateError(
+            f"Missing Goodreads RSS key. Pass --rss-key or set {RSS_KEY_ENV_VAR}."
+        )
 
-    final_widget_url = _build_widget_url(widget_url, num_books)
-    widget_js = _http_get_text(final_widget_url, timeout_seconds=timeout_seconds)
-    widget_html = _extract_widget_html(widget_js)
-    books = _parse_books(widget_html)
+    books = _fetch_all_books(user_id, rss_key, shelf, timeout_seconds=timeout_seconds)
+    source_url = _build_rss_url(user_id, rss_key, shelf, page=1)
 
     snapshot_path.parent.mkdir(parents=True, exist_ok=True)
     images_dir.parent.mkdir(parents=True, exist_ok=True)
@@ -260,15 +263,22 @@ def update_snapshot(
         temp_snapshot.replace(snapshot_path)
         _atomic_replace_dir(new_dir=temp_images_dir, target_dir=images_dir)
 
-    return len(books), final_widget_url
+    return len(books), source_url
 
 
-def _parse_args() -> tuple[str, int, Path, Path, int]:
+def _parse_args() -> tuple[str, str, str, Path, Path, int]:
     import argparse
 
-    parser = argparse.ArgumentParser(description="Refresh Goodreads snapshot JSON and cover images.")
-    parser.add_argument("--widget-url", default=DEFAULT_WIDGET_URL, help="Goodreads widget URL")
-    parser.add_argument("--num-books", type=int, default=300, help="Requested number of books")
+    parser = argparse.ArgumentParser(
+        description="Refresh Goodreads snapshot JSON and cover images."
+    )
+    parser.add_argument("--user-id", default=DEFAULT_USER_ID, help="Goodreads user id")
+    parser.add_argument(
+        "--rss-key",
+        default=os.environ.get(RSS_KEY_ENV_VAR, DEFAULT_RSS_KEY),
+        help=f"Goodreads RSS feed key (defaults to ${RSS_KEY_ENV_VAR} or the built-in key)",
+    )
+    parser.add_argument("--shelf", default=DEFAULT_SHELF, help="Goodreads shelf name")
     parser.add_argument(
         "--snapshot-path",
         type=Path,
@@ -289,8 +299,9 @@ def _parse_args() -> tuple[str, int, Path, Path, int]:
     )
     args = parser.parse_args()
     return (
-        args.widget_url,
-        args.num_books,
+        args.user_id,
+        args.rss_key,
+        args.shelf,
         args.snapshot_path,
         args.images_dir,
         args.timeout_seconds,
@@ -298,11 +309,12 @@ def _parse_args() -> tuple[str, int, Path, Path, int]:
 
 
 def main() -> int:
-    widget_url, num_books, snapshot_path, images_dir, timeout_seconds = _parse_args()
+    user_id, rss_key, shelf, snapshot_path, images_dir, timeout_seconds = _parse_args()
     try:
         count, resolved_url = update_snapshot(
-            widget_url=widget_url,
-            num_books=num_books,
+            user_id=user_id,
+            rss_key=rss_key,
+            shelf=shelf,
             snapshot_path=snapshot_path,
             images_dir=images_dir,
             timeout_seconds=timeout_seconds,
@@ -312,8 +324,9 @@ def main() -> int:
         print("[goodreads-snapshot] existing snapshot/images were preserved.")
         return 1
 
+    redacted_url = resolved_url.replace(rss_key, "***") if rss_key else resolved_url
     print(f"[goodreads-snapshot] updated successfully with {count} books.")
-    print(f"[goodreads-snapshot] source URL: {resolved_url}")
+    print(f"[goodreads-snapshot] source URL: {redacted_url}")
     print(f"[goodreads-snapshot] snapshot: {snapshot_path}")
     print(f"[goodreads-snapshot] images: {images_dir}")
     return 0
