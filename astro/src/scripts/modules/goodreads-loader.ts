@@ -129,7 +129,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const bookKeyFor = (el: Element): string | null => {
     const href = el.querySelector("a[href]")?.getAttribute("href");
-    return typeof href === "string" && href.length > 0 ? href : null;
+    if (typeof href !== "string" || href.length === 0) {
+      return null;
+    }
+    // Goodreads appends a different utm_source per surface (rss vs grid_widget) to the
+    // same review link, so key on the path only - otherwise every book looks "new" the
+    // moment the live layer takes over from the static/cached one.
+    const queryIndex = href.indexOf("?");
+    return queryIndex === -1 ? href : href.slice(0, queryIndex);
   };
 
   const readBookOrder = (root: ParentNode): string[] => {
