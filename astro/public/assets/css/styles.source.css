@@ -64,7 +64,7 @@
   --media-surface: #f1ede3;
   --text: #161511;
   --text-secondary: #292621;
-  --text-muted: #5a554c;
+  --text-muted: #4d4841;
   --border: #1d1a16;
   --accent: #15803d;
   --accent-secondary: #166534;
@@ -544,7 +544,7 @@ header {
   font-family: "Anton", "Noto Serif Bengali", "Scheherazade New",
     "Urdu Pak Nastaleeq", Impact, "Arial Narrow", sans-serif;
   text-transform: uppercase;
-  line-height: 0.98;
+  line-height: 1.08;
   letter-spacing: 0.005em;
   font-size: clamp(1.9rem, 5.4vw, 2.7rem);
   font-weight: 400;
@@ -1348,7 +1348,7 @@ html[data-theme="dark"] .wakatime-widget h3 {
 }
 
 .summary-card p {
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.2rem;
   font-size: 1.02rem;
 }
 
@@ -1833,6 +1833,10 @@ html[data-theme="dark"] .wakatime-widget h3 {
   .index-section--editorial {
     max-width: 42rem;
     margin-inline-start: auto;
+  }
+
+  .index-section--notes {
+    max-width: 42rem;
   }
 
   .index-section--stats .summary-card {
