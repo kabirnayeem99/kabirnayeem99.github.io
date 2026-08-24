@@ -246,10 +246,15 @@ document.addEventListener("DOMContentLoaded", () => {
     parsed.innerHTML = cached.html;
     const sourceGrid = getGridContainer(parsed);
     const targetGrid = getGridContainer(widget);
-    if (sourceGrid && targetGrid) {
-      reconcileBookOrder(targetGrid, sourceGrid, { animate: false });
+    const changed =
+      sourceGrid && targetGrid ? reconcileBookOrder(targetGrid, sourceGrid, { animate: false }) : false;
+
+    // The server-rendered shelf already ships pre-trimmed with its placeholder tile in
+    // place, so only rebuild it when the cache actually reordered something - otherwise
+    // this would strip and re-append an identical placeholder for no visible reason.
+    if (changed) {
+      applyIndexBookLimit();
     }
-    applyIndexBookLimit();
   }
 
   // --- Layer 3: live Goodreads widget script. --------------------------------
@@ -268,11 +273,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const applyLiveResponse = (detached: HTMLElement): void => {
     const sourceGrid = getGridContainer(detached);
     const targetGrid = getGridContainer(widget);
-    if (sourceGrid && targetGrid) {
-      reconcileBookOrder(targetGrid, sourceGrid, { animate: true });
-    }
+    const changed =
+      sourceGrid && targetGrid ? reconcileBookOrder(targetGrid, sourceGrid, { animate: true }) : false;
+
+    // Refresh the cache regardless (Goodreads may have swapped a cover edition even
+    // when order didn't change), but only touch the placeholder tile when something
+    // actually moved - otherwise this is a silent no-op the visitor never sees.
     writeCache();
-    applyIndexBookLimit();
+    if (changed) {
+      applyIndexBookLimit();
+    }
   };
 
   const injectScript = (): void => {
