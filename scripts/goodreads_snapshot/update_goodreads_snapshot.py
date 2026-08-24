@@ -17,6 +17,7 @@ import tempfile
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from datetime import UTC, datetime
+from email.utils import parsedate_to_datetime
 from io import BytesIO
 from pathlib import Path
 from typing import Any
@@ -56,6 +57,7 @@ class BookEntry:
     image_url: str
     image_local: str
     image_file_name: str
+    read_at: datetime | None
 
 
 def _build_rss_url(user_id: str, rss_key: str, shelf: str, page: int) -> str:
@@ -91,6 +93,18 @@ def _item_text(item: ET.Element, tag: str) -> str:
     return (node.text or "").strip() if node is not None else ""
 
 
+def _parse_rss_date(value: str) -> datetime | None:
+    if not value:
+        return None
+    try:
+        parsed = parsedate_to_datetime(value)
+    except (TypeError, ValueError):
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=UTC)
+    return parsed
+
+
 def _parse_rss_items(rss_xml: str) -> list[BookEntry]:
     try:
         root = ET.fromstring(rss_xml)
@@ -113,6 +127,14 @@ def _parse_rss_items(rss_xml: str) -> list[BookEntry]:
         # never renames an unchanged book's cover. Every cover is re-encoded to WebP.
         book_id = book_id or hashlib.sha1(image_url.encode("utf-8")).hexdigest()[:10]
         file_name = f"{book_id}-{_safe_slug(title)}.webp"
+
+        # RSS shelf order is "date added", not "date read" - match the live grid widget
+        # (sort=date_read&order=d) by sorting on user_read_at ourselves. Books logged as
+        # read without a specific date fall back to when they were added to the shelf.
+        read_at = _parse_rss_date(_item_text(item, "user_read_at")) or _parse_rss_date(
+            _item_text(item, "user_date_added")
+        )
+
         books.append(
             BookEntry(
                 title=title,
@@ -121,6 +143,7 @@ def _parse_rss_items(rss_xml: str) -> list[BookEntry]:
                 image_url=image_url,
                 image_local=f"/assets/images/goodreads/{file_name}",
                 image_file_name=file_name,
+                read_at=read_at,
             )
         )
 
@@ -144,6 +167,10 @@ def _fetch_all_books(
 
     if not books:
         raise SnapshotUpdateError("No books were parsed from Goodreads RSS feed.")
+
+    # Latest read first, matching the live grid widget's sort=date_read&order=d.
+    # Undated books (read_at is None) sort last, in their original RSS order.
+    books.sort(key=lambda book: book.read_at or datetime.min.replace(tzinfo=UTC), reverse=True)
     return books
 
 
@@ -192,6 +219,9 @@ def _snapshot_payload(books: list[BookEntry]) -> dict[str, Any]:
                 "imageUrl": book.image_url,
                 "imageLocal": book.image_local,
                 "imageFileName": book.image_file_name,
+                "dateRead": book.read_at.isoformat().replace("+00:00", "Z")
+                if book.read_at is not None
+                else None,
             }
             for book in books
         ],
