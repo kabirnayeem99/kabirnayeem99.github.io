@@ -1,4 +1,4 @@
-import "../modules/doodle-wake";
+import "../modules/doodle-parallax";
 import "../modules/image-guard";
 import "../modules/language-switcher";
 import "../modules/theme-toggle";

@@ -83,6 +83,9 @@ const uiLabels = content.site.locale.labels;
         title={content.header.siteTitle}
       />
       <main id={PAGE_LAYOUT.mainContentId}>
+        <span class="margin-doodle margin-doodle--reader" aria-hidden="true"></span>
+        <span class="margin-doodle margin-doodle--arrow" aria-hidden="true"></span>
+        <span class="margin-doodle margin-doodle--cloud" aria-hidden="true"></span>
         <ProjectGroupsSection groups={content.groups} />
       </main>
       <PageFooter
