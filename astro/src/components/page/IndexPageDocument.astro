@@ -370,6 +370,8 @@ function buildSectionClassName(
                 target={chip.isExternal ? "_blank" : undefined}
                 rel={chip.isExternal ? "noreferrer" : undefined}
                 aria-label={chip.ariaLabel}
+                data-umami-track-social="true"
+                data-social-platform={chip.iconName}
               >
                 <span
                   class={`social-chip-icon ${SOCIAL_CHIP_ICON_CLASS_BY_NAME[chip.iconName]}`}
@@ -519,7 +521,7 @@ function buildSectionClassName(
             ))
         }
 
-        <section class="index-section index-section--stats">
+        <section class="index-section index-section--stats" data-umami-track-view="wakatime-stats">
           <div class="summary-card stats-card skills-card">
             <div class="section-head">
               <h2 class="section-title">
@@ -534,6 +536,7 @@ function buildSectionClassName(
                         class={resolved.variantClass}
                         href={resolved.href}
                         data-nav-page-id={resolved.navPageId}
+                        data-nav-source="wakatime"
                       >
                         <span>{resolved.labelText}</span>
                         <span class="action-chip-arrow" aria-hidden="true" />
@@ -551,7 +554,7 @@ function buildSectionClassName(
           </div>
         </section>
 
-        <section class="index-section index-section--books books-shelf-section">
+        <section class="index-section index-section--books books-shelf-section" data-umami-track-view="books">
           <div class="summary-card stats-card books-shelf stats-bookshelf">
             <div class="section-head">
               <h2 class="section-title">
@@ -566,6 +569,7 @@ function buildSectionClassName(
                         class={resolved.variantClass}
                         href={resolved.href}
                         data-nav-page-id={resolved.navPageId}
+                        data-nav-source="books"
                       >
                         <span>{resolved.labelText}</span>
                         <span class="action-chip-arrow" aria-hidden="true" />
@@ -590,6 +594,7 @@ function buildSectionClassName(
                         rel="nofollow noreferrer"
                         href={book.href}
                         target="_blank"
+                        data-umami-track-book="true"
                       >
                           <img
                             alt={book.alt}
@@ -606,7 +611,12 @@ function buildSectionClassName(
                   ))
                 }
                 <div class="gr_grid_book_placeholder">
-                  <a href={statsBooksHref} aria-label="Browse all my books">All books</a>
+                  <a
+                    href={statsBooksHref}
+                    aria-label="Browse all my books"
+                    data-umami-track-book="true"
+                    title="All books"
+                  >All books</a>
                 </div>
               </div>
             </div>

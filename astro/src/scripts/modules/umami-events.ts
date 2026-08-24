@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navLink instanceof HTMLAnchorElement) {
       const navPage = navLink.dataset.navPageId;
       if (navPage === "work" || navPage === "project" || navPage === "stats") {
-        track("nav-click", { page: navPage });
+        track("nav-click", { page: navPage, source: navLink.dataset.navSource ?? "nav" });
       }
     }
 
@@ -73,6 +73,26 @@ document.addEventListener("DOMContentLoaded", () => {
       track("article-click", {
         href: textOrUnknown(articleLink.getAttribute("href")),
         title: textOrUnknown(articleLink.textContent),
+      });
+    }
+
+    const socialLink = event.target.closest<HTMLAnchorElement>('a[data-umami-track-social="true"]');
+    if (socialLink instanceof HTMLAnchorElement) {
+      track("social-click", {
+        platform: textOrUnknown(socialLink.dataset.socialPlatform),
+        href: textOrUnknown(socialLink.getAttribute("href")),
+      });
+    }
+
+    const bookLink = event.target.closest<HTMLAnchorElement>('a[data-umami-track-book="true"]');
+    if (bookLink instanceof HTMLAnchorElement) {
+      track("book-click", {
+        title: textOrUnknown(
+          bookLink.getAttribute("title") ??
+            bookLink.querySelector(".book-catalogue-title")?.textContent ??
+            bookLink.textContent,
+        ),
+        href: textOrUnknown(bookLink.getAttribute("href")),
       });
     }
 
@@ -120,4 +140,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     track("theme-change", { to: theme });
   });
+
+  const viewTargets = document.querySelectorAll<HTMLElement>("[data-umami-track-view]");
+  if (viewTargets.length > 0 && "IntersectionObserver" in window) {
+    const seenSections = new Set<string>();
+
+    const sectionObserver = new IntersectionObserver(
+      (entries, observer) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue;
+          }
+
+          const target = entry.target;
+          if (!(target instanceof HTMLElement)) {
+            continue;
+          }
+
+          const sectionName = target.dataset.umamiTrackView;
+          if (sectionName === undefined || seenSections.has(sectionName)) {
+            continue;
+          }
+
+          seenSections.add(sectionName);
+          track("section-view", { section: sectionName });
+          observer.unobserve(target);
+
+          if (seenSections.size >= viewTargets.length) {
+            observer.disconnect();
+          }
+        }
+      },
+      { threshold: 0.4 },
+    );
+
+    for (const target of viewTargets) {
+      sectionObserver.observe(target);
+    }
+  }
 });

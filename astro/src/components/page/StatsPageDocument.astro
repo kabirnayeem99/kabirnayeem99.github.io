@@ -384,7 +384,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
             </a>
           </div>
         </section>
-        <section class="stats-report-section stats-report-section--books">
+        <section class="stats-report-section stats-report-section--books" data-umami-track-view="books-full">
           <div class="summary-card stats-card stats-bookshelf">
             <h2 class="section-title">{content.sections.goodreads.title}</h2>
             <p>{content.sections.goodreads.copy}</p>
@@ -392,7 +392,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
               <div class="gr_grid_container">
                 {goodreadsBooks.map((book) => (
                   <div class="gr_grid_book_container">
-                    <a title={book.title} rel="nofollow noreferrer" href={book.href} target="_blank">
+                    <a title={book.title} rel="nofollow noreferrer" href={book.href} target="_blank" data-umami-track-book="true">
                         <img
                           alt={book.alt}
                         src={assetHref(content.route, book.imageLocal.replace(/^\/+/, ""))}

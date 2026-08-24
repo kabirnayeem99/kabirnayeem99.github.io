@@ -1,5 +1,18 @@
 ---
 // GitHub Pages serves 404.html with a proper 404 HTTP status for any missing URL.
+import { siteUrl } from "../config/site";
+import { UMAMI_WEBSITE_ID } from "../lib/page-shared";
+import {
+  resolveCanonicalHostname,
+  shouldLoadUmamiScript,
+} from "../lib/runtime-host-gating";
+
+const canonicalHostname = resolveCanonicalHostname(siteUrl);
+const shouldLoadUmami = shouldLoadUmamiScript(
+  import.meta.env.PROD,
+  UMAMI_WEBSITE_ID,
+  canonicalHostname,
+);
 ---
 
 <!doctype html>
@@ -12,6 +25,17 @@
     <link rel="stylesheet" href="/assets/css/styles.css" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
+    {
+      shouldLoadUmami ? (
+        <script
+          is:inline
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={UMAMI_WEBSITE_ID}
+          data-domains={canonicalHostname}
+        ></script>
+      ) : null
+    }
   </head>
   <body>
     <div class="site">
