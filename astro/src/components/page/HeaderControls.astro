@@ -1,5 +1,5 @@
 ---
-import { LANGS, type Lang } from "../../lib/locale-config";
+import { LANGS, LOCALIZATION_ENABLED, type Lang } from "../../lib/locale-config";
 import { routeHref } from "../../lib/work-project-content";
 
 interface Props {
@@ -53,37 +53,39 @@ const {
     />
     <span class="theme-toggle-hand-doodle" aria-hidden="true"></span>
   </button>
-  <div class="language-switcher" data-language-switcher>
-    <button
-      class="language-switcher-button"
-      type="button"
-      aria-label={languageSwitcherLabel}
-      aria-controls={languageMenuId}
-      aria-expanded="false"
-      aria-haspopup="true"
-      title={languageSwitcherLabel}
-      popovertarget={languageMenuId}
-      data-language-switcher-button
-    >
-      <span aria-hidden="true" class="language-switcher-globe"></span>
-    </button>
-    <div
-      class="language-menu"
-      id={languageMenuId}
-      popover="auto"
-      data-language-switcher-menu
-    >
-      {
-        LANGS.map((localeCode) => (
-          <a
-            href={routeHref(currentRoute, languageLinks[localeCode])}
-            lang={localeCode}
-            aria-current={localeCode === lang ? "page" : undefined}
-          >
-            {languageMenuLabels[localeCode]}
-          </a>
-        ))
-      }
-    </div>
-  </div>
+  {
+    LOCALIZATION_ENABLED ? (
+      <div class="language-switcher" data-language-switcher>
+        <button
+          class="language-switcher-button"
+          type="button"
+          aria-label={languageSwitcherLabel}
+          aria-controls={languageMenuId}
+          aria-expanded="false"
+          aria-haspopup="true"
+          title={languageSwitcherLabel}
+          popovertarget={languageMenuId}
+          data-language-switcher-button
+        >
+          <span aria-hidden="true" class="language-switcher-globe" />
+        </button>
+        <div
+          class="language-menu"
+          id={languageMenuId}
+          popover="auto"
+          data-language-switcher-menu
+        >
+          {LANGS.map((localeCode) => (
+            <a
+              href={routeHref(currentRoute, languageLinks[localeCode])}
+              lang={localeCode}
+              aria-current={localeCode === lang ? "page" : undefined}
+            >
+              {languageMenuLabels[localeCode]}
+            </a>
+          ))}
+        </div>
+      </div>
+    ) : null
+  }
 </div>
