@@ -4462,3 +4462,35 @@ html:lang(ur) { --font-site: "Urdu Pak Nastaleeq", serif; }
   .gr_grid_container,
   .stats-bookshelf .gr_grid_container { gap: 0.62rem 0.42rem; }
 }
+
+/* Live Goodreads refresh: books that stay on the shelf glide to their new slot
+   (FLIP transform, applied inline by goodreads-loader.ts); genuinely new reads
+   fade and slide in at the front instead of the whole shelf jumping at once. */
+.gr_grid_book_container {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gr_grid_book_container.is-book-entering {
+  animation: gr-book-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes gr-book-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gr_grid_book_container {
+    transition: none;
+  }
+
+  .gr_grid_book_container.is-book-entering {
+    animation: none;
+  }
+}

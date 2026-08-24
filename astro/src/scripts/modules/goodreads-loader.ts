@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const widgetId = widget.id || "default";
-  const cacheKey = `goodreads-widget-cache:v3:${widgetId}:${encodeURIComponent(scriptSource)}`;
+  const cacheKey = `goodreads-widget-cache:v4:${widgetId}:${encodeURIComponent(scriptSource)}`;
 
   interface GoodreadsCacheEntry {
     readonly fetchedAt: number;
@@ -51,6 +51,23 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     } catch {
       return null;
+    }
+  };
+
+  const writeCache = (): void => {
+    if (!hasRenderedBooks()) {
+      return;
+    }
+
+    try {
+      const entry: GoodreadsCacheEntry = {
+        fetchedAt: Date.now(),
+        html: widget.innerHTML,
+        scriptSource,
+      };
+      window.localStorage.setItem(cacheKey, JSON.stringify(entry));
+    } catch {
+      // Ignore localStorage failures and keep runtime behavior.
     }
   };
 
@@ -97,48 +114,184 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(placeholder);
   };
 
-  const writeCache = (): void => {
-    if (!hasRenderedBooks()) {
-      return;
-    }
+  // --- Diffing helpers -----------------------------------------------------
+  // Every layer (server-rendered snapshot, cached copy, live Goodreads response)
+  // renders the same ".gr_grid_container > .gr_grid_book_container" shape. Instead
+  // of blindly overwriting the widget's innerHTML on every layer (which restarts
+  // image decoding and causes a visible flash even when nothing changed), we diff
+  // book order by href and only touch the DOM when it actually differs.
 
-    try {
-      const entry: GoodreadsCacheEntry = {
-        fetchedAt: Date.now(),
-        html: widget.innerHTML,
-        scriptSource,
-      };
-      window.localStorage.setItem(cacheKey, JSON.stringify(entry));
-    } catch {
-      // Ignore localStorage failures and keep runtime behavior.
-    }
+  const BOOK_SELECTOR = ".gr_grid_book_container";
 
-    applyIndexBookLimit();
+  const getGridContainer = (root: ParentNode): HTMLElement | null =>
+    root.querySelector<HTMLElement>(".gr_grid_container") ??
+    (root instanceof HTMLElement && root.classList.contains("gr_grid_container") ? root : null);
+
+  const bookKeyFor = (el: Element): string | null => {
+    const href = el.querySelector("a[href]")?.getAttribute("href");
+    return typeof href === "string" && href.length > 0 ? href : null;
   };
 
+  const readBookOrder = (root: ParentNode): string[] => {
+    const keys: string[] = [];
+    root.querySelectorAll(BOOK_SELECTOR).forEach((el) => {
+      const key = bookKeyFor(el);
+      if (key !== null) keys.push(key);
+    });
+    return keys;
+  };
+
+  const sameOrder = (a: readonly string[], b: readonly string[]): boolean =>
+    a.length === b.length && a.every((value, index) => value === b[index]);
+
+  const prefersReducedMotion = (): boolean =>
+    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+
+  const keyedBooks = (root: ParentNode): Map<string, HTMLElement> => {
+    const map = new Map<string, HTMLElement>();
+    root.querySelectorAll<HTMLElement>(BOOK_SELECTOR).forEach((el) => {
+      const key = bookKeyFor(el);
+      if (key !== null && !map.has(key)) map.set(key, el);
+    });
+    return map;
+  };
+
+  // Reconciles `targetGrid`'s book order to match `sourceGrid`. Existing DOM nodes are
+  // moved (never recreated), so already-decoded images never re-flash. Books that are
+  // genuinely new are cloned in and fade/slide into place at their new position (almost
+  // always the front, since the feed is sorted latest-read-first); everything already on
+  // screen glides to its new slot via a FLIP transform instead of jumping there instantly.
+  const reconcileBookOrder = (
+    targetGrid: HTMLElement,
+    sourceGrid: HTMLElement,
+    { animate }: { animate: boolean },
+  ): boolean => {
+    const currentOrder = readBookOrder(targetGrid);
+    const nextOrder = readBookOrder(sourceGrid);
+    if (sameOrder(currentOrder, nextOrder)) {
+      return false;
+    }
+
+    const existingByKey = keyedBooks(targetGrid);
+    const sourceByKey = keyedBooks(sourceGrid);
+
+    const firstRects = animate
+      ? new Map(Array.from(existingByKey.values(), (el) => [el, el.getBoundingClientRect()] as const))
+      : null;
+
+    const finalNodes: HTMLElement[] = [];
+    const enteringNodes: HTMLElement[] = [];
+    nextOrder.forEach((key) => {
+      const existing = existingByKey.get(key);
+      if (existing) {
+        finalNodes.push(existing);
+        return;
+      }
+      const fresh = sourceByKey.get(key);
+      if (!fresh) return;
+      const clone = fresh.cloneNode(true) as HTMLElement;
+      finalNodes.push(clone);
+      enteringNodes.push(clone);
+    });
+
+    const fragment = document.createDocumentFragment();
+    finalNodes.forEach((node) => fragment.appendChild(node));
+    Array.from(sourceGrid.children).forEach((child) => {
+      if (child instanceof HTMLElement && !child.classList.contains("gr_grid_book_container")) {
+        fragment.appendChild(child.cloneNode(true));
+      }
+    });
+    targetGrid.replaceChildren(fragment);
+
+    if (!animate || firstRects === null || prefersReducedMotion()) {
+      return true;
+    }
+
+    finalNodes.forEach((node) => {
+      const first = firstRects.get(node);
+      if (!first) return;
+      const last = node.getBoundingClientRect();
+      const dx = first.left - last.left;
+      const dy = first.top - last.top;
+      if (dx === 0 && dy === 0) return;
+      node.style.transition = "none";
+      node.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+
+    // Flush the inverted transforms above before clearing them, so the browser has
+    // something to transition *from* (classic FLIP: force layout between the two).
+    void targetGrid.offsetHeight;
+
+    finalNodes.forEach((node) => {
+      if (!firstRects.has(node)) return;
+      node.style.transition = "";
+      node.style.transform = "";
+    });
+
+    enteringNodes.forEach((node) => {
+      node.classList.add("is-book-entering");
+      node.addEventListener("animationend", () => node.classList.remove("is-book-entering"), { once: true });
+    });
+
+    return true;
+  };
+
+  // --- Layer 1: server-rendered snapshot is already visible. -----------------
+  // --- Layer 2: local cache is an instant, unanimated sync-up. --------------
   const cached = readCache();
   const hasMatchingCache = cached !== null && cached.scriptSource === scriptSource;
 
-  // Server-rendered snapshot is visible first; cache is an immediate local upgrade.
   if (hasMatchingCache && cached !== null) {
-    widget.innerHTML = cached.html;
+    const parsed = document.createElement("div");
+    parsed.innerHTML = cached.html;
+    const sourceGrid = getGridContainer(parsed);
+    const targetGrid = getGridContainer(widget);
+    if (sourceGrid && targetGrid) {
+      reconcileBookOrder(targetGrid, sourceGrid, { animate: false });
+    }
     applyIndexBookLimit();
   }
 
+  // --- Layer 3: live Goodreads widget script. --------------------------------
+  // Goodreads' script looks up `document.getElementById(widgetId)` and assigns
+  // `innerHTML` to whatever it finds. We redirect that single lookup to a detached
+  // element so the script's response can be diffed and animated in on our terms,
+  // instead of Goodreads blowing away the visible widget the instant it loads.
   const hasInjectedWidgetScript = (): boolean => (
     document.querySelector('script[data-goodreads-widget="true"]') !== null
   );
 
-  // Refresh from Goodreads after the static and cached layers. If it fails, either
-  // earlier layer remains in place instead of leaving the shelf empty.
   if (hasInjectedWidgetScript()) {
     return;
   }
+
+  const applyLiveResponse = (detached: HTMLElement): void => {
+    const sourceGrid = getGridContainer(detached);
+    const targetGrid = getGridContainer(widget);
+    if (sourceGrid && targetGrid) {
+      reconcileBookOrder(targetGrid, sourceGrid, { animate: true });
+    }
+    writeCache();
+    applyIndexBookLimit();
+  };
 
   const injectScript = (): void => {
     if (hasInjectedWidgetScript()) {
       return;
     }
+
+    const detachedTarget = document.createElement("div");
+    const originalGetElementById = document.getElementById.bind(document);
+    let restored = false;
+    const restoreGetElementById = (): void => {
+      if (restored) return;
+      restored = true;
+      document.getElementById = originalGetElementById;
+    };
+
+    document.getElementById = ((id: string): HTMLElement | null => (
+      id === widgetId ? detachedTarget : originalGetElementById(id)
+    )) as typeof document.getElementById;
 
     const script = document.createElement("script");
     script.async = true;
@@ -147,10 +300,13 @@ document.addEventListener("DOMContentLoaded", () => {
     script.type = "text/javascript";
     script.dataset.goodreadsWidget = "true";
     script.addEventListener("load", () => {
-      // Goodreads script populates #gr_grid_widget_*; cache then apply UI limit.
-      window.setTimeout(writeCache, 150);
+      restoreGetElementById();
+      applyLiveResponse(detachedTarget);
     });
-    script.addEventListener("error", applyIndexBookLimit);
+    script.addEventListener("error", () => {
+      restoreGetElementById();
+      applyIndexBookLimit();
+    });
     document.body?.appendChild(script);
   };
 
