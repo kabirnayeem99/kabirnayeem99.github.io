@@ -390,11 +390,21 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
           "title",
           `root.pages.stats.locales.${lang}.sections.goodreads`,
         ),
-        copy: readString(
-          statsGoodreads,
-          "copy",
-          `root.pages.stats.locales.${lang}.sections.goodreads`,
-        ),
+        // The compact index-page widget uses its own shorter blurb ("recently
+        // read") where translated - the stats page's `copy` is the fuller,
+        // autobiographical one. Locales without an `index_copy` override
+        // (still short as-is) just reuse `copy`.
+        copy:
+          readOptionalString(
+            statsGoodreads,
+            "index_copy",
+            `root.pages.stats.locales.${lang}.sections.goodreads`,
+          ) ??
+          readString(
+            statsGoodreads,
+            "copy",
+            `root.pages.stats.locales.${lang}.sections.goodreads`,
+          ),
         statusText: readString(
           statsGoodreads,
           "status_text",

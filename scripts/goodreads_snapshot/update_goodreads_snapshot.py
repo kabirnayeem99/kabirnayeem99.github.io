@@ -176,16 +176,101 @@ def _fetch_all_books(
     return books, page
 
 
-def _convert_to_webp(content: bytes, url: str, quality: int = 75) -> bytes:
+
+# Goodreads' `book_large_image_url` can be several thousand pixels tall for some
+# editions, while every cover in the grid renders at well under 200px on screen
+# (see .gr_grid_book_container in styles.source.css) - without a cap, those
+# editions balloon to 500KB+ per cover for zero visible benefit.
+MAX_COVER_HEIGHT = 475
+WEBP_QUALITY = 75
+
+# .gr_grid_book_container img sets `aspect-ratio: 2 / 3; object-fit: cover`, so
+# any pixels outside that ratio are already invisible on the page - cropping to
+# it here (rather than shipping the untrimmed source and letting CSS do it)
+# means we don't pay to transfer bytes nobody ever sees.
+CROP_ASPECT = 2 / 3
+
+
+def _fit_cover(image: Image.Image) -> Image.Image:
+    """Center-crop to CROP_ASPECT, then cap the height at MAX_COVER_HEIGHT."""
+    width, height = image.size
+    current_ratio = width / height
+
+    if current_ratio > CROP_ASPECT:
+        new_width = round(height * CROP_ASPECT)
+        left = (width - new_width) // 2
+        image = image.crop((left, 0, left + new_width, height))
+    elif current_ratio < CROP_ASPECT:
+        new_height = round(width / CROP_ASPECT)
+        top = (height - new_height) // 2
+        image = image.crop((0, top, width, top + new_height))
+
+    if image.height > MAX_COVER_HEIGHT:
+        new_width = round(image.width * MAX_COVER_HEIGHT / image.height)
+        image = image.resize((new_width, MAX_COVER_HEIGHT), Image.LANCZOS)
+
+    return image
+
+
+def _convert_to_webp(content: bytes, url: str, quality: int = WEBP_QUALITY) -> bytes:
     try:
         with Image.open(BytesIO(content)) as image:
             if image.mode not in ("RGB", "RGBA"):
                 image = image.convert("RGBA" if "A" in image.getbands() else "RGB")
+            image = _fit_cover(image)
             buffer = BytesIO()
             image.save(buffer, format="WEBP", quality=quality, method=6)
             return buffer.getvalue()
     except Exception as exc:
         raise SnapshotUpdateError(f"Failed to convert image to WebP: {url}\n{exc}") from exc
+
+
+def _reuse_cover(existing: Path, destination: Path) -> bool:
+    """Copy an already-downloaded cover into place for this run.
+
+    Older snapshots (or covers swapped in by hand, e.g. via
+    prepare_book_cover.py) may predate the crop/size rules above - a file
+    already cropped to CROP_ASPECT and within MAX_COVER_HEIGHT stays a
+    byte-for-byte copy; anything else gets re-encoded to match. Returns True
+    if the file was re-encoded rather than copied as-is.
+    """
+    with Image.open(existing) as image:
+        width, height = image.size
+        already_fitted = height <= MAX_COVER_HEIGHT and width == round(height * CROP_ASPECT)
+        if already_fitted:
+            shutil.copy2(existing, destination)
+            return False
+
+        if image.mode not in ("RGB", "RGBA"):
+            image = image.convert("RGBA" if "A" in image.getbands() else "RGB")
+        image = _fit_cover(image)
+        image.save(destination, format="WEBP", quality=WEBP_QUALITY, method=6)
+    return True
+
+
+def normalize_images_dir(images_dir: Path) -> tuple[int, int]:
+    """Re-encode every cover already on disk to the current crop/size rules,
+    without touching the snapshot JSON or fetching anything from Goodreads.
+
+    Returns (unchanged_count, normalized_count).
+    """
+    unchanged = 0
+    normalized = 0
+
+    with tempfile.TemporaryDirectory(prefix="goodreads-images-normalize-") as temp_root_str:
+        temp_images_dir = Path(temp_root_str) / "goodreads-images"
+        temp_images_dir.mkdir(parents=True, exist_ok=True)
+
+        for existing in sorted(images_dir.glob("*.webp")):
+            destination = temp_images_dir / existing.name
+            if _reuse_cover(existing, destination):
+                normalized += 1
+            else:
+                unchanged += 1
+
+        _atomic_replace_dir(new_dir=temp_images_dir, target_dir=images_dir)
+
+    return unchanged, normalized
 
 
 def _download_image(url: str, destination: Path, timeout_seconds: int) -> None:
@@ -260,7 +345,7 @@ def update_snapshot(
     snapshot_path: Path,
     images_dir: Path,
     timeout_seconds: int,
-) -> tuple[int, str, int, int, int]:
+) -> tuple[int, str, int, int, int, int]:
     if not rss_key:
         raise SnapshotUpdateError(
             f"Missing Goodreads RSS key. Pass --rss-key or set {RSS_KEY_ENV_VAR}."
@@ -276,6 +361,7 @@ def update_snapshot(
 
     downloaded_count = 0
     reused_count = 0
+    normalized_count = 0
 
     with tempfile.TemporaryDirectory(prefix="goodreads-snapshot-") as temp_root_str:
         temp_root = Path(temp_root_str)
@@ -289,8 +375,10 @@ def update_snapshot(
             # reuse it instead of re-fetching and re-encoding the same cover.
             existing = images_dir / book.image_file_name
             if existing.is_file():
-                shutil.copy2(existing, destination)
-                reused_count += 1
+                if _reuse_cover(existing, destination):
+                    normalized_count += 1
+                else:
+                    reused_count += 1
                 continue
 
             _download_image(
@@ -311,10 +399,10 @@ def update_snapshot(
         temp_snapshot.replace(snapshot_path)
         _atomic_replace_dir(new_dir=temp_images_dir, target_dir=images_dir)
 
-    return len(books), source_url, downloaded_count, reused_count, pages_fetched
+    return len(books), source_url, downloaded_count, reused_count, normalized_count, pages_fetched
 
 
-def _parse_args() -> tuple[str, str, str, Path, Path, int]:
+def _parse_args() -> tuple[str, str, str, Path, Path, int, bool]:
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -345,6 +433,12 @@ def _parse_args() -> tuple[str, str, str, Path, Path, int]:
         default=DEFAULT_TIMEOUT_SECONDS,
         help="HTTP timeout per request",
     )
+    parser.add_argument(
+        "--images-only",
+        action="store_true",
+        help="Re-crop/re-cap covers already on disk to the current rules, without "
+        "touching the snapshot JSON or contacting Goodreads.",
+    )
     args = parser.parse_args()
     return (
         args.user_id,
@@ -353,13 +447,24 @@ def _parse_args() -> tuple[str, str, str, Path, Path, int]:
         args.snapshot_path,
         args.images_dir,
         args.timeout_seconds,
+        args.images_only,
     )
 
 
 def main() -> int:
-    user_id, rss_key, shelf, snapshot_path, images_dir, timeout_seconds = _parse_args()
+    user_id, rss_key, shelf, snapshot_path, images_dir, timeout_seconds, images_only = _parse_args()
+
+    if images_only:
+        unchanged, normalized = normalize_images_dir(images_dir)
+        print(
+            f"[goodreads-snapshot] images-only pass: {unchanged} already fitted, "
+            f"{normalized} re-cropped/re-capped."
+        )
+        print(f"[goodreads-snapshot] images: {images_dir}")
+        return 0
+
     try:
-        count, resolved_url, downloaded_count, reused_count, pages_fetched = update_snapshot(
+        count, resolved_url, downloaded_count, reused_count, normalized_count, pages_fetched = update_snapshot(
             user_id=user_id,
             rss_key=rss_key,
             shelf=shelf,
@@ -379,7 +484,8 @@ def main() -> int:
     )
     print(
         f"[goodreads-snapshot] covers: {downloaded_count} downloaded, "
-        f"{reused_count} reused from existing files."
+        f"{reused_count} reused from existing files, "
+        f"{normalized_count} shrunk to fit the {MAX_COVER_HEIGHT}px cap."
     )
     print(f"[goodreads-snapshot] source URL (page 1 shown, all pages fetched): {redacted_url}")
     print(f"[goodreads-snapshot] snapshot: {snapshot_path}")
