@@ -235,6 +235,11 @@ const skillChips = [
   "Bangla", "Urdu", "English",
 ] as const;
 
+// The languages/platforms/frameworks slice of skillChips, echoed right under the
+// about copy so the stack it namedrops is scannable at a glance without jumping
+// down to the fuller "Skills & Languages" chip cloud further down the page.
+const coreStackChips = skillChips.slice(0, 16);
+
 const visibleSections = content.sections.filter((section) => section.tags.length === 0);
 const [leadSection, ...remainingSections] = visibleSections;
 
@@ -398,6 +403,11 @@ function buildSectionClassName(
           <section class="about-section intro-stage-primary">
             <div class="summary-card summary-card--about">
               {content.summaryCard.map((paragraph) => <p set:html={paragraph} />)}
+              <div class="skill-tag-cloud about-stack-cloud">
+                {coreStackChips.map((skill) => (
+                  <span class="skill-tag">{skill}</span>
+                ))}
+              </div>
             </div>
           </section>
 

@@ -152,7 +152,7 @@ def _parse_rss_items(rss_xml: str) -> list[BookEntry]:
 
 def _fetch_all_books(
     user_id: str, rss_key: str, shelf: str, timeout_seconds: int
-) -> list[BookEntry]:
+) -> tuple[list[BookEntry], int]:
     books: list[BookEntry] = []
     page = 1
     while True:
@@ -161,6 +161,8 @@ def _fetch_all_books(
         page_books = _parse_rss_items(page_xml)
         books.extend(page_books)
 
+        # A page short of a full RSS_PAGE_SIZE batch means there's nothing left to
+        # fetch - a partial batch can only happen on the last page.
         if len(page_books) < RSS_PAGE_SIZE:
             break
         page += 1
@@ -171,7 +173,7 @@ def _fetch_all_books(
     # Latest read first, matching the live grid widget's sort=date_read&order=d.
     # Undated books (read_at is None) sort last, in their original RSS order.
     books.sort(key=lambda book: book.read_at or datetime.min.replace(tzinfo=UTC), reverse=True)
-    return books
+    return books, page
 
 
 def _convert_to_webp(content: bytes, url: str, quality: int = 75) -> bytes:
@@ -258,17 +260,22 @@ def update_snapshot(
     snapshot_path: Path,
     images_dir: Path,
     timeout_seconds: int,
-) -> tuple[int, str]:
+) -> tuple[int, str, int, int, int]:
     if not rss_key:
         raise SnapshotUpdateError(
             f"Missing Goodreads RSS key. Pass --rss-key or set {RSS_KEY_ENV_VAR}."
         )
 
-    books = _fetch_all_books(user_id, rss_key, shelf, timeout_seconds=timeout_seconds)
+    books, pages_fetched = _fetch_all_books(
+        user_id, rss_key, shelf, timeout_seconds=timeout_seconds
+    )
     source_url = _build_rss_url(user_id, rss_key, shelf, page=1)
 
     snapshot_path.parent.mkdir(parents=True, exist_ok=True)
     images_dir.parent.mkdir(parents=True, exist_ok=True)
+
+    downloaded_count = 0
+    reused_count = 0
 
     with tempfile.TemporaryDirectory(prefix="goodreads-snapshot-") as temp_root_str:
         temp_root = Path(temp_root_str)
@@ -276,11 +283,22 @@ def update_snapshot(
         temp_images_dir.mkdir(parents=True, exist_ok=True)
 
         for book in books:
+            destination = temp_images_dir / book.image_file_name
+            # Cover images are keyed by Goodreads' own book id, so an unchanged book's
+            # file name never changes - if it's already on disk from a previous run,
+            # reuse it instead of re-fetching and re-encoding the same cover.
+            existing = images_dir / book.image_file_name
+            if existing.is_file():
+                shutil.copy2(existing, destination)
+                reused_count += 1
+                continue
+
             _download_image(
                 url=book.image_url,
-                destination=temp_images_dir / book.image_file_name,
+                destination=destination,
                 timeout_seconds=timeout_seconds,
             )
+            downloaded_count += 1
 
         payload = _snapshot_payload(books)
         temp_snapshot = temp_root / "goodreads-snapshot.json"
@@ -293,7 +311,7 @@ def update_snapshot(
         temp_snapshot.replace(snapshot_path)
         _atomic_replace_dir(new_dir=temp_images_dir, target_dir=images_dir)
 
-    return len(books), source_url
+    return len(books), source_url, downloaded_count, reused_count, pages_fetched
 
 
 def _parse_args() -> tuple[str, str, str, Path, Path, int]:
@@ -341,7 +359,7 @@ def _parse_args() -> tuple[str, str, str, Path, Path, int]:
 def main() -> int:
     user_id, rss_key, shelf, snapshot_path, images_dir, timeout_seconds = _parse_args()
     try:
-        count, resolved_url = update_snapshot(
+        count, resolved_url, downloaded_count, reused_count, pages_fetched = update_snapshot(
             user_id=user_id,
             rss_key=rss_key,
             shelf=shelf,
@@ -355,8 +373,15 @@ def main() -> int:
         return 1
 
     redacted_url = resolved_url.replace(rss_key, "***") if rss_key else resolved_url
-    print(f"[goodreads-snapshot] updated successfully with {count} books.")
-    print(f"[goodreads-snapshot] source URL: {redacted_url}")
+    print(
+        f"[goodreads-snapshot] updated successfully with {count} books "
+        f"across {pages_fetched} page(s)."
+    )
+    print(
+        f"[goodreads-snapshot] covers: {downloaded_count} downloaded, "
+        f"{reused_count} reused from existing files."
+    )
+    print(f"[goodreads-snapshot] source URL (page 1 shown, all pages fetched): {redacted_url}")
     print(f"[goodreads-snapshot] snapshot: {snapshot_path}")
     print(f"[goodreads-snapshot] images: {images_dir}")
     return 0

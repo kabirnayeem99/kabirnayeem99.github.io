@@ -64,8 +64,8 @@
           "image_alt": "roadmap.sh"
         },
         "goodreads": {
-          "title": "Recently Read Books",
-          "copy": "These books were read recently. Or I had read them before and only added them to Goodreads recently.",
+          "title": "Read Books",
+          "copy": "These are books I read at some point in my life, or at least, books I remembered to add to Goodreads for tracking. So many of them were added from memory, back in my teenage years, when the internet wasn't really a thing in my village, let alone Goodreads. Most of them, I've probably forgotten to add, though.",
           "widget_id": "1771265103",
           "user_id": "45514357",
           "user_name": "Naimul",

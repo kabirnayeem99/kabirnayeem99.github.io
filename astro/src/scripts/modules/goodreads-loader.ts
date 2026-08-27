@@ -10,7 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const widgetId = widget.id || "default";
-  const cacheKey = `goodreads-widget-cache:v4:${widgetId}:${encodeURIComponent(scriptSource)}`;
+  // v5: earlier reconcile logic could get tricked into permanently caching a bloated,
+  // wrongly-ordered widget snapshot (see reconcileBookOrder below) - bump the version so
+  // browsers holding that corrupted entry fall back to the correct server-rendered order
+  // instead of re-injecting the same junk from Layer 2 on every future load.
+  const cacheKey = `goodreads-widget-cache:v5:${widgetId}:${encodeURIComponent(scriptSource)}`;
 
   interface GoodreadsCacheEntry {
     readonly fetchedAt: number;
@@ -164,9 +168,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Goodreads' live grid_widget response doesn't reliably honor its own sort=date_read
   // param (shelf entries without an explicit "date read" get interleaved by some other
   // fallback order), so it can't be trusted to reorder books we already know about. It's
-  // only ever used to detect genuinely new books (not currently on screen), which are
-  // cloned in and fade/slide into place at the front, since the feed is sorted
-  // latest-read-first for newly-added entries.
+  // only ever used to detect books that aren't currently on screen. A book absent from
+  // both the DOM and our dated snapshot is more likely an old, undated shelf entry the
+  // snapshot generator's RSS fetch never picked up than something freshly read - so, same
+  // as the snapshot generator's own convention for undated books, unknowns are appended
+  // at the end rather than assumed-recent and pushed to the front.
   const reconcileBookOrder = (
     targetGrid: HTMLElement,
     sourceGrid: HTMLElement,
@@ -193,11 +199,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const finalNodes: HTMLElement[] = [
-      ...enteringNodes,
       ...currentOrder.flatMap((key) => {
         const existing = existingByKey.get(key);
         return existing ? [existing] : [];
       }),
+      ...enteringNodes,
     ];
 
     const fragment = document.createDocumentFragment();
@@ -247,7 +253,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const cached = readCache();
   const hasMatchingCache = cached !== null && cached.scriptSource === scriptSource;
 
-  if (hasMatchingCache && cached !== null) {
+  // The index widget's DOM is pre-trimmed to INDEX_BOOK_LIMIT books, so `reconcileBookOrder`
+  // would see almost every book in a fuller cached/live response as "not currently on
+  // screen" and prepend the whole lot in Goodreads' own unreliable order - it can't tell
+  // "genuinely new" apart from "just not shown because of the trim". The trimmed widget's
+  // server-rendered top slice (already the correct, snapshot-dated order) is left alone;
+  // only the untrimmed stats-page widget - where the full known set actually is on
+  // screen - gets to accept new books from a fresher response.
+  if (hasMatchingCache && cached !== null && !isIndexPage) {
     const parsed = document.createElement("div");
     parsed.innerHTML = cached.html;
     const sourceGrid = getGridContainer(parsed);
@@ -279,8 +292,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const applyLiveResponse = (detached: HTMLElement): void => {
     const sourceGrid = getGridContainer(detached);
     const targetGrid = getGridContainer(widget);
+    // See the matching guard on the cache layer above: the trimmed index widget can't
+    // tell a genuinely new book apart from one merely absent due to the trim, so it
+    // never accepts reordering/additions from the live response.
     const changed =
-      sourceGrid && targetGrid ? reconcileBookOrder(targetGrid, sourceGrid, { animate: true }) : false;
+      !isIndexPage && sourceGrid && targetGrid
+        ? reconcileBookOrder(targetGrid, sourceGrid, { animate: true })
+        : false;
 
     // Refresh the cache regardless (Goodreads may have swapped a cover edition even
     // when order didn't change), but only touch the placeholder tile when something
