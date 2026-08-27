@@ -148,9 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return keys;
   };
 
-  const sameOrder = (a: readonly string[], b: readonly string[]): boolean =>
-    a.length === b.length && a.every((value, index) => value === b[index]);
-
   const prefersReducedMotion = (): boolean =>
     window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
 
@@ -163,43 +160,45 @@ document.addEventListener("DOMContentLoaded", () => {
     return map;
   };
 
-  // Reconciles `targetGrid`'s book order to match `sourceGrid`. Existing DOM nodes are
-  // moved (never recreated), so already-decoded images never re-flash. Books that are
-  // genuinely new are cloned in and fade/slide into place at their new position (almost
-  // always the front, since the feed is sorted latest-read-first); everything already on
-  // screen glides to its new slot via a FLIP transform instead of jumping there instantly.
+  // Reconciles `targetGrid` against `sourceGrid`. Existing DOM nodes are never touched -
+  // Goodreads' live grid_widget response doesn't reliably honor its own sort=date_read
+  // param (shelf entries without an explicit "date read" get interleaved by some other
+  // fallback order), so it can't be trusted to reorder books we already know about. It's
+  // only ever used to detect genuinely new books (not currently on screen), which are
+  // cloned in and fade/slide into place at the front, since the feed is sorted
+  // latest-read-first for newly-added entries.
   const reconcileBookOrder = (
     targetGrid: HTMLElement,
     sourceGrid: HTMLElement,
     { animate }: { animate: boolean },
   ): boolean => {
     const currentOrder = readBookOrder(targetGrid);
-    const nextOrder = readBookOrder(sourceGrid);
-    if (sameOrder(currentOrder, nextOrder)) {
-      return false;
-    }
-
     const existingByKey = keyedBooks(targetGrid);
     const sourceByKey = keyedBooks(sourceGrid);
+
+    const newKeys = readBookOrder(sourceGrid).filter((key) => !existingByKey.has(key));
+    if (newKeys.length === 0) {
+      return false;
+    }
 
     const firstRects = animate
       ? new Map(Array.from(existingByKey.values(), (el) => [el, el.getBoundingClientRect()] as const))
       : null;
 
-    const finalNodes: HTMLElement[] = [];
     const enteringNodes: HTMLElement[] = [];
-    nextOrder.forEach((key) => {
-      const existing = existingByKey.get(key);
-      if (existing) {
-        finalNodes.push(existing);
-        return;
-      }
+    newKeys.forEach((key) => {
       const fresh = sourceByKey.get(key);
       if (!fresh) return;
-      const clone = fresh.cloneNode(true) as HTMLElement;
-      finalNodes.push(clone);
-      enteringNodes.push(clone);
+      enteringNodes.push(fresh.cloneNode(true) as HTMLElement);
     });
+
+    const finalNodes: HTMLElement[] = [
+      ...enteringNodes,
+      ...currentOrder.flatMap((key) => {
+        const existing = existingByKey.get(key);
+        return existing ? [existing] : [];
+      }),
+    ];
 
     const fragment = document.createDocumentFragment();
     finalNodes.forEach((node) => fragment.appendChild(node));

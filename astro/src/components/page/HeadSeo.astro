@@ -8,6 +8,7 @@ import {
   AGENT_DISCOVERY_LINKS,
   type AgentDiscoveryLink,
 } from "../../lib/agent-discovery";
+import type { Lang } from "../../lib/locale-config";
 
 interface AlternateLink {
   readonly hrefLang: string;
@@ -40,6 +41,7 @@ interface Props {
   readonly discoveryLinks?: readonly AgentDiscoveryLink[];
   readonly preconnectHrefs?: readonly string[];
   readonly robots?: string;
+  readonly lang?: Lang;
 }
 
 const {
@@ -68,6 +70,7 @@ const {
   discoveryLinks = AGENT_DISCOVERY_LINKS,
   preconnectHrefs = [] as readonly string[],
   robots = "index, follow",
+  lang = "en",
 } = Astro.props;
 
 const canonicalHostname = resolveCanonicalHostname(canonicalUrl);
@@ -155,13 +158,17 @@ const feedHref = (() => {
     ) : null
   }
   <script is:inline set:html={THEME_BOOTSTRAP_SCRIPT} />
-  <link
-    rel="preload"
-    href="/assets/fonts/english_eb_garamond_wght.woff2"
-    as="font"
-    type="font/woff2"
-    crossorigin
-  />
+  {
+    lang === "en" ? (
+      <link
+        rel="preload"
+        href="/assets/fonts/english_eb_garamond_wght.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin
+      />
+    ) : null
+  }
   <link rel="preload" href={stylesheetHref} as="style" />
   <link rel="stylesheet" href={stylesheetHref} />
   <link rel="icon" type="image/svg+xml" href={faviconSvgHref} />
