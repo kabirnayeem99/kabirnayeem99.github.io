@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-08-24T09:32:20.861169Z",
+  "generatedAt": "2026-08-27T06:10:13.463016Z",
   "books": [
+    {
+      "title": "The Sun Also Rises",
+      "href": "https://www.goodreads.com/review/show/8893749160?utm_medium=api&utm_source=rss",
+      "alt": "The Sun Also Rises",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328308851l/5976496.jpg",
+      "imageLocal": "/assets/images/goodreads/5976496-the-sun-also-rises.webp",
+      "imageFileName": "5976496-the-sun-also-rises.webp",
+      "dateRead": "2026-08-27T00:00:00Z"
+    },
     {
       "title": "The God of the Woods",
       "href": "https://www.goodreads.com/review/show/8886655169?utm_medium=api&utm_source=rss",
@@ -3015,6 +3024,15 @@
       "imageLocal": "/assets/images/goodreads/22827151-book.webp",
       "imageFileName": "22827151-book.webp",
       "dateRead": "2014-01-01T00:00:00Z"
+    },
+    {
+      "title": "Uncle Tom’s Cabin",
+      "href": "https://www.goodreads.com/review/show/8887669968?utm_medium=api&utm_source=rss",
+      "alt": "Uncle Tom’s Cabin",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1414349231l/46787.jpg",
+      "imageLocal": "/assets/images/goodreads/46787-uncle-toms-cabin.webp",
+      "imageFileName": "46787-uncle-toms-cabin.webp",
+      "dateRead": "2013-01-01T00:00:00Z"
     },
     {
       "title": "ন হন্যতে : লা নুই বেঙ্গলী",
