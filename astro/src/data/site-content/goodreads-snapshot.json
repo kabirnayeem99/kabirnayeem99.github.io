@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-08-27T07:15:42.415684Z",
+  "generatedAt": "2026-08-30T16:18:03.044948Z",
   "books": [
+    {
+      "title": "The Mysterious Affair at Styles (Hercule Poirot, #1)",
+      "href": "https://www.goodreads.com/review/show/8898862120?utm_medium=api&utm_source=rss",
+      "alt": "The Mysterious Affair at Styles (Hercule Poirot, #1)",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1585632445l/52843028._SY475_.jpg",
+      "imageLocal": "/assets/images/goodreads/52843028-the-mysterious-affair-at-styles-hercule-poirot-1.webp",
+      "imageFileName": "52843028-the-mysterious-affair-at-styles-hercule-poirot-1.webp",
+      "dateRead": "2026-08-29T00:00:00Z"
+    },
     {
       "title": "The Sun Also Rises",
       "href": "https://www.goodreads.com/review/show/8893749160?utm_medium=api&utm_source=rss",
@@ -146,12 +155,12 @@
       "dateRead": "2026-07-31T00:00:00Z"
     },
     {
-      "title": "After the Funeral (Hercule Poirot, #33)",
+      "title": "After the Funeral (Hercule Poirot, #30)",
       "href": "https://www.goodreads.com/review/show/8811576095?utm_medium=api&utm_source=rss",
-      "alt": "After the Funeral (Hercule Poirot, #33)",
+      "alt": "After the Funeral (Hercule Poirot, #30)",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1384881992l/527744.jpg",
-      "imageLocal": "/assets/images/goodreads/527744-after-the-funeral-hercule-poirot-33.webp",
-      "imageFileName": "527744-after-the-funeral-hercule-poirot-33.webp",
+      "imageLocal": "/assets/images/goodreads/527744-after-the-funeral-hercule-poirot-30.webp",
+      "imageFileName": "527744-after-the-funeral-hercule-poirot-30.webp",
       "dateRead": "2026-07-28T00:00:00Z"
     },
     {
