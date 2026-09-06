@@ -1,6 +1,24 @@
 {
-  "generatedAt": "2026-08-30T16:18:03.044948Z",
+  "generatedAt": "2026-09-06T10:43:03.905513Z",
   "books": [
+    {
+      "title": "The Eternal Challenge: A Journey Through the Miraculous Qur'an",
+      "href": "https://www.goodreads.com/review/show/8917778691?utm_medium=api&utm_source=rss",
+      "alt": "The Eternal Challenge: A Journey Through the Miraculous Qur'an",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1451927689l/28448571._SX318_.jpg",
+      "imageLocal": "/assets/images/goodreads/28448571-the-eternal-challenge-a-journey-through-the-miraculous-qur-a.webp",
+      "imageFileName": "28448571-the-eternal-challenge-a-journey-through-the-miraculous-qur-a.webp",
+      "dateRead": "2026-09-06T00:00:00Z"
+    },
+    {
+      "title": "The Likeness (Dublin Murder Squad, #2)",
+      "href": "https://www.goodreads.com/review/show/8922753735?utm_medium=api&utm_source=rss",
+      "alt": "The Likeness (Dublin Murder Squad, #2)",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1538062804l/5941114._SY475_.jpg",
+      "imageLocal": "/assets/images/goodreads/5941114-the-likeness-dublin-murder-squad-2.webp",
+      "imageFileName": "5941114-the-likeness-dublin-murder-squad-2.webp",
+      "dateRead": "2026-09-05T00:00:00Z"
+    },
     {
       "title": "The Mysterious Affair at Styles (Hercule Poirot, #1)",
       "href": "https://www.goodreads.com/review/show/8898862120?utm_medium=api&utm_source=rss",
