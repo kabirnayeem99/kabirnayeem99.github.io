@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-09-06T10:43:03.905513Z",
+  "generatedAt": "2026-09-07T10:44:28.985481Z",
   "books": [
+    {
+      "title": "Newcomer (Detective Kaga, #2)",
+      "href": "https://www.goodreads.com/review/show/8923163786?utm_medium=api&utm_source=rss",
+      "alt": "Newcomer (Detective Kaga, #2)",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1530346547l/33602102._SY475_.jpg",
+      "imageLocal": "/assets/images/goodreads/33602102-newcomer-detective-kaga-2.webp",
+      "imageFileName": "33602102-newcomer-detective-kaga-2.webp",
+      "dateRead": "2026-09-07T00:00:00Z"
+    },
     {
       "title": "The Eternal Challenge: A Journey Through the Miraculous Qur'an",
       "href": "https://www.goodreads.com/review/show/8917778691?utm_medium=api&utm_source=rss",
