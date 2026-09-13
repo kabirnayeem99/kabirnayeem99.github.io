@@ -1,6 +1,24 @@
 {
-  "generatedAt": "2026-09-07T10:44:28.985481Z",
+  "generatedAt": "2026-09-13T17:02:59.994281Z",
   "books": [
+    {
+      "title": "Confessions",
+      "href": "https://www.goodreads.com/review/show/8929499777?utm_medium=api&utm_source=rss",
+      "alt": "Confessions",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1401076501l/19161835.jpg",
+      "imageLocal": "/assets/images/goodreads/19161835-confessions.webp",
+      "imageFileName": "19161835-confessions.webp",
+      "dateRead": "2026-09-11T00:00:00Z"
+    },
+    {
+      "title": "The Inugami Curse (Detective Kosuke Kindaichi, #2)",
+      "href": "https://www.goodreads.com/review/show/8928255213?utm_medium=api&utm_source=rss",
+      "alt": "The Inugami Curse (Detective Kosuke Kindaichi, #2)",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1746262764l/50362362._SY475_.jpg",
+      "imageLocal": "/assets/images/goodreads/50362362-the-inugami-curse-detective-kosuke-kindaichi-2.webp",
+      "imageFileName": "50362362-the-inugami-curse-detective-kosuke-kindaichi-2.webp",
+      "dateRead": "2026-09-07T00:00:00Z"
+    },
     {
       "title": "Newcomer (Detective Kaga, #2)",
       "href": "https://www.goodreads.com/review/show/8923163786?utm_medium=api&utm_source=rss",
