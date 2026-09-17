@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-09-13T17:02:59.994281Z",
+  "generatedAt": "2026-09-17T05:20:04.040848Z",
   "books": [
+    {
+      "title": "The Shadow of the Wind (The Cemetery of Forgotten Books, #1)",
+      "href": "https://www.goodreads.com/review/show/8942820921?utm_medium=api&utm_source=rss",
+      "alt": "The Shadow of the Wind (The Cemetery of Forgotten Books, #1)",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1628791882l/1232._SY475_.jpg",
+      "imageLocal": "/assets/images/goodreads/1232-the-shadow-of-the-wind-the-cemetery-of-forgotten-books-1.webp",
+      "imageFileName": "1232-the-shadow-of-the-wind-the-cemetery-of-forgotten-books-1.webp",
+      "dateRead": "2026-09-15T00:00:00Z"
+    },
     {
       "title": "Confessions",
       "href": "https://www.goodreads.com/review/show/8929499777?utm_medium=api&utm_source=rss",
