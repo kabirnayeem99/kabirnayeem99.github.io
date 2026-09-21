@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-09-17T05:20:04.040848Z",
+  "generatedAt": "2026-09-21T10:32:50.938444Z",
   "books": [
+    {
+      "title": "The Decagon House Murders (House Murders, #1)",
+      "href": "https://www.goodreads.com/review/show/8957308003?utm_medium=api&utm_source=rss",
+      "alt": "The Decagon House Murders (House Murders, #1)",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1433081507l/25561888._SY475_.jpg",
+      "imageLocal": "/assets/images/goodreads/25561888-the-decagon-house-murders-house-murders-1.webp",
+      "imageFileName": "25561888-the-decagon-house-murders-house-murders-1.webp",
+      "dateRead": "2026-09-18T00:00:00Z"
+    },
     {
       "title": "The Shadow of the Wind (The Cemetery of Forgotten Books, #1)",
       "href": "https://www.goodreads.com/review/show/8942820921?utm_medium=api&utm_source=rss",
@@ -1035,6 +1044,15 @@
       "imageLocal": "/assets/images/goodreads/52616342-the-perfect-son.webp",
       "imageFileName": "52616342-the-perfect-son.webp",
       "dateRead": "2024-07-01T00:00:00Z"
+    },
+    {
+      "title": "One of Us Is Lying (One of Us is Lying, #1)",
+      "href": "https://www.goodreads.com/review/show/8960900504?utm_medium=api&utm_source=rss",
+      "alt": "One of Us Is Lying (One of Us is Lying, #1)",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1632078539l/58679358.jpg",
+      "imageLocal": "/assets/images/goodreads/58679358-one-of-us-is-lying-one-of-us-is-lying-1.webp",
+      "imageFileName": "58679358-one-of-us-is-lying-one-of-us-is-lying-1.webp",
+      "dateRead": "2024-02-07T00:00:00Z"
     },
     {
       "title": "হিমুর একান্ত সাক্ষাৎকার ও অন্যান্য",
