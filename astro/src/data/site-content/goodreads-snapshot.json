@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-09-21T10:32:50.938444Z",
+  "generatedAt": "2026-09-22T07:38:50.730671Z",
   "books": [
+    {
+      "title": "دانشمند",
+      "href": "https://www.goodreads.com/review/show/8950058174?utm_medium=api&utm_source=rss",
+      "alt": "دانشمند",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1712835419l/211108503._SX318_.jpg",
+      "imageLocal": "/assets/images/goodreads/211108503-book.webp",
+      "imageFileName": "211108503-book.webp",
+      "dateRead": "2026-09-21T00:00:00Z"
+    },
     {
       "title": "The Decagon House Murders (House Murders, #1)",
       "href": "https://www.goodreads.com/review/show/8957308003?utm_medium=api&utm_source=rss",
