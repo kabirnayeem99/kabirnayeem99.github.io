@@ -1,6 +1,24 @@
 {
-  "generatedAt": "2026-09-22T07:38:50.730671Z",
+  "generatedAt": "2026-09-27T08:03:58.517541Z",
   "books": [
+    {
+      "title": "The Secret Adversary (Tommy and Tuppence Mysteries, #1)",
+      "href": "https://www.goodreads.com/review/show/8970550393?utm_medium=api&utm_source=rss",
+      "alt": "The Secret Adversary (Tommy and Tuppence Mysteries, #1)",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1331721280l/49596.jpg",
+      "imageLocal": "/assets/images/goodreads/49596-the-secret-adversary-tommy-and-tuppence-mysteries-1.webp",
+      "imageFileName": "49596-the-secret-adversary-tommy-and-tuppence-mysteries-1.webp",
+      "dateRead": "2026-09-26T00:00:00Z"
+    },
+    {
+      "title": "One of Us Is Next (One of Us Is Lying, #2)",
+      "href": "https://www.goodreads.com/review/show/8966688094?utm_medium=api&utm_source=rss",
+      "alt": "One of Us Is Next (One of Us Is Lying, #2)",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1558455815l/44654627.jpg",
+      "imageLocal": "/assets/images/goodreads/44654627-one-of-us-is-next-one-of-us-is-lying-2.webp",
+      "imageFileName": "44654627-one-of-us-is-next-one-of-us-is-lying-2.webp",
+      "dateRead": "2026-09-22T12:56:02-07:00"
+    },
     {
       "title": "دانشمند",
       "href": "https://www.goodreads.com/review/show/8950058174?utm_medium=api&utm_source=rss",
