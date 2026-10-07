@@ -1,6 +1,42 @@
 {
-  "generatedAt": "2026-09-27T08:03:58.517541Z",
+  "generatedAt": "2026-10-07T12:11:36.747469Z",
   "books": [
+    {
+      "title": "The Name of the Wind (The Kingkiller Chronicle, #1)",
+      "href": "https://www.goodreads.com/review/show/8976103511?utm_medium=api&utm_source=rss",
+      "alt": "The Name of the Wind (The Kingkiller Chronicle, #1)",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1704917687l/186074._SY475_.jpg",
+      "imageLocal": "/assets/images/goodreads/186074-the-name-of-the-wind-the-kingkiller-chronicle-1.webp",
+      "imageFileName": "186074-the-name-of-the-wind-the-kingkiller-chronicle-1.webp",
+      "dateRead": "2026-10-06T00:00:00Z"
+    },
+    {
+      "title": "الإمارة الإسلامية ونظامها",
+      "href": "https://www.goodreads.com/review/show/8998651717?utm_medium=api&utm_source=rss",
+      "alt": "الإمارة الإسلامية ونظامها",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1653763048l/61182207._SX318_.jpg",
+      "imageLocal": "/assets/images/goodreads/61182207-book.webp",
+      "imageFileName": "61182207-book.webp",
+      "dateRead": "2026-10-04T09:49:08-07:00"
+    },
+    {
+      "title": "উম্মাহর ঐক্য: পথ ও পন্থা",
+      "href": "https://www.goodreads.com/review/show/8997960965?utm_medium=api&utm_source=rss",
+      "alt": "উম্মাহর ঐক্য: পথ ও পন্থা",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1356019937l/16170006.jpg",
+      "imageLocal": "/assets/images/goodreads/16170006-book.webp",
+      "imageFileName": "16170006-book.webp",
+      "dateRead": "2026-10-04T04:08:12-07:00"
+    },
+    {
+      "title": "ঈমান সবার আগে",
+      "href": "https://www.goodreads.com/review/show/8997960612?utm_medium=api&utm_source=rss",
+      "alt": "ঈমান সবার আগে",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1401172711l/18398338.jpg",
+      "imageLocal": "/assets/images/goodreads/18398338-book.webp",
+      "imageFileName": "18398338-book.webp",
+      "dateRead": "2026-10-04T04:07:58-07:00"
+    },
     {
       "title": "The Secret Adversary (Tommy and Tuppence Mysteries, #1)",
       "href": "https://www.goodreads.com/review/show/8970550393?utm_medium=api&utm_source=rss",
@@ -1928,6 +1964,15 @@
       "dateRead": "2018-03-26T00:00:00Z"
     },
     {
+      "title": "হিমু সমগ্র ২",
+      "href": "https://www.goodreads.com/review/show/2383193142?utm_medium=api&utm_source=rss",
+      "alt": "হিমু সমগ্র ২",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1436252710l/25864607.jpg",
+      "imageLocal": "/assets/images/goodreads/25864607-book.webp",
+      "imageFileName": "25864607-book.webp",
+      "dateRead": "2018-01-01T00:00:00Z"
+    },
+    {
       "title": "The Metamorphosis",
       "href": "https://www.goodreads.com/review/show/2577645666?utm_medium=api&utm_source=rss",
       "alt": "The Metamorphosis",
@@ -2186,15 +2231,6 @@
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1345211780l/15832936.jpg",
       "imageLocal": "/assets/images/goodreads/15832936-16.webp",
       "imageFileName": "15832936-16.webp",
-      "dateRead": "2018-01-01T00:00:00Z"
-    },
-    {
-      "title": "হিমু সমগ্র ২য় খণ্ড",
-      "href": "https://www.goodreads.com/review/show/2383193142?utm_medium=api&utm_source=rss",
-      "alt": "হিমু সমগ্র ২য় খণ্ড",
-      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1505235014l/36228523._SX318_.jpg",
-      "imageLocal": "/assets/images/goodreads/36228523-book.webp",
-      "imageFileName": "36228523-book.webp",
       "dateRead": "2018-01-01T00:00:00Z"
     },
     {
