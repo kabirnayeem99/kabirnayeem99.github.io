@@ -1,14 +1,27 @@
 ---
+import type { BotanicalName } from "../../lib/botanicals";
+import { isTallBotanical } from "../../lib/notebook";
 import type { ContentCard } from "../../lib/work-project-content";
+import Botanical from "./Botanical.astro";
 
 interface Props {
   readonly card: ContentCard;
+  readonly botanical?: BotanicalName;
 }
 
-const { card } = Astro.props;
+const { card, botanical } = Astro.props;
 ---
 
 <article class="highlight">
+  <span class="peel-flap" aria-hidden="true"></span>
+  {
+    botanical ? (
+      <Botanical
+        name={botanical}
+        class={isTallBotanical(botanical) ? "pinned pinned--tall" : "pinned"}
+      />
+    ) : null
+  }
   <h3>
     {
       card.href ? (
@@ -20,7 +33,6 @@ const { card } = Astro.props;
       )
     }
   </h3>
-  {card.meta ? <p class="meta">{card.meta}</p> : null}
   {card.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
   {
     card.bullets.length > 0 ? (
@@ -31,4 +43,5 @@ const { card } = Astro.props;
       </ul>
     ) : null
   }
+  {card.meta ? <p class="meta">{card.meta}</p> : null}
 </article>

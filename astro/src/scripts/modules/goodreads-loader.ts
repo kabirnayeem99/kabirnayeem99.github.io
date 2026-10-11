@@ -77,12 +77,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isIndexPage = document.body?.getAttribute("data-page-id") === "index";
   const statsBooksHref = widget.dataset.statsBooksHref ?? null;
-  const INDEX_BOOK_LIMIT = 16;
+  const INDEX_BOOK_LIMIT = 9;
 
   const applyIndexBookLimit = (): void => {
     if (!isIndexPage || typeof statsBooksHref !== "string" || statsBooksHref.length === 0) {
       return;
     }
+
+    // Keep the server-rendered "show all" card so it can be re-appended after the books.
+    const serverPlaceholder = widget.querySelector<HTMLElement>(".gr_grid_book_placeholder");
+    serverPlaceholder?.remove();
 
     // Strip <br> clears and any Goodreads branding links/paragraphs injected by their script.
     widget.querySelectorAll(".gr_grid_book_placeholder, br").forEach((el) => el.remove());
@@ -98,23 +102,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (i >= INDEX_BOOK_LIMIT) el.remove();
     });
 
-    // Append the show-more placeholder as the next float in the grid.
+    // Re-append the show-all card as the last slot on the shelf.
+    if (serverPlaceholder instanceof HTMLElement) {
+      container.appendChild(serverPlaceholder);
+      return;
+    }
     const placeholder = document.createElement("div");
     placeholder.className = "gr_grid_book_placeholder";
     const link = document.createElement("a");
+    link.className = "shelf-more-card";
     link.href = statsBooksHref;
-    link.textContent = "Browse all my reads";
+    const label = document.createElement("span");
+    label.className = "shelf-more-label";
+    label.textContent = "Show all read books";
+    link.appendChild(label);
     placeholder.appendChild(link);
-
-    // Match exact rendered size of the book covers (Goodreads script may set its own dimensions).
-    const firstBook = container.querySelector<HTMLElement>(".gr_grid_book_container");
-    if (firstBook instanceof HTMLElement) {
-      const h = firstBook.offsetHeight;
-      const w = firstBook.offsetWidth;
-      if (h > 0) placeholder.style.height = `${h}px`;
-      if (w > 0) placeholder.style.width = `${w}px`;
-    }
-
     container.appendChild(placeholder);
   };
 
@@ -150,6 +152,27 @@ document.addEventListener("DOMContentLoaded", () => {
       if (key !== null) keys.push(key);
     });
     return keys;
+  };
+
+  // Live Goodreads markup is a bare cover link; tape a title strip under it so a newly
+  // arrived book matches the server-rendered shelf (no read date is available here).
+  const tapeBook = (book: HTMLElement): HTMLElement => {
+    book.querySelectorAll(".book-catalogue-title").forEach((el) => el.remove());
+    const link = book.querySelector<HTMLAnchorElement>("a[href]");
+    if (link instanceof HTMLAnchorElement) {
+      link.setAttribute("data-cursor-plain", "");
+      if (book.querySelector(".book-strip--title") === null) {
+        const title = link.getAttribute("title") ?? link.querySelector("img")?.getAttribute("alt") ?? "";
+        if (title.length > 0) {
+          const strip = document.createElement("span");
+          strip.className = "book-strip book-strip--title";
+          strip.dir = "auto";
+          strip.textContent = title;
+          link.after(strip);
+        }
+      }
+    }
+    return book;
   };
 
   const prefersReducedMotion = (): boolean =>
@@ -195,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
     newKeys.forEach((key) => {
       const fresh = sourceByKey.get(key);
       if (!fresh) return;
-      enteringNodes.push(fresh.cloneNode(true) as HTMLElement);
+      enteringNodes.push(tapeBook(fresh.cloneNode(true) as HTMLElement));
     });
 
     const finalNodes: HTMLElement[] = [

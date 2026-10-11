@@ -1,35 +1,53 @@
 ---
+import { clippingMast } from "../../lib/notebook";
+import Botanical from "./Botanical.astro";
+
 interface BlogArticle {
   readonly title: string;
   readonly href: string;
-  readonly meta: string;
+  readonly meta?: string;
   readonly summary: string;
 }
 
 interface Props {
   readonly articles: readonly BlogArticle[];
+  readonly withFlowers?: boolean;
 }
 
-const { articles } = Astro.props;
+const { articles, withFlowers = true } = Astro.props;
 ---
 
 <section>
+  {
+    withFlowers ? (
+      <>
+        <Botanical name="buds" class="pf pf--end pf--tall-wide pf--tilt-r" />
+        <Botanical name="cosmos-head" class="pf pf--start pf--head-small pf--tilt-l" />
+      </>
+    ) : null
+  }
   <ul class="article-list">
     {
-      articles.map((article) => (
-        <li class="article-item">
-          <a
-            href={article.href}
-            target="_blank"
-            rel="noreferrer"
-            data-umami-track-article="true"
-          >
-            <h3>{article.title}</h3>
-            <p class="meta">{article.meta}</p>
-            <p>{article.summary}</p>
-          </a>
-        </li>
-      ))
+      articles.map((article) => {
+        const mast = clippingMast(article.href, article.meta);
+        return (
+          <li class="article-item">
+            <a
+              href={article.href}
+              target="_blank"
+              rel="noreferrer"
+              data-umami-track-article="true"
+            >
+              <span class="clipping-mast" aria-hidden="true">
+                <b>{mast.publication}</b>
+                {mast.topic ? <span>{mast.topic}</span> : null}
+              </span>
+              <h3>{article.title}</h3>
+              <p>{article.summary}</p>
+            </a>
+          </li>
+        );
+      })
     }
   </ul>
 </section>

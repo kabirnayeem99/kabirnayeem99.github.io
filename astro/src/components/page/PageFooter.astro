@@ -1,19 +1,41 @@
 ---
+import { LANGS, type Lang } from "../../lib/locale-config";
+import { formatMarginDate } from "../../lib/notebook";
+
 interface Props {
   readonly footerHtml: string;
   readonly lastUpdatedLabel: string;
   readonly timestampIso: string;
   readonly timestampDisplay: string;
+  readonly signature?: string;
 }
 
-const { footerHtml, lastUpdatedLabel, timestampIso, timestampDisplay } =
+const { footerHtml, lastUpdatedLabel, timestampIso, timestampDisplay, signature } =
   Astro.props;
+
+// Localized pages live under /bn/, /ar/, /ur/ (or bn.html, ar.html, ur.html for home).
+const firstSegment = Astro.url.pathname.split("/").find((part) => part.length > 0) ?? "";
+const pathLang = firstSegment.replace(/\.html$/, "");
+const lang: Lang = (LANGS as readonly string[]).includes(pathLang) ? (pathLang as Lang) : "en";
+const shortDate = formatMarginDate(timestampIso, lang);
 ---
 
 <footer class="site-colophon">
+  <div class="footer-signoff">
+    {
+      signature ? (
+        <p class="footer-signature">
+          <span>{signature}</span>
+          <svg class="footer-flourish" viewBox="0 0 300 40" aria-hidden="true" focusable="false">
+            <path d="M6 26C40 30 70 12 104 18s52 16 88 6 60-18 82-6c10 6 4 14-6 12" />
+          </svg>
+        </p>
+      ) : null
+    }
+    <p class="footer-last-updated">
+      <span class="visually-hidden">{`${lastUpdatedLabel}: `}</span>
+      <time datetime={timestampIso} title={`${lastUpdatedLabel}: ${timestampDisplay}`}>{shortDate}</time>
+    </p>
+  </div>
   <p class="footer-copy" set:html={footerHtml} />
-  <p class="footer-last-updated">
-    {`${lastUpdatedLabel}, `}
-    <time datetime={timestampIso}>{timestampDisplay}</time>.
-  </p>
 </footer>

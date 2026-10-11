@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "css:build": "esbuild public/assets/css/styles.source.css --minify --outfile=public/assets/css/styles.css --log-level=warning",
+    "css:watch": "esbuild public/assets/css/styles.source.css --minify --outfile=public/assets/css/styles.css --watch=forever --log-level=info",
+    "prebuild": "npm run css:build",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",

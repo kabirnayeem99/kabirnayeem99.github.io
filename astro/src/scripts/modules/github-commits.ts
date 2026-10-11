@@ -299,10 +299,11 @@ document.addEventListener("DOMContentLoaded", () => {
     less.textContent = "Less";
     legendEl.appendChild(less);
 
-    HEATMAP_SCALE.forEach((color) => {
+    HEATMAP_SCALE.forEach((color, level) => {
       const swatch = document.createElement("span");
       swatch.className = "github-heatmap-legend-swatch";
       swatch.style.backgroundColor = color;
+      swatch.dataset.level = String(level);
       legendEl.appendChild(swatch);
     });
 
@@ -337,6 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const label = `${formatNumber(day.count)} contributions on ${formatDate(day.date)}`;
 
         dot.style.backgroundColor = color;
+        dot.dataset.level = String(level);
         dot.setAttribute("aria-label", label);
         dot.title = label;
       }

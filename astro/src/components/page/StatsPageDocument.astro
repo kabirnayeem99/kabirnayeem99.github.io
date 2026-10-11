@@ -1,4 +1,5 @@
 ---
+import Botanical from "./Botanical.astro";
 import ClosePageHeader from "./ClosePageHeader.astro";
 import HeadSeo from "./HeadSeo.astro";
 import PageFooter from "./PageFooter.astro";
@@ -12,6 +13,7 @@ import {
 } from "../../lib/page-shared";
 import { buildBreadcrumb, buildSchemaGraphJson } from "../../lib/seo";
 import { transliterateLocalizedText } from "../../lib/content-loader-shared";
+import { formatReadDate } from "../../lib/notebook";
 import { loadStatsPageContent, statsEmbedThemeSources } from "../../lib/stats-content";
 import {
   assetHref,
@@ -141,6 +143,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
   ...book,
   title: transliterateLocalizedText(book.title, lang),
   alt: transliterateLocalizedText(book.alt, lang),
+  readDate: formatReadDate((book as { dateRead?: string }).dateRead, lang),
 }));
 ---
 
@@ -195,18 +198,11 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
         title={content.header.siteTitle}
       />
       <main id={PAGE_LAYOUT.mainContentId} class="stats-report">
-        <span class="margin-doodle margin-doodle--reader" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--book" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--arrow" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--cloud" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--work" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--notes" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--game" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--feather" aria-hidden="true"></span>
         <section class="stats-report-intro">
           {content.intro.map((paragraph) => <p>{paragraph}</p>)}
         </section>
         <section class="stats-report-section stats-report-section--wakatime">
+          <Botanical name="cosmos-nod" class="pf pf--start pf--tall pf--tilt-l" />
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.wakatime.title}</h2>
             <div
@@ -232,6 +228,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
           </div>
         </section>
         <section class="stats-report-section stats-report-section--github">
+          <Botanical name="fern" class="pf pf--end pf--fern pf--tilt-l" />
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.githubCommits.title}</h2>
             <p>{content.sections.githubCommits.description}</p>
@@ -307,6 +304,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
           </div>
         </section>
         <section class="stats-report-section stats-report-section--leetcode">
+          <Botanical name="poppy" class="pf pf--start pf--tall pf--tilt-r" />
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.leetcode.title}</h2>
             <p set:html={content.sections.leetcode.copy}></p>
@@ -365,6 +363,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
           </div>
         </section>
         <section class="stats-report-section stats-report-section--learning">
+          <Botanical name="buds" class="pf pf--end pf--tall-wide pf--tilt-r" />
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.learningPath.title}</h2>
             <p set:html={content.sections.learningPath.copy}></p>
@@ -390,6 +389,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
           </div>
         </section>
         <section class="stats-report-section stats-report-section--books" data-umami-track-view="books-full">
+          <Botanical name="wheat" class="pf pf--start pf--slim" />
           <div class="summary-card stats-card stats-bookshelf">
             <h2 class="section-title">{content.sections.goodreads.title}</h2>
             <p>{content.sections.goodreads.copy}</p>
@@ -397,15 +397,25 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
               <div class="gr_grid_container">
                 {goodreadsBooks.map((book) => (
                   <div class="gr_grid_book_container">
-                    <a title={book.title} rel="nofollow noreferrer" href={book.href} target="_blank" data-umami-track-book="true">
-                        <img
-                          alt={book.alt}
+                    {book.readDate ? (
+                      <span class="book-strip book-strip--date" dir="auto">{book.readDate}</span>
+                    ) : null}
+                    <a
+                      title={book.title}
+                      rel="nofollow noreferrer"
+                      href={book.href}
+                      target="_blank"
+                      data-umami-track-book="true"
+                      data-cursor-plain
+                    >
+                      <img
+                        alt={book.alt}
                         src={assetHref(content.route, book.imageLocal.replace(/^\/+/, ""))}
                         loading="lazy"
-                          decoding="async"
-                        />
-                        <span class="book-catalogue-title">{book.title}</span>
-                      </a>
+                        decoding="async"
+                      />
+                    </a>
+                    <span class="book-strip book-strip--title" dir="auto">{book.title}</span>
                   </div>
                 ))}
               </div>
@@ -419,6 +429,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
         </section>
       </main>
       <PageFooter
+        signature={content.site.locale.author}
         footerHtml={content.footerHtml}
         lastUpdatedLabel={uiLabels.lastUpdated}
         timestampIso={buildTimestamp.iso}

@@ -1,6 +1,9 @@
 ---
 import { Image } from "astro:assets";
+import HandArrow from "./HandArrow.astro";
 import BackToTopButton from "./BackToTopButton.astro";
+import Botanical from "./Botanical.astro";
+import BotanicalSprite from "./BotanicalSprite.astro";
 import HeaderControls from "./HeaderControls.astro";
 import HeadSeo from "./HeadSeo.astro";
 import HighlightCard from "./HighlightCard.astro";
@@ -30,6 +33,13 @@ import {
   resolveSocialPlatformFromHref,
 } from "../../lib/social-chip-icons";
 import { buildSchemaGraphJson } from "../../lib/seo";
+import {
+  clippingMast,
+  formatMarginDate,
+  formatReadDate,
+  MASTHEAD_KICKER,
+  pinnedBotanical,
+} from "../../lib/notebook";
 import {
   assetHref,
   buildOgLocaleAlternates,
@@ -218,7 +228,30 @@ const socialChips: readonly SocialChip[] = [
   ...topSocialChips,
   ...profileSocialChips,
 ];
-const goodreadsBooks = goodreadsSnapshot.books.slice(0, 16);
+// The home shelf pastes a handful of covers; the stats page holds the full wall.
+const goodreadsBooks = goodreadsSnapshot.books.slice(0, 9).map((book) => ({
+  ...book,
+  readDate: formatReadDate((book as { dateRead?: string }).dateRead, lang),
+}));
+const marginDate = formatMarginDate(buildTimestamp.iso, lang);
+
+// Last slot on the home shelf: a cover-sized library card linking to the full list.
+const SHELF_MORE_LABEL: Readonly<Record<Lang, string>> = {
+  en: "Show all read books",
+  bn: "পড়া সব বই দেখুন",
+  ar: "عَرْضُ كُلِّ ٱلْكُتُبِ ٱلْمَقْرُوءَةِ",
+  ur: "پڑھی ہوئی تمام کتابیں دیکھیں",
+};
+const SHELF_MORE_COUNT: Readonly<Record<Lang, (count: string) => string>> = {
+  en: (count) => `+${count} more`,
+  bn: (count) => `আরও ${count}টি`,
+  ar: (count) => `+${count} أُخْرَى`,
+  ur: (count) => `مزید ${count}`,
+};
+const NUMBER_LOCALE: Readonly<Record<Lang, string>> = { en: "en-GB", bn: "bn-BD", ar: "ar-EG", ur: "ur-PK" };
+// The stats page lists at most 300 books.
+const remainingBooks = Math.max(0, Math.min(goodreadsSnapshot.books.length, 300) - goodreadsBooks.length);
+const shelfMoreCount = SHELF_MORE_COUNT[lang](new Intl.NumberFormat(NUMBER_LOCALE[lang]).format(remainingBooks));
 const statsBooksHref = `${routeHref(currentRoute, routeForAction("stats"))}#gr_grid_widget_${content.statsCompact.goodreads.widgetId}`;
 
 const viewAllStatsAction: IndexAction = {
@@ -227,18 +260,25 @@ const viewAllStatsAction: IndexAction = {
   variant: "secondary",
 };
 
-const skillChips = [
-  "Kotlin", "Swift", "Dart", "Python", "PHP", "Go", "TypeScript", "SQL",
-  "Android", "iOS", "Flutter", "Kotlin Multiplatform", "macOS",
-  "Laravel", "Computer Vision", "Linux CLI",
-  "Agile", "Scrum", "Kanban",
-  "Bangla", "Urdu", "English",
-] as const;
+type SkillKind = "language" | "platform" | "craft" | "process" | "spoken";
 
-// The languages/platforms/frameworks slice of skillChips, echoed right under the
-// about copy so the stack it namedrops is scannable at a glance without jumping
-// down to the fuller "Skills & Languages" chip cloud further down the page.
-const coreStackChips = skillChips.slice(0, 16);
+// Skills are filed by kind: one index card per kind in the card-file box.
+const skillChips: readonly { readonly label: string; readonly kind: SkillKind }[] = [
+  ...["Kotlin", "Swift", "Dart", "Python", "PHP", "Go", "TypeScript", "SQL"].map((label) => ({ label, kind: "language" as const })),
+  ...["Android", "iOS", "Flutter", "Kotlin Multiplatform", "macOS"].map((label) => ({ label, kind: "platform" as const })),
+  ...["Laravel", "Computer Vision", "Linux CLI"].map((label) => ({ label, kind: "craft" as const })),
+  ...["Agile", "Scrum", "Kanban"].map((label) => ({ label, kind: "process" as const })),
+  ...["Bangla", "Urdu", "English"].map((label) => ({ label, kind: "spoken" as const })),
+];
+
+const SKILL_LEGEND: Readonly<Record<Lang, Readonly<Record<SkillKind, string>>>> = {
+  en: { language: "languages", platform: "platforms", craft: "frameworks & domains", process: "process", spoken: "spoken" },
+  bn: { language: "প্রোগ্রামিং ভাষা", platform: "প্ল্যাটফর্ম", craft: "ফ্রেমওয়ার্ক ও ক্ষেত্র", process: "কর্মপদ্ধতি", spoken: "কথ্য ভাষা" },
+  ar: { language: "لُغَاتُ ٱلْبَرْمَجَةِ", platform: "ٱلْمِنَصَّاتُ", craft: "أُطُرٌ وَمَجَالَاتٌ", process: "مَنْهَجِيَّاتُ ٱلْعَمَلِ", spoken: "لُغَاتٌ مَحْكِيَّةٌ" },
+  ur: { language: "پروگرامنگ زبانیں", platform: "پلیٹ فارمز", craft: "فریم ورک اور شعبے", process: "طریقۂ کار", spoken: "بولی جانے والی زبانیں" },
+};
+const skillLegend = SKILL_LEGEND[lang];
+const skillKinds: readonly SkillKind[] = ["language", "platform", "craft", "process", "spoken"];
 
 const visibleSections = content.sections.filter((section) => section.tags.length === 0);
 const [leadSection, ...remainingSections] = visibleSections;
@@ -300,217 +340,180 @@ function buildSectionClassName(
     data-sw-path={pageAssets.swPath}
     data-goodreads-script-src={goodreadsScriptSource}
   >
+    <BotanicalSprite />
     <a class={PAGE_LAYOUT.skipLinkClass} href={`#${PAGE_LAYOUT.mainContentId}`}>
       {uiLabels.skipToMain}
     </a>
     <div class={PAGE_LAYOUT.siteClass}>
       <header id="top">
-        <HeaderControls
-          currentRoute={currentRoute}
-          darkModeIconHref={darkModeIconHref}
-          lang={lang}
-          languageLinks={content.routes.index}
-          languageMenuId={menuId}
-          languageMenuLabels={content.site.languageMenuLabels}
-          languageSwitcherLabel={content.site.locale.languageSwitcherLabel}
-          lightModeIconHref={lightModeIconHref}
-          themeDarkLabel={uiLabels.themeDark}
-          themeLightLabel={uiLabels.themeLight}
-        />
-
-        <div class="header-identity">
-          <button
-            class="hero-avatar-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-label={heroAvatarUi.showLabel}
-            title={heroAvatarUi.showLabel}
-            data-hero-avatar-toggle
-            data-label-show={heroAvatarUi.showLabel}
-            data-label-hide={heroAvatarUi.hideLabel}
-          >
-            <span class="visually-hidden">{heroAvatarUi.hint}</span>
-            <span class="hero-avatar-card">
-              <span class="hero-avatar-flip">
-                <span class="hero-avatar-face hero-avatar-face--front">
-                  <Image
-                    class="hero-illustration"
-                    alt={content.site.locale.ogImageAlt}
-                    src={heroLogo}
-                    width={1024}
-                    height={1024}
-                    loading="eager"
-                    decoding="async"
-                    fetchpriority="high"
-                  />
-                </span>
-                <span
-                  class="hero-avatar-face hero-avatar-face--back"
-                  aria-hidden="true"
-                >
-                  <Image
-                    class="hero-qr-code"
-                    alt=""
-                    src={profileQr}
-                    width={512}
-                    height={512}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </span>
-              </span>
-            </span>
-          </button>
+        <Botanical name="euc" class="pf pf--head" />
+        <div class="masthead">
           <div class="header-identity-copy">
+            <p class="masthead-kicker">{MASTHEAD_KICKER[lang]}</p>
             <h1 class="site-title">{content.header.siteTitle}</h1>
             <p class="tagline">{content.header.tagline}</p>
           </div>
+          <HeaderControls
+            currentRoute={currentRoute}
+            darkModeIconHref={darkModeIconHref}
+            lang={lang}
+            languageLinks={content.routes.index}
+            languageMenuId={menuId}
+            languageMenuLabels={content.site.languageMenuLabels}
+            languageSwitcherLabel={content.site.locale.languageSwitcherLabel}
+            lightModeIconHref={lightModeIconHref}
+            themeDarkLabel={uiLabels.themeDark}
+            themeLightLabel={uiLabels.themeLight}
+          />
         </div>
-
-        <div class="social-chip-row" aria-label={content.socialRowLabel}>
-          {
-            socialChips.map((chip) => (
-              <a
-                class="social-chip"
-                href={chip.href}
-                target={chip.isExternal ? "_blank" : undefined}
-                rel={chip.isExternal ? "noreferrer" : undefined}
-                aria-label={chip.ariaLabel}
-                data-umami-track-social="true"
-                data-social-platform={chip.iconName}
-              >
-                <span
-                  class={`social-chip-icon ${SOCIAL_CHIP_ICON_CLASS_BY_NAME[chip.iconName]}`}
-                  aria-hidden="true"
-                />
-                <span>{chip.text}</span>
-              </a>
-            ))
-          }
-        </div>
-
         <PageNav items={buildMainNav(currentRoute)} />
       </header>
 
       <main id={PAGE_LAYOUT.mainContentId}>
-        <span class="margin-doodle margin-doodle--reader" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--book" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--arrow" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--work" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--notes" aria-hidden="true"></span>
-        <span class="margin-doodle margin-doodle--cloud" aria-hidden="true"></span>
         <div class="intro-stage">
           <section class="about-section intro-stage-primary">
             <div class="summary-card summary-card--about">
               {content.summaryCard.map((paragraph) => <p set:html={paragraph} />)}
-              <div class="skill-tag-cloud about-stack-cloud">
-                {coreStackChips.map((skill) => (
-                  <span class="skill-tag">{skill}</span>
-                ))}
-              </div>
+            </div>
+            {topSocialChips.length > 0 ? <HandArrow variant="curl" class="hand-arrow--to-contact" /> : null}
+            <div class="social-chip-row" aria-label={content.socialRowLabel}>
+              {
+                socialChips.map((chip) => (
+                  <a
+                    class="social-chip"
+                    href={chip.href}
+                    target={chip.isExternal ? "_blank" : undefined}
+                    rel={chip.isExternal ? "noreferrer" : undefined}
+                    aria-label={chip.ariaLabel}
+                    data-umami-track-social="true"
+                    data-social-platform={chip.iconName}
+                  >
+                    <span
+                      class={`social-chip-icon ${SOCIAL_CHIP_ICON_CLASS_BY_NAME[chip.iconName]}`}
+                      aria-hidden="true"
+                    />
+                    <span>{chip.text}</span>
+                  </a>
+                ))
+              }
             </div>
           </section>
 
-          {
-            leadSection ? (
-              <section
-                class={`${buildSectionClassName(leadSection, "lead")} intro-stage-secondary`}
-              >
-                <div class="section-head">
-                  <h2 class="section-title section-title--minor">
-                    {leadSection.title}
-                  </h2>
-                  {leadSection.actions.length > 0 ? (
-                    <div class="section-actions">
-                      {leadSection.actions.map((action) => {
-                        const resolved = resolveAction(action);
-                        return (
-                          <a
-                            class={resolved.variantClass}
-                            href={resolved.href}
-                            target={resolved.isExternal ? "_blank" : undefined}
-                            rel={resolved.isExternal ? "noreferrer" : undefined}
-                            data-nav-page-id={resolved.navPageId}
-                          >
-                            {resolved.isMailto ? (
-                              <span
-                                class="action-chip-icon action-chip-icon--mail"
-                                aria-hidden="true"
-                              />
-                            ) : null}
-                            <span>{resolved.labelText}</span>
-                            {resolved.showTrailingArrow ? (
-                              <span
-                                class="action-chip-arrow"
-                                aria-hidden="true"
-                              />
-                            ) : null}
-                          </a>
-                        );
-                      })}
-                    </div>
-                  ) : null}
-                </div>
+          <div class="intro-stage-figure">
+            <Botanical name="shapla" class="pf pf--sleeve-lily" />
+            <Botanical name="cosmos-head" class="pf pf--sleeve-cosmos" />
+            <button
+              class="hero-avatar-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-label={heroAvatarUi.showLabel}
+              title={heroAvatarUi.showLabel}
+              data-hero-avatar-toggle
+              data-label-show={heroAvatarUi.showLabel}
+              data-label-hide={heroAvatarUi.hideLabel}
+            >
+              <span class="visually-hidden">{heroAvatarUi.hint}</span>
+              <span class="hero-avatar-card" data-paper-flutter>
+                <span class="peel-flap" aria-hidden="true"></span>
+                <span class="hero-avatar-flip">
+                  <span class="hero-avatar-face hero-avatar-face--front">
+                    <Image
+                      class="hero-illustration"
+                      alt={content.site.locale.ogImageAlt}
+                      src={heroLogo}
+                      width={1024}
+                      height={1024}
+                      loading="eager"
+                      decoding="async"
+                      fetchpriority="high"
+                    />
+                  </span>
+                  <span class="hero-avatar-face hero-avatar-face--back" aria-hidden="true">
+                    <Image
+                      class="hero-qr-code"
+                      alt=""
+                      src={profileQr}
+                      width={512}
+                      height={512}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {
+          leadSection ? (
+            <section class={buildSectionClassName(leadSection, "lead")}>
+              <div class="section-head">
+                <h2 class="section-title">{leadSection.title}</h2>
+              </div>
+              <Botanical name="sprig" class="sprig" />
+              <div class="entry">
+                <span class="margin-note" aria-hidden="true">{marginDate}</span>
                 {leadSection.paragraphs.map((paragraph) => (
                   <p set:html={paragraph} />
                 ))}
                 {leadSection.contacts.map((contact) => (
                   <p>{contact}</p>
                 ))}
-              </section>
-            ) : null
-          }
-        </div>
+              </div>
+              {leadSection.actions.length > 0 ? (
+                <div class="section-actions">
+                  {leadSection.actions.map((action) => {
+                    const resolved = resolveAction(action);
+                    return (
+                      <a
+                        class={resolved.variantClass}
+                        href={resolved.href}
+                        target={resolved.isExternal ? "_blank" : undefined}
+                        rel={resolved.isExternal ? "noreferrer" : undefined}
+                        data-nav-page-id={resolved.navPageId}
+                      >
+                        <span>{resolved.labelText}</span>
+                        {resolved.showTrailingArrow ? (
+                          <span class="action-chip-arrow" aria-hidden="true" />
+                        ) : null}
+                      </a>
+                    );
+                  })}
+                </div>
+              ) : null}
+              <Botanical name="poppy" class="pf pf--start pf--tall pf--tilt-r" style="inset-block-end: -120px" />
+            </section>
+          ) : null
+        }
 
         {
-          remainingSections.map((section) => (
-              <section class={buildSectionClassName(section)}>
-                <div class="section-head">
-                  <h2 class="section-title">{section.title}</h2>
-                  {section.actions.length > 0 ? (
-                    <div class="section-actions">
-                      {section.actions.map((action) => {
-                        const resolved = resolveAction(action);
-                        return (
-                          <a
-                            class={resolved.variantClass}
-                            href={resolved.href}
-                            target={resolved.isExternal ? "_blank" : undefined}
-                            rel={resolved.isExternal ? "noreferrer" : undefined}
-                            data-nav-page-id={resolved.navPageId}
-                          >
-                            {resolved.isMailto ? (
-                              <span
-                                class="action-chip-icon action-chip-icon--mail"
-                                aria-hidden="true"
-                              />
-                            ) : null}
-                            <span>{resolved.labelText}</span>
-                            {resolved.showTrailingArrow ? (
-                              <span
-                                class="action-chip-arrow"
-                                aria-hidden="true"
-                              />
-                            ) : null}
-                          </a>
-                        );
-                      })}
-                    </div>
-                  ) : null}
+          remainingSections.map((section, sectionIndex) => (
+            <section class={buildSectionClassName(section)}>
+              {sectionIndex % 2 === 0 ? (
+                <Botanical name="cosmos" class="pf pf--end pf--tall-wide pf--tilt-r" />
+              ) : (
+                <Botanical name="buds" class="pf pf--end pf--tall-wide pf--tilt-l" />
+              )}
+              <div class="section-head">
+                <h2 class="section-title">{section.title}</h2>
+              </div>
+              <Botanical name="sprig" class="sprig" />
+              {section.paragraphs.map((paragraph) => (
+                <p set:html={paragraph} />
+              ))}
+              {section.highlights.length > 0 ? (
+                <div class="highlight-list">
+                  {section.highlights.map((highlight, highlightIndex) => (
+                    <HighlightCard card={highlight} botanical={pinnedBotanical(highlightIndex)} />
+                  ))}
                 </div>
-                {section.paragraphs.map((paragraph) => (
-                  <p set:html={paragraph} />
-                ))}
-                {section.highlights.length > 0 ? (
-                  <div class="highlight-list">
-                    {section.highlights.map((highlight) => (
-                      <HighlightCard card={highlight} />
-                    ))}
-                  </div>
-                ) : null}
-                {section.articles.length > 0 ? (
-                  <ul class="article-list">
-                    {section.articles.map((article) => (
+              ) : null}
+              {section.articles.length > 0 ? (
+                <ul class="article-list">
+                  {section.articles.map((article) => {
+                    const mast = clippingMast(article.href);
+                    return (
                       <li class="article-item">
                         <a
                           href={article.href}
@@ -518,117 +521,139 @@ function buildSectionClassName(
                           rel="noreferrer"
                           data-umami-track-article="true"
                         >
+                          <span class="clipping-mast" aria-hidden="true">
+                            <b>{mast.publication}</b>
+                          </span>
                           <h3>{article.title}</h3>
                           <p>{article.summary}</p>
                         </a>
                       </li>
-                    ))}
-                  </ul>
-                ) : null}
-                {section.contacts.map((contact) => (
-                  <p>{contact}</p>
-                ))}
-              </section>
-            ))
-        }
-
-        <section class="index-section index-section--stats" data-umami-track-view="wakatime-stats">
-          <div class="summary-card stats-card skills-card">
-            <div class="section-head">
-              <h2 class="section-title">
-                {content.statsCompact.wakatime.title}
-              </h2>
-              <div class="section-actions">
-                {
-                  (() => {
-                    const resolved = resolveAction(viewAllStatsAction);
+                    );
+                  })}
+                </ul>
+              ) : null}
+              {section.contacts.map((contact) => (
+                <p>{contact}</p>
+              ))}
+              {section.actions.length > 0 ? (
+                <div class="section-actions">
+                  {section.actions.map((action) => {
+                    const resolved = resolveAction(action);
                     return (
                       <a
                         class={resolved.variantClass}
                         href={resolved.href}
+                        target={resolved.isExternal ? "_blank" : undefined}
+                        rel={resolved.isExternal ? "noreferrer" : undefined}
                         data-nav-page-id={resolved.navPageId}
-                        data-nav-source="wakatime"
                       >
+                        {resolved.isMailto ? (
+                          <span class="action-chip-icon action-chip-icon--mail" aria-hidden="true" />
+                        ) : null}
                         <span>{resolved.labelText}</span>
-                        <span class="action-chip-arrow" aria-hidden="true" />
+                        {resolved.showTrailingArrow ? (
+                          <span class="action-chip-arrow" aria-hidden="true" />
+                        ) : null}
                       </a>
                     );
-                  })()
-                }
-              </div>
-            </div>
-            <div class="skill-tag-cloud">
-              {skillChips.map((skill) => (
-                <span class="skill-tag">{skill}</span>
-              ))}
-            </div>
+                  })}
+                </div>
+              ) : null}
+            </section>
+          ))
+        }
+
+        <section class="index-section index-section--stats" data-umami-track-view="wakatime-stats">
+          <Botanical name="cosmos-head" class="pf pf--start pf--head-small pf--tilt-r" />
+          <div class="section-head">
+            <h2 class="section-title">{content.statsCompact.wakatime.title}</h2>
+          </div>
+          <Botanical name="sprig" class="sprig" />
+          <div class="card-file" data-label={content.header.siteTitle}>
+            {skillKinds.map((kind) => (
+              <article class="file-card" data-skill-kind={kind}>
+                <h3 class="file-card-tab">{skillLegend[kind]}</h3>
+                <ul>
+                  {skillChips
+                    .filter((skill) => skill.kind === kind)
+                    .map((skill) => (
+                      <li>{skill.label}</li>
+                    ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <div class="section-actions">
+            {
+              (() => {
+                const resolved = resolveAction(viewAllStatsAction);
+                return (
+                  <a
+                    class={resolved.variantClass}
+                    href={resolved.href}
+                    data-nav-page-id={resolved.navPageId}
+                    data-nav-source="wakatime"
+                  >
+                    <span>{resolved.labelText}</span>
+                    <span class="action-chip-arrow" aria-hidden="true" />
+                  </a>
+                );
+              })()
+            }
           </div>
         </section>
 
         <section class="index-section index-section--books books-shelf-section" data-umami-track-view="books">
-          <div class="summary-card stats-card books-shelf stats-bookshelf">
-            <div class="section-head">
-              <h2 class="section-title">
-                {content.statsCompact.goodreads.title}
-              </h2>
-              <div class="section-actions">
-                {
-                  (() => {
-                    const resolved = resolveAction(viewAllStatsAction);
-                    return (
-                      <a
-                        class={resolved.variantClass}
-                        href={resolved.href}
-                        data-nav-page-id={resolved.navPageId}
-                        data-nav-source="books"
-                      >
-                        <span>{resolved.labelText}</span>
-                        <span class="action-chip-arrow" aria-hidden="true" />
-                      </a>
-                    );
-                  })()
-                }
-              </div>
-            </div>
-            <p>{content.statsCompact.goodreads.copy}</p>
-            <div
-              class="goodreads-widget"
-              id={`gr_grid_widget_${content.statsCompact.goodreads.widgetId}`}
-              data-stats-books-href={statsBooksHref}
-            >
-              <div class="gr_grid_container">
-                {
-                  goodreadsBooks.map((book) => (
-                    <div class="gr_grid_book_container">
-                      <a
-                        title={book.title}
-                        rel="nofollow noreferrer"
-                        href={book.href}
-                        target="_blank"
-                        data-umami-track-book="true"
-                      >
-                          <img
-                            alt={book.alt}
-                          src={assetHref(
-                            currentRoute,
-                            book.imageLocal.replace(/^\/+/, ""),
-                          )}
-                          loading="lazy"
-                            decoding="async"
-                          />
-                          <span class="book-catalogue-title">{book.title}</span>
-                        </a>
-                    </div>
-                  ))
-                }
-                <div class="gr_grid_book_placeholder">
-                  <a
-                    href={statsBooksHref}
-                    aria-label="Browse all my books"
-                    data-umami-track-book="true"
-                    title="All books"
-                  >All books</a>
-                </div>
+          <Botanical name="fern" class="pf pf--end pf--fern pf--tilt-l" />
+          <Botanical name="wheat" class="pf pf--start pf--slim" style="inset-block-start: 40%" />
+          <div class="section-head">
+            <h2 class="section-title">{content.statsCompact.goodreads.title}</h2>
+          </div>
+          <Botanical name="sprig" class="sprig" />
+          <p>{content.statsCompact.goodreads.copy}</p>
+          <div
+            class="goodreads-widget"
+            id={`gr_grid_widget_${content.statsCompact.goodreads.widgetId}`}
+            data-stats-books-href={statsBooksHref}
+          >
+            <div class="gr_grid_container">
+              {
+                goodreadsBooks.map((book) => (
+                  <div class="gr_grid_book_container">
+                    {book.readDate ? (
+                      <span class="book-strip book-strip--date" dir="auto">{book.readDate}</span>
+                    ) : null}
+                    <a
+                      title={book.title}
+                      rel="nofollow noreferrer"
+                      href={book.href}
+                      target="_blank"
+                      data-umami-track-book="true"
+                      data-cursor-plain
+                    >
+                      <img
+                        alt={book.alt}
+                        src={assetHref(currentRoute, book.imageLocal.replace(/^\/+/, ""))}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                    <span class="book-strip book-strip--title" dir="auto">{book.title}</span>
+                  </div>
+                ))
+              }
+              <div class="gr_grid_book_placeholder">
+                <span class="book-strip book-strip--date book-strip--blank" aria-hidden="true"></span>
+                <a
+                  class="shelf-more-card"
+                  href={statsBooksHref}
+                  data-umami-track-book="true"
+                  data-cursor-plain
+                >
+                  <span class="shelf-more-label">{SHELF_MORE_LABEL[lang]}</span>
+                  <span class="action-chip-arrow" aria-hidden="true"></span>
+                  <span class="shelf-more-pocket" aria-hidden="true"><span>{shelfMoreCount}</span></span>
+                </a>
               </div>
             </div>
           </div>
@@ -636,11 +661,18 @@ function buildSectionClassName(
       </main>
 
       <PageFooter
+        signature={content.site.locale.author}
         footerHtml={content.footerHtml}
         lastUpdatedLabel={uiLabels.lastUpdated}
         timestampIso={buildTimestamp.iso}
         timestampDisplay={buildTimestamp.display}
       />
+      <svg class="pressed pf pf--bouquet" viewBox="0 0 220 200" aria-hidden="true" focusable="false">
+        <use href="#bot-wheat" x="20" y="0" width="40" height="200" />
+        <use href="#bot-cosmos" x="50" y="10" width="70" height="190" />
+        <use href="#bot-euc" x="100" y="20" width="90" height="180" />
+        <use href="#bot-dandelion" x="160" y="30" width="50" height="170" />
+      </svg>
     </div>
 
     <BackToTopButton label={uiLabels.backToTop} />

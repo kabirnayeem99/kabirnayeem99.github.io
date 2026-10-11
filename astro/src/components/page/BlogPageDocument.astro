@@ -90,10 +90,10 @@ const uiLabels = content.site.locale.labels;
         title={content.blog.title}
       />
       <main id={PAGE_LAYOUT.mainContentId}>
-        <span class="margin-doodle margin-doodle--cloud" aria-hidden="true"></span>
         <BlogEntriesSection articles={content.blog.articles} />
       </main>
       <PageFooter
+        signature={content.site.locale.author}
         footerHtml={content.blog.footerHtml}
         lastUpdatedLabel={uiLabels.lastUpdated}
         timestampIso={buildTimestamp.iso}

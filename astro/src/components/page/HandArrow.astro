@@ -1,0 +1,23 @@
+---
+// Hand-drawn red-pen arrow. Used sparingly, only to point at information a visitor
+// should act on or notice (the contact stamp, the current role).
+interface Props {
+  readonly variant: "curl";
+  readonly class?: string;
+}
+
+const { variant, class: className = "" } = Astro.props as Props;
+
+const ARROWS = {
+  curl: {
+    viewBox: "0 0 84 56",
+    paths: ["M3 16C24 5 50 6 62 20s5 22-3 28", "M50 42c3 3 6 5 9 7 1-4 2-8 4-12"],
+  },
+} as const;
+
+const arrow = ARROWS[variant];
+---
+
+<svg class={`hand-arrow hand-arrow--${variant} ${className}`.trim()} viewBox={arrow.viewBox} aria-hidden="true" focusable="false">
+  {arrow.paths.map((d) => <path d={d} />)}
+</svg>

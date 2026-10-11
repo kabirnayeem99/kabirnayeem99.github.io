@@ -1,5 +1,8 @@
 ---
+import type { BotanicalName } from "../../lib/botanicals";
+import { pinnedBotanical } from "../../lib/notebook";
 import type { ProjectGroup } from "../../lib/work-project-content";
+import Botanical from "./Botanical.astro";
 import HighlightCard from "./HighlightCard.astro";
 
 interface Props {
@@ -7,17 +10,32 @@ interface Props {
 }
 
 const { groups } = Astro.props;
+
+// One margin flower per group, alternating sides so the page never stacks two together.
+const MARGIN_FLOWERS: readonly { name: BotanicalName; className: string }[] = [
+  { name: "poppy", className: "pf pf--start pf--tall pf--tilt-r" },
+  { name: "fern", className: "pf pf--end pf--fern pf--tilt-l" },
+  { name: "wheat", className: "pf pf--start pf--slim" },
+  { name: "cosmos", className: "pf pf--end pf--tall-wide pf--tilt-r" },
+];
+
+let cardIndex = 0;
 ---
 
 {
-  groups.map((group) => (
-    <section>
-      <h2 class="section-title">{group.title}</h2>
-      <div class="highlight-list">
-        {group.items.map((item) => (
-          <HighlightCard card={item} />
-        ))}
-      </div>
-    </section>
-  ))
+  groups.map((group, groupIndex) => {
+    const flower = MARGIN_FLOWERS[groupIndex % MARGIN_FLOWERS.length];
+    return (
+      <section>
+        {flower ? <Botanical name={flower.name} class={flower.className} /> : null}
+        <h2 class="section-title">{group.title}</h2>
+        <Botanical name="sprig" class="sprig" />
+        <div class="highlight-list">
+          {group.items.map((item) => (
+            <HighlightCard card={item} botanical={pinnedBotanical(cardIndex++)} />
+          ))}
+        </div>
+      </section>
+    );
+  })
 }
