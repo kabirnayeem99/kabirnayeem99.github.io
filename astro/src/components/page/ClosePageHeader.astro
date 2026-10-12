@@ -1,4 +1,6 @@
 ---
+import Botanical from "./Botanical.astro";
+import BotanicalSprite from "./BotanicalSprite.astro";
 import PageNav from "./PageNav.astro";
 import { buildMainNav } from "../../lib/main-nav";
 
@@ -18,7 +20,9 @@ const {
 const navItems = buildMainNav(currentRoute);
 ---
 
+<BotanicalSprite />
 <header id="top">
+  <Botanical name="euc" class="pf pf--head" />
   <div class="page-header-top">
     <div class="page-closebar">
       <a

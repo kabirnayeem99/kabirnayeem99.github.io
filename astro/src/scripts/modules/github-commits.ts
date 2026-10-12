@@ -299,10 +299,11 @@ document.addEventListener("DOMContentLoaded", () => {
     less.textContent = "Less";
     legendEl.appendChild(less);
 
-    HEATMAP_SCALE.forEach((color) => {
+    HEATMAP_SCALE.forEach((color, level) => {
       const swatch = document.createElement("span");
       swatch.className = "github-heatmap-legend-swatch";
       swatch.style.backgroundColor = color;
+      swatch.dataset.level = String(level);
       legendEl.appendChild(swatch);
     });
 
@@ -337,12 +338,59 @@ document.addEventListener("DOMContentLoaded", () => {
         const label = `${formatNumber(day.count)} contributions on ${formatDate(day.date)}`;
 
         dot.style.backgroundColor = color;
+        dot.dataset.level = String(level);
         dot.setAttribute("aria-label", label);
         dot.title = label;
       }
 
       heatmapEl.appendChild(dot);
     });
+
+    renderMonthLabels(days);
+  };
+
+  // Month names pencilled above the first week of each month, on the same grid as the dots.
+  const renderMonthLabels = (days: readonly HeatmapDay[]): void => {
+    const scrollWrap = heatmapEl?.parentElement;
+    if (!(heatmapEl instanceof HTMLElement) || !(scrollWrap instanceof HTMLElement)) {
+      return;
+    }
+    let monthsEl = scrollWrap.querySelector<HTMLElement>(".github-heatmap-months");
+    if (!monthsEl) {
+      monthsEl = document.createElement("div");
+      monthsEl.className = "github-heatmap-months";
+      monthsEl.setAttribute("aria-hidden", "true");
+      scrollWrap.insertBefore(monthsEl, heatmapEl);
+    }
+    monthsEl.innerHTML = "";
+
+    const monthFormat = new Intl.DateTimeFormat(document.documentElement.lang || "en", {
+      month: "short",
+      timeZone: "UTC",
+    });
+    let lastMonth = -1;
+    let lastWeek = -10;
+    let lastLabel: HTMLSpanElement | null = null;
+    days
+      .filter((day) => day.day === 0)
+      .forEach((day) => {
+        const month = day.date.getUTCMonth();
+        if (month === lastMonth) {
+          return;
+        }
+        lastMonth = month;
+        if (day.week - lastWeek < 3) {
+          // A sliver of a month at the start gives way to the next full one.
+          lastLabel?.remove();
+        }
+        lastWeek = day.week;
+        const label = document.createElement("span");
+        label.className = "github-heatmap-month";
+        label.style.gridColumn = String(day.week + 1);
+        label.textContent = monthFormat.format(day.date);
+        monthsEl?.appendChild(label);
+        lastLabel = label;
+      });
   };
 
   const fitHeatmapToContainer = (): void => {
@@ -364,14 +412,19 @@ document.addEventListener("DOMContentLoaded", () => {
       1,
       Math.round(toSafeNumber(heatmapEl.getAttribute("data-week-count"))),
     );
-    const gapPx = 2;
+    const gapPx = 3;
     const totalGap = (weekCount - 1) * gapPx;
     const computedCell = Math.floor((availableWidth - totalGap) / weekCount);
     // Keep contribution cells readable on mobile and allow horizontal scroll when needed.
-    const cellSize = Math.max(8, Math.min(14, computedCell));
+    const cellSize = Math.max(8, Math.min(16, computedCell));
 
-    heatmapEl.style.setProperty("--github-heatmap-gap", `${gapPx}px`);
-    heatmapEl.style.setProperty("--github-heatmap-cell", `${cellSize}px`);
+    // Set on the scroll box so the month row shares the dot grid.
+    scrollWrap.style.setProperty("--github-heatmap-gap", `${gapPx}px`);
+    scrollWrap.style.setProperty("--github-heatmap-cell", `${cellSize}px`);
+    // When the year doesn't fit, start at the most recent weeks.
+    if (scrollWrap.scrollWidth > scrollWrap.clientWidth) {
+      scrollWrap.scrollLeft = document.documentElement.dir === "rtl" ? -scrollWrap.scrollWidth : scrollWrap.scrollWidth;
+    }
   };
 
   const scheduleHeatmapFit = (): void => {
@@ -382,14 +435,51 @@ document.addEventListener("DOMContentLoaded", () => {
     resizeRafId = window.requestAnimationFrame(() => {
       resizeRafId = 0;
       fitHeatmapToContainer();
+      const yearlyEl = widget.querySelector<HTMLElement>('[data-role="yearly-chart"]');
+      if (yearlyPayload && yearlyEl && Math.abs(yearlyEl.clientWidth - yearlyWidth) > 8) {
+        renderYearlyChart(yearlyPayload, false);
+      }
     });
   };
 
-  const renderYearlyChart = (payload: GitHubContributionPayload): void => {
+  let yearlyPayload: GitHubContributionPayload | null = null;
+  let yearlyWidth = 0;
+
+  // Deterministic wobble so the "hand-drawn" bars don't jump between renders.
+  const jitter = (seed: number, amount: number): number => {
+    const x = Math.sin(seed * 12.9898) * 43758.5453;
+    return (x - Math.floor(x) - 0.5) * 2 * amount;
+  };
+
+  const svgNode = <K extends keyof SVGElementTagNameMap>(
+    tag: K,
+    attrs: Readonly<Record<string, string>>,
+  ): SVGElementTagNameMap[K] => {
+    const el = document.createElementNS(SVG_NS, tag);
+    for (const [key, value] of Object.entries(attrs)) {
+      el.setAttribute(key, value);
+    }
+    return el;
+  };
+
+  /** A pencilled rectangle: corners nudged a little, sides bowed a hair. */
+  const sketchedBarPath = (x: number, y: number, w: number, h: number, seed: number): string => {
+    const j = (n: number, amount = 1.2): string => jitter(seed + n, amount).toFixed(2);
+    const bottom = y + h;
+    return [
+      `M ${(x + Number(j(1))).toFixed(2)} ${bottom.toFixed(2)}`,
+      `Q ${(x - 0.8).toFixed(2)} ${(y + h / 2).toFixed(2)} ${(x + Number(j(2))).toFixed(2)} ${(y + Number(j(3))).toFixed(2)}`,
+      `Q ${(x + w / 2).toFixed(2)} ${(y - 1 + Number(j(4, 0.8))).toFixed(2)} ${(x + w + Number(j(5))).toFixed(2)} ${(y + Number(j(6))).toFixed(2)}`,
+      `Q ${(x + w + 0.8).toFixed(2)} ${(y + h / 2).toFixed(2)} ${(x + w + Number(j(7))).toFixed(2)} ${bottom.toFixed(2)}`,
+    ].join(" ");
+  };
+
+  const renderYearlyChart = (payload: GitHubContributionPayload, animate = true): void => {
     const yearlyEl = widget.querySelector<HTMLElement>('[data-role="yearly-chart"]');
     if (!(yearlyEl instanceof HTMLElement)) {
       return;
     }
+    yearlyPayload = payload;
 
     const yearlyTotals = isRecord(payload.total) ? payload.total : {};
     const entries = Object.entries(yearlyTotals)
@@ -401,52 +491,111 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Drawn at the real pixel size so text stays a readable size at every width.
+    const width = Math.max(entries.length * 34, Math.round(yearlyEl.clientWidth || 640));
+    yearlyWidth = width;
+    const compact = width < 560;
+    const height = compact ? 190 : 230;
+    const top = 34;
+    const baseY = height - 34;
+    const barMaxH = baseY - top;
+    const padX = compact ? 20 : 12;
+    const colW = (width - padX * 2) / entries.length;
+    const barW = Math.min(52, colW * 0.58);
     const maxCount = entries.reduce((max, e) => Math.max(max, e.count), 0);
-    const colW = 36;
-    const chartH = 110;
-    const barMaxH = 72;
-    const totalW = entries.length * colW;
-    const svgH = chartH + 22;
+    const peakIndex = entries.findIndex((e) => e.count === maxCount);
+    const currentYear = String(new Date().getUTCFullYear());
 
-    const svg = document.createElementNS(SVG_NS, "svg");
-    svg.setAttribute("viewBox", `0 0 ${totalW} ${svgH}`);
-    svg.setAttribute("class", "github-yearly-chart");
-    svg.setAttribute("role", "img");
-    svg.setAttribute("aria-label", "Contributions per year");
+    const svg = svgNode("svg", {
+      viewBox: `0 0 ${width} ${height}`,
+      width: String(width),
+      height: String(height),
+      class: animate ? "github-yearly-chart is-drawing" : "github-yearly-chart",
+      role: "img",
+      "aria-label": `Contributions per year: ${entries.map((e) => `${e.year} ${formatNumber(e.count)}`).join(", ")}`,
+    });
+
+    const defs = svgNode("defs", {});
+    for (const tone of ["sage", "ox"]) {
+      // Pattern contents don't inherit from the bar using them, so each tone gets its own.
+      const hatch = svgNode("pattern", {
+        id: `gh-yearly-hatch-${tone}`,
+        patternUnits: "userSpaceOnUse",
+        width: "5",
+        height: "5",
+        patternTransform: "rotate(38)",
+      });
+      hatch.appendChild(
+        svgNode("line", { x1: "0", y1: "0", x2: "0", y2: "5", class: `github-yearly-hatch github-yearly-hatch--${tone}` }),
+      );
+      defs.appendChild(hatch);
+    }
+    svg.appendChild(defs);
 
     entries.forEach((entry, index) => {
-      const barH = maxCount > 0 ? Math.max(3, Math.round((entry.count / maxCount) * barMaxH)) : 3;
-      const barW = 20;
-      const barX = index * colW + (colW - barW) / 2;
-      const barY = chartH - barH;
+      const barH = maxCount > 0 ? Math.max(4, (entry.count / maxCount) * barMaxH) : 4;
+      const cx = padX + index * colW + colW / 2;
+      const barX = cx - barW / 2;
+      const barY = baseY - barH;
+      const d = sketchedBarPath(barX, barY, barW, barH, index * 7 + 3);
 
-      const rect = document.createElementNS(SVG_NS, "rect");
-      rect.setAttribute("x", String(barX));
-      rect.setAttribute("y", String(barY));
-      rect.setAttribute("width", String(barW));
-      rect.setAttribute("height", String(barH));
-      rect.setAttribute("rx", "3");
-      rect.setAttribute("fill", "#40c463");
-      rect.setAttribute("class", "github-yearly-bar");
-      rect.setAttribute("aria-label", `${entry.year}: ${formatNumber(entry.count)}`);
-      svg.appendChild(rect);
+      const classes = ["github-yearly-col"];
+      if (entry.year === currentYear) classes.push("is-current");
+      if (index === peakIndex) classes.push("is-peak");
+      const col = svgNode("g", { class: classes.join(" ") });
+      col.style.setProperty("--i", String(index));
 
-      const countText = document.createElementNS(SVG_NS, "text");
-      countText.setAttribute("x", String(index * colW + colW / 2));
-      countText.setAttribute("y", String(barY - 4));
-      countText.setAttribute("text-anchor", "middle");
-      countText.setAttribute("class", "github-yearly-label");
-      countText.textContent = formatNumber(entry.count);
-      svg.appendChild(countText);
+      const title = svgNode("title", {});
+      title.textContent = `${entry.year}: ${formatNumber(entry.count)} contributions`;
+      col.appendChild(title);
 
-      const yearText = document.createElementNS(SVG_NS, "text");
-      yearText.setAttribute("x", String(index * colW + colW / 2));
-      yearText.setAttribute("y", String(chartH + 15));
-      yearText.setAttribute("text-anchor", "middle");
-      yearText.setAttribute("class", "github-yearly-year");
-      yearText.textContent = entry.year;
-      svg.appendChild(yearText);
+      const bar = svgNode("g", { class: "github-yearly-bar" });
+      bar.appendChild(svgNode("path", { d: `${d} Z`, class: "github-yearly-wash" }));
+      bar.appendChild(svgNode("path", { d: `${d} Z`, class: "github-yearly-hatchfill", fill: `url(#gh-yearly-hatch-${entry.year === currentYear ? "ox" : "sage"})` }));
+      bar.appendChild(svgNode("path", { d, class: "github-yearly-outline" }));
+      col.appendChild(bar);
+
+      const label = svgNode("text", {
+        x: cx.toFixed(1),
+        y: (barY - 9).toFixed(1),
+        "text-anchor": "middle",
+        class: "github-yearly-label",
+      });
+      label.textContent = formatNumber(entry.count);
+      col.appendChild(label);
+
+      if (index === peakIndex && maxCount > 0) {
+        // Pencil loop around the best year's number.
+        const rx = Math.max(20, label.textContent.length * 5.2);
+        col.appendChild(
+          svgNode("ellipse", {
+            cx: (cx + 1).toFixed(1),
+            cy: (barY - 14).toFixed(1),
+            rx: rx.toFixed(1),
+            ry: "13",
+            transform: `rotate(-4 ${cx.toFixed(1)} ${(barY - 14).toFixed(1)})`,
+            class: "github-yearly-ring",
+          }),
+        );
+      }
+
+      const year = svgNode("text", {
+        x: cx.toFixed(1),
+        y: (baseY + 24).toFixed(1),
+        "text-anchor": "middle",
+        class: "github-yearly-year",
+      });
+      year.textContent = compact && entries.length > 6 ? `'${entry.year.slice(2)}` : entry.year;
+      col.appendChild(year);
+
+      svg.appendChild(col);
     });
+
+    // Ruled baseline, drawn freehand.
+    const wobble = [0, 0.25, 0.5, 0.75, 1]
+      .map((t, i) => `${i === 0 ? "M" : "L"} ${(t * width).toFixed(1)} ${(baseY + 0.5 + jitter(i + 40, 0.9)).toFixed(2)}`)
+      .join(" ");
+    svg.appendChild(svgNode("path", { d: wobble, class: "github-yearly-baseline" }));
 
     yearlyEl.innerHTML = "";
     yearlyEl.appendChild(svg);

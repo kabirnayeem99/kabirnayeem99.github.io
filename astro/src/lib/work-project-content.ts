@@ -26,12 +26,39 @@ interface WorkProjectSiteData extends SiteData {
   readonly locale: LocaleInfo;
 }
 
+export interface CardImage {
+  readonly src: string;
+  readonly alt: string;
+  readonly width: number;
+  readonly height: number;
+}
+
 export interface ContentCard {
   readonly title: string;
   readonly href?: string;
   readonly meta?: string;
   readonly paragraphs: readonly string[];
   readonly bullets: readonly string[];
+  readonly images?: readonly CardImage[];
+}
+
+function readCardImages(source: Record<string, unknown>, path: string): readonly CardImage[] {
+  const value = source.images;
+  if (value === undefined) {
+    return [];
+  }
+  if (!Array.isArray(value)) {
+    throw new Error(`Expected array at ${path}.images`);
+  }
+  return value.map((raw, index) => {
+    const imagePath = `${path}.images[${index}]`;
+    const image = asRecord(raw, imagePath);
+    const { width, height } = image;
+    if (typeof width !== "number" || typeof height !== "number") {
+      throw new Error(`Expected numeric width/height at ${imagePath}`);
+    }
+    return { src: readString(image, "src", imagePath), alt: readString(image, "alt", imagePath), width, height };
+  });
 }
 
 export interface ProjectGroup {
@@ -87,6 +114,7 @@ function readContentCards(
       bullets: readonly string[];
       href?: string;
       meta?: string;
+      images?: readonly CardImage[];
     } = {
       title: readString(item, "title", itemPath),
       paragraphs: readOptionalStringArray(item, "paragraphs", itemPath),
@@ -98,6 +126,10 @@ function readContentCards(
     }
     if (meta !== undefined) {
       card.meta = meta;
+    }
+    const images = readCardImages(item, itemPath);
+    if (images.length > 0) {
+      card.images = images;
     }
 
     cards.push(card);

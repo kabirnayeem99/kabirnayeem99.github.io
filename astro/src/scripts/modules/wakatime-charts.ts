@@ -1,3 +1,4 @@
+import { createMeter, decorateDonut } from "./chart-ink";
 import { formatDuration, formatPercent, toSafeNumber } from "./stats-utils";
 import { personPortfolioSnapshots } from "./stats-snapshots";
 
@@ -349,18 +350,6 @@ interface DonutSegmentUi {
 
       group.appendChild(path);
 
-      if (item.percent >= 6) {
-        const labelPoint = polarToCartesian(100, 100, radius * 0.62, midAngle);
-        const label = document.createElementNS(SVG_NS, "text");
-        label.setAttribute("class", "wakatime-pie-label");
-        label.setAttribute("x", labelPoint.x.toFixed(2));
-        label.setAttribute("y", labelPoint.y.toFixed(2));
-        label.setAttribute("text-anchor", "middle");
-        label.setAttribute("dominant-baseline", "middle");
-        label.textContent = formatPercent(item.percent);
-        group.appendChild(label);
-      }
-
       donutSegments.push({
         path,
         offsetX: Math.cos(toRadians(midAngle)) * 3.2,
@@ -371,6 +360,10 @@ interface DonutSegmentUi {
     });
 
     svg.appendChild(group);
+    const top = segments[0];
+    if (top) {
+      decorateDonut(svg, top.name, formatPercent(top.percent));
+    }
     languageDonutEl.innerHTML = "";
     languageDonutEl.appendChild(svg);
 
@@ -387,13 +380,9 @@ interface DonutSegmentUi {
     segment.path.style.transform = "";
   };
 
-  const createLegendRow = (item: LanguageItem): HTMLLIElement => {
+  const createLegendRow = (item: LanguageItem, maxPercent: number, index: number): HTMLLIElement => {
     const row = document.createElement("li");
     row.className = "wakatime-language-chip wakatime-legend-item";
-
-    const swatch = document.createElement("span");
-    swatch.className = "wakatime-language-chip-swatch";
-    swatch.style.backgroundColor = item.color;
 
     const name = document.createElement("span");
     name.className = "wakatime-legend-name";
@@ -403,8 +392,8 @@ interface DonutSegmentUi {
     percent.className = "wakatime-legend-percent";
     percent.textContent = formatPercent(item.percent);
 
-    row.appendChild(swatch);
     row.appendChild(name);
+    row.appendChild(createMeter(item.color, maxPercent > 0 ? item.percent / maxPercent : 0, index));
     row.appendChild(percent);
     return row;
   };
@@ -422,8 +411,9 @@ interface DonutSegmentUi {
     barsEl.innerHTML = "";
     const trackedSeconds = totalTrackedSeconds(summaryPayload);
 
+    const maxPercent = chartSegments.reduce((max, item) => Math.max(max, item.percent), 0);
     chartSegments.forEach((item, index) => {
-      const row = createLegendRow(item);
+      const row = createLegendRow(item, maxPercent, index);
       const donutSegment = donutSegments[index];
 
       const activate = (): void => {

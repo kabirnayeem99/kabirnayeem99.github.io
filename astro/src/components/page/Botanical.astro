@@ -1,0 +1,13 @@
+---
+import type { BotanicalName } from "../../lib/botanicals";
+
+interface Props {
+  readonly name: BotanicalName;
+  readonly class?: string;
+  readonly style?: string;
+}
+
+const { name, class: className = "", style } = Astro.props as Props;
+---
+
+<svg class={`pressed ${className}`.trim()} style={style} aria-hidden="true" focusable="false"><use href={`#bot-${name}`} /></svg>

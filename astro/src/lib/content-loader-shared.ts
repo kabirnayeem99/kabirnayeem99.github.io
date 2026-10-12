@@ -70,6 +70,7 @@ const CONTENT_IDENTIFIERS = new Set([
   "page_id",
   "profile_href",
   "script_src",
+  "src",
   "user_id",
   "variant",
   "widget_id",

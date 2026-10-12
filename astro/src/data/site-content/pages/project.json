@@ -13,6 +13,35 @@
       },
       "groups": [
         {
+          "title": "Websites",
+          "items": [
+            {
+              "title": "PSDHS",
+              "href": "https://psdhs.org/",
+              "meta": "2026 - WordPress · PHP",
+              "paragraphs": [
+                "Website for Peace Society for Development and Humanitarian Services (PSDHS), a non-profit working in Bangladesh since 2009. Their programmes, community projects, field photos and ways to donate are all in one place, in English, Bangla and Arabic.",
+                "<strong>Tech stack:</strong> WordPress (custom block theme and content plugin), PHP",
+                "<strong>Why it matters:</strong> The team can update text, photos and projects on their own, and supporters can read about the work and donate in their own language."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/psdhs/home-desktop.webp",
+                  "alt": "PSDHS homepage on desktop",
+                  "width": 960,
+                  "height": 667
+                },
+                {
+                  "src": "assets/images/projects/psdhs/home-mobile.webp",
+                  "alt": "PSDHS homepage on mobile",
+                  "width": 390,
+                  "height": 1000
+                }
+              ]
+            }
+          ]
+        },
+        {
           "title": "Libraries & Tools",
           "items": [
             {
@@ -73,6 +102,26 @@
                 "One of the most popular Islamic apps in Bangladesh. A mobile app for reading and searching more than 49,000 Bangla hadith. I had the chance to do a large part of the Flutter rewrite more or less on my own. Alhamdulillah.",
                 "<strong>Tech stack:</strong> Dart, Flutter",
                 "<strong>Why it matters:</strong> The app originally supported Android only. After the Flutter rewrite, an iOS version could be added, and the UI could be refreshed as well."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/al-hadith/hadith-books.webp",
+                  "alt": "Al Hadith: list of hadith books",
+                  "width": 360,
+                  "height": 640
+                },
+                {
+                  "src": "assets/images/projects/al-hadith/chapter-reading.webp",
+                  "alt": "Al Hadith: reading a chapter",
+                  "width": 360,
+                  "height": 640
+                },
+                {
+                  "src": "assets/images/projects/al-hadith/tahkik.webp",
+                  "alt": "Al Hadith: hadith by tahkik grade",
+                  "width": 360,
+                  "height": 640
+                }
               ]
             },
             {
@@ -93,6 +142,14 @@
                 "This was the Android app for Boulevard’s mentorship program, a software-based mentorship and workforce development platform. Students or people early in their careers could get guidance, coaching, networking, and similar support from experienced mentors. The app itself was built as a native Android multi-module project.",
                 "<strong>Tech stack:</strong> Kotlin, multi-module Android",
                 "<strong>Why it matters:</strong> Included fairly complex features like course modules and one-to-one mentorship flows."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/boulevard-mentorship/promotion.webp",
+                  "alt": "Boulevard Mentorship banner with the app's What's New screen",
+                  "width": 960,
+                  "height": 449
+                }
               ]
             },
             {
@@ -103,6 +160,14 @@
                 "Marriott International’s own app, mainly tied to its loyalty program, where hotel customers can sign up as members and access certain benefits. It is a fairly large-scale travel app. I got to work, in a limited capacity, on some A/B testing related features there.",
                 "<strong>Tech stack:</strong> Android",
                 "<strong>Why it matters:</strong> This was basically my first chance to work on a product with a very large user base and real scale."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/marriott-bonvoy/brand.webp",
+                  "alt": "Marriott Bonvoy app screens: home, hotel search and nearby hotels map",
+                  "width": 960,
+                  "height": 492
+                }
               ]
             },
             {
@@ -130,6 +195,35 @@
         "tagline": "আমার কাজ করা কিছু প্রজেক্ট। এখানে কোন এম্প্লয়ারের অধীনে করা কাজগুলো রাখা হয়নি।"
       },
       "groups": [
+        {
+          "title": "ওয়েবসাইট",
+          "items": [
+            {
+              "title": "PSDHS",
+              "href": "https://psdhs.org/",
+              "meta": "২০২৬ - ওয়ার্ডপ্রেস · পিএইচপি",
+              "paragraphs": [
+                "পিস সোসাইটি ফর ডেভেলপমেন্ট অ্যান্ড হিউম্যানিটারিয়ান সার্ভিসেস (PSDHS)-এর ওয়েবসাইট। ২০০৯ থেকে বাংলাদেশে কাজ করা একটা অলাভজনক সংস্থা। তাদের প্রোগ্রাম, প্রজেক্ট, মাঠের ছবি আর দান করার উপায়, সব এক জায়গায়। ইংরেজি, বাংলা আর আরবিতে।",
+                "<strong>টেক স্ট্যাক:</strong> ওয়ার্ডপ্রেস (কাস্টম ব্লক থিম আর কনটেন্ট প্লাগইন), পিএইচপি",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> সংস্থার লোকজন নিজেরাই লেখা, ছবি আর প্রজেক্ট আপডেট করতে পারে, আর যারা সাহায্য করতে চান তারা নিজের ভাষায় কাজের কথা পড়ে দান করতে পারেন।"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/psdhs/home-desktop.webp",
+                  "alt": "ডেস্কটপে PSDHS-এর হোমপেজ",
+                  "width": 960,
+                  "height": 667
+                },
+                {
+                  "src": "assets/images/projects/psdhs/home-mobile.webp",
+                  "alt": "মোবাইলে PSDHS-এর হোমপেজ",
+                  "width": 390,
+                  "height": 1000
+                }
+              ]
+            }
+          ]
+        },
         {
           "title": "লাইব্রেরি ও টুলস",
           "items": [
@@ -191,6 +285,26 @@
                 "বাংলাদেশে সবচেয়ে জনপ্রীয় ইসলামি অ্যাপগুলোর একটা। ৪৯ হাজারের বেশি বাংলা হাদিস পড়া আর সার্চ করার জন্য মোবাইল অ্যাপ। তাদের ফ্লাটারে রিরাইটের কাজটা অনেকাংশে একা করার সুযোগ হয়েছিলো। আলহমাদুলিল্লাহ।",
                 "<strong>টেক স্ট্যাক:</strong> ডার্ট, ফ্লাটার",
                 "<strong>কেন গুরুত্বপূর্ণ:</strong> জনপ্রীয় ইসলামি অ্যাপটা আগে শুধু অ্যান্ড্রয়েড সাপোর্ট থাকলেও, ফ্লাটারে লেখার পর আইওএস ভার্শন এড করা গেছে আর ইউআইও আপডেট করা গেছে।"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/al-hadith/hadith-books.webp",
+                  "alt": "আল হাদিস: হাদিস গ্রন্থের তালিকা",
+                  "width": 360,
+                  "height": 640
+                },
+                {
+                  "src": "assets/images/projects/al-hadith/chapter-reading.webp",
+                  "alt": "আল হাদিস: অধ্যায় পড়া",
+                  "width": 360,
+                  "height": 640
+                },
+                {
+                  "src": "assets/images/projects/al-hadith/tahkik.webp",
+                  "alt": "আল হাদিস: তাহকিক অনুযায়ী হাদিস",
+                  "width": 360,
+                  "height": 640
+                }
               ]
             },
             {
@@ -211,6 +325,14 @@
                 "অবুলেভার্ড (Boulevard) নামে একটা প্রতিষ্ঠান যারা সফটওয়্যার ভিত্তিক মেন্টরশিপ আর ওয়ার্কফোর্স ডেভেলপমেন্ট প্ল্যাটফর্ম এটা তাদের মেন্টরশিপ প্রোগ্রামের অ্যান্ড্রয়েড অ্যাপ। ছাত্র বা ক্যারিয়ারের শুরুর দিকে থাকা কেউ অভিজ্ঞ কারও থেকে ক্যারিয়ার গাইডেন্স, কোচিং, নেটওয়ার্কিংসহ নানা সুবিধা নিতে পারবে। অ্যাপটা মূলত মাল্টিমডিউল ছিলো, আর নেটিভ অ্যান্ড্রয়েডে ডেভেলপ করা।",
                 "<strong>টেক স্ট্যাক:</strong> কটলিন, মাল্টি-মডিউল অ্যান্ড্রয়েড",
                 "<strong>কেন গুরুত্বপূর্ণ:</strong> এখানে কোর্স মডিউল, ওয়ান-টু-ওয়ান মেন্টরশিপসহ বিভিন্ন কমপ্লেক্স ফিচার ছিলো।"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/boulevard-mentorship/promotion.webp",
+                  "alt": "বুলেভার্ড মেন্টরশিপের ব্যানার, পাশে অ্যাপের হোয়াটস নিউ স্ক্রিন",
+                  "width": 960,
+                  "height": 449
+                }
               ]
             },
             {
@@ -221,6 +343,14 @@
                 "ম্যারিয়ট ইন্টারন্যাশনলের নিজস্ব অ্যাপ। মূলত এটা লয়্যালিটি প্রোগ্রামের অংশ, যেখানে হোটেল কাস্টমাররা মেম্বারশিপ নিতে পারবে, আর কিছু সুবিধা পাবে। বেশ বড় স্কেলের ট্র্যাভেল অ্যাপ। এখানে কিছু এবি টেস্টিং ফিচার নিয়ে স্বল্প পরিসরে কাজ করেছি।",
                 "<strong>টেক স্ট্যাক:</strong> অ্যান্ড্রয়েড",
                 "<strong>কেন গুরুত্বপূর্ণ:</strong> মূলত এত লার্জ ইউজার বেস আর লার্জ স্কেলের অ্যাপে কাজ করার প্রথম সুযোগ ছিলো।"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/marriott-bonvoy/brand.webp",
+                  "alt": "ম্যারিয়ট বনভয় অ্যাপের স্ক্রিন: হোম, হোটেল সার্চ আর কাছের হোটেলের ম্যাপ",
+                  "width": 960,
+                  "height": 492
+                }
               ]
             },
             {
@@ -248,6 +378,35 @@
         "tagline": "بَعْضُ ٱلْمَشَارِيعِ ٱلَّتِي عَمِلْتُ عَلَيْهَا. أَعْمَالُ ٱلشَّرِكَاتِ أَوِ ٱلْعَمَلُ تَحْتَ أَيِّ صَاحِبِ عَمَلٍ لَيْسَتْ مَوْجُودَةً هُنَا."
       },
       "groups": [
+        {
+          "title": "ٱلْمَوَاقِعُ ٱلْإِلِكْتْرُونِيَّةُ",
+          "items": [
+            {
+              "title": "PSDHS",
+              "href": "https://psdhs.org/",
+              "meta": "2026 - وُورْدْبْرِيس · بِي إِتش بِي",
+              "paragraphs": [
+                "مَوْقِعُ جَمْعِيَّةِ ٱلسَّلَامِ لِلتَّنْمِيَةِ وَٱلْخَدَمَاتِ ٱلْإِنْسَانِيَّةِ (PSDHS)، وَهِيَ مُنَظَّمَةٌ غَيْرُ رِبْحِيَّةٍ تَعْمَلُ فِي بَنْغَلَادِيش مُنْذُ 2009. يَجْمَعُ بَرَامِجَهَا وَمَشَارِيعَهَا وَصُوَرَهَا ٱلْمَيْدَانِيَّةَ وَطُرُقَ ٱلتَّبَرُّعِ فِي مَكَانٍ وَاحِدٍ، بِٱلْإِنْجِلِيزِيَّةِ وَٱلْبَنْغَالِيَّةِ وَٱلْعَرَبِيَّةِ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> WordPress (قَالَبُ كُتَلٍ مُخَصَّصٌ وَإِضَافَةُ مُحْتَوًى), PHP",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يَسْتَطِيعُ فَرِيقُ ٱلْجَمْعِيَّةِ تَحْدِيثَ ٱلنُّصُوصِ وَٱلصُّوَرِ وَٱلْمَشَارِيعِ بِأَنْفُسِهِمْ، وَيَسْتَطِيعُ ٱلدَّاعِمُونَ ٱلْقِرَاءَةَ عَنْ عَمَلِهَا وَٱلتَّبَرُّعَ بِلُغَتِهِمْ."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/psdhs/home-desktop.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ PSDHS عَلَى ٱلْحَاسُوبِ",
+                  "width": 960,
+                  "height": 667
+                },
+                {
+                  "src": "assets/images/projects/psdhs/home-mobile.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ PSDHS عَلَى ٱلْجَوَّالِ",
+                  "width": 390,
+                  "height": 1000
+                }
+              ]
+            }
+          ]
+        },
         {
           "title": "ٱلْمَكْتَبَاتُ وَٱلْأَدَوَاتُ",
           "items": [
@@ -309,6 +468,26 @@
                 "هٰذَا مِنْ أَشْهَرِ ٱلتَّطْبِيقَاتِ ٱلْإِسْلَامِيَّةِ فِي بَنْغَلَادِيش. تَطْبِيقٌ لِقِرَاءَةِ أَكْثَرَ مِنْ 49 أَلْفِ حَدِيثٍ بِٱلْبَنْغَلِيَّةِ وَٱلْبَحْثِ فِيهَا. وَقَدْ أُتِيحَ لِي أَنْ أَقُومَ بِجُزْءٍ كَبِيرٍ مِنْ إِعَادَةِ كِتَابَتِهِ بِـ Flutter شِبْهَ وَحْدِي. ٱلْحَمْدُ لِلّٰهِ.",
                 "<strong>ٱلتِّقْنِيَّاتُ:</strong> Dart, Flutter",
                 "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> كَانَ ٱلتَّطْبِيقُ يَدْعَمُ أَنْدْرُوِيد فَقَطْ، وَلَكِنْ بَعْدَ إِعَادَةِ كِتَابَتِهِ بِـ Flutter أَصْبَحَ مُمْكِنًا إِضَافَةُ نُسْخَةِ iOS وَتَحْدِيثُ ٱلْوَاجِهَةِ أَيْضًا."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/al-hadith/hadith-books.webp",
+                  "alt": "تَطْبِيقُ ٱلْحَدِيثِ: قَائِمَةُ كُتُبِ ٱلْحَدِيثِ",
+                  "width": 360,
+                  "height": 640
+                },
+                {
+                  "src": "assets/images/projects/al-hadith/chapter-reading.webp",
+                  "alt": "تَطْبِيقُ ٱلْحَدِيثِ: قِرَاءَةُ بَابٍ",
+                  "width": 360,
+                  "height": 640
+                },
+                {
+                  "src": "assets/images/projects/al-hadith/tahkik.webp",
+                  "alt": "تَطْبِيقُ ٱلْحَدِيثِ: ٱلْأَحَادِيثُ حَسَبَ دَرَجَةِ ٱلتَّحْقِيقِ",
+                  "width": 360,
+                  "height": 640
+                }
               ]
             },
             {
@@ -329,6 +508,14 @@
                 "Boulevard هِيَ جِهَةٌ تُقَدِّمُ مَنْصَّةً لِلْإِرْشَادِ وَتَطْوِيرِ ٱلْقُوَى ٱلْعَامِلَةِ بِٱلِاعْتِمَادِ عَلَى ٱلْبَرْمَجِيَّاتِ، وَهٰذَا هُوَ تَطْبِيقُ أَنْدْرُوِيد ٱلْخَاصُّ بِبَرْنَامَجِهِمْ فِي ٱلْإِرْشَادِ. يُمْكِنُ لِلطَّالِبِ أَوْ لِمَنْ هُوَ فِي بَدَايَةِ مَسَارِهِ ٱلْمِهْنِيِّ أَنْ يَحْصُلَ عَلَى ٱلتَّوْجِيهِ وَٱلْكُوتْشِنْغ وَٱلتَّوَاصُلِ ٱلْمِهْنِيِّ وَغَيْرِ ذٰلِكَ مِنْ شَخْصٍ أَكْثَرَ خِبْرَةً. وَٱلتَّطْبِيقُ نَفْسُهُ كَانَ مُتَعَدِّدَ ٱلْمُودْيُولَاتِ وَمَبْنِيًّا بِأَنْدْرُوِيد نِيتِف.",
                 "<strong>ٱلتِّقْنِيَّاتُ:</strong> Kotlin, multi-module Android",
                 "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> كَانَ فِيهِ فِيتْشَرَاتٌ مُعَقَّدَةٌ نِسْبِيًّا، مِثْلَ ٱلْمُودْيُولَاتِ ٱلتَّعْلِيمِيَّةِ وَٱلْإِرْشَادِ وَاحِدٌ لِوَاحِدٍ."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/boulevard-mentorship/promotion.webp",
+                  "alt": "لَافِتَةُ Boulevard Mentorship مَعَ شَاشَةِ ٱلْجَدِيدِ فِي ٱلتَّطْبِيقِ",
+                  "width": 960,
+                  "height": 449
+                }
               ]
             },
             {
@@ -339,6 +526,14 @@
                 "هٰذَا هُوَ تَطْبِيقُ Marriott International ٱلرَّسْمِيُّ. فِي ٱلْأَصْلِ هُوَ جُزْءٌ مِنْ بَرْنَامَجِ ٱلْوَلَاءِ، حَيْثُ يُمْكِنُ لِزَبَائِنِ ٱلْفَنَادِقِ ٱلِانْضِمَامُ كَأَعْضَاءَ وَٱلْحُصُولُ عَلَى بَعْضِ ٱلْمَزَايَا. وَهُوَ تَطْبِيقُ سَفَرٍ كَبِيرُ ٱلنِّطَاقِ. عَمِلْتُ هُنَاكَ عَلَى بَعْضِ فِيتْشَرَاتِ A/B testing عَلَى نِطَاقٍ مَحْدُودٍ.",
                 "<strong>ٱلتِّقْنِيَّاتُ:</strong> Android",
                 "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> كَانَتْ هٰذِهِ أَوَّلَ فُرْصَةٍ لِي لِلْعَمَلِ عَلَى تَطْبِيقٍ بِهٰذَا ٱلْحَجْمِ وَبِقَاعِدَةِ مُسْتَعْمِلِينَ كَبِيرَةٍ جِدًّا."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/marriott-bonvoy/brand.webp",
+                  "alt": "شَاشَاتُ تَطْبِيقِ Marriott Bonvoy: ٱلرَّئِيسِيَّةُ وَٱلْبَحْثُ عَنْ فُنْدُقٍ وَخَرِيطَةُ ٱلْفَنَادِقِ ٱلْقَرِيبَةِ",
+                  "width": 960,
+                  "height": 492
+                }
               ]
             },
             {
@@ -366,6 +561,35 @@
         "tagline": "کچھ پراجیکٹس جن پر میں نے کام کیا۔ یہاں کسی ایمپلائر کے تحت کیے گئے کام شامل نہیں ہیں۔"
       },
       "groups": [
+        {
+          "title": "ویب سائٹس",
+          "items": [
+            {
+              "title": "PSDHS",
+              "href": "https://psdhs.org/",
+              "meta": "2026 - ورڈپریس · پی ایچ پی",
+              "paragraphs": [
+                "پیس سوسائٹی فار ڈیولپمنٹ اینڈ ہیومینیٹیرین سروسز (PSDHS) کی ویب سائٹ، جو 2009 سے بنگلہ دیش میں کام کرنے والا ایک غیر منافع بخش ادارہ ہے۔ ان کے پروگرام، پروجیکٹس، فیلڈ کی تصویریں اور عطیہ دینے کے طریقے سب ایک جگہ پر ہیں، انگریزی، بنگالی اور عربی میں۔",
+                "<strong>ٹیک اسٹیک:</strong> WordPress (custom block theme اور content plugin), PHP",
+                "<strong>کیوں اہم ہے:</strong> ادارے کی ٹیم خود ہی متن، تصویریں اور پروجیکٹس اپڈیٹ کر سکتی ہے، اور مدد کرنے والے اپنی زبان میں کام کے بارے میں پڑھ کر عطیہ دے سکتے ہیں۔"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/psdhs/home-desktop.webp",
+                  "alt": "ڈیسک ٹاپ پر PSDHS کا ہوم پیج",
+                  "width": 960,
+                  "height": 667
+                },
+                {
+                  "src": "assets/images/projects/psdhs/home-mobile.webp",
+                  "alt": "موبائل پر PSDHS کا ہوم پیج",
+                  "width": 390,
+                  "height": 1000
+                }
+              ]
+            }
+          ]
+        },
         {
           "title": "لائبریریاں اور ٹولز",
           "items": [
@@ -427,6 +651,26 @@
                 "بنگلہ دیش کی سب سے مقبول اسلامی ایپس میں سے ایک۔ 49 ہزار سے زیادہ بنگالی احادیث پڑھنے اور search کرنے کے لیے mobile app۔ اس کے Flutter rewrite کا کافی بڑا حصہ تقریباً اکیلے کرنے کا موقع ملا تھا۔ الحمدللہ۔",
                 "<strong>ٹیک اسٹیک:</strong> Dart, Flutter",
                 "<strong>کیوں اہم ہے:</strong> یہ مشہور اسلامی ایپ پہلے صرف اینڈرائیڈ پر تھی، لیکن Flutter rewrite کے بعد iOS version بھی شامل کیا جا سکا، اور UI بھی update ہو گیا۔"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/al-hadith/hadith-books.webp",
+                  "alt": "الحدیث: حدیث کی کتابوں کی فہرست",
+                  "width": 360,
+                  "height": 640
+                },
+                {
+                  "src": "assets/images/projects/al-hadith/chapter-reading.webp",
+                  "alt": "الحدیث: باب پڑھنا",
+                  "width": 360,
+                  "height": 640
+                },
+                {
+                  "src": "assets/images/projects/al-hadith/tahkik.webp",
+                  "alt": "الحدیث: تحقیق کے لحاظ سے احادیث",
+                  "width": 360,
+                  "height": 640
+                }
               ]
             },
             {
@@ -447,6 +691,14 @@
                 "Boulevard نام کا ایک ادارہ software-based mentorship اور workforce development platform چلاتا ہے۔ یہ ان کے mentorship program کی Android app تھی۔ طالب علم یا career کے شروع میں موجود کوئی شخص کسی تجربہ کار فرد سے career guidance، coaching، networking اور اسی طرح کی دوسری سہولتیں لے سکتا تھا۔ ایپ خود multi-module تھی اور native Android میں develop کی گئی تھی۔",
                 "<strong>ٹیک اسٹیک:</strong> Kotlin, multi-module Android",
                 "<strong>کیوں اہم ہے:</strong> اس میں course modules، one-to-one mentorship اور دوسرے نسبتاً complex features تھے۔"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/boulevard-mentorship/promotion.webp",
+                  "alt": "Boulevard Mentorship کا بینر، ساتھ میں ایپ کی What's New اسکرین",
+                  "width": 960,
+                  "height": 449
+                }
               ]
             },
             {
@@ -457,6 +709,14 @@
                 "Marriott International کی اپنی ایپ۔ اصل میں یہ loyalty program کا حصہ ہے، جہاں hotel customers membership لے سکتے ہیں اور کچھ سہولتیں حاصل کر سکتے ہیں۔ کافی بڑے scale کی travel app تھی۔ یہاں کچھ A/B testing features پر محدود سطح پر کام کیا۔",
                 "<strong>ٹیک اسٹیک:</strong> Android",
                 "<strong>کیوں اہم ہے:</strong> اتنے بڑے user base اور بڑے scale کی app پر کام کرنے کا یہ پہلا موقع تھا۔"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/marriott-bonvoy/brand.webp",
+                  "alt": "Marriott Bonvoy ایپ کی اسکرینیں: ہوم، ہوٹل سرچ اور قریبی ہوٹلوں کا نقشہ",
+                  "width": 960,
+                  "height": 492
+                }
               ]
             },
             {

@@ -1,5 +1,7 @@
 ---
 import type { ContentCard } from "../../lib/work-project-content";
+import HandArrow from "./HandArrow.astro";
+import Botanical from "./Botanical.astro";
 import HighlightCard from "./HighlightCard.astro";
 
 interface Props {
@@ -11,13 +13,19 @@ interface Props {
 const { summary, sectionTitle, entries } = Astro.props;
 ---
 
-<section>
+<section class="page-intro">
   <div class="summary-card">
     <p set:html={summary} />
   </div>
 </section>
 <section>
-  <h2 class="section-title">{sectionTitle}</h2>
+  <Botanical name="cosmos-nod" class="pf pf--start pf--tall pf--tilt-l" />
+  <Botanical name="buds" class="pf pf--end pf--tall-wide pf--tilt-r" />
+  <div class="section-head">
+    <h2 class="section-title">{sectionTitle}</h2>
+    <HandArrow variant="curl" class="hand-arrow--title" />
+  </div>
+  <Botanical name="sprig" class="sprig" />
   <div class="highlight-list">
     {entries.map((entry) => <HighlightCard card={entry} />)}
   </div>
