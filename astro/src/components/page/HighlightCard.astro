@@ -1,7 +1,7 @@
 ---
 import type { BotanicalName } from "../../lib/botanicals";
 import { isTallBotanical } from "../../lib/notebook";
-import type { ContentCard } from "../../lib/work-project-content";
+import { assetHref, type ContentCard } from "../../lib/work-project-content";
 import Botanical from "./Botanical.astro";
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 }
 
 const { card, botanical } = Astro.props;
+const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
 ---
 
 <article class="highlight">
@@ -41,6 +42,24 @@ const { card, botanical } = Astro.props;
           <li set:html={bullet} />
         ))}
       </ul>
+    ) : null
+  }
+  {
+    card.images && card.images.length > 0 ? (
+      <div class="highlight-prints">
+        {card.images.map((image) => (
+          <figure class="print" style={`flex-grow:${(image.width / image.height).toFixed(3)}`}>
+            <img
+              src={assetHref(currentRoute, image.src)}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        ))}
+      </div>
     ) : null
   }
   {card.meta ? <p class="meta">{card.meta}</p> : null}
