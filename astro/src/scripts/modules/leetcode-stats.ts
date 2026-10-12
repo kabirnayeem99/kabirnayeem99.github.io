@@ -195,7 +195,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const seg = document.createElement("span");
       seg.className = `leetcode-difficulty-segment leetcode-difficulty-segment--${cls}`;
-      seg.style.width = `${((count / total) * 100).toFixed(2)}%`;
+      const share = count / total;
+      seg.style.width = `${(share * 100).toFixed(2)}%`;
+      if (share >= 0.08) {
+        seg.textContent = formatNumber(count);
+      }
       bar.appendChild(seg);
     });
 

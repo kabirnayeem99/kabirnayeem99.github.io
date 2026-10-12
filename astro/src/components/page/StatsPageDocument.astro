@@ -14,7 +14,7 @@ import {
 import { buildBreadcrumb, buildSchemaGraphJson } from "../../lib/seo";
 import { transliterateLocalizedText } from "../../lib/content-loader-shared";
 import { formatReadDate } from "../../lib/notebook";
-import { loadStatsPageContent, statsEmbedThemeSources } from "../../lib/stats-content";
+import { loadStatsPageContent } from "../../lib/stats-content";
 import {
   assetHref,
   buildAlternateLinks,
@@ -48,13 +48,6 @@ const schemaGraphJson = buildSchemaGraphJson({
 });
 
 const alternateLinks = buildAlternateLinks(content.site.baseUrl, content.pageRoutes);
-
-const [roadmapLightSrc, roadmapDarkSrc] = statsEmbedThemeSources(
-  content.sections.learningPath.imageSrc,
-);
-const [roadmapLightHref, roadmapDarkHref] = statsEmbedThemeSources(
-  content.sections.learningPath.href,
-);
 
 const homeHref = routeHref(content.route, content.homeRoute);
 const pageAssets = buildPageAssetHrefs(content.route);
@@ -163,7 +156,6 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
       "https://api.github.com",
       "https://github-contributions-api.jogruber.de",
       "https://alfa-leetcode-api.onrender.com",
-      "https://roadmap.sh",
       "https://www.goodreads.com",
     ]}
     ogLocale={OG_LOCALE_BY_LANG[lang]}
@@ -360,32 +352,6 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
                 </div>
               </div>
             )}
-          </div>
-        </section>
-        <section class="stats-report-section stats-report-section--learning">
-          <Botanical name="buds" class="pf pf--end pf--tall-wide pf--tilt-r" />
-          <div class="summary-card stats-card">
-            <h2 class="section-title">{content.sections.learningPath.title}</h2>
-            <p set:html={content.sections.learningPath.copy}></p>
-            <a
-              class="stats-embed-link stats-embed-link--roadmap"
-              href={roadmapLightHref}
-              data-theme-light-href={roadmapLightHref}
-              data-theme-dark-href={roadmapDarkHref}
-            >
-              <img
-                data-hide-section-on-error="true"
-                class="stats-embed stats-embed--roadmap-card"
-                src={roadmapLightSrc}
-                data-theme-light-src={roadmapLightSrc}
-                data-theme-dark-src={roadmapDarkSrc}
-                alt={content.sections.learningPath.imageAlt}
-                width="1130"
-                height="380"
-                decoding="async"
-                loading="lazy"
-              />
-            </a>
           </div>
         </section>
         <section class="stats-report-section stats-report-section--books" data-umami-track-view="books-full">

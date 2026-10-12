@@ -1232,6 +1232,55 @@
   }
 
   /* specimen cards (highlights) */
+  /* screenshots as small photo prints taped into the card; flex-grow = aspect ratio,
+     so every print in a row comes out the same height */
+  .highlight-prints {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-block: 18px 6px;
+    padding-inline: 4px;
+  }
+
+  .print {
+    position: relative;
+    flex-basis: 0;
+    min-width: 0;
+    margin: 0;
+    padding: 5px 5px 7px;
+    background: #fdfbf6;
+    box-shadow: 0 1px 2px rgba(40, 25, 5, 0.22), 0 6px 14px -8px rgba(40, 25, 5, 0.35);
+    rotate: -1.2deg;
+  }
+
+  .print:nth-child(even) { rotate: 1deg; translate: 0 6px; }
+  .print:nth-child(3n) { rotate: -0.4deg; }
+
+  .print::before {
+    content: "";
+    position: absolute;
+    inset-block-start: -9px;
+    inset-inline-start: 50%;
+    width: min(54px, 46%);
+    height: 17px;
+    translate: -50% 0;
+    rotate: -3deg;
+    background: var(--tape-2);
+    mix-blend-mode: multiply;
+  }
+
+  .print:nth-child(even)::before { background: var(--tape-1); rotate: 4deg; }
+
+  .print img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  html[data-theme="dark"] .print {
+    background: #e9e4d8;
+  }
+
   .highlight-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2100,9 +2149,9 @@
   .wakatime-donut-segment,
   .github-profile-donut-svg path {
     stroke: var(--card);
-    stroke-width: 1.5;
-    fill-opacity: 0.85;
-    mask-image: repeating-linear-gradient(45deg, #000 0 2.4px, rgba(0, 0, 0, 0.45) 2.4px 4px);
+    stroke-width: 2;
+    fill-opacity: 0.8;
+    mask-image: repeating-linear-gradient(45deg, #000 0 2.4px, rgba(0, 0, 0, 0.5) 2.4px 4px);
     transform-box: fill-box;
     transform-origin: center;
     transition: transform 180ms var(--ease-out), fill-opacity 180ms ease;
@@ -2114,13 +2163,37 @@
     fill-opacity: 1;
   }
 
-  .wakatime-pie-label {
-    font: 700 9px/1 var(--font-serif);
-    fill: #fff;
-    paint-order: stroke;
-    stroke: rgba(31, 27, 22, 0.7);
-    stroke-width: 2px;
-    pointer-events: none;
+  /* pencilled donut: paper hole, double-drawn ring, leading item written inside */
+  .chart-donut-hole {
+    fill: var(--card);
+  }
+
+  .chart-donut-ring {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 1.1;
+    opacity: 0.55;
+  }
+
+  .chart-donut-ring--echo {
+    stroke-width: 0.7;
+    opacity: 0.3;
+  }
+
+  .chart-donut-ring--inner {
+    stroke-dasharray: 3 2.5;
+    opacity: 0.4;
+  }
+
+  .chart-donut-title {
+    font: 700 26px/1 var(--hand);
+    fill: var(--text);
+  }
+
+  .chart-donut-value {
+    font: 600 21px/1 var(--hand);
+    fill: var(--rose);
+    font-variant-numeric: tabular-nums;
   }
 
   .wakatime-donut-center {
@@ -2131,9 +2204,9 @@
   .github-profile-lang-legend {
     list-style: none;
     display: grid;
-    gap: 2px;
+    gap: 4px;
     width: 100%;
-    max-width: 380px;
+    max-width: 600px;
   }
 
   .wakatime-legend-item,
@@ -2141,23 +2214,16 @@
     display: block;
   }
 
+  /* ledger row: name · watercolour bar · value */
   .wakatime-language-chip,
   .github-profile-lang-item {
     display: grid;
-    grid-template-columns: 14px minmax(0, 1fr) auto;
-    gap: 10px;
+    grid-template-columns: minmax(4.5rem, 7.5rem) minmax(0, 1fr) 4.6rem;
+    gap: 14px;
     align-items: center;
-    padding-block: 2px;
+    padding-block: 3px;
     border-block-end: 1px solid var(--rule);
-    font: 600 1.1rem/1.4 var(--hand);
-  }
-
-  .wakatime-language-chip-swatch,
-  .github-profile-lang-swatch {
-    width: 14px;
-    height: 10px;
-    border-radius: 3px 1px 4px 1px;
-    opacity: 0.85;
+    font: 600 1.18rem/1.35 var(--hand);
   }
 
   .wakatime-legend-name,
@@ -2171,10 +2237,59 @@
   .github-profile-lang-count {
     color: var(--text-muted);
     font-variant-numeric: tabular-nums;
+    text-align: end;
+    white-space: nowrap;
+  }
+
+  .wakatime-legend-item.is-active .wakatime-legend-name {
+    color: var(--rose);
   }
 
   .wakatime-legend-item:focus-visible .wakatime-language-chip {
     outline: 2px dashed var(--focus);
+  }
+
+  .chart-meter {
+    display: block;
+    height: 15px;
+  }
+
+  .chart-meter-fill {
+    display: block;
+    width: var(--share);
+    min-width: 6px;
+    height: 100%;
+    /* wash darker at the edges, like pooled watercolour, with pencil hatching over it */
+    background:
+      repeating-linear-gradient(-50deg, rgba(255, 255, 255, 0.22) 0 1.5px, transparent 1.5px 4.5px),
+      color-mix(in srgb, var(--c) 72%, transparent);
+    box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c) 75%, #2a1d12 25%);
+    border-radius: 3px 8px 4px 7px / 7px 3px 8px 3px;
+    transform-origin: left center;
+    animation: chart-meter-draw 900ms var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 70ms + 120ms);
+  }
+
+  @media (max-width: 560px) {
+    .wakatime-language-chip,
+    .github-profile-lang-item {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2px 12px;
+    }
+
+    .chart-meter {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      height: 12px;
+    }
+  }
+
+  [dir="rtl"] .chart-meter-fill {
+    transform-origin: right center;
+  }
+
+  @keyframes chart-meter-draw {
+    from { transform: scaleX(0); }
   }
 
   /* GitHub contributions: stippled ink dots, size = activity */
@@ -2189,14 +2304,33 @@
   }
 
   .github-heatmap-scroll {
+    --github-heatmap-cell: 12px;
+    --github-heatmap-gap: 3px;
     overflow-x: auto;
     overflow-y: hidden;
     padding: 4px 2px;
   }
 
+  .github-heatmap-months {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: var(--github-heatmap-cell);
+    column-gap: var(--github-heatmap-gap);
+    width: max-content;
+    min-width: 100%;
+    height: 1.4rem;
+    margin-block-end: 4px;
+    font: 600 1rem/1.4rem var(--hand);
+    color: var(--text-muted);
+  }
+
+  .github-heatmap-month {
+    grid-row: 1;
+    white-space: nowrap;
+    overflow: visible;
+  }
+
   .github-heatmap {
-    --github-heatmap-cell: 12px;
-    --github-heatmap-gap: 2px;
     display: grid;
     grid-template-rows: repeat(7, var(--github-heatmap-cell));
     grid-auto-flow: column;
@@ -2206,33 +2340,36 @@
     min-width: 100%;
   }
 
+  /* fountain-pen stipple: busier days get bigger, greener dots; the busiest go oxblood */
   .github-heatmap-dot,
   .github-heatmap-legend-swatch {
     --dot: 14%;
+    --ink: var(--text);
     width: var(--github-heatmap-cell, 14px);
     height: var(--github-heatmap-cell, 14px);
     background-color: transparent !important;
-    background-image: radial-gradient(circle, var(--text) var(--dot), transparent calc(var(--dot) + 4%));
+    background-image: radial-gradient(circle, var(--ink) var(--dot), transparent calc(var(--dot) + 5%));
     border-radius: 50%;
   }
 
   .github-heatmap-dot[data-level="0"],
   .github-heatmap-legend-swatch[data-level="0"] {
-    --dot: 12%;
-    opacity: 0.32;
+    --dot: 11%;
+    opacity: 0.3;
   }
 
-  [data-level="1"] { --dot: 22%; }
-  [data-level="2"] { --dot: 32%; }
-  [data-level="3"] { --dot: 41%; }
-  [data-level="4"] { --dot: 50%; }
+  [data-level="1"] { --dot: 22%; --ink: var(--p-sage); }
+  [data-level="2"] { --dot: 32%; --ink: var(--p-sage-d); }
+  [data-level="3"] { --dot: 41%; --ink: color-mix(in srgb, var(--p-sage-d) 70%, #1d2a18); }
+  [data-level="4"] { --dot: 50%; --ink: var(--p-ox); }
 
   .github-heatmap-dot.is-future {
     background-image: none;
   }
 
   .github-heatmap-dot:hover {
-    background-image: radial-gradient(circle, var(--rose) calc(var(--dot) + 6%), transparent calc(var(--dot) + 10%));
+    --ink: var(--rose);
+    --dot: 50%;
   }
 
   .github-heatmap-legend {
@@ -2245,38 +2382,122 @@
   }
 
   .github-heatmap-legend-swatch {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
   }
 
+  /* contributions per year: pencilled bars with a watercolour wash on a freehand baseline */
   .github-yearly-wrap {
     overflow-x: auto;
+    margin-block: 6px 4px;
   }
 
   .github-yearly-chart {
     display: block;
-    width: 100%;
-    min-width: max-content;
+    max-width: none;
+    overflow: visible;
+  }
+
+  .github-yearly-col {
+    --wash: var(--p-sage);
+    --line-ink: var(--p-sage-d);
+  }
+
+  .github-yearly-col.is-current {
+    --wash: var(--p-rose);
+    --line-ink: var(--p-ox);
   }
 
   .github-yearly-bar {
-    fill: var(--p-sage-d);
-    mask-image: repeating-linear-gradient(35deg, #000 0 2px, rgba(0, 0, 0, 0.4) 2px 3.5px);
+    transform-box: fill-box;
+    transform-origin: bottom;
   }
 
-  .github-yearly-bar:hover {
-    fill: var(--p-ox);
+  .github-yearly-chart.is-drawing .github-yearly-bar {
+    animation: chart-bar-draw 900ms var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 80ms + 100ms);
   }
 
-  .github-yearly-label,
-  .github-yearly-year {
-    fill: var(--text-muted);
-    font-family: var(--font-serif);
+  .github-yearly-chart.is-drawing .github-yearly-label,
+  .github-yearly-chart.is-drawing .github-yearly-ring {
+    animation: chart-ink-in 500ms ease both;
+    animation-delay: calc(var(--i, 0) * 80ms + 700ms);
+  }
+
+  @keyframes chart-bar-draw {
+    from { transform: scaleY(0); }
+  }
+
+  @keyframes chart-ink-in {
+    from { opacity: 0; }
+  }
+
+  .github-yearly-wash {
+    fill: var(--wash);
+    fill-opacity: 0.55;
+    transition: fill-opacity 160ms ease;
+  }
+
+  .github-yearly-hatch {
+    stroke: var(--p-sage-d);
+    stroke-width: 1.3;
+    stroke-opacity: 0.55;
+  }
+
+  .github-yearly-hatch--ox {
+    stroke: var(--p-ox);
+  }
+
+  .github-yearly-outline {
+    fill: none;
+    stroke: var(--line-ink);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .github-yearly-col:hover .github-yearly-wash {
+    fill-opacity: 0.85;
+  }
+
+  .github-yearly-baseline {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    opacity: 0.75;
+  }
+
+  .github-yearly-label {
+    font: 700 17px/1 var(--hand);
+    fill: var(--text);
     font-variant-numeric: tabular-nums;
   }
 
-  .github-yearly-label { font-size: 6.5px; }
-  .github-yearly-year { font-size: 7.5px; }
+  .github-yearly-col.is-current .github-yearly-label,
+  .github-yearly-col.is-peak .github-yearly-label {
+    fill: var(--rose);
+  }
+
+  .github-yearly-ring {
+    fill: none;
+    stroke: var(--rose);
+    stroke-width: 1.2;
+    stroke-dasharray: 160 6;
+    opacity: 0.75;
+  }
+
+  .github-yearly-year {
+    font: 600 14px/1 var(--font-serif);
+    letter-spacing: 0.04em;
+    fill: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .github-yearly-col.is-current .github-yearly-year {
+    fill: var(--text);
+    font-weight: 700;
+  }
 
   /* GitHub repos: library catalogue cards */
   .github-profile-visuals {
@@ -2351,15 +2572,29 @@
 
   .leetcode-difficulty-bar {
     display: flex;
-    height: 22px;
+    height: 32px;
     border: 1.5px solid var(--text);
-    border-radius: 3px 6px 4px 5px;
+    border-radius: 4px 9px 5px 8px / 8px 4px 9px 4px;
     overflow: hidden;
+    background: var(--card);
   }
 
   .leetcode-difficulty-segment {
+    display: grid;
+    place-items: center;
     height: 100%;
-    background-image: repeating-linear-gradient(45deg, var(--seg) 0 2px, transparent 2px 5px);
+    overflow: hidden;
+    font: 700 1.15rem/1 var(--hand);
+    color: color-mix(in srgb, var(--seg) 70%, #1a120a);
+    background:
+      repeating-linear-gradient(45deg, color-mix(in srgb, var(--seg) 45%, transparent) 0 1.5px, transparent 1.5px 5px),
+      color-mix(in srgb, var(--seg) 22%, transparent);
+    transform-origin: left center;
+    animation: chart-meter-draw 900ms var(--ease-out) both;
+  }
+
+  .leetcode-difficulty-segment + .leetcode-difficulty-segment {
+    border-inline-start: 1.5px dashed color-mix(in srgb, var(--text) 70%, transparent);
   }
 
   .leetcode-difficulty-segment--easy { --seg: #3f7a4a; }
@@ -2389,28 +2624,6 @@
   .leetcode-difficulty-legend-item--easy .leetcode-difficulty-swatch { background: #3f7a4a; }
   .leetcode-difficulty-legend-item--medium .leetcode-difficulty-swatch { background: #b5852b; }
   .leetcode-difficulty-legend-item--hard .leetcode-difficulty-swatch { background: var(--p-ox); }
-
-  /* roadmap embed: a print taped onto the sheet */
-  .stats-embed-link--roadmap {
-    position: relative;
-    display: block;
-    margin-block-start: 16px;
-    padding: 10px;
-    background: #fff;
-    box-shadow: var(--shadow);
-    rotate: -0.6deg;
-  }
-
-  .stats-embed {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1130 / 380;
-    object-fit: contain;
-  }
-
-  html[data-theme="dark"] .stats-embed-link--roadmap {
-    background: #10151f;
-  }
 
   /* Goodreads: covers pasted onto the page with tape */
   .goodreads-widget {

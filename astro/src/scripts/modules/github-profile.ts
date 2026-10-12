@@ -1,3 +1,4 @@
+import { createMeter, decorateDonut } from "./chart-ink";
 import { formatNumber, toSafeNumber } from "./stats-utils";
 import { personPortfolioSnapshots } from "./stats-snapshots";
 
@@ -283,17 +284,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     svg.appendChild(group);
+    const top = segments[0];
+    if (top) {
+      decorateDonut(svg, top.name, `${top.count} repo${top.count !== 1 ? "s" : ""}`);
+    }
     donutEl.innerHTML = "";
     donutEl.appendChild(svg);
 
     legendEl.innerHTML = "";
-    segments.forEach((seg) => {
+    const maxCount = segments.reduce((max, seg) => Math.max(max, seg.count), 0);
+    segments.forEach((seg, index) => {
       const li = document.createElement("li");
       li.className = "github-profile-lang-item";
-
-      const swatch = document.createElement("span");
-      swatch.className = "github-profile-lang-swatch";
-      swatch.style.backgroundColor = seg.color;
 
       const name = document.createElement("span");
       name.className = "github-profile-lang-name";
@@ -303,8 +305,8 @@ document.addEventListener("DOMContentLoaded", () => {
       count.className = "github-profile-lang-count";
       count.textContent = `${seg.count} repo${seg.count !== 1 ? "s" : ""}`;
 
-      li.appendChild(swatch);
       li.appendChild(name);
+      li.appendChild(createMeter(seg.color, maxCount > 0 ? seg.count / maxCount : 0, index));
       li.appendChild(count);
       legendEl.appendChild(li);
     });
