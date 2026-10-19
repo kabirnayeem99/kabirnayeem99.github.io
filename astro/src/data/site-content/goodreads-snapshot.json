@@ -1,6 +1,33 @@
 {
-  "generatedAt": "2026-10-12T06:45:31.971668Z",
+  "generatedAt": "2026-10-19T09:51:26.019876Z",
   "books": [
+    {
+      "title": "We Were Liars",
+      "href": "https://www.goodreads.com/review/show/9035772603?utm_medium=api&utm_source=rss",
+      "alt": "We Were Liars",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1402749479l/16143347.jpg",
+      "imageLocal": "/assets/images/goodreads/16143347-we-were-liars.webp",
+      "imageFileName": "16143347-we-were-liars.webp",
+      "dateRead": "2026-10-18T00:00:00Z"
+    },
+    {
+      "title": "Lost Islamic History: Reclaiming Muslim Civilisation from the Past",
+      "href": "https://www.goodreads.com/review/show/9027422210?utm_medium=api&utm_source=rss",
+      "alt": "Lost Islamic History: Reclaiming Muslim Civilisation from the Past",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1430183256l/20794875.jpg",
+      "imageLocal": "/assets/images/goodreads/20794875-lost-islamic-history-reclaiming-muslim-civilisation-from-the.webp",
+      "imageFileName": "20794875-lost-islamic-history-reclaiming-muslim-civilisation-from-the.webp",
+      "dateRead": "2026-10-15T03:37:26-07:00"
+    },
+    {
+      "title": "ফাহমুস সালাফ : দীন বোঝার কষ্টিপাথর",
+      "href": "https://www.goodreads.com/review/show/9027421026?utm_medium=api&utm_source=rss",
+      "alt": "ফাহমুস সালাফ : দীন বোঝার কষ্টিপাথর",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1653908467l/61193012.jpg",
+      "imageLocal": "/assets/images/goodreads/61193012-book.webp",
+      "imageFileName": "61193012-book.webp",
+      "dateRead": "2026-10-15T03:36:43-07:00"
+    },
     {
       "title": "লিটু বৃত্তান্ত",
       "href": "https://www.goodreads.com/review/show/9008726018?utm_medium=api&utm_source=rss",
