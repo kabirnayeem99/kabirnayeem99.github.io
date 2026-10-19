@@ -1,3 +1,5 @@
+import { onFirstInteraction } from "./first-interaction";
+
 document.addEventListener("DOMContentLoaded", () => {
   const widget = document.querySelector<HTMLElement>(".goodreads-widget");
   if (!(widget instanceof HTMLElement)) {
@@ -376,7 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.setTimeout(injectScript, 250);
   };
 
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(scheduleOnIdle);
-  });
+  // The local snapshot is already on the page; only refresh from Goodreads once the
+  // reader engages, keeping its script and third-party cookies off the initial load.
+  onFirstInteraction(scheduleOnIdle);
 });

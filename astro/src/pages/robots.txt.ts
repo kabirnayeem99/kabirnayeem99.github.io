@@ -30,8 +30,8 @@ export function GET(): Response {
 
   const body = `${explicitAllowBlocks}
 
+# Content-Signal: ai-train=yes, search=yes, ai-input=yes
 User-agent: *
-Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 Sitemap: ${baseUrl}/sitemap.xml
