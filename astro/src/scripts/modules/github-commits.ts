@@ -339,6 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         dot.style.backgroundColor = color;
         dot.dataset.level = String(level);
+        dot.setAttribute("role", "img");
         dot.setAttribute("aria-label", label);
         dot.title = label;
       }

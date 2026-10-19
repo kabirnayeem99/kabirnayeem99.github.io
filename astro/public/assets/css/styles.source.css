@@ -13,7 +13,7 @@
   src: url("../fonts/english_eb_garamond_wght.woff2") format("woff2");
   font-style: normal;
   font-weight: 400 800;
-  font-display: swap;
+  font-display: optional; /* preloaded; never swaps mid-read, so no layout shift */
 }
 
 @font-face {
@@ -21,7 +21,7 @@
   src: url("../fonts/handwriting_caveat_latin_wght.woff2") format("woff2");
   font-style: normal;
   font-weight: 400 700;
-  font-display: swap;
+  font-display: optional; /* preloaded; never swaps mid-read, so no layout shift */
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -64,7 +64,7 @@
   src: url("../fonts/bookhand_arabic_subset.woff2") format("woff2");
   unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
   size-adjust: 112%;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -72,7 +72,7 @@
   src: url("../fonts/bookhand_bangla_subset.woff2") format("woff2");
   unicode-range: U+0980-09FF, U+200C-200D, U+25CC;
   size-adjust: 92%;
-  font-display: swap;
+  font-display: optional;
 }
 
 @property --peel {
@@ -136,26 +136,27 @@
 
     --line: 32px; /* ruled period = body line-height */
 
-    --desk: #d9cfb8;
-    --bg: #f4eedf;
-    --card: #fbf8ef;
-    --surface: #ebe3cf;
-    --text: #1f1b16;
-    --text-muted: #5b5246;
-    --accent: #3f5f3a;
-    --rose: #9a3b3b;
-    --highlight: rgba(232, 199, 102, 0.55);
-    --rule: rgba(120, 156, 196, 0.3);
-    --margin-rule: rgba(176, 72, 72, 0.55);
+    --desk: #2a1d17;
+    --desk-ink: #e9d9bd;
+    --bg: #f8f1dc;
+    --card: #fffbf1;
+    --surface: #efe5cb;
+    --text: #120e0a;
+    --text-muted: #463b2f;
+    --accent: #24552a;
+    --rose: #a3192b;
+    --highlight: rgba(244, 190, 52, 0.62);
+    --rule: rgba(84, 128, 188, 0.36);
+    --margin-rule: rgba(196, 34, 48, 0.72);
     --stain: rgba(120, 78, 36, 0.2);
-    --shadow: 0 1px 1px rgba(60, 40, 10, 0.1), 0 6px 14px -6px rgba(60, 40, 10, 0.28);
-    --shadow-page: 0 30px 60px -30px rgba(40, 25, 5, 0.45);
+    --shadow: 0 1px 1px rgba(40, 20, 5, 0.16), 0 8px 18px -6px rgba(40, 20, 5, 0.38);
+    --shadow-page: 0 0 0 1px rgba(20, 10, 0, 0.35), 0 40px 90px -20px rgba(0, 0, 0, 0.75), 0 10px 30px rgba(0, 0, 0, 0.35);
     --grid: rgba(120, 156, 196, 0.22);
     --grid-strong: rgba(120, 156, 196, 0.42);
     --focus: var(--rose);
     --fold-dark: #d3c6a6;
     --fold-light: #f7f1e3;
-    --paper-drop: drop-shadow(0 1px 1px rgba(60, 40, 10, 0.12)) drop-shadow(0 5px 6px rgba(60, 40, 10, 0.2));
+    --paper-drop: drop-shadow(0 1px 1px rgba(40, 20, 5, 0.18)) drop-shadow(0 7px 9px rgba(40, 20, 5, 0.3));
 
     --tape-1: rgba(214, 180, 104, 0.62);
     --tape-2: rgba(150, 178, 140, 0.62);
@@ -173,9 +174,9 @@
     --news-rule: #3a352c;
 
     /* pressed watercolour pigments */
-    --p-ox: #7c2633;
-    --p-wine: #561d2a;
-    --p-ochre: #d6a03e;
+    --p-ox: #8f1a2e;
+    --p-wine: #561122;
+    --p-ochre: #e29f22;
     --p-umber: #5a3a22;
     --p-sage: #9aa087;
     --p-sage-d: #6f765f;
@@ -205,20 +206,21 @@
 
   html[data-theme="dark"] {
     color-scheme: dark;
-    --desk: #0c111d;
-    --bg: #151d2e;
-    --card: #1c263b;
-    --surface: #222d45;
-    --text: #ebe6d8;
-    --text-muted: #a9b1c2;
-    --accent: #a7cfa3;
-    --rose: #eba3a3;
-    --highlight: rgba(201, 169, 74, 0.38);
-    --rule: rgba(140, 165, 210, 0.13);
-    --margin-rule: rgba(235, 140, 140, 0.35);
+    --desk: #04060b;
+    --desk-ink: #b9c2d6;
+    --bg: #111827;
+    --card: #182239;
+    --surface: #1f2a44;
+    --text: #f6f1e4;
+    --text-muted: #bcc4d6;
+    --accent: #b3e6a6;
+    --rose: #ff8f96;
+    --highlight: rgba(232, 178, 48, 0.42);
+    --rule: rgba(140, 170, 225, 0.17);
+    --margin-rule: rgba(255, 110, 120, 0.5);
     --stain: rgba(220, 190, 140, 0.1);
     --shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 8px 18px -8px rgba(0, 0, 0, 0.7);
-    --shadow-page: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
+    --shadow-page: 0 0 0 1px rgba(150, 175, 230, 0.12), 0 40px 90px -20px rgba(0, 0, 0, 0.95), 0 0 60px rgba(70, 100, 170, 0.12);
     --grid: rgba(140, 165, 210, 0.1);
     --grid-strong: rgba(140, 165, 210, 0.22);
     --fold-dark: #2f3a55;
@@ -268,8 +270,10 @@
     min-height: 100vh;
     padding: 40px 12px 72px;
     background:
-      radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.18), transparent 60%),
+      radial-gradient(ellipse 70% 55% at 50% 18%, rgba(255, 214, 150, 0.16), transparent 70%),
+      radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
       var(--desk);
+    background-attachment: fixed;
     color: var(--text);
     font-family: var(--font-site);
     font-size: 1.08rem;
@@ -647,7 +651,7 @@
     margin: 0 0 6px;
     padding-inline-start: 22px;
     font: 600 1.05rem/1 var(--hand);
-    color: var(--text-muted);
+    color: var(--desk-ink);
     rotate: -6deg;
   }
 
@@ -1611,7 +1615,7 @@
     text-transform: none;
   }
 
-  .article-item h3 {
+  .article-item :is(h2, h3) {
     margin: 0 0 10px;
     padding-block-end: 10px;
     border-block-end: 1px solid var(--news-rule);
@@ -1627,7 +1631,7 @@
     --peel: 30px;
   }
 
-  .article-item > a:hover h3 {
+  .article-item > a:hover :is(h2, h3) {
     text-decoration: underline;
     text-decoration-thickness: 2px;
   }
@@ -3276,5 +3280,378 @@
       animation: none !important;
       transition: none !important;
     }
+  }
+}
+
+/* ------------------------------------------------------------------ motion */
+
+/* Page turns between notebook pages (cross-document view transitions). */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root) {
+    animation: page-turn-away 360ms cubic-bezier(0.55, 0, 0.75, 0.3) both;
+    transform-origin: 0 50%;
+  }
+
+  ::view-transition-new(root) {
+    animation: none;
+  }
+
+  @keyframes page-turn-away {
+    to {
+      opacity: 0;
+      transform: perspective(1600px) rotateY(-24deg) translateX(-4%);
+    }
+  }
+}
+
+/* html.motion is set in <head> before first paint, only without a reduced-motion preference;
+   notebook-motion.ts adds .is-inked as each piece scrolls into view. */
+@layer ornaments {
+  /* the notebook opens */
+  html.motion:not(.motion-anchored) .site {
+    animation: notebook-open 650ms var(--ease-out) backwards;
+    transform-origin: 50% 0;
+  }
+
+  @keyframes notebook-open {
+    /* no perspective: projected over a very long page it magnifies every layout shift */
+    from {
+      transform: translateY(28px);
+    }
+  }
+
+  /* masthead: kicker drops in, the title is written in, then the tagline */
+  html.motion :is(.masthead-kicker, .tagline, .page-nav, .header-controls) {
+    animation: ink-rise 500ms var(--ease-out) backwards;
+  }
+
+  html.motion .masthead-kicker { animation-delay: 200ms; }
+  html.motion .tagline { animation-name: ink-write; animation-duration: 700ms; animation-delay: 700ms; }
+  html.motion .header-controls { animation-delay: 800ms; }
+  html.motion .page-nav { animation-delay: 900ms; }
+
+  html.motion .site-title {
+    animation: ink-write 850ms cubic-bezier(0.6, 0.05, 0.3, 1) 280ms backwards;
+  }
+
+  /* never from opacity 0: first-screen text must count as painted straight away */
+  @keyframes ink-rise {
+    from {
+      opacity: 0.05;
+      transform: translateY(14px);
+    }
+  }
+
+  html.motion :is(.summary-card, .social-chip-row, main > section:first-of-type > p) {
+    animation: ink-rise 600ms var(--ease-out) 450ms backwards;
+  }
+
+  html.motion .social-chip-row { animation-delay: 600ms; }
+
+  html.motion .intro-stage-figure {
+    animation: sleeve-swing 800ms var(--ease-spring) 500ms backwards;
+    transform-origin: 50% 0;
+  }
+
+  @keyframes ink-write {
+    from {
+      opacity: 0.3;
+      clip-path: inset(-0.4em 100% -0.4em -0.4em);
+    }
+    to {
+      opacity: 1;
+      clip-path: inset(-0.4em -0.4em -0.4em -0.4em);
+    }
+  }
+
+  @keyframes ink-write-rtl {
+    from {
+      opacity: 0.3;
+      clip-path: inset(-0.4em -0.4em -0.4em 100%);
+    }
+    to {
+      opacity: 1;
+      clip-path: inset(-0.4em -0.4em -0.4em -0.4em);
+    }
+  }
+
+  html.motion[dir="rtl"] :is(.site-title, .tagline) {
+    animation-name: ink-write-rtl;
+  }
+
+  /* everything else waits to be pressed onto the page */
+  html.motion
+    :is(
+      .section-head, .sprig, main > section:not(:first-of-type) > p, .entry,
+      .highlight, .article-item, .file-card, .gr_grid_book_container, .gr_grid_book_placeholder,
+      .section-actions, .stats-card, .github-repo-card, .pf, .pinned
+    ):not(.is-inked) {
+    opacity: 0;
+  }
+
+  html.motion .is-inked {
+    animation: ink-press 550ms var(--ease-out) var(--reveal-delay, 0ms) backwards;
+  }
+
+  @keyframes ink-press {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+
+  /* cards are taped down from just above the page */
+  html.motion :is(.highlight, .stats-card).is-inked {
+    animation: tape-down 600ms var(--ease-spring) var(--reveal-delay, 0ms) backwards;
+  }
+
+  @keyframes tape-down {
+    from {
+      opacity: 0;
+      transform: perspective(1200px) translateY(-36px) rotateX(-14deg) rotate(2.5deg) scale(1.06);
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+
+  /* newspaper clippings are slapped down */
+  html.motion .article-item.is-inked {
+    animation: clipping-slap 480ms var(--ease-spring) var(--reveal-delay, 0ms) backwards;
+  }
+
+  @keyframes clipping-slap {
+    from {
+      opacity: 0;
+      transform: scale(1.25) rotate(-6deg);
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* index cards are dealt into the file box */
+  html.motion .file-card.is-inked {
+    animation: card-deal 500ms var(--ease-spring) var(--reveal-delay, 0ms) backwards;
+  }
+
+  @keyframes card-deal {
+    from {
+      opacity: 0;
+      transform: translateY(80px) rotate(7deg);
+    }
+  }
+
+  /* books tumble onto the shelf */
+  html.motion :is(.gr_grid_book_container, .gr_grid_book_placeholder).is-inked {
+    animation: book-drop 520ms var(--ease-spring) var(--reveal-delay, 0ms) backwards;
+  }
+
+  @keyframes book-drop {
+    from {
+      opacity: 0;
+      transform: translateY(-60px) rotate(-10deg);
+    }
+    35% {
+      opacity: 1;
+    }
+  }
+
+  /* the hero sleeve swings in */
+  @keyframes sleeve-swing {
+    from {
+      opacity: 0.05;
+      transform: perspective(1200px) rotateX(-40deg) rotate(-6deg) translateY(-30px);
+    }
+  }
+
+  /* sprigs are inked stroke by stroke */
+  html.motion .sprig.is-inked {
+    animation: sprig-draw 700ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 100ms) backwards;
+  }
+
+  [dir="rtl"] .sprig.is-inked {
+    animation-name: sprig-draw-rtl;
+  }
+
+  @keyframes sprig-draw {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
+
+  @keyframes sprig-draw-rtl {
+    from { clip-path: inset(0 0 0 100%); }
+    to { clip-path: inset(0 0 0 0); }
+  }
+
+  /* margin flowers grow from the stem */
+  html.motion :is(.pf, .pinned).is-inked {
+    animation: bloom 850ms var(--ease-spring) calc(var(--reveal-delay, 0ms) + 80ms) backwards;
+    transform-origin: 50% 100%;
+  }
+
+  @keyframes bloom {
+    from {
+      opacity: 0;
+      transform: scale(0.4) rotate(-20deg);
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+
+  /* section titles get a highlighter swipe once they land */
+  .section-title {
+    isolation: isolate;
+    width: fit-content;
+  }
+
+  .section-title::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset-inline: -8px -6px;
+    inset-block-end: 0.55em;
+    height: 0.5em;
+    background: linear-gradient(100deg, transparent 1%, var(--highlight) 3%, var(--highlight) 95%, transparent 99%);
+    border-radius: 2px 8px 3px 6px;
+    transform-origin: 0 50%;
+    rotate: -0.6deg;
+    pointer-events: none;
+  }
+
+  [dir="rtl"] .section-title::after {
+    transform-origin: 100% 50%;
+  }
+
+  html.motion .section-title::after {
+    scale: 0 1;
+    transition: scale 550ms cubic-bezier(0.7, 0, 0.2, 1) calc(var(--reveal-delay, 0ms) + 200ms);
+  }
+
+  html.motion :is(.is-inked .section-title, .section-title.is-inked)::after {
+    scale: 1 1;
+  }
+
+  /* cards lean toward a fine pointer */
+  @media (hover: hover) and (pointer: fine) {
+    html.motion :is(.highlight, .article-item > a, .github-repo-card, .shelf-more-card) {
+      transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
+        translateY(var(--tilt-lift, 0px));
+      transition: --peel 240ms var(--ease-peel), transform 300ms var(--ease-out);
+    }
+
+    html.motion :is(.highlight, .article-item > a, .github-repo-card, .shelf-more-card):hover {
+      --tilt-lift: -6px;
+    }
+
+    html.motion .social-chip {
+      transition: --peel 240ms var(--ease-peel), translate 300ms var(--ease-spring);
+    }
+
+    html.motion .social-chip:hover {
+      translate: 0 -3px;
+    }
+  }
+
+  /* reading ribbon */
+  .reading-ribbon {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 40;
+    height: 3px;
+    background: linear-gradient(90deg, var(--p-wine), var(--p-ox) 40%, var(--rose) 75%, var(--p-ochre));
+    box-shadow: 0 0 10px color-mix(in srgb, var(--p-ox) 55%, transparent);
+    transform: scaleX(var(--progress, 0));
+    transform-origin: 0 50%;
+    pointer-events: none;
+  }
+
+  [dir="rtl"] .reading-ribbon {
+    transform-origin: 100% 50%;
+  }
+
+  /* petals on the air */
+  .petal-drift {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .petal-drift-petal {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: var(--size);
+    height: calc(var(--size) * 1.5);
+    opacity: 0.5;
+    animation: petal-fall var(--fall) linear var(--delay) infinite;
+    will-change: transform;
+  }
+
+  html[data-theme="dark"] .petal-drift-petal {
+    opacity: 0.35;
+  }
+
+  .petal-drift-petal svg,
+  .petal-burst svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  @keyframes petal-fall {
+    0% { transform: translate(var(--x), -8vh) rotate(0deg); }
+    25% { transform: translate(calc(var(--x) + var(--sway)), 22vh) rotate(calc(var(--spin) * 100deg)); }
+    50% { transform: translate(var(--x), 52vh) rotate(calc(var(--spin) * 200deg)); }
+    75% { transform: translate(calc(var(--x) + var(--sway)), 82vh) rotate(calc(var(--spin) * 290deg)); }
+    100% { transform: translate(var(--x), 110vh) rotate(calc(var(--spin) * 380deg)); }
+  }
+
+  /* petals scattered by a press */
+  .petal-burst {
+    position: fixed;
+    z-index: 2147483646;
+    width: 12px;
+    height: 18px;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 1px rgba(40, 25, 5, 0.25));
+  }
+
+  @media (max-width: 760px) {
+    html.motion .site {
+      animation-duration: 450ms;
+    }
+  }
+}
+
+/* Stats widgets fill in from script just after first paint; reserve roughly their rendered
+   height so the cards below don't jump (measured at 360–1600px). */
+@layer pages {
+  [data-wakatime-widget] { min-height: 400px; }
+  [data-github-commits-widget] { min-height: 585px; }
+  [data-github-profile-widget] { min-height: 668px; }
+  [data-leetcode-widget] { min-height: 312px; }
+
+  @media (max-width: 1000px) {
+    [data-wakatime-widget] { min-height: 515px; }
+    [data-github-profile-widget] { min-height: 725px; }
+  }
+
+  @media (max-width: 780px) {
+    [data-wakatime-widget] { min-height: 655px; }
+    [data-github-profile-widget] { min-height: 1020px; }
+    [data-leetcode-widget] { min-height: 374px; }
+  }
+
+  @media (max-width: 560px) {
+    [data-wakatime-widget] { min-height: 790px; }
+    [data-github-commits-widget] { min-height: 612px; }
+    [data-github-profile-widget] { min-height: 1495px; }
   }
 }

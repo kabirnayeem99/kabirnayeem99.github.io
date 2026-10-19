@@ -445,6 +445,7 @@ interface DonutSegmentUi {
       const segmentsLabel = chartSegments
         .map((item) => `${item.name}: ${formatPercent(item.percent)}`)
         .join(", ");
+      languageDonutEl.setAttribute("role", "img");
       languageDonutEl.setAttribute("aria-label", `Language share pie chart: ${segmentsLabel}`);
       languageDonutEl.setAttribute("title", `Top language share: ${segmentsLabel}`);
     }
