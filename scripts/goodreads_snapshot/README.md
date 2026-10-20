@@ -16,19 +16,20 @@ This script lets you regenerate the local snapshot/covers safely whenever you wa
 
 ## Setup
 
-Requires Pillow to convert covers to WebP:
-
-```bash
-pip install -r scripts/goodreads_snapshot/requirements.txt
-```
+Install [uv](https://docs.astral.sh/uv/) once (`brew install uv`). Both scripts declare Pillow as
+inline script metadata (PEP 723) with a `uv run --script` shebang, so uv provisions a cached
+environment on first run. No manual `pip install` needed.
 
 ## Run
 
 From repo root:
 
 ```bash
-python3 scripts/goodreads_snapshot/update_goodreads_snapshot.py
+scripts/goodreads_snapshot/update_goodreads_snapshot.py
 ```
+
+Without uv, fall back to `pip install -r scripts/goodreads_snapshot/requirements.txt` and
+`python3 scripts/goodreads_snapshot/update_goodreads_snapshot.py`.
 
 Every downloaded cover is re-encoded to WebP before it's written to
 `astro/public/assets/images/goodreads/`, so local cover files always have a `.webp` extension.
@@ -40,7 +41,7 @@ pull the full shelf. The feed key is baked in as a default; override it with `--
 Optional flags:
 
 ```bash
-python3 scripts/goodreads_snapshot/update_goodreads_snapshot.py \
+scripts/goodreads_snapshot/update_goodreads_snapshot.py \
   --user-id 45514357 \
   --shelf read \
   --timeout-seconds 20

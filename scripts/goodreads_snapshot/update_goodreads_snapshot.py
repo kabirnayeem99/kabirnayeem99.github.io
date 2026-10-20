@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# dependencies = ["Pillow>=10"]
+# ///
 """Fetch Goodreads RSS shelf data and atomically refresh local snapshot assets.
 
 This script is intentionally fail-safe:
@@ -30,7 +34,7 @@ try:
 except ImportError as exc:  # pragma: no cover - environment guard
     raise SystemExit(
         "Pillow is required to convert cover images to WebP.\n"
-        "Install it with: pip install -r scripts/goodreads_snapshot/requirements.txt"
+        "Run it directly (uv), or: pip install -r scripts/goodreads_snapshot/requirements.txt"
     ) from exc
 
 

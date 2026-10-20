@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# dependencies = ["Pillow>=10"]
+# ///
 """Crop/resize an arbitrary book cover image to match the site's Goodreads covers.
 
 Downloaded covers vary wildly in resolution and aspect ratio. This center-crops
@@ -9,8 +13,8 @@ WebP the same way (quality=75, method=6) so a manually swapped cover is
 indistinguishable from a fetched one.
 
 Usage:
-    python3 prepare_book_cover.py path/to/cover.jpg --book-id 12345 --title "Some Book"
-    python3 prepare_book_cover.py path/to/cover.jpg --output custom-name.webp
+    ./prepare_book_cover.py path/to/cover.jpg --book-id 12345 --title "Some Book"
+    ./prepare_book_cover.py path/to/cover.jpg --output custom-name.webp
 """
 
 from __future__ import annotations
@@ -24,7 +28,7 @@ try:
     from PIL import Image
 except ImportError as exc:  # pragma: no cover - environment guard
     raise SystemExit(
-        "Pillow is required.\nInstall it with: pip install -r scripts/goodreads_snapshot/requirements.txt"
+        "Pillow is required.\nRun this script directly (uses uv), or: pip install -r scripts/goodreads_snapshot/requirements.txt"
     ) from exc
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
