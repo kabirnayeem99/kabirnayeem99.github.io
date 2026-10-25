@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const cursor = buildCursor();
   body.append(cursor);
-  const petals = Array.from(cursor.querySelectorAll<SVGPathElement>(".cosmos-cursor-petal"));
+  let petalScale = "";
 
   let x = 0;
   let y = 0;
@@ -97,9 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const flutter = 1 - speed * 0.28 * (0.5 + 0.5 * Math.sin(flutterPhase));
 
     cursor.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${angle.toFixed(2)}deg) scaleX(${flutter.toFixed(3)})`;
-    const petalTransform = `scale(${(0.9 + open * 0.1).toFixed(3)} ${open.toFixed(3)})`;
-    for (const petal of petals) {
-      petal.setAttribute("transform", petalTransform);
+    // One custom property scales all sixteen petal paths (see .cosmos-cursor-petal).
+    const nextPetalScale = `${(0.9 + open * 0.1).toFixed(3)}, ${open.toFixed(3)}`;
+    if (nextPetalScale !== petalScale) {
+      petalScale = nextPetalScale;
+      cursor.style.setProperty("--petal-scale", petalScale);
     }
 
     const busy = Math.abs(spin) > 2 || Math.abs(targetOpen - open) > 0.002 || Math.abs(openVelocity) > 0.01;

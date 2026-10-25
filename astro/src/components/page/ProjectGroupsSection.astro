@@ -4,6 +4,7 @@ import { pinnedBotanical } from "../../lib/notebook";
 import type { ProjectGroup } from "../../lib/work-project-content";
 import Botanical from "./Botanical.astro";
 import HighlightCard from "./HighlightCard.astro";
+import JournalEntry from "./JournalEntry.astro";
 
 interface Props {
   readonly groups: readonly ProjectGroup[];
@@ -26,15 +27,23 @@ let cardIndex = 0;
   groups.map((group, groupIndex) => {
     const flower = MARGIN_FLOWERS[groupIndex % MARGIN_FLOWERS.length];
     return (
-      <section>
+      <section class={group.layout === "compact" ? "project-group project-group--compact" : "project-group"}>
         {flower ? <Botanical name={flower.name} class={flower.className} /> : null}
         <h2 class="section-title">{group.title}</h2>
         <Botanical name="sprig" class="sprig" />
-        <div class="highlight-list">
-          {group.items.map((item) => (
-            <HighlightCard card={item} botanical={pinnedBotanical(cardIndex++)} />
-          ))}
-        </div>
+        {group.layout === "compact" ? (
+          <div class="highlight-list">
+            {group.items.map((item) => (
+              <HighlightCard card={item} botanical={pinnedBotanical(cardIndex++)} />
+            ))}
+          </div>
+        ) : (
+          <ol class="journal">
+            {group.items.map((item) => (
+              <JournalEntry entry={item} />
+            ))}
+          </ol>
+        )}
       </section>
     );
   })

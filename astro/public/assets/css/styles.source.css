@@ -249,6 +249,13 @@
     --line: 44px;
   }
 
+  /* Urdu quoted inside other languages (book titles): Nastaleeq, upright, never slanted */
+  :not(html)[lang="ur"] {
+    font-family: "Urdu Pak Nastaleeq", "Scheherazade New", var(--font-serif);
+    font-style: normal;
+    line-height: 0; /* tall Nastaleeq metrics must not push text off the ruled lines */
+  }
+
   @media (max-width: 760px) {
     :root {
       --gutter-start: 38px;
@@ -306,9 +313,9 @@
   .mark {
     color: inherit;
     background:
-      linear-gradient(100deg, transparent 2%, var(--highlight) 4%, var(--highlight) 96%, transparent 98%)
+      linear-gradient(100deg, transparent 0, var(--highlight) 4px, var(--highlight) calc(100% - 4px), transparent 100%)
       0 62% / 100% 62% no-repeat;
-    padding-inline: 2px;
+    padding-inline: 4px; /* fixed-width ragged ends, so long phrases keep their first and last letters inked */
   }
 
   strong {
@@ -1674,8 +1681,9 @@
   }
 
   .hero-avatar-card {
-    --lift: 0;
-    --peel: 0px;
+    /* paper-flutter writes --curl (0..1); the corner cut and the flap both follow it */
+    --curl: 0;
+    --peel: calc(var(--curl) * 30px);
     --peel-px: max(0px, var(--peel));
     --peel-a: 315deg;
     position: relative;
@@ -1702,8 +1710,17 @@
     );
   }
 
+  /* fixed-size flap scaled from its corner, so curling never re-lays out the page */
   .hero-avatar-card .peel-flap {
     z-index: 3;
+    width: 30px;
+    height: 30px;
+    transform: scale(var(--curl));
+    transform-origin: 100% 100%;
+  }
+
+  [dir="rtl"] .hero-avatar-card .peel-flap {
+    transform-origin: 0 100%;
   }
 
   .hero-avatar-toggle {
@@ -1839,6 +1856,77 @@
     position: relative;
   }
 
+  /* the book being read, taped beside the "right now" notes like the work page's prints */
+  .entry:has(.now-prints) {
+    display: flow-root; /* the pile stays inside its section, never over the next one */
+    max-width: 900px; /* keeps the prints beside the text column, not out at the page edge */
+  }
+
+  /* covers of the books being read, overlapping like two prints dropped on the page */
+  .now-prints {
+    float: inline-end;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 250px;
+    margin-block: 6px 12px;
+    margin-inline: 28px 6px;
+  }
+
+  .now-print {
+    flex: none; /* .print is a flex-basis: 0 item; these keep their own width */
+    width: 112px;
+    padding: 6px 6px 8px;
+    rotate: -3deg;
+  }
+
+  /* a landscape print (the course being followed) heads the pile, the books below it */
+  .now-print--wide {
+    width: 100%;
+    margin-block-end: 16px;
+    rotate: 1.5deg;
+  }
+
+  .now-print:not(.now-print--wide) + .now-print {
+    z-index: 1;
+    margin-inline-start: -26px;
+    rotate: 3.5deg;
+    translate: 0 18px;
+  }
+
+  [dir="rtl"] .now-print {
+    rotate: 3deg;
+  }
+
+  [dir="rtl"] .now-print--wide {
+    rotate: -1.5deg;
+  }
+
+  [dir="rtl"] .now-print:not(.now-print--wide) + .now-print {
+    rotate: -3.5deg;
+  }
+
+  @media (max-width: 760px) {
+    .now-prints {
+      width: 170px;
+      margin-inline-start: 14px;
+    }
+
+    .now-print {
+      width: 92px;
+    }
+
+    .now-print--wide {
+      width: 100%;
+    }
+
+    .now-print:not(.now-print--wide) + .now-print {
+      margin-inline-start: -26px;
+      translate: 0 18px;
+    }
+  }
+
   .margin-note {
     position: absolute;
     inset-inline-start: calc(-1 * var(--gutter-start) + 4px);
@@ -1853,14 +1941,16 @@
     text-align: start;
   }
 
-  /* work: a dated journal along a growing stem */
-  body[data-page-id="work"] .highlight-list {
+  /* work: a dated journal along a growing stem; each entry is text beside a small
+     collage of taped prints (place, product), with the company inked on as a stamp */
+  .journal {
     position: relative;
-    display: block;
-    margin-block-start: var(--line);
+    margin: var(--line) 0 0;
+    padding: 0;
+    list-style: none;
   }
 
-  body[data-page-id="work"] .highlight-list::before {
+  .journal::before {
     content: "";
     position: absolute;
     inset-block: 8px 0;
@@ -1870,48 +1960,42 @@
     border-radius: 2px;
   }
 
-  body[data-page-id="work"] .highlight {
+  .journal-entry {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 40%);
+    gap: 0 44px;
+    align-items: start;
+    margin: 0 0 calc(var(--line) * 2);
     padding: 0;
-    background: none;
-    filter: none;
-    clip-path: none;
-    rotate: 0deg;
     font-size: 1rem;
     line-height: var(--line);
-    margin-block-end: calc(var(--line) * 2);
   }
 
-  body[data-page-id="work"] .highlight::after,
-  body[data-page-id="work"] .peel-flap {
-    content: none;
-    display: none;
+  /* prints alternate sides down the page */
+  .journal-entry:nth-child(even) .journal-prints {
+    order: -1;
   }
 
-  /* leaf node on the stem */
-  body[data-page-id="work"] .highlight::before {
+  .journal-entry:nth-child(even) {
+    grid-template-columns: minmax(0, 40%) minmax(0, 1fr);
+  }
+
+  /* leaf node on the stem; the first (current) role gets a flower */
+  .journal-entry::before {
+    content: "";
+    position: absolute;
     width: 22px;
     height: 12px;
     inset-block-start: 10px;
     inset-inline-start: calc(-1 * var(--gutter-start) + var(--margin-line) - 27px);
     background: var(--p-sage);
     border-radius: 0 100% 0 100%;
-    clip-path: none;
     rotate: -24deg;
     opacity: 0.9;
   }
 
-  @media (max-width: 760px) {
-    body[data-page-id="work"] .highlight-list::before {
-      inset-inline-start: calc(-1 * var(--gutter-start) + var(--margin-line) - 1px);
-    }
-
-    body[data-page-id="work"] .highlight::before {
-      inset-inline-start: calc(-1 * var(--gutter-start) + var(--margin-line) - 6px) !important;
-      scale: 0.7;
-    }
-  }
-
-  body[data-page-id="work"] .highlight:first-child::before {
+  .journal-entry:first-child::before {
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -1920,34 +2004,359 @@
     inset-inline-start: calc(-1 * var(--gutter-start) + var(--margin-line) - 34px);
   }
 
-  body[data-page-id="work"] .highlight h3 {
+  .journal-entry .meta {
+    margin: 0 0 2px;
+    padding: 0;
+    border: 0;
+    font: 400 1.12rem/var(--line) var(--hand);
+    color: var(--p-ox);
+  }
+
+  .journal-entry-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .journal-entry h3 {
     font-size: 1.35rem;
     line-height: var(--line);
     margin: 0;
   }
 
-  body[data-page-id="work"] .highlight .meta {
-    margin: 0 0 4px;
-    padding: 0;
-    border: 0;
-    font-size: 1.12rem;
-    line-height: var(--line);
+  /* the text is cut from paper like the home page's selected-work cards: taped down,
+     casting a shadow, its free corner dog-earing on hover */
+  .journal-entry-text.highlight {
+    padding: 22px 26px 18px;
   }
 
-  body[data-page-id="work"] .highlight p,
-  body[data-page-id="work"] .highlight ul {
-    margin-block-end: 0;
+  .journal-entry:nth-child(even) .journal-entry-text.highlight {
+    --tape: var(--tape-3);
+    rotate: 0.8deg;
+  }
+
+  .journal-entry-text > p,
+  .journal-entry-text > ul {
     max-width: 66ch;
   }
 
-  /* journal entries: date first, written in the margin column's hand */
-  body[data-page-id="work"] .highlight {
-    display: flex;
-    flex-direction: column;
+  .journal-entry-text > ul {
+    margin-block-end: 0;
   }
 
-  body[data-page-id="work"] .highlight .meta {
-    order: -1;
+  /* the company's mark, re-inked as a rubber stamp in the page's red */
+  .journal-stamp {
+    --stamp-h: 30px;
+    position: relative;
+    display: inline-block;
+    flex: none;
+    height: var(--stamp-h);
+    width: calc(var(--stamp-h) * var(--stamp-ratio, 2));
+    padding: 4px 8px;
+    box-sizing: content-box;
+    border: 2px solid var(--p-ox);
+    border-radius: 6px;
+    rotate: -5deg;
+    opacity: 0.8;
+  }
+
+  .journal-stamp::before {
+    content: "";
+    position: absolute;
+    inset: 4px 8px;
+    background: var(--p-ox);
+    mask: var(--stamp) center / contain no-repeat;
+  }
+
+  /* handwritten name tags for the products worked on */
+  .journal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    margin-block-start: 4px;
+  }
+
+  .journal-tags-label {
+    font: 400 1.12rem/var(--line) var(--hand);
+    color: var(--text-muted);
+  }
+
+  .journal-tags ul {
+    display: contents;
+    list-style: none;
+  }
+
+  .journal-tags li {
+    padding: 0 10px;
+    font: 600 1.15rem/1.5 var(--hand);
+    color: var(--text);
+    background: color-mix(in srgb, var(--p-ochre) 26%, transparent);
+    border-radius: 3px 10px 4px 12px;
+    rotate: -1.5deg;
+  }
+
+  .journal-tags li:nth-child(even) {
+    background: color-mix(in srgb, var(--p-sage) 30%, transparent);
+    rotate: 1.2deg;
+  }
+
+  /* a small collage: prints in rows of equal height (flex-grow = aspect ratio); with
+     a landscape lead photo (data-lead: a place) runs full width above the product shots */
+  .journal-prints {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 18px 14px;
+    padding-block: 10px 6px;
+  }
+
+  .journal-prints .print {
+    flex: var(--ar) 1 0;
+  }
+
+  /* no photos or slip: the card sits alone at about two-thirds width, still alternating
+     sides, with its stickers stuck along its lower edge */
+  .journal-entry:not([data-collage]),
+  .journal-entry:not([data-collage]):nth-child(even) {
+    grid-template-columns: minmax(0, 64%);
+  }
+
+  .journal-entry:not([data-collage]):nth-child(even) {
+    justify-content: end;
+  }
+
+  .journal-card-stickers {
+    position: absolute;
+    z-index: 3;
+    inset-block-end: -14px;
+    inset-inline-end: 22px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .journal-card-stickers .journal-sticker {
+    position: static;
+  }
+
+  .journal-entry h3 a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  /* code or terminal output, typed on a slip torn from a roll and taped in */
+  .code-slip {
+    position: relative;
+    flex: 1 1 100%;
+    min-width: 0;
+    margin: 0;
+    filter: drop-shadow(0 1px 1px rgba(40, 25, 5, 0.2)) drop-shadow(0 5px 6px rgba(40, 25, 5, 0.22));
+    rotate: 1.2deg;
+  }
+
+  .journal-entry:nth-child(even) .code-slip {
+    rotate: -1deg;
+  }
+
+  .code-slip::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset-block-start: -9px;
+    inset-inline-start: 50%;
+    width: 70px;
+    height: 18px;
+    translate: -50% 0;
+    rotate: -3deg;
+    background: var(--tape-2);
+  }
+
+  /* minor work stays modest: no full-width lead card */
+  .project-group--compact .highlight:first-child:nth-last-child(odd) {
+    grid-column: auto;
+  }
+
+  .code-slip pre {
+    margin: 0;
+    padding: 20px 18px 26px;
+    overflow-x: auto;
+    background: #fdfbf6;
+    color: #2b2118;
+    font: 500 0.8rem/1.65 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    white-space: pre;
+    /* torn bottom edge: a row of small teeth */
+    mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 14px 100%;
+  }
+
+  html[data-theme="dark"] .code-slip pre {
+    background: #e9e4d8;
+  }
+
+  /* a lone print: the collage shrinks to it, so stickers land on its corner */
+  .journal-prints[data-count="1"] {
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .journal-prints[data-count="1"] .print {
+    flex: none;
+    width: min(calc(250px * var(--ar)), 360px); /* no %: the collage shrinks to fit this */
+  }
+
+  .journal-prints[data-lead] .print:first-child {
+    flex-basis: 100%;
+  }
+
+  .journal-entry .print,
+  .postcard {
+    padding: 6px 6px 8px;
+  }
+
+  .journal-entry .print figcaption,
+  .postcard figcaption {
+    padding-block-start: 4px;
+    font: 400 1.05rem/1.2 var(--hand);
+    color: #4a3c2e;
+    text-align: center;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .journal-entry .print,
+    .postcard {
+      transition: rotate 300ms var(--ease-out), translate 300ms var(--ease-out);
+    }
+
+    .journal-entry .print:hover,
+    .postcard:hover {
+      rotate: 0deg;
+      translate: 0 -3px;
+    }
+  }
+
+  /* die-cut stickers for the tools, stuck over the prints' top corner (clear of captions) */
+  .journal-sticker {
+    position: absolute;
+    z-index: 2;
+    inset-block-start: -4px;
+    inset-inline-end: -10px;
+    display: block;
+    padding: 6px 10px;
+    line-height: 0;
+    background: #fffdf8;
+    border-radius: 999px;
+    box-shadow: 0 1px 2px rgba(40, 25, 5, 0.25), 0 4px 8px -4px rgba(40, 25, 5, 0.35);
+    rotate: 8deg;
+  }
+
+  .journal-sticker + .journal-sticker {
+    inset-block-start: 30px;
+    inset-inline-end: -16px;
+    rotate: -6deg;
+  }
+
+  .journal-sticker img {
+    width: auto;
+    height: 20px;
+  }
+
+  html[data-theme="dark"] .journal-sticker {
+    background: #e9e4d8;
+  }
+
+  /* intro: three postcards fanned beside the pencilled note */
+  .work-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 46%);
+    gap: 24px 40px;
+    align-items: center;
+  }
+
+  .postcards {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 14px;
+  }
+
+  .postcard {
+    flex: var(--ar) 1 0;
+    min-width: 0;
+    rotate: -5deg;
+  }
+
+  .postcard:nth-child(2) {
+    z-index: 1;
+    margin-inline: -18px;
+    rotate: 3deg;
+    translate: 0 -10px;
+  }
+
+  .postcard:nth-child(3) {
+    rotate: -2deg;
+    translate: 0 8px;
+  }
+
+  /* picture credits: small print at the foot of the page */
+  .picture-credits h2 {
+    margin: 0;
+    font: 400 1.1rem/var(--line) var(--hand);
+    color: var(--text-muted);
+  }
+
+  .picture-credits ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.82rem;
+    line-height: calc(var(--line) / 2);
+    color: var(--text-muted);
+  }
+
+  .picture-credits li {
+    display: inline;
+  }
+
+  .picture-credits li + li::before {
+    content: " · ";
+  }
+
+  @media (max-width: 760px) {
+    .journal::before {
+      inset-inline-start: calc(-1 * var(--gutter-start) + var(--margin-line) - 1px);
+    }
+
+    .journal-entry::before {
+      inset-inline-start: calc(-1 * var(--gutter-start) + var(--margin-line) - 6px) !important;
+      scale: 0.7;
+    }
+
+    .journal-entry,
+    .journal-entry:nth-child(even),
+    .work-intro {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .journal-entry:nth-child(even) .journal-prints {
+      order: 0;
+    }
+
+    .journal-prints {
+      margin-block-start: 12px;
+    }
+
+    .code-slip pre {
+      padding-inline: 12px;
+      font-size: 0.68rem;
+    }
+
+    .postcards {
+      max-width: 440px;
+    }
   }
 
   /* page intros read like a pencilled note under the title */
@@ -2773,6 +3182,63 @@
   .gr_grid_book_container:nth-child(3n) .book-strip--date { --strip: var(--tape-2); rotate: -2deg; }
   .gr_grid_book_container:nth-child(3n) .book-strip--title { --strip: var(--tape-3); rotate: 1deg; }
 
+  /* the last book read: a "last read" tape across one top corner, its date across the
+     other, crossing the cover on opposite diagonals */
+  .gr_grid_book_container.gr_grid_book_container--last-read .book-strip--last-read,
+  .gr_grid_book_container.gr_grid_book_container--last-read .book-strip--date {
+    position: absolute;
+    z-index: 3;
+    inset-block-start: 16px;
+    translate: none;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    padding-inline: 8px;
+  }
+
+  .gr_grid_book_container.gr_grid_book_container--last-read .book-strip--last-read {
+    --strip: var(--tape-3);
+    inset-inline-start: -14px;
+    color: var(--p-ox);
+    rotate: -40deg;
+  }
+
+  .gr_grid_book_container.gr_grid_book_container--last-read .book-strip--date {
+    --strip: var(--tape-1);
+    inset-inline-start: auto;
+    inset-inline-end: -14px;
+    rotate: 40deg;
+  }
+
+  [dir="rtl"] .gr_grid_book_container.gr_grid_book_container--last-read .book-strip--last-read {
+    rotate: 40deg;
+  }
+
+  [dir="rtl"] .gr_grid_book_container.gr_grid_book_container--last-read .book-strip--date {
+    rotate: -40deg;
+  }
+
+  html[data-theme="dark"] .book-strip--last-read {
+    color: var(--rose);
+  }
+
+  /* narrow covers on phones: smaller tapes pushed further out, so the two never meet */
+  @media (max-width: 520px) {
+    .gr_grid_book_container.gr_grid_book_container--last-read .book-strip--last-read,
+    .gr_grid_book_container.gr_grid_book_container--last-read .book-strip--date {
+      inset-block-start: 12px;
+      font-size: 0.68rem;
+      padding-inline: 5px;
+    }
+
+    .gr_grid_book_container.gr_grid_book_container--last-read .book-strip--last-read {
+      inset-inline-start: -20px;
+    }
+
+    .gr_grid_book_container.gr_grid_book_container--last-read .book-strip--date {
+      inset-inline-end: -20px;
+    }
+  }
+
   /* small extra corner strip on every other cover */
   .gr_grid_book_container:nth-child(even)::after {
     content: "";
@@ -3185,6 +3651,11 @@
       height: 100%;
       overflow: visible;
     }
+
+    /* scaled about the flower centre, inside each petal's rotation */
+    .cosmos-cursor-petal {
+      transform: scale(var(--petal-scale, 1, 1));
+    }
   }
 }
 
@@ -3388,7 +3859,7 @@
     :is(
       .section-head, .sprig, main > section:not(:first-of-type) > p, .entry,
       .highlight, .article-item, .file-card, .gr_grid_book_container, .gr_grid_book_placeholder,
-      .section-actions, .stats-card, .github-repo-card, .pf, .pinned
+      .section-actions, .stats-card, .github-repo-card, .pf, .pinned, .journal-prints
     ):not(.is-inked) {
     opacity: 0;
   }
@@ -3417,6 +3888,19 @@
     40% {
       opacity: 1;
     }
+  }
+
+  /* first-screen postcards tape down from CSS alone, one after another */
+  html.motion .postcard {
+    animation: tape-down 650ms var(--ease-spring) 180ms backwards;
+  }
+
+  html.motion .postcard:nth-child(2) {
+    animation-delay: 300ms;
+  }
+
+  html.motion .postcard:nth-child(3) {
+    animation-delay: 420ms;
   }
 
   /* newspaper clippings are slapped down */
@@ -3573,6 +4057,19 @@
 
   [dir="rtl"] .reading-ribbon {
     transform-origin: 100% 50%;
+  }
+
+  /* scroll-driven where supported: runs on the compositor, no scroll listener */
+  @supports (animation-timeline: scroll()) {
+    .reading-ribbon {
+      animation: ribbon-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+
+  @keyframes ribbon-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
   }
 
   /* petals on the air */

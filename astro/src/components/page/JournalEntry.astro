@@ -1,0 +1,116 @@
+---
+import { assetHref, type ContentCard } from "../../lib/work-project-content";
+
+interface Props {
+  readonly entry: ContentCard;
+  readonly tagsLabel?: string;
+}
+
+const { entry, tagsLabel } = Astro.props;
+const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
+const images = entry.images ?? [];
+const stickers = entry.stickers ?? [];
+const tags = entry.tags ?? [];
+// Photos or a code slip make a collage beside the card; without one, stickers go on the card.
+const hasCollage = images.length > 0 || entry.snippet !== undefined;
+// A landscape first photo (a place) heads the collage when product shots follow it.
+const leadImage = images[0];
+const hasLead = images.length >= 3 && leadImage !== undefined && leadImage.width > leadImage.height;
+const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(currentRoute, sticker.src) }));
+---
+
+<li class="journal-entry" data-collage={hasCollage ? "" : undefined}>
+  <div class="journal-entry-text highlight">
+    <span class="peel-flap" aria-hidden="true"></span>
+    {entry.meta ? <p class="meta">{entry.meta}</p> : null}
+    <div class="journal-entry-head">
+      <h3>
+        {
+          entry.href ? (
+            <a href={entry.href} target="_blank" rel="noreferrer">
+              {entry.title}
+            </a>
+          ) : (
+            entry.title
+          )
+        }
+      </h3>
+      {
+        entry.logo ? (
+          <span
+            class="journal-stamp"
+            role="img"
+            aria-label={entry.logo.alt}
+            style={`--stamp:url("/${entry.logo.src}");--stamp-ratio:${(entry.logo.width / entry.logo.height).toFixed(3)}`}
+          />
+        ) : null
+      }
+    </div>
+    {entry.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
+    {
+      entry.bullets.length > 0 ? (
+        <ul>
+          {entry.bullets.map((bullet) => (
+            <li set:html={bullet} />
+          ))}
+        </ul>
+      ) : null
+    }
+    {
+      tags.length > 0 ? (
+        <div class="journal-tags">
+          {tagsLabel ? <span class="journal-tags-label">{tagsLabel}</span> : null}
+          <ul>
+            {tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null
+    }
+    {
+      !hasCollage && stickerList.length > 0 ? (
+        <div class="journal-card-stickers">
+          {stickerList.map((sticker) => (
+            <span class="journal-sticker">
+              <img src={sticker.href} alt={sticker.alt} width={sticker.width} height={sticker.height} loading="lazy" decoding="async" />
+            </span>
+          ))}
+        </div>
+      ) : null
+    }
+  </div>
+  {
+    hasCollage ? (
+      <div
+        class="journal-prints"
+        data-count={images.length + (entry.snippet === undefined ? 0 : 1)}
+        data-lead={hasLead ? "" : undefined}
+      >
+        {entry.snippet !== undefined ? (
+          <figure class="code-slip">
+            <pre dir="ltr"><code>{entry.snippet}</code></pre>
+          </figure>
+        ) : null}
+        {images.map((image) => (
+          <figure class="print" style={`--ar:${(image.width / image.height).toFixed(3)}`}>
+            <img
+              src={assetHref(currentRoute, image.src)}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              loading="lazy"
+              decoding="async"
+            />
+            {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+          </figure>
+        ))}
+        {stickerList.map((sticker) => (
+          <span class="journal-sticker">
+            <img src={sticker.href} alt={sticker.alt} width={sticker.width} height={sticker.height} loading="lazy" decoding="async" />
+          </span>
+        ))}
+      </div>
+    ) : null
+  }
+</li>

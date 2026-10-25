@@ -20,6 +20,7 @@ const REVEAL_SELECTOR = [
   "main > section:not(:first-of-type) > p",
   ".entry",
   ".highlight",
+  ".journal-prints",
   ".article-item",
   ".file-card",
   ".gr_grid_book_container",
@@ -92,6 +93,11 @@ function setupRibbon(): void {
   ribbon.className = "reading-ribbon";
   ribbon.setAttribute("aria-hidden", "true");
   document.body.append(ribbon);
+
+  // Where supported, CSS drives the ribbon from a scroll timeline on the compositor thread.
+  if (CSS.supports("animation-timeline: scroll()")) {
+    return;
+  }
 
   let frame = 0;
   const update = (): void => {

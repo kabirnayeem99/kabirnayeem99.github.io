@@ -1,4 +1,5 @@
 import { onFirstInteraction } from "./first-interaction";
+import { setupLastReadSlot } from "./last-read-book";
 
 document.addEventListener("DOMContentLoaded", () => {
   const widget = document.querySelector<HTMLElement>(".goodreads-widget");
@@ -273,6 +274,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   };
 
+  // The home shelf's first slot (last book read) runs its own cache/live layers; see
+  // last-read-book.ts. Its cache layer applies right here, before any network.
+  const lastReadSlot = isIndexPage ? setupLastReadSlot(widget) : null;
+
   // --- Layer 1: server-rendered snapshot is already visible. -----------------
   // --- Layer 2: local cache is an instant, unanimated sync-up. --------------
   const cached = readCache();
@@ -317,6 +322,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const applyLiveResponse = (detached: HTMLElement): void => {
     const sourceGrid = getGridContainer(detached);
     const targetGrid = getGridContainer(widget);
+    if (sourceGrid) {
+      lastReadSlot?.acceptLive(sourceGrid);
+    }
     // See the matching guard on the cache layer above: the trimmed index widget can't
     // tell a genuinely new book apart from one merely absent due to the trim, so it
     // never accepts reordering/additions from the live response.

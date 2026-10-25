@@ -13,35 +13,6 @@
       },
       "groups": [
         {
-          "title": "Websites",
-          "items": [
-            {
-              "title": "PSDHS",
-              "href": "https://psdhs.org/",
-              "meta": "2026 - WordPress · PHP",
-              "paragraphs": [
-                "Website for Peace Society for Development and Humanitarian Services (PSDHS), a non-profit working in Bangladesh since 2009. Their programmes, community projects, field photos and ways to donate are all in one place, in English, Bangla and Arabic.",
-                "<strong>Tech stack:</strong> WordPress (custom block theme and content plugin), PHP",
-                "<strong>Why it matters:</strong> The team can update text, photos and projects on their own, and supporters can read about the work and donate in their own language."
-              ],
-              "images": [
-                {
-                  "src": "assets/images/projects/psdhs/home-desktop.webp",
-                  "alt": "PSDHS homepage on desktop",
-                  "width": 960,
-                  "height": 667
-                },
-                {
-                  "src": "assets/images/projects/psdhs/home-mobile.webp",
-                  "alt": "PSDHS homepage on mobile",
-                  "width": 390,
-                  "height": 1000
-                }
-              ]
-            }
-          ]
-        },
-        {
           "title": "Libraries & Tools",
           "items": [
             {
@@ -52,7 +23,16 @@
                 "On native Android, there is a library called Ok2Curl for debugging OkHttp requests. It logs requests as curl commands, which can then be run in a terminal or shared with the backend team. Since Ktor did not have something like that, I built this for my own use.",
                 "<strong>Tech stack:</strong> Kotlin, Ktor",
                 "<strong>Why it matters:</strong> Makes it easy to extract curl commands from API requests, run them manually, or share them with the backend team."
-              ]
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "Kotlin",
+                  "width": 293,
+                  "height": 64
+                }
+              ],
+              "snippet": "$ curl \\\n  -H 'Authorization: [masked]' \\\n  -H 'Content-Type: application/json' \\\n  'https://api.example.com/users' \\\n  --data-binary '{\"name\":\"Alice\"}'"
             },
             {
               "title": "kVINInfo",
@@ -62,22 +42,16 @@
                 "A VIN library written in pure Kotlin. It can validate VIN numbers, verify checksums, and also generate mock VINs.",
                 "<strong>Tech stack:</strong> Kotlin Multiplatform",
                 "<strong>Why it matters:</strong> Anyone working with VIN-related workflows can use it to validate VINs easily or generate mock VINs for testing."
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Backend",
-          "items": [
-            {
-              "title": "সমবায় নথি",
-              "href": "https://samabay.multazim.solutions/dashboard",
-              "meta": "2025 - PHP · Laravel",
-              "paragraphs": [
-                "Built to help local cooperative societies digitize their records and workflow.",
-                "<strong>Tech stack:</strong> PHP, Laravel",
-                "<strong>Why it matters:</strong> Smaller cooperative groups can move their work into a simple digital system without much friction."
-              ]
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "Kotlin",
+                  "width": 293,
+                  "height": 64
+                }
+              ],
+              "snippet": "\"WBA3A5G59DNP26082\".withVinInfo {\n  year          // 2013\n  region        // Europe\n  manufacturer  // BMW AG\n  isValid       // true\n}"
             }
           ]
         },
@@ -92,6 +66,40 @@
                 "The app scraped content from IslamQA.org directly on mobile and stored it locally in a database so users could search it easily. Later I stopped updating it out of respect for IslamQA’s privacy policy.",
                 "<strong>Tech stack:</strong> Kotlin, Jetpack Compose, WorkManager",
                 "<strong>Why it matters:</strong> Makes fatwas accessible offline, anytime, from anywhere."
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "Kotlin",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "Android",
+                  "width": 320,
+                  "height": 187
+                }
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/islamqa/home.webp",
+                  "alt": "IslamQA app: home with random and latest questions",
+                  "width": 360,
+                  "height": 760
+                },
+                {
+                  "src": "assets/images/projects/islamqa/answer.webp",
+                  "alt": "IslamQA app: reading an answer",
+                  "width": 360,
+                  "height": 760
+                },
+                {
+                  "src": "assets/images/projects/islamqa/search.webp",
+                  "alt": "IslamQA app: searching questions",
+                  "width": 360,
+                  "height": 760
+                }
               ]
             },
             {
@@ -122,6 +130,14 @@
                   "width": 360,
                   "height": 640
                 }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/flutter.webp",
+                  "alt": "Flutter",
+                  "width": 320,
+                  "height": 90
+                }
               ]
             },
             {
@@ -132,6 +148,20 @@
                 "Built mainly to help military families access information about local businesses.",
                 "<strong>Tech stack:</strong> Kotlin, Clean Architecture, Firebase, Parse SDK",
                 "<strong>Why it matters:</strong> Supports local business discovery for a specific community."
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "Kotlin",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "Android",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             },
             {
@@ -149,6 +179,20 @@
                   "alt": "Boulevard Mentorship banner with the app's What's New screen",
                   "width": 960,
                   "height": 449
+                }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "Kotlin",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "Android",
+                  "width": 320,
+                  "height": 187
                 }
               ]
             },
@@ -168,6 +212,14 @@
                   "width": 960,
                   "height": 492
                 }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "Android",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             },
             {
@@ -177,9 +229,142 @@
                 "This was a healthcare app. I had the chance to work on some parts like doctor appointment flows and map integration.",
                 "<strong>Tech stack:</strong> Android, Firestore, Jetpack, Google Maps",
                 "<strong>Why it matters:</strong> Fairly simple app overall, but early in my career it helped me learn a few useful things, especially around Google Maps work."
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "Android",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             }
           ]
+        },
+        {
+          "title": "Other Websites",
+          "items": [
+            {
+              "title": "Edumax Consultancy",
+              "href": "https://edumaxconsultancy.com/",
+              "meta": "2026 - WordPress · PHP",
+              "paragraphs": [
+                "Website for Edumax Consultancy, a study-abroad consultancy in Bangladesh. Students can explore destinations, universities, scholarship guides and IELTS preparation, and book a free consultation.",
+                "<strong>Tech stack:</strong> WordPress, PHP",
+                "<strong>Why it matters:</strong> Students and their families can look into their options in one place before speaking to an adviser."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/edumax/home-desktop.webp",
+                  "alt": "Edumax Consultancy homepage on desktop",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/edumax/home-mobile.webp",
+                  "alt": "Edumax Consultancy homepage on mobile",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "AL RAFA",
+              "href": "https://alrafa.org/",
+              "meta": "2026 - WordPress · PHP",
+              "paragraphs": [
+                "Website for AL RAFA, a non-profit based in Dhaka that has worked across Bangladesh since 2009. Their programmes in education, health, water and emergency relief, their projects, news and ways to donate are all in one place, in English, Bangla and Arabic.",
+                "<strong>Tech stack:</strong> WordPress, PHP",
+                "<strong>Why it matters:</strong> Supporters can see what has been built so far, and fund a well, a school or an orphan's care directly."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/alrafa/home-desktop.webp",
+                  "alt": "AL RAFA homepage on desktop",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/alrafa/home-mobile.webp",
+                  "alt": "AL RAFA homepage on mobile",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "সমবায় নথি",
+              "href": "https://samabaynothi.multazimsolutions.com/",
+              "meta": "2025 - PHP · Laravel",
+              "paragraphs": [
+                "A Bangla-first web app for cooperative societies. Staff and installment collectors keep member records, log monthly deposits and receipts, and check the month's collections in one place. A public demo runs on sample data.",
+                "<strong>Tech stack:</strong> PHP, Laravel",
+                "<strong>Why it matters:</strong> Smaller cooperative groups can move off paper ledgers into a simple digital system, on a phone or a computer."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/samabay/home-desktop.webp",
+                  "alt": "সমবায় নথি homepage on desktop",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/samabay/home-mobile.webp",
+                  "alt": "সমবায় নথি homepage on mobile",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "Multazim Solutions",
+              "href": "https://multazimsolutions.com/",
+              "meta": "2026",
+              "paragraphs": [
+                "Website for Multazim Solutions, an independent digital studio working across web, backend, mobile, commerce and growth. It shows selected work, how the studio works, and ways to get in touch.",
+                "<strong>Why it matters:</strong> Anyone looking to start a project can see past work and reach the studio by email, WhatsApp or phone."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/multazim/home-desktop.webp",
+                  "alt": "Multazim Solutions homepage on desktop",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/multazim/home-mobile.webp",
+                  "alt": "Multazim Solutions homepage on mobile",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "PSDHS",
+              "href": "https://psdhs.org/",
+              "meta": "2026 - WordPress · PHP",
+              "paragraphs": [
+                "Website for Peace Society for Development and Humanitarian Services (PSDHS), a non-profit working in Bangladesh since 2009. Their programmes, community projects, field photos and ways to donate are all in one place, in English, Bangla and Arabic.",
+                "<strong>Tech stack:</strong> WordPress (custom block theme and content plugin), PHP",
+                "<strong>Why it matters:</strong> The team can update text, photos and projects on their own, and supporters can read about the work and donate in their own language."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/psdhs/home-desktop.webp",
+                  "alt": "PSDHS homepage on desktop",
+                  "width": 960,
+                  "height": 667
+                },
+                {
+                  "src": "assets/images/projects/psdhs/home-mobile.webp",
+                  "alt": "PSDHS homepage on mobile",
+                  "width": 390,
+                  "height": 1000
+                }
+              ]
+            }
+          ],
+          "layout": "compact"
         }
       ],
       "footer_html": "More projects are on <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a>."
@@ -196,35 +381,6 @@
       },
       "groups": [
         {
-          "title": "ওয়েবসাইট",
-          "items": [
-            {
-              "title": "PSDHS",
-              "href": "https://psdhs.org/",
-              "meta": "২০২৬ - ওয়ার্ডপ্রেস · পিএইচপি",
-              "paragraphs": [
-                "পিস সোসাইটি ফর ডেভেলপমেন্ট অ্যান্ড হিউম্যানিটারিয়ান সার্ভিসেস (PSDHS)-এর ওয়েবসাইট। ২০০৯ থেকে বাংলাদেশে কাজ করা একটা অলাভজনক সংস্থা। তাদের প্রোগ্রাম, প্রজেক্ট, মাঠের ছবি আর দান করার উপায়, সব এক জায়গায়। ইংরেজি, বাংলা আর আরবিতে।",
-                "<strong>টেক স্ট্যাক:</strong> ওয়ার্ডপ্রেস (কাস্টম ব্লক থিম আর কনটেন্ট প্লাগইন), পিএইচপি",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> সংস্থার লোকজন নিজেরাই লেখা, ছবি আর প্রজেক্ট আপডেট করতে পারে, আর যারা সাহায্য করতে চান তারা নিজের ভাষায় কাজের কথা পড়ে দান করতে পারেন।"
-              ],
-              "images": [
-                {
-                  "src": "assets/images/projects/psdhs/home-desktop.webp",
-                  "alt": "ডেস্কটপে PSDHS-এর হোমপেজ",
-                  "width": 960,
-                  "height": 667
-                },
-                {
-                  "src": "assets/images/projects/psdhs/home-mobile.webp",
-                  "alt": "মোবাইলে PSDHS-এর হোমপেজ",
-                  "width": 390,
-                  "height": 1000
-                }
-              ]
-            }
-          ]
-        },
-        {
           "title": "লাইব্রেরি ও টুলস",
           "items": [
             {
@@ -235,7 +391,16 @@
                 "নেটিভ অ্যান্ড্রয়েডে OkHttp রিকুয়েস্ট ডিবাগ করার জন্য Ok2Curl নামে একটা লাইব্রেরি আছে। যেটা দিয়ে রিকুয়েস্টের cURL কমান্ড লগ করা যায় যেটা আবার টার্মিনালে রান করা যেতো বা ব্যাকএন্ডে সাথে শেয়ার করা যায়। যেহেতু Ktor এ এমন কিছু ছিলো না। আমি ব্যক্তিগত ব্যবহারের জন্য এটা ডেভেলপ করেছিলাম।",
                 "<strong>টেক স্ট্যাক:</strong> Kotlin, Ktor",
                 "<strong>কেন গুরুত্বপূর্ণ:</strong> ইজিলি এপিআই রিকুয়েস্টের cURL কমান্ড বের করে নিজে রান করা যায় বা ব্যাকএন্ড টিমের সাথে শেয়ার করা যায়।"
-              ]
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "কটলিন",
+                  "width": 293,
+                  "height": 64
+                }
+              ],
+              "snippet": "$ curl \\\n  -H 'Authorization: [masked]' \\\n  -H 'Content-Type: application/json' \\\n  'https://api.example.com/users' \\\n  --data-binary '{\"name\":\"Alice\"}'"
             },
             {
               "title": "kVINInfo",
@@ -245,22 +410,16 @@
                 "পিউর কটলিনে লেখা একটা ভিন লাইব্রেরি। এটা দিয়ে ভিন নাম্বার ভ্যালিডেট করা যায়, চেকসাম চেক করা যায়। আবার মক ভিন নাম্বারও জেনারেট করা যায়।",
                 "<strong>টেক স্ট্যাক:</strong> কটলিন মাল্টিপ্ল্যাটফর্ম",
                 "<strong>কেন গুরুত্বপূর্ণ:</strong> ভিন নিয়ে যারা কাজ করেন, তারা এ লাইব্রেরি দিয়ে ইজিলি ভিন ভ্যালিডেট বা টেস্টের জন্য মক ভিন জেনারেট করতে পারবেন।"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "ব্যাকএন্ড",
-          "items": [
-            {
-              "title": "সমবায় নথি",
-              "href": "https://samabay.multazim.solutions/dashboard",
-              "meta": "২০২৫ - পিএইচপি · লারাভেল",
-              "paragraphs": [
-                "স্থানীয় সমবায় সমিতির ডাটাগুলো ডিজিটালাইজ করার জন্য ডেভেলপ করা।",
-                "<strong>টেক স্ট্যাক:</strong> পিএইচপি, লারাভেল",
-                "<strong>কেন গুরুত্বপূর্ণ:</strong> ছোট সমবায় সমিতিগুলো খুব সহজে তাদের কাজগুলো ডিজিটালাইজ করতে পারবে।"
-              ]
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "কটলিন",
+                  "width": 293,
+                  "height": 64
+                }
+              ],
+              "snippet": "\"WBA3A5G59DNP26082\".withVinInfo {\n  year          // 2013\n  region        // Europe\n  manufacturer  // BMW AG\n  isValid       // true\n}"
             }
           ]
         },
@@ -275,6 +434,40 @@
                 "ইসলামকিউএ ডট অর্গের ডাটাগুলো মোবাইলেই স্ক্র্যাপ করে ডাটাবেসে সেভ করে রাখে। যেটা ইউজার সহজে সার্চ করে দেখতে পারবে। তবে ইসলামকিউএর প্রাইভেসি পলিসির প্রতি সম্মান রেখে এটা পরে আর আপডেট করা হয়নি।",
                 "<strong>টেক স্ট্যাক:</strong> কটলিন, জেটপ্যাক কম্পোজ, ওয়ার্কম্যানেজার",
                 "<strong>কেন গুরুত্বপূর্ণ:</strong> ফতোয়া খুব সহজে অফলাইনে যেকোন সময় যেকোন জায়গা থেকে এক্সেস করা যাবে।"
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "কটলিন",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "অ্যান্ড্রয়েড",
+                  "width": 320,
+                  "height": 187
+                }
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/islamqa/home.webp",
+                  "alt": "ইসলামকিউএ অ্যাপ: এলোমেলো আর সাম্প্রতিক প্রশ্নসহ হোম",
+                  "width": 360,
+                  "height": 760
+                },
+                {
+                  "src": "assets/images/projects/islamqa/answer.webp",
+                  "alt": "ইসলামকিউএ অ্যাপ: একটি উত্তর পড়া",
+                  "width": 360,
+                  "height": 760
+                },
+                {
+                  "src": "assets/images/projects/islamqa/search.webp",
+                  "alt": "ইসলামকিউএ অ্যাপ: প্রশ্ন খোঁজা",
+                  "width": 360,
+                  "height": 760
+                }
               ]
             },
             {
@@ -305,6 +498,14 @@
                   "width": 360,
                   "height": 640
                 }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/flutter.webp",
+                  "alt": "ফ্লাটার",
+                  "width": 320,
+                  "height": 90
+                }
               ]
             },
             {
@@ -315,6 +516,20 @@
                 "মিলিটারি ফ্যামিলিকে লোকাল বিজনেসগুলোর ডাটাতে এক্সেস দেয়াই মূল লক্ষ্য।",
                 "<strong>টেক স্ট্যাক:</strong> কটলিন, ক্লিন আর্কিটেকচার, ফায়ারবেস, পার্স এসডিকে",
                 "<strong>কেন গুরুত্বপূর্ণ:</strong> লোকাল বিজনেস সাপোর্ট।"
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "কটলিন",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "অ্যান্ড্রয়েড",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             },
             {
@@ -332,6 +547,20 @@
                   "alt": "বুলেভার্ড মেন্টরশিপের ব্যানার, পাশে অ্যাপের হোয়াটস নিউ স্ক্রিন",
                   "width": 960,
                   "height": 449
+                }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "কটলিন",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "অ্যান্ড্রয়েড",
+                  "width": 320,
+                  "height": 187
                 }
               ]
             },
@@ -351,6 +580,14 @@
                   "width": 960,
                   "height": 492
                 }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "অ্যান্ড্রয়েড",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             },
             {
@@ -360,9 +597,142 @@
                 "এটা মূলত একটা হেলথকেয়ার অ্যাপ ছিলো। ডাক্তার অ্যাপয়েন্টমেন্ট ফ্লো আর ম্যাপ ইন্টেগ্রেশনের মত কিছু অংশে আমার কাজ করার সুযোগ হয়েছে।",
                 "<strong>টেক স্ট্যাক:</strong> অ্যান্ড্রয়েড, ফায়ারস্টোর, জেটপ্যাক, গুগল ম্যাপ",
                 "<strong>কেন গুরুত্বপূর্ণ:</strong> সিম্পল অ্যাপ, তবে গুগল ম্যাপে কাজ করে ক্যারিয়ারের শুরুর দিক হিশেবে কিছু বিষয় শেখা হয়েছে।"
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "অ্যান্ড্রয়েড",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             }
           ]
+        },
+        {
+          "title": "অন্যান্য ওয়েবসাইট",
+          "items": [
+            {
+              "title": "Edumax Consultancy",
+              "href": "https://edumaxconsultancy.com/",
+              "meta": "২০২৬ - ওয়ার্ডপ্রেস · পিএইচপি",
+              "paragraphs": [
+                "Edumax Consultancy-এর ওয়েবসাইট। বাংলাদেশের একটা বিদেশে পড়াশোনার কনসালটেন্সি। কোন দেশে পড়বে, কোন ইউনিভার্সিটি, স্কলারশিপ গাইড আর IELTS প্রস্তুতির খোঁজ, সব এক জায়গায়, সাথে ফ্রি কনসালটেশন বুক করার সুযোগ।",
+                "<strong>টেক স্ট্যাক:</strong> ওয়ার্ডপ্রেস, পিএইচপি",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> শিক্ষার্থী আর তাদের পরিবার পরামর্শকের সাথে কথা বলার আগেই নিজেরা এক জায়গায় খোঁজখবর নিতে পারে।"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/edumax/home-desktop.webp",
+                  "alt": "ডেস্কটপে Edumax Consultancy-এর হোমপেজ",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/edumax/home-mobile.webp",
+                  "alt": "মোবাইলে Edumax Consultancy-এর হোমপেজ",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "AL RAFA",
+              "href": "https://alrafa.org/",
+              "meta": "২০২৬ - ওয়ার্ডপ্রেস · পিএইচপি",
+              "paragraphs": [
+                "AL RAFA-এর ওয়েবসাইট। ঢাকাভিত্তিক একটা অলাভজনক সংস্থা, ২০০৯ থেকে সারা বাংলাদেশে কাজ করছে। শিক্ষা, স্বাস্থ্য, পানি আর জরুরি ত্রাণে তাদের প্রোগ্রাম, প্রজেক্ট, খবর আর দান করার উপায়, সব এক জায়গায়। ইংরেজি, বাংলা আর আরবিতে।",
+                "<strong>টেক স্ট্যাক:</strong> ওয়ার্ডপ্রেস, পিএইচপি",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> যারা সাহায্য করতে চান তারা দেখতে পারেন এ পর্যন্ত কী কী কাজ হয়েছে, আর সরাসরি একটা কূপ, স্কুল বা এতিমের দায়িত্ব নিতে পারেন।"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/alrafa/home-desktop.webp",
+                  "alt": "ডেস্কটপে AL RAFA-এর হোমপেজ",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/alrafa/home-mobile.webp",
+                  "alt": "মোবাইলে AL RAFA-এর হোমপেজ",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "সমবায় নথি",
+              "href": "https://samabaynothi.multazimsolutions.com/",
+              "meta": "২০২৫ - পিএইচপি · লারাভেল",
+              "paragraphs": [
+                "সমবায় সমিতির জন্য বাংলায় বানানো একটা ওয়েব অ্যাপ। সমিতির কর্মী আর কিস্তি সংগ্রাহকরা সদস্যের তথ্য রাখেন, মাসের কিস্তি জমা আর রসিদ লিখে রাখেন, আর মাসের সংগ্রহের হিসাব এক জায়গায় দেখে নেন। নমুনা তথ্য দিয়ে একটা পাবলিক ডেমোও আছে।",
+                "<strong>টেক স্ট্যাক:</strong> পিএইচপি, লারাভেল",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> ছোট সমবায় সমিতিগুলো কাগজের খাতা ছেড়ে খুব সহজে ফোন বা কম্পিউটারে তাদের হিসাব রাখতে পারে।"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/samabay/home-desktop.webp",
+                  "alt": "ডেস্কটপে সমবায় নথি-এর হোমপেজ",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/samabay/home-mobile.webp",
+                  "alt": "মোবাইলে সমবায় নথি-এর হোমপেজ",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "Multazim Solutions",
+              "href": "https://multazimsolutions.com/",
+              "meta": "২০২৬",
+              "paragraphs": [
+                "Multazim Solutions-এর ওয়েবসাইট। ওয়েব, ব্যাকএন্ড, মোবাইল, কমার্স আর গ্রোথ নিয়ে কাজ করা একটা স্বাধীন ডিজিটাল স্টুডিও। তাদের বাছাই করা কাজ, কাজের ধরন আর যোগাযোগের উপায় এখানে আছে।",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> নতুন প্রজেক্ট শুরু করতে চাইলে যে কেউ আগের কাজগুলো দেখে ইমেইল, হোয়াটসঅ্যাপ বা ফোনে স্টুডিওর সাথে যোগাযোগ করতে পারেন।"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/multazim/home-desktop.webp",
+                  "alt": "ডেস্কটপে Multazim Solutions-এর হোমপেজ",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/multazim/home-mobile.webp",
+                  "alt": "মোবাইলে Multazim Solutions-এর হোমপেজ",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "PSDHS",
+              "href": "https://psdhs.org/",
+              "meta": "২০২৬ - ওয়ার্ডপ্রেস · পিএইচপি",
+              "paragraphs": [
+                "পিস সোসাইটি ফর ডেভেলপমেন্ট অ্যান্ড হিউম্যানিটারিয়ান সার্ভিসেস (PSDHS)-এর ওয়েবসাইট। ২০০৯ থেকে বাংলাদেশে কাজ করা একটা অলাভজনক সংস্থা। তাদের প্রোগ্রাম, প্রজেক্ট, মাঠের ছবি আর দান করার উপায়, সব এক জায়গায়। ইংরেজি, বাংলা আর আরবিতে।",
+                "<strong>টেক স্ট্যাক:</strong> ওয়ার্ডপ্রেস (কাস্টম ব্লক থিম আর কনটেন্ট প্লাগইন), পিএইচপি",
+                "<strong>কেন গুরুত্বপূর্ণ:</strong> সংস্থার লোকজন নিজেরাই লেখা, ছবি আর প্রজেক্ট আপডেট করতে পারে, আর যারা সাহায্য করতে চান তারা নিজের ভাষায় কাজের কথা পড়ে দান করতে পারেন।"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/psdhs/home-desktop.webp",
+                  "alt": "ডেস্কটপে PSDHS-এর হোমপেজ",
+                  "width": 960,
+                  "height": 667
+                },
+                {
+                  "src": "assets/images/projects/psdhs/home-mobile.webp",
+                  "alt": "মোবাইলে PSDHS-এর হোমপেজ",
+                  "width": 390,
+                  "height": 1000
+                }
+              ]
+            }
+          ],
+          "layout": "compact"
         }
       ],
       "footer_html": "আরও প্রজেক্ট আছে <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a>-এ।"
@@ -379,35 +749,6 @@
       },
       "groups": [
         {
-          "title": "ٱلْمَوَاقِعُ ٱلْإِلِكْتْرُونِيَّةُ",
-          "items": [
-            {
-              "title": "PSDHS",
-              "href": "https://psdhs.org/",
-              "meta": "2026 - وُورْدْبْرِيس · بِي إِتش بِي",
-              "paragraphs": [
-                "مَوْقِعُ جَمْعِيَّةِ ٱلسَّلَامِ لِلتَّنْمِيَةِ وَٱلْخَدَمَاتِ ٱلْإِنْسَانِيَّةِ (PSDHS)، وَهِيَ مُنَظَّمَةٌ غَيْرُ رِبْحِيَّةٍ تَعْمَلُ فِي بَنْغَلَادِيش مُنْذُ 2009. يَجْمَعُ بَرَامِجَهَا وَمَشَارِيعَهَا وَصُوَرَهَا ٱلْمَيْدَانِيَّةَ وَطُرُقَ ٱلتَّبَرُّعِ فِي مَكَانٍ وَاحِدٍ، بِٱلْإِنْجِلِيزِيَّةِ وَٱلْبَنْغَالِيَّةِ وَٱلْعَرَبِيَّةِ.",
-                "<strong>ٱلتِّقْنِيَّاتُ:</strong> WordPress (قَالَبُ كُتَلٍ مُخَصَّصٌ وَإِضَافَةُ مُحْتَوًى), PHP",
-                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يَسْتَطِيعُ فَرِيقُ ٱلْجَمْعِيَّةِ تَحْدِيثَ ٱلنُّصُوصِ وَٱلصُّوَرِ وَٱلْمَشَارِيعِ بِأَنْفُسِهِمْ، وَيَسْتَطِيعُ ٱلدَّاعِمُونَ ٱلْقِرَاءَةَ عَنْ عَمَلِهَا وَٱلتَّبَرُّعَ بِلُغَتِهِمْ."
-              ],
-              "images": [
-                {
-                  "src": "assets/images/projects/psdhs/home-desktop.webp",
-                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ PSDHS عَلَى ٱلْحَاسُوبِ",
-                  "width": 960,
-                  "height": 667
-                },
-                {
-                  "src": "assets/images/projects/psdhs/home-mobile.webp",
-                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ PSDHS عَلَى ٱلْجَوَّالِ",
-                  "width": 390,
-                  "height": 1000
-                }
-              ]
-            }
-          ]
-        },
-        {
           "title": "ٱلْمَكْتَبَاتُ وَٱلْأَدَوَاتُ",
           "items": [
             {
@@ -418,7 +759,16 @@
                 "فِي أَنْدْرُوِيد ٱلنِّيتِف، هُنَاكَ مَكْتَبَةٌ ٱسْمُهَا Ok2Curl لِتَصْحِيحِ طَلَبَاتِ OkHttp. هٰذِهِ ٱلْمَكْتَبَةُ تُخْرِجُ أَمْرَ cURL لِلطَّلَب، وَيُمْكِنُ تَشْغِيلُهُ فِي ٱلطَّرْفِيَّةِ أَوْ مُشَارَكَتُهُ مَعَ فَرِيقِ ٱلْبَاكْ إِنْد. وَلِأَنَّ Ktor لَمْ يَكُنْ فِيهِ شَيْءٌ مِثْلُ هٰذَا، طَوَّرْتُهُ لِٱسْتِعْمَالِي ٱلشَّخْصِيِّ.",
                 "<strong>ٱلتِّقْنِيَّاتُ:</strong> Kotlin, Ktor",
                 "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يُسَهِّلُ إِخْرَاجَ أَوَامِرِ cURL مِنْ طَلَبَاتِ API، وَتَشْغِيلَهَا يَدَوِيًّا، أَوْ مُشَارَكَتَهَا مَعَ فَرِيقِ ٱلْبَاكْ إِنْد."
-              ]
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "كُوتْلِن",
+                  "width": 293,
+                  "height": 64
+                }
+              ],
+              "snippet": "$ curl \\\n  -H 'Authorization: [masked]' \\\n  -H 'Content-Type: application/json' \\\n  'https://api.example.com/users' \\\n  --data-binary '{\"name\":\"Alice\"}'"
             },
             {
               "title": "kVINInfo",
@@ -428,22 +778,16 @@
                 "مَكْتَبَةُ VIN مَكْتُوبَةٌ بِكُوتْلِين خَالِص. يُمْكِنُ بِهَا ٱلتَّحَقُّقُ مِنْ رَقْمِ VIN، وَفَحْصُ ٱلْـ checksum، وَتَوْلِيدُ أَرْقَامِ VIN تَجْرِيبِيَّةٍ أَيْضًا.",
                 "<strong>ٱلتِّقْنِيَّاتُ:</strong> Kotlin Multiplatform",
                 "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> ٱلَّذِينَ يَعْمَلُونَ عَلَى VIN يُمْكِنُهُمْ ٱسْتِعْمَالُ هٰذِهِ ٱلْمَكْتَبَةِ لِلتَّحَقُّقِ مِنْ VIN بِسُهُولَةٍ أَوْ لِتَوْلِيدِ VIN تَجْرِيبِيٍّ لِلِاخْتِبَارِ."
-              ]
-            }
-          ]
-        },
-        {
-          "title": "ٱلْبَاكْ إِنْد",
-          "items": [
-            {
-              "title": "সমবায় নথি",
-              "href": "https://samabay.multazim.solutions/dashboard",
-              "meta": "2025 - بِي إِتش بِي · لَارَافِيل",
-              "paragraphs": [
-                "طُوِّرَ هٰذَا لِتَحْوِيلِ بَيَانَاتِ ٱلْجَمْعِيَّاتِ ٱلتَّعَاوُنِيَّةِ ٱلْمَحَلِّيَّةِ إِلَى نِظَامٍ رَقْمِيٍّ.",
-                "<strong>ٱلتِّقْنِيَّاتُ:</strong> PHP, Laravel",
-                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يُمْكِنُ لِلْجَمْعِيَّاتِ ٱلصَّغِيرَةِ أَنْ تُدِيرَ أَعْمَالَهَا رَقْمِيًّا بِسُهُولَةٍ."
-              ]
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "كُوتْلِن",
+                  "width": 293,
+                  "height": 64
+                }
+              ],
+              "snippet": "\"WBA3A5G59DNP26082\".withVinInfo {\n  year          // 2013\n  region        // Europe\n  manufacturer  // BMW AG\n  isValid       // true\n}"
             }
           ]
         },
@@ -458,6 +802,40 @@
                 "كَانَ هٰذَا ٱلتَّطْبِيقُ يَسْحَبُ بَيَانَاتِ IslamQA.org عَلَى ٱلْمُوبَايِل نَفْسِهِ وَيُخَزِّنُهَا فِي قَاعِدَةِ بَيَانَاتٍ مَحَلِّيَّةٍ، حَتَّى يَسْهُلَ عَلَى ٱلْمُسْتَعْمِلِ ٱلْبَحْثُ فِيهَا. وَلٰكِنْ ٱحْتِرَامًا لِسِيَاسَةِ ٱلْخُصُوصِيَّةِ فِي IslamQA، لَمْ أُوَاصِلْ تَحْدِيثَهُ بَعْدَ ذٰلِكَ.",
                 "<strong>ٱلتِّقْنِيَّاتُ:</strong> Kotlin, Jetpack Compose, WorkManager",
                 "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يَجْعَلُ ٱلْفَتَاوَى مُتَاحَةً أُوفْلَايْن، فِي أَيِّ وَقْتٍ وَمِنْ أَيِّ مَكَانٍ."
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "كُوتْلِن",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "أَنْدْرُوِيد",
+                  "width": 320,
+                  "height": 187
+                }
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/islamqa/home.webp",
+                  "alt": "تَطْبِيقُ إِسْلَام كيو إِيه: ٱلرَّئِيسِيَّةُ مَعَ أَسْئِلَةٍ عَشْوَائِيَّةٍ وَأَحْدَثِهَا",
+                  "width": 360,
+                  "height": 760
+                },
+                {
+                  "src": "assets/images/projects/islamqa/answer.webp",
+                  "alt": "تَطْبِيقُ إِسْلَام كيو إِيه: قِرَاءَةُ جَوَابٍ",
+                  "width": 360,
+                  "height": 760
+                },
+                {
+                  "src": "assets/images/projects/islamqa/search.webp",
+                  "alt": "تَطْبِيقُ إِسْلَام كيو إِيه: ٱلْبَحْثُ فِي ٱلْأَسْئِلَةِ",
+                  "width": 360,
+                  "height": 760
+                }
               ]
             },
             {
@@ -488,6 +866,14 @@
                   "width": 360,
                   "height": 640
                 }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/flutter.webp",
+                  "alt": "فْلَاتِر",
+                  "width": 320,
+                  "height": 90
+                }
               ]
             },
             {
@@ -498,6 +884,20 @@
                 "ٱلْهَدَفُ ٱلرَّئِيسِيُّ مِنْهُ هُوَ إِتَاحَةُ بَيَانَاتِ ٱلْأَعْمَالِ ٱلْمَحَلِّيَّةِ لِلْعَائِلَاتِ ٱلْعَسْكَرِيَّةِ.",
                 "<strong>ٱلتِّقْنِيَّاتُ:</strong> Kotlin, Clean Architecture, Firebase, Parse SDK",
                 "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> دَعْمُ ٱلْأَعْمَالِ ٱلْمَحَلِّيَّةِ."
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "كُوتْلِن",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "أَنْدْرُوِيد",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             },
             {
@@ -515,6 +915,20 @@
                   "alt": "لَافِتَةُ Boulevard Mentorship مَعَ شَاشَةِ ٱلْجَدِيدِ فِي ٱلتَّطْبِيقِ",
                   "width": 960,
                   "height": 449
+                }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "كُوتْلِن",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "أَنْدْرُوِيد",
+                  "width": 320,
+                  "height": 187
                 }
               ]
             },
@@ -534,6 +948,14 @@
                   "width": 960,
                   "height": 492
                 }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "أَنْدْرُوِيد",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             },
             {
@@ -543,9 +965,142 @@
                 "فِي ٱلْأَصْلِ كَانَ هٰذَا تَطْبِيقًا لِلرِّعَايَةِ ٱلصِّحِّيَّةِ. وَقَدْ أُتِيحَ لِي أَنْ أَعْمَلَ عَلَى بَعْضِ ٱلْأَجْزَاءِ مِثْلَ مَسَارَاتِ حَجْزِ ٱلطَّبِيبِ وَدَمْجِ ٱلْخَرَائِطِ.",
                 "<strong>ٱلتِّقْنِيَّاتُ:</strong> Android, Firestore, Jetpack, Google Maps",
                 "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> هُوَ تَطْبِيقٌ بَسِيطٌ نِسْبِيًّا، وَلَكِنَّهُ فِي بَدَايَةِ مَسِيرَتِي عَلَّمَنِي بَعْضَ ٱلْأَشْيَاءِ ٱلْمُفِيدَةِ، خُصُوصًا فِي ٱلْعَمَلِ عَلَى Google Maps."
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "أَنْدْرُوِيد",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             }
           ]
+        },
+        {
+          "title": "مَوَاقِعُ أُخْرَى",
+          "items": [
+            {
+              "title": "Edumax Consultancy",
+              "href": "https://edumaxconsultancy.com/",
+              "meta": "2026 - وُورْدْبْرِيس · بِي إِتش بِي",
+              "paragraphs": [
+                "مَوْقِعُ Edumax Consultancy، وَهِيَ شَرِكَةٌ لِلِاسْتِشَارَاتِ فِي ٱلدِّرَاسَةِ بِٱلْخَارِجِ فِي بَنْغَلَادِيش. يَسْتَطِيعُ ٱلطُّلَّابُ ٱسْتِكْشَافَ وِجْهَاتِ ٱلدِّرَاسَةِ وَٱلْجَامِعَاتِ وَأَدِلَّةِ ٱلْمِنَحِ وَٱلتَّحْضِيرِ لِاخْتِبَارِ IELTS، وَحَجْزَ ٱسْتِشَارَةٍ مَجَّانِيَّةٍ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> WordPress, PHP",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يَسْتَطِيعُ ٱلطُّلَّابُ وَعَائِلَاتُهُمُ ٱلْبَحْثَ فِي خِيَارَاتِهِمْ فِي مَكَانٍ وَاحِدٍ قَبْلَ ٱلتَّحَدُّثِ إِلَى مُسْتَشَارٍ."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/edumax/home-desktop.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ Edumax Consultancy عَلَى ٱلْحَاسُوبِ",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/edumax/home-mobile.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ Edumax Consultancy عَلَى ٱلْجَوَّالِ",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "AL RAFA",
+              "href": "https://alrafa.org/",
+              "meta": "2026 - وُورْدْبْرِيس · بِي إِتش بِي",
+              "paragraphs": [
+                "مَوْقِعُ AL RAFA، وَهِيَ مُنَظَّمَةٌ غَيْرُ رِبْحِيَّةٍ مَقَرُّهَا دَكَّا، تَعْمَلُ فِي أَنْحَاءِ بَنْغَلَادِيش مُنْذُ 2009. يَجْمَعُ بَرَامِجَهَا فِي ٱلتَّعْلِيمِ وَٱلصِّحَّةِ وَٱلْمِيَاهِ وَٱلْإِغَاثَةِ ٱلطَّارِئَةِ، وَمَشَارِيعَهَا وَأَخْبَارَهَا وَطُرُقَ ٱلتَّبَرُّعِ فِي مَكَانٍ وَاحِدٍ، بِٱلْإِنْجِلِيزِيَّةِ وَٱلْبَنْغَالِيَّةِ وَٱلْعَرَبِيَّةِ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> WordPress, PHP",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يَسْتَطِيعُ ٱلدَّاعِمُونَ رُؤْيَةَ مَا أُنْجِزَ حَتَّى ٱلْآنَ، وَتَمْوِيلَ بِئْرٍ أَوْ مَدْرَسَةٍ أَوْ كَفَالَةِ يَتِيمٍ مُبَاشَرَةً."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/alrafa/home-desktop.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ AL RAFA عَلَى ٱلْحَاسُوبِ",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/alrafa/home-mobile.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ AL RAFA عَلَى ٱلْجَوَّالِ",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "সমবায় নথি",
+              "href": "https://samabaynothi.multazimsolutions.com/",
+              "meta": "2025 - بِي إِتش بِي · لَارَافِيل",
+              "paragraphs": [
+                "تَطْبِيقُ وِيبٍ بِٱللُّغَةِ ٱلْبَنْغَالِيَّةِ لِلْجَمْعِيَّاتِ ٱلتَّعَاوُنِيَّةِ. يَحْفَظُ فِيهِ ٱلْمُوَظَّفُونَ وَجَامِعُو ٱلْأَقْسَاطِ سِجِلَّاتِ ٱلْأَعْضَاءِ، وَيُسَجِّلُونَ ٱلْأَقْسَاطَ ٱلشَّهْرِيَّةَ وَٱلْإِيصَالَاتِ، وَيُرَاجِعُونَ تَحْصِيلَ ٱلشَّهْرِ فِي مَكَانٍ وَاحِدٍ. وَتَتَوَفَّرُ نُسْخَةٌ تَجْرِيبِيَّةٌ عَامَّةٌ بِبَيَانَاتٍ نَمُوذَجِيَّةٍ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> PHP, Laravel",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يُمْكِنُ لِلْجَمْعِيَّاتِ ٱلصَّغِيرَةِ أَنْ تَنْتَقِلَ مِنَ ٱلدَّفَاتِرِ ٱلْوَرَقِيَّةِ إِلَى نِظَامٍ رَقْمِيٍّ بَسِيطٍ عَلَى ٱلْهَاتِفِ أَوِ ٱلْحَاسُوبِ."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/samabay/home-desktop.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ সমবায় নথি عَلَى ٱلْحَاسُوبِ",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/samabay/home-mobile.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ সমবায় নথি عَلَى ٱلْجَوَّالِ",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "Multazim Solutions",
+              "href": "https://multazimsolutions.com/",
+              "meta": "2026",
+              "paragraphs": [
+                "مَوْقِعُ Multazim Solutions، وَهُوَ ٱسْتُودْيُو رَقْمِيٌّ مُسْتَقِلٌّ يَعْمَلُ فِي ٱلْوِيبِ وَٱلْبَاكْ إِنْد وَٱلْمُوبَايِل وَٱلتِّجَارَةِ وَٱلنُّمُوِّ. يَعْرِضُ أَعْمَالًا مُخْتَارَةً، وَطَرِيقَةَ عَمَلِ ٱلِاسْتُودْيُو، وَوَسَائِلَ ٱلتَّوَاصُلِ.",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يَسْتَطِيعُ مَنْ يُرِيدُ بَدْءَ مَشْرُوعٍ أَنْ يَطَّلِعَ عَلَى ٱلْأَعْمَالِ ٱلسَّابِقَةِ، وَأَنْ يَتَوَاصَلَ مَعَ ٱلِاسْتُودْيُو عَبْرَ ٱلْبَرِيدِ ٱلْإِلِكْتْرُونِيِّ أَوْ وَاتْسَاب أَوِ ٱلْهَاتِفِ."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/multazim/home-desktop.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ Multazim Solutions عَلَى ٱلْحَاسُوبِ",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/multazim/home-mobile.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ Multazim Solutions عَلَى ٱلْجَوَّالِ",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "PSDHS",
+              "href": "https://psdhs.org/",
+              "meta": "2026 - وُورْدْبْرِيس · بِي إِتش بِي",
+              "paragraphs": [
+                "مَوْقِعُ جَمْعِيَّةِ ٱلسَّلَامِ لِلتَّنْمِيَةِ وَٱلْخَدَمَاتِ ٱلْإِنْسَانِيَّةِ (PSDHS)، وَهِيَ مُنَظَّمَةٌ غَيْرُ رِبْحِيَّةٍ تَعْمَلُ فِي بَنْغَلَادِيش مُنْذُ 2009. يَجْمَعُ بَرَامِجَهَا وَمَشَارِيعَهَا وَصُوَرَهَا ٱلْمَيْدَانِيَّةَ وَطُرُقَ ٱلتَّبَرُّعِ فِي مَكَانٍ وَاحِدٍ، بِٱلْإِنْجِلِيزِيَّةِ وَٱلْبَنْغَالِيَّةِ وَٱلْعَرَبِيَّةِ.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> WordPress (قَالَبُ كُتَلٍ مُخَصَّصٌ وَإِضَافَةُ مُحْتَوًى), PHP",
+                "<strong>لِمَاذَا هُوَ مُهِمٌّ:</strong> يَسْتَطِيعُ فَرِيقُ ٱلْجَمْعِيَّةِ تَحْدِيثَ ٱلنُّصُوصِ وَٱلصُّوَرِ وَٱلْمَشَارِيعِ بِأَنْفُسِهِمْ، وَيَسْتَطِيعُ ٱلدَّاعِمُونَ ٱلْقِرَاءَةَ عَنْ عَمَلِهَا وَٱلتَّبَرُّعَ بِلُغَتِهِمْ."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/psdhs/home-desktop.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ PSDHS عَلَى ٱلْحَاسُوبِ",
+                  "width": 960,
+                  "height": 667
+                },
+                {
+                  "src": "assets/images/projects/psdhs/home-mobile.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ PSDHS عَلَى ٱلْجَوَّالِ",
+                  "width": 390,
+                  "height": 1000
+                }
+              ]
+            }
+          ],
+          "layout": "compact"
         }
       ],
       "footer_html": "هُنَاكَ مَشَارِيعُ أُخْرَىٰ أَيْضًا عَلَى <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a>."
@@ -562,35 +1117,6 @@
       },
       "groups": [
         {
-          "title": "ویب سائٹس",
-          "items": [
-            {
-              "title": "PSDHS",
-              "href": "https://psdhs.org/",
-              "meta": "2026 - ورڈپریس · پی ایچ پی",
-              "paragraphs": [
-                "پیس سوسائٹی فار ڈیولپمنٹ اینڈ ہیومینیٹیرین سروسز (PSDHS) کی ویب سائٹ، جو 2009 سے بنگلہ دیش میں کام کرنے والا ایک غیر منافع بخش ادارہ ہے۔ ان کے پروگرام، پروجیکٹس، فیلڈ کی تصویریں اور عطیہ دینے کے طریقے سب ایک جگہ پر ہیں، انگریزی، بنگالی اور عربی میں۔",
-                "<strong>ٹیک اسٹیک:</strong> WordPress (custom block theme اور content plugin), PHP",
-                "<strong>کیوں اہم ہے:</strong> ادارے کی ٹیم خود ہی متن، تصویریں اور پروجیکٹس اپڈیٹ کر سکتی ہے، اور مدد کرنے والے اپنی زبان میں کام کے بارے میں پڑھ کر عطیہ دے سکتے ہیں۔"
-              ],
-              "images": [
-                {
-                  "src": "assets/images/projects/psdhs/home-desktop.webp",
-                  "alt": "ڈیسک ٹاپ پر PSDHS کا ہوم پیج",
-                  "width": 960,
-                  "height": 667
-                },
-                {
-                  "src": "assets/images/projects/psdhs/home-mobile.webp",
-                  "alt": "موبائل پر PSDHS کا ہوم پیج",
-                  "width": 390,
-                  "height": 1000
-                }
-              ]
-            }
-          ]
-        },
-        {
           "title": "لائبریریاں اور ٹولز",
           "items": [
             {
@@ -601,7 +1127,16 @@
                 "نیٹو اینڈرائیڈ میں OkHttp requests debug کرنے کے لیے Ok2Curl نام کی ایک لائبریری ہے۔ اس سے request کا cURL command log کیا جا سکتا ہے، جسے پھر terminal میں چلایا جا سکتا ہے یا backend ٹیم کے ساتھ share کیا جا سکتا ہے۔ چونکہ Ktor میں ایسی کوئی چیز نہیں تھی، میں نے یہ اپنے ذاتی استعمال کے لیے بنائی۔",
                 "<strong>ٹیک اسٹیک:</strong> Kotlin, Ktor",
                 "<strong>کیوں اہم ہے:</strong> API requests کے cURL commands آسانی سے نکال کر خود run کیے جا سکتے ہیں یا backend ٹیم کے ساتھ share کیے جا سکتے ہیں۔"
-              ]
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "کوٹلِن",
+                  "width": 293,
+                  "height": 64
+                }
+              ],
+              "snippet": "$ curl \\\n  -H 'Authorization: [masked]' \\\n  -H 'Content-Type: application/json' \\\n  'https://api.example.com/users' \\\n  --data-binary '{\"name\":\"Alice\"}'"
             },
             {
               "title": "kVINInfo",
@@ -611,22 +1146,16 @@
                 "خالص Kotlin میں لکھی گئی ایک VIN لائبریری۔ اس سے VIN نمبر validate کیے جا سکتے ہیں، checksum check کیا جا سکتا ہے، اور mock VIN نمبر بھی generate کیے جا سکتے ہیں۔",
                 "<strong>ٹیک اسٹیک:</strong> Kotlin Multiplatform",
                 "<strong>کیوں اہم ہے:</strong> جو لوگ VIN کے ساتھ کام کرتے ہیں، وہ اس لائبریری سے آسانی سے VIN validate کر سکتے ہیں یا testing کے لیے mock VIN generate کر سکتے ہیں۔"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "بیک اینڈ",
-          "items": [
-            {
-              "title": "সমবায় নথি",
-              "href": "https://samabay.multazim.solutions/dashboard",
-              "meta": "2025 - پی ایچ پی · لاراول",
-              "paragraphs": [
-                "مقامی کوآپریٹو سوسائٹیوں کے ڈیٹا کو ڈیجیٹلائز کرنے کے لیے بنایا گیا۔",
-                "<strong>ٹیک اسٹیک:</strong> PHP, Laravel",
-                "<strong>کیوں اہم ہے:</strong> چھوٹی کوآپریٹو سوسائٹیاں بہت آسانی سے اپنا کام ڈیجیٹل سسٹم میں لا سکیں گی۔"
-              ]
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "کوٹلِن",
+                  "width": 293,
+                  "height": 64
+                }
+              ],
+              "snippet": "\"WBA3A5G59DNP26082\".withVinInfo {\n  year          // 2013\n  region        // Europe\n  manufacturer  // BMW AG\n  isValid       // true\n}"
             }
           ]
         },
@@ -641,6 +1170,40 @@
                 "IslamQA.org کا مواد موبائل پر ہی scrape کر کے local database میں save کر دیتا تھا، تاکہ user آسانی سے search کر سکے۔ لیکن IslamQA کی privacy policy کا احترام کرتے ہوئے بعد میں اسے update نہیں کیا گیا۔",
                 "<strong>ٹیک اسٹیک:</strong> Kotlin, Jetpack Compose, WorkManager",
                 "<strong>کیوں اہم ہے:</strong> فتاویٰ کو آسانی سے offline، کسی بھی وقت، کسی بھی جگہ سے access کیا جا سکتا ہے۔"
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "کوٹلِن",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "اَینڈرائِڈ",
+                  "width": 320,
+                  "height": 187
+                }
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/islamqa/home.webp",
+                  "alt": "اسلام کیو اے ایپ: بے ترتیب اور تازہ سوالات کے ساتھ ہوم",
+                  "width": 360,
+                  "height": 760
+                },
+                {
+                  "src": "assets/images/projects/islamqa/answer.webp",
+                  "alt": "اسلام کیو اے ایپ: ایک جواب پڑھنا",
+                  "width": 360,
+                  "height": 760
+                },
+                {
+                  "src": "assets/images/projects/islamqa/search.webp",
+                  "alt": "اسلام کیو اے ایپ: سوالات تلاش کرنا",
+                  "width": 360,
+                  "height": 760
+                }
               ]
             },
             {
@@ -671,6 +1234,14 @@
                   "width": 360,
                   "height": 640
                 }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/flutter.webp",
+                  "alt": "فلَٹَر",
+                  "width": 320,
+                  "height": 90
+                }
               ]
             },
             {
@@ -681,6 +1252,20 @@
                 "اس کا بنیادی مقصد military families کو local businesses کے data تک رسائی دینا تھا۔",
                 "<strong>ٹیک اسٹیک:</strong> Kotlin, Clean Architecture, Firebase, Parse SDK",
                 "<strong>کیوں اہم ہے:</strong> local business support."
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "کوٹلِن",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "اَینڈرائِڈ",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             },
             {
@@ -698,6 +1283,20 @@
                   "alt": "Boulevard Mentorship کا بینر، ساتھ میں ایپ کی What's New اسکرین",
                   "width": 960,
                   "height": 449
+                }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/kotlin.webp",
+                  "alt": "کوٹلِن",
+                  "width": 293,
+                  "height": 64
+                },
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "اَینڈرائِڈ",
+                  "width": 320,
+                  "height": 187
                 }
               ]
             },
@@ -717,6 +1316,14 @@
                   "width": 960,
                   "height": 492
                 }
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "اَینڈرائِڈ",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             },
             {
@@ -726,9 +1333,142 @@
                 "یہ بنیادی طور پر ایک healthcare app تھی۔ doctor appointment flow اور map integration جیسے کچھ حصوں پر کام کرنے کا موقع ملا۔",
                 "<strong>ٹیک اسٹیک:</strong> Android, Firestore, Jetpack, Google Maps",
                 "<strong>کیوں اہم ہے:</strong> کافی simple app تھی، لیکن career کے شروع میں Google Maps پر کام کرتے ہوئے کچھ مفید چیزیں سیکھنے کو ملیں۔"
+              ],
+              "stickers": [
+                {
+                  "src": "assets/images/stickers/android.webp",
+                  "alt": "اَینڈرائِڈ",
+                  "width": 320,
+                  "height": 187
+                }
               ]
             }
           ]
+        },
+        {
+          "title": "دیگر ویب سائٹس",
+          "items": [
+            {
+              "title": "Edumax Consultancy",
+              "href": "https://edumaxconsultancy.com/",
+              "meta": "2026 - ورڈپریس · پی ایچ پی",
+              "paragraphs": [
+                "Edumax Consultancy کی ویب سائٹ، جو بنگلہ دیش میں بیرونِ ملک تعلیم کی ایک کنسلٹنسی ہے۔ طلبہ یہاں ممالک، یونیورسٹیاں، اسکالرشپ گائیڈز اور IELTS کی تیاری دیکھ سکتے ہیں، اور مفت مشاورت بک کر سکتے ہیں۔",
+                "<strong>ٹیک اسٹیک:</strong> WordPress, PHP",
+                "<strong>کیوں اہم ہے:</strong> طلبہ اور ان کے گھر والے کسی مشیر سے بات کرنے سے پہلے ایک ہی جگہ پر اپنے آپشنز دیکھ سکتے ہیں۔"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/edumax/home-desktop.webp",
+                  "alt": "ڈیسک ٹاپ پر Edumax Consultancy کا ہوم پیج",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/edumax/home-mobile.webp",
+                  "alt": "موبائل پر Edumax Consultancy کا ہوم پیج",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "AL RAFA",
+              "href": "https://alrafa.org/",
+              "meta": "2026 - ورڈپریس · پی ایچ پی",
+              "paragraphs": [
+                "AL RAFA کی ویب سائٹ، جو ڈھاکہ میں قائم ایک غیر منافع بخش ادارہ ہے اور 2009 سے پورے بنگلہ دیش میں کام کر رہا ہے۔ تعلیم، صحت، پانی اور ہنگامی امداد کے ان کے پروگرام، پروجیکٹس، خبریں اور عطیہ دینے کے طریقے سب ایک جگہ پر ہیں، انگریزی، بنگالی اور عربی میں۔",
+                "<strong>ٹیک اسٹیک:</strong> WordPress, PHP",
+                "<strong>کیوں اہم ہے:</strong> مدد کرنے والے دیکھ سکتے ہیں کہ اب تک کیا کچھ بنا ہے، اور براہِ راست کسی کنویں، اسکول یا یتیم کی کفالت کر سکتے ہیں۔"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/alrafa/home-desktop.webp",
+                  "alt": "ڈیسک ٹاپ پر AL RAFA کا ہوم پیج",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/alrafa/home-mobile.webp",
+                  "alt": "موبائل پر AL RAFA کا ہوم پیج",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "সমবায় নথি",
+              "href": "https://samabaynothi.multazimsolutions.com/",
+              "meta": "2025 - پی ایچ پی · لاراول",
+              "paragraphs": [
+                "کوآپریٹو سوسائٹیوں کے لیے بنگالی زبان میں بنی ایک ویب ایپ۔ عملہ اور قسط جمع کرنے والے یہاں ممبران کا ریکارڈ رکھتے ہیں، ماہانہ اقساط اور رسیدیں درج کرتے ہیں، اور مہینے کی وصولی ایک ہی جگہ دیکھ لیتے ہیں۔ نمونہ ڈیٹا کے ساتھ ایک پبلک ڈیمو بھی موجود ہے۔",
+                "<strong>ٹیک اسٹیک:</strong> PHP, Laravel",
+                "<strong>کیوں اہم ہے:</strong> چھوٹی کوآپریٹو سوسائٹیاں کاغذی کھاتے چھوڑ کر بہت آسانی سے فون یا کمپیوٹر پر اپنا حساب رکھ سکتی ہیں۔"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/samabay/home-desktop.webp",
+                  "alt": "ڈیسک ٹاپ پر সমবায় নথি کا ہوم پیج",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/samabay/home-mobile.webp",
+                  "alt": "موبائل پر সমবায় নথি کا ہوم پیج",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "Multazim Solutions",
+              "href": "https://multazimsolutions.com/",
+              "meta": "2026",
+              "paragraphs": [
+                "Multazim Solutions کی ویب سائٹ، جو ویب، بیک اینڈ، موبائل، کامرس اور گروتھ پر کام کرنے والا ایک آزاد ڈیجیٹل اسٹوڈیو ہے۔ یہاں ان کا منتخب کام، کام کرنے کا طریقہ اور رابطے کے ذرائع موجود ہیں۔",
+                "<strong>کیوں اہم ہے:</strong> نیا پروجیکٹ شروع کرنے والا کوئی بھی شخص پچھلا کام دیکھ کر ای میل، واٹس ایپ یا فون پر اسٹوڈیو سے رابطہ کر سکتا ہے۔"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/multazim/home-desktop.webp",
+                  "alt": "ڈیسک ٹاپ پر Multazim Solutions کا ہوم پیج",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/multazim/home-mobile.webp",
+                  "alt": "موبائل پر Multazim Solutions کا ہوم پیج",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
+              "title": "PSDHS",
+              "href": "https://psdhs.org/",
+              "meta": "2026 - ورڈپریس · پی ایچ پی",
+              "paragraphs": [
+                "پیس سوسائٹی فار ڈیولپمنٹ اینڈ ہیومینیٹیرین سروسز (PSDHS) کی ویب سائٹ، جو 2009 سے بنگلہ دیش میں کام کرنے والا ایک غیر منافع بخش ادارہ ہے۔ ان کے پروگرام، پروجیکٹس، فیلڈ کی تصویریں اور عطیہ دینے کے طریقے سب ایک جگہ پر ہیں، انگریزی، بنگالی اور عربی میں۔",
+                "<strong>ٹیک اسٹیک:</strong> WordPress (custom block theme اور content plugin), PHP",
+                "<strong>کیوں اہم ہے:</strong> ادارے کی ٹیم خود ہی متن، تصویریں اور پروجیکٹس اپڈیٹ کر سکتی ہے، اور مدد کرنے والے اپنی زبان میں کام کے بارے میں پڑھ کر عطیہ دے سکتے ہیں۔"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/psdhs/home-desktop.webp",
+                  "alt": "ڈیسک ٹاپ پر PSDHS کا ہوم پیج",
+                  "width": 960,
+                  "height": 667
+                },
+                {
+                  "src": "assets/images/projects/psdhs/home-mobile.webp",
+                  "alt": "موبائل پر PSDHS کا ہوم پیج",
+                  "width": 390,
+                  "height": 1000
+                }
+              ]
+            }
+          ],
+          "layout": "compact"
         }
       ],
       "footer_html": "مزید پراجیکٹس <a href=\"https://github.com/kabirnayeem99\" target=\"_blank\" rel=\"noreferrer\">GitHub</a> پر بھی ہیں۔"

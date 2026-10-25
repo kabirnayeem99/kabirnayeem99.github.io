@@ -65,8 +65,9 @@
         },
         "goodreads": {
           "title": "Read Books",
+          "index_title": "Recent Favourites",
           "copy": "These are books I read at some point in my life, or at least, books I remembered to add to Goodreads for tracking. So many of them were added from memory, back in my teenage years, when the internet wasn't really a thing in my village, let alone Goodreads. Most of them, I've probably forgotten to add, though.",
-          "index_copy": "These books were read recently. Or I had read them before and only added them to Goodreads recently.",
+          "index_copy": "A few recent reads worth keeping, picked from my Goodreads shelf: faith, philosophy, Bangla classics, literary fiction, and one for the day job.",
           "widget_id": "1771265103",
           "user_id": "45514357",
           "user_name": "Naimul",
@@ -153,7 +154,9 @@
         },
         "goodreads": {
           "title": "এ বইগুলো সাম্প্রতিক পড়া হয়েছে",
+          "index_title": "সাম্প্রতিক প্রিয় বই",
           "copy": "এ বইগুলো সাম্প্রতিক পড়া হয়েছে। বা আগে পড়েছিলাম, সাম্প্রতিক এগুলোকে গুডরিডসে এড করলাম। ",
+          "index_copy": "সম্প্রতি পড়া বইগুলোর মধ্যে মনে রাখার মতো কয়েকটা, গুডরিডস থেকে বেছে নেওয়া: ঈমান, দর্শন, বাংলা সাহিত্য, সাহিত্যধর্মী উপন্যাস, আর কাজের জন্য একটা।",
           "widget_id": "1771265103",
           "user_id": "45514357",
           "user_name": "Naimul",
@@ -240,7 +243,9 @@
         },
         "goodreads": {
           "title": "هٰذِهِ ٱلْكُتُبُ قُرِئَتْ مُؤَخَّرًا",
+          "index_title": "مِنْ أَحَبِّ قِرَاءَاتِي ٱلْأَخِيرَةِ",
           "copy": "هٰذِهِ ٱلْكُتُبُ قُرِئَتْ مُؤَخَّرًا. أَوْ كُنْتُ قَدْ قَرَأْتُهَا مِنْ قَبْلُ، وَلٰكِنِّي أَضَفْتُهَا إِلَى Goodreads مُؤَخَّرًا.",
+          "index_copy": "بَعْضُ مَا يَسْتَحِقُّ ٱلذِّكْرَ مِمَّا قَرَأْتُهُ مُؤَخَّرًا، مُخْتَارٌ مِنْ رَفِّي عَلَىٰ جُودْرِيدْز: إِيمَانٌ وَفَلْسَفَةٌ وَأَدَبٌ بَنْغَالِيٌّ وَرِوَايَاتٌ أَدَبِيَّةٌ، وَكِتَابٌ لِلْعَمَلِ.",
           "widget_id": "1771265103",
           "user_id": "45514357",
           "user_name": "Naimul",
@@ -327,7 +332,9 @@
         },
         "goodreads": {
           "title": "یہ کتابیں حال ہی میں پڑھی گئی ہیں",
+          "index_title": "حالیہ پسندیدہ کتابیں",
           "copy": "یہ کتابیں حال ہی میں پڑھی گئی ہیں۔ یا پہلے پڑھ چکا تھا، بس حال ہی میں انہیں Goodreads میں ایڈ کیا۔",
+          "index_copy": "حال ہی میں پڑھی گئی کتابوں میں سے چند جو یاد رکھنے کے قابل ہیں، گُڈریڈز سے چنی ہوئی: ایمان، فلسفہ، بنگلہ ادب، ادبی ناول، اور ایک کام کے لیے۔",
           "widget_id": "1771265103",
           "user_id": "45514357",
           "user_name": "Naimul",

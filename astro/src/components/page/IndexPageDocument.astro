@@ -12,6 +12,7 @@ import PageNav from "./PageNav.astro";
 import { buildMainNav } from "../../lib/main-nav";
 import heroLogo from "../../assets/images/logo.svg";
 import profileQr from "../../assets/images/profile-qr.svg";
+import featuredBooks from "../../data/site-content/featured-books.json";
 import goodreadsSnapshot from "../../data/site-content/goodreads-snapshot.json";
 import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
 import {
@@ -228,11 +229,36 @@ const socialChips: readonly SocialChip[] = [
   ...topSocialChips,
   ...profileSocialChips,
 ];
-// The home shelf pastes a handful of covers; the stats page holds the full wall.
-const goodreadsBooks = goodreadsSnapshot.books.slice(0, 9).map((book) => ({
+// The home shelf opens with the last book read (the snapshot's newest; goodreads-loader
+// swaps in a newer one from cache or live Goodreads), then hand-picked covers
+// (featured-books.json lists their file names); the stats page holds the full wall.
+// Picks missing from the snapshot are skipped; with none left, recent reads fill in.
+const SHELF_PICKS = 8;
+const lastReadBook = goodreadsSnapshot.books[0];
+const snapshotByFile = new Map(goodreadsSnapshot.books.map((book) => [book.imageFileName, book]));
+const readTime = (book: (typeof goodreadsSnapshot.books)[number]): number =>
+  Date.parse((book as { dateRead?: string }).dateRead ?? "") || 0;
+const pickedBooks = featuredBooks.books
+  .flatMap((fileName) => snapshotByFile.get(fileName) ?? [])
+  .filter((book) => book !== lastReadBook)
+  .sort((a, b) => readTime(b) - readTime(a))
+  .slice(0, SHELF_PICKS);
+const shelfPicks = pickedBooks.length > 0 ? pickedBooks : goodreadsSnapshot.books.slice(1, 1 + SHELF_PICKS);
+const toShelfBook = (book: (typeof goodreadsSnapshot.books)[number]) => ({
   ...book,
   readDate: formatReadDate((book as { dateRead?: string }).dateRead, lang),
-}));
+});
+const lastReadShelfBook = lastReadBook ? toShelfBook(lastReadBook) : undefined;
+const goodreadsBooks = shelfPicks.map(toShelfBook);
+// Review ids already in the snapshot: a live "newest" book outside this set is a genuine
+// new read; one inside it is just Goodreads' unreliable widget order (see goodreads-loader).
+const knownReviewIds = goodreadsSnapshot.books.flatMap((book) => /\/review\/show\/(\d+)/.exec(book.href)?.[1] ?? []);
+const LAST_READ_LABEL: Readonly<Record<Lang, string>> = {
+  en: "Last read",
+  bn: "সবশেষ পড়া",
+  ar: "آخِرُ مَا قَرَأْتُ",
+  ur: "آخری پڑھی",
+};
 const marginDate = formatMarginDate(buildTimestamp.iso, lang);
 
 // Last slot on the home shelf: a cover-sized library card linking to the full list.
@@ -454,6 +480,22 @@ function buildSectionClassName(
               <Botanical name="sprig" class="sprig" />
               <div class="entry">
                 <span class="margin-note" aria-hidden="true">{marginDate}</span>
+                {leadSection.images.length > 0 ? (
+                  <div class="now-prints">
+                    {leadSection.images.map((image) => (
+                      <figure class={image.width > image.height * 1.3 ? "print now-print now-print--wide" : "print now-print"}>
+                        <img
+                          src={assetHref(currentRoute, image.src)}
+                          alt={image.alt}
+                          width={image.width}
+                          height={image.height}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </figure>
+                    ))}
+                  </div>
+                ) : null}
                 {leadSection.paragraphs.map((paragraph) => (
                   <p set:html={paragraph} />
                 ))}
@@ -611,12 +653,37 @@ function buildSectionClassName(
           </div>
           <Botanical name="sprig" class="sprig" />
           <p>{content.statsCompact.goodreads.copy}</p>
+          <script type="application/json" id="goodreads-known-reviews" is:inline set:html={JSON.stringify(knownReviewIds)} />
           <div
             class="goodreads-widget"
             id={`gr_grid_widget_${content.statsCompact.goodreads.widgetId}`}
             data-stats-books-href={statsBooksHref}
           >
             <div class="gr_grid_container">
+              {lastReadShelfBook ? (
+                <div class="gr_grid_book_container gr_grid_book_container--last-read" data-last-read>
+                  <span class="book-strip book-strip--last-read">{LAST_READ_LABEL[lang]}</span>
+                  <span class="book-strip book-strip--date" dir="auto" hidden={!lastReadShelfBook.readDate}>
+                    {lastReadShelfBook.readDate}
+                  </span>
+                  <a
+                    title={lastReadShelfBook.title}
+                    rel="nofollow noreferrer"
+                    href={lastReadShelfBook.href}
+                    target="_blank"
+                    data-umami-track-book="true"
+                    data-cursor-plain
+                  >
+                    <img
+                      alt={lastReadShelfBook.alt}
+                      src={assetHref(currentRoute, lastReadShelfBook.imageLocal.replace(/^\/+/, ""))}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </a>
+                  <span class="book-strip book-strip--title" dir="auto">{lastReadShelfBook.title}</span>
+                </div>
+              ) : null}
               {
                 goodreadsBooks.map((book) => (
                   <div class="gr_grid_book_container">

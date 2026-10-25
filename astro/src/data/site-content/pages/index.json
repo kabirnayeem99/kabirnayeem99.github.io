@@ -20,10 +20,30 @@
         {
           "title": "Right Now",
           "paragraphs": [
-            "Going back to CS fundamentals. Learning yet another language or framework feels pointless in the age of AI, so now going through the basics of operating systems.",
-            "Learning to read Urdu. Still at a very elementary level, slowly making my way through Manto's <em>Atish Pare</em>.",
-            "Building LocalDrop, a native macOS app for sharing files over the local network. It uses the LocalSend protocol, so it works with LocalSend too. A GitHub Desktop-style macOS app is shelved for now.",
-            "Outside work, reading is my (almost) only entertainment: lots of mysteries and thrillers, some literary fiction, and non-fiction on philosophy, Islamic theology and history. And far too much time on Hacker News."
+            "Going back to <mark>CS fundamentals</mark>. Learning yet another language or framework feels pointless in the age of AI, so now going through <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">the basics of operating systems</a>.",
+            "<strong>Learning to read Urdu.</strong> Still at a very elementary level, slowly making my way through Manto's <em>Atish Pare</em> (<span lang=\"ur\" dir=\"rtl\">آتش پارے</span>).",
+            "Currently reading <mark><em lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</em></mark>.",
+            "Outside work, <mark>reading is my (almost) only entertainment</mark>: lots of mysteries and thrillers, some literary fiction, and non-fiction on philosophy, Islamic theology and history. And far too much time on Hacker News."
+          ],
+          "images": [
+            {
+              "src": "assets/images/now/neso-operating-system.webp",
+              "alt": "Screenshot of Neso Academy's Operating System course playlist on YouTube",
+              "width": 640,
+              "height": 412
+            },
+            {
+              "src": "assets/images/now/atish-pare.webp",
+              "alt": "Cover of Atish Pare by Saadat Hasan Manto",
+              "width": 400,
+              "height": 561
+            },
+            {
+              "src": "assets/images/now/tahafutul-malahida.webp",
+              "alt": "Cover of Tahafutul Malahida by Dr. Mufti Yasir Nadim",
+              "width": 400,
+              "height": 396
+            }
           ]
         },
         {
@@ -150,10 +170,30 @@
         {
           "title": "বর্তমানে",
           "paragraphs": [
-            "কম্পিউটার সায়েন্সের বেসিকে ফিরে যাচ্ছি। এআই-এর যুগে আরেকটা নতুন ভাষা বা ফ্রেমওয়ার্ক শেখা অর্থহীন লাগে, তাই এখন অপারেটিং সিস্টেমের মৌলিক বিষয়গুলো পড়ছি।",
-            "উর্দু পড়তে শিখছি, যদিও এখনো একদম প্রাথমিক পর্যায়ে। ধীরে ধীরে মান্টোর <em>আতিশ পারে</em> পড়ছি।",
-            "LocalDrop বানাচ্ছি, লোকাল নেটওয়ার্কে ফাইল শেয়ার করার জন্য ম্যাকওএস-এর নেটিভ অ্যাপ। লোকালসেন্ড প্রোটোকল ব্যবহার করে, তাই লোকালসেন্ডের সাথেও চলে। গিটহাব ডেস্কটপের মতো ম্যাক অ্যাপটা আপাতত তুলে রেখেছি।",
-            "কাজের বাইরে পড়াই আমার (প্রায়) একমাত্র বিনোদন: প্রচুর মিস্ট্রি আর থ্রিলার, কিছু লিটারারি ফিকশন, আর দর্শন, ইসলামী থিওলজি ও ইতিহাসের নন-ফিকশন। আর হ্যাকার নিউজে দরকারের চেয়ে অনেক বেশি সময়।"
+            "<mark>কম্পিউটার সায়েন্সের বেসিকে</mark> ফিরে যাচ্ছি। এআই-এর যুগে আরেকটা নতুন ভাষা বা ফ্রেমওয়ার্ক শেখা অর্থহীন লাগে, তাই এখন <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">অপারেটিং সিস্টেমের মৌলিক বিষয়গুলো</a> পড়ছি।",
+            "<strong>উর্দু পড়তে শিখছি</strong>, যদিও এখনো একদম প্রাথমিক পর্যায়ে। ধীরে ধীরে মান্টোর <em>আতিশ পারে</em> (<span lang=\"ur\" dir=\"rtl\">آتش پارے</span>) পড়ছি।",
+            "এখন পড়ছি <mark><em lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</em></mark>।",
+            "কাজের বাইরে <mark>পড়াই আমার (প্রায়) একমাত্র বিনোদন</mark>: প্রচুর মিস্ট্রি আর থ্রিলার, কিছু লিটারারি ফিকশন, আর দর্শন, ইসলামী থিওলজি ও ইতিহাসের নন-ফিকশন। আর হ্যাকার নিউজে দরকারের চেয়ে অনেক বেশি সময়।"
+          ],
+          "images": [
+            {
+              "src": "assets/images/now/neso-operating-system.webp",
+              "alt": "ইউটিউবে নেসো একাডেমির অপারেটিং সিস্টেম কোর্সের প্লেলিস্টের স্ক্রিনশট",
+              "width": 640,
+              "height": 412
+            },
+            {
+              "src": "assets/images/now/atish-pare.webp",
+              "alt": "সাদাত হাসান মান্টোর আতিশ পারে বইয়ের প্রচ্ছদ",
+              "width": 400,
+              "height": 561
+            },
+            {
+              "src": "assets/images/now/tahafutul-malahida.webp",
+              "alt": "ড. মুফতী ইয়াসির নাদিমের তাহাফুতুল মালাহিদা বইয়ের প্রচ্ছদ",
+              "width": 400,
+              "height": 396
+            }
           ]
         },
         {
@@ -280,10 +320,30 @@
         {
           "title": "حَالِيًّا",
           "paragraphs": [
-            "أَعُودُ إِلَىٰ أَسَاسِيَّاتِ عِلْمِ ٱلْحَاسُوبِ. تَعَلُّمُ لُغَةٍ أَوْ إِطَارِ عَمَلٍ جَدِيدٍ آخَرَ يَبْدُو بِلَا جَدْوَىٰ فِي عَصْرِ ٱلذَّكَاءِ ٱلِٱصْطِنَاعِيِّ، لِذَا أَدْرُسُ ٱلْآنَ أَسَاسِيَّاتِ أَنْظِمَةِ ٱلتَّشْغِيلِ.",
-            "أَتَعَلَّمُ قِرَاءَةَ ٱلْأُرْدِيَّةِ، وَلَا أَزَالُ فِي مُسْتَوًى مُبْتَدِئٍ جِدًّا. أَقْرَأُ بِبُطْءٍ «آتش پارے» لِمَنْتُو.",
-            "أُطَوِّرُ LocalDrop، تَطْبِيقَ macOS أَصْلِيًّا لِمُشَارَكَةِ ٱلْمَلَفَّاتِ عَبْرَ ٱلشَّبَكَةِ ٱلْمَحَلِّيَّةِ. يَسْتَخْدِمُ بروتوكول LocalSend، فَيَعْمَلُ مَعَ LocalSend أَيْضًا. أَمَّا تَطْبِيقُ macOS عَلَىٰ طِرَازِ GitHub Desktop فَمُؤَجَّلٌ حَالِيًّا.",
-            "خَارِجَ ٱلْعَمَلِ، ٱلْقِرَاءَةُ تَرْفِيهِي شِبْهُ ٱلْوَحِيدِ: كَثِيرٌ مِنْ رِوَايَاتِ ٱلْغُمُوضِ وَٱلتَّشْوِيقِ، وَبَعْضُ ٱلْأَدَبِ ٱلرِّوَائِيِّ، وَكُتُبٌ فِي ٱلْفَلْسَفَةِ وَٱلْعَقِيدَةِ ٱلْإِسْلَامِيَّةِ وَٱلتَّارِيخِ. وَوَقْتٌ أَطْوَلُ بِكَثِيرٍ مِمَّا يَنْبَغِي عَلَىٰ Hacker News."
+            "أَعُودُ إِلَىٰ <mark>أَسَاسِيَّاتِ عِلْمِ ٱلْحَاسُوبِ</mark>. تَعَلُّمُ لُغَةٍ أَوْ إِطَارِ عَمَلٍ جَدِيدٍ آخَرَ يَبْدُو بِلَا جَدْوَىٰ فِي عَصْرِ ٱلذَّكَاءِ ٱلِٱصْطِنَاعِيِّ، لِذَا أَدْرُسُ ٱلْآنَ <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">أَسَاسِيَّاتِ أَنْظِمَةِ ٱلتَّشْغِيلِ</a>.",
+            "<strong>أَتَعَلَّمُ قِرَاءَةَ ٱلْأُرْدِيَّةِ</strong>، وَلَا أَزَالُ فِي مُسْتَوًى مُبْتَدِئٍ جِدًّا. أَقْرَأُ بِبُطْءٍ «آتش پارے» لِمَنْتُو.",
+            "أَقْرَأُ حَالِيًّا <mark>«<span lang=\"ur\">تہافت الملاحدہ</span>»</mark>.",
+            "خَارِجَ ٱلْعَمَلِ، <mark>ٱلْقِرَاءَةُ تَرْفِيهِي شِبْهُ ٱلْوَحِيدِ</mark>: كَثِيرٌ مِنْ رِوَايَاتِ ٱلْغُمُوضِ وَٱلتَّشْوِيقِ، وَبَعْضُ ٱلْأَدَبِ ٱلرِّوَائِيِّ، وَكُتُبٌ فِي ٱلْفَلْسَفَةِ وَٱلْعَقِيدَةِ ٱلْإِسْلَامِيَّةِ وَٱلتَّارِيخِ. وَوَقْتٌ أَطْوَلُ بِكَثِيرٍ مِمَّا يَنْبَغِي عَلَىٰ Hacker News."
+          ],
+          "images": [
+            {
+              "src": "assets/images/now/neso-operating-system.webp",
+              "alt": "لَقْطَةُ شَاشَةٍ لِقَائِمَةِ دَوْرَةِ أَنْظِمَةِ ٱلتَّشْغِيلِ مِنْ نِيسُو أَكَادِيمِي عَلَىٰ يُوتْيُوب",
+              "width": 640,
+              "height": 412
+            },
+            {
+              "src": "assets/images/now/atish-pare.webp",
+              "alt": "غِلَافُ كِتَابِ «آتش پارے» لِسَعَادَت حَسَن مَنْتُو",
+              "width": 400,
+              "height": 561
+            },
+            {
+              "src": "assets/images/now/tahafutul-malahida.webp",
+              "alt": "غِلَافُ كِتَابِ «تَهَافُتُ ٱلْمَلَاحِدَةِ» لِلدُّكْتُورِ ٱلْمُفْتِي يَاسِر نَدِيم",
+              "width": 400,
+              "height": 396
+            }
           ]
         },
         {
@@ -402,10 +462,30 @@
         {
           "title": "فی الحال",
           "paragraphs": [
-            "کمپیوٹر سائنس کی بنیادوں کی طرف واپس جا رہا ہوں۔ اے آئی کے دور میں ایک اور نئی زبان یا فریم ورک سیکھنا بےسود لگتا ہے، اس لیے آج کل آپریٹنگ سسٹم کی بنیادی باتیں پڑھ رہا ہوں۔",
-            "اردو پڑھنا سیکھ رہا ہوں، ابھی بالکل ابتدائی سطح پر۔ آہستہ آہستہ منٹو کی «آتش پارے» پڑھ رہا ہوں۔",
-            "LocalDrop بنا رہا ہوں، لوکل نیٹ ورک پر فائلیں شیئر کرنے کے لیے میک او ایس کی ایک نیٹو ایپ۔ یہ LocalSend پروٹوکول استعمال کرتی ہے، اس لیے LocalSend کے ساتھ بھی چلتی ہے۔ گٹ ہب ڈیسک ٹاپ جیسی میک ایپ فی الحال ایک طرف رکھ دی ہے۔",
-            "کام کے علاوہ پڑھنا ہی میرا تقریباً واحد مشغلہ ہے: بہت سی مسٹری اور تھرلرز، کچھ ادبی فکشن، اور فلسفہ، اسلامی عقیدہ اور تاریخ پر نان فکشن۔ اور ہیکر نیوز پر ضرورت سے کہیں زیادہ وقت۔"
+            "<mark>کمپیوٹر سائنس کی بنیادوں</mark> کی طرف واپس جا رہا ہوں۔ اے آئی کے دور میں ایک اور نئی زبان یا فریم ورک سیکھنا بےسود لگتا ہے، اس لیے آج کل <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">آپریٹنگ سسٹم کی بنیادی باتیں</a> پڑھ رہا ہوں۔",
+            "<strong>اردو پڑھنا سیکھ رہا ہوں</strong>، ابھی بالکل ابتدائی سطح پر۔ آہستہ آہستہ منٹو کی «آتش پارے» پڑھ رہا ہوں۔",
+            "آج کل <mark>«تہافت الملاحدہ»</mark> پڑھ رہا ہوں۔",
+            "کام کے علاوہ <mark>پڑھنا ہی میرا تقریباً واحد مشغلہ ہے</mark>: بہت سی مسٹری اور تھرلرز، کچھ ادبی فکشن، اور فلسفہ، اسلامی عقیدہ اور تاریخ پر نان فکشن۔ اور ہیکر نیوز پر ضرورت سے کہیں زیادہ وقت۔"
+          ],
+          "images": [
+            {
+              "src": "assets/images/now/neso-operating-system.webp",
+              "alt": "یوٹیوب پر نیسو اکیڈمی کے آپریٹنگ سسٹم کورس کی پلے لسٹ کا اسکرین شاٹ",
+              "width": 640,
+              "height": 412
+            },
+            {
+              "src": "assets/images/now/atish-pare.webp",
+              "alt": "سعادت حسن منٹو کی کتاب «آتش پارے» کا سرورق",
+              "width": 400,
+              "height": 561
+            },
+            {
+              "src": "assets/images/now/tahafutul-malahida.webp",
+              "alt": "ڈاکٹر مفتی یاسر ندیم کی کتاب «تہافت الملاحدہ» کا سرورق",
+              "width": 400,
+              "height": 396
+            }
           ]
         },
         {

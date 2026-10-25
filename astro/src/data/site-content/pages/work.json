@@ -25,6 +25,36 @@
             "Built a real-time Android VIN scanner using CameraX, LiteRT, and ML Kit, with a lightweight custom-trained quantized detector and a complex VIN recognition algorithm covering OCR validation, checksum repair, and character-confusion recovery.",
             "Worked on an in-house camera SDK for vehicle data entry, image capture, and damage documentation during inspections, incorporating machine learning to identify which part of the car was being photographed.",
             "Developed a reliable in-house upload manager and SDK designed to remain resilient under unstable network conditions and extreme heat, substantially reducing image loss during transfers."
+          ],
+          "logo": {
+            "src": "assets/images/work/syarah-logo.webp",
+            "alt": "Syarah logo",
+            "width": 360,
+            "height": 170
+          },
+          "images": [
+            {
+              "src": "assets/images/work/amman-abdali.webp",
+              "alt": "Towers along Abdali Boulevard in Amman",
+              "width": 520,
+              "height": 690,
+              "caption": "Amman"
+            },
+            {
+              "src": "assets/images/work/vin-windshield.webp",
+              "alt": "A car's VIN plate seen through the windshield",
+              "width": 760,
+              "height": 631,
+              "caption": "VIN, through the glass"
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "Android",
+              "width": 320,
+              "height": 187
+            }
           ]
         },
         {
@@ -36,6 +66,47 @@
           "bullets": [
             "Al-Hadith is one of the most popular Islamic apps in Bangladesh. I first worked on maintaining its legacy Android version, then later helped rewrite the full app in Flutter, which now runs on both iOS and Android.",
             "The main focus of my work here was native Android and Flutter development."
+          ],
+          "images": [
+            {
+              "src": "assets/images/work/dhaka-minaret-sunset.webp",
+              "alt": "A mosque minaret at sunset in Dhaka",
+              "width": 860,
+              "height": 573,
+              "caption": "Dhaka"
+            },
+            {
+              "src": "assets/images/projects/al-hadith/hadith-books.webp",
+              "alt": "Al Hadith: list of hadith books",
+              "width": 360,
+              "height": 640
+            },
+            {
+              "src": "assets/images/projects/al-hadith/chapter-reading.webp",
+              "alt": "Al Hadith: reading a chapter",
+              "width": 360,
+              "height": 640
+            },
+            {
+              "src": "assets/images/projects/al-hadith/tahkik.webp",
+              "alt": "Al Hadith: hadith by tahkik grade",
+              "width": 360,
+              "height": 640
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "Android",
+              "width": 320,
+              "height": 187
+            },
+            {
+              "src": "assets/images/stickers/flutter.webp",
+              "alt": "Flutter",
+              "width": 320,
+              "height": 90
+            }
           ]
         },
         {
@@ -44,6 +115,29 @@
           "bullets": [
             "Worked on bug fixing across a number of different projects.",
             "Most of the projects were built with Flutter, although there were also some projects using other technologies."
+          ],
+          "logo": {
+            "src": "assets/images/work/fiverr-logo.webp",
+            "alt": "Fiverr logo",
+            "width": 320,
+            "height": 85
+          },
+          "images": [
+            {
+              "src": "assets/images/work/desk-coffee.webp",
+              "alt": "A laptop beside a cup of coffee",
+              "width": 520,
+              "height": 779,
+              "caption": "Remote"
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/flutter.webp",
+              "alt": "Flutter",
+              "width": 320,
+              "height": 90
+            }
           ]
         },
         {
@@ -53,10 +147,58 @@
             "Worked part-time on a contract basis while I was still at university.",
             "Worked across many projects built with different technology stacks and architectures, and gained experience collaborating with developers from different countries.",
             "Had the opportunity to work on projects including Patient Access, a doctor appointment platform; BaseHubs, a local business discovery platform; Jobamax, a job search app; widely used products such as Marriott Bonvoy; and other projects including Ema 2."
+          ],
+          "images": [
+            {
+              "src": "assets/images/projects/marriott-bonvoy/brand.webp",
+              "alt": "Marriott Bonvoy app screens: home, hotel search and nearby hotels map",
+              "width": 960,
+              "height": 492
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "Android",
+              "width": 320,
+              "height": 187
+            }
+          ],
+          "tags": [
+            "Patient Access",
+            "BaseHubs",
+            "Jobamax",
+            "Marriott Bonvoy",
+            "Ema 2"
           ]
         }
       ],
-      "footer_html": "Need more detail? Email <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>."
+      "footer_html": "Need more detail? Email <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>.",
+      "credits_title": "Picture credits",
+      "tags_label": "Worked on",
+      "hero_images": [
+        {
+          "src": "assets/images/work/amman-skyline.webp",
+          "alt": "Amman skyline at sunset",
+          "width": 900,
+          "height": 600,
+          "caption": "Amman"
+        },
+        {
+          "src": "assets/images/work/dhaka-minaret.webp",
+          "alt": "A minaret against the evening sky in Dhaka",
+          "width": 520,
+          "height": 780,
+          "caption": "Dhaka"
+        },
+        {
+          "src": "assets/images/work/desk-laptop.webp",
+          "alt": "A laptop and a cup of coffee on a desk",
+          "width": 760,
+          "height": 507,
+          "caption": "Remote"
+        }
+      ]
     },
     "bn": {
       "meta": {
@@ -81,6 +223,36 @@
             "একটি কাস্টম-ট্রেইনড ৪২-ক্লাসের মোবাইলনেট ভি৩ লাইটআরটি মডেল ব্যবহার করে একটি লাইটওয়েট, অন-ডিভাইস গাড়ির পার্ট অটো-ক্ল্যাসিফিকেশন সিস্টেম ডেভেলপ করেছি। আইডিয়া থেকে শুরু করে ডাটা স্ক্র্যাপিং, মডেল ট্রেইনিং এবং ইন্টিগ্রেশন পর্যন্ত পুরো প্রসেসটাই আমি করেছি। এটি ফটোগ্রাফারদের হিউম্যান এরর এবং ফটোগ্রাফি টাইম উল্লেখযোগ্যভাবে কমিয়ে এনেছে।",
             "ক্যামেরাএক্স, লাইটআরটি এবং এমএল কিট ব্যবহার করে একটি রিয়েল-টাইম অ্যান্ড্রয়েড ভিন স্ক্যানার তৈরি করেছি। এতে একটি লাইটওয়েট, কাস্টম-ট্রেইনড কোয়ান্টাইজড ডিটেক্টর এবং একটি জটিল ভিন রিকগনিশন অ্যালগরিদম আছে, যেটি ওসিআর চেক, চেকসাম ভ্যালিডেশন এবং অটো ক্যারেক্টার অ্যাম্বিগুইটি ফিক্স ব্যবহার করে ঝাপসা, অন্ধকার, ব্লারি কিংবা পুরোনো চ্যাসিস কার্ড থেকেও ঠিকভাবে ভিন ডিটেক্ট করতে পারে।",
             "এছাড়াও একটি ডিপেন্ডেবল আপলোড ম্যানেজার তৈরি করেছি, যেটি মরুভূমির আনস্ট্যাবল ইন্টারনেট কানেকশনেও আগের তুলনায় ইমেজ লস অনেক কমিয়ে এনেছে।"
+          ],
+          "logo": {
+            "src": "assets/images/work/syarah-logo.webp",
+            "alt": "সাইয়ারাহ লোগো",
+            "width": 360,
+            "height": 170
+          },
+          "images": [
+            {
+              "src": "assets/images/work/amman-abdali.webp",
+              "alt": "আম্মানের আবদালি বুলেভার্ডের উঁচু ভবন",
+              "width": 520,
+              "height": 690,
+              "caption": "আম্মান"
+            },
+            {
+              "src": "assets/images/work/vin-windshield.webp",
+              "alt": "উইন্ডশিল্ডের ভেতর দিয়ে দেখা গাড়ির ভিআইএন প্লেট",
+              "width": 760,
+              "height": 631,
+              "caption": "কাচের ওপারে ভিআইএন"
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "অ্যান্ড্রয়েড",
+              "width": 320,
+              "height": 187
+            }
           ]
         },
         {
@@ -92,6 +264,47 @@
           "bullets": [
             "আল-হাদিস বাংলাদেশের অন্যতম জনপ্রিয় ইসলামি অ্যাপ। প্রথমে এর লিগেসি অ্যান্ড্রয়েড ভার্সনের মেইনটেন্যান্সে কাজ করেছি। পরে পুরো অ্যাপটি ফ্লাটারে নতুন করে লেখার কাজেও যুক্ত ছিলাম, যা এখন আইওএস ও অ্যান্ড্রয়েড উভয় প্ল্যাটফর্মেই চলে।",
             "এখানে আমার মূল কাজ ছিল নেটিভ অ্যান্ড্রয়েড এবং ফ্লাটার ডেভেলপমেন্ট।"
+          ],
+          "images": [
+            {
+              "src": "assets/images/work/dhaka-minaret-sunset.webp",
+              "alt": "সূর্যাস্তে ঢাকার একটি মসজিদের মিনার",
+              "width": 860,
+              "height": 573,
+              "caption": "ঢাকা"
+            },
+            {
+              "src": "assets/images/projects/al-hadith/hadith-books.webp",
+              "alt": "আল হাদিস: হাদিস গ্রন্থের তালিকা",
+              "width": 360,
+              "height": 640
+            },
+            {
+              "src": "assets/images/projects/al-hadith/chapter-reading.webp",
+              "alt": "আল হাদিস: অধ্যায় পড়া",
+              "width": 360,
+              "height": 640
+            },
+            {
+              "src": "assets/images/projects/al-hadith/tahkik.webp",
+              "alt": "আল হাদিস: তাহকিক অনুযায়ী হাদিস",
+              "width": 360,
+              "height": 640
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "অ্যান্ড্রয়েড",
+              "width": 320,
+              "height": 187
+            },
+            {
+              "src": "assets/images/stickers/flutter.webp",
+              "alt": "ফ্লাটার",
+              "width": 320,
+              "height": 90
+            }
           ]
         },
         {
@@ -100,6 +313,29 @@
           "bullets": [
             "বিভিন্ন ধরনের বেশ কয়েকটি প্রজেক্টে বাগ ফিক্সিংয়ের কাজ করেছি।",
             "বেশিরভাগ প্রজেক্টই ফ্লাটারে তৈরি ছিল, তবে অন্যান্য প্রযুক্তিতে তৈরি কিছু প্রজেক্টেও কাজ করেছি।"
+          ],
+          "logo": {
+            "src": "assets/images/work/fiverr-logo.webp",
+            "alt": "ফাইভার লোগো",
+            "width": 320,
+            "height": 85
+          },
+          "images": [
+            {
+              "src": "assets/images/work/desk-coffee.webp",
+              "alt": "এক কাপ কফির পাশে একটি ল্যাপটপ",
+              "width": 520,
+              "height": 779,
+              "caption": "রিমোট"
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/flutter.webp",
+              "alt": "ফ্লাটার",
+              "width": 320,
+              "height": 90
+            }
           ]
         },
         {
@@ -109,10 +345,58 @@
             "বিশ্ববিদ্যালয়ে পড়ার সময় এখানে পার্টটাইম চুক্তিভিত্তিক কাজ করেছি।",
             "বিভিন্ন টেকনোলজি স্ট্যাক ও আর্কিটেকচারে তৈরি অনেকগুলো প্রজেক্টে কাজ করার সুযোগ হয়েছে। পাশাপাশি বিভিন্ন দেশের ডেভেলপারদের সঙ্গে কাজ করার অভিজ্ঞতাও হয়েছে।",
             "Patient Access-এর মতো ডাক্তার অ্যাপয়েন্টমেন্ট প্ল্যাটফর্ম, BaseHubs-এর মতো লোকাল বিজনেস ডিসকভারি প্ল্যাটফর্ম, Jobamax-এর মতো জব সার্চ অ্যাপ, Marriott Bonvoy-এর মতো বহুল ব্যবহৃত প্রোডাক্ট এবং Ema 2-সহ বিভিন্ন ধরনের প্রজেক্টে কাজ করার সুযোগ হয়েছে।"
+          ],
+          "images": [
+            {
+              "src": "assets/images/projects/marriott-bonvoy/brand.webp",
+              "alt": "ম্যারিয়ট বনভয় অ্যাপের স্ক্রিন: হোম, হোটেল সার্চ আর কাছের হোটেলের ম্যাপ",
+              "width": 960,
+              "height": 492
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "অ্যান্ড্রয়েড",
+              "width": 320,
+              "height": 187
+            }
+          ],
+          "tags": [
+            "Patient Access",
+            "BaseHubs",
+            "Jobamax",
+            "Marriott Bonvoy",
+            "Ema 2"
           ]
         }
       ],
-      "footer_html": "আরও বিস্তারিত জানতে ইমেইল করুন <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>।"
+      "footer_html": "আরও বিস্তারিত জানতে ইমেইল করুন <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>।",
+      "credits_title": "ছবির কৃতজ্ঞতা",
+      "tags_label": "যেগুলোতে কাজ করেছি",
+      "hero_images": [
+        {
+          "src": "assets/images/work/amman-skyline.webp",
+          "alt": "সূর্যাস্তে আম্মানের আকাশরেখা",
+          "width": 900,
+          "height": 600,
+          "caption": "আম্মান"
+        },
+        {
+          "src": "assets/images/work/dhaka-minaret.webp",
+          "alt": "ঢাকায় সন্ধ্যার আকাশে একটি মিনার",
+          "width": 520,
+          "height": 780,
+          "caption": "ঢাকা"
+        },
+        {
+          "src": "assets/images/work/desk-laptop.webp",
+          "alt": "ডেস্কে একটি ল্যাপটপ আর এক কাপ কফি",
+          "width": 760,
+          "height": 507,
+          "caption": "রিমোট"
+        }
+      ]
     },
     "ar": {
       "meta": {
@@ -137,6 +421,36 @@
             "طَوَّرْتُ نِظَامًا خَفِيفًا لِلتَّصْنِيفِ التِّلْقَائِيِّ لِأَجْزَاءِ السَّيَّارَةِ عَلَى الْجِهَازِ، بِاسْتِخْدَامِ نَمُوذَجِ مُوبَايْل نِت ڤِي ثْرِي لَايْت آرْ تِي مُدَرَّبٍ خُصُوصِيًّا لِـ٤٢ فِئَةً. وَكُنْتُ مَسْؤُولًا عَنِ الْعَمَلِيَّةِ كَامِلَةً، مِنَ الْفِكْرَةِ وَجَمْعِ الْبَيَانَاتِ وَسَكْرَابِنْغِ الْبَيَانَاتِ، إِلَىٰ تَدْرِيبِ النَّمُوذَجِ وَدَمْجِهِ فِي التَّطْبِيقِ. وَسَاعَدَ ذٰلِكَ بِشَكْلٍ مَلْحُوظٍ فِي تَقْلِيلِ الْأَخْطَاءِ الْبَشَرِيَّةِ لَدَى الْمُصَوِّرِينَ وَتَقْلِيلِ الْوَقْتِ اللَّازِمِ لِلتَّصْوِيرِ.",
             "طَوَّرْتُ مَاسِحًا لِرَقْمِ هُوِيَّةِ السَّيَّارَةِ (ڤِي آي إِنْ) يَعْمَلُ فِي الْوَقْتِ الْفِعْلِيِّ عَلَى أَنْدْرُوِيد، بِاسْتِخْدَامِ كَامِيرَا إِكْس، وَلَايْت آرْ تِي، وَإِم إلْ كِت. وَيَحْتَوِي عَلَىٰ كَاشِفٍ خَفِيفٍ مُدَرَّبٍ خُصُوصِيًّا وَمُكَمَّمٍ، إِلَىٰ جَانِبِ خَوَارِزْمِيَّةٍ مُعَقَّدَةٍ لِلتَّعَرُّفِ عَلَىٰ رَقْمِ هُوِيَّةِ السَّيَّارَةِ، تَسْتَخْدِمُ فَحْصَ أُو سِي آرْ، وَالْتَّحَقُّقَ مِنَ الشِّيكْسَم، وَإِصْلَاحَ الْاِلْتِبَاسِ التِّلْقَائِيِّ بَيْنَ الْحُرُوفِ، لِتَتَمَكَّنَ مِنْ قِرَاءَةِ رَقْمِ هُوِيَّةِ السَّيَّارَةِ بِدِقَّةٍ حَتَّىٰ مِنْ بَطَاقَاتِ الشَّاصِيهِ الْمُشَوَّشَةِ أَوِ الْمُظْلِمَةِ أَوِ الْقَدِيمَةِ.",
             "وَطَوَّرْتُ أَيْضًا مَانِجَرًا لِلرَّفْعِ يَتَمَيَّزُ بِالْمَوْثُوقِيَّةِ، وَسَاعَدَ فِي تَقْلِيلِ فَقْدِ الصُّوَرِ بِشَكْلٍ كَبِيرٍ مُقَارَنَةً بِالسَّابِقِ، حَتَّىٰ مَعَ اتِّصَالَاتِ الْإِنْتَرْنِتِ غَيْرِ الْمُسْتَقِرَّةِ فِي بِيئَةِ الصَّحْرَاءِ."
+          ],
+          "logo": {
+            "src": "assets/images/work/syarah-logo.webp",
+            "alt": "شِعَارُ سَيَّارَة",
+            "width": 360,
+            "height": 170
+          },
+          "images": [
+            {
+              "src": "assets/images/work/amman-abdali.webp",
+              "alt": "أَبْرَاجُ بُولِيفَارْدِ ٱلْعَبْدَلِيِّ فِي عَمَّانَ",
+              "width": 520,
+              "height": 690,
+              "caption": "عَمَّان"
+            },
+            {
+              "src": "assets/images/work/vin-windshield.webp",
+              "alt": "لَوْحَةُ رَقْمِ هَيْكَلِ سَيَّارَةٍ خَلْفَ ٱلزُّجَاجِ ٱلْأَمَامِيِّ",
+              "width": 760,
+              "height": 631,
+              "caption": "رَقْمُ ٱلْهَيْكَلِ خَلْفَ ٱلزُّجَاجِ"
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "أَنْدْرُوِيد",
+              "width": 320,
+              "height": 187
+            }
           ]
         },
         {
@@ -148,6 +462,47 @@
           "bullets": [
             "يُعَدُّ تَطْبِيقُ «ٱلْحَدِيث» مِنْ أَشْهَرِ ٱلتَّطْبِيقَاتِ ٱلْإِسْلَامِيَّةِ فِي بِنْغَلَادِيش. بَدَأْتُ بِصِيَانَةِ نُسْخَتِهِ ٱلْقَدِيمَةِ عَلَىٰ أَنْدْرُوِيد، ثُمَّ سَاهَمْتُ لَاحِقًا فِي إِعَادَةِ كِتَابَةِ ٱلتَّطْبِيقِ كَامِلًا بِفْلَاتَر، لِيَعْمَلَ عَلَىٰ آي أُو إِس وَأَنْدْرُوِيد.",
             "كَانَ تَرْكِيزُ عَمَلِي هُنَا عَلَىٰ تَطْوِيرِ أَنْدْرُوِيد ٱلْأَصْلِيِّ وَفْلَاتَر."
+          ],
+          "images": [
+            {
+              "src": "assets/images/work/dhaka-minaret-sunset.webp",
+              "alt": "مِئْذَنَةُ مَسْجِدٍ عِنْدَ ٱلْغُرُوبِ فِي دَكَّا",
+              "width": 860,
+              "height": 573,
+              "caption": "دَكَّا"
+            },
+            {
+              "src": "assets/images/projects/al-hadith/hadith-books.webp",
+              "alt": "تَطْبِيقُ ٱلْحَدِيثِ: قَائِمَةُ كُتُبِ ٱلْحَدِيثِ",
+              "width": 360,
+              "height": 640
+            },
+            {
+              "src": "assets/images/projects/al-hadith/chapter-reading.webp",
+              "alt": "تَطْبِيقُ ٱلْحَدِيثِ: قِرَاءَةُ بَابٍ",
+              "width": 360,
+              "height": 640
+            },
+            {
+              "src": "assets/images/projects/al-hadith/tahkik.webp",
+              "alt": "تَطْبِيقُ ٱلْحَدِيثِ: ٱلْأَحَادِيثُ حَسَبَ دَرَجَةِ ٱلتَّحْقِيقِ",
+              "width": 360,
+              "height": 640
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "أَنْدْرُوِيد",
+              "width": 320,
+              "height": 187
+            },
+            {
+              "src": "assets/images/stickers/flutter.webp",
+              "alt": "فْلَاتِر",
+              "width": 320,
+              "height": 90
+            }
           ]
         },
         {
@@ -156,6 +511,29 @@
           "bullets": [
             "عَمِلْتُ عَلَىٰ إِصْلَاحِ ٱلْأَخْطَاءِ فِي عَدَدٍ مِنَ ٱلْمَشَارِيعِ ٱلْمُخْتَلِفَةِ.",
             "كَانَتْ مُعْظَمُ ٱلْمَشَارِيعِ مَبْنِيَّةً بِفْلَاتَر، مَعَ وُجُودِ بَعْضِ ٱلْمَشَارِيعِ ٱلْمَبْنِيَّةِ بِتِقْنِيَّاتٍ أُخْرَىٰ."
+          ],
+          "logo": {
+            "src": "assets/images/work/fiverr-logo.webp",
+            "alt": "شِعَارُ فَايْفَر",
+            "width": 320,
+            "height": 85
+          },
+          "images": [
+            {
+              "src": "assets/images/work/desk-coffee.webp",
+              "alt": "حَاسُوبٌ مَحْمُولٌ بِجَانِبِ فِنْجَانِ قَهْوَةٍ",
+              "width": 520,
+              "height": 779,
+              "caption": "عَنْ بُعْد"
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/flutter.webp",
+              "alt": "فْلَاتِر",
+              "width": 320,
+              "height": 90
+            }
           ]
         },
         {
@@ -165,10 +543,58 @@
             "عَمِلْتُ هُنَا بَدَوَامٍ جُزْئِيٍّ بِمُوجِبِ عَقْدٍ أَثْنَاءَ دِرَاسَتِي ٱلْجَامِعِيَّةِ.",
             "عَمِلْتُ عَلَىٰ مَشَارِيعَ كَثِيرَةٍ مَبْنِيَّةٍ بِمَجْمُوعَاتٍ مُخْتَلِفَةٍ مِنَ ٱلتِّقْنِيَّاتِ وَبِمَعْمَارِيَّاتٍ مُتَنَوِّعَةٍ، وَٱكْتَسَبْتُ أَيْضًا خِبْرَةً فِي ٱلْعَمَلِ مَعَ مُطَوِّرِينَ مِنْ بُلْدَانٍ مُخْتَلِفَةٍ.",
             "أُتِيحَتْ لِيَ ٱلْفُرْصَةُ لِلْعَمَلِ عَلَىٰ مَشَارِيعَ مِنْهَا «بَيْشَنْتْ أَكْسِس»، وَهُوَ مِنَصَّةٌ لِمَوَاعِيدِ ٱلْأَطِبَّاءِ، وَ«بَيْسْ هَبْس» لِٱكْتِشَافِ ٱلْأَعْمَالِ ٱلْمَحَلِّيَّةِ، وَ«جُوبَامَكْس» لِلْبَحْثِ عَنِ ٱلْوَظَائِفِ، وَمُنْتَجَاتٍ وَاسِعَةِ ٱلِاسْتِخْدَامِ مِثْلَ «مَارْيُوتْ بُونْفُوَاي»، وَمَشَارِيعَ أُخْرَىٰ مِنْهَا «إِيمَا ٢»."
+          ],
+          "images": [
+            {
+              "src": "assets/images/projects/marriott-bonvoy/brand.webp",
+              "alt": "شَاشَاتُ تَطْبِيقِ Marriott Bonvoy: ٱلرَّئِيسِيَّةُ وَٱلْبَحْثُ عَنْ فُنْدُقٍ وَخَرِيطَةُ ٱلْفَنَادِقِ ٱلْقَرِيبَةِ",
+              "width": 960,
+              "height": 492
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "أَنْدْرُوِيد",
+              "width": 320,
+              "height": 187
+            }
+          ],
+          "tags": [
+            "بَاشِنْت أَكْسِس",
+            "بَيْس هَبْز",
+            "جُوبَامَاكْس",
+            "مَارِيُوت بُونْفُوي",
+            "إِيمَا ٢"
           ]
         }
       ],
-      "footer_html": "لِمَزِيدٍ مِنَ ٱلتَّفَاصِيلِ، يُمْكِنُكَ مُرَاسَلَتِي عَلَىٰ <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>."
+      "footer_html": "لِمَزِيدٍ مِنَ ٱلتَّفَاصِيلِ، يُمْكِنُكَ مُرَاسَلَتِي عَلَىٰ <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>.",
+      "credits_title": "مَصَادِرُ ٱلصُّوَرِ",
+      "tags_label": "مِمَّا عَمِلْتُ عَلَيْهِ",
+      "hero_images": [
+        {
+          "src": "assets/images/work/amman-skyline.webp",
+          "alt": "أُفُقُ عَمَّانَ عِنْدَ ٱلْغُرُوبِ",
+          "width": 900,
+          "height": 600,
+          "caption": "عَمَّان"
+        },
+        {
+          "src": "assets/images/work/dhaka-minaret.webp",
+          "alt": "مِئْذَنَةٌ فِي سَمَاءِ ٱلْمَسَاءِ بِدَكَّا",
+          "width": 520,
+          "height": 780,
+          "caption": "دَكَّا"
+        },
+        {
+          "src": "assets/images/work/desk-laptop.webp",
+          "alt": "حَاسُوبٌ مَحْمُولٌ وَفِنْجَانُ قَهْوَةٍ عَلَى مَكْتَبٍ",
+          "width": 760,
+          "height": 507,
+          "caption": "عَنْ بُعْد"
+        }
+      ]
     },
     "ur": {
       "meta": {
@@ -193,6 +619,36 @@
             "ایک کَسْٹَم ٹْرَیْنْڈ ۴۲ کَلاس کے موبائل نِٹ وی تھری لائٹ آر ٹی ماڈل کو استعمال کرتے ہوئے ایک لائٹ ویٹ، آن ڈیوائس گاڑی کے پارٹ آٹو کَلاسِفِکَیْشَن سسٹم ڈویلپ کیا۔ آئیڈیا سے لے کر ڈیٹا سْکْرَیپِنْگ، ماڈل ٹْرَیْنِنْگ اور اِنْٹِگْرَیْشَن تک پورا پْرَوَسِس خود کیا۔ اس سے فوٹوگرافروں کی ہیومن اَرَر اور فوٹوگرافی میں لگنے والا وقت نمایاں طور پر کم ہوا۔",
             "کَامِرَا ایکْس، لائٹ آر ٹی اور ایم ایل کِٹ استعمال کرتے ہوئے ایک رِیئَل ٹائم اینڈرائیڈ وی آئی این سْکَیْنَر بنایا۔ اس میں ایک لائٹ ویٹ، کَسْٹَم ٹْرَیْنْڈ کْوَانْٹَائِزْڈ ڈِٹَیکْٹَر اور ایک پیچیدہ وی آئی این رِکَگْنِشَن اَلْگورِدَم ہے، جو او سی آر چَیک، چَیک سَم وَیلِڈَیْشَن اور آٹو کَیَرَیکْٹَر اَمْبِگْیُوِٹی فِکْس کے ذریعے دھندلے، تاریک، بِلَری یا پرانے چَیسِس کارڈ سے بھی درست وی آئی این ڈِٹَیکْٹ کر سکتا ہے۔",
             "اس کے علاوہ ایک ڈِپَنْڈَبَل اَپْلَوڈ مَینَجَر بھی ڈویلپ کیا، جس نے صحرائی علاقوں کے اَن سْٹَیْبَل اِنْٹَرْنِٹ کَنِکْشَن میں بھی پہلے کے مقابلے میں اِیمِج لاس کو نمایاں طور پر کم کر دیا۔"
+          ],
+          "logo": {
+            "src": "assets/images/work/syarah-logo.webp",
+            "alt": "سَیَّارَہ کا لوگو",
+            "width": 360,
+            "height": 170
+          },
+          "images": [
+            {
+              "src": "assets/images/work/amman-abdali.webp",
+              "alt": "عَمَّان میں عَبْدَلِی بُولیوارڈ کی عِمَارَتیں",
+              "width": 520,
+              "height": 690,
+              "caption": "عَمَّان"
+            },
+            {
+              "src": "assets/images/work/vin-windshield.webp",
+              "alt": "وِنڈ شِیلڈ کے پار گاڑی کی VIN پلیٹ",
+              "width": 760,
+              "height": 631,
+              "caption": "شِیشے کے پار وِی آئی اِین"
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "اَینڈرائِڈ",
+              "width": 320,
+              "height": 187
+            }
           ]
         },
         {
@@ -204,6 +660,47 @@
           "bullets": [
             "اَلْحَدِیث بَنْگْلَہ دِیش کی مَقْبُول تَرِین اِسْلَامِی اَیْپْس میں سے اَیک ہے۔ پَہلے اِس کے لِیگَسِی اَینْڈْرَائِڈ وَرْژَن کی مَینْٹِینَنْس پَر کَام کِیا، پِھر بَعْد میں پُورِی اَیْپ کو فْلَٹَر میں نَئے سِرے سے لِکھنے کے کَام میں بھی حِصَّہ لِیا، جو اَب آئی او اَیس اور اَینْڈْرَائِڈ دُونوں پَر چَلتی ہے۔",
             "یَہاں مِیرے کَام کا بُنْیَادِی مَرْکَز نَیْٹِو اَینْڈْرَائِڈ اور فْلَٹَر ڈِوَلَپْمَنْٹ تھا۔"
+          ],
+          "images": [
+            {
+              "src": "assets/images/work/dhaka-minaret-sunset.webp",
+              "alt": "غُرُوبِ آفْتَاب کے وَقْت ڈھاکَہ میں مَسْجِد کا مِینَار",
+              "width": 860,
+              "height": 573,
+              "caption": "ڈھاکَہ"
+            },
+            {
+              "src": "assets/images/projects/al-hadith/hadith-books.webp",
+              "alt": "الحدیث: حدیث کی کتابوں کی فہرست",
+              "width": 360,
+              "height": 640
+            },
+            {
+              "src": "assets/images/projects/al-hadith/chapter-reading.webp",
+              "alt": "الحدیث: باب پڑھنا",
+              "width": 360,
+              "height": 640
+            },
+            {
+              "src": "assets/images/projects/al-hadith/tahkik.webp",
+              "alt": "الحدیث: تحقیق کے لحاظ سے احادیث",
+              "width": 360,
+              "height": 640
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "اَینڈرائِڈ",
+              "width": 320,
+              "height": 187
+            },
+            {
+              "src": "assets/images/stickers/flutter.webp",
+              "alt": "فلَٹَر",
+              "width": 320,
+              "height": 90
+            }
           ]
         },
         {
@@ -212,6 +709,29 @@
           "bullets": [
             "مُخْتَلِف قِسْم کے کَئی پْرَاجَیکْٹْس میں بَگ فِکْسِنْگ پَر کَام کِیا۔",
             "زِیَادَہ تَر پْرَاجَیکْٹْس فْلَٹَر میں تَیَّار کِیے گَئے تھے، اَلْبَتَّہ کُچھ دِیْگَر ٹِیکْنَالُوجِیز پَر مَبْنِی پْرَاجَیکْٹْس پَر بھی کَام کِیا۔"
+          ],
+          "logo": {
+            "src": "assets/images/work/fiverr-logo.webp",
+            "alt": "فَائِوَر کا لوگو",
+            "width": 320,
+            "height": 85
+          },
+          "images": [
+            {
+              "src": "assets/images/work/desk-coffee.webp",
+              "alt": "کافی کے کَپ کے ساتھ ایک لَیپ ٹاپ",
+              "width": 520,
+              "height": 779,
+              "caption": "رِیمُوٹ"
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/flutter.webp",
+              "alt": "فلَٹَر",
+              "width": 320,
+              "height": 90
+            }
           ]
         },
         {
@@ -221,10 +741,102 @@
             "یُوْنِوَرْسِٹِی میں تَعْلِیم کے دَورَان یَہاں پَارْٹ ٹَائِم کَنْٹْرَیکْٹ کی بُنْیَاد پَر کَام کِیا۔",
             "مُخْتَلِف ٹِیکْنَالُوجِی سْٹَیکْس اور آَرْکِٹَیکْچَرْز میں تَیَّار کِیے گَئے کَئی پْرَاجَیکْٹْس پَر کَام کَرنے کا مَوقَع مِلا۔ اِس کے عِلَاوَہ مُخْتَلِف مُلْکوں کے ڈِوَلَپَرْز کے سَاتھ کَام کَرنے کا تَجْرِبَہ بھی ہُوَا۔",
             "پَیشَنْٹ اَکْسِس جَیسے ڈَاکْٹَر اَپْوَائِنْٹْمَنْٹ پَلَیٹْفَارْم، بَیسْ ہَبْس جَیسے لَوْکَل بَزِنِس ڈِسْکَوَرِی پَلَیٹْفَارْم، جُوبَامَیکْس جَیسی جَاب سَرْچ اَیْپ، مَیرِیَٹ بُونْوَائِی جَیسی بَہُت زِیَادَہ اِسْتِعْمَال ہُونے وَالِی اَیْپ، اور اِیمَا ۲ سَمِیت مُخْتَلِف قِسْم کے پْرَاجَیکْٹْس پَر کَام کَرنے کا مَوقَع مِلا۔"
+          ],
+          "images": [
+            {
+              "src": "assets/images/projects/marriott-bonvoy/brand.webp",
+              "alt": "Marriott Bonvoy ایپ کی اسکرینیں: ہوم، ہوٹل سرچ اور قریبی ہوٹلوں کا نقشہ",
+              "width": 960,
+              "height": 492
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/android.webp",
+              "alt": "اَینڈرائِڈ",
+              "width": 320,
+              "height": 187
+            }
+          ],
+          "tags": [
+            "پَیشَنْٹ اَیکْسَس",
+            "بَیس ہَبْز",
+            "جَوبَامَیکْس",
+            "مَیرِیَٹ بونْوائے",
+            "اِیمَا ۲"
           ]
         }
       ],
-      "footer_html": "مَزِید تَفْصِیل جَانْنِی ہو تو اِیمَیل کَرِیں: <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>۔"
+      "footer_html": "مَزِید تَفْصِیل جَانْنِی ہو تو اِیمَیل کَرِیں: <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>۔",
+      "credits_title": "تَصَاوِیر کے حَوَالے",
+      "tags_label": "جِن پَر کَام کِیَا",
+      "hero_images": [
+        {
+          "src": "assets/images/work/amman-skyline.webp",
+          "alt": "غُرُوبِ آفْتَاب کے وَقْت عَمَّان کا مَنْظَر",
+          "width": 900,
+          "height": 600,
+          "caption": "عَمَّان"
+        },
+        {
+          "src": "assets/images/work/dhaka-minaret.webp",
+          "alt": "ڈھاکَہ میں شَام کے آسْمَان پَر ایک مِینَار",
+          "width": 520,
+          "height": 780,
+          "caption": "ڈھاکَہ"
+        },
+        {
+          "src": "assets/images/work/desk-laptop.webp",
+          "alt": "میز پَر ایک لَیپ ٹاپ اَور کافی کا کَپ",
+          "width": 760,
+          "height": 507,
+          "caption": "رِیمُوٹ"
+        }
+      ]
     }
-  }
+  },
+  "picture_credits": [
+    {
+      "name": "Amman Skyline at Sunset",
+      "author": "Ibrahim nabeel salah",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Amman_Skyline_at_Sunset_-_Jordan.jpg"
+    },
+    {
+      "name": "Abdali Boulevard",
+      "author": "Malkawi99",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Abdali_Boulevard_-_December_2024.jpg"
+    },
+    {
+      "name": "Dhaka skyline at golden hour 07, 14",
+      "author": "Wasiul Bahar",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Dhaka_skyline_at_golden_hour_14.jpg"
+    },
+    {
+      "name": "VIN - IMG 0467",
+      "author": "Hans Haase",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:VIN_-_IMG_0467.JPG"
+    },
+    {
+      "name": "Desk workspace photos",
+      "author": "Shixart1985",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Coffee_and_workspace_setup_on_a_desk_during_a_productive_morning_session.jpg"
+    },
+    {
+      "name": "Syarah logo",
+      "author": "Jarrar-syarah",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Syarah_New_Logo_-_white_bg_version.jpg"
+    }
+  ]
 }

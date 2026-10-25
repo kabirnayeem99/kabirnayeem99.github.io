@@ -1,22 +1,46 @@
 ---
-import type { ContentCard } from "../../lib/work-project-content";
+import { assetHref, type CardImage, type ContentCard, type PictureCredit } from "../../lib/work-project-content";
 import HandArrow from "./HandArrow.astro";
 import Botanical from "./Botanical.astro";
-import HighlightCard from "./HighlightCard.astro";
+import JournalEntry from "./JournalEntry.astro";
 
 interface Props {
   readonly summary: string;
   readonly sectionTitle: string;
   readonly entries: readonly ContentCard[];
+  readonly heroImages: readonly CardImage[];
+  readonly tagsLabel: string;
+  readonly creditsTitle: string;
+  readonly pictureCredits: readonly PictureCredit[];
 }
 
-const { summary, sectionTitle, entries } = Astro.props;
+const { summary, sectionTitle, entries, heroImages, tagsLabel, creditsTitle, pictureCredits } = Astro.props;
+const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
 ---
 
-<section class="page-intro">
+<section class="page-intro work-intro">
   <div class="summary-card">
     <p set:html={summary} />
   </div>
+  {
+    heroImages.length > 0 ? (
+      <div class="postcards">
+        {heroImages.map((image, index) => (
+          <figure class="print postcard" style={`--ar:${(image.width / image.height).toFixed(3)}`}>
+            <img
+              src={assetHref(currentRoute, image.src)}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
+            {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+          </figure>
+        ))}
+      </div>
+    ) : null
+  }
 </section>
 <section>
   <Botanical name="cosmos-nod" class="pf pf--start pf--tall pf--tilt-l" />
@@ -26,7 +50,22 @@ const { summary, sectionTitle, entries } = Astro.props;
     <HandArrow variant="curl" class="hand-arrow--title" />
   </div>
   <Botanical name="sprig" class="sprig" />
-  <div class="highlight-list">
-    {entries.map((entry) => <HighlightCard card={entry} />)}
-  </div>
+  <ol class="journal">
+    {entries.map((entry) => <JournalEntry entry={entry} tagsLabel={tagsLabel} />)}
+  </ol>
 </section>
+{
+  pictureCredits.length > 0 ? (
+    <section class="picture-credits">
+      <h2>{creditsTitle}</h2>
+      <ul>
+        {pictureCredits.map((credit) => (
+          <li>
+            <a href={credit.source} target="_blank" rel="noreferrer">{credit.name}</a>, {credit.author},{" "}
+            <a href={credit.licenseUrl} target="_blank" rel="noreferrer">{credit.license}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ) : null
+}

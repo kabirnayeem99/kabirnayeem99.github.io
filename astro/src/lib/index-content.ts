@@ -42,9 +42,18 @@ interface ArticleLink {
   readonly summary: string;
 }
 
+export interface IndexImage {
+  readonly src: string;
+  readonly alt: string;
+  readonly width: number;
+  readonly height: number;
+}
+
 export interface IndexSection {
   readonly title: string;
   readonly paragraphs: readonly string[];
+  /** Prints taped beside the section's text (e.g. covers of the books being read). */
+  readonly images: readonly IndexImage[];
   readonly highlights: readonly ContentCard[];
   readonly tags: readonly string[];
   readonly articles: readonly ArticleLink[];
@@ -241,6 +250,25 @@ function readArticles(source: Record<string, unknown>, key: string, path: string
   return output;
 }
 
+function readIndexImages(source: Record<string, unknown>, key: string, path: string): readonly IndexImage[] {
+  const value = source[key];
+  if (value === undefined) {
+    return [];
+  }
+  if (!Array.isArray(value)) {
+    throw new Error(`Expected array at ${path}.${key}`);
+  }
+  return value.map((raw, index) => {
+    const imagePath = `${path}.${key}[${index}]`;
+    const image = asRecord(raw, imagePath);
+    const { width, height } = image;
+    if (typeof width !== "number" || typeof height !== "number") {
+      throw new Error(`Expected numeric width/height at ${imagePath}`);
+    }
+    return { src: readString(image, "src", imagePath), alt: readString(image, "alt", imagePath), width, height };
+  });
+}
+
 function readIndexSections(source: Record<string, unknown>, path: string): readonly IndexSection[] {
   const value = source.sections;
   if (!Array.isArray(value)) {
@@ -254,6 +282,7 @@ function readIndexSections(source: Record<string, unknown>, path: string): reado
     output.push({
       title: readString(item, "title", itemPath),
       paragraphs: readOptionalStringArray(item, "paragraphs", itemPath),
+      images: readIndexImages(item, "images", itemPath),
       highlights: readContentCards(item, "highlights", itemPath),
       tags: readOptionalStringArray(item, "tags", itemPath),
       articles: readArticles(item, "articles", itemPath),
@@ -385,15 +414,22 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
         ariaLabel: readString(statsWakaTime, "aria_label", `root.pages.stats.locales.${lang}.sections.wakatime`),
       },
       goodreads: {
-        title: readString(
-          statsGoodreads,
-          "title",
-          `root.pages.stats.locales.${lang}.sections.goodreads`,
-        ),
-        // The compact index-page widget uses its own shorter blurb ("recently
-        // read") where translated - the stats page's `copy` is the fuller,
-        // autobiographical one. Locales without an `index_copy` override
-        // (still short as-is) just reuse `copy`.
+        // The home shelf shows hand-picked favourites, not the full read list, so it
+        // can carry its own heading; otherwise it shares the stats page's.
+        title:
+          readOptionalString(
+            statsGoodreads,
+            "index_title",
+            `root.pages.stats.locales.${lang}.sections.goodreads`,
+          ) ??
+          readString(
+            statsGoodreads,
+            "title",
+            `root.pages.stats.locales.${lang}.sections.goodreads`,
+          ),
+        // The compact index-page widget uses its own shorter blurb about the picks -
+        // the stats page's `copy` is the fuller, autobiographical one. Locales
+        // without an `index_copy` override just reuse `copy`.
         copy:
           readOptionalString(
             statsGoodreads,

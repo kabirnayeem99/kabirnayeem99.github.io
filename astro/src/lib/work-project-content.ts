@@ -31,6 +31,7 @@ export interface CardImage {
   readonly alt: string;
   readonly width: number;
   readonly height: number;
+  readonly caption?: string;
 }
 
 export interface ContentCard {
@@ -40,30 +41,77 @@ export interface ContentCard {
   readonly paragraphs: readonly string[];
   readonly bullets: readonly string[];
   readonly images?: readonly CardImage[];
+  /** Work page only: company mark stamped beside the title. */
+  readonly logo?: CardImage;
+  /** Work page only: small tool/platform marks stuck on the photo stack. */
+  readonly stickers?: readonly CardImage[];
+  /** Work page only: handwritten name tags (client products and the like). */
+  readonly tags?: readonly string[];
+  /** A few lines of code or terminal output, shown as a taped slip in place of a photo. */
+  readonly snippet?: string;
 }
 
-function readCardImages(source: Record<string, unknown>, path: string): readonly CardImage[] {
-  const value = source.images;
+export interface PictureCredit {
+  readonly name: string;
+  readonly author: string;
+  readonly license: string;
+  readonly licenseUrl: string;
+  readonly source: string;
+}
+
+function readCardImage(raw: unknown, imagePath: string): CardImage {
+  const image = asRecord(raw, imagePath);
+  const { width, height } = image;
+  if (typeof width !== "number" || typeof height !== "number") {
+    throw new Error(`Expected numeric width/height at ${imagePath}`);
+  }
+  const caption = readOptionalString(image, "caption", imagePath);
+  return {
+    src: readString(image, "src", imagePath),
+    alt: readString(image, "alt", imagePath),
+    width,
+    height,
+    ...(caption === undefined ? {} : { caption }),
+  };
+}
+
+function readCardImages(source: Record<string, unknown>, key: string, path: string): readonly CardImage[] {
+  const value = source[key];
   if (value === undefined) {
     return [];
   }
   if (!Array.isArray(value)) {
-    throw new Error(`Expected array at ${path}.images`);
+    throw new Error(`Expected array at ${path}.${key}`);
+  }
+  return value.map((raw, index) => readCardImage(raw, `${path}.${key}[${index}]`));
+}
+
+function readPictureCredits(source: Record<string, unknown>, path: string): readonly PictureCredit[] {
+  const value = source.picture_credits;
+  if (value === undefined) {
+    return [];
+  }
+  if (!Array.isArray(value)) {
+    throw new Error(`Expected array at ${path}.picture_credits`);
   }
   return value.map((raw, index) => {
-    const imagePath = `${path}.images[${index}]`;
-    const image = asRecord(raw, imagePath);
-    const { width, height } = image;
-    if (typeof width !== "number" || typeof height !== "number") {
-      throw new Error(`Expected numeric width/height at ${imagePath}`);
-    }
-    return { src: readString(image, "src", imagePath), alt: readString(image, "alt", imagePath), width, height };
+    const creditPath = `${path}.picture_credits[${index}]`;
+    const credit = asRecord(raw, creditPath);
+    return {
+      name: readString(credit, "name", creditPath),
+      author: readString(credit, "author", creditPath),
+      license: readString(credit, "license", creditPath),
+      licenseUrl: readString(credit, "license_url", creditPath),
+      source: readString(credit, "source", creditPath),
+    };
   });
 }
 
 export interface ProjectGroup {
   readonly title: string;
   readonly items: readonly ContentCard[];
+  /** "compact": a plain grid of small cards for minor work; otherwise journal spreads. */
+  readonly layout?: "compact";
 }
 
 interface AlternateLink {
@@ -86,6 +134,10 @@ export interface WorkPageContent extends CommonPageContent {
   readonly summary: string;
   readonly sectionTitle: string;
   readonly entries: readonly ContentCard[];
+  readonly heroImages: readonly CardImage[];
+  readonly tagsLabel: string;
+  readonly creditsTitle: string;
+  readonly pictureCredits: readonly PictureCredit[];
 }
 
 export interface ProjectPageContent extends CommonPageContent {
@@ -115,6 +167,10 @@ function readContentCards(
       href?: string;
       meta?: string;
       images?: readonly CardImage[];
+      logo?: CardImage;
+      stickers?: readonly CardImage[];
+      tags?: readonly string[];
+      snippet?: string;
     } = {
       title: readString(item, "title", itemPath),
       paragraphs: readOptionalStringArray(item, "paragraphs", itemPath),
@@ -127,9 +183,24 @@ function readContentCards(
     if (meta !== undefined) {
       card.meta = meta;
     }
-    const images = readCardImages(item, itemPath);
+    const images = readCardImages(item, "images", itemPath);
     if (images.length > 0) {
       card.images = images;
+    }
+    if (item.logo !== undefined) {
+      card.logo = readCardImage(item.logo, `${itemPath}.logo`);
+    }
+    const stickers = readCardImages(item, "stickers", itemPath);
+    if (stickers.length > 0) {
+      card.stickers = stickers;
+    }
+    const tags = readOptionalStringArray(item, "tags", itemPath);
+    if (tags.length > 0) {
+      card.tags = tags;
+    }
+    const snippet = readOptionalString(item, "snippet", itemPath);
+    if (snippet !== undefined) {
+      card.snippet = snippet;
     }
 
     cards.push(card);
@@ -148,9 +219,14 @@ function readProjectGroups(source: Record<string, unknown>, path: string): reado
   for (let index = 0; index < groupsRaw.length; index += 1) {
     const groupPath = `${path}.groups[${index}]`;
     const group = asRecord(groupsRaw[index], groupPath);
+    const layout = readOptionalString(group, "layout", groupPath);
+    if (layout !== undefined && layout !== "compact") {
+      throw new Error(`Unknown layout "${layout}" at ${groupPath}.layout`);
+    }
     groups.push({
       title: readString(group, "title", groupPath),
       items: readContentCards(group, "items", groupPath),
+      ...(layout === undefined ? {} : { layout }),
     });
   }
 
@@ -234,12 +310,18 @@ function readCommonPageContent(
 }
 
 export function loadWorkPageContent(lang: Lang): WorkPageContent {
-  const { localePage, common } = readCommonPageContent(lang, "work");
+  const { context, localePage, common } = readCommonPageContent(lang, "work");
+  const path = `root.pages.work.locales.${lang}`;
+  const page = asRecord(asRecord(context.root.pages, "root.pages").work, "root.pages.work");
   return {
     ...common,
-    summary: readString(localePage, "summary", `root.pages.work.locales.${lang}`),
-    sectionTitle: readString(localePage, "section_title", `root.pages.work.locales.${lang}`),
-    entries: readContentCards(localePage, "entries", `root.pages.work.locales.${lang}`),
+    summary: readString(localePage, "summary", path),
+    sectionTitle: readString(localePage, "section_title", path),
+    entries: readContentCards(localePage, "entries", path),
+    heroImages: readCardImages(localePage, "hero_images", path),
+    tagsLabel: readString(localePage, "tags_label", path),
+    creditsTitle: readString(localePage, "credits_title", path),
+    pictureCredits: readPictureCredits(page, "root.pages.work"),
   };
 }
 
