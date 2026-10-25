@@ -20,65 +20,67 @@ const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(cur
 ---
 
 <li class="journal-entry" data-collage={hasCollage ? "" : undefined}>
-  <div class="journal-entry-text highlight">
-    <span class="peel-flap" aria-hidden="true"></span>
-    {entry.meta ? <p class="meta">{entry.meta}</p> : null}
-    <div class="journal-entry-head">
-      <h3>
+  <div class="journal-entry-paper">
+    <div class="journal-entry-text highlight">
+      <span class="peel-flap" aria-hidden="true"></span>
+      {entry.meta ? <p class="meta">{entry.meta}</p> : null}
+      <div class="journal-entry-head">
+        <h3>
+          {
+            entry.href ? (
+              <a href={entry.href} target="_blank" rel="noreferrer">
+                {entry.title}
+              </a>
+            ) : (
+              entry.title
+            )
+          }
+        </h3>
         {
-          entry.href ? (
-            <a href={entry.href} target="_blank" rel="noreferrer">
-              {entry.title}
-            </a>
-          ) : (
-            entry.title
-          )
+          entry.logo ? (
+            <span
+              class="journal-stamp"
+              role="img"
+              aria-label={entry.logo.alt}
+              style={`--stamp:url("/${entry.logo.src}");--stamp-ratio:${(entry.logo.width / entry.logo.height).toFixed(3)}`}
+            />
+          ) : null
         }
-      </h3>
+      </div>
+      {entry.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
       {
-        entry.logo ? (
-          <span
-            class="journal-stamp"
-            role="img"
-            aria-label={entry.logo.alt}
-            style={`--stamp:url("/${entry.logo.src}");--stamp-ratio:${(entry.logo.width / entry.logo.height).toFixed(3)}`}
-          />
+        entry.bullets.length > 0 ? (
+          <ul>
+            {entry.bullets.map((bullet) => (
+              <li set:html={bullet} />
+            ))}
+          </ul>
+        ) : null
+      }
+      {
+        tags.length > 0 ? (
+          <div class="journal-tags">
+            {tagsLabel ? <span class="journal-tags-label">{tagsLabel}</span> : null}
+            <ul>
+              {tags.map((tag) => (
+                <li>{tag}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null
+      }
+      {
+        !hasCollage && stickerList.length > 0 ? (
+          <div class="journal-card-stickers">
+            {stickerList.map((sticker) => (
+              <span class="journal-sticker">
+                <img src={sticker.href} alt={sticker.alt} width={sticker.width} height={sticker.height} loading="lazy" decoding="async" />
+              </span>
+            ))}
+          </div>
         ) : null
       }
     </div>
-    {entry.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
-    {
-      entry.bullets.length > 0 ? (
-        <ul>
-          {entry.bullets.map((bullet) => (
-            <li set:html={bullet} />
-          ))}
-        </ul>
-      ) : null
-    }
-    {
-      tags.length > 0 ? (
-        <div class="journal-tags">
-          {tagsLabel ? <span class="journal-tags-label">{tagsLabel}</span> : null}
-          <ul>
-            {tags.map((tag) => (
-              <li>{tag}</li>
-            ))}
-          </ul>
-        </div>
-      ) : null
-    }
-    {
-      !hasCollage && stickerList.length > 0 ? (
-        <div class="journal-card-stickers">
-          {stickerList.map((sticker) => (
-            <span class="journal-sticker">
-              <img src={sticker.href} alt={sticker.alt} width={sticker.width} height={sticker.height} loading="lazy" decoding="async" />
-            </span>
-          ))}
-        </div>
-      ) : null
-    }
   </div>
   {
     hasCollage ? (

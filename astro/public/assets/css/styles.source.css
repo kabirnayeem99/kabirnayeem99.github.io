@@ -1308,6 +1308,17 @@
     line-height: 1.55;
   }
 
+  /* a card's own shadow would be sliced by its dog-ear clip, so its parent casts it
+     instead: a parent's drop-shadow follows the already-clipped outline round the fold */
+  .highlight-list,
+  .journal-entry-paper {
+    filter: var(--paper-drop);
+  }
+
+  :is(.highlight-list, .journal-entry-paper) > .highlight {
+    filter: none;
+  }
+
   .highlight::before,
   .highlight::after {
     content: "";
@@ -3784,14 +3795,14 @@
 @layer ornaments {
   /* the notebook opens */
   html.motion:not(.motion-anchored) .site {
-    animation: notebook-open 650ms var(--ease-out) backwards;
+    animation: notebook-open 450ms var(--ease-out) backwards;
     transform-origin: 50% 0;
   }
 
   @keyframes notebook-open {
     /* no perspective: projected over a very long page it magnifies every layout shift */
     from {
-      transform: translateY(28px);
+      transform: translateY(8px);
     }
   }
 
@@ -3813,7 +3824,7 @@
   @keyframes ink-rise {
     from {
       opacity: 0.05;
-      transform: translateY(14px);
+      transform: translateY(5px);
     }
   }
 
@@ -3824,7 +3835,7 @@
   html.motion .social-chip-row { animation-delay: 600ms; }
 
   html.motion .intro-stage-figure {
-    animation: sleeve-swing 800ms var(--ease-spring) 500ms backwards;
+    animation: sleeve-swing 500ms var(--ease-out) 400ms backwards;
     transform-origin: 50% 0;
   }
 
@@ -3865,25 +3876,25 @@
   }
 
   html.motion .is-inked {
-    animation: ink-press 550ms var(--ease-out) var(--reveal-delay, 0ms) backwards;
+    animation: ink-press 420ms var(--ease-out) var(--reveal-delay, 0ms) backwards;
   }
 
   @keyframes ink-press {
     from {
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(6px);
     }
   }
 
   /* cards are taped down from just above the page */
   html.motion :is(.highlight, .stats-card).is-inked {
-    animation: tape-down 600ms var(--ease-spring) var(--reveal-delay, 0ms) backwards;
+    animation: tape-down 450ms var(--ease-out) var(--reveal-delay, 0ms) backwards;
   }
 
   @keyframes tape-down {
     from {
       opacity: 0;
-      transform: perspective(1200px) translateY(-36px) rotateX(-14deg) rotate(2.5deg) scale(1.06);
+      transform: translateY(-8px) rotate(0.6deg) scale(1.015);
     }
     40% {
       opacity: 1;
@@ -3892,26 +3903,26 @@
 
   /* first-screen postcards tape down from CSS alone, one after another */
   html.motion .postcard {
-    animation: tape-down 650ms var(--ease-spring) 180ms backwards;
+    animation: tape-down 450ms var(--ease-out) 150ms backwards;
   }
 
   html.motion .postcard:nth-child(2) {
-    animation-delay: 300ms;
+    animation-delay: 220ms;
   }
 
   html.motion .postcard:nth-child(3) {
-    animation-delay: 420ms;
+    animation-delay: 290ms;
   }
 
   /* newspaper clippings are slapped down */
   html.motion .article-item.is-inked {
-    animation: clipping-slap 480ms var(--ease-spring) var(--reveal-delay, 0ms) backwards;
+    animation: clipping-slap 400ms var(--ease-out) var(--reveal-delay, 0ms) backwards;
   }
 
   @keyframes clipping-slap {
     from {
       opacity: 0;
-      transform: scale(1.25) rotate(-6deg);
+      transform: scale(1.04) rotate(-1deg);
     }
     50% {
       opacity: 1;
@@ -3920,25 +3931,25 @@
 
   /* index cards are dealt into the file box */
   html.motion .file-card.is-inked {
-    animation: card-deal 500ms var(--ease-spring) var(--reveal-delay, 0ms) backwards;
+    animation: card-deal 420ms var(--ease-out) var(--reveal-delay, 0ms) backwards;
   }
 
   @keyframes card-deal {
     from {
       opacity: 0;
-      transform: translateY(80px) rotate(7deg);
+      transform: translateY(12px) rotate(1deg);
     }
   }
 
   /* books tumble onto the shelf */
   html.motion :is(.gr_grid_book_container, .gr_grid_book_placeholder).is-inked {
-    animation: book-drop 520ms var(--ease-spring) var(--reveal-delay, 0ms) backwards;
+    animation: book-drop 420ms var(--ease-out) var(--reveal-delay, 0ms) backwards;
   }
 
   @keyframes book-drop {
     from {
       opacity: 0;
-      transform: translateY(-60px) rotate(-10deg);
+      transform: translateY(-10px) rotate(-1.5deg);
     }
     35% {
       opacity: 1;
@@ -3949,7 +3960,7 @@
   @keyframes sleeve-swing {
     from {
       opacity: 0.05;
-      transform: perspective(1200px) rotateX(-40deg) rotate(-6deg) translateY(-30px);
+      transform: rotate(-1.5deg) translateY(-8px);
     }
   }
 
@@ -3974,14 +3985,14 @@
 
   /* margin flowers grow from the stem */
   html.motion :is(.pf, .pinned).is-inked {
-    animation: bloom 850ms var(--ease-spring) calc(var(--reveal-delay, 0ms) + 80ms) backwards;
+    animation: bloom 550ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 60ms) backwards;
     transform-origin: 50% 100%;
   }
 
   @keyframes bloom {
     from {
       opacity: 0;
-      transform: scale(0.4) rotate(-20deg);
+      transform: scale(0.85) rotate(-4deg);
     }
     40% {
       opacity: 1;

@@ -55,7 +55,7 @@ function setupReveals(): void {
         .map((entry) => entry.target as HTMLElement)
         .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
       arriving.forEach((el, index) => {
-        el.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 50}ms`);
+        el.style.setProperty("--reveal-delay", `${Math.min(index, 4) * 35}ms`);
         el.classList.add("is-inked");
         observer.unobserve(el);
       });
