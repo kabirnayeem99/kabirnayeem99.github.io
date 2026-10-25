@@ -22,7 +22,7 @@ const REVEAL_SELECTOR = [
   ".highlight",
   ".journal-prints",
   ".article-item",
-  ".file-card",
+  ".sticker-group",
   ".gr_grid_book_container",
   ".gr_grid_book_placeholder",
   ".section-actions",

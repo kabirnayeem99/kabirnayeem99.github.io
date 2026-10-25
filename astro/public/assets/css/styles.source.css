@@ -1408,158 +1408,129 @@
     rotate: -6deg;
   }
 
-  /* skills: a card-file box. One index card per kind, a coloured divider tab carrying
-     its name, skills handwritten on the ruled lines. Hover pulls the card up out of the box. */
-  .card-file {
-    position: relative;
+  /* skills: a sticker sheet. Each group is a handwritten label beside a row of die-cut
+     stickers (brand mark + name), the same stickers that sit on the work page's prints. */
+  .sticker-sheet {
+    --tape: var(--tape-2);
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0 10px;
-    margin-block: calc(var(--line) * 2) calc(var(--line) * 2.2);
-  }
-
-  /* kraft box front: a low lip the cards stand in */
-  .card-file::after {
-    content: "";
-    position: absolute;
-    z-index: 3;
-    inset-inline: -16px;
-    inset-block-end: -22px;
-    height: 58px;
-    border-radius: 3px 3px 6px 6px;
+    gap: 16px;
+    margin-block: var(--line) calc(var(--line) * 0.5);
+    padding: 34px 30px 28px;
     background:
-      radial-gradient(circle at 1px 1px, rgba(60, 35, 10, 0.12) 0.7px, transparent 1px) 0 0 / 4px 4px,
-      linear-gradient(180deg, #c49a6a, #ad8250 60%, #9c7243);
-    box-shadow:
-      inset 0 2px 0 rgba(255, 255, 255, 0.25),
-      inset 0 -3px 0 rgba(0, 0, 0, 0.12),
-      0 10px 16px -10px rgba(40, 25, 5, 0.6);
-    pointer-events: none;
+      radial-gradient(circle, color-mix(in srgb, var(--text-muted) 16%, transparent) 1px, transparent 1.4px) 0 0 / 14px 14px,
+      var(--card);
+    filter: var(--paper-drop);
+    rotate: -0.4deg;
   }
 
-  /* brass label holder on the box front */
-  .card-file::before {
-    content: attr(data-label);
+  .sticker-group {
     display: grid;
-    place-items: center;
-    font: 700 0.78rem/1 var(--hand);
-    color: var(--tab-ink);
-    position: absolute;
-    z-index: 4;
-    inset-block-end: -6px;
-    inset-inline-start: calc(50% - 46px);
-    width: 92px;
-    height: 26px;
-    border-radius: 3px;
-    background:
-      linear-gradient(#f7f1e1, #f7f1e1) center / calc(100% - 10px) calc(100% - 8px) no-repeat,
-      linear-gradient(180deg, #d8b36a, #a9823d);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-    pointer-events: none;
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 6px 18px;
+    align-items: start;
   }
 
-  html[data-theme="dark"] .card-file::after {
-    filter: brightness(0.72) saturate(0.85);
+  .sticker-group + .sticker-group {
+    padding-block-start: 16px;
+    border-block-start: 1px dashed color-mix(in srgb, var(--text-muted) 35%, transparent);
   }
 
-  .file-card {
-    --tab: var(--tab-1);
-    --tab-at: 0;
-    position: relative;
-    z-index: 1;
+  .sticker-group-label {
+    margin: 0;
+    padding-block-start: 4px;
+    font: 600 1.3rem/1.2 var(--hand);
+    color: var(--p-ox);
+    rotate: -2deg;
+  }
+
+  .sticker-row {
     display: flex;
-    flex-direction: column;
-    padding: 14px 12px 64px;
-    background:
-      linear-gradient(color-mix(in srgb, var(--tab) 80%, var(--text) 20%), color-mix(in srgb, var(--tab) 80%, var(--text) 20%)) 0 38px / 100% 1.5px no-repeat,
-      repeating-linear-gradient(to bottom, transparent 0 25px, var(--rule) 25px 26px) 0 38px,
-      linear-gradient(color-mix(in srgb, var(--tab) 22%, var(--card)), color-mix(in srgb, var(--tab) 22%, var(--card)));
-    border-radius: 2px 2px 0 0;
-    box-shadow: 0 1px 2px rgba(40, 25, 5, 0.2), 0 -1px 0 rgba(40, 25, 5, 0.06);
-    transition: translate 320ms var(--ease-out);
-  }
-
-  .file-card:hover,
-  .file-card:focus-within {
-    translate: 0 -14px;
-  }
-
-  .file-card:nth-child(2) { --tab-at: 0.25; }
-  .file-card:nth-child(3) { --tab-at: 0.5; }
-  .file-card:nth-child(4) { --tab-at: 0.75; }
-  .file-card:nth-child(5) { --tab-at: 1; }
-
-  .file-card-tab {
-    position: absolute;
-    inset-block-start: -27px;
-    inset-inline-start: calc(var(--tab-at) * 100%);
-    translate: calc(var(--tab-at) * -100%) 0;
-    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
     margin: 0;
-    padding: 3px 8px 2px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font: 700 0.92rem/22px var(--hand);
-    color: var(--tab-ink);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent 60%), var(--tab);
-    border-radius: 7px 7px 0 0;
-    box-shadow: 0 -1px 1px rgba(40, 25, 5, 0.12);
-  }
-
-  [dir="rtl"] .file-card-tab {
-    translate: calc(var(--tab-at) * 100%) 0;
-  }
-
-  html:not(:lang(en)) .file-card-tab {
-    font-family: var(--font-site);
-    font-weight: 700;
-    font-size: 0.82rem;
-  }
-
-  .file-card ul {
+    padding: 0;
     list-style: none;
-    margin: 0;
-    /* first baseline lands on the first rule under the header line */
-    padding-block-start: 27px;
   }
 
-  .file-card li {
-    padding-inline-start: 1.1em;
-    text-indent: -1.1em;
-    font: 600 1.12rem/26px var(--hand);
-    color: var(--text);
-    overflow-wrap: anywhere;
+  .skill-sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 13px 6px 10px;
+    background: #fffdf8;
+    color: #2b2118;
+    border-radius: 999px;
+    box-shadow: 0 0 0 1px rgba(40, 25, 5, 0.06), 0 1px 2px rgba(40, 25, 5, 0.22), 0 4px 8px -4px rgba(40, 25, 5, 0.3);
+    font: 600 0.95rem/1.2 var(--font-serif);
+    rotate: -1deg;
   }
 
-  .file-card li::before {
-    content: "— ";
-    color: color-mix(in srgb, var(--tab) 55%, var(--text) 45%);
+  .skill-sticker:nth-child(3n + 2) { rotate: 1.2deg; }
+  .skill-sticker:nth-child(3n) { rotate: -0.4deg; }
+
+  /* text-only stickers (no brand mark) get a little inked dot in its place */
+  .skill-sticker:not(:has(img))::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--p-ox);
+    opacity: 0.7;
   }
 
-  [data-skill-kind="language"] { --tab: var(--tab-1); }
-  [data-skill-kind="platform"] { --tab: var(--tab-2); }
-  [data-skill-kind="craft"] { --tab: var(--tab-4); }
-  [data-skill-kind="process"] { --tab: var(--tab-3); }
-  [data-skill-kind="spoken"] { --tab: var(--tab-5); }
+  .skill-sticker[data-spoken]::before {
+    content: none;
+  }
 
-  html[data-theme="dark"] .file-card-tab {
-    filter: saturate(0.8) brightness(0.85);
+  .skill-sticker img {
+    flex: none;
+    width: 18px;
+    height: 18px;
+  }
+
+  /* spoken languages are written in their own script; as a flex item the Urdu name needs a
+     real line box (the inline-Urdu rule zeroes it), or it hangs below the pill's centre */
+  .skill-sticker span[lang="ur"] {
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+
+  .skill-sticker-note {
+    font: 400 0.9rem/1 var(--hand);
+    color: var(--p-ox);
+  }
+
+  html[data-theme="dark"] .skill-sticker {
+    background: #e9e4d8;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .skill-sticker {
+      transition: translate 200ms var(--ease-out), rotate 200ms var(--ease-out);
+    }
+
+    .skill-sticker:hover {
+      translate: 0 -2px;
+      rotate: 0deg;
+    }
   }
 
   @media (max-width: 760px) {
-    .card-file {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 44px 10px;
+    .sticker-sheet {
+      padding: 28px 18px 22px;
     }
 
-    .card-file::after,
-    .card-file::before {
-      display: none;
+    .sticker-group {
+      grid-template-columns: minmax(0, 1fr);
     }
 
-    .file-card {
-      padding-block-end: 16px;
+    .sticker-group-label {
+      font-size: 1.15rem;
+    }
+
+    .skill-sticker {
+      font-size: 0.88rem;
+      padding: 5px 11px 5px 8px;
     }
   }
 
@@ -1975,9 +1946,9 @@
     position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 40%);
-    gap: 0 44px;
-    align-items: start;
-    margin: 0 0 calc(var(--line) * 2);
+    gap: 0 36px;
+    align-items: center; /* a short card sits level with its collage, not stranded at the top */
+    margin: 0 0 calc(var(--line) * 1.5);
     padding: 0;
     font-size: 1rem;
     line-height: var(--line);
@@ -2019,7 +1990,7 @@
     margin: 0 0 2px;
     padding: 0;
     border: 0;
-    font: 400 1.12rem/var(--line) var(--hand);
+    font: 400 1.25rem/var(--line) var(--hand);
     color: var(--p-ox);
   }
 
@@ -2031,7 +2002,7 @@
   }
 
   .journal-entry h3 {
-    font-size: 1.35rem;
+    font-size: 1.55rem;
     line-height: var(--line);
     margin: 0;
   }
@@ -2039,7 +2010,20 @@
   /* the text is cut from paper like the home page's selected-work cards: taped down,
      casting a shadow, its free corner dog-earing on hover */
   .journal-entry-text.highlight {
-    padding: 22px 26px 18px;
+    padding: 26px 30px 22px;
+    font-size: 1.1rem;
+    line-height: 1.62;
+  }
+
+  @media (max-width: 760px) {
+    .journal-entry-text.highlight {
+      padding: 22px 22px 18px;
+      font-size: 1.02rem;
+    }
+
+    .journal-entry h3 {
+      font-size: 1.35rem;
+    }
   }
 
   .journal-entry:nth-child(even) .journal-entry-text.highlight {
@@ -2206,6 +2190,55 @@
     background: #e9e4d8;
   }
 
+  /* where the work happened: a small snapshot tucked over the collage's lower corner,
+     so the product shots carry the entry; alone (no shots), it just sits small */
+  /* tucked at the collage's outer corner, away from the card: odd entries put their prints
+     at the end side, even entries at the start side */
+  .journal-prints[data-count] .print.print--place {
+    position: absolute;
+    z-index: 2;
+    inset-block-end: -22px;
+    inset-inline-end: -26px;
+    flex: none;
+    width: 112px;
+    padding: 4px 4px 5px;
+    rotate: -5deg;
+  }
+
+  .journal-entry:nth-child(even) .journal-prints[data-count] .print.print--place {
+    inset-inline-end: auto;
+    inset-inline-start: -26px;
+    rotate: 4deg;
+  }
+
+  .journal-prints[data-count] .print.print--place figcaption {
+    padding-block-start: 2px;
+    font-size: 0.85rem;
+  }
+
+  .journal-prints[data-count="0"] {
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  .journal-prints[data-count="0"] .print.print--place {
+    position: relative;
+    inset: auto;
+    width: 150px;
+  }
+
+  @media (max-width: 760px) {
+    .journal-prints[data-count] .print.print--place {
+      width: 88px;
+      inset-inline-end: -6px;
+      inset-block-end: -18px;
+    }
+
+    .journal-entry:nth-child(even) .journal-prints[data-count] .print.print--place {
+      inset-inline-start: -6px;
+    }
+  }
+
   /* a lone print: the collage shrinks to it, so stickers land on its corner */
   .journal-prints[data-count="1"] {
     width: fit-content;
@@ -2215,7 +2248,7 @@
 
   .journal-prints[data-count="1"] .print {
     flex: none;
-    width: min(calc(250px * var(--ar)), 360px); /* no %: the collage shrinks to fit this */
+    width: min(calc(300px * var(--ar)), 400px); /* no %: the collage shrinks to fit this */
   }
 
   .journal-prints[data-lead] .print:first-child {
@@ -2281,7 +2314,7 @@
   /* intro: three postcards fanned beside the pencilled note */
   .work-intro {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 46%);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 32%);
     gap: 24px 40px;
     align-items: center;
   }
@@ -3869,7 +3902,7 @@
   html.motion
     :is(
       .section-head, .sprig, main > section:not(:first-of-type) > p, .entry,
-      .highlight, .article-item, .file-card, .gr_grid_book_container, .gr_grid_book_placeholder,
+      .highlight, .article-item, .sticker-group, .gr_grid_book_container, .gr_grid_book_placeholder,
       .section-actions, .stats-card, .github-repo-card, .pf, .pinned, .journal-prints
     ):not(.is-inked) {
     opacity: 0;
@@ -3926,18 +3959,6 @@
     }
     50% {
       opacity: 1;
-    }
-  }
-
-  /* index cards are dealt into the file box */
-  html.motion .file-card.is-inked {
-    animation: card-deal 420ms var(--ease-out) var(--reveal-delay, 0ms) backwards;
-  }
-
-  @keyframes card-deal {
-    from {
-      opacity: 0;
-      transform: translateY(12px) rotate(1deg);
     }
   }
 

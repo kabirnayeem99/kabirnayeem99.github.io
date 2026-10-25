@@ -15,6 +15,62 @@
       "section_title": "Work Experience",
       "entries": [
         {
+          "title": "Multazim Solutions · Founder",
+          "meta": "Ongoing",
+          "paragraphs": [
+            "A small studio a friend and I are trying to grow into a real business. Still early days."
+          ],
+          "bullets": [
+            "Websites, backends and the odd app: whatever the client actually needs."
+          ],
+          "logo": {
+            "src": "assets/images/work/multazim-logo.webp",
+            "alt": "Multazim Solutions logo",
+            "width": 120,
+            "height": 140
+          },
+          "images": [
+            {
+              "src": "assets/images/projects/multazim/home-desktop.webp",
+              "alt": "Multazim Solutions homepage on desktop",
+              "width": 960,
+              "height": 600
+            },
+            {
+              "src": "assets/images/projects/samabay/home-desktop.webp",
+              "alt": "সমবায় নথি homepage on desktop",
+              "width": 960,
+              "height": 600
+            },
+            {
+              "src": "assets/images/projects/edumax/home-desktop.webp",
+              "alt": "Edumax Consultancy homepage on desktop",
+              "width": 960,
+              "height": 600
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/wordpress.webp",
+              "alt": "WordPress",
+              "width": 309,
+              "height": 64
+            },
+            {
+              "src": "assets/images/stickers/laravel.webp",
+              "alt": "Laravel",
+              "width": 93,
+              "height": 64
+            }
+          ],
+          "tags": [
+            "Edumax Consultancy",
+            "AL RAFA",
+            "PSDHS",
+            "সমবায় নথি"
+          ]
+        },
+        {
           "title": "Syarah · Mobile Software Engineer",
           "meta": "Jun 2023 - Present · Remote",
           "paragraphs": [
@@ -38,7 +94,8 @@
               "alt": "Towers along Abdali Boulevard in Amman",
               "width": 520,
               "height": 690,
-              "caption": "Amman"
+              "caption": "Amman",
+              "place": true
             },
             {
               "src": "assets/images/work/vin-windshield.webp",
@@ -73,7 +130,8 @@
               "alt": "A mosque minaret at sunset in Dhaka",
               "width": 860,
               "height": 573,
-              "caption": "Dhaka"
+              "caption": "Dhaka",
+              "place": true
             },
             {
               "src": "assets/images/projects/al-hadith/hadith-books.webp",
@@ -128,7 +186,8 @@
               "alt": "A laptop beside a cup of coffee",
               "width": 520,
               "height": 779,
-              "caption": "Remote"
+              "caption": "Remote",
+              "place": true
             }
           ],
           "stickers": [
@@ -142,7 +201,7 @@
         },
         {
           "title": "DevStation39 · Android Developer",
-          "meta": "Aug 2021 - Sep 2022 · Remote",
+          "meta": "Aug 2021 - Sep 2022 · Remote (Denver, USA)",
           "bullets": [
             "Worked part-time on a contract basis while I was still at university.",
             "Worked across many projects built with different technology stacks and architectures, and gained experience collaborating with developers from different countries.",
@@ -154,6 +213,14 @@
               "alt": "Marriott Bonvoy app screens: home, hotel search and nearby hotels map",
               "width": 960,
               "height": 492
+            },
+            {
+              "src": "assets/images/work/denver-skyline.webp",
+              "alt": "Denver skyline with the Rocky Mountains behind it",
+              "width": 520,
+              "height": 347,
+              "caption": "Denver",
+              "place": true
             }
           ],
           "stickers": [
@@ -214,6 +281,62 @@
       "section_title": "কর্মজীবন",
       "entries": [
         {
+          "title": "মুলতাজিম সলিউশনস · প্রতিষ্ঠাতা",
+          "meta": "চলমান",
+          "paragraphs": [
+            "একটা ছোট স্টুডিও, এক বন্ধু আর আমি মিলে একে সত্যিকারের ব্যবসায় দাঁড় করানোর চেষ্টা করছি। এখনো একদম শুরুর দিকে।"
+          ],
+          "bullets": [
+            "ওয়েবসাইট, ব্যাকএন্ড, মাঝেমধ্যে অ্যাপ: ক্লায়েন্টের আসলে যা দরকার, তা-ই।"
+          ],
+          "logo": {
+            "src": "assets/images/work/multazim-logo.webp",
+            "alt": "মুলতাজিম সলিউশনস লোগো",
+            "width": 120,
+            "height": 140
+          },
+          "images": [
+            {
+              "src": "assets/images/projects/multazim/home-desktop.webp",
+              "alt": "ডেস্কটপে Multazim Solutions-এর হোমপেজ",
+              "width": 960,
+              "height": 600
+            },
+            {
+              "src": "assets/images/projects/samabay/home-desktop.webp",
+              "alt": "ডেস্কটপে সমবায় নথি-এর হোমপেজ",
+              "width": 960,
+              "height": 600
+            },
+            {
+              "src": "assets/images/projects/edumax/home-desktop.webp",
+              "alt": "ডেস্কটপে Edumax Consultancy-এর হোমপেজ",
+              "width": 960,
+              "height": 600
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/wordpress.webp",
+              "alt": "ওয়ার্ডপ্রেস",
+              "width": 309,
+              "height": 64
+            },
+            {
+              "src": "assets/images/stickers/laravel.webp",
+              "alt": "লারাভেল",
+              "width": 93,
+              "height": 64
+            }
+          ],
+          "tags": [
+            "Edumax Consultancy",
+            "AL RAFA",
+            "PSDHS",
+            "সমবায় নথি"
+          ]
+        },
+        {
           "title": "সাইয়ারাহ · মোবাইল সফটওয়্যার ইঞ্জিনিয়ার",
           "meta": "জুন ২০২৩ - বর্তমান · রিমোট",
           "paragraphs": [
@@ -236,7 +359,8 @@
               "alt": "আম্মানের আবদালি বুলেভার্ডের উঁচু ভবন",
               "width": 520,
               "height": 690,
-              "caption": "আম্মান"
+              "caption": "আম্মান",
+              "place": true
             },
             {
               "src": "assets/images/work/vin-windshield.webp",
@@ -271,7 +395,8 @@
               "alt": "সূর্যাস্তে ঢাকার একটি মসজিদের মিনার",
               "width": 860,
               "height": 573,
-              "caption": "ঢাকা"
+              "caption": "ঢাকা",
+              "place": true
             },
             {
               "src": "assets/images/projects/al-hadith/hadith-books.webp",
@@ -326,7 +451,8 @@
               "alt": "এক কাপ কফির পাশে একটি ল্যাপটপ",
               "width": 520,
               "height": 779,
-              "caption": "রিমোট"
+              "caption": "রিমোট",
+              "place": true
             }
           ],
           "stickers": [
@@ -340,7 +466,7 @@
         },
         {
           "title": "DevStation39 · অ্যান্ড্রয়েড ডেভেলপার",
-          "meta": "আগস্ট ২০২১ - সেপ্টেম্বর ২০২২ · রিমোট",
+          "meta": "আগস্ট ২০২১ - সেপ্টেম্বর ২০২২ · রিমোট (ডেনভার, যুক্তরাষ্ট্র)",
           "bullets": [
             "বিশ্ববিদ্যালয়ে পড়ার সময় এখানে পার্টটাইম চুক্তিভিত্তিক কাজ করেছি।",
             "বিভিন্ন টেকনোলজি স্ট্যাক ও আর্কিটেকচারে তৈরি অনেকগুলো প্রজেক্টে কাজ করার সুযোগ হয়েছে। পাশাপাশি বিভিন্ন দেশের ডেভেলপারদের সঙ্গে কাজ করার অভিজ্ঞতাও হয়েছে।",
@@ -352,6 +478,14 @@
               "alt": "ম্যারিয়ট বনভয় অ্যাপের স্ক্রিন: হোম, হোটেল সার্চ আর কাছের হোটেলের ম্যাপ",
               "width": 960,
               "height": 492
+            },
+            {
+              "src": "assets/images/work/denver-skyline.webp",
+              "alt": "পেছনে রকি পর্বতমালাসহ ডেনভারের আকাশরেখা",
+              "width": 520,
+              "height": 347,
+              "caption": "ডেনভার",
+              "place": true
             }
           ],
           "stickers": [
@@ -412,6 +546,62 @@
       "section_title": "ٱلْخِبْرَةُ ٱلْمِهَنِيَّةُ",
       "entries": [
         {
+          "title": "مُلْتَزِم سُولُوشِنْز · مُؤَسِّسٌ",
+          "meta": "مُسْتَمِرٌّ",
+          "paragraphs": [
+            "اسْتُودْيُو صَغِيرٌ، أُحَاوِلُ أَنَا وَصَدِيقٌ أَنْ نَجْعَلَهُ عَمَلًا حَقِيقِيًّا. مَا زِلْنَا فِي ٱلْبِدَايَةِ."
+          ],
+          "bullets": [
+            "مَوَاقِعُ وَأَنْظِمَةٌ خَلْفِيَّةٌ وَتَطْبِيقٌ بَيْنَ حِينٍ وَآخَرَ: مَا يَحْتَاجُهُ ٱلْعَمِيلُ فِعْلًا."
+          ],
+          "logo": {
+            "src": "assets/images/work/multazim-logo.webp",
+            "alt": "شِعَارُ مُلْتَزِم سُولُوشِنْز",
+            "width": 120,
+            "height": 140
+          },
+          "images": [
+            {
+              "src": "assets/images/projects/multazim/home-desktop.webp",
+              "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ Multazim Solutions عَلَى ٱلْحَاسُوبِ",
+              "width": 960,
+              "height": 600
+            },
+            {
+              "src": "assets/images/projects/samabay/home-desktop.webp",
+              "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ সমবায় নথি عَلَى ٱلْحَاسُوبِ",
+              "width": 960,
+              "height": 600
+            },
+            {
+              "src": "assets/images/projects/edumax/home-desktop.webp",
+              "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ Edumax Consultancy عَلَى ٱلْحَاسُوبِ",
+              "width": 960,
+              "height": 600
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/wordpress.webp",
+              "alt": "وُورْدْبْرِيس",
+              "width": 309,
+              "height": 64
+            },
+            {
+              "src": "assets/images/stickers/laravel.webp",
+              "alt": "لَارَافِيل",
+              "width": 93,
+              "height": 64
+            }
+          ],
+          "tags": [
+            "إِيدُومَاكْس كُونْسَلْتَنْسِي",
+            "أَلْ رَافَا",
+            "بِي إِسْ دِي إِتْشْ إِسْ",
+            "সমবায় নথি"
+          ]
+        },
+        {
           "title": "سَيَّارَة · مُهَنْدِسُ بَرْمَجِيَّاتِ ٱلْهَوَاتِفِ",
           "meta": "يُونْيُو ٢٠٢٣ - حَتَّى ٱلْآنَ · عَنْ بُعْدٍ",
           "paragraphs": [
@@ -434,7 +624,8 @@
               "alt": "أَبْرَاجُ بُولِيفَارْدِ ٱلْعَبْدَلِيِّ فِي عَمَّانَ",
               "width": 520,
               "height": 690,
-              "caption": "عَمَّان"
+              "caption": "عَمَّان",
+              "place": true
             },
             {
               "src": "assets/images/work/vin-windshield.webp",
@@ -469,7 +660,8 @@
               "alt": "مِئْذَنَةُ مَسْجِدٍ عِنْدَ ٱلْغُرُوبِ فِي دَكَّا",
               "width": 860,
               "height": 573,
-              "caption": "دَكَّا"
+              "caption": "دَكَّا",
+              "place": true
             },
             {
               "src": "assets/images/projects/al-hadith/hadith-books.webp",
@@ -524,7 +716,8 @@
               "alt": "حَاسُوبٌ مَحْمُولٌ بِجَانِبِ فِنْجَانِ قَهْوَةٍ",
               "width": 520,
               "height": 779,
-              "caption": "عَنْ بُعْد"
+              "caption": "عَنْ بُعْد",
+              "place": true
             }
           ],
           "stickers": [
@@ -538,7 +731,7 @@
         },
         {
           "title": "دِيفْسْتَيْشَن ٣٩ · مُطَوِّرُ أَنْدْرُوِيد",
-          "meta": "أَغُسْطُس ٢٠٢١ - سِبْتَمْبَر ٢٠٢٢ · عَنْ بُعْدٍ",
+          "meta": "أَغُسْطُس ٢٠٢١ - سِبْتَمْبَر ٢٠٢٢ · عَنْ بُعْدٍ (دِنْفَر، ٱلْوِلَايَاتُ ٱلْمُتَّحِدَةُ)",
           "bullets": [
             "عَمِلْتُ هُنَا بَدَوَامٍ جُزْئِيٍّ بِمُوجِبِ عَقْدٍ أَثْنَاءَ دِرَاسَتِي ٱلْجَامِعِيَّةِ.",
             "عَمِلْتُ عَلَىٰ مَشَارِيعَ كَثِيرَةٍ مَبْنِيَّةٍ بِمَجْمُوعَاتٍ مُخْتَلِفَةٍ مِنَ ٱلتِّقْنِيَّاتِ وَبِمَعْمَارِيَّاتٍ مُتَنَوِّعَةٍ، وَٱكْتَسَبْتُ أَيْضًا خِبْرَةً فِي ٱلْعَمَلِ مَعَ مُطَوِّرِينَ مِنْ بُلْدَانٍ مُخْتَلِفَةٍ.",
@@ -550,6 +743,14 @@
               "alt": "شَاشَاتُ تَطْبِيقِ Marriott Bonvoy: ٱلرَّئِيسِيَّةُ وَٱلْبَحْثُ عَنْ فُنْدُقٍ وَخَرِيطَةُ ٱلْفَنَادِقِ ٱلْقَرِيبَةِ",
               "width": 960,
               "height": 492
+            },
+            {
+              "src": "assets/images/work/denver-skyline.webp",
+              "alt": "أُفُقُ دِنْفَر وَخَلْفَهُ جِبَالُ ٱلرُّوكِي",
+              "width": 520,
+              "height": 347,
+              "caption": "دِنْفَر",
+              "place": true
             }
           ],
           "stickers": [
@@ -610,6 +811,62 @@
       "section_title": "تَجْرِبَہ",
       "entries": [
         {
+          "title": "مُلْتَزِم سَلُوشَنز · بانی",
+          "meta": "جاری",
+          "paragraphs": [
+            "ایک چھوٹا سا اسٹوڈیو، جسے میں اور ایک دوست مل کر ایک اصل کاروبار بنانے کی کوشش کر رہے ہیں۔ ابھی شروعات ہے۔"
+          ],
+          "bullets": [
+            "ویب سائٹس، بیک اینڈ، اور کبھی کبھار کوئی ایپ: کلائنٹ کو اصل میں جو چاہیے، وہی۔"
+          ],
+          "logo": {
+            "src": "assets/images/work/multazim-logo.webp",
+            "alt": "مُلْتَزِم سَلُوشَنز کا لوگو",
+            "width": 120,
+            "height": 140
+          },
+          "images": [
+            {
+              "src": "assets/images/projects/multazim/home-desktop.webp",
+              "alt": "ڈیسک ٹاپ پر Multazim Solutions کا ہوم پیج",
+              "width": 960,
+              "height": 600
+            },
+            {
+              "src": "assets/images/projects/samabay/home-desktop.webp",
+              "alt": "ڈیسک ٹاپ پر সমবায় নথি کا ہوم پیج",
+              "width": 960,
+              "height": 600
+            },
+            {
+              "src": "assets/images/projects/edumax/home-desktop.webp",
+              "alt": "ڈیسک ٹاپ پر Edumax Consultancy کا ہوم پیج",
+              "width": 960,
+              "height": 600
+            }
+          ],
+          "stickers": [
+            {
+              "src": "assets/images/stickers/wordpress.webp",
+              "alt": "ورڈپریس",
+              "width": 309,
+              "height": 64
+            },
+            {
+              "src": "assets/images/stickers/laravel.webp",
+              "alt": "لاراوَیل",
+              "width": 93,
+              "height": 64
+            }
+          ],
+          "tags": [
+            "ایڈومیکس کنسلٹنسی",
+            "اَل رافا",
+            "پی ایس ڈی ایچ ایس",
+            "সমবায় নথি"
+          ]
+        },
+        {
           "title": "سَیَّارَہ · مُوبَائِل سافْٹْوِیَر اِنْجِینِیَر",
           "meta": "جُون ۲۰۲۳ - تَا حَال · رِیمُوٹ",
           "paragraphs": [
@@ -632,7 +889,8 @@
               "alt": "عَمَّان میں عَبْدَلِی بُولیوارڈ کی عِمَارَتیں",
               "width": 520,
               "height": 690,
-              "caption": "عَمَّان"
+              "caption": "عَمَّان",
+              "place": true
             },
             {
               "src": "assets/images/work/vin-windshield.webp",
@@ -667,7 +925,8 @@
               "alt": "غُرُوبِ آفْتَاب کے وَقْت ڈھاکَہ میں مَسْجِد کا مِینَار",
               "width": 860,
               "height": 573,
-              "caption": "ڈھاکَہ"
+              "caption": "ڈھاکَہ",
+              "place": true
             },
             {
               "src": "assets/images/projects/al-hadith/hadith-books.webp",
@@ -722,7 +981,8 @@
               "alt": "کافی کے کَپ کے ساتھ ایک لَیپ ٹاپ",
               "width": 520,
               "height": 779,
-              "caption": "رِیمُوٹ"
+              "caption": "رِیمُوٹ",
+              "place": true
             }
           ],
           "stickers": [
@@ -736,7 +996,7 @@
         },
         {
           "title": "ڈِیو سْٹَیشَن ۳۹ · اَینْڈْرَائِڈ ڈِوَلَپَر",
-          "meta": "اَگَسْت ۲۰۲۱ - سِتَمْبَر ۲۰۲۲ · رِیمُوٹ",
+          "meta": "اَگَسْت ۲۰۲۱ - سِتَمْبَر ۲۰۲۲ · رِیمُوٹ (ڈینور، امریکہ)",
           "bullets": [
             "یُوْنِوَرْسِٹِی میں تَعْلِیم کے دَورَان یَہاں پَارْٹ ٹَائِم کَنْٹْرَیکْٹ کی بُنْیَاد پَر کَام کِیا۔",
             "مُخْتَلِف ٹِیکْنَالُوجِی سْٹَیکْس اور آَرْکِٹَیکْچَرْز میں تَیَّار کِیے گَئے کَئی پْرَاجَیکْٹْس پَر کَام کَرنے کا مَوقَع مِلا۔ اِس کے عِلَاوَہ مُخْتَلِف مُلْکوں کے ڈِوَلَپَرْز کے سَاتھ کَام کَرنے کا تَجْرِبَہ بھی ہُوَا۔",
@@ -748,6 +1008,14 @@
               "alt": "Marriott Bonvoy ایپ کی اسکرینیں: ہوم، ہوٹل سرچ اور قریبی ہوٹلوں کا نقشہ",
               "width": 960,
               "height": 492
+            },
+            {
+              "src": "assets/images/work/denver-skyline.webp",
+              "alt": "پیچھے راکی پہاڑوں کے ساتھ ڈینور کا منظر",
+              "width": 520,
+              "height": 347,
+              "caption": "ڈینور",
+              "place": true
             }
           ],
           "stickers": [
@@ -837,6 +1105,13 @@
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "source": "https://commons.wikimedia.org/wiki/File:Syarah_New_Logo_-_white_bg_version.jpg"
+    },
+    {
+      "name": "Mount Evans and Denver skyline",
+      "author": "David Herrera",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Mount_Evans_and_Denver_skyline_from_City_Park_Golf_Course.jpg"
     }
   ]
 }

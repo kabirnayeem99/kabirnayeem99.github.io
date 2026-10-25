@@ -1,0 +1,76 @@
+{
+  "groups": [
+    {
+      "label": { "en": "I write in", "bn": "যে ভাষায় লিখি", "ar": "أَكْتُبُ بِـ", "ur": "جن زبانوں میں لکھتا ہوں" },
+      "items": [
+        { "name": "Kotlin", "icon": "kotlin" },
+        { "name": "Swift", "icon": "swift" },
+        { "name": "Dart", "icon": "dart" },
+        { "name": "TypeScript", "icon": "typescript" },
+        { "name": "PHP", "icon": "php" },
+        { "name": "Python", "icon": "python" },
+        { "name": "Go", "icon": "go" },
+        { "name": "SQL" }
+      ]
+    },
+    {
+      "label": { "en": "I build for", "bn": "যার জন্য বানাই", "ar": "أَبْنِي لِـ", "ur": "جن کے لیے بناتا ہوں" },
+      "items": [
+        { "name": "Android", "icon": "android" },
+        { "name": "iOS", "icon": "apple" },
+        { "name": "Flutter", "icon": "flutter" },
+        { "name": "Kotlin Multiplatform", "icon": "kotlin" },
+        { "name": "macOS", "icon": "apple" }
+      ]
+    },
+    {
+      "label": { "en": "I build with", "bn": "যা দিয়ে বানাই", "ar": "أَبْنِي بِـ", "ur": "جن سے بناتا ہوں" },
+      "items": [
+        { "name": "Jetpack Compose", "icon": "jetpackcompose" },
+        { "name": "Ktor", "icon": "ktor" },
+        { "name": "Laravel", "icon": "laravel" },
+        { "name": "WordPress", "icon": "wordpress" },
+        { "name": "Firebase", "icon": "firebase" },
+        { "name": "Git", "icon": "git" },
+        { "name": "Linux", "icon": "linux" }
+      ]
+    },
+    {
+      "label": { "en": "On-device ML", "bn": "অন-ডিভাইস এমএল", "ar": "تَعَلُّمُ ٱلْآلَةِ عَلَى ٱلْجِهَازِ", "ur": "آن ڈیوائس مشین لرننگ" },
+      "items": [
+        { "name": "LiteRT / TFLite", "icon": "tensorflow" },
+        { "name": "ML Kit" },
+        { "name": "Computer Vision" }
+      ]
+    },
+    {
+      "label": { "en": "AI agentic coding", "bn": "এআই এজেন্টিক কোডিং", "ar": "ٱلْبَرْمَجَةُ بِوُكَلَاءِ ٱلذَّكَاءِ ٱلِٱصْطِنَاعِيِّ", "ur": "اے آئی ایجنٹک کوڈنگ" },
+      "items": [
+        { "name": "Claude Code", "icon": "claude" },
+        { "name": "Codex" },
+        { "name": "Gemini CLI", "icon": "googlegemini" },
+        { "name": "OpenCode", "icon": "opencode" }
+      ]
+    },
+    {
+      "label": { "en": "How I work", "bn": "যেভাবে কাজ করি", "ar": "كَيْفَ أَعْمَلُ", "ur": "کام کا طریقہ" },
+      "items": [
+        { "name": "Agile" },
+        { "name": "Scrum" },
+        { "name": "Kanban" }
+      ]
+    },
+    {
+      "label": { "en": "I speak", "bn": "যে ভাষায় কথা বলি", "ar": "أَتَحَدَّثُ", "ur": "جو زبانیں بولتا ہوں" },
+      "items": [
+        { "name": "বাংলা", "lang": "bn" },
+        { "name": "English", "lang": "en" },
+        {
+          "name": "اردو",
+          "lang": "ur",
+          "note": { "en": "learning", "bn": "শিখছি", "ar": "أَتَعَلَّمُهَا", "ur": "سیکھ رہا ہوں" }
+        }
+      ]
+    }
+  ]
+}

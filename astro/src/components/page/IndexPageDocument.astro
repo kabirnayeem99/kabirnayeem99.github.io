@@ -13,6 +13,7 @@ import { buildMainNav } from "../../lib/main-nav";
 import heroLogo from "../../assets/images/logo.svg";
 import profileQr from "../../assets/images/profile-qr.svg";
 import featuredBooks from "../../data/site-content/featured-books.json";
+import skillsData from "../../data/site-content/skills.json";
 import goodreadsSnapshot from "../../data/site-content/goodreads-snapshot.json";
 import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
 import {
@@ -286,25 +287,20 @@ const viewAllStatsAction: IndexAction = {
   variant: "secondary",
 };
 
-type SkillKind = "language" | "platform" | "craft" | "process" | "spoken";
-
-// Skills are filed by kind: one index card per kind in the card-file box.
-const skillChips: readonly { readonly label: string; readonly kind: SkillKind }[] = [
-  ...["Kotlin", "Swift", "Dart", "Python", "PHP", "Go", "TypeScript", "SQL"].map((label) => ({ label, kind: "language" as const })),
-  ...["Android", "iOS", "Flutter", "Kotlin Multiplatform", "macOS"].map((label) => ({ label, kind: "platform" as const })),
-  ...["Laravel", "Computer Vision", "Linux CLI"].map((label) => ({ label, kind: "craft" as const })),
-  ...["Agile", "Scrum", "Kanban"].map((label) => ({ label, kind: "process" as const })),
-  ...["Bangla", "Urdu", "English"].map((label) => ({ label, kind: "spoken" as const })),
-];
-
-const SKILL_LEGEND: Readonly<Record<Lang, Readonly<Record<SkillKind, string>>>> = {
-  en: { language: "languages", platform: "platforms", craft: "frameworks & domains", process: "process", spoken: "spoken" },
-  bn: { language: "প্রোগ্রামিং ভাষা", platform: "প্ল্যাটফর্ম", craft: "ফ্রেমওয়ার্ক ও ক্ষেত্র", process: "কর্মপদ্ধতি", spoken: "কথ্য ভাষা" },
-  ar: { language: "لُغَاتُ ٱلْبَرْمَجَةِ", platform: "ٱلْمِنَصَّاتُ", craft: "أُطُرٌ وَمَجَالَاتٌ", process: "مَنْهَجِيَّاتُ ٱلْعَمَلِ", spoken: "لُغَاتٌ مَحْكِيَّةٌ" },
-  ur: { language: "پروگرامنگ زبانیں", platform: "پلیٹ فارمز", craft: "فریم ورک اور شعبے", process: "طریقۂ کار", spoken: "بولی جانے والی زبانیں" },
-};
-const skillLegend = SKILL_LEGEND[lang];
-const skillKinds: readonly SkillKind[] = ["language", "platform", "craft", "process", "spoken"];
+// Skills sit on a sticker sheet: one row of die-cut stickers per group (skills.json).
+// Brand names stay as written in every locale; spoken languages carry their own script.
+const skillGroups = skillsData.groups.map((group) => ({
+  label: group.label[lang],
+  items: group.items.map((item) => {
+    const extra = item as { icon?: string; lang?: string; note?: Readonly<Record<Lang, string>> };
+    return {
+      name: item.name,
+      iconHref: extra.icon ? assetHref(currentRoute, `assets/icons/skills/${extra.icon}.svg`) : undefined,
+      lang: extra.lang,
+      note: extra.note?.[lang],
+    };
+  }),
+}));
 
 const visibleSections = content.sections.filter((section) => section.tags.length === 0);
 const [leadSection, ...remainingSections] = visibleSections;
@@ -611,18 +607,22 @@ function buildSectionClassName(
             <h2 class="section-title">{content.statsCompact.wakatime.title}</h2>
           </div>
           <Botanical name="sprig" class="sprig" />
-          <div class="card-file" data-label={content.header.siteTitle}>
-            {skillKinds.map((kind) => (
-              <article class="file-card" data-skill-kind={kind}>
-                <h3 class="file-card-tab">{skillLegend[kind]}</h3>
-                <ul>
-                  {skillChips
-                    .filter((skill) => skill.kind === kind)
-                    .map((skill) => (
-                      <li>{skill.label}</li>
-                    ))}
+          <div class="sticker-sheet taped">
+            {skillGroups.map((group) => (
+              <div class="sticker-group">
+                <h3 class="sticker-group-label">{group.label}</h3>
+                <ul class="sticker-row">
+                  {group.items.map((item) => (
+                    <li class="skill-sticker" data-spoken={item.lang ? "" : undefined}>
+                      {item.iconHref ? (
+                        <img src={item.iconHref} alt="" width="18" height="18" loading="lazy" decoding="async" />
+                      ) : null}
+                      <span lang={item.lang} dir={item.lang ? "auto" : undefined}>{item.name}</span>
+                      {item.note ? <small class="skill-sticker-note">{item.note}</small> : null}
+                    </li>
+                  ))}
                 </ul>
-              </article>
+              </div>
             ))}
           </div>
           <div class="section-actions">

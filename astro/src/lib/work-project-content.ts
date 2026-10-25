@@ -32,6 +32,8 @@ export interface CardImage {
   readonly width: number;
   readonly height: number;
   readonly caption?: string;
+  /** Work page: a photo of where the work happened, shown small beside the product shots. */
+  readonly place?: boolean;
 }
 
 export interface ContentCard {
@@ -66,12 +68,16 @@ function readCardImage(raw: unknown, imagePath: string): CardImage {
     throw new Error(`Expected numeric width/height at ${imagePath}`);
   }
   const caption = readOptionalString(image, "caption", imagePath);
+  if (image.place !== undefined && typeof image.place !== "boolean") {
+    throw new Error(`Expected boolean at ${imagePath}.place`);
+  }
   return {
     src: readString(image, "src", imagePath),
     alt: readString(image, "alt", imagePath),
     width,
     height,
     ...(caption === undefined ? {} : { caption }),
+    ...(image.place === true ? { place: true } : {}),
   };
 }
 

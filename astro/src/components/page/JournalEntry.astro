@@ -9,13 +9,16 @@ interface Props {
 const { entry, tagsLabel } = Astro.props;
 const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
 const images = entry.images ?? [];
+// The work itself leads the collage; photos of where it happened are tucked in small.
+const shots = images.filter((image) => !image.place);
+const places = images.filter((image) => image.place);
 const stickers = entry.stickers ?? [];
 const tags = entry.tags ?? [];
 // Photos or a code slip make a collage beside the card; without one, stickers go on the card.
 const hasCollage = images.length > 0 || entry.snippet !== undefined;
-// A landscape first photo (a place) heads the collage when product shots follow it.
-const leadImage = images[0];
-const hasLead = images.length >= 3 && leadImage !== undefined && leadImage.width > leadImage.height;
+// A landscape first shot (e.g. a desktop site) heads the collage above the phone shots.
+const leadImage = shots[0];
+const hasLead = shots.length >= 3 && leadImage !== undefined && leadImage.width > leadImage.height;
 const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(currentRoute, sticker.src) }));
 ---
 
@@ -86,7 +89,7 @@ const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(cur
     hasCollage ? (
       <div
         class="journal-prints"
-        data-count={images.length + (entry.snippet === undefined ? 0 : 1)}
+        data-count={shots.length + (entry.snippet === undefined ? 0 : 1)}
         data-lead={hasLead ? "" : undefined}
       >
         {entry.snippet !== undefined ? (
@@ -94,8 +97,11 @@ const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(cur
             <pre dir="ltr"><code>{entry.snippet}</code></pre>
           </figure>
         ) : null}
-        {images.map((image) => (
-          <figure class="print" style={`--ar:${(image.width / image.height).toFixed(3)}`}>
+        {[...shots, ...places].map((image) => (
+          <figure
+            class={image.place ? "print print--place" : "print"}
+            style={`--ar:${(image.width / image.height).toFixed(3)}`}
+          >
             <img
               src={assetHref(currentRoute, image.src)}
               alt={image.alt}

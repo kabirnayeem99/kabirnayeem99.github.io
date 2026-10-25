@@ -395,7 +395,10 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
     footerHtml: readString(indexLocale, "footer_html", `root.pages.index.locales.${lang}`),
     statsCompact: {
       wakatime: {
-        title: readString(statsWakaTime, "title", `root.pages.stats.locales.${lang}.sections.wakatime`),
+        // The home page shows a skills sticker sheet under this heading, not WakaTime charts.
+        title:
+          readOptionalString(statsWakaTime, "index_title", `root.pages.stats.locales.${lang}.sections.wakatime`) ??
+          readString(statsWakaTime, "title", `root.pages.stats.locales.${lang}.sections.wakatime`),
         statusText: readString(
           statsWakaTime,
           "status_text",
