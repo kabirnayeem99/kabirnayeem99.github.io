@@ -61,7 +61,8 @@ function setupReveals(): void {
       });
     },
     // Any pixel counts: a ratio threshold can never be met by a card many screens tall.
-    { rootMargin: "0px 0px -6% 0px", threshold: 0 },
+    // Touch flings outrun the observer, so there content starts inking just below the fold.
+    { rootMargin: finePointer.matches ? "0px 0px -6% 0px" : "0px 0px 25% 0px", threshold: 0 },
   );
   const observeWithin = (scope: ParentNode): void => {
     for (const target of scope.querySelectorAll<HTMLElement>(REVEAL_SELECTOR)) {

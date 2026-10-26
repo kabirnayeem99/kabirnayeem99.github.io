@@ -11,7 +11,6 @@ import PageFooter from "./PageFooter.astro";
 import PageNav from "./PageNav.astro";
 import { buildMainNav } from "../../lib/main-nav";
 import heroLogo from "../../assets/images/logo.svg";
-import profileQr from "../../assets/images/profile-qr.svg";
 import featuredBooks from "../../data/site-content/featured-books.json";
 import skillsData from "../../data/site-content/skills.json";
 import goodreadsSnapshot from "../../data/site-content/goodreads-snapshot.json";
@@ -89,29 +88,6 @@ const alternateLinks = [
 const ogLocaleAlternates = buildOgLocaleAlternates(lang);
 const menuId = `language-menu-index-${lang}`;
 const uiLabels = content.site.locale.labels;
-const heroAvatarUi = {
-  en: {
-    showLabel: "Show profile QR code",
-    hideLabel: "Show profile logo",
-    hint: "Toggle the card to switch between the logo and the QR code.",
-  },
-  bn: {
-    showLabel: "প্রোফাইল QR কোড দেখান",
-    hideLabel: "প্রোফাইল লোগো দেখান",
-    hint: "লোগো আর QR কোডের মধ্যে বদলাতে কার্ডটি টগল করুন।",
-  },
-  ar: {
-    showLabel: "أظهر رمز QR للملف الشخصي",
-    hideLabel: "أظهر الشعار الشخصي",
-    hint: "بدّل البطاقة للتنقل بين الشعار ورمز QR.",
-  },
-  ur: {
-    showLabel: "پروفائل QR کوڈ دکھائیں",
-    hideLabel: "پروفائل لوگو دکھائیں",
-    hint: "لوگو اور QR کوڈ کے درمیان بدلنے کے لیے کارڈ ٹوگل کریں۔",
-  },
-}[lang];
-
 const pageAssets = buildPageAssetHrefs(currentRoute);
 const darkModeIconHref = assetHref(currentRoute, "icons/theme-dark.svg");
 const lightModeIconHref = assetHref(currentRoute, "icons/theme-light.svg");
@@ -424,46 +400,20 @@ function buildSectionClassName(
           <div class="intro-stage-figure">
             <Botanical name="shapla" class="pf pf--sleeve-lily" />
             <Botanical name="cosmos-head" class="pf pf--sleeve-cosmos" />
-            <button
-              class="hero-avatar-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-label={heroAvatarUi.showLabel}
-              title={heroAvatarUi.showLabel}
-              data-hero-avatar-toggle
-              data-label-show={heroAvatarUi.showLabel}
-              data-label-hide={heroAvatarUi.hideLabel}
-            >
-              <span class="visually-hidden">{heroAvatarUi.hint}</span>
-              <span class="hero-avatar-card" data-paper-flutter>
-                <span class="peel-flap" aria-hidden="true"></span>
-                <span class="hero-avatar-flip">
-                  <span class="hero-avatar-face hero-avatar-face--front">
-                    <Image
-                      class="hero-illustration"
-                      alt={content.site.locale.ogImageAlt}
-                      src={heroLogo}
-                      width={1024}
-                      height={1024}
-                      loading="eager"
-                      decoding="async"
-                      fetchpriority="high"
-                    />
-                  </span>
-                  <span class="hero-avatar-face hero-avatar-face--back" aria-hidden="true">
-                    <Image
-                      class="hero-qr-code"
-                      alt=""
-                      src={profileQr}
-                      width={512}
-                      height={512}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </span>
-                </span>
+            <span class="hero-avatar">
+              <span class="hero-avatar-card">
+                <Image
+                  class="hero-illustration"
+                  alt={content.site.locale.ogImageAlt}
+                  src={heroLogo}
+                  width={1024}
+                  height={1024}
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                />
               </span>
-            </button>
+            </span>
           </div>
         </div>
 

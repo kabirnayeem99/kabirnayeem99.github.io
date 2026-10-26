@@ -256,6 +256,17 @@
     line-height: 0; /* tall Nastaleeq metrics must not push text off the ruled lines */
   }
 
+  /* phones: one small blur instead of two wide ones, which leave blank tiles mid-fling */
+  @media (pointer: coarse) {
+    :root {
+      --paper-drop: drop-shadow(0 3px 4px rgba(40, 20, 5, 0.3));
+    }
+
+    html[data-theme="dark"] {
+      --paper-drop: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.55));
+    }
+  }
+
   @media (max-width: 760px) {
     :root {
       --gutter-start: 38px;
@@ -276,17 +287,28 @@
   body {
     min-height: 100vh;
     padding: 40px 12px 72px;
-    background:
-      radial-gradient(ellipse 70% 55% at 50% 18%, rgba(255, 214, 150, 0.16), transparent 70%),
-      radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
-      var(--desk);
-    background-attachment: fixed;
+    background: var(--desk);
     color: var(--text);
     font-family: var(--font-site);
     font-size: 1.08rem;
     line-height: var(--line);
     font-kerning: normal;
     transition: background-color 200ms ease, color 200ms ease;
+  }
+
+  /* desk lamp and vignette on their own fixed layer: background-attachment: fixed
+     repaints the whole viewport on every scroll frame, this one is composited once */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: -1;
+    height: 100lvh;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 18%, rgba(255, 214, 150, 0.16), transparent 70%),
+      radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+    pointer-events: none;
+    will-change: transform;
   }
 
   a {
@@ -364,6 +386,13 @@
   @media (max-width: 760px) {
     .site {
       --site-pad-top: calc(var(--line) * 1.5);
+    }
+  }
+
+  /* phones: the page shadow is barely visible in the narrow gutters but costs scroll frames */
+  @media (pointer: coarse) {
+    .site {
+      box-shadow: none;
     }
   }
 
@@ -1652,70 +1681,27 @@
     margin: 0;
   }
 
-  /* glassine sleeve holding the logo / QR flip card */
-  .hero-avatar-toggle {
+  /* glassine sleeve holding the logo */
+  .hero-avatar {
     display: block;
-    width: 100%;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
+    filter:
+      drop-shadow(0 1px 1px rgba(60, 40, 10, 0.16))
+      drop-shadow(0 4px 6px rgba(60, 40, 10, 0.2));
+  }
+
+  html[data-theme="dark"] .hero-avatar {
+    filter:
+      drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4))
+      drop-shadow(0 5px 8px rgba(0, 0, 0, 0.5));
   }
 
   .hero-avatar-card {
-    /* paper-flutter writes --curl (0..1); the corner cut and the flap both follow it */
-    --curl: 0;
-    --peel: calc(var(--curl) * 30px);
-    --peel-px: max(0px, var(--peel));
-    --peel-a: 315deg;
     position: relative;
     display: block;
     padding: 16px;
     background: var(--card);
     rotate: 2deg;
     transform-origin: 50% 0; /* hinged where the tape holds it */
-    /* free bottom end corner curls; outline extends past the edges so the tape survives */
-    clip-path: polygon(
-      -40px -40px, calc(100% + 40px) -40px, calc(100% + 40px) calc(100% - var(--peel-px)),
-      100% calc(100% - var(--peel-px)), calc(100% - var(--peel-px)) 100%,
-      calc(100% - var(--peel-px)) calc(100% + 60px), -40px calc(100% + 60px)
-    );
-    will-change: transform;
-  }
-
-  [dir="rtl"] .hero-avatar-card {
-    --peel-a: 45deg;
-    clip-path: polygon(
-      -40px -40px, calc(100% + 40px) -40px, calc(100% + 40px) calc(100% + 60px),
-      var(--peel-px) calc(100% + 60px), var(--peel-px) 100%,
-      0 calc(100% - var(--peel-px)), -40px calc(100% - var(--peel-px))
-    );
-  }
-
-  /* fixed-size flap scaled from its corner, so curling never re-lays out the page */
-  .hero-avatar-card .peel-flap {
-    z-index: 3;
-    width: 30px;
-    height: 30px;
-    transform: scale(var(--curl));
-    transform-origin: 100% 100%;
-  }
-
-  [dir="rtl"] .hero-avatar-card .peel-flap {
-    transform-origin: 0 100%;
-  }
-
-  .hero-avatar-toggle {
-    --lift: 0;
-    filter:
-      drop-shadow(0 1px 1px rgba(60, 40, 10, calc(0.16 - var(--lift) * 0.08)))
-      drop-shadow(0 calc(4px + var(--lift) * 7px) calc(6px + var(--lift) * 10px) rgba(60, 40, 10, calc(0.2 - var(--lift) * 0.07)));
-  }
-
-  html[data-theme="dark"] .hero-avatar-toggle {
-    filter:
-      drop-shadow(0 1px 1px rgba(0, 0, 0, calc(0.4 - var(--lift) * 0.15)))
-      drop-shadow(0 calc(5px + var(--lift) * 7px) calc(8px + var(--lift) * 10px) rgba(0, 0, 0, calc(0.5 - var(--lift) * 0.15)));
   }
 
   .hero-avatar-card::before {
@@ -1745,45 +1731,12 @@
     opacity: 0.25;
   }
 
-
-
-  .hero-avatar-flip {
-    position: relative;
-    display: block;
-    aspect-ratio: 1;
-    transform-style: preserve-3d;
-    transition: transform 560ms var(--ease-out);
-  }
-
-  .hero-avatar-toggle[aria-expanded="true"] .hero-avatar-flip {
-    transform: rotateY(180deg);
-  }
-
-  .hero-avatar-face {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    backface-visibility: hidden;
-  }
-
-  .hero-avatar-face--front,
-  .hero-avatar-face--back {
-    background: var(--card);
-  }
-
-  .hero-avatar-face--back {
-    transform: rotateY(180deg);
-  }
-
-  .hero-illustration,
-  .hero-qr-code {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
   .hero-illustration {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
     mix-blend-mode: multiply;
     filter: sepia(0.25) contrast(1.05);
   }
@@ -1791,14 +1744,6 @@
   html[data-theme="dark"] .hero-illustration {
     mix-blend-mode: screen;
     filter: invert(1) hue-rotate(180deg) brightness(0.9);
-  }
-
-  .hero-qr-code {
-    padding: 8px;
-  }
-
-  html[data-theme="dark"] .hero-qr-code {
-    filter: invert(0.9);
   }
 
   .meta {
