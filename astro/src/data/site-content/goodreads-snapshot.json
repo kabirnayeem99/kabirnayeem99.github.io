@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-10-20T17:15:13.254629Z",
+  "generatedAt": "2026-11-12T08:53:49.900079Z",
   "books": [
+    {
+      "title": "জোছনা ও জননীর গল্প",
+      "href": "https://www.goodreads.com/review/show/9048152131?utm_medium=api&utm_source=grid_widget",
+      "alt": "জোছনা ও জননীর গল্প",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1429515855l/2580306.jpg",
+      "imageLocal": "/assets/images/goodreads/2580306-book.webp",
+      "imageFileName": "2580306-book.webp",
+      "dateRead": null
+    },
     {
       "title": "We Were Liars",
       "href": "https://www.goodreads.com/review/show/9035772603?utm_medium=api&utm_source=rss",

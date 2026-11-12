@@ -5,6 +5,11 @@
 # ///
 """Fetch Goodreads RSS shelf data and atomically refresh local snapshot assets.
 
+Source: the RSS shelf feed (full shelf, with read dates). If the feed is unavailable
+(Goodreads has returned 404 for it), the script falls back to the public grid widget
+the site itself uses: newest ~200 books, no read dates. The fallback merges into the
+existing snapshot - known books keep their dates and place, new books go on top undated.
+
 This script is intentionally fail-safe:
 - It never mutates the existing snapshot JSON or image folder until every fetch/download succeeds.
 - If any step fails, current files remain untouched.
@@ -13,6 +18,7 @@ This script is intentionally fail-safe:
 from __future__ import annotations
 
 import hashlib
+import html
 import json
 import os
 import re
@@ -43,6 +49,9 @@ DEFAULT_SHELF = "read"
 DEFAULT_RSS_KEY = "vczeXplDHew9rE4s_wldedzW9hHtIKtz82vXO2kqmwmXaDlI"
 RSS_KEY_ENV_VAR = "GOODREADS_RSS_KEY"
 RSS_PAGE_SIZE = 200
+# The grid widget never returns more than ~200 books, whatever num_books asks for.
+WIDGET_NUM_BOOKS = 300
+SOURCES = ("auto", "rss", "widget")
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SNAPSHOT_PATH = REPO_ROOT / "astro/src/data/site-content/goodreads-snapshot.json"
 DEFAULT_IMAGES_DIR = REPO_ROOT / "astro/public/assets/images/goodreads"
@@ -178,6 +187,134 @@ def _fetch_all_books(
     # Undated books (read_at is None) sort last, in their original RSS order.
     books.sort(key=lambda book: book.read_at or datetime.min.replace(tzinfo=UTC), reverse=True)
     return books, page
+
+
+
+def _build_widget_url(user_id: str, shelf: str) -> str:
+    query = urlencode(
+        {
+            "cover_size": "medium",
+            "hide_link": "",
+            "hide_title": "true",
+            "num_books": WIDGET_NUM_BOOKS,
+            "order": "d",
+            "shelf": shelf,
+            "sort": "date_read",
+            "widget_id": "snapshot",
+        }
+    )
+    return f"https://www.goodreads.com/review/grid_widget/{user_id}?{query}"
+
+
+# One JS string literal on one line: `var widget_code = '...'` (no trailing semicolon).
+_WIDGET_CODE = re.compile(r"var widget_code = '(.*?)(?<!\\)';?[ \t]*$", re.M)
+_JS_ESCAPE = re.compile(r"\\(u[0-9a-fA-F]{4}|.)", re.S)
+_WIDGET_BOOK = re.compile(
+    r'<a title="(?P<title>[^"]*)"[^>]*href="(?P<href>[^"]+)"[^>]*>\s*'
+    r'<img alt="(?P<alt>[^"]*)"[^>]*src="(?P<src>[^"]+)"',
+    re.S,
+)
+# Cover URLs end in /books/<timestamp><size>/<book id>[._SX98_].jpg
+_COVER_BOOK_ID = re.compile(r"/books/\d+[a-z]/(\d+)")
+_COVER_SIZE_SUFFIX = re.compile(r"\._S[XY]\d+_(?=\.\w+$)")
+_REVIEW_ID = re.compile(r"/review/show/(\d+)")
+
+
+def _unescape_js(value: str) -> str:
+    def replace(match: re.Match[str]) -> str:
+        token = match.group(1)
+        if token.startswith("u") and len(token) == 5:
+            return chr(int(token[1:], 16))
+        return {"n": "\n", "t": "\t", "r": ""}.get(token, token)
+
+    return _JS_ESCAPE.sub(replace, value)
+
+
+def _parse_widget_books(widget_js: str) -> list[BookEntry]:
+    match = _WIDGET_CODE.search(widget_js)
+    if match is None:
+        raise SnapshotUpdateError("Goodreads widget response had no widget_code.")
+    markup = _unescape_js(match.group(1))
+
+    books: list[BookEntry] = []
+    for item in _WIDGET_BOOK.finditer(markup):
+        title = html.unescape(item.group("title")).strip()
+        href = html.unescape(item.group("href")).strip()
+        image_url = _COVER_SIZE_SUFFIX.sub("", html.unescape(item.group("src")).strip())
+        if not title or not href or not image_url:
+            continue
+        id_match = _COVER_BOOK_ID.search(image_url)
+        book_id = id_match.group(1) if id_match else hashlib.sha1(image_url.encode("utf-8")).hexdigest()[:10]
+        file_name = f"{book_id}-{_safe_slug(title)}.webp"
+        books.append(
+            BookEntry(
+                title=title,
+                href=href,
+                alt=html.unescape(item.group("alt")).strip() or title,
+                image_url=image_url,
+                image_local=f"/assets/images/goodreads/{file_name}",
+                image_file_name=file_name,
+                read_at=None,
+            )
+        )
+    return books
+
+
+def _review_id(href: str) -> str | None:
+    match = _REVIEW_ID.search(href)
+    return match.group(1) if match else None
+
+
+def _load_existing_books(snapshot_path: Path) -> list[BookEntry]:
+    if not snapshot_path.is_file():
+        return []
+    try:
+        payload = json.loads(snapshot_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise SnapshotUpdateError(f"Failed to read existing snapshot: {exc}") from exc
+
+    books: list[BookEntry] = []
+    for raw in payload.get("books", []):
+        date_read = raw.get("dateRead")
+        read_at = None
+        if isinstance(date_read, str) and date_read:
+            try:
+                read_at = datetime.fromisoformat(date_read.replace("Z", "+00:00"))
+            except ValueError:
+                read_at = None
+        books.append(
+            BookEntry(
+                title=raw["title"],
+                href=raw["href"],
+                alt=raw.get("alt") or raw["title"],
+                image_url=raw["imageUrl"],
+                image_local=raw["imageLocal"],
+                image_file_name=raw["imageFileName"],
+                read_at=read_at,
+            )
+        )
+    return books
+
+
+def _fetch_widget_books(
+    user_id: str, shelf: str, snapshot_path: Path, timeout_seconds: int
+) -> tuple[list[BookEntry], int]:
+    """Newest books from the widget, merged over the existing snapshot.
+
+    The widget is capped (~200) and carries no read dates, so it cannot replace the
+    snapshot: books already known (matched by review id) keep their entry, date and
+    order; books the snapshot has never seen are put on top, in the widget's
+    newest-first order, without a date. Returns (books, new_book_count).
+    """
+    widget_js = _http_get_text(_build_widget_url(user_id, shelf), timeout_seconds=timeout_seconds)
+    widget_books = _parse_widget_books(widget_js)
+    if not widget_books:
+        raise SnapshotUpdateError("No books were parsed from the Goodreads widget.")
+
+    existing = _load_existing_books(snapshot_path)
+    known = {_review_id(book.href) for book in existing}
+    new_books = [book for book in widget_books if _review_id(book.href) not in known]
+    return new_books + existing, len(new_books)
 
 
 
@@ -349,16 +486,36 @@ def update_snapshot(
     snapshot_path: Path,
     images_dir: Path,
     timeout_seconds: int,
-) -> tuple[int, str, int, int, int, int]:
-    if not rss_key:
-        raise SnapshotUpdateError(
-            f"Missing Goodreads RSS key. Pass --rss-key or set {RSS_KEY_ENV_VAR}."
-        )
+    source: str = "auto",
+) -> tuple[int, str, int, int, int, int, str]:
+    books: list[BookEntry] | None = None
+    pages_fetched = 0
+    source_url = ""
+    source_note = ""
 
-    books, pages_fetched = _fetch_all_books(
-        user_id, rss_key, shelf, timeout_seconds=timeout_seconds
-    )
-    source_url = _build_rss_url(user_id, rss_key, shelf, page=1)
+    if source in ("auto", "rss"):
+        try:
+            if not rss_key:
+                raise SnapshotUpdateError(
+                    f"Missing Goodreads RSS key. Pass --rss-key or set {RSS_KEY_ENV_VAR}."
+                )
+            books, pages_fetched = _fetch_all_books(
+                user_id, rss_key, shelf, timeout_seconds=timeout_seconds
+            )
+            source_url = _build_rss_url(user_id, rss_key, shelf, page=1)
+            source_note = "rss"
+        except SnapshotUpdateError as exc:
+            if source == "rss":
+                raise
+            print(f"[goodreads-snapshot] RSS unavailable, falling back to the grid widget.\n  {exc}")
+
+    if books is None:
+        books, new_count = _fetch_widget_books(
+            user_id, shelf, snapshot_path, timeout_seconds=timeout_seconds
+        )
+        pages_fetched = 1
+        source_url = _build_widget_url(user_id, shelf)
+        source_note = f"widget ({new_count} new, undated; existing books and dates kept)"
 
     snapshot_path.parent.mkdir(parents=True, exist_ok=True)
     images_dir.parent.mkdir(parents=True, exist_ok=True)
@@ -403,10 +560,10 @@ def update_snapshot(
         temp_snapshot.replace(snapshot_path)
         _atomic_replace_dir(new_dir=temp_images_dir, target_dir=images_dir)
 
-    return len(books), source_url, downloaded_count, reused_count, normalized_count, pages_fetched
+    return len(books), source_url, downloaded_count, reused_count, normalized_count, pages_fetched, source_note
 
 
-def _parse_args() -> tuple[str, str, str, Path, Path, int, bool]:
+def _parse_args() -> tuple[str, str, str, Path, Path, int, bool, str]:
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -438,6 +595,13 @@ def _parse_args() -> tuple[str, str, str, Path, Path, int, bool]:
         help="HTTP timeout per request",
     )
     parser.add_argument(
+        "--source",
+        choices=SOURCES,
+        default="auto",
+        help="auto: RSS, falling back to the grid widget if the feed fails (default); "
+        "rss: RSS only; widget: grid widget only (merged into the existing snapshot).",
+    )
+    parser.add_argument(
         "--images-only",
         action="store_true",
         help="Re-crop/re-cap covers already on disk to the current rules, without "
@@ -452,11 +616,12 @@ def _parse_args() -> tuple[str, str, str, Path, Path, int, bool]:
         args.images_dir,
         args.timeout_seconds,
         args.images_only,
+        args.source,
     )
 
 
 def main() -> int:
-    user_id, rss_key, shelf, snapshot_path, images_dir, timeout_seconds, images_only = _parse_args()
+    user_id, rss_key, shelf, snapshot_path, images_dir, timeout_seconds, images_only, source = _parse_args()
 
     if images_only:
         unchanged, normalized = normalize_images_dir(images_dir)
@@ -468,13 +633,14 @@ def main() -> int:
         return 0
 
     try:
-        count, resolved_url, downloaded_count, reused_count, normalized_count, pages_fetched = update_snapshot(
+        count, resolved_url, downloaded_count, reused_count, normalized_count, pages_fetched, source_note = update_snapshot(
             user_id=user_id,
             rss_key=rss_key,
             shelf=shelf,
             snapshot_path=snapshot_path,
             images_dir=images_dir,
             timeout_seconds=timeout_seconds,
+            source=source,
         )
     except SnapshotUpdateError as exc:
         print(f"[goodreads-snapshot] failed: {exc}")
@@ -484,7 +650,7 @@ def main() -> int:
     redacted_url = resolved_url.replace(rss_key, "***") if rss_key else resolved_url
     print(
         f"[goodreads-snapshot] updated successfully with {count} books "
-        f"across {pages_fetched} page(s)."
+        f"across {pages_fetched} page(s), from {source_note}."
     )
     print(
         f"[goodreads-snapshot] covers: {downloaded_count} downloaded, "

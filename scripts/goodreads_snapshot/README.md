@@ -56,3 +56,16 @@ ruff check scripts/goodreads_snapshot/update_goodreads_snapshot.py
 mypy --config-file scripts/goodreads_snapshot/pyproject.toml scripts/goodreads_snapshot/update_goodreads_snapshot.py
 ```
 
+## When the RSS feed is down
+
+Goodreads has started returning 404 for the RSS feed. With the default `--source auto`, the
+script then falls back to the public grid widget (the same one the site loads live). The widget
+is capped at about 200 books and carries no read dates, so it is merged into the existing
+snapshot rather than replacing it:
+
+- books already in the snapshot (matched by review id) keep their entry, date and order;
+- books the snapshot has never seen go on top, newest first, with no `dateRead`;
+- nothing is removed (the widget cannot show the whole shelf).
+
+`--source rss` disables the fallback; `--source widget` skips RSS. A fresh RSS key (My Books ->
+read shelf -> RSS link at the bottom) restores full data with dates for every book.
