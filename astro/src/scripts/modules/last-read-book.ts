@@ -1,3 +1,4 @@
+import { applyScriptLang } from "../../lib/script-lang";
 // First slot on the home shelf: the last book read. The server renders the snapshot's
 // newest book; a newer one seen on an earlier visit comes back from localStorage at once,
 // and goodreads-loader hands over the live Goodreads response once the reader engages.
@@ -87,7 +88,10 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
     link.title = entry.title;
     image.src = entry.imageSrc;
     image.alt = entry.title;
-    if (titleStrip) titleStrip.textContent = entry.title;
+    if (titleStrip) {
+      titleStrip.textContent = entry.title;
+      applyScriptLang(titleStrip, entry.title);
+    }
     // Only the snapshot knows read dates; a book newer than it has none to show yet.
     if (dateStrip) dateStrip.hidden = true;
     if (animate) {
@@ -118,7 +122,10 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
         link.title = serverEntry.title;
         image.src = serverEntry.imageSrc;
         image.alt = serverEntry.alt;
-        if (titleStrip) titleStrip.textContent = serverEntry.title;
+        if (titleStrip) {
+          titleStrip.textContent = serverEntry.title;
+          applyScriptLang(titleStrip, serverEntry.title);
+        }
         if (dateStrip) dateStrip.hidden = serverDateHidden;
         writeCache(null);
         return;

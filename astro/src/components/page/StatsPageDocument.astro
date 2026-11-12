@@ -1,4 +1,5 @@
 ---
+import { scriptLang } from "../../lib/script-lang";
 import Botanical from "./Botanical.astro";
 import ClosePageHeader from "./ClosePageHeader.astro";
 import HeadSeo from "./HeadSeo.astro";
@@ -381,7 +382,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
                         decoding="async"
                       />
                     </a>
-                    <span class="book-strip book-strip--title" dir="auto">{book.title}</span>
+                    <span class="book-strip book-strip--title" dir="auto" lang={scriptLang(book.title)}>{book.title}</span>
                   </div>
                 ))}
               </div>

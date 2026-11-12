@@ -89,6 +89,50 @@ const feedHref = (() => {
     return undefined;
   }
 })();
+
+// Each page preloads only the face its own language is set in; other scripts load on demand.
+const PRIMARY_FONT_BY_LANG: Readonly<Record<Lang, string>> = {
+  en: "/assets/fonts/newsreader_latin_normal_200-800.woff2",
+  bn: "/assets/fonts/tiro-bangla_bengali_normal_400.woff2",
+  ar: "/assets/fonts/amiri_arabic_normal_400.woff2",
+  ur: "/assets/fonts/gulzar_arabic_normal_400.woff2",
+};
+
+// Instant page changes, app-style, from plain static HTML (works on GitHub Pages: no headers
+// needed). Internal links are fetched as they come into view and fully prerendered on hover,
+// so the click only swaps the page. Stats is fetched but never prerendered: prerendering
+// would spend the GitHub / WakaTime API limits on a hover.
+const INTERNAL_LINKS = {
+  and: [
+    { href_matches: "/*" },
+    { not: { selector_matches: "[target=_blank], [download], [rel~=nofollow]" } },
+    { not: { href_matches: ["/*.xml", "/*.txt", "/*.md", "/*.json"] } },
+  ],
+};
+const SPECULATION_RULES = JSON.stringify({
+  prefetch: [{ where: INTERNAL_LINKS, eagerness: "eager" }],
+  prerender: [
+    {
+      where: { and: [INTERNAL_LINKS, { not: { href_matches: ["/stats.html", "/*/stats.html"] } }] },
+      eagerness: "moderate",
+    },
+  ],
+});
+
+// On arrival through a page transition: re-read the theme (a page prerendered before a
+// theme toggle would show the old one) and skip the header's entrance animation, which
+// would replay on top of the transition's own.
+const PAGE_ARRIVAL_SCRIPT =
+  "(function(){var r=document.documentElement;addEventListener('pagereveal',function(e){" +
+  "try{var t=localStorage.getItem('person-portfolio-theme');if(t==='light'||t==='dark'){r.setAttribute('data-theme',t);}}catch(_e){}" +
+  "if(e.viewTransition){r.classList.add('vt-arrived');}});})();";
+
+// Umami loads only once the page is really shown: a prerendered page someone hovered but
+// never opened must not count as a visit.
+function buildUmamiLoader(websiteId: string, domains: string | null | undefined): string {
+  const config = JSON.stringify({ websiteId, domains: domains ?? "" });
+  return `(function(c){function load(){var s=document.createElement("script");s.src="https://cloud.umami.is/script.js";s.defer=true;s.dataset.websiteId=c.websiteId;if(c.domains)s.dataset.domains=c.domains;document.head.appendChild(s);}if(document.prerendering){document.addEventListener("prerenderingchange",load,{once:true});}else{load();}})(${config});`;
+}
 ---
 
 <head>
@@ -137,41 +181,27 @@ const feedHref = (() => {
   <meta name="twitter:image" content={ogImageUrl} />
   <meta
     name="theme-color"
-    content="#d9cfb8"
+    content="#faf8f3"
     media="(prefers-color-scheme: light)"
   />
   <meta
     name="theme-color"
-    content="#0c111d"
+    content="#12100d"
     media="(prefers-color-scheme: dark)"
   />
   <meta name="color-scheme" content="light dark" />
   <script is:inline type="application/ld+json" set:html={schemaGraphJson} />
   {
     shouldLoadUmami ? (
-      <script
-        is:inline
-        defer
-        src="https://cloud.umami.is/script.js"
-        data-website-id={umamiWebsiteId}
-        data-domains={canonicalHostname}></script>
+      <script is:inline set:html={buildUmamiLoader(umamiWebsiteId, canonicalHostname)} />
     ) : null
   }
   <script is:inline set:html={THEME_BOOTSTRAP_SCRIPT} />
-  {
-    lang === "en" ? (
-      <link
-        rel="preload"
-        href="/assets/fonts/english_eb_garamond_wght.woff2"
-        as="font"
-        type="font/woff2"
-        crossorigin
-      />
-    ) : null
-  }
+  <script is:inline set:html={PAGE_ARRIVAL_SCRIPT} />
+  <script is:inline type="speculationrules" set:html={SPECULATION_RULES} />
   <link
     rel="preload"
-    href="/assets/fonts/handwriting_caveat_latin_wght.woff2"
+    href={PRIMARY_FONT_BY_LANG[lang]}
     as="font"
     type="font/woff2"
     crossorigin

@@ -1,3 +1,4 @@
+import { applyScriptLang } from "../../lib/script-lang";
 import { onFirstInteraction } from "./first-interaction";
 import { setupLastReadSlot } from "./last-read-book";
 
@@ -171,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
           strip.className = "book-strip book-strip--title";
           strip.dir = "auto";
           strip.textContent = title;
+          applyScriptLang(strip, title);
           link.after(strip);
         }
       }

@@ -7,16 +7,9 @@ interface Props {
 }
 
 const { items, ariaLabel = "Primary" } = Astro.props as Props;
-const firstHref = items[0]?.href ?? "";
-const kicker = firstHref.includes("ar")
-  ? "اِسْتَكْشِفْ"
-  : firstHref.includes("ur")
-    ? "دریافت کریں"
-    : "Explore";
 ---
 
 <nav class="page-nav" aria-label={ariaLabel}>
-  <p class="page-nav-kicker" aria-hidden="true">{kicker}</p>
   <div class="page-nav-track">
     {
       items.map((item) => (

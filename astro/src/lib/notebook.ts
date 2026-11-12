@@ -58,14 +58,6 @@ export function clippingMast(href: string, meta?: string): ClippingMast {
   return { publication, topic: undefined };
 }
 
-/** Kicker above the name on the home masthead. */
-export const MASTHEAD_KICKER: Readonly<Record<Lang, string>> = {
-  en: "this notebook belongs to —",
-  bn: "এই খাতাটি যার —",
-  ar: "هٰذَا ٱلدَّفْتَرُ لِـ —",
-  ur: "یہ نوٹ بک ہے —",
-};
-
 /** Flowers taped into cards, cycled so neighbours differ. */
 const PINNED_CYCLE: readonly BotanicalName[] = ["sage", "cosmos-head", "dandelion", "euc", "cosmos-head", "buds"];
 
