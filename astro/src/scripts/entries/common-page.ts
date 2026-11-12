@@ -1,4 +1,3 @@
-import "../modules/cosmos-cursor";
 import "../modules/notebook-motion";
 import "../modules/image-guard";
 import "../modules/language-switcher";
