@@ -363,10 +363,19 @@ export function relativeHref(fromRoute: string, toRoute: string): string {
   return pathPosix.relative(fromDir, toRoute);
 }
 
-export function routeHref(fromRoute: string, toRoute: string): string {
-  return relativeHref(fromRoute, toRoute);
+// Root-absolute, so a page renders the same whichever URL form opens it (/ar.html,
+// /ar/, /ar/index.html): relative paths resolve one folder too deep on the last two and
+// the stylesheet, images and links all 404. The site is served from the domain root
+// (GitHub Pages user site), so "/" is always the site root. The `from` route is kept for
+// call-site compatibility.
+function rootHref(target: string): string {
+  return `/${pathPosix.normalize(target).replace(/^(\.\/|\/)+/, "")}`;
 }
 
-export function assetHref(currentRoute: string, assetPath: string): string {
-  return relativeHref(currentRoute, assetPath);
+export function routeHref(_fromRoute: string, toRoute: string): string {
+  return rootHref(toRoute);
+}
+
+export function assetHref(_currentRoute: string, assetPath: string): string {
+  return rootHref(assetPath);
 }
