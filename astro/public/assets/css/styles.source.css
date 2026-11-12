@@ -3530,3 +3530,53 @@
     }
   }
 }
+
+/* header icons: one hand-drawn set (moon/sun, globe, close), same weight and size */
+@layer chrome {
+  :root {
+    --icon-moon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19.6 14.6c-1.2.5-2.5.8-3.9.7-4.4-.2-7.9-3.9-7.7-8.4.1-1.4.5-2.7 1.2-3.8-3.7 1-6.4 4.5-6.3 8.5.2 4.6 4.1 8.2 8.7 8 3.6-.1 6.7-2.3 8-5z'/%3E%3C/svg%3E");
+    --icon-sun: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.1 8.1c2.1 0 3.9 1.8 3.8 4 0 2.1-1.8 3.8-3.9 3.8-2.2 0-3.9-1.8-3.9-3.9.1-2.2 1.8-3.9 4-3.9z'/%3E%3Cpath d='M12 2.6v2.1'/%3E%3Cpath d='M12.1 19.3v2.2'/%3E%3Cpath d='M2.7 12.1h2.1'/%3E%3Cpath d='M19.2 11.9h2.2'/%3E%3Cpath d='M5.3 5.4l1.5 1.5'/%3E%3Cpath d='M17.2 17.3l1.6 1.5'/%3E%3Cpath d='M5.4 18.7l1.5-1.6'/%3E%3Cpath d='M17.3 6.8l1.5-1.5'/%3E%3C/svg%3E");
+    --icon-globe: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.1c4.9-.1 8.9 3.9 8.9 8.8.1 5-3.9 9-8.8 9.1-5 0-9-3.9-9.1-8.9C3 7.2 7 3.2 12 3.1z'/%3E%3Cpath d='M12.2 3.2c-2.5 2.3-3.7 5.4-3.7 8.8 0 3.4 1.3 6.6 3.6 8.9'/%3E%3Cpath d='M11.9 3.2c2.4 2.2 3.7 5.4 3.7 8.7.1 3.5-1.2 6.7-3.6 9'/%3E%3Cpath d='M3.6 9.2c5.6.6 11.2.5 16.8-.2'/%3E%3Cpath d='M3.7 14.9c5.5-.5 11.1-.4 16.7.3'/%3E%3C/svg%3E");
+    --icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.6 5.4c4.4 4.2 8.7 8.6 13 13.2'/%3E%3Cpath d='M18.4 5.7c-4.5 4.1-8.7 8.4-12.9 12.9'/%3E%3C/svg%3E");
+  }
+
+  .header-controls {
+    gap: 2px;
+  }
+
+  .theme-toggle-icon {
+    display: none;
+  }
+
+  .theme-toggle::before {
+    content: "";
+    width: 19px;
+    height: 19px;
+    background-color: currentColor;
+    mask: var(--icon-moon) center / contain no-repeat;
+  }
+
+  html[data-theme="dark"] .theme-toggle::before {
+    mask-image: var(--icon-sun);
+  }
+
+  .language-switcher-globe {
+    --icon: var(--icon-globe);
+    width: 19px;
+    height: 19px;
+  }
+
+  .page-close-icon {
+    --icon: var(--icon-close);
+    width: 17px;
+    height: 17px;
+  }
+
+  .language-menu a[lang="ur"] {
+    font-size: 1.15rem;
+  }
+
+  .language-menu a[lang="bn"] {
+    font-size: 1.02rem;
+  }
+}

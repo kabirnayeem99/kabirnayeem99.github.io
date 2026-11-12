@@ -1,5 +1,5 @@
 ---
-import { LANGS, LOCALIZATION_ENABLED, type Lang } from "../../lib/locale-config";
+import { LOCALIZATION_ENABLED, SWITCHER_LANGS, type Lang } from "../../lib/locale-config";
 import { routeHref } from "../../lib/work-project-content";
 
 interface Props {
@@ -74,7 +74,7 @@ const {
           popover="auto"
           data-language-switcher-menu
         >
-          {LANGS.map((localeCode) => (
+          {SWITCHER_LANGS.map((localeCode) => (
             <a
               href={routeHref(currentRoute, languageLinks[localeCode])}
               lang={localeCode}

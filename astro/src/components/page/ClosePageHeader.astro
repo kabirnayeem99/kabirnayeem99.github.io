@@ -1,8 +1,13 @@
 ---
 import Botanical from "./Botanical.astro";
 import BotanicalSprite from "./BotanicalSprite.astro";
+import HeaderControls from "./HeaderControls.astro";
 import PageNav from "./PageNav.astro";
 import { buildMainNav } from "../../lib/main-nav";
+import { LANGS, PAGE_IDS, type Lang } from "../../lib/locale-config";
+import { assetHref } from "../../lib/work-project-content";
+import routes from "../../data/site-content/routes.json";
+import site from "../../data/site-content/site.json";
 
 interface Props {
   readonly homeHref: string;
@@ -18,6 +23,16 @@ const {
   currentRoute,
 } = Astro.props as Props;
 const navItems = buildMainNav(currentRoute);
+
+// Which page and language this is, from the route table, so the header can offer the same
+// page in the other languages.
+const routeTable = routes as Readonly<Record<string, Readonly<Record<Lang, string>>>>;
+const match = PAGE_IDS.flatMap((pageId) =>
+  LANGS.filter((code) => routeTable[pageId]?.[code] === currentRoute).map((code) => ({ pageId, code })),
+)[0];
+const lang: Lang = match?.code ?? "en";
+const languageLinks = routeTable[match?.pageId ?? "index"] as Readonly<Record<Lang, string>>;
+const localeSite = site.locales[lang];
 ---
 
 <BotanicalSprite />
@@ -34,6 +49,18 @@ const navItems = buildMainNav(currentRoute);
       >
       <h1 class="site-title site-title--page">{title}</h1>
     </div>
+    <HeaderControls
+      currentRoute={currentRoute}
+      darkModeIconHref={assetHref(currentRoute, "icons/theme-dark.svg")}
+      lang={lang}
+      languageLinks={languageLinks}
+      languageMenuId={`language-menu-${match?.pageId ?? "page"}-${lang}`}
+      languageMenuLabels={site.language_menu_labels}
+      languageSwitcherLabel={localeSite.language_switcher_label}
+      lightModeIconHref={assetHref(currentRoute, "icons/theme-light.svg")}
+      themeDarkLabel={localeSite.labels.theme_dark}
+      themeLightLabel={localeSite.labels.theme_light}
+    />
   </div>
   <PageNav items={navItems} />
 </header>
