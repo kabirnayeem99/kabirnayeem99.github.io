@@ -1,4 +1,5 @@
 ---
+import { Code } from "astro:components";
 import { assetHref, type ContentCard } from "../../lib/work-project-content";
 
 interface Props {
@@ -94,7 +95,13 @@ const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(cur
       >
         {entry.snippet !== undefined ? (
           <figure class="code-slip">
-            <pre dir="ltr"><code>{entry.snippet}</code></pre>
+            <Code
+              code={entry.snippet}
+              lang={entry.snippet.startsWith("$ ") ? "bash" : "kotlin"}
+              themes={{ light: "github-light", dark: "github-dark" }}
+              defaultColor={false}
+              dir="ltr"
+            />
           </figure>
         ) : null}
         {[...shots, ...places].map((image) => (

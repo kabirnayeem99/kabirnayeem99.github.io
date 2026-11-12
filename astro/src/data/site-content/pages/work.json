@@ -88,23 +88,6 @@
             "width": 360,
             "height": 170
           },
-          "images": [
-            {
-              "src": "assets/images/work/amman-abdali.webp",
-              "alt": "Towers along Abdali Boulevard in Amman",
-              "width": 520,
-              "height": 690,
-              "caption": "Amman",
-              "place": true
-            },
-            {
-              "src": "assets/images/work/vin-windshield.webp",
-              "alt": "A car's VIN plate seen through the windshield",
-              "width": 760,
-              "height": 631,
-              "caption": "VIN, through the glass"
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -125,14 +108,6 @@
             "The main focus of my work here was native Android and Flutter development."
           ],
           "images": [
-            {
-              "src": "assets/images/work/dhaka-minaret-sunset.webp",
-              "alt": "A mosque minaret at sunset in Dhaka",
-              "width": 860,
-              "height": 573,
-              "caption": "Dhaka",
-              "place": true
-            },
             {
               "src": "assets/images/projects/al-hadith/hadith-books.webp",
               "alt": "Al Hadith: list of hadith books",
@@ -180,16 +155,6 @@
             "width": 320,
             "height": 85
           },
-          "images": [
-            {
-              "src": "assets/images/work/desk-coffee.webp",
-              "alt": "A laptop beside a cup of coffee",
-              "width": 520,
-              "height": 779,
-              "caption": "Remote",
-              "place": true
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/flutter.webp",
@@ -213,14 +178,6 @@
               "alt": "Marriott Bonvoy app screens: home, hotel search and nearby hotels map",
               "width": 960,
               "height": 492
-            },
-            {
-              "src": "assets/images/work/denver-skyline.webp",
-              "alt": "Denver skyline with the Rocky Mountains behind it",
-              "width": 520,
-              "height": 347,
-              "caption": "Denver",
-              "place": true
             }
           ],
           "stickers": [
@@ -243,29 +200,7 @@
       "footer_html": "Need more detail? Email <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>.",
       "credits_title": "Picture credits",
       "tags_label": "Worked on",
-      "hero_images": [
-        {
-          "src": "assets/images/work/amman-skyline.webp",
-          "alt": "Amman skyline at sunset",
-          "width": 900,
-          "height": 600,
-          "caption": "Amman"
-        },
-        {
-          "src": "assets/images/work/dhaka-minaret.webp",
-          "alt": "A minaret against the evening sky in Dhaka",
-          "width": 520,
-          "height": 780,
-          "caption": "Dhaka"
-        },
-        {
-          "src": "assets/images/work/desk-laptop.webp",
-          "alt": "A laptop and a cup of coffee on a desk",
-          "width": 760,
-          "height": 507,
-          "caption": "Remote"
-        }
-      ]
+      "hero_images": []
     },
     "bn": {
       "meta": {
@@ -353,23 +288,6 @@
             "width": 360,
             "height": 170
           },
-          "images": [
-            {
-              "src": "assets/images/work/amman-abdali.webp",
-              "alt": "আম্মানের আবদালি বুলেভার্ডের উঁচু ভবন",
-              "width": 520,
-              "height": 690,
-              "caption": "আম্মান",
-              "place": true
-            },
-            {
-              "src": "assets/images/work/vin-windshield.webp",
-              "alt": "উইন্ডশিল্ডের ভেতর দিয়ে দেখা গাড়ির ভিআইএন প্লেট",
-              "width": 760,
-              "height": 631,
-              "caption": "কাচের ওপারে ভিআইএন"
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -390,14 +308,6 @@
             "এখানে আমার মূল কাজ ছিল নেটিভ অ্যান্ড্রয়েড এবং ফ্লাটার ডেভেলপমেন্ট।"
           ],
           "images": [
-            {
-              "src": "assets/images/work/dhaka-minaret-sunset.webp",
-              "alt": "সূর্যাস্তে ঢাকার একটি মসজিদের মিনার",
-              "width": 860,
-              "height": 573,
-              "caption": "ঢাকা",
-              "place": true
-            },
             {
               "src": "assets/images/projects/al-hadith/hadith-books.webp",
               "alt": "আল হাদিস: হাদিস গ্রন্থের তালিকা",
@@ -445,16 +355,6 @@
             "width": 320,
             "height": 85
           },
-          "images": [
-            {
-              "src": "assets/images/work/desk-coffee.webp",
-              "alt": "এক কাপ কফির পাশে একটি ল্যাপটপ",
-              "width": 520,
-              "height": 779,
-              "caption": "রিমোট",
-              "place": true
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/flutter.webp",
@@ -478,14 +378,6 @@
               "alt": "ম্যারিয়ট বনভয় অ্যাপের স্ক্রিন: হোম, হোটেল সার্চ আর কাছের হোটেলের ম্যাপ",
               "width": 960,
               "height": 492
-            },
-            {
-              "src": "assets/images/work/denver-skyline.webp",
-              "alt": "পেছনে রকি পর্বতমালাসহ ডেনভারের আকাশরেখা",
-              "width": 520,
-              "height": 347,
-              "caption": "ডেনভার",
-              "place": true
             }
           ],
           "stickers": [
@@ -508,29 +400,7 @@
       "footer_html": "আরও বিস্তারিত জানতে ইমেইল করুন <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>।",
       "credits_title": "ছবির কৃতজ্ঞতা",
       "tags_label": "যেগুলোতে কাজ করেছি",
-      "hero_images": [
-        {
-          "src": "assets/images/work/amman-skyline.webp",
-          "alt": "সূর্যাস্তে আম্মানের আকাশরেখা",
-          "width": 900,
-          "height": 600,
-          "caption": "আম্মান"
-        },
-        {
-          "src": "assets/images/work/dhaka-minaret.webp",
-          "alt": "ঢাকায় সন্ধ্যার আকাশে একটি মিনার",
-          "width": 520,
-          "height": 780,
-          "caption": "ঢাকা"
-        },
-        {
-          "src": "assets/images/work/desk-laptop.webp",
-          "alt": "ডেস্কে একটি ল্যাপটপ আর এক কাপ কফি",
-          "width": 760,
-          "height": 507,
-          "caption": "রিমোট"
-        }
-      ]
+      "hero_images": []
     },
     "ar": {
       "meta": {
@@ -618,23 +488,6 @@
             "width": 360,
             "height": 170
           },
-          "images": [
-            {
-              "src": "assets/images/work/amman-abdali.webp",
-              "alt": "أَبْرَاجُ بُولِيفَارْدِ ٱلْعَبْدَلِيِّ فِي عَمَّانَ",
-              "width": 520,
-              "height": 690,
-              "caption": "عَمَّان",
-              "place": true
-            },
-            {
-              "src": "assets/images/work/vin-windshield.webp",
-              "alt": "لَوْحَةُ رَقْمِ هَيْكَلِ سَيَّارَةٍ خَلْفَ ٱلزُّجَاجِ ٱلْأَمَامِيِّ",
-              "width": 760,
-              "height": 631,
-              "caption": "رَقْمُ ٱلْهَيْكَلِ خَلْفَ ٱلزُّجَاجِ"
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -655,14 +508,6 @@
             "كَانَ تَرْكِيزُ عَمَلِي هُنَا عَلَىٰ تَطْوِيرِ أَنْدْرُوِيد ٱلْأَصْلِيِّ وَفْلَاتَر."
           ],
           "images": [
-            {
-              "src": "assets/images/work/dhaka-minaret-sunset.webp",
-              "alt": "مِئْذَنَةُ مَسْجِدٍ عِنْدَ ٱلْغُرُوبِ فِي دَكَّا",
-              "width": 860,
-              "height": 573,
-              "caption": "دَكَّا",
-              "place": true
-            },
             {
               "src": "assets/images/projects/al-hadith/hadith-books.webp",
               "alt": "تَطْبِيقُ ٱلْحَدِيثِ: قَائِمَةُ كُتُبِ ٱلْحَدِيثِ",
@@ -710,16 +555,6 @@
             "width": 320,
             "height": 85
           },
-          "images": [
-            {
-              "src": "assets/images/work/desk-coffee.webp",
-              "alt": "حَاسُوبٌ مَحْمُولٌ بِجَانِبِ فِنْجَانِ قَهْوَةٍ",
-              "width": 520,
-              "height": 779,
-              "caption": "عَنْ بُعْد",
-              "place": true
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/flutter.webp",
@@ -743,14 +578,6 @@
               "alt": "شَاشَاتُ تَطْبِيقِ Marriott Bonvoy: ٱلرَّئِيسِيَّةُ وَٱلْبَحْثُ عَنْ فُنْدُقٍ وَخَرِيطَةُ ٱلْفَنَادِقِ ٱلْقَرِيبَةِ",
               "width": 960,
               "height": 492
-            },
-            {
-              "src": "assets/images/work/denver-skyline.webp",
-              "alt": "أُفُقُ دِنْفَر وَخَلْفَهُ جِبَالُ ٱلرُّوكِي",
-              "width": 520,
-              "height": 347,
-              "caption": "دِنْفَر",
-              "place": true
             }
           ],
           "stickers": [
@@ -773,29 +600,7 @@
       "footer_html": "لِمَزِيدٍ مِنَ ٱلتَّفَاصِيلِ، يُمْكِنُكَ مُرَاسَلَتِي عَلَىٰ <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>.",
       "credits_title": "مَصَادِرُ ٱلصُّوَرِ",
       "tags_label": "مِمَّا عَمِلْتُ عَلَيْهِ",
-      "hero_images": [
-        {
-          "src": "assets/images/work/amman-skyline.webp",
-          "alt": "أُفُقُ عَمَّانَ عِنْدَ ٱلْغُرُوبِ",
-          "width": 900,
-          "height": 600,
-          "caption": "عَمَّان"
-        },
-        {
-          "src": "assets/images/work/dhaka-minaret.webp",
-          "alt": "مِئْذَنَةٌ فِي سَمَاءِ ٱلْمَسَاءِ بِدَكَّا",
-          "width": 520,
-          "height": 780,
-          "caption": "دَكَّا"
-        },
-        {
-          "src": "assets/images/work/desk-laptop.webp",
-          "alt": "حَاسُوبٌ مَحْمُولٌ وَفِنْجَانُ قَهْوَةٍ عَلَى مَكْتَبٍ",
-          "width": 760,
-          "height": 507,
-          "caption": "عَنْ بُعْد"
-        }
-      ]
+      "hero_images": []
     },
     "ur": {
       "meta": {
@@ -883,23 +688,6 @@
             "width": 360,
             "height": 170
           },
-          "images": [
-            {
-              "src": "assets/images/work/amman-abdali.webp",
-              "alt": "عَمَّان میں عَبْدَلِی بُولیوارڈ کی عِمَارَتیں",
-              "width": 520,
-              "height": 690,
-              "caption": "عَمَّان",
-              "place": true
-            },
-            {
-              "src": "assets/images/work/vin-windshield.webp",
-              "alt": "وِنڈ شِیلڈ کے پار گاڑی کی VIN پلیٹ",
-              "width": 760,
-              "height": 631,
-              "caption": "شِیشے کے پار وِی آئی اِین"
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -920,14 +708,6 @@
             "یَہاں مِیرے کَام کا بُنْیَادِی مَرْکَز نَیْٹِو اَینْڈْرَائِڈ اور فْلَٹَر ڈِوَلَپْمَنْٹ تھا۔"
           ],
           "images": [
-            {
-              "src": "assets/images/work/dhaka-minaret-sunset.webp",
-              "alt": "غُرُوبِ آفْتَاب کے وَقْت ڈھاکَہ میں مَسْجِد کا مِینَار",
-              "width": 860,
-              "height": 573,
-              "caption": "ڈھاکَہ",
-              "place": true
-            },
             {
               "src": "assets/images/projects/al-hadith/hadith-books.webp",
               "alt": "الحدیث: حدیث کی کتابوں کی فہرست",
@@ -975,16 +755,6 @@
             "width": 320,
             "height": 85
           },
-          "images": [
-            {
-              "src": "assets/images/work/desk-coffee.webp",
-              "alt": "کافی کے کَپ کے ساتھ ایک لَیپ ٹاپ",
-              "width": 520,
-              "height": 779,
-              "caption": "رِیمُوٹ",
-              "place": true
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/flutter.webp",
@@ -1008,14 +778,6 @@
               "alt": "Marriott Bonvoy ایپ کی اسکرینیں: ہوم، ہوٹل سرچ اور قریبی ہوٹلوں کا نقشہ",
               "width": 960,
               "height": 492
-            },
-            {
-              "src": "assets/images/work/denver-skyline.webp",
-              "alt": "پیچھے راکی پہاڑوں کے ساتھ ڈینور کا منظر",
-              "width": 520,
-              "height": 347,
-              "caption": "ڈینور",
-              "place": true
             }
           ],
           "stickers": [
@@ -1038,80 +800,16 @@
       "footer_html": "مَزِید تَفْصِیل جَانْنِی ہو تو اِیمَیل کَرِیں: <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>۔",
       "credits_title": "تَصَاوِیر کے حَوَالے",
       "tags_label": "جِن پَر کَام کِیَا",
-      "hero_images": [
-        {
-          "src": "assets/images/work/amman-skyline.webp",
-          "alt": "غُرُوبِ آفْتَاب کے وَقْت عَمَّان کا مَنْظَر",
-          "width": 900,
-          "height": 600,
-          "caption": "عَمَّان"
-        },
-        {
-          "src": "assets/images/work/dhaka-minaret.webp",
-          "alt": "ڈھاکَہ میں شَام کے آسْمَان پَر ایک مِینَار",
-          "width": 520,
-          "height": 780,
-          "caption": "ڈھاکَہ"
-        },
-        {
-          "src": "assets/images/work/desk-laptop.webp",
-          "alt": "میز پَر ایک لَیپ ٹاپ اَور کافی کا کَپ",
-          "width": 760,
-          "height": 507,
-          "caption": "رِیمُوٹ"
-        }
-      ]
+      "hero_images": []
     }
   },
   "picture_credits": [
-    {
-      "name": "Amman Skyline at Sunset",
-      "author": "Ibrahim nabeel salah",
-      "license": "CC BY 4.0",
-      "license_url": "https://creativecommons.org/licenses/by/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Amman_Skyline_at_Sunset_-_Jordan.jpg"
-    },
-    {
-      "name": "Abdali Boulevard",
-      "author": "Malkawi99",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Abdali_Boulevard_-_December_2024.jpg"
-    },
-    {
-      "name": "Dhaka skyline at golden hour 07, 14",
-      "author": "Wasiul Bahar",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Dhaka_skyline_at_golden_hour_14.jpg"
-    },
-    {
-      "name": "VIN - IMG 0467",
-      "author": "Hans Haase",
-      "license": "CC BY-SA 3.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:VIN_-_IMG_0467.JPG"
-    },
-    {
-      "name": "Desk workspace photos",
-      "author": "Shixart1985",
-      "license": "CC BY 2.0",
-      "license_url": "https://creativecommons.org/licenses/by/2.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Coffee_and_workspace_setup_on_a_desk_during_a_productive_morning_session.jpg"
-    },
     {
       "name": "Syarah logo",
       "author": "Jarrar-syarah",
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "source": "https://commons.wikimedia.org/wiki/File:Syarah_New_Logo_-_white_bg_version.jpg"
-    },
-    {
-      "name": "Mount Evans and Denver skyline",
-      "author": "David Herrera",
-      "license": "CC BY 2.0",
-      "license_url": "https://creativecommons.org/licenses/by/2.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Mount_Evans_and_Denver_skyline_from_City_Park_Golf_Course.jpg"
     }
   ]
 }

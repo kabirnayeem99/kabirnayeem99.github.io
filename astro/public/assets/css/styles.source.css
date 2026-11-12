@@ -514,7 +514,6 @@
     border-radius: 10px;
     background: var(--bg);
     color: var(--text);
-    box-shadow: 0 8px 28px -12px rgba(0, 0, 0, 0.25);
     display: grid;
     gap: 0;
     z-index: 300;
@@ -2277,12 +2276,12 @@
       will-change: transform;
       opacity: 0;
       transition: opacity 120ms ease;
-      filter: grayscale(1) drop-shadow(0 0 1px var(--bg));
+      filter: grayscale(1);
       --cursor-opacity: 0.7;
     }
 
     html[data-theme="dark"] .cosmos-cursor {
-      filter: grayscale(1) invert(1) drop-shadow(0 0 1px var(--bg));
+      filter: grayscale(1) invert(1);
     }
 
     .cosmos-cursor.is-visible {
@@ -2577,12 +2576,7 @@
 
 @layer components {
   /* section heads: a numbered label over a large serif title */
-  main {
-    counter-reset: section;
-  }
-
   .section-title {
-    counter-increment: section;
     margin: 0 0 28px;
     font: 400 2rem/1.15 var(--font-site);
     letter-spacing: -0.015em;
@@ -2596,18 +2590,6 @@
     letter-spacing: 0;
   }
 
-  .section-title::before {
-    content: counter(section, decimal-leading-zero);
-    display: block;
-    margin-block-end: 10px;
-    font: 500 0.72rem/1 var(--mono);
-    letter-spacing: 0.1em;
-    color: var(--accent);
-  }
-
-  html:lang(bn) .section-title::before { content: counter(section, bengali); }
-  html:lang(ar) .section-title::before,
-  html:lang(ur) .section-title::before { content: counter(section, arabic-indic); }
 
   .section-head {
     align-items: flex-end;
@@ -2738,17 +2720,6 @@
     font-size: 1.45rem;
     font-weight: 400;
     letter-spacing: -0.01em;
-  }
-
-  .article-item :is(h2, h3)::after {
-    content: " ↗";
-    font-size: 0.75em;
-    color: var(--faint);
-    transition: color 160ms ease;
-  }
-
-  .article-item > a:hover :is(h2, h3)::after {
-    color: var(--accent);
   }
 
   .article-item > a:hover :is(h2, h3) {
@@ -2969,62 +2940,25 @@
 }
 
 /* ============================================================== bookshelf
-   Covers read as objects: spine shade, soft shadow, lift on hover. On the home shelf the
-   last book read is a featured card, the picks sit 4 × 2, and "show all" is a bar below. */
+   Plain covers with a hairline edge; no shadow, no lift. */
 
 @layer widgets {
   .gr_grid_book_container > a {
     position: relative;
-    border-radius: 2px 5px 5px 2px;
-    box-shadow:
-      0 1px 2px rgba(40, 28, 10, 0.14),
-      0 10px 24px -12px rgba(40, 28, 10, 0.45);
-    transition: translate 320ms var(--ease), box-shadow 320ms var(--ease);
+    border-radius: 3px;
   }
 
   .gr_grid_book_container img {
     border-radius: inherit;
-    outline: 0;
-    transition: none;
-  }
-
-  /* spine: a dark crease and a highlight just inside the start edge */
-  .gr_grid_book_container > a::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(90deg,
-      rgba(0, 0, 0, 0.26) 0, rgba(0, 0, 0, 0.08) 3px, rgba(255, 255, 255, 0.16) 5px,
-      rgba(255, 255, 255, 0) 10px, rgba(0, 0, 0, 0) 94%, rgba(0, 0, 0, 0.08) 100%);
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
-    pointer-events: none;
-  }
-
-  [dir="rtl"] .gr_grid_book_container > a {
-    border-radius: 5px 2px 2px 5px;
-  }
-
-  [dir="rtl"] .gr_grid_book_container > a::after {
-    background: linear-gradient(270deg,
-      rgba(0, 0, 0, 0.26) 0, rgba(0, 0, 0, 0.08) 3px, rgba(255, 255, 255, 0.16) 5px,
-      rgba(255, 255, 255, 0) 10px, rgba(0, 0, 0, 0) 94%, rgba(0, 0, 0, 0.08) 100%);
-  }
-
-  html[data-theme="dark"] .gr_grid_book_container > a {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 12px 26px -12px rgba(0, 0, 0, 0.9);
+    outline: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    outline-offset: -1px;
+    transition: opacity 200ms ease;
+    translate: none !important;
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .gr_grid_book_container > a:hover {
-      translate: 0 -6px;
-      box-shadow:
-        0 2px 4px rgba(40, 28, 10, 0.14),
-        0 22px 34px -16px rgba(40, 28, 10, 0.5);
-    }
-
     .gr_grid_book_container > a:hover img {
-      translate: none;
+      opacity: 0.85;
     }
 
     .gr_grid_book_container:has(> a:hover) .book-strip--title {
@@ -3115,7 +3049,6 @@
     padding: 6px 11px;
     border-color: var(--hair);
     background: var(--bg);
-    box-shadow: 0 1px 2px rgba(40, 28, 10, 0.12), 0 6px 14px -8px rgba(40, 28, 10, 0.35);
   }
 
   .journal-prints > .journal-sticker:nth-of-type(2) { inset-block-start: 26px; inset-inline-end: -16px; }
@@ -3132,102 +3065,29 @@
 }
 
 /* ================================================================= colour
-   Stats get colour where it carries meaning. Palettes validated with the dataviz
-   validator against the panel surface (light #f2eee5, dark #1c1915):
-   heatmap = one-hue green ordinal ramp; yearly bars = one blue (current year deeper);
-   LeetCode = categorical aqua / yellow / red, adjacent pairs CVD-safe, labelled in the
-   legend (two light steps sit under 3:1, so the text labels are required relief).
-   Panel bands are decoration only: one hue per data source. */
+   Colour only where it tells things apart: language bars/donuts (their own colours) and
+   LeetCode difficulty, a categorical aqua / yellow / red validated with the dataviz
+   validator (adjacent pairs CVD-safe; two light steps sit under 3:1, so the legend's
+   text labels are the required relief). Magnitude (heatmap, yearly bars) stays ink. */
 
 @layer tokens {
   :root {
-    --heat-1: #62a679;
-    --heat-2: #368b5a;
-    --heat-3: #1d6b42;
-    --heat-4: #0f4a2b;
-    --bar: #2a78d6;
-    --bar-now: #104281;
     --lc-easy: #1baf7a;
     --lc-medium: #eda100;
     --lc-hard: #e34948;
 
-    --band-wakatime: #6250d6;
-    --band-commits: #368b5a;
-    --band-profile: #2a78d6;
-    --band-leetcode: #eda100;
-    --band-typing: #e87ba4;
-    --band-books: #eb6834;
   }
 
   html[data-theme="dark"] {
-    --heat-1: #1f5a3b;
-    --heat-2: #2f8656;
-    --heat-3: #4fb27a;
-    --heat-4: #8fd9ac;
-    --bar: #3987e5;
-    --bar-now: #9ec5f4;
     --lc-easy: #199e70;
     --lc-medium: #c98500;
     --lc-hard: #e0507f;
 
-    --band-wakatime: #9085e9;
-    --band-commits: #4fb27a;
-    --band-profile: #3987e5;
-    --band-leetcode: #c98500;
-    --band-typing: #d55181;
-    --band-books: #d95926;
   }
 }
 
 @layer widgets {
-  /* one colour band per source along the panel's top edge */
-  .stats-card {
-    --band: var(--hair-strong);
-    border-block-start: 4px solid var(--band);
-  }
 
-  .stats-report-section--wakatime .stats-card { --band: var(--band-wakatime); }
-  .stats-report-section--github .stats-card { --band: var(--band-commits); }
-  .stats-report-section--profile .stats-card { --band: var(--band-profile); }
-  .stats-report-section--leetcode .stats-card { --band: var(--band-leetcode); }
-  .stats-report-section--typing .stats-card { --band: var(--band-typing); }
-  .stats-report-section--books .stats-card { --band: var(--band-books); }
-
-  .stats-card .section-title::before {
-    color: var(--band);
-  }
-
-  /* contributions heatmap: green, light → dark with activity */
-  .github-heatmap-dot,
-  .github-heatmap-legend-swatch {
-    background: var(--hair) !important;
-  }
-
-  .github-heatmap-dot[data-level="1"], .github-heatmap-legend-swatch[data-level="1"] { background: var(--heat-1) !important; }
-  .github-heatmap-dot[data-level="2"], .github-heatmap-legend-swatch[data-level="2"] { background: var(--heat-2) !important; }
-  .github-heatmap-dot[data-level="3"], .github-heatmap-legend-swatch[data-level="3"] { background: var(--heat-3) !important; }
-  .github-heatmap-dot[data-level="4"], .github-heatmap-legend-swatch[data-level="4"] { background: var(--heat-4) !important; }
-
-  .github-heatmap-dot.is-future {
-    background: transparent !important;
-  }
-
-  /* contributions per year: blue bars, this year deeper */
-  .github-yearly-wash,
-  .github-yearly-col:hover .github-yearly-wash {
-    fill: var(--bar);
-    fill-opacity: 1;
-  }
-
-  .github-yearly-col.is-current .github-yearly-wash,
-  .github-yearly-col.is-current:hover .github-yearly-wash {
-    fill: var(--bar-now);
-    fill-opacity: 1;
-  }
-
-  .github-yearly-col:hover .github-yearly-wash {
-    filter: brightness(1.08);
-  }
 
   /* LeetCode difficulty */
   .leetcode-difficulty-segment--easy { background: var(--lc-easy); }
@@ -3308,5 +3168,163 @@
     padding: 12px 0 14px;
     border-block-start: 1px solid var(--hair-strong);
     background: none;
+  }
+}
+
+/* ================================================================ stats: plain
+   No panels, no cards, no shadows: sections on the page like everything else. */
+
+@layer widgets {
+  .stats-card {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .chart-donut-hole {
+    fill: var(--bg);
+  }
+
+  .wakatime-donut-segment,
+  .github-profile-donut-svg path {
+    stroke: var(--bg);
+  }
+
+  /* headline numbers stay ink */
+  .leetcode-card--primary .leetcode-card-value {
+    color: var(--text);
+  }
+
+  /* repos: plain rows under a hairline, like the number tiles */
+  .github-repos-grid {
+    gap: 0 24px;
+  }
+
+  .github-repo-card {
+    padding: 14px 0 16px;
+    border: 0;
+    border-block-start: 1px solid var(--hair-strong);
+    border-radius: 0;
+    background: none;
+  }
+
+  .github-repo-card:hover,
+  .github-repo-card:focus-visible {
+    border-color: var(--text);
+  }
+
+  .github-repo-card:hover .github-repo-card-name {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* yearly bars: ink, this year solid */
+  .github-yearly-wash {
+    fill: var(--text);
+    fill-opacity: 0.16;
+  }
+
+  .github-yearly-col:hover .github-yearly-wash {
+    fill-opacity: 0.3;
+  }
+
+  .github-yearly-col.is-current .github-yearly-wash,
+  .github-yearly-col.is-current:hover .github-yearly-wash {
+    fill: var(--text);
+    fill-opacity: 0.85;
+  }
+
+  @media (max-width: 760px) {
+    .stats-card {
+      padding: 0;
+    }
+  }
+}
+
+/* ============================================================ super minimal
+   Only the page has a background. No shadows, panels, fills or lifts; hairlines and
+   type carry the structure. Colour stays where it informs: charts, language colours,
+   LeetCode difficulty, and the link accent. */
+
+@layer pages {
+  /* "right now": plain text, dated like the rest */
+  .index-section--lead .entry,
+  [dir="rtl"] .index-section--lead .entry {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  mark,
+  .mark {
+    background: none;
+    padding: 0;
+    font-weight: 500;
+  }
+
+  .code-slip pre,
+  html[data-theme="dark"] .code-slip pre {
+    background: none;
+    color: var(--text);
+    border: 1px solid var(--hair-strong);
+  }
+
+  /* skills: plain words with their marks */
+  .skill-sticker {
+    padding: 0;
+    background: none;
+  }
+
+  .sticker-row {
+    gap: 6px 20px;
+  }
+
+  /* tags: plain mono words, no outline */
+  .journal-tags li {
+    padding: 0;
+    border: 0;
+  }
+
+  .journal-tags li + li::before {
+    content: "· ";
+    color: var(--faint);
+  }
+}
+
+@layer widgets {
+  .book-strip--last-read {
+    padding: 0;
+    background: none;
+  }
+
+  .shelf-more-card {
+    background: none;
+    border-style: dashed;
+    translate: none !important;
+  }
+
+  .shelf-more-pocket span {
+    padding: 0;
+    background: none;
+  }
+}
+
+/* code slips: syntax colour from Shiki's dual theme (github light/dark), switched by the
+   site theme; the block itself stays an outline with no fill */
+@layer pages {
+  .code-slip pre.astro-code {
+    background: none !important;
+  }
+
+  .code-slip .astro-code,
+  .code-slip .astro-code span {
+    color: var(--shiki-light);
+  }
+
+  html[data-theme="dark"] .code-slip .astro-code,
+  html[data-theme="dark"] .code-slip .astro-code span {
+    color: var(--shiki-dark);
   }
 }
