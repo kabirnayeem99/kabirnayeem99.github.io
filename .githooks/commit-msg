@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# commit-msg: subject line <= 72 chars, Conventional Commits shape, allowed types only.
+# Docs: .githooks/README.md.
+#
+# Accepted subject-line shapes (type restricted to the allowed list below):
+#   [TICKET] type(scope): message
+#   type(scope): message
+#   type: message
+#
+# Body lines (anything after the first line) are NOT restricted in length or content.
+set -euo pipefail
+
+msg_file="$1"
+subject=$(head -n1 "$msg_file")
+
+# Merge/revert/fixup/squash commits aren't hand-authored Conventional Commits —
+# don't block those.
+case "$subject" in
+  "Merge "* | "Revert "* | "fixup!"* | "squash!"*)
+    exit 0
+    ;;
+esac
+
+allowed_types="fix|feat|refactor|perf|chore|build"
+pattern="^(\[[A-Za-z0-9_.-]+\] )?(${allowed_types})(\([A-Za-z0-9_./ -]+\))?: .+$"
+
+len=${#subject}
+if [ "$len" -gt 72 ]; then
+  echo "commit-msg: subject line is $len chars, must be 72 or fewer:" >&2
+  echo "  $subject" >&2
+  exit 1
+fi
+
+if ! [[ "$subject" =~ $pattern ]]; then
+  echo "commit-msg: subject line doesn't match Conventional Commits format:" >&2
+  echo "  $subject" >&2
+  echo "Expected one of:" >&2
+  echo "  [TICKET] type(scope): message" >&2
+  echo "  type(scope): message" >&2
+  echo "  type: message" >&2
+  echo "Allowed types: fix, feat, refactor, perf, chore, build" >&2
+  exit 1
+fi
+
+exit 0

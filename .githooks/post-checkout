@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# post-checkout: nothing repo-specific; hands over to the global hook of the same name (Git LFS).
+set -euo pipefail
+
+readonly HOOK_NAME="post-checkout"
+# shellcheck source=.githooks/lib.sh
+source "$(git rev-parse --show-toplevel)/.githooks/lib.sh"
+
+run_global_hook "$@"

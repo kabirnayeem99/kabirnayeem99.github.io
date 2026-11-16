@@ -7,8 +7,8 @@ export type ScriptLang = "ur" | "ar" | "bn";
 
 // Letters Urdu uses and Arabic does not: ٹ ڈ ڑ ں ھ ہ ۂ ۃ ے ۓ
 const URDU_ONLY = /[ٹڈڑںھہ-ۃےۓ]/;
-const ARABIC_BLOCK = /[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿]/;
-const BENGALI_BLOCK = /[ঀ-৿]/;
+const ARABIC_BLOCK = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+const BENGALI_BLOCK = /[\u0980-\u09FF]/;
 
 export function scriptLang(text: string | undefined | null): ScriptLang | undefined {
   if (typeof text !== "string" || text.length === 0) {

@@ -48,7 +48,7 @@ export function clippingMast(href: string, meta?: string): ClippingMast {
     const topic = rest.join(" · ");
     return { publication, topic: topic.length > 0 ? topic : undefined };
   }
-  let host = "";
+  let host: string;
   try {
     host = new URL(href).hostname.toLowerCase();
   } catch {

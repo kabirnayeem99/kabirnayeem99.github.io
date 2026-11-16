@@ -340,13 +340,8 @@
     margin-block-start: var(--space);
   }
 
-  main > section:first-child,
-  .intro-stage + section {
+  main > section:first-child {
     margin-block-start: 0;
-  }
-
-  .intro-stage + section {
-    margin-block-start: var(--space);
   }
 
   @media (max-width: 760px) {
@@ -470,17 +465,16 @@
     transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
   }
 
+  .page-close-button {
+    margin-inline-start: -8px;
+  }
+
   .page-close-button:hover,
   .theme-toggle:hover,
   .language-switcher-button:hover,
-  .language-switcher.is-open .language-switcher-button,
-  .back-to-top:hover {
+  .language-switcher.is-open .language-switcher-button {
     color: var(--text);
     border-color: var(--hair-strong);
-  }
-
-  .page-close-button {
-    margin-inline-start: -8px;
   }
 
   .theme-toggle-icon {
@@ -490,12 +484,12 @@
     transition: opacity 160ms ease;
   }
 
-  .theme-toggle:hover .theme-toggle-icon {
-    opacity: 1;
-  }
-
   html[data-theme="dark"] .theme-toggle-icon {
     filter: invert(1);
+  }
+
+  .theme-toggle:hover .theme-toggle-icon {
+    opacity: 1;
   }
 
   .page-close-icon,
@@ -561,6 +555,11 @@
   }
 
   .language-menu a[lang="ar"] { font-size: 1.1rem; }
+
+  /* footer links take the footer's colour */
+  .footer-copy a {
+    color: inherit;
+  }
 
   .language-menu a:hover,
   .language-menu a:focus-visible {
@@ -668,9 +667,6 @@
     margin-block-start: 8px !important;
   }
 
-  .footer-copy a {
-    color: inherit;
-  }
 
   /* back to top */
   .back-to-top {
@@ -691,6 +687,11 @@
     opacity: 1;
     translate: 0 0;
     pointer-events: auto;
+  }
+
+  .back-to-top:hover {
+    color: var(--text);
+    border-color: var(--hair-strong);
   }
 
   @media (max-width: 760px) {
@@ -721,13 +722,6 @@
     color: var(--muted);
   }
 
-  html:not(:lang(en)) .section-title {
-    font-family: var(--font-site);
-    font-size: 0.9rem;
-    letter-spacing: 0;
-    text-transform: none;
-  }
-
   .section-head {
     display: flex;
     align-items: center;
@@ -736,6 +730,13 @@
 
   .section-head .section-title {
     flex: 0 1 auto;
+  }
+
+  html:not(:lang(en)) .section-title {
+    font-family: var(--font-site);
+    font-size: 0.9rem;
+    letter-spacing: 0;
+    text-transform: none;
   }
 
   .section-actions {
@@ -783,13 +784,13 @@
     transition: translate 200ms var(--ease);
   }
 
+  [dir="rtl"] .action-chip-arrow {
+    scale: -1 1;
+  }
+
   .action-chip:hover .action-chip-arrow,
   .shelf-more-card:hover .action-chip-arrow {
     translate: 3px 0;
-  }
-
-  [dir="rtl"] .action-chip-arrow {
-    scale: -1 1;
   }
 
   [dir="rtl"] .action-chip:hover .action-chip-arrow,
@@ -911,10 +912,6 @@
     line-height: 1.4;
   }
 
-  .highlight h3 a {
-    text-decoration-color: var(--hair-strong);
-  }
-
   .highlight p {
     max-width: none;
     margin: 0 0 8px;
@@ -934,6 +931,13 @@
 
   .highlight li::marker {
     color: var(--faint);
+  }
+
+  .meta {
+    margin: 0 0 6px;
+    font: 400 0.75rem/1.5 var(--mono);
+    letter-spacing: 0.02em;
+    color: var(--muted);
   }
 
   .highlight .meta {
@@ -1130,17 +1134,11 @@
     filter: grayscale(1) invert(1) brightness(0.9);
   }
 
-  .meta {
-    margin: 0 0 6px;
-    font: 400 0.75rem/1.5 var(--mono);
-    letter-spacing: 0.02em;
-    color: var(--muted);
-  }
-
   html:not(:lang(en)) .meta {
     font-family: var(--font-site);
     font-size: 0.85rem;
   }
+
 }
 
 /* ------------------------------------------------------------------ pages */
@@ -1157,10 +1155,6 @@
   .summary-card p {
     font-size: 1.2rem;
     line-height: 1.55;
-  }
-
-  .summary-card p:last-child {
-    margin-block-end: 0;
   }
 
   .intro-stage-figure {
@@ -1400,10 +1394,6 @@
     gap: 32px;
   }
 
-  .work-intro .summary-card p {
-    margin: 0;
-  }
-
   .postcards {
     display: flex;
     gap: 10px;
@@ -1478,10 +1468,6 @@
 
   .stats-card .meta {
     margin: 16px 0 0;
-  }
-
-  .stats-card .meta a {
-    color: inherit;
   }
 
   .wakatime-status,
@@ -1806,12 +1792,6 @@
     animation-delay: calc(var(--i, 0) * 70ms + 100ms);
   }
 
-  .github-yearly-chart.is-drawing .github-yearly-label,
-  .github-yearly-chart.is-drawing .github-yearly-ring {
-    animation: chart-ink-in 400ms ease both;
-    animation-delay: calc(var(--i, 0) * 70ms + 600ms);
-  }
-
   @keyframes chart-bar-draw {
     from { transform: scaleY(0); }
   }
@@ -1858,6 +1838,12 @@
     font: 400 13px/1 var(--mono);
     fill: var(--muted);
     font-variant-numeric: tabular-nums;
+  }
+
+  .github-yearly-chart.is-drawing .github-yearly-label,
+  .github-yearly-chart.is-drawing .github-yearly-ring {
+    animation: chart-ink-in 400ms ease both;
+    animation-delay: calc(var(--i, 0) * 70ms + 600ms);
   }
 
   .github-yearly-col.is-current .github-yearly-label,
@@ -2319,7 +2305,7 @@
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
     white-space: nowrap;
     border: 0;
   }
@@ -2473,8 +2459,11 @@
 
 @layer base {
   /* inline links carry the accent, so they read as links, not as emphasis */
-  main a:not([class]),
   .footer-copy a {
+    text-decoration-color: var(--accent-soft);
+  }
+
+  main a:not([class]) {
     text-decoration-color: var(--accent-soft);
   }
 
@@ -2591,6 +2580,10 @@
     color: var(--soft);
   }
 
+  .highlight h3 a {
+    text-decoration-color: var(--hair-strong);
+  }
+
   .highlight li::marker {
     color: var(--accent);
   }
@@ -2684,10 +2677,6 @@
 
   [dir="rtl"] .index-section--lead .entry {
     border-radius: 10px 0 0 10px;
-  }
-
-  .index-section--lead .entry p:last-child {
-    margin-block-end: 0;
   }
 
   .margin-note {
@@ -2784,6 +2773,23 @@
   .page-intro p,
   .stats-report-intro p {
     color: var(--soft);
+  }
+
+  /* refinements of the paragraph and link rules above */
+  .work-intro .summary-card p {
+    margin: 0;
+  }
+
+  .summary-card p:last-child {
+    margin-block-end: 0;
+  }
+
+  .index-section--lead .entry p:last-child {
+    margin-block-end: 0;
+  }
+
+  .stats-card .meta a {
+    color: inherit;
   }
 }
 
@@ -3021,17 +3027,17 @@
     gap: 2px; /* surface gap between fills */
   }
 
+  .leetcode-difficulty-swatch {
+    width: 10px;
+    height: 10px;
+  }
+
   .leetcode-difficulty-legend-item--easy .leetcode-difficulty-swatch { background: var(--lc-easy); }
   .leetcode-difficulty-legend-item--medium .leetcode-difficulty-swatch { background: var(--lc-medium); }
   .leetcode-difficulty-legend-item--hard .leetcode-difficulty-swatch { background: var(--lc-hard); }
 
   .leetcode-difficulty-legend {
     color: var(--soft);
-  }
-
-  .leetcode-difficulty-swatch {
-    width: 10px;
-    height: 10px;
   }
 
   /* the language bars carry their language colour; give them a little more body */
@@ -3294,6 +3300,15 @@
     background: var(--pencil-rule) left top / 600px 6px repeat-x;
   }
 
+  .highlight:nth-child(4n + 1),
+  .journal-entry:nth-child(4n + 1) { --doodle: var(--doodle-star); }
+  .highlight:nth-child(4n + 2),
+  .journal-entry:nth-child(4n + 2) { --doodle: var(--doodle-bulb); }
+  .highlight:nth-child(4n + 3),
+  .journal-entry:nth-child(4n + 3) { --doodle: var(--doodle-spiral); }
+  .highlight:nth-child(4n),
+  .journal-entry:nth-child(4n) { --doodle: var(--doodle-bolt); }
+
   .highlight-list > .highlight:last-child,
   .article-item:last-child,
   .sticker-group:last-child,
@@ -3387,15 +3402,6 @@
     mask: var(--doodle, var(--doodle-star)) center / contain no-repeat;
     rotate: -6deg;
   }
-
-  .highlight:nth-child(4n + 1),
-  .journal-entry:nth-child(4n + 1) { --doodle: var(--doodle-star); }
-  .highlight:nth-child(4n + 2),
-  .journal-entry:nth-child(4n + 2) { --doodle: var(--doodle-bulb); }
-  .highlight:nth-child(4n + 3),
-  .journal-entry:nth-child(4n + 3) { --doodle: var(--doodle-spiral); }
-  .highlight:nth-child(4n),
-  .journal-entry:nth-child(4n) { --doodle: var(--doodle-bolt); }
 
   .highlight:nth-child(even) > .meta::after,
   .journal-entry:nth-child(even) .journal-entry-text > .meta::after {
@@ -3750,7 +3756,6 @@
     flex-direction: column;
     gap: 40px;
     max-height: calc(100vh - 118px);
-    margin: 0;
     overflow-y: auto;
     scrollbar-width: none;
     /* the scroll box clips: give hover rings, focus outlines and the avatar's flower room

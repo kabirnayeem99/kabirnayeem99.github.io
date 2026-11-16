@@ -12,15 +12,26 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "lint": "eslint \"src/**/*.{ts,tsx,mts,cts}\"",
-    "test": "node --experimental-strip-types --test tests/stats-utils.test.mjs"
+    "lint": "eslint .",
+    "test": "node --experimental-strip-types --test tests/stats-utils.test.mjs",
+    "lint:css": "stylelint \"public/assets/css/styles.source.css\"",
+    "format:check": "prettier --check \"src/data/**/*.json\"",
+    "format": "prettier --write \"src/data/**/*.json\"",
+    "test:smoke": "node --test tests/smoke.test.mjs",
+    "prepare": "git -C .. config core.hooksPath .githooks || true"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@eslint/js": "^10.0.1",
     "@types/node": "^24.13.3",
     "astro": "^7.2.4",
     "eslint": "^10.9.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "globals": "^17.14.0",
     "playwright": "^1.62.1",
+    "prettier": "^3.10.1",
+    "stylelint": "^18.0.0",
+    "stylelint-config-recommended": "^19.0.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.67.0"
   }

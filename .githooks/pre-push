@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Pre-push: build the site and run the smoke test over every page, then the global pre-push
+# (Git LFS). Docs: .githooks/README.md.
+set -euo pipefail
+
+readonly HOOK_NAME="pre-push"
+# shellcheck source=.githooks/lib.sh
+source "$(git rev-parse --show-toplevel)/.githooks/lib.sh"
+
+main() {
+  [[ -d "$APP_DIR/node_modules" ]] || die "[$HOOK_NAME] astro/node_modules missing: run 'npm ci' in astro/"
+  run_check "build" npm run --silent build
+  run_check "smoke test" npm run --silent test:smoke
+  info "[$HOOK_NAME] all checks passed"
+  run_global_hook "$@"
+}
+
+main "$@"

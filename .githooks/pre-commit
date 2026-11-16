@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# Pre-commit: auto-format/fix the staged files, re-stage them, then run every fast check.
+# Docs: .githooks/README.md.
+set -euo pipefail
+
+readonly HOOK_NAME="pre-commit"
+# shellcheck source=.githooks/lib.sh
+source "$(git rev-parse --show-toplevel)/.githooks/lib.sh"
+
+# Staged files (added/copied/modified/renamed) under astro/, relative to astro/.
+staged_app_files() {
+  git diff --cached --name-only --diff-filter=ACMR -- astro | sed 's#^astro/##'
+}
+
+# A file with unstaged edits can't be fixed and re-staged without sweeping those edits into
+# the commit, so it is only checked, not fixed.
+has_unstaged_changes() {
+  ! git diff --quiet -- "astro/$1"
+}
+
+autofix_staged() {
+  local file fixable=()
+  while IFS= read -r file; do
+    [[ -n "$file" && -f "$APP_DIR/$file" ]] || continue
+    if has_unstaged_changes "$file"; then
+      info "[$HOOK_NAME] $file has unstaged edits: checking only, not auto-fixing"
+      continue
+    fi
+    fixable+=("$file")
+  done < <(staged_app_files)
+  ((${#fixable[@]})) || return 0
+
+  local json=() code=() css=()
+  for file in "${fixable[@]}"; do
+    case "$file" in
+      src/data/*.json) json+=("$file") ;; # case globs match across "/"
+      *.ts | *.mts | *.astro | *.mjs | *.js) [[ $file == public/* ]] || code+=("$file") ;;
+      public/assets/css/styles.source.css) css+=("$file") ;;
+    esac
+  done
+
+  info "[$HOOK_NAME] auto-fixing staged files"
+  (
+    cd "$APP_DIR"
+    if ((${#json[@]})); then npx --no-install prettier --log-level warn --write "${json[@]}"; fi
+    if ((${#code[@]})); then npx --no-install eslint --fix "${code[@]}" || true; fi
+    if ((${#css[@]})); then npx --no-install stylelint --fix "${css[@]}" || true; fi
+  )
+  for file in "${fixable[@]}"; do
+    git add -- "astro/$file"
+  done
+}
+
+main() {
+  [[ -d "$APP_DIR/node_modules" ]] || die "[$HOOK_NAME] astro/node_modules missing: run 'npm ci' in astro/"
+  autofix_staged
+  run_check "eslint" npm run --silent lint
+  run_check "stylelint" npm run --silent lint:css
+  run_check "prettier" npm run --silent format:check
+  run_check "astro check" npm run --silent check
+  run_check "unit tests" npm run --silent test
+  # A styles.source.css change must ship with its minified styles.css.
+  if git diff --cached --name-only | grep -qx "astro/public/assets/css/styles.source.css"; then
+    run_check "css build" npm run --silent css:build
+    git add -- astro/public/assets/css/styles.css
+  fi
+  info "[$HOOK_NAME] all checks passed"
+}
+
+main "$@"
