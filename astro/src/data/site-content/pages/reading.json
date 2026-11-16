@@ -47,7 +47,15 @@
           {
             "title": "সন্দ্বীপিডিয়া",
             "lang": "bn",
-            "note": "Reading it aloud, to practise my speech articulation."
+            "note": "Reading it aloud, to practise my speech articulation.",
+            "subtitle": "Sandwipedia",
+            "author": "edited by Hasan Mohammad",
+            "image": {
+              "src": "assets/images/now/sandwipedia.webp",
+              "alt": "Cover of Sandwip Samagra Sandwipedia, compiled and edited by Hasan Mohammad",
+              "width": 300,
+              "height": 450
+            }
           }
         ]
       },

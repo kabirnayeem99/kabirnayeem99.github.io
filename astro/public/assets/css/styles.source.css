@@ -3638,6 +3638,11 @@
     margin-block: 0 8px;
   }
 
+  /* an item without a cover keeps its text in the text column */
+  .reading-desk-item > div:only-child {
+    grid-column: 2;
+  }
+
   .reading-desk-title {
     margin: 0 0 2px;
     font-size: 1.15rem;
