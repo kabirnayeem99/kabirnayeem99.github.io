@@ -1,7 +1,7 @@
 import navigationLabels from "../data/site-content/navigation-labels.json";
 import { LANGS } from "./locale-config";
 
-type BreadcrumbPageId = "work" | "project" | "blog" | "stats";
+type BreadcrumbPageId = "work" | "project" | "blog" | "stats" | "reading";
 
 export interface SchemaGraphInput {
   readonly baseUrl: string;
@@ -84,7 +84,7 @@ export function buildSchemaGraphJson(input: SchemaGraphInput): string {
   const sameAsProfiles = normalizeSameAsProfiles(input.socialProfiles);
   const personFields = (input.lang && PERSON_FIELDS_BY_LANG[input.lang]) || {
     jobTitle: "Software Engineer",
-    description: "Software Engineer · Muslim · Bibliophile · Philomath",
+    description: "Muslim · Bibliophile · Philomath · Software Engineer",
   };
 
   const webPageNode: Record<string, unknown> = {
@@ -125,6 +125,13 @@ export function buildSchemaGraphJson(input: SchemaGraphInput): string {
         url: "https://syarah.com/",
       },
       knowsAbout: [
+        "Books",
+        "Philosophy",
+        "Islamic Theology",
+        "Urdu",
+        "Full-Stack Development",
+        "Backend Development",
+        "Web Development",
         "Android Development",
         "Kotlin",
         "Kotlin Multiplatform",

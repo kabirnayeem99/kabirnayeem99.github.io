@@ -3,93 +3,110 @@
   "locales": {
     "en": {
       "meta": {
-        "title": "Naimul Kabir | Personal Portfolio",
-        "description": "Software Engineer · Muslim · Bibliophile · Philomath.",
-        "keywords": "Naimul Kabir, Software Engineer, Android Developer, Kotlin Multiplatform, Flutter, Laravel, Mobile Apps"
+        "title": "Naimul Kabir",
+        "description": "Personal site of Naimul Kabir: books, learning languages, faith, ideas, and the software I build for a living.",
+        "keywords": "Naimul Kabir, reading, books, Urdu, Bangla, Islamic theology, philosophy, writing, personal website"
       },
       "header": {
         "site_title": "Naimul Kabir",
-        "tagline": "Muslim · Software Engineer · Bibliophile · Philomath"
+        "tagline": "Muslim · Bibliophile · Philomath · Software Engineer"
       },
       "summary_card": [
-        "Software engineer focused on <mark>Android, iOS, Flutter, and Kotlin Multiplatform</mark>. I build cross-platform apps with native-level performance, reliability, and maintainability.",
-        "Comfortable working across the stack <mark>(full-stack)</mark> when a project calls for it.",
-        "Currently at <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">Syarah</a>, building internal supply-chain systems and tooling. Open to <mark>remote roles and contract work</mark>."
+        "<span lang=\"ar\" dir=\"rtl\">السلام عليكم ورحمة الله وبركاته</span>",
+        "I'm Naimul Kabir, from Bangladesh. This site is my <mark>notebook of ordinary days</mark>: what I read, what I write, what I build.",
+        "Grew up on a remote island. Came to love <mark>nature, loneliness, poetry and books</mark>. Books are still (almost) my only entertainment.",
+        "For a living, I write software, software of all kinds. Currently at <a class=\"inline-logo-link\" href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\"><span class=\"inline-logo\" aria-hidden=\"true\" style=\"--stamp:url(&quot;/assets/images/work/syarah-logo.webp&quot;);--stamp-ratio:2.118\"></span>Syarah</a>, building their internal tools. Also, trying to build a business with <a class=\"inline-logo-link\" href=\"https://multazimsolutions.com/\" target=\"_blank\" rel=\"noreferrer\"><span class=\"inline-logo inline-logo--tilt-r\" aria-hidden=\"true\" style=\"--stamp:url(&quot;/assets/images/work/multazim-logo.webp&quot;);--stamp-ratio:0.857\"></span>Multazim Solutions</a>."
       ],
       "sections": [
         {
-          "title": "Right Now",
-          "paragraphs": [
-            "Going back to <mark>CS fundamentals</mark>. Learning yet another language or framework feels pointless in the age of AI, so now going through <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">the basics of operating systems</a>.",
-            "<strong>Learning to read Urdu.</strong> Still at a very elementary level, slowly making my way through Manto's <em>Atish Pare</em> (<span lang=\"ur\" dir=\"rtl\">آتش پارے</span>).",
-            "Currently reading <mark><em lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</em></mark>.",
-            "Outside work, <mark>reading is my (almost) only entertainment</mark>: lots of mysteries and thrillers, some literary fiction, and non-fiction on philosophy, Islamic theology and history. And far too much time on Hacker News."
-          ],
-          "images": [
+          "title": "These days",
+          "items": [
             {
-              "src": "assets/images/now/neso-operating-system.webp",
-              "alt": "Screenshot of Neso Academy's Operating System course playlist on YouTube",
-              "width": 640,
-              "height": 412
+              "label": "Learning",
+              "html": "<strong>To read Urdu.</strong> Tried Manto's <strong lang=\"ur\" dir=\"rtl\">آتش پارے</strong>, gave up after two afsanas. Now trying <strong lang=\"ur\" dir=\"rtl\">حجاز کی آندھی</strong> instead (literary value is not the priority).",
+              "image": {
+                "src": "assets/images/now/hijaz-ki-aandhi.webp",
+                "alt": "Cover of Hijaz ki Aandhi by Inayatullah",
+                "width": 400,
+                "height": 635
+              }
             },
             {
-              "src": "assets/images/now/atish-pare.webp",
-              "alt": "Cover of Atish Pare by Saadat Hasan Manto",
-              "width": 400,
-              "height": 561
+              "label": "Reading",
+              "html": "Just finished <strong><em>Lonesome Dove</em></strong> by Larry McMurtry. Going through <strong lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</strong>, by Dr. Mufti Yasir Nadim al-Wajidi. Also reading <strong lang=\"bn\">সন্দ্বীপিডিয়া</strong> aloud, to practise my speech articulation.",
+              "image": {
+                "src": "assets/images/now/tahafutul-malahida.webp",
+                "alt": "Cover of Tahafutul Malahida by Dr. Mufti Yasir Nadim al-Wajidi",
+                "width": 400,
+                "height": 396
+              }
             },
             {
-              "src": "assets/images/now/tahafutul-malahida.webp",
-              "alt": "Cover of Tahafutul Malahida by Dr. Mufti Yasir Nadim",
-              "width": 400,
-              "height": 396
+              "label": "Revisiting",
+              "html": "The <mark>CS fundamentals</mark>, starting with <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\"><strong>operating systems</strong></a>. Yet another language or framework feels pointless in the age of AI, so back to the basics.",
+              "image": {
+                "src": "assets/images/now/neso-operating-system.webp",
+                "alt": "Screenshot of Neso Academy's Operating System course playlist on YouTube",
+                "width": 640,
+                "height": 412
+              }
             }
           ]
         },
         {
-          "title": "Selected works",
-          "highlights": [
-            {
-              "title": "On-Device Computer Vision, ML Systems & Reliable Image Uploads at Syarah",
-              "meta": "2023 - Present",
-              "paragraphs": [
-                "Conceived, planned, and delivered a lightweight, on-device ML car-photo classification system using a custom-trained 42-class MobileNetV3 LiteRT/TFLite model. Integrated across bulk upload, image validation, and live camera workflows, it significantly reduced photography time and human classification errors.",
-                "Built a real-time Android VIN scanner using CameraX, LiteRT, and ML Kit, with a lightweight custom-trained quantized detector and a complex VIN recognition algorithm covering OCR validation, checksum repair, and character-confusion recovery.",
-                "Also developed a reliable upload manager that substantially reduced image loss during transfers."
-              ]
-            },
-            {
-              "title": "Helped Rebuild a Leading Islamic App in Bangladesh",
-              "meta": "2022 - 2023",
-              "paragraphs": [
-                "Helped modernize the Al-Hadith app, one of Bangladesh's most-downloaded Islamic apps, while maintaining the legacy Android build and supporting its Flutter rewrite for a large user base."
-              ]
-            },
-            {
-              "title": "Contract work and services",
-              "meta": "Ongoing",
-              "paragraphs": [
-                "Working with small businesses on web design, digital marketing, and Amazon FBA tooling, alongside contract development for larger products like Marriott Bonvoy, BaseHubs, PatientAccess, and Jobamax. Also integrated the Sunmi Printer SDK into a Cordova hybrid app."
-              ]
-            }
+          "title": "Work",
+          "paragraphs": [
+            "I build software end to end: backends, web apps, e-commerce sites, internal tools, and mobile apps, where most of my years have gone."
           ],
           "actions": [
             {
-              "label": "Experiences",
+              "label": "See all work & projects",
               "page_id": "work",
-              "variant": "secondary"
+              "variant": "primary"
+            }
+          ],
+          "images": [
+            {
+              "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
+              "alt": "Mr. Perfume online shop homepage on desktop",
+              "width": 960,
+              "height": 600,
+              "caption": "Mr. Perfume, e-commerce"
             },
             {
-              "label": "View all projects",
-              "page_id": "project",
-              "variant": "secondary"
+              "src": "assets/images/projects/al-hadith/hadith-books.webp",
+              "alt": "Al-Hadith app, list of hadith books",
+              "width": 360,
+              "height": 640,
+              "caption": "Al-Hadith"
+            },
+            {
+              "src": "assets/images/projects/islamqa/home.webp",
+              "alt": "IslamQA Android app home screen",
+              "width": 360,
+              "height": 760,
+              "caption": "IslamQA"
+            },
+            {
+              "src": "assets/images/projects/edumax/home-desktop.webp",
+              "alt": "Edumax Consultancy homepage on desktop",
+              "width": 960,
+              "height": 600,
+              "caption": "Edumax"
+            },
+            {
+              "src": "assets/images/projects/samabay/home-desktop.webp",
+              "alt": "সমবায় নথি homepage on desktop",
+              "width": 960,
+              "height": 600,
+              "caption": "সমবায় নথি"
             }
           ]
         },
         {
-          "title": "Blogs",
+          "title": "Writing",
           "paragraphs": [
-            "Occasional posts on mobile development, Linux, career lessons, and things worth documenting."
+            "Occasional posts on software, Linux, career lessons, and things worth documenting."
           ],
           "articles": [
             {
@@ -105,41 +122,14 @@
           ],
           "actions": [
             {
-              "label": "View all blogs",
+              "label": "All writing",
               "page_id": "blog",
               "variant": "secondary"
             }
           ]
-        },
-        {
-          "title": "Skills & Technologies",
-          "paragraphs": [
-            "Core tools and technologies I use across mobile, backend, and product work."
-          ],
-          "tags": [
-            "Kotlin",
-            "Android",
-            "iOS",
-            "Flutter",
-            "Dart",
-            "Kotlin Multiplatform",
-            "Jetpack Compose",
-            "Swift",
-            "Laravel",
-            "Go",
-            "Java",
-            "Python",
-            "SQL",
-            "PostgreSQL",
-            "Redis",
-            "Firebase",
-            "Git",
-            "Linux",
-            "Docker"
-          ]
         }
       ],
-      "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Developed with Astro.",
+      "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Developed with Astro. Also on <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>.",
       "top_actions_title": "Send me an email",
       "top_actions": [
         {
@@ -153,35 +143,28 @@
     },
     "bn": {
       "meta": {
-        "title": "নাঈমুল কবির · সফটওয়্যার ইঞ্জিনিয়ার",
-        "description": "নাঈমুল কবিরের পোর্টফোলিও: অ্যান্ড্রয়েড, আইওএস, ফ্লাটার ও কটলিন মাল্টিপ্ল্যাটফর্মে কাজ করা একজন সফটওয়্যার ইঞ্জিনিয়ার।",
-        "keywords": "নাঈমুল কবির, সফটওয়্যার ইঞ্জিনিয়ার, অ্যান্ড্রয়েড ডেভেলপার, কটলিন মাল্টিপ্ল্যাটফর্ম, ফ্লাটার, লারাভেল, মোবাইল অ্যাপ, ক্রস-প্ল্যাটফর্ম ডেভেলপার, আইওএস ডেভেলপার, রিমোট সফটওয়্যার ইঞ্জিনিয়ার"
+        "title": "নাঈমুল কবির",
+        "description": "নাঈমুল কবিরের ব্যক্তিগত সাইট: বই, ভাষা শেখা, বিশ্বাস, ভাবনা, আর পেশার সফটওয়্যারের কাজ।",
+        "keywords": "নাঈমুল কবির, বই, পড়া, উর্দু, বাংলা, ইসলামি আকিদা, দর্শন, লেখালেখি, ব্যক্তিগত ওয়েবসাইট"
       },
       "header": {
         "site_title": "নাঈমুল কবির",
-        "tagline": "মুসলিম · সফটওয়্যার ইঞ্জিনিয়ার · বইপোকা · জিজ্ঞাসু"
+        "tagline": "মুসলিম · বইপোকা · জিজ্ঞাসু · সফটওয়্যার ইঞ্জিনিয়ার"
       },
       "summary_card": [
-        "পেশায় সফটওয়্যার ইঞ্জিনিয়ার। মূল ফোকাস অ্যান্ড্রয়েড, আইওএস, ফ্লাটার আর কটলিন মাল্টিপ্ল্যাটফর্ম।",
-        "প্রয়োজনে অন্যান্য টেকস্ট্যাকেও কাজ করতে অভ্যস্ত।",
-        "এখন <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">সাইয়ারাহ</a>-তে ইন্টার্নাল সাপ্লাই চেইন সিস্টেম আর টুলিং নিয়ে কাজ করছি। রিমোট রোল আর কনট্র্যাক্ট কাজের সুযোগেও আগ্রহী।"
+        "আসসালামু আলাইকুম। আমি নাঈমুল। এটা ইন্টারনেটে আমার নিজের একটা কোণ: <mark>কী পড়ছি, কী শিখছি, কী নিয়ে ভাবছি</mark>।",
+        "অবসরের বেশিরভাগ সময় যায় বইয়ে: রহস্য আর থ্রিলার, কিছু সাহিত্য, আর দর্শন, ইসলামি আকিদা ও ইতিহাসের নন-ফিকশন। পাশাপাশি ধীরে ধীরে <mark>উর্দু পড়া শিখছি</mark>।",
+        "পেশায় সফটওয়্যার লিখি, এখন <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">সাইয়ারাহ</a>-তে ইন্টার্নাল টুল বানাচ্ছি। বিস্তারিত আছে <a href=\"/bn/work.html\">কাজের পাতায়</a>।"
       ],
       "sections": [
         {
           "title": "বর্তমানে",
           "paragraphs": [
-            "<mark>কম্পিউটার সায়েন্সের বেসিকে</mark> ফিরে যাচ্ছি। এআই-এর যুগে আরেকটা নতুন ভাষা বা ফ্রেমওয়ার্ক শেখা অর্থহীন লাগে, তাই এখন <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">অপারেটিং সিস্টেমের মৌলিক বিষয়গুলো</a> পড়ছি।",
             "<strong>উর্দু পড়তে শিখছি</strong>, যদিও এখনো একদম প্রাথমিক পর্যায়ে। ধীরে ধীরে মান্টোর <em>আতিশ পারে</em> (<span lang=\"ur\" dir=\"rtl\">آتش پارے</span>) পড়ছি।",
             "এখন পড়ছি <mark><em lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</em></mark>।",
-            "কাজের বাইরে <mark>পড়াই আমার (প্রায়) একমাত্র বিনোদন</mark>: প্রচুর মিস্ট্রি আর থ্রিলার, কিছু লিটারারি ফিকশন, আর দর্শন, ইসলামী থিওলজি ও ইতিহাসের নন-ফিকশন। আর হ্যাকার নিউজে দরকারের চেয়ে অনেক বেশি সময়।"
+            "<mark>কম্পিউটার সায়েন্সের বেসিকে</mark> ফিরে যাচ্ছি। এআই-এর যুগে আরেকটা নতুন ভাষা বা ফ্রেমওয়ার্ক শেখা অর্থহীন লাগে, তাই এখন <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">অপারেটিং সিস্টেমের মৌলিক বিষয়গুলো</a> পড়ছি।"
           ],
           "images": [
-            {
-              "src": "assets/images/now/neso-operating-system.webp",
-              "alt": "ইউটিউবে নেসো একাডেমির অপারেটিং সিস্টেম কোর্সের প্লেলিস্টের স্ক্রিনশট",
-              "width": 640,
-              "height": 412
-            },
             {
               "src": "assets/images/now/atish-pare.webp",
               "alt": "সাদাত হাসান মান্টোর আতিশ পারে বইয়ের প্রচ্ছদ",
@@ -193,46 +176,12 @@
               "alt": "ড. মুফতী ইয়াসির নাদিমের তাহাফুতুল মালাহিদা বইয়ের প্রচ্ছদ",
               "width": 400,
               "height": 396
-            }
-          ]
-        },
-        {
-          "title": "নির্বাচিত কাজ",
-          "highlights": [
-            {
-              "title": "সাইয়ারাহতে যন্ত্রেই চলা ছবি-বোঝার ব্যবস্থা, বুদ্ধিমান শ্রেণিবিন্যাস আর ভরসাযোগ্য ছবি পাঠানো",
-              "meta": "২০২৩ - বর্তমান",
-              "paragraphs": [
-                "একটি কাস্টম-ট্রেইনড ৪২-ক্লাসের মোবাইলনেট ভি৩ লাইটআরটি মডেল ব্যবহার করে একটি লাইটওয়েট, অন-ডিভাইস গাড়ির পার্ট অটো-ক্ল্যাসিফিকেশন সিস্টেম ডেভেলপ করেছি। আইডিয়া থেকে শুরু করে ডাটা স্ক্র্যাপিং, মডেল ট্রেইনিং এবং ইন্টিগ্রেশন পর্যন্ত পুরো প্রসেসটাই আমি করেছি। এটি ফটোগ্রাফারদের হিউম্যান এরর এবং ফটোগ্রাফি টাইম উল্লেখযোগ্যভাবে কমিয়ে এনেছে।",
-                "ক্যামেরাএক্স, লাইটআরটি এবং এমএল কিট ব্যবহার করে একটি রিয়েল-টাইম অ্যান্ড্রয়েড ভিন স্ক্যানার তৈরি করেছি। এতে একটি লাইটওয়েট, কাস্টম-ট্রেইনড কোয়ান্টাইজড ডিটেক্টর এবং একটি জটিল ভিন রিকগনিশন অ্যালগরিদম আছে, যেটি ওসিআর চেক, চেকসাম ভ্যালিডেশন এবং অটো ক্যারেক্টার অ্যাম্বিগুইটি ফিক্স ব্যবহার করে ঝাপসা, অন্ধকার, ব্লারি কিংবা পুরোনো চ্যাসিস কার্ড থেকেও ঠিকভাবে ভিন ডিটেক্ট করতে পারে।",
-                "এছাড়াও একটি ডিপেন্ডেবল আপলোড ম্যানেজার তৈরি করেছি, যেটি মরুভূমির আনস্ট্যাবল ইন্টারনেট কানেকশনেও আগের তুলনায় ইমেজ লস অনেক কমিয়ে এনেছে।"
-              ]
             },
             {
-              "title": "বাংলাদেশের অন্যতম জনপ্রিয় ইসলামি অ্যাপের পুনর্গঠনে কাজ",
-              "meta": "২০২২ - ২০২৩",
-              "paragraphs": [
-                "আল হাদিস বাংলাদেশের অন্যতম জনপ্রিয় ইসলামি অ্যাপ। প্রথমে এর লিগেসি অ্যান্ড্রয়েড ভার্সনের মেইনটেন্যান্সে কাজ করেছি, পরে পুরো অ্যাপটি ফ্লাটারে নতুন করে লিখেছি, যা এখন আইওএস ও অ্যান্ড্রয়েড, দুটোতেই চলে।"
-              ]
-            },
-            {
-              "title": "চুক্তিভিত্তিক কাজ",
-              "meta": "চলমান",
-              "paragraphs": [
-                "ছোট ব্যবসার জন্য ওয়েব ডিজাইন, ডিজিটাল মার্কেটিং আর অ্যামাজন এফবিএ টুলিং নিয়ে কাজ করেছি। পাশাপাশি ম্যারিয়ট বনভয়, বেসহাবস, প্যাশেন্টএক্সেস আর জবাম্যাক্স-এর মতো বড় প্রোডাক্টেও কনট্র্যাক্ট ডেভেলপমেন্ট করেছি। সানমি প্রিন্টার এসডিকে-ও একটি করডোভা হাইব্রিড অ্যাপে ইন্টিগ্রেট করেছি।"
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "label": "সব কাজ দেখুন",
-              "page_id": "work",
-              "variant": "secondary"
-            },
-            {
-              "label": "সব প্রজেক্ট দেখুন",
-              "page_id": "project",
-              "variant": "secondary"
+              "src": "assets/images/now/neso-operating-system.webp",
+              "alt": "ইউটিউবে নেসো একাডেমির অপারেটিং সিস্টেম কোর্সের প্লেলিস্টের স্ক্রিনশট",
+              "width": 640,
+              "height": 412
             }
           ]
         },
@@ -255,37 +204,23 @@
           ],
           "actions": [
             {
-              "label": "সব ব্লগ দেখুন",
+              "label": "সব লেখা দেখুন",
               "page_id": "blog",
               "variant": "secondary"
             }
           ]
         },
         {
-          "title": "স্কিলস ও টেকনোলজি",
+          "title": "কাজ",
           "paragraphs": [
-            "মোবাইল, ব্যাকএন্ড এবং প্রোডাক্ট ডেভেলপমেন্টে যেসব টুল ও টেকনোলজি বেশি ব্যবহার করি।"
+            "সফটওয়্যার বানাই শুরু থেকে শেষ পর্যন্ত: ব্যাকএন্ড, ওয়েব অ্যাপ, ইন্টার্নাল টুল, আর মোবাইল অ্যাপ, যেখানে কাজের বেশিরভাগ বছর কেটেছে। সাইয়ারাহ-তে গাড়ির ছবি আর ভিআইএন স্ক্যানের জন্য অন-ডিভাইস কম্পিউটার ভিশন টুল বানিয়েছি। তার আগে বাংলাদেশের সবচেয়ে বেশি ডাউনলোড হওয়া ইসলামি অ্যাপগুলোর একটি, আল-হাদিস, নতুন করে গড়ার কাজে ছিলাম।"
           ],
-          "tags": [
-            "কটলিন",
-            "অ্যান্ড্রয়েড",
-            "আইওএস",
-            "ফ্লাটার",
-            "ডার্ট",
-            "কটলিন মাল্টিপ্ল্যাটফর্ম",
-            "জেটপ্যাক কম্পোজ",
-            "সুইফট",
-            "লারাভেল",
-            "গো",
-            "জাভা",
-            "পাইথন",
-            "এসকিউএল",
-            "পোস্টগ্রেসসিকুয়েল",
-            "রেডিস",
-            "ফায়ারবেস",
-            "গিট",
-            "লিনাক্স",
-            "ডকার"
+          "actions": [
+            {
+              "label": "কাজ ও প্রজেক্ট",
+              "page_id": "work",
+              "variant": "secondary"
+            }
           ]
         }
       ],
@@ -303,35 +238,28 @@
     },
     "ar": {
       "meta": {
-        "title": "نَعِيمُولُ كَبِير · مُهَنْدِسُ بَرْمَجِيَّاتٍ",
-        "description": "مَلَفُّ نَعِيمُولَ كَبِير: مُهَنْدِسُ بَرْمَجِيَّاتٍ يُرَكِّزُ عَلَىٰ أَنْدْرُوِيد وَآي أُو إِس وَفْلَاتَر وَكُوتْلِين مُلْتِي بْلَاتْفُورْم.",
-        "keywords": "نَعِيمُولُ كَبِير، مُهَنْدِسُ بَرْمَجِيَّاتٍ، مُطَوِّرُ أَنْدْرُوِيد، كُوتْلِين مُلْتِي بْلَاتْفُورْم، فْلَاتَر، لَارَافِيل، تَطْبِيقَاتُ مُوبَايِل، مُطَوِّرٌ مُتَعَدِّدُ ٱلْمَنَصَّاتِ، مُطَوِّرُ آي أُو إِس، مُهَنْدِسُ بَرْمَجِيَّاتٍ عَنْ بُعْدٍ"
+        "title": "نَعِيمُولُ كَبِير",
+        "description": "ٱلْمَوْقِعُ ٱلشَّخْصِيُّ لِنَعِيمُولَ كَبِير: ٱلْكُتُبُ، وَتَعَلُّمُ ٱللُّغَاتِ، وَٱلْإِيمَانُ، وَٱلْأَفْكَارُ، وَٱلْبَرْمَجَةُ ٱلَّتِي يَكْسِبُ مِنْهَا رِزْقَهُ.",
+        "keywords": "نَعِيمُولُ كَبِير، كُتُبٌ، قِرَاءَةٌ، ٱلْأُرْدِيَّةُ، ٱلْبَنْغَالِيَّةُ، ٱلْعَقِيدَةُ ٱلْإِسْلَامِيَّةُ، فَلْسَفَةٌ، كِتَابَاتٌ، مَوْقِعٌ شَخْصِيٌّ"
       },
       "header": {
         "site_title": "نَعِيمُولُ كَبِير",
-        "tagline": "مُسْلِم · مُهَنْدِسُ بَرْمَجِيَّاتٍ · مُحِبُّ ٱلْقِرَاءَةِ · شَغُوفٌ بِٱلْمَعْرِفَةِ"
+        "tagline": "مُسْلِم · مُحِبُّ ٱلْقِرَاءَةِ · شَغُوفٌ بِٱلْمَعْرِفَةِ · مُهَنْدِسُ بَرْمَجِيَّاتٍ"
       },
       "summary_card": [
-        "أَعْمَلُ كَمُهَنْدِسِ بَرْمَجِيَّاتٍ، وَأُرَكِّزُ عَلَىٰ أَنْدْرُوِيد وَآي أُو إِس وَفْلَاتَر وَكُوتْلِين مُلْتِي بْلَاتْفُورْم.",
-        "وَعِنْدَ ٱلْحَاجَةِ أَتَحَرَّكُ أَيْضًا نَحْوَ ٱلْبَاك إِنْد وَعَمَلِ ٱلْمُنْتَجِ.",
-        "حَالِيًّا أَعْمَلُ فِي <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">سَيَّارَة</a> عَلَىٰ أَنْظِمَةٍ وَأَدَوَاتٍ دَاخِلِيَّةٍ لِسِلْسِلَةِ ٱلْإِمْدَادِ. وَأَنَا مُنْفَتِحٌ أَيْضًا لِفُرَصِ ٱلْعَمَلِ عَنْ بُعْدٍ وَٱلتَّعَاقُدِ."
+        "ٱلسَّلَامُ عَلَيْكُمْ. أَنَا نَعِيمُول، وَهٰذَا رُكْنِي ٱلْخَاصُّ عَلَى ٱلْإِنْتَرْنِت: <mark>مَا أَقْرَأُهُ، وَمَا أَتَعَلَّمُهُ، وَمَا أُفَكِّرُ فِيهِ</mark>.",
+        "يَذْهَبُ مُعْظَمُ وَقْتِ فَرَاغِي إِلَى ٱلْكُتُبِ: رِوَايَاتُ ٱلْغُمُوضِ وَٱلْإِثَارَةِ، وَشَيْءٌ مِنَ ٱلْأَدَبِ، وَكُتُبٌ فِي ٱلْفَلْسَفَةِ وَٱلْعَقِيدَةِ ٱلْإِسْلَامِيَّةِ وَٱلتَّارِيخِ. وَأَتَعَلَّمُ أَيْضًا، عَلَىٰ مَهْلٍ، <mark>قِرَاءَةَ ٱلْأُرْدِيَّةِ</mark>.",
+        "أَكْسِبُ رِزْقِي مِنْ كِتَابَةِ ٱلْبَرْمَجِيَّاتِ، وَأَبْنِي حَالِيًّا أَدَوَاتٍ دَاخِلِيَّةً فِي <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">سَيَّارَة</a>. ٱلتَّفَاصِيلُ فِي <a href=\"/ar/work.html\">صَفْحَةِ ٱلْعَمَلِ</a>."
       ],
       "sections": [
         {
           "title": "حَالِيًّا",
           "paragraphs": [
-            "أَعُودُ إِلَىٰ <mark>أَسَاسِيَّاتِ عِلْمِ ٱلْحَاسُوبِ</mark>. تَعَلُّمُ لُغَةٍ أَوْ إِطَارِ عَمَلٍ جَدِيدٍ آخَرَ يَبْدُو بِلَا جَدْوَىٰ فِي عَصْرِ ٱلذَّكَاءِ ٱلِٱصْطِنَاعِيِّ، لِذَا أَدْرُسُ ٱلْآنَ <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">أَسَاسِيَّاتِ أَنْظِمَةِ ٱلتَّشْغِيلِ</a>.",
             "<strong>أَتَعَلَّمُ قِرَاءَةَ ٱلْأُرْدِيَّةِ</strong>، وَلَا أَزَالُ فِي مُسْتَوًى مُبْتَدِئٍ جِدًّا. أَقْرَأُ بِبُطْءٍ «آتش پارے» لِمَنْتُو.",
             "أَقْرَأُ حَالِيًّا <mark>«<span lang=\"ur\">تہافت الملاحدہ</span>»</mark>.",
-            "خَارِجَ ٱلْعَمَلِ، <mark>ٱلْقِرَاءَةُ تَرْفِيهِي شِبْهُ ٱلْوَحِيدِ</mark>: كَثِيرٌ مِنْ رِوَايَاتِ ٱلْغُمُوضِ وَٱلتَّشْوِيقِ، وَبَعْضُ ٱلْأَدَبِ ٱلرِّوَائِيِّ، وَكُتُبٌ فِي ٱلْفَلْسَفَةِ وَٱلْعَقِيدَةِ ٱلْإِسْلَامِيَّةِ وَٱلتَّارِيخِ. وَوَقْتٌ أَطْوَلُ بِكَثِيرٍ مِمَّا يَنْبَغِي عَلَىٰ Hacker News."
+            "أَعُودُ إِلَىٰ <mark>أَسَاسِيَّاتِ عِلْمِ ٱلْحَاسُوبِ</mark>. تَعَلُّمُ لُغَةٍ أَوْ إِطَارِ عَمَلٍ جَدِيدٍ آخَرَ يَبْدُو بِلَا جَدْوَىٰ فِي عَصْرِ ٱلذَّكَاءِ ٱلِٱصْطِنَاعِيِّ، لِذَا أَدْرُسُ ٱلْآنَ <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">أَسَاسِيَّاتِ أَنْظِمَةِ ٱلتَّشْغِيلِ</a>."
           ],
           "images": [
-            {
-              "src": "assets/images/now/neso-operating-system.webp",
-              "alt": "لَقْطَةُ شَاشَةٍ لِقَائِمَةِ دَوْرَةِ أَنْظِمَةِ ٱلتَّشْغِيلِ مِنْ نِيسُو أَكَادِيمِي عَلَىٰ يُوتْيُوب",
-              "width": 640,
-              "height": 412
-            },
             {
               "src": "assets/images/now/atish-pare.webp",
               "alt": "غِلَافُ كِتَابِ «آتش پارے» لِسَعَادَت حَسَن مَنْتُو",
@@ -343,46 +271,12 @@
               "alt": "غِلَافُ كِتَابِ «تَهَافُتُ ٱلْمَلَاحِدَةِ» لِلدُّكْتُورِ ٱلْمُفْتِي يَاسِر نَدِيم",
               "width": 400,
               "height": 396
-            }
-          ]
-        },
-        {
-          "title": "أَعْمَالٌ مُخْتَارَةٌ",
-          "highlights": [
-            {
-              "title": "رُؤْيَةٌ حَاسُوبِيَّةٌ عَلَى ٱلْجِهَازِ، وَأَنْظِمَةُ تَعَلُّمٍ آلِيٍّ، وَرَفْعٌ مَوْثُوقٌ لِلصُّوَرِ فِي سَيَّارَة",
-              "meta": "2023 - حَتَّى ٱلْآن",
-              "paragraphs": [
-                "صَمَّمْتُ وَخَطَّطْتُ وَنَفَّذْتُ نِظَامًا خَفِيفًا لِتَصْنِيفِ صُوَرِ ٱلسَّيَّارَاتِ بِٱلِاعْتِمَادِ عَلَىٰ تَعَلُّمٍ آلِيٍّ عَلَى ٱلْجِهَازِ، مُدَعَّمًا بِنَمُوذَجٍ مُخَصَّصٍ مُدَرَّبٍ مِنْ موبَائِل نِٹ وی تھری لَايْٹْ آرْ تِي/ٹِی اِفْ لَائْٹ بِاثْنَتَيْنِ وَأَرْبَعِينَ فِئَةً. وَجَرَى دَمْجُهُ فِي ٱلرَّفْعِ ٱلْجَمَاعِيِّ وَتَحَقُّقِ ٱلصُّوَرِ وَتَدَفُّقِ ٱلْكَامِيرَا ٱلْمُبَاشِرِ، فَخَفَّضَ وَقْتَ ٱلتَّصْوِيرِ وَقَلَّلَ ٱلْأَخْطَاءَ ٱلْبَشَرِيَّةَ فِي ٱلتَّصْنِيفِ.",
-                "وَبَنَيْتُ أَيْضًا مَاسِحَ رَقْمِ الْهَيْكَلِ فَوْرِيًّا لِنِظَامِ أَنْدْرُوِيد بِٱلِاعْتِمَادِ عَلَىٰ كَامِيرَا إِكْس وَلَايْٹْ آرْ تِي وَاِمْ اِلْ کِٹ، مَعَ كَاشِفٍ مُكَمَّمٍ خَفِيفٍ مُدَرَّبٍ تَدْرِيبًا مُخَصَّصًا، وَخَوَارِزْمِيَّةِ تَعَرُّفٍ عَلَىٰ رَقْمِ الْهَيْكَلِ تُغَطِّي أُوسِي آر  ڤَالِدَيْشَن، وَچِكْسَم رِپَيْر، وَمُعَالَجَةَ ٱلِٱلْتِبَاسِ بَيْنَ ٱلْأَحْرُفِ ٱلْمُتَشَابِهَةِ.",
-                "وَطَوَّرْتُ كَذٰلِكَ أَپْلُود مَانِجَر مَوْثُوقًا خَفَّضَ بِشَكْلٍ وَاضِحٍ فُقْدَانَ ٱلصُّوَرِ أَثْنَاءَ عَمَلِيَّاتِ ٱلنَّقْلِ."
-              ]
             },
             {
-              "title": "المُسَاهَمَةُ فِي إِعَادَةِ بِنَاءِ تَطْبِيقٍ إِسْلَامِيٍّ بَارِزٍ فِي بَنْغِلَادِيش",
-              "meta": "2022 - 2023",
-              "paragraphs": [
-                "سَاهَمْتُ فِي تَحْدِيثِ تَطْبِيقِ الْحَدِيثِ (Al-Hadith)، وَهُوَ مِنْ أَكْثَرِ ٱلتَّطْبِيقَاتِ ٱلْإِسْلَامِيَّةِ تَحْمِيلًا فِي بَنْغِلَادِيش. تَوَلَّيْتُ صِيَانَةَ ٱلْبِنَاءِ ٱلْقَدِيمِ لِأَنْدْرُوِيد، وَسَاعَدْتُ فِي إِعَادَةِ كِتَابَتِهِ بِـ فْلَٹَر لِخِدْمَةِ قَاعِدَةِ مُسْتَخْدِمِينَ كَبِيرَةٍ."
-              ]
-            },
-            {
-              "title": "أَعْمَالٌ تَعَاقُدِيَّةٌ وَخِدْمَاتٌ",
-              "meta": "مُسْتَمِرّ",
-              "paragraphs": [
-                "عَمِلْتُ مَعَ شَرِكَاتٍ صَغِيرَةٍ فِي وِيب دِزَايْن وَدِيجِتَال مَارْكِتِنْغ وَأَدَوَات أَمَازُون إِفْ بِي إَيْ. وَقَدَّمْتُ أَيْضًا تَطْوِيرًا تَعَاقُدِيًّا لِمُنْتَجَاتٍ أَكْبَرَ مِثْلَ مَارْيُوتْ بُونْڤُوَاي وَبَيْسْ هَبْس وَپَيْشَنْٹْ أَكْسِس وَجُوبَامَكْس. كَمَا دَمَجْتُ سَنْ مِي پْرِنْٹَر إِسْ دِي كَيْ فِي تَطْبِيقٍ هَجِينٍ مَبْنِيٍّ بِـ كُورْدُوفَا."
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "label": "عَرْضُ ٱلْخِبْرَاتِ",
-              "page_id": "work",
-              "variant": "secondary"
-            },
-            {
-              "label": "عَرْضُ كُلِّ ٱلْمَشَارِيعِ",
-              "page_id": "project",
-              "variant": "secondary"
+              "src": "assets/images/now/neso-operating-system.webp",
+              "alt": "لَقْطَةُ شَاشَةٍ لِقَائِمَةِ دَوْرَةِ أَنْظِمَةِ ٱلتَّشْغِيلِ مِنْ نِيسُو أَكَادِيمِي عَلَىٰ يُوتْيُوب",
+              "width": 640,
+              "height": 412
             }
           ]
         },
@@ -405,37 +299,23 @@
           ],
           "actions": [
             {
-              "label": "عَرْضُ كُلِّ ٱلتَّدْوِينَاتِ",
+              "label": "عَرْضُ كُلِّ ٱلْكِتَابَاتِ",
               "page_id": "blog",
               "variant": "secondary"
             }
           ]
         },
         {
-          "title": "ٱلْمَهَارَاتُ وَٱلتِّقْنِيَّاتُ",
+          "title": "ٱلْعَمَلُ",
           "paragraphs": [
-            "هٰذِهِ أَبْرَزُ ٱلْأَدَوَاتِ وَٱلتِّقْنِيَّاتِ ٱلَّتِي أَسْتَعْمِلُهَا فِي ٱلْمُوبَايِل وَٱلْبَاك إِنْد وَعَمَلِ ٱلْمُنْتَجِ."
+            "أَبْنِي ٱلْبَرْمَجِيَّاتِ مِنَ ٱلْبِدَايَةِ إِلَى ٱلنِّهَايَةِ: ٱلْخَوَادِمَ، وَتَطْبِيقَاتِ ٱلْوِيبِ، وَٱلْأَدَوَاتِ ٱلدَّاخِلِيَّةَ، وَتَطْبِيقَاتِ ٱلْهَاتِفِ ٱلَّتِي قَضَيْتُ فِيهَا أَكْثَرَ سَنَوَاتِي. فِي سَيَّارَة بَنَيْتُ أَدَوَاتِ رُؤْيَةٍ حَاسُوبِيَّةٍ تَعْمَلُ عَلَى ٱلْجِهَازِ لِصُوَرِ ٱلسَّيَّارَاتِ وَمَسْحِ أَرْقَامِ ٱلْهَيْكَلِ، وَقَبْلَ ذٰلِكَ شَارَكْتُ فِي إِعَادَةِ بِنَاءِ تَطْبِيقِ ٱلْحَدِيثِ، مِنْ أَكْثَرِ ٱلتَّطْبِيقَاتِ ٱلْإِسْلَامِيَّةِ تَنْزِيلًا فِي بَنْغْلَادِيش."
           ],
-          "tags": [
-            "Kotlin",
-            "Android",
-            "iOS",
-            "Flutter",
-            "Dart",
-            "Kotlin Multiplatform",
-            "Jetpack Compose",
-            "Swift",
-            "Laravel",
-            "Go",
-            "Java",
-            "Python",
-            "SQL",
-            "PostgreSQL",
-            "Redis",
-            "Firebase",
-            "Git",
-            "Linux",
-            "Docker"
+          "actions": [
+            {
+              "label": "ٱلْعَمَلُ وَٱلْمَشَارِيعُ",
+              "page_id": "work",
+              "variant": "secondary"
+            }
           ]
         }
       ],
@@ -445,35 +325,28 @@
     },
     "ur": {
       "meta": {
-        "title": "نعیم الکبیر · سافٹ ویئر انجینئر",
-        "description": "نعیم الکبیر کا پورٹ فولیو: ایک سافٹ ویئر انجینئر جو اینڈرائیڈ، آئی او ایس، فلٹر اور کاٹلِن ملٹی پلیٹ فارم پر کام کرتا ہے۔",
-        "keywords": "نعیم الکبیر، سافٹ ویئر انجینئر، اینڈرائیڈ ڈویلپر، کاٹلِن ملٹی پلیٹ فارم، فلٹر، لاراویل، موبائل ایپس، کراس پلیٹ فارم ڈویلپر، آئی او ایس ڈویلپر، ریموٹ سافٹ ویئر انجینئر"
+        "title": "نعیم الکبیر",
+        "description": "نعیم الکبیر کی ذاتی ویب سائٹ: کتابیں، زبانیں سیکھنا، ایمان، خیالات، اور روزی کے لیے سافٹ ویئر کا کام۔",
+        "keywords": "نعیم الکبیر، کتابیں، مطالعہ، اردو، بنگلہ، اسلامی عقائد، فلسفہ، تحریریں، ذاتی ویب سائٹ"
       },
       "header": {
         "site_title": "نعیم الکبیر",
-        "tagline": "مسلمان · سافٹ ویئر انجینئر · کتاب دوست · جستجو کرنے والا"
+        "tagline": "مسلمان · کتاب دوست · جستجو کرنے والا · سافٹ ویئر انجینئر"
       },
       "summary_card": [
-        "میں سافٹ ویئر انجینئر ہوں، اور میری اصل توجہ اینڈرائیڈ، آئی او ایس، فلٹر اور کاٹلِن ملٹی پلیٹ فارم پر رہتی ہے۔",
-        "ضرورت پڑے تو بیک اینڈ اور پروڈکٹ سائیڈ کا کام بھی سنبھال لیتا ہوں۔",
-        "اس وقت <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">سیارہ</a> میں اندرونی سپلائی چین سسٹمز اور ٹولنگ پر کام کر رہا ہوں۔ ریموٹ رولز اور کنٹریکٹ ورک کے لیے بھی دستیاب ہوں۔"
+        "السلام علیکم۔ میں نعیم ہوں۔ یہ انٹرنیٹ پر میرا اپنا گوشہ ہے: <mark>میں کیا پڑھ رہا ہوں، کیا سیکھ رہا ہوں، اور کن باتوں پر سوچتا ہوں</mark>۔",
+        "فرصت کا زیادہ تر وقت کتابوں میں گزرتا ہے: جاسوسی اور سنسنی خیز ناول، کچھ ادبی فکشن، اور فلسفہ، اسلامی عقائد اور تاریخ پر غیر افسانوی کتابیں۔ ساتھ ساتھ آہستہ آہستہ <mark>اردو پڑھنا سیکھ رہا ہوں</mark>۔",
+        "روزی کے لیے سافٹ ویئر لکھتا ہوں، آج کل <a href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\">سیارہ</a> میں اندرونی ٹولز بنا رہا ہوں۔ تفصیل <a href=\"/ur/work.html\">کام کے صفحے</a> پر ہے۔"
       ],
       "sections": [
         {
           "title": "فی الحال",
           "paragraphs": [
-            "<mark>کمپیوٹر سائنس کی بنیادوں</mark> کی طرف واپس جا رہا ہوں۔ اے آئی کے دور میں ایک اور نئی زبان یا فریم ورک سیکھنا بےسود لگتا ہے، اس لیے آج کل <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">آپریٹنگ سسٹم کی بنیادی باتیں</a> پڑھ رہا ہوں۔",
             "<strong>اردو پڑھنا سیکھ رہا ہوں</strong>، ابھی بالکل ابتدائی سطح پر۔ آہستہ آہستہ منٹو کی «آتش پارے» پڑھ رہا ہوں۔",
             "آج کل <mark>«تہافت الملاحدہ»</mark> پڑھ رہا ہوں۔",
-            "کام کے علاوہ <mark>پڑھنا ہی میرا تقریباً واحد مشغلہ ہے</mark>: بہت سی مسٹری اور تھرلرز، کچھ ادبی فکشن، اور فلسفہ، اسلامی عقیدہ اور تاریخ پر نان فکشن۔ اور ہیکر نیوز پر ضرورت سے کہیں زیادہ وقت۔"
+            "<mark>کمپیوٹر سائنس کی بنیادوں</mark> کی طرف واپس جا رہا ہوں۔ اے آئی کے دور میں ایک اور نئی زبان یا فریم ورک سیکھنا بےسود لگتا ہے، اس لیے آج کل <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">آپریٹنگ سسٹم کی بنیادی باتیں</a> پڑھ رہا ہوں۔"
           ],
           "images": [
-            {
-              "src": "assets/images/now/neso-operating-system.webp",
-              "alt": "یوٹیوب پر نیسو اکیڈمی کے آپریٹنگ سسٹم کورس کی پلے لسٹ کا اسکرین شاٹ",
-              "width": 640,
-              "height": 412
-            },
             {
               "src": "assets/images/now/atish-pare.webp",
               "alt": "سعادت حسن منٹو کی کتاب «آتش پارے» کا سرورق",
@@ -485,46 +358,12 @@
               "alt": "ڈاکٹر مفتی یاسر ندیم کی کتاب «تہافت الملاحدہ» کا سرورق",
               "width": 400,
               "height": 396
-            }
-          ]
-        },
-        {
-          "title": "منتخب کام",
-          "highlights": [
-            {
-              "title": "سیارہ میں آن ڈیوائس کمپیوٹر وژن، ایم ایل سسٹمز اور قابلِ اعتماد امیج اپ لوڈز",
-              "meta": "2023 - تا حال",
-              "paragraphs": [
-                "میں نے ابتدا سے آخر تک ایک ہلکا آن ڈیوائس ایم ایل سسٹم ڈیزائن اور ڈیلیور کیا، جو گاڑیوں کی تصاویر کو 42 الگ کلاسز میں پہچانتا ہے۔ اس کے لیے کسٹم ٹرینڈ موبائل نیٹ وی تھری لائٹ آر ٹی/ٹی ایف لائٹ ماڈل استعمال کیا گیا۔ اسے بلک اپ لوڈ، امیج ویلیڈیشن اور لائیو کیمرا ورک فلوز میں انٹیگریٹ کیا گیا، جس سے تصویر لینے کا وقت واضح طور پر کم ہوا اور انسانی کلاسیفیکیشن کی غلطیاں بھی نمایاں حد تک گھٹ گئیں۔",
-                "اسی کے ساتھ کیمرا ایکس، لائٹ آر ٹی اور ایم ایل کِٹ استعمال کرتے ہوئے ایک ریئل ٹائم اینڈرائیڈ وی آئی این اسکینر بھی بنایا۔ اس میں کسٹم ٹرینڈ کوانٹائزڈ ڈیٹیکٹر تھا، اور ایک پیچیدہ وی آئی این ریکگنیشن الگورتھم بھی، جو او سی آر ویلیڈیشن، چیک سم ریپیئر اور ملتے جلتے حروف کی گڑبڑ کو سنبھال لیتا ہے۔",
-                "مزید یہ کہ ایک اپ لوڈ مینیجر بھی بنایا، جس سے ٹرانسفر کے دوران تصاویر کے ضائع ہونے کے مسئلے میں نمایاں کمی آئی۔"
-              ]
             },
             {
-              "title": "بنگلہ دیش کی ایک نمایاں اسلامی ایپ کی ازسرِنو تعمیر میں حصہ",
-              "meta": "2022 - 2023",
-              "paragraphs": [
-                "میں نے الحدیث ایپ کو جدید بنانے کے کام میں حصہ لیا، جو بنگلہ دیش کی زیادہ ڈاؤن لوڈ کی جانے والی اسلامی ایپس میں سے ایک ہے۔ لیگیسی اینڈرائیڈ بلڈ کی دیکھ بھال کے ساتھ ساتھ اس کے فلٹر ری رائٹ میں بھی مدد کی، تاکہ بڑی یوزر بیس کے لیے منتقلی ممکن ہو سکے۔"
-              ]
-            },
-            {
-              "title": "کنٹریکٹ ورک اور سروسز",
-              "meta": "جاری",
-              "paragraphs": [
-                "چھوٹے کاروباروں کے لیے ویب ڈیزائن، ڈیجیٹل مارکیٹنگ اور ایمیزون ایف بی اے ٹولنگ پر کام کیا۔ ساتھ ہی میریئٹ بون وائے، بیس ہبز، پیشنٹ ایکسیس اور جوبامیکس جیسے بڑے پروڈکٹس کے لیے کنٹریکٹ ڈویلپمنٹ بھی کی۔ ایک کورڈووا ہائبرڈ ایپ میں سَن مِی پرنٹر ایس ڈی کے بھی انٹیگریٹ کیا۔"
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "label": "تجربات دیکھیں",
-              "page_id": "work",
-              "variant": "secondary"
-            },
-            {
-              "label": "تمام پراجیکٹس دیکھیں",
-              "page_id": "project",
-              "variant": "secondary"
+              "src": "assets/images/now/neso-operating-system.webp",
+              "alt": "یوٹیوب پر نیسو اکیڈمی کے آپریٹنگ سسٹم کورس کی پلے لسٹ کا اسکرین شاٹ",
+              "width": 640,
+              "height": 412
             }
           ]
         },
@@ -547,37 +386,23 @@
           ],
           "actions": [
             {
-              "label": "تمام بلاگز دیکھیں",
+              "label": "تمام تحریریں دیکھیں",
               "page_id": "blog",
               "variant": "secondary"
             }
           ]
         },
         {
-          "title": "اسکلز اور ٹیکنالوجیز",
+          "title": "کام",
           "paragraphs": [
-            "وہ بنیادی ٹولز اور ٹیکنالوجیز جنہیں میں موبائل، بیک اینڈ اور پروڈکٹ ورک میں زیادہ استعمال کرتا ہوں۔"
+            "سافٹ ویئر شروع سے آخر تک بناتا ہوں: بیک اینڈ، ویب ایپس، اندرونی ٹولز، اور موبائل ایپس، جن پر میرے زیادہ تر سال گزرے ہیں۔ سیارہ میں گاڑیوں کی تصاویر اور VIN اسکیننگ کے لیے آن ڈیوائس کمپیوٹر وژن ٹولز بنائے۔ اس سے پہلے بنگلہ دیش کی سب سے زیادہ ڈاؤن لوڈ ہونے والی اسلامی ایپس میں سے ایک، الحدیث، کو نئے سرے سے بنانے میں ہاتھ بٹایا۔"
           ],
-          "tags": [
-            "Kotlin",
-            "Android",
-            "iOS",
-            "Flutter",
-            "Dart",
-            "Kotlin Multiplatform",
-            "Jetpack Compose",
-            "Swift",
-            "Laravel",
-            "Go",
-            "Java",
-            "Python",
-            "SQL",
-            "PostgreSQL",
-            "Redis",
-            "Firebase",
-            "Git",
-            "Linux",
-            "Docker"
+          "actions": [
+            {
+              "label": "کام اور پراجیکٹس",
+              "page_id": "work",
+              "variant": "secondary"
+            }
           ]
         }
       ],

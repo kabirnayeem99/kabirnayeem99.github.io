@@ -1,7 +1,7 @@
 {
-    "name": "Naimul Kabir Portfolio",
+    "name": "Naimul Kabir",
     "short_name": "NaimulKabir",
-    "description": "Personal portfolio of Naimul Kabir — software engineer, bibliophile, and philomath.",
+    "description": "Personal site of Naimul Kabir: Muslim, bibliophile, philomath, and software engineer.",
     "id": "/",
     "start_url": "/",
     "scope": "/",
@@ -24,25 +24,40 @@
     ],
     "shortcuts": [
         {
-            "name": "Stats",
-            "short_name": "Stats",
-            "description": "Coding activity, typing speed, reading list, and more",
-            "url": "/stats.html",
-            "icons": [{ "src": "/assets/icons/android-chrome-192x192.png", "sizes": "192x192" }]
+            "name": "Reading",
+            "short_name": "Reading",
+            "description": "What I'm reading, my reading log, and the languages I read in",
+            "url": "/reading.html",
+            "icons": [
+                {
+                    "src": "/assets/icons/android-chrome-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Writing",
+            "short_name": "Writing",
+            "description": "Posts, notes and tutorials",
+            "url": "/blog.html",
+            "icons": [
+                {
+                    "src": "/assets/icons/android-chrome-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
         },
         {
             "name": "Work",
             "short_name": "Work",
-            "description": "Work history and experience",
+            "description": "Where I've worked and what I've built",
             "url": "/work.html",
-            "icons": [{ "src": "/assets/icons/android-chrome-192x192.png", "sizes": "192x192" }]
-        },
-        {
-            "name": "Projects",
-            "short_name": "Projects",
-            "description": "Personal and open-source projects",
-            "url": "/project.html",
-            "icons": [{ "src": "/assets/icons/android-chrome-192x192.png", "sizes": "192x192" }]
+            "icons": [
+                {
+                    "src": "/assets/icons/android-chrome-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
         }
     ]
 }

@@ -1,19 +1,14 @@
 ---
 import { scriptLang } from "../../lib/script-lang";
-import { Image } from "astro:assets";
-import HandArrow from "./HandArrow.astro";
 import BackToTopButton from "./BackToTopButton.astro";
 import Botanical from "./Botanical.astro";
 import BotanicalSprite from "./BotanicalSprite.astro";
-import HeaderControls from "./HeaderControls.astro";
 import HeadSeo from "./HeadSeo.astro";
 import HighlightCard from "./HighlightCard.astro";
 import PageFooter from "./PageFooter.astro";
-import PageNav from "./PageNav.astro";
-import { buildMainNav } from "../../lib/main-nav";
-import heroLogo from "../../assets/images/logo.svg";
+import SiteSidebar from "./SiteSidebar.astro";
+import SkillStickers from "./SkillStickers.astro";
 import featuredBooks from "../../data/site-content/featured-books.json";
-import skillsData from "../../data/site-content/skills.json";
 import goodreadsSnapshot from "../../data/site-content/goodreads-snapshot.json";
 import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
 import {
@@ -29,11 +24,6 @@ import {
   PAGE_LAYOUT,
   UMAMI_WEBSITE_ID,
 } from "../../lib/page-shared";
-import {
-  SOCIAL_CHIP_ICON_CLASS_BY_NAME,
-  type SocialChipIconName,
-  resolveSocialPlatformFromHref,
-} from "../../lib/social-chip-icons";
 import { buildSchemaGraphJson } from "../../lib/seo";
 import {
   clippingMast,
@@ -89,8 +79,6 @@ const ogLocaleAlternates = buildOgLocaleAlternates(lang);
 const menuId = `language-menu-index-${lang}`;
 const uiLabels = content.site.locale.labels;
 const pageAssets = buildPageAssetHrefs(currentRoute);
-const darkModeIconHref = assetHref(currentRoute, "icons/theme-dark.svg");
-const lightModeIconHref = assetHref(currentRoute, "icons/theme-light.svg");
 const goodreadsScriptSource = (() => {
   try {
     const parsed = new URL(content.statsCompact.goodreads.scriptSrc);
@@ -156,7 +144,7 @@ function resolveAction(action: IndexAction): ResolvedAction {
     isMailto,
     variantClass,
     labelText: isMailto ? stripMailPrefix(action.label) : action.label,
-    showTrailingArrow: isPageLink && action.variant === "secondary",
+    showTrailingArrow: isPageLink,
   };
   if (navPageId !== undefined) {
     resolved.navPageId = navPageId;
@@ -164,48 +152,6 @@ function resolveAction(action: IndexAction): ResolvedAction {
   return resolved;
 }
 
-interface SocialChip {
-  readonly href: string;
-  readonly ariaLabel: string;
-  readonly text: string;
-  readonly iconName: SocialChipIconName;
-  readonly isExternal: boolean;
-}
-
-function toSocialChip(action: IndexAction): SocialChip {
-  const resolved = resolveAction(action);
-  if (resolved.navPageId !== undefined) {
-    throw new Error("Top social actions cannot be page links");
-  }
-  if (!resolved.isMailto) {
-    throw new Error("Top social actions must use a mailto href");
-  }
-
-  return {
-    href: resolved.href,
-    ariaLabel: resolved.labelText,
-    text: resolved.labelText,
-    iconName: "email",
-    isExternal: false,
-  };
-}
-
-const topSocialChips = content.topActions.map((action) => toSocialChip(action));
-const profileSocialChips = content.site.socialProfiles.map((href) => {
-  const platform = resolveSocialPlatformFromHref(href);
-  const label = content.site.locale.socialPlatformLabels[platform];
-  return {
-    href,
-    ariaLabel: label,
-    text: label,
-    iconName: platform,
-    isExternal: true,
-  } as const;
-});
-const socialChips: readonly SocialChip[] = [
-  ...topSocialChips,
-  ...profileSocialChips,
-];
 // The home shelf opens with the last book read (the snapshot's newest; goodreads-loader
 // swaps in a newer one from cache or live Goodreads), then hand-picked covers
 // (featured-books.json lists their file names); the stats page holds the full wall.
@@ -255,7 +201,11 @@ const NUMBER_LOCALE: Readonly<Record<Lang, string>> = { en: "en-GB", bn: "bn-BD"
 // The stats page lists at most 300 books.
 const remainingBooks = Math.max(0, Math.min(goodreadsSnapshot.books.length, 300) - goodreadsBooks.length);
 const shelfMoreCount = SHELF_MORE_COUNT[lang](new Intl.NumberFormat(NUMBER_LOCALE[lang]).format(remainingBooks));
-const statsBooksHref = `${routeHref(currentRoute, routeForAction("stats"))}#gr_grid_widget_${content.statsCompact.goodreads.widgetId}`;
+// English: the full shelf lives on the reading page; other locales still use the stats page.
+const statsBooksHref =
+  lang === "en"
+    ? `${routeHref(currentRoute, content.routes.reading.en)}#shelf`
+    : `${routeHref(currentRoute, routeForAction("stats"))}#gr_grid_widget_${content.statsCompact.goodreads.widgetId}`;
 
 const viewAllStatsAction: IndexAction = {
   label: content.viewAllStatsLabel,
@@ -263,20 +213,6 @@ const viewAllStatsAction: IndexAction = {
   variant: "secondary",
 };
 
-// Skills sit on a sticker sheet: one row of die-cut stickers per group (skills.json).
-// Brand names stay as written in every locale; spoken languages carry their own script.
-const skillGroups = skillsData.groups.map((group) => ({
-  label: group.label[lang],
-  items: group.items.map((item) => {
-    const extra = item as { icon?: string; lang?: string; note?: Readonly<Record<Lang, string>> };
-    return {
-      name: item.name,
-      iconHref: extra.icon ? assetHref(currentRoute, `assets/icons/skills/${extra.icon}.svg`) : undefined,
-      lang: extra.lang,
-      note: extra.note?.[lang],
-    };
-  }),
-}));
 
 const visibleSections = content.sections.filter((section) => section.tags.length === 0);
 const [leadSection, ...remainingSections] = visibleSections;
@@ -343,78 +279,20 @@ function buildSectionClassName(
       {uiLabels.skipToMain}
     </a>
     <div class={PAGE_LAYOUT.siteClass}>
-      <header id="top">
-        <Botanical name="euc" class="pf pf--head" />
-        <div class="masthead">
-          <div class="header-identity-copy">
-            <h1 class="site-title">{content.header.siteTitle}</h1>
-            <p class="tagline">{content.header.tagline}</p>
-          </div>
-          <HeaderControls
-            currentRoute={currentRoute}
-            darkModeIconHref={darkModeIconHref}
-            lang={lang}
-            languageLinks={content.routes.index}
-            languageMenuId={menuId}
-            languageMenuLabels={content.site.languageMenuLabels}
-            languageSwitcherLabel={content.site.locale.languageSwitcherLabel}
-            lightModeIconHref={lightModeIconHref}
-            themeDarkLabel={uiLabels.themeDark}
-            themeLightLabel={uiLabels.themeLight}
-          />
-        </div>
-        <PageNav items={buildMainNav(currentRoute)} />
-      </header>
+      <SiteSidebar
+        currentRoute={currentRoute}
+        lang={lang}
+        languageLinks={content.routes.index}
+        languageMenuId={menuId}
+        isHome
+      />
 
       <main id={PAGE_LAYOUT.mainContentId}>
-        <div class="intro-stage">
-          <section class="about-section intro-stage-primary">
-            <div class="summary-card summary-card--about">
-              {content.summaryCard.map((paragraph) => <p set:html={paragraph} />)}
-            </div>
-            {topSocialChips.length > 0 ? <HandArrow variant="curl" class="hand-arrow--to-contact" /> : null}
-            <div class="social-chip-row" aria-label={content.socialRowLabel}>
-              {
-                socialChips.map((chip) => (
-                  <a
-                    class="social-chip"
-                    href={chip.href}
-                    target={chip.isExternal ? "_blank" : undefined}
-                    rel={chip.isExternal ? "noreferrer" : undefined}
-                    aria-label={chip.ariaLabel}
-                    data-umami-track-social="true"
-                    data-social-platform={chip.iconName}
-                  >
-                    <span
-                      class={`social-chip-icon ${SOCIAL_CHIP_ICON_CLASS_BY_NAME[chip.iconName]}`}
-                      aria-hidden="true"
-                    />
-                    <span>{chip.text}</span>
-                  </a>
-                ))
-              }
-            </div>
-          </section>
-
-          <div class="intro-stage-figure">
-            <Botanical name="shapla" class="pf pf--sleeve-lily" />
-            <Botanical name="cosmos-head" class="pf pf--sleeve-cosmos" />
-            <span class="hero-avatar">
-              <span class="hero-avatar-card">
-                <Image
-                  class="hero-illustration"
-                  alt={content.site.locale.ogImageAlt}
-                  src={heroLogo}
-                  width={1024}
-                  height={1024}
-                  loading="eager"
-                  decoding="async"
-                  fetchpriority="high"
-                />
-              </span>
-            </span>
+        <section class="about-section intro-stage">
+          <div class="summary-card summary-card--about">
+            {content.summaryCard.map((paragraph) => <p set:html={paragraph} />)}
           </div>
-        </div>
+        </section>
 
         {
           leadSection ? (
@@ -423,6 +301,31 @@ function buildSectionClassName(
                 <h2 class="section-title">{leadSection.title}</h2>
               </div>
               <Botanical name="sprig" class="sprig" />
+              {leadSection.items.length > 0 ? (
+                <div class="now-note">
+                  <span class="margin-note" aria-hidden="true">{marginDate}</span>
+                  <ul class="now-list">
+                    {leadSection.items.map((item) => (
+                      <li class="now-item">
+                        <span class="now-label">{item.label}</span>
+                        <p set:html={item.html} />
+                        {item.image ? (
+                          <figure class="print now-thumb">
+                            <img
+                              src={assetHref(currentRoute, item.image.src)}
+                              alt={item.image.alt}
+                              width={item.image.width}
+                              height={item.image.height}
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </figure>
+                        ) : null}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
               <div class="entry">
                 <span class="margin-note" aria-hidden="true">{marginDate}</span>
                 {leadSection.images.length > 0 ? (
@@ -448,6 +351,7 @@ function buildSectionClassName(
                   <p>{contact}</p>
                 ))}
               </div>
+              )}
               {leadSection.actions.length > 0 ? (
                 <div class="section-actions">
                   {leadSection.actions.map((action) => {
@@ -473,126 +377,6 @@ function buildSectionClassName(
             </section>
           ) : null
         }
-
-        {
-          remainingSections.map((section, sectionIndex) => (
-            <section class={buildSectionClassName(section)}>
-              {sectionIndex % 2 === 0 ? (
-                <Botanical name="cosmos" class="pf pf--end pf--tall-wide pf--tilt-r" />
-              ) : (
-                <Botanical name="buds" class="pf pf--end pf--tall-wide pf--tilt-l" />
-              )}
-              <div class="section-head">
-                <h2 class="section-title">{section.title}</h2>
-              </div>
-              <Botanical name="sprig" class="sprig" />
-              {section.paragraphs.map((paragraph) => (
-                <p set:html={paragraph} />
-              ))}
-              {section.highlights.length > 0 ? (
-                <div class="highlight-list">
-                  {section.highlights.map((highlight, highlightIndex) => (
-                    <HighlightCard card={highlight} botanical={pinnedBotanical(highlightIndex)} />
-                  ))}
-                </div>
-              ) : null}
-              {section.articles.length > 0 ? (
-                <ul class="article-list">
-                  {section.articles.map((article) => {
-                    const mast = clippingMast(article.href);
-                    return (
-                      <li class="article-item">
-                        <a
-                          href={article.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          data-umami-track-article="true"
-                        >
-                          <span class="clipping-mast" aria-hidden="true">
-                            <b>{mast.publication}</b>
-                          </span>
-                          <h3>{article.title}</h3>
-                          <p>{article.summary}</p>
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              ) : null}
-              {section.contacts.map((contact) => (
-                <p>{contact}</p>
-              ))}
-              {section.actions.length > 0 ? (
-                <div class="section-actions">
-                  {section.actions.map((action) => {
-                    const resolved = resolveAction(action);
-                    return (
-                      <a
-                        class={resolved.variantClass}
-                        href={resolved.href}
-                        target={resolved.isExternal ? "_blank" : undefined}
-                        rel={resolved.isExternal ? "noreferrer" : undefined}
-                        data-nav-page-id={resolved.navPageId}
-                      >
-                        {resolved.isMailto ? (
-                          <span class="action-chip-icon action-chip-icon--mail" aria-hidden="true" />
-                        ) : null}
-                        <span>{resolved.labelText}</span>
-                        {resolved.showTrailingArrow ? (
-                          <span class="action-chip-arrow" aria-hidden="true" />
-                        ) : null}
-                      </a>
-                    );
-                  })}
-                </div>
-              ) : null}
-            </section>
-          ))
-        }
-
-        <section class="index-section index-section--stats" data-umami-track-view="wakatime-stats">
-          <Botanical name="cosmos-head" class="pf pf--start pf--head-small pf--tilt-r" />
-          <div class="section-head">
-            <h2 class="section-title">{content.statsCompact.wakatime.title}</h2>
-          </div>
-          <Botanical name="sprig" class="sprig" />
-          <div class="sticker-sheet taped">
-            {skillGroups.map((group) => (
-              <div class="sticker-group">
-                <h3 class="sticker-group-label">{group.label}</h3>
-                <ul class="sticker-row">
-                  {group.items.map((item) => (
-                    <li class="skill-sticker" data-spoken={item.lang ? "" : undefined}>
-                      {item.iconHref ? (
-                        <img src={item.iconHref} alt="" width="18" height="18" loading="lazy" decoding="async" />
-                      ) : null}
-                      <span lang={item.lang} dir={item.lang ? "auto" : undefined}>{item.name}</span>
-                      {item.note ? <small class="skill-sticker-note">{item.note}</small> : null}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div class="section-actions">
-            {
-              (() => {
-                const resolved = resolveAction(viewAllStatsAction);
-                return (
-                  <a
-                    class={resolved.variantClass}
-                    href={resolved.href}
-                    data-nav-page-id={resolved.navPageId}
-                    data-nav-source="wakatime"
-                  >
-                    <span>{resolved.labelText}</span>
-                    <span class="action-chip-arrow" aria-hidden="true" />
-                  </a>
-                );
-              })()
-            }
-          </div>
-        </section>
 
         <section class="index-section index-section--books books-shelf-section" data-umami-track-view="books">
           <Botanical name="fern" class="pf pf--end pf--fern pf--tilt-l" />
@@ -674,6 +458,130 @@ function buildSectionClassName(
             </div>
           </div>
         </section>
+
+        {
+          remainingSections.map((section, sectionIndex) => (
+            <section class={buildSectionClassName(section)}>
+              {sectionIndex % 2 === 0 ? (
+                <Botanical name="cosmos" class="pf pf--end pf--tall-wide pf--tilt-r" />
+              ) : (
+                <Botanical name="buds" class="pf pf--end pf--tall-wide pf--tilt-l" />
+              )}
+              <div class="section-head">
+                <h2 class="section-title">{section.title}</h2>
+              </div>
+              <Botanical name="sprig" class="sprig" />
+              {section.paragraphs.map((paragraph) => (
+                <p set:html={paragraph} />
+              ))}
+              {section.images.length > 0 ? (
+                <a
+                  class="work-showcase"
+                  href={routeHref(currentRoute, routeForAction("work"))}
+                  aria-label={section.actions[0]?.label ?? section.title}
+                  data-nav-page-id="work"
+                  data-nav-source="work-showcase"
+                >
+                  {section.images.map((image) => {
+                    const isPhone = image.height > image.width;
+                    return (
+                      <figure class={isPhone ? "showcase-item showcase-item--phone" : "showcase-item showcase-item--window"}>
+                        <div class={isPhone ? "showcase-phone" : "showcase-window"}>
+                          {isPhone ? null : <span class="showcase-bar" aria-hidden="true"><i /><i /><i /></span>}
+                          <img
+                            src={assetHref(currentRoute, image.src)}
+                            alt={image.alt}
+                            width={image.width}
+                            height={image.height}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                        {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+                      </figure>
+                    );
+                  })}
+                </a>
+              ) : null}
+              {section.highlights.length > 0 ? (
+                <div class="highlight-list">
+                  {section.highlights.map((highlight, highlightIndex) => (
+                    <HighlightCard card={highlight} botanical={pinnedBotanical(highlightIndex)} />
+                  ))}
+                </div>
+              ) : null}
+              {section.articles.length > 0 ? (
+                <ul class="article-list">
+                  {section.articles.map((article) => {
+                    const mast = clippingMast(article.href);
+                    return (
+                      <li class="article-item">
+                        <a
+                          href={article.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          data-umami-track-article="true"
+                        >
+                          <span class="clipping-mast" aria-hidden="true">
+                            <b>{mast.publication}</b>
+                          </span>
+                          <h3>{article.title}</h3>
+                          <p>{article.summary}</p>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : null}
+              {section.contacts.map((contact) => (
+                <p>{contact}</p>
+              ))}
+              {section.actions.length > 0 ? (
+                <div class="section-actions">
+                  {section.actions.map((action) => {
+                    const resolved = resolveAction(action);
+                    return (
+                      <a
+                        class={resolved.variantClass}
+                        href={resolved.href}
+                        target={resolved.isExternal ? "_blank" : undefined}
+                        rel={resolved.isExternal ? "noreferrer" : undefined}
+                        data-nav-page-id={resolved.navPageId}
+                      >
+                        {resolved.isMailto ? (
+                          <span class="action-chip-icon action-chip-icon--mail" aria-hidden="true" />
+                        ) : null}
+                        <span>{resolved.labelText}</span>
+                        {resolved.showTrailingArrow ? (
+                          <span class="action-chip-arrow" aria-hidden="true" />
+                        ) : null}
+                      </a>
+                    );
+                  })}
+                </div>
+              ) : null}
+            </section>
+          ))
+        }
+
+
+        {
+          lang !== "en" ? (
+            <SkillStickers lang={lang} title={content.statsCompact.wakatime.title}>
+              <div class="section-actions">
+                {(() => {
+                  const resolved = resolveAction(viewAllStatsAction);
+                  return (
+                    <a class={resolved.variantClass} href={resolved.href} data-nav-page-id={resolved.navPageId} data-nav-source="wakatime">
+                      <span>{resolved.labelText}</span>
+                      <span class="action-chip-arrow" aria-hidden="true" />
+                    </a>
+                  );
+                })()}
+              </div>
+            </SkillStickers>
+          ) : null
+        }
       </main>
 
       <PageFooter

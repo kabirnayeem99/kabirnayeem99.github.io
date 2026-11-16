@@ -33,6 +33,14 @@
 @font-face {
   font-family: "Gulzar";
   src: url("../fonts/gulzar_arabic_normal_400.woff2") format("woff2");
+  /* Glyph size: tune here to scale Urdu everywhere (inside English text and on the Urdu
+     pages alike). 100% matches Newsreader once the metrics below stop the line inflating. */
+  size-adjust: 100%;
+  /* its own ascent/descent are far taller than Newsreader's and push lines apart: report
+     Latin-like metrics instead (the long strokes simply overhang, as in print) */
+  ascent-override: 78%;
+  descent-override: 26%;
+  line-gap-override: 0%;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -81,6 +89,8 @@
   font-style: italic;
   font-weight: 400;
   font-display: swap;
+  /* Bangla letters sit taller than Latin x-height at the same size */
+  size-adjust: 86%;
   unicode-range: U+0964-0965, U+0980-0983, U+0985-098C, U+098F-0990, U+0993-09A8, U+09AA-09B0, U+09B2, U+09B6-09B9, U+09BC-09C4, U+09C7-09C8, U+09CB-09CE, U+09D7, U+09DC-09DD, U+09DF-09E3, U+09E6-09FE, U+200C-200D, U+25CC;
 }
 
@@ -90,6 +100,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
+  /* Bangla letters sit taller than Latin x-height at the same size */
+  size-adjust: 86%;
   unicode-range: U+0964-0965, U+0980-0983, U+0985-098C, U+098F-0990, U+0993-09A8, U+09AA-09B0, U+09B2, U+09B6-09B9, U+09BC-09C4, U+09C7-09C8, U+09CB-09CE, U+09D7, U+09DC-09DD, U+09DF-09E3, U+09E6-09FE, U+200C-200D, U+25CC;
 }
 
@@ -206,8 +218,14 @@
   }
 
   html:not(:lang(ur)) :not(html)[lang="ur"] {
-    font-size: 1.12em;
     line-height: 1;
+  }
+
+  /* Gulzar and Tiro Bangla ship one weight: a browser-faked bold smears them. Inside text
+     of another language the script already stands out, so keep it at its true weight. */
+  html:not(:lang(ur)) :not(html)[lang="ur"],
+  html:not(:lang(bn)) :not(html)[lang="bn"] {
+    font-synthesis-weight: none;
   }
 
   html:not(:lang(ar)) :not(html)[lang="ar"] {
@@ -3595,5 +3613,616 @@
     background: var(--pencil-loop) center / 100% 100% no-repeat;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
+  }
+}
+
+/* ------------------------------------------------------------ reading page */
+
+@layer pages {
+  .reading-desk {
+    display: grid;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .reading-desk-item {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+
+  .reading-desk-item p {
+    margin-block: 0 8px;
+  }
+
+  .reading-desk-title {
+    margin: 0 0 2px;
+    font-size: 1.15rem;
+    font-weight: 500;
+  }
+
+  .reading-desk-meta {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .reading-last {
+    margin-block-start: 28px;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .reading-langs {
+    display: grid;
+    gap: 18px;
+    margin: 20px 0 0;
+  }
+
+  .reading-lang {
+    padding-block-start: 14px;
+    border-block-start: 1px solid var(--hair);
+  }
+
+  .reading-lang dt {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .reading-lang-name {
+    font-size: 1.2rem;
+  }
+
+  .reading-lang-level {
+    font: 400 0.75rem/1.5 var(--mono);
+    color: var(--faint);
+  }
+
+  .reading-lang dd {
+    margin: 4px 0 0;
+    color: var(--soft);
+  }
+
+  .reading-note + .reading-note {
+    margin-block-start: 28px;
+  }
+
+  .reading-note h3 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 760px) {
+    .reading-desk-item {
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 14px;
+    }
+  }
+}
+
+/* ---------------------------------------------------------- margin sidebar */
+/* Every page: a sticky left margin (avatar, name, pages, links, controls) beside one
+   column of content. Below 1000px the margin folds into a compact block on top. */
+
+@layer layout {
+  .site {
+    --sidebar: 200px;
+    --sidebar-gap: 80px;
+    display: grid;
+    grid-template-columns: var(--sidebar) minmax(0, var(--measure));
+    column-gap: var(--sidebar-gap);
+    align-items: start;
+    max-width: calc(var(--sidebar) + var(--sidebar-gap) + var(--measure) + var(--gap) * 2);
+  }
+
+  .site > * {
+    grid-column: 2;
+  }
+
+  .site > .site-sidebar {
+    grid-column: 1;
+    grid-row: 1 / span 40;
+  }
+
+  @media (max-width: 1000px) {
+    .site {
+      display: block;
+      max-width: calc(var(--measure) + var(--gap) * 2);
+      padding-block-start: 32px;
+    }
+  }
+}
+
+@layer chrome {
+  /* #top: outranks the older header#top rules (position/margins) */
+  #top.site-sidebar {
+    position: sticky;
+    inset-block-start: 58px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-height: calc(100vh - 118px);
+    margin: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* the scroll box clips: give hover rings, focus outlines and the avatar's flower room
+       to spill past the column edge, then take the space back so nothing moves */
+    padding: 14px;
+    margin: -14px;
+  }
+
+  .sidebar-identity {
+    display: grid;
+    gap: 18px;
+  }
+
+  .sidebar-avatar {
+    position: relative;
+    display: block;
+    width: 150px;
+    margin-inline-start: -10px;
+  }
+
+  .sidebar-name .site-title {
+    font-size: 1.7rem;
+    line-height: 1.15;
+  }
+
+  .sidebar-name .site-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .sidebar-name .tagline {
+    margin-block-start: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .site-sidebar .page-nav {
+    margin: 0;
+  }
+
+  .site-sidebar .page-nav-track {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .site-sidebar .page-nav-link {
+    font-size: 1.1rem;
+  }
+
+  .sidebar-foot {
+    display: grid;
+    gap: 18px;
+    margin-block-start: auto;
+  }
+
+  .sidebar-links {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sidebar-foot .header-controls {
+    margin-inline-start: -8px;
+  }
+
+  .page-heading {
+    margin-block-end: 64px;
+  }
+
+  .page-heading .site-title--page {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 1000px) {
+    #top.site-sidebar {
+      position: static;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 22px 16px;
+      max-height: none;
+      overflow: visible;
+      margin-block-end: 56px;
+    }
+
+    .sidebar-identity {
+      grid-template-columns: 64px minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+    }
+
+    .sidebar-avatar {
+      width: 72px;
+      margin-inline-start: -6px;
+    }
+
+    .sidebar-name .site-title {
+      font-size: 1.5rem;
+    }
+
+    .sidebar-name .tagline {
+      margin-block-start: 2px;
+      font-size: 0.85rem;
+    }
+
+    .sidebar-foot {
+      display: contents;
+    }
+
+    .sidebar-foot .header-controls {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: start;
+      margin: 0;
+    }
+
+    .site-sidebar .page-nav {
+      grid-column: 1 / -1;
+    }
+
+    .site-sidebar .page-nav-track {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 4px 20px;
+    }
+
+    .sidebar-links {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+    }
+
+    .page-heading {
+      margin-block-end: 48px;
+    }
+
+    .page-heading .site-title--page {
+      font-size: 1.9rem;
+    }
+  }
+}
+
+@layer pages {
+  /* the avatar moved to the sidebar: the home intro is a single column now */
+  .intro-stage {
+    display: block;
+  }
+
+  /* logo.svg is a square with the drawing in its middle band: show just the drawing */
+  .sidebar-avatar .hero-avatar-card {
+    aspect-ratio: 1024 / 720;
+    overflow: hidden;
+  }
+
+  .sidebar-avatar .hero-illustration {
+    margin-block-start: -8%;
+  }
+}
+
+@layer ornaments {
+  /* the start margin is the sidebar now; flowers keep to the far side, when there is room */
+  .site .pf--start {
+    display: none;
+  }
+
+  @media (max-width: 1500px) {
+    .site .pf--end,
+    .site .pf--bouquet {
+      display: none;
+    }
+  }
+
+  .sidebar-avatar .pf--sleeve-cosmos {
+    inset-inline-end: -6px;
+    inset-block-start: -10px;
+  }
+
+  @media (max-width: 1000px) {
+    .sidebar-avatar .pf--sleeve-cosmos {
+      display: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sidebar-identity { view-transition-name: sidebar-identity; }
+  .sidebar-links { view-transition-name: sidebar-links; }
+}
+
+@layer components {
+  /* a company mark set into running text, in the same ink as the work page's stamps */
+  .inline-logo {
+    display: inline-block;
+    height: 0.95em;
+    width: calc(0.95em * var(--stamp-ratio, 2));
+    margin-inline: 0.15em 0.35em;
+    vertical-align: -0.05em;
+    background: var(--text);
+    opacity: 0.6;
+    mask: var(--stamp) center / contain no-repeat;
+    /* stuck on by hand: a little crooked, a touch above the line */
+    rotate: -7deg;
+    translate: 0 -0.12em;
+  }
+
+  [dir="rtl"] .inline-logo {
+    rotate: 7deg;
+  }
+
+  /* a second sticker leans the other way */
+  .inline-logo--tilt-r {
+    rotate: 8deg;
+  }
+
+  [dir="rtl"] .inline-logo--tilt-r {
+    rotate: -8deg;
+  }
+
+  .inline-logo-link {
+    white-space: nowrap;
+  }
+}
+
+/* "these days": a short dated list, each line with its picture stuck beside it */
+@layer pages {
+  .now-note .margin-note {
+    display: block;
+    margin-block-end: 18px;
+  }
+
+  .now-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .now-item {
+    display: grid;
+    grid-template-columns: 124px minmax(0, 1fr) 84px;
+    column-gap: 24px;
+    align-items: start;
+    padding-block: 22px;
+    border-block-start: 1px solid var(--hair);
+  }
+
+  .now-item:last-child {
+    border-block-end: 1px solid var(--hair);
+  }
+
+  .now-label {
+    padding-block-start: 0.35em;
+    font: 400 0.72rem/1.5 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .now-item p {
+    margin: 0;
+  }
+
+  .now-thumb {
+    justify-self: end;
+    width: 72px;
+    rotate: -4deg;
+    box-shadow: 0 1px 2px color-mix(in srgb, var(--text) 12%, transparent);
+  }
+
+  .now-item:nth-child(even) .now-thumb {
+    rotate: 5deg;
+  }
+
+  .now-thumb img {
+    max-height: 96px;
+    object-fit: cover;
+  }
+
+  @media (max-width: 760px) {
+    .now-item {
+      grid-template-columns: minmax(0, 1fr) 64px;
+      row-gap: 6px;
+    }
+
+    .now-label {
+      grid-column: 1;
+      padding: 0;
+    }
+
+    .now-item p {
+      grid-column: 1;
+    }
+
+    .now-thumb {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      width: 56px;
+    }
+  }
+}
+
+@layer pages {
+  /* keep a title in another script whole rather than split across lines */
+  .now-item [lang] {
+    white-space: nowrap;
+  }
+}
+
+/* cursor: the ordinary arrow and hand, redrawn as a soft pencil sketch (mouse only) */
+@layer utilities {
+  @media (pointer: fine) {
+    :root {
+      --cursor-arrow: url("../icons/cursor/arrow.svg") 2 1, auto;
+      --cursor-hand: url("../icons/cursor/hand.svg") 8 1, pointer;
+    }
+
+    html[data-theme="dark"] {
+      --cursor-arrow: url("../icons/cursor/arrow-dark.svg") 2 1, auto;
+      --cursor-hand: url("../icons/cursor/hand-dark.svg") 8 1, pointer;
+    }
+
+    html,
+    body {
+      cursor: var(--cursor-arrow);
+    }
+
+    :is(a[href], button, summary, label[for], select, [role="button"], [data-theme-toggle]) {
+      cursor: var(--cursor-hand);
+    }
+
+    :is(a[href], button) * {
+      cursor: inherit;
+    }
+
+    :is(input:not([type="button"], [type="submit"], [type="checkbox"], [type="radio"]), textarea, [contenteditable="true"]) {
+      cursor: text;
+    }
+  }
+}
+
+/* home "work": one mixed spread of website windows and phones, each standing on its own */
+@layer pages {
+  .work-showcase {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: center;
+    gap: 36px 24px;
+    margin-block: 40px 32px;
+  }
+
+  .showcase-item {
+    margin: 0;
+  }
+
+  /* row one: a wide window and two phones; row two: two windows */
+  .showcase-item--window { grid-column: span 6; }
+  .showcase-item--phone { grid-column: span 2; }
+  .showcase-item:first-child { grid-column: span 8; }
+
+  .showcase-window {
+    overflow: hidden;
+    border: 1px solid var(--hair-strong);
+    border-radius: 7px;
+    background: var(--bg);
+    box-shadow: 0 18px 36px -24px color-mix(in srgb, var(--text) 45%, transparent);
+  }
+
+  .showcase-bar {
+    display: flex;
+    gap: 4px;
+    padding: 6px 8px;
+    border-block-end: 1px solid var(--hair);
+    background: var(--surface);
+  }
+
+  .showcase-bar i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--hair-strong);
+  }
+
+  .showcase-window img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .showcase-phone {
+    padding: 3px;
+    border: 1px solid var(--hair-strong);
+    border-radius: 9px;
+    background: #1d1a16;
+    box-shadow: 0 16px 30px -18px color-mix(in srgb, var(--text) 60%, transparent);
+  }
+
+  /* the phones lean a little, each its own way */
+  .showcase-item--phone:nth-child(2) .showcase-phone { rotate: -3deg; }
+  .showcase-item--phone:nth-child(3) .showcase-phone { rotate: 2deg; }
+
+  .showcase-phone img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 17;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 6px;
+  }
+
+  .showcase-item figcaption {
+    margin-block-start: 12px;
+    font-size: 0.85rem;
+    font-style: italic;
+    line-height: 1.35;
+    color: var(--muted);
+  }
+
+  .showcase-item--phone figcaption {
+    text-align: center;
+  }
+
+  @media (max-width: 760px) {
+    /* a window across, the two phones side by side, then the other windows */
+    .work-showcase {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 20px;
+    }
+
+    .showcase-item--window,
+    .showcase-item:first-child { grid-column: 1 / -1; }
+    .showcase-item--phone { grid-column: span 1; padding-inline: 12%; }
+  }
+}
+
+@layer pages {
+  /* the whole spread is one link to the work page */
+  a.work-showcase,
+  a.work-showcase figcaption {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a.work-showcase figcaption {
+    color: var(--muted);
+  }
+
+  a.work-showcase:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 10px;
+    border-radius: 8px;
+  }
+}
+
+/* the one call to action that must not be missed (home → work): circled in pen like the
+   marked phrases, in the accent ink, a size up from the other written links */
+@layer utilities {
+  .action-chip.action-chip--primary {
+    gap: 10px;
+    padding: 14px 30px 13px;
+    margin-inline-start: -14px;
+    border: 0;
+    border-radius: 0;
+    background: var(--pencil-loop) center / 100% 100% no-repeat;
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .action-chip.action-chip--primary:hover,
+  .action-chip.action-chip--primary:focus-visible {
+    background: var(--pencil-loop) center / 100% 100% no-repeat;
+    color: var(--text);
   }
 }

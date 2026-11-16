@@ -28,5 +28,11 @@
     "bn": "bn/stats.html",
     "ar": "ar/stats.html",
     "ur": "ur/stats.html"
+  },
+  "reading": {
+    "en": "reading.html",
+    "bn": "reading.html",
+    "ar": "reading.html",
+    "ur": "reading.html"
   }
 }

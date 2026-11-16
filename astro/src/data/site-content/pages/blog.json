@@ -3,12 +3,12 @@
   "locales": {
     "en": {
       "meta": {
-        "title": "Blog · Naimul Kabir",
-        "description": "Blogs, notes, and tutorials by Naimul Kabir.",
-        "keywords": "Naimul Kabir blog, software engineering articles, mobile development notes"
+        "title": "Writing · Naimul Kabir",
+        "description": "Posts, notes and tutorials by Naimul Kabir.",
+        "keywords": "Naimul Kabir writing, blog, notes, software development, Linux"
       },
       "header": {
-        "site_title": "Blog",
+        "site_title": "Writing",
         "tagline": "Blogs, tutorials, guides, personal experiences, and some random notes."
       },
       "articles": [

@@ -21,8 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isOpen) {
           const rect = button.getBoundingClientRect();
           const isRtl = document.documentElement.dir === "rtl";
-          menu.style.top = `${rect.bottom + 10}px`;
-          if (isRtl) {
+          // The switcher sits at the foot of the sidebar: open upwards when there's no room below,
+          // and line up with whichever edge of the screen the button is nearer.
+          const opensUp = rect.bottom + 10 + menu.offsetHeight > window.innerHeight;
+          menu.style.top = opensUp ? `${Math.max(8, rect.top - 10 - menu.offsetHeight)}px` : `${rect.bottom + 10}px`;
+          const nearStart = isRtl ? rect.right > window.innerWidth / 2 : rect.left < window.innerWidth / 2;
+          if (nearStart && !isRtl) {
+            menu.style.left = `${rect.left}px`;
+            menu.style.right = "auto";
+          } else if (nearStart && isRtl) {
+            menu.style.right = `${window.innerWidth - rect.right}px`;
+            menu.style.left = "auto";
+          } else if (isRtl) {
             menu.style.left = `${rect.left}px`;
             menu.style.right = "auto";
           } else {

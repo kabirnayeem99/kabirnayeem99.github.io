@@ -4,15 +4,15 @@
     "en": {
       "meta": {
         "title": "Work · Naimul Kabir",
-        "description": "Work experience of Naimul Kabir across Syarah, MaxCode Lab, and a few other places.",
-        "keywords": "Naimul Kabir work experience, Android engineer, Kotlin developer, mobile software engineer"
+        "description": "Where Naimul Kabir has worked, and the things he has built along the way: backends, web apps, internal tools and mobile apps.",
+        "keywords": "Naimul Kabir, work, projects, full-stack developer, backend, web apps, mobile apps, Kotlin, Laravel"
       },
       "header": {
         "site_title": "Work",
         "tagline": "Alhamdulillah, a short work life, and the places and people I got to work with."
       },
       "summary": "Alhamdulillah, a short work life, and the places and people I got to work with.",
-      "section_title": "Work Experience",
+      "section_title": "Where I've worked",
       "entries": [
         {
           "title": "Multazim Solutions · Founder",
@@ -197,7 +197,7 @@
           ]
         }
       ],
-      "footer_html": "Need more detail? Email <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>.",
+      "footer_html": "Need more detail? Email <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>, or find me on <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>.",
       "credits_title": "Picture credits",
       "tags_label": "Worked on",
       "hero_images": []

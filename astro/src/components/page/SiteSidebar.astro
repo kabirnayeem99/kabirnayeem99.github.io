@@ -1,0 +1,115 @@
+---
+// The margin column every page shares: avatar, name, tagline, the page list, links and
+// controls. Sticky beside the page on wide screens; a compact block above it on phones.
+import { Image } from "astro:assets";
+import heroLogo from "../../assets/images/logo.svg";
+import { loadIndexPageContent } from "../../lib/index-content";
+import type { Lang } from "../../lib/locale-config";
+import { buildMainNav } from "../../lib/main-nav";
+import {
+  SOCIAL_CHIP_ICON_CLASS_BY_NAME,
+  resolveSocialPlatformFromHref,
+  type SocialChipIconName,
+} from "../../lib/social-chip-icons";
+import { assetHref, routeHref } from "../../lib/work-project-content";
+import Botanical from "./Botanical.astro";
+import HeaderControls from "./HeaderControls.astro";
+import PageNav from "./PageNav.astro";
+
+interface Props {
+  readonly currentRoute: string;
+  readonly lang: Lang;
+  readonly languageLinks: Readonly<Record<Lang, string>>;
+  readonly languageMenuId: string;
+  /** Home carries the name as its h1; inner pages use their own title. */
+  readonly isHome?: boolean;
+}
+
+const { currentRoute, lang, languageLinks, languageMenuId, isHome = false } = Astro.props;
+const content = loadIndexPageContent(lang);
+const uiLabels = content.site.locale.labels;
+const homeHref = routeHref(currentRoute, content.route);
+
+interface SidebarLink {
+  readonly href: string;
+  readonly label: string;
+  readonly icon: SocialChipIconName;
+  readonly external: boolean;
+}
+
+const links: readonly SidebarLink[] = [
+  ...content.topActions
+    .filter((action) => action.href?.startsWith("mailto:"))
+    .map((action) => ({
+      href: action.href ?? "",
+      label: action.label.replace(/^✉\s*/, ""),
+      icon: "email" as const,
+      external: false,
+    })),
+  ...content.site.socialProfiles.map((href) => {
+    const platform = resolveSocialPlatformFromHref(href);
+    return { href, label: content.site.locale.socialPlatformLabels[platform], icon: platform, external: true };
+  }),
+];
+const NameTag = isHome ? "h1" : "p";
+---
+
+<header id="top" class="site-sidebar">
+  <div class="sidebar-identity">
+    <a class="sidebar-avatar" href={homeHref} aria-label={content.header.siteTitle}>
+      <Botanical name="cosmos-head" class="pf pf--sleeve-cosmos" />
+      <span class="hero-avatar-card">
+        <Image
+          class="hero-illustration"
+          alt=""
+          src={heroLogo}
+          width={240}
+          height={240}
+          loading="eager"
+          decoding="async"
+          fetchpriority={isHome ? "high" : "auto"}
+        />
+      </span>
+    </a>
+    <div class="sidebar-name">
+      <NameTag class="site-title"><a href={homeHref}>{content.header.siteTitle}</a></NameTag>
+      <p class="tagline">{content.header.tagline}</p>
+    </div>
+  </div>
+
+  <PageNav items={buildMainNav(currentRoute)} />
+
+  <div class="sidebar-foot">
+    <ul class="sidebar-links" aria-label={content.socialRowLabel}>
+      {
+        links.map((link) => (
+          <li>
+            <a
+              class="social-chip"
+              href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noreferrer" : undefined}
+              data-umami-track-social="true"
+              data-social-platform={link.icon}
+            >
+              <span class={`social-chip-icon ${SOCIAL_CHIP_ICON_CLASS_BY_NAME[link.icon]}`} aria-hidden="true" />
+              <span>{link.label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <HeaderControls
+      currentRoute={currentRoute}
+      darkModeIconHref={assetHref(currentRoute, "icons/theme-dark.svg")}
+      lang={lang}
+      languageLinks={languageLinks}
+      languageMenuId={languageMenuId}
+      languageMenuLabels={content.site.languageMenuLabels}
+      languageSwitcherLabel={content.site.locale.languageSwitcherLabel}
+      lightModeIconHref={assetHref(currentRoute, "icons/theme-light.svg")}
+      themeDarkLabel={uiLabels.themeDark}
+      themeLightLabel={uiLabels.themeLight}
+    />
+  </div>
+</header>

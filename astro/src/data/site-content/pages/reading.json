@@ -1,0 +1,89 @@
+{
+  "og_type": "website",
+  "locales": {
+    "en": {
+      "meta": {
+        "title": "Reading · Naimul Kabir",
+        "description": "What Naimul Kabir is reading now, every book he has logged since 2012, and the languages he reads in.",
+        "keywords": "Naimul Kabir reading list, books, reading log, Goodreads, Urdu, Bangla, Islamic theology, philosophy"
+      },
+      "header": {
+        "site_title": "Reading"
+      },
+      "intro": [
+        "Reading is my (almost) only entertainment: lots of mysteries and thrillers, some literary fiction, and non-fiction on philosophy, Islamic theology and history.",
+        "This page is the long version: what's on the desk right now, the languages I read in, and the whole shelf of books I remembered to write down."
+      ],
+      "now": {
+        "title": "On the desk",
+        "last_read_label": "Last finished",
+        "items": [
+          {
+            "title": "حجاز کی آندھی",
+            "subtitle": "Hijaz ki Aandhi",
+            "author": "Inayatullah",
+            "lang": "ur",
+            "note": "For Urdu practice. Tried Manto's آتش پارے first and gave up after two afsanas; literary value is not the priority this time.",
+            "image": {
+              "src": "assets/images/now/hijaz-ki-aandhi.webp",
+              "alt": "Cover of Hijaz ki Aandhi by Inayatullah",
+              "width": 400,
+              "height": 635
+            }
+          },
+          {
+            "title": "تہافت الملاحدہ",
+            "subtitle": "Tahafutul Malahida",
+            "author": "Dr. Mufti Yasir Nadim al-Wajidi",
+            "lang": "ur",
+            "note": "Currently going through it.",
+            "image": {
+              "src": "assets/images/now/tahafutul-malahida.webp",
+              "alt": "Cover of Tahafutul Malahida by Dr. Mufti Yasir Nadim al-Wajidi",
+              "width": 400,
+              "height": 396
+            }
+          },
+          {
+            "title": "সন্দ্বীপিডিয়া",
+            "lang": "bn",
+            "note": "Reading it aloud, to practise my speech articulation."
+          }
+        ]
+      },
+      "languages": {
+        "title": "Languages I read in",
+        "intro": "Bangla is home, English is where most of my reading happens, and Urdu is the one I'm learning now.",
+        "items": [
+          {
+            "name": "বাংলা",
+            "lang": "bn",
+            "level": "Mother tongue",
+            "note": "Bangla classics like Pather Panchali are still among my favourite books."
+          },
+          {
+            "name": "English",
+            "lang": "en",
+            "level": "Daily",
+            "note": "Most of my reading, and almost all of my work, happens in English."
+          },
+          {
+            "name": "اردو",
+            "lang": "ur",
+            "level": "Learning",
+            "note": "Learning to read it. Tried Manto's Atish Pare and gave up after two afsanas; now on Hijaz ki Aandhi, where literary value is not the priority."
+          }
+        ]
+      },
+      "notes": {
+        "title": "Notes on books",
+        "items": []
+      },
+      "shelf": {
+        "title": "The whole shelf",
+        "copy": "These are books I read at some point in my life, or at least, books I remembered to add to Goodreads. Many were added from memory, from my teenage years, when the internet wasn't really a thing in my village, let alone Goodreads. I've probably forgotten to add most of them."
+      },
+      "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Developed with Astro. Also on <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>."
+    }
+  }
+}

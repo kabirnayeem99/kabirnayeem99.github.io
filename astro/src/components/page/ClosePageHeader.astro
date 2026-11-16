@@ -1,13 +1,8 @@
 ---
-import Botanical from "./Botanical.astro";
 import BotanicalSprite from "./BotanicalSprite.astro";
-import HeaderControls from "./HeaderControls.astro";
-import PageNav from "./PageNav.astro";
-import { buildMainNav } from "../../lib/main-nav";
+import SiteSidebar from "./SiteSidebar.astro";
 import { LANGS, PAGE_IDS, type Lang } from "../../lib/locale-config";
-import { assetHref } from "../../lib/work-project-content";
 import routes from "../../data/site-content/routes.json";
-import site from "../../data/site-content/site.json";
 
 interface Props {
   readonly homeHref: string;
@@ -16,13 +11,8 @@ interface Props {
   readonly currentRoute: string;
 }
 
-const {
-  homeHref,
-  closeLabel,
-  title,
-  currentRoute,
-} = Astro.props as Props;
-const navItems = buildMainNav(currentRoute);
+// homeHref/closeLabel are kept for the page call sites; the sidebar now links home.
+const { title, currentRoute } = Astro.props as Props;
 
 // Which page and language this is, from the route table, so the header can offer the same
 // page in the other languages.
@@ -32,35 +22,15 @@ const match = PAGE_IDS.flatMap((pageId) =>
 )[0];
 const lang: Lang = match?.code ?? "en";
 const languageLinks = routeTable[match?.pageId ?? "index"] as Readonly<Record<Lang, string>>;
-const localeSite = site.locales[lang];
 ---
 
 <BotanicalSprite />
-<header id="top">
-  <Botanical name="euc" class="pf pf--head" />
-  <div class="page-header-top">
-    <div class="page-closebar">
-      <a
-        class="page-close-button"
-        href={homeHref}
-        aria-label={closeLabel}
-        title={closeLabel}
-        ><span class="page-close-icon" aria-hidden="true"></span></a
-      >
-      <h1 class="site-title site-title--page">{title}</h1>
-    </div>
-    <HeaderControls
-      currentRoute={currentRoute}
-      darkModeIconHref={assetHref(currentRoute, "icons/theme-dark.svg")}
-      lang={lang}
-      languageLinks={languageLinks}
-      languageMenuId={`language-menu-${match?.pageId ?? "page"}-${lang}`}
-      languageMenuLabels={site.language_menu_labels}
-      languageSwitcherLabel={localeSite.language_switcher_label}
-      lightModeIconHref={assetHref(currentRoute, "icons/theme-light.svg")}
-      themeDarkLabel={localeSite.labels.theme_dark}
-      themeLightLabel={localeSite.labels.theme_light}
-    />
-  </div>
-  <PageNav items={navItems} />
-</header>
+<SiteSidebar
+  currentRoute={currentRoute}
+  lang={lang}
+  languageLinks={languageLinks}
+  languageMenuId={`language-menu-${match?.pageId ?? "page"}-${lang}`}
+/>
+<div class="page-heading">
+  <h1 class="site-title site-title--page">{title}</h1>
+</div>

@@ -56,6 +56,8 @@ export function buildSeoFileContext(): SeoFileContext {
     }
   }
 
+  sitemapEntries.push({ href: `${baseUrl}/reading.html`, priority: DEFAULT_PRIORITY_BY_LANG.en });
+
   sitemapEntries.push(
     { href: `${baseUrl}/llms.txt`, priority: "0.7" },
     { href: `${baseUrl}/index.md`, priority: "0.7" },

@@ -355,6 +355,8 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
             )}
           </div>
         </section>
+        {/* English: the book wall moved to the reading page. */}
+        {lang !== "en" ? (
         <section class="stats-report-section stats-report-section--books" data-umami-track-view="books-full">
           <Botanical name="wheat" class="pf pf--start pf--slim" />
           <div class="summary-card stats-card stats-bookshelf">
@@ -394,6 +396,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
             </p>
           </div>
         </section>
+        ) : null}
       </main>
       <PageFooter
         signature={content.site.locale.author}

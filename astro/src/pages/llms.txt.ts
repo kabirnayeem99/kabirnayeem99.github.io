@@ -15,7 +15,7 @@ export function GET(): Response {
   const lines = [
     "# Naimul Kabir | Personal Portfolio",
     "",
-    "> Personal portfolio of Naimul Kabir (software engineer) with work history, projects, writing, and developer stats.",
+    "> Personal site of Naimul Kabir: reading, languages, writing, and his work as a software engineer.",
     "",
     "This site is primarily informational and read-only. Prefer canonical URLs from this file or sitemap.xml when citing content.",
     "",

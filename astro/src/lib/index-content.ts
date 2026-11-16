@@ -47,6 +47,14 @@ export interface IndexImage {
   readonly alt: string;
   readonly width: number;
   readonly height: number;
+  /** Short handwritten-style label under a print (e.g. "web · Edumax"). */
+  readonly caption?: string;
+}
+
+export interface NowItem {
+  readonly label: string;
+  readonly html: string;
+  readonly image?: IndexImage;
 }
 
 export interface IndexSection {
@@ -54,6 +62,8 @@ export interface IndexSection {
   readonly paragraphs: readonly string[];
   /** Prints taped beside the section's text (e.g. covers of the books being read). */
   readonly images: readonly IndexImage[];
+  /** "These days": a short labelled list, each line with an optional picture beside it. */
+  readonly items: readonly NowItem[];
   readonly highlights: readonly ContentCard[];
   readonly tags: readonly string[];
   readonly articles: readonly ArticleLink[];
@@ -93,6 +103,7 @@ export interface RouteTable {
   readonly project: Readonly<Record<Lang, string>>;
   readonly blog: Readonly<Record<Lang, string>>;
   readonly stats: Readonly<Record<Lang, string>>;
+  readonly reading: Readonly<Record<Lang, string>>;
 }
 
 export interface IndexPageContent {
@@ -117,12 +128,38 @@ function isPageId(value: string): value is PageId {
   return PAGE_IDS.some((pageId) => pageId === value);
 }
 
+const NAV_ONLY_PAGES: ReadonlySet<string> = new Set(["reading"]);
+
+function readNowItems(source: Record<string, unknown>, path: string): readonly NowItem[] {
+  const value = source.items;
+  if (value === undefined) {
+    return [];
+  }
+  if (!Array.isArray(value)) {
+    throw new Error(`Expected array at ${path}.items`);
+  }
+  return value.map((raw, index) => {
+    const itemPath = `${path}.items[${index}]`;
+    const item = asRecord(raw, itemPath);
+    const image = item.image === undefined ? undefined : readIndexImages({ image: [item.image] }, "image", itemPath)[0];
+    return {
+      label: readString(item, "label", itemPath),
+      html: readString(item, "html", itemPath),
+      ...(image === undefined ? {} : { image }),
+    };
+  });
+}
+
 function readPageIdArray(source: Record<string, unknown>, key: string, path: string): readonly PageId[] {
   const entries = readStringArray(source, key, path);
   const pageIds: PageId[] = [];
   for (const [index, entry] of entries.entries()) {
     if (isPageId(entry)) {
       pageIds.push(entry);
+      continue;
+    }
+    // Stand-alone pages that sit in the nav but have no shared page loader (English-only for now).
+    if (NAV_ONLY_PAGES.has(entry)) {
       continue;
     }
     throw new Error(`Expected page id at ${path}.${key}[${index}]`);
@@ -265,7 +302,14 @@ function readIndexImages(source: Record<string, unknown>, key: string, path: str
     if (typeof width !== "number" || typeof height !== "number") {
       throw new Error(`Expected numeric width/height at ${imagePath}`);
     }
-    return { src: readString(image, "src", imagePath), alt: readString(image, "alt", imagePath), width, height };
+    const caption = readOptionalString(image, "caption", imagePath);
+    return {
+      src: readString(image, "src", imagePath),
+      alt: readString(image, "alt", imagePath),
+      width,
+      height,
+      ...(caption === undefined ? {} : { caption }),
+    };
   });
 }
 
@@ -283,6 +327,7 @@ function readIndexSections(source: Record<string, unknown>, path: string): reado
       title: readString(item, "title", itemPath),
       paragraphs: readOptionalStringArray(item, "paragraphs", itemPath),
       images: readIndexImages(item, "images", itemPath),
+      items: readNowItems(item, itemPath),
       highlights: readContentCards(item, "highlights", itemPath),
       tags: readOptionalStringArray(item, "tags", itemPath),
       articles: readArticles(item, "articles", itemPath),
@@ -308,6 +353,7 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
     project: readRouteMap(asRecord(routesRaw.project, "root.routes.project"), "root.routes.project"),
     blog: readRouteMap(asRecord(routesRaw.blog, "root.routes.blog"), "root.routes.blog"),
     stats: readRouteMap(asRecord(routesRaw.stats, "root.routes.stats"), "root.routes.stats"),
+    reading: readRouteMap(asRecord(routesRaw.reading, "root.routes.reading"), "root.routes.reading"),
   };
 
   const navigationRaw = asRecord(root.navigation, "root.navigation");

@@ -16,6 +16,8 @@
     {
       "label": { "en": "I build for", "bn": "যার জন্য বানাই", "ar": "أَبْنِي لِـ", "ur": "جن کے لیے بناتا ہوں" },
       "items": [
+        { "name": "Web" },
+        { "name": "Backend" },
         { "name": "Android", "icon": "android" },
         { "name": "iOS", "icon": "apple" },
         { "name": "Flutter", "icon": "flutter" },
@@ -65,11 +67,7 @@
       "items": [
         { "name": "বাংলা", "lang": "bn" },
         { "name": "English", "lang": "en" },
-        {
-          "name": "اردو",
-          "lang": "ur",
-          "note": { "en": "learning", "bn": "শিখছি", "ar": "أَتَعَلَّمُهَا", "ur": "سیکھ رہا ہوں" }
-        }
+        { "name": "اردو", "lang": "ur", "note": { "en": "learning", "bn": "শিখছি", "ar": "أَتَعَلَّمُهَا", "ur": "سیکھ رہا ہوں" }}
       ]
     }
   ]

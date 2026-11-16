@@ -1,0 +1,237 @@
+---
+import { scriptLang } from "../../lib/script-lang";
+import BackToTopButton from "./BackToTopButton.astro";
+import Botanical from "./Botanical.astro";
+import ClosePageHeader from "./ClosePageHeader.astro";
+import HeadSeo from "./HeadSeo.astro";
+import PageFooter from "./PageFooter.astro";
+import goodreadsSnapshot from "../../data/site-content/goodreads-snapshot.json";
+import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
+import { formatReadDate } from "../../lib/notebook";
+import {
+  buildOgImageUrl,
+  buildPageAssetHrefs,
+  PAGE_LAYOUT,
+  UMAMI_WEBSITE_ID,
+} from "../../lib/page-shared";
+import { loadReadingPageContent } from "../../lib/reading-content";
+import { buildBreadcrumb, buildSchemaGraphJson } from "../../lib/seo";
+import { loadStatsPageContent } from "../../lib/stats-content";
+import { assetHref, OG_LOCALE_BY_LANG, routeHref } from "../../lib/work-project-content";
+
+// English-only for now (see reading-content.ts).
+const lang = "en" as const;
+const content = loadReadingPageContent(lang);
+// The Goodreads widget settings (ids, script url, profile link) still live with the stats page data.
+const goodreads = loadStatsPageContent(lang).sections.goodreads;
+const buildTimestamp = computeLegacyBuildTimestamp(lang);
+const canonicalUrl = `${content.site.baseUrl}/${content.route}`;
+const ogImageUrl = buildOgImageUrl(content.site.baseUrl);
+const schemaGraphJson = buildSchemaGraphJson({
+  baseUrl: content.site.baseUrl,
+  websiteName: content.site.websiteName,
+  personName: content.site.personName,
+  canonicalUrl,
+  ogImageUrl,
+  socialProfiles: content.site.socialProfiles,
+  lang,
+  pageTitle: content.meta.title,
+  pageDescription: content.meta.description,
+  breadcrumb: buildBreadcrumb("reading", lang),
+});
+const pageAssets = buildPageAssetHrefs(content.route);
+const uiLabels = content.site.locale.labels;
+const homeHref = routeHref(content.route, content.homeRoute);
+
+const goodreadsScriptSource = (() => {
+  try {
+    const parsed = new URL(goodreads.scriptSrc);
+    parsed.searchParams.set("num_books", "300");
+    return parsed.toString();
+  } catch {
+    return goodreads.scriptSrc;
+  }
+})();
+
+type SnapshotBook = (typeof goodreadsSnapshot.books)[number];
+const dateOf = (book: SnapshotBook): string | undefined => (book as { dateRead?: string | null }).dateRead ?? undefined;
+
+// "Last finished": the snapshot's newest read.
+const lastRead = goodreadsSnapshot.books[0];
+
+
+const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
+  ...book,
+  readDate: formatReadDate(dateOf(book), lang),
+}));
+---
+
+<!DOCTYPE html>
+<html lang={lang} dir={content.site.locale.dir}>
+  <HeadSeo
+    lang={lang}
+    title={content.meta.title}
+    description={content.meta.description}
+    keywords={content.meta.keywords}
+    author={content.site.locale.author}
+    canonicalUrl={canonicalUrl}
+    alternateLinks={[
+      { hrefLang: "en", href: canonicalUrl },
+      { hrefLang: "x-default", href: canonicalUrl },
+    ]}
+    ogType="website"
+    preconnectHrefs={["https://www.goodreads.com"]}
+    ogLocale={OG_LOCALE_BY_LANG[lang]}
+    ogLocaleAlternates={[]}
+    ogImageUrl={ogImageUrl}
+    ogImageAlt={content.site.locale.ogImageAlt}
+    twitterSite={content.site.twitterSite}
+    schemaGraphJson={schemaGraphJson}
+    googleSiteVerification={content.site.googleSiteVerification}
+    umamiWebsiteId={UMAMI_WEBSITE_ID}
+    stylesheetHref={pageAssets.stylesheetHref}
+    faviconSvgHref={pageAssets.faviconSvgHref}
+    favicon32Href={pageAssets.favicon32Href}
+    favicon16Href={pageAssets.favicon16Href}
+    faviconIcoHref={pageAssets.faviconIcoHref}
+    appleTouchIconHref={pageAssets.appleTouchIconHref}
+    manifestHref={pageAssets.manifestHref}
+  />
+  <body data-page-id="reading" data-sw-path={pageAssets.swPath} data-goodreads-script-src={goodreadsScriptSource}>
+    <a class={PAGE_LAYOUT.skipLinkClass} href={`#${PAGE_LAYOUT.mainContentId}`}>{uiLabels.skipToMain}</a>
+    <div class={PAGE_LAYOUT.siteClass}>
+      <ClosePageHeader homeHref={homeHref} closeLabel={uiLabels.closePage} currentRoute={content.route} title={content.title} />
+      <main id={PAGE_LAYOUT.mainContentId} class="reading-page">
+        <section class="page-intro">
+          <div class="summary-card">
+            {content.intro.map((paragraph) => <p set:html={paragraph} />)}
+          </div>
+        </section>
+
+        <section class="reading-now">
+          <Botanical name="cosmos-nod" class="pf pf--end pf--tall pf--tilt-l" />
+          <div class="section-head">
+            <h2 class="section-title">{content.now.title}</h2>
+          </div>
+          <Botanical name="sprig" class="sprig" />
+          <ul class="reading-desk">
+            {content.now.items.map((item) => (
+              <li class="reading-desk-item">
+                {item.image ? (
+                  <figure class="print reading-desk-cover">
+                    <img
+                      src={assetHref(content.route, item.image.src)}
+                      alt={item.image.alt}
+                      width={item.image.width}
+                      height={item.image.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                ) : null}
+                <div>
+                  <h3 class="reading-desk-title"><span lang={item.lang} dir={item.lang ? "auto" : undefined}>{item.title}</span></h3>
+                  {item.subtitle || item.author ? (
+                    <p class="reading-desk-meta">
+                      {item.subtitle ? <em>{item.subtitle}</em> : null}
+                      {item.subtitle && item.author ? " · " : null}
+                      {item.author}
+                    </p>
+                  ) : null}
+                  <p set:html={item.note} />
+                </div>
+              </li>
+            ))}
+          </ul>
+          {lastRead ? (
+            <p class="reading-last">
+              {content.now.lastReadLabel}:{" "}
+              <a href={lastRead.href} target="_blank" rel="nofollow noreferrer" lang={scriptLang(lastRead.title)} dir="auto">
+                {lastRead.title}
+              </a>
+            </p>
+          ) : null}
+        </section>
+
+        <section class="reading-languages">
+          <Botanical name="buds" class="pf pf--start pf--tall-wide pf--tilt-r" />
+          <div class="section-head">
+            <h2 class="section-title">{content.languages.title}</h2>
+          </div>
+          <Botanical name="sprig" class="sprig" />
+          <p>{content.languages.intro}</p>
+          <dl class="reading-langs">
+            {content.languages.items.map((item) => (
+              <div class="reading-lang">
+                <dt>
+                  <span lang={item.lang} dir="auto" class="reading-lang-name">{item.name}</span>
+                  <span class="reading-lang-level">{item.level}</span>
+                </dt>
+                <dd>{item.note}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        {content.notes.items.length > 0 ? (
+          <section class="reading-notes">
+            <div class="section-head">
+              <h2 class="section-title">{content.notes.title}</h2>
+            </div>
+            <Botanical name="sprig" class="sprig" />
+            {content.notes.items.map((note) => (
+              <article class="reading-note">
+                <h3>
+                  {note.href ? (
+                    <a href={note.href} target="_blank" rel="noreferrer" dir="auto">{note.title}</a>
+                  ) : (
+                    <span dir="auto">{note.title}</span>
+                  )}
+                </h3>
+                {note.author || note.date ? (
+                  <p class="reading-desk-meta">{[note.author, note.date].filter(Boolean).join(" · ")}</p>
+                ) : null}
+                {note.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
+              </article>
+            ))}
+          </section>
+        ) : null}
+
+        <section class="stats-report-section stats-report-section--books" id="shelf" data-umami-track-view="books-full">
+          <Botanical name="wheat" class="pf pf--start pf--slim" />
+          <div class="summary-card stats-card stats-bookshelf">
+            <h2 class="section-title">{content.shelf.title}</h2>
+            <p>{content.shelf.copy}</p>
+            <div class="goodreads-widget" id={`gr_grid_widget_${goodreads.widgetId}`}>
+              <div class="gr_grid_container">
+                {shelfBooks.map((book) => (
+                  <div class="gr_grid_book_container">
+                    {book.readDate ? <span class="book-strip book-strip--date" dir="auto">{book.readDate}</span> : null}
+                    <a title={book.title} rel="nofollow noreferrer" href={book.href} target="_blank" data-umami-track-book="true" data-cursor-plain>
+                      <img alt={book.alt} src={assetHref(content.route, book.imageLocal.replace(/^\/+/, ""))} loading="lazy" decoding="async" />
+                    </a>
+                    <span class="book-strip book-strip--title" dir="auto" lang={scriptLang(book.title)}>{book.title}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p class="goodreads-profile-link">
+              <a href={goodreads.profileHref} target="_blank" rel="noreferrer">{goodreads.profileLabel}</a>
+            </p>
+          </div>
+        </section>
+      </main>
+      <PageFooter
+        signature={content.site.locale.author}
+        footerHtml={content.footerHtml}
+        lastUpdatedLabel={uiLabels.lastUpdated}
+        timestampIso={buildTimestamp.iso}
+        timestampDisplay={buildTimestamp.display}
+      />
+    </div>
+    <BackToTopButton label={uiLabels.backToTop} />
+    <script>
+      import "../../scripts/entries/reading-page";
+    </script>
+  </body>
+</html>
