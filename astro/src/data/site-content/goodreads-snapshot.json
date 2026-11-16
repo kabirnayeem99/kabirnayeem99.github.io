@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-11-12T08:53:49.900079Z",
+  "generatedAt": "2026-11-16T15:03:58.174128Z",
   "books": [
+    {
+      "title": "Lonesome Dove (Lonesome Dove, #1)",
+      "href": "https://www.goodreads.com/review/show/9060587500?utm_medium=api&utm_source=grid_widget",
+      "alt": "Lonesome Dove",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1559668037l/256008.jpg",
+      "imageLocal": "/assets/images/goodreads/256008-lonesome-dove-lonesome-dove-1.webp",
+      "imageFileName": "256008-lonesome-dove-lonesome-dove-1.webp",
+      "dateRead": null
+    },
     {
       "title": "জোছনা ও জননীর গল্প",
       "href": "https://www.goodreads.com/review/show/9048152131?utm_medium=api&utm_source=grid_widget",
