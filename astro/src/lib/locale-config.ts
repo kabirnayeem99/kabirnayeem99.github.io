@@ -4,7 +4,7 @@ export type Lang = (typeof LANGS)[number];
 // Compile-time switch for the language switcher UI. Flip to `false` to hide
 // the language-switcher icon/menu (routes for other languages still exist,
 // they're just not surfaced in the header).
-export const LOCALIZATION_ENABLED = true;
+export const LOCALIZATION_ENABLED = false;
 
 // Languages offered in the switcher. Arabic pages still build and stay reachable by URL
 // (and in hreflang/sitemap), but are not offered in the menu.
