@@ -8,6 +8,7 @@ import PageFooter from "./PageFooter.astro";
 import goodreadsSnapshot from "../../data/site-content/goodreads-snapshot.json";
 import { computeLegacyBuildTimestamp } from "../../lib/build-timestamp";
 import { formatReadDate } from "../../lib/notebook";
+import { withoutSeries } from "../../lib/book-title";
 import {
   buildOgImageUrl,
   buildPageAssetHrefs,
@@ -56,8 +57,9 @@ const goodreadsScriptSource = (() => {
 type SnapshotBook = (typeof goodreadsSnapshot.books)[number];
 const dateOf = (book: SnapshotBook): string | undefined => (book as { dateRead?: string | null }).dateRead ?? undefined;
 
-// "Last finished": the snapshot's newest read.
+// "Last finished": the snapshot's newest read (last-finished.ts swaps in a newer live one).
 const lastRead = goodreadsSnapshot.books[0];
+const knownReviewIds = goodreadsSnapshot.books.flatMap((book) => /\/review\/show\/(\d+)/.exec(book.href)?.[1] ?? []);
 
 
 const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
@@ -102,11 +104,13 @@ const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
     <div class={PAGE_LAYOUT.siteClass}>
       <ClosePageHeader homeHref={homeHref} closeLabel={uiLabels.closePage} currentRoute={content.route} title={content.title} />
       <main id={PAGE_LAYOUT.mainContentId} class="reading-page">
-        <section class="page-intro">
-          <div class="summary-card">
-            {content.intro.map((paragraph) => <p set:html={paragraph} />)}
-          </div>
-        </section>
+        {content.intro.length > 0 ? (
+          <section class="page-intro">
+            <div class="summary-card">
+              {content.intro.map((paragraph) => <p set:html={paragraph} />)}
+            </div>
+          </section>
+        ) : null}
 
         <section class="reading-now">
           <Botanical name="cosmos-nod" class="pf pf--end pf--tall pf--tilt-l" />
@@ -146,8 +150,15 @@ const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
           {lastRead ? (
             <p class="reading-last">
               {content.now.lastReadLabel}:{" "}
-              <a href={lastRead.href} target="_blank" rel="nofollow noreferrer" lang={scriptLang(lastRead.title)} dir="auto">
-                {lastRead.title}
+              <a
+                href={lastRead.href}
+                target="_blank"
+                rel="nofollow noreferrer"
+                lang={scriptLang(lastRead.title)}
+                dir="auto"
+                data-last-finished
+              >
+                {withoutSeries(lastRead.title)}
               </a>
             </p>
           ) : null}
@@ -202,6 +213,7 @@ const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
           <div class="summary-card stats-card stats-bookshelf">
             <h2 class="section-title">{content.shelf.title}</h2>
             <p>{content.shelf.copy}</p>
+            <script type="application/json" id="goodreads-known-reviews" is:inline set:html={JSON.stringify(knownReviewIds)} />
             <div class="goodreads-widget" id={`gr_grid_widget_${goodreads.widgetId}`}>
               <div class="gr_grid_container">
                 {shelfBooks.map((book) => (
