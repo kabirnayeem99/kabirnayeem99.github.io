@@ -191,9 +191,11 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
         title={content.header.siteTitle}
       />
       <main id={PAGE_LAYOUT.mainContentId} class="stats-report">
-        <section class="stats-report-intro">
-          {content.intro.map((paragraph) => <p>{paragraph}</p>)}
-        </section>
+        {content.intro.length > 0 ? (
+          <section class="stats-report-intro">
+            {content.intro.map((paragraph) => <p>{paragraph}</p>)}
+          </section>
+        ) : null}
         <section class="stats-report-section stats-report-section--wakatime">
           <Botanical name="cosmos-nod" class="pf pf--start pf--tall pf--tilt-l" />
           <div class="summary-card stats-card">

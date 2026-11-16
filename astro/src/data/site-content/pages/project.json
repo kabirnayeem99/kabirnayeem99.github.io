@@ -245,6 +245,30 @@
           "title": "Other Websites",
           "items": [
             {
+              "title": "Mr. Perfume",
+              "href": "https://mrperfumeshop.com/",
+              "meta": "2026 - WooCommerce · PHP",
+              "paragraphs": [
+                "Online shop for Mr. Perfume, a perfume store in Bangladesh. Shoppers can browse fragrances for him and for her, find a scent, keep a wishlist and order online.",
+                "<strong>Tech stack:</strong> WordPress, WooCommerce, PHP",
+                "<strong>Why it matters:</strong> Customers can browse the whole range and order from anywhere, or reach the shop by phone or WhatsApp in one tap."
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
+                  "alt": "Mr. Perfume online shop homepage on desktop",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/mrperfumeshop/home-mobile.webp",
+                  "alt": "Mr. Perfume online shop homepage on mobile",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
               "title": "Edumax Consultancy",
               "href": "https://edumaxconsultancy.com/",
               "meta": "2026 - WordPress · PHP",

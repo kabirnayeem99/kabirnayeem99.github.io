@@ -11,9 +11,7 @@
         "site_title": "Stats",
         "tagline": "A pile of useless data!"
       },
-      "intro": [
-        "A lot and a lot of data. No such thing as personal life."
-      ],
+      "intro": [],
       "sections": {
         "wakatime": {
           "title": "Skills & Languages",
