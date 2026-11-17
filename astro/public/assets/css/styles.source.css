@@ -182,7 +182,11 @@
     --space: 96px; /* between sections */
     --radius: 6px;
 
-    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    /* motion: only in answer to a tap, hover or page change. One curve, close to the
+       curve iOS uses for sheets; short and quiet. */
+    --ease: cubic-bezier(0.32, 0.72, 0, 1);
+    --dur-fast: 150ms;
+    --dur: 250ms;
 
     /* aliases kept for any script that reads them */
     --text-muted: var(--muted);
@@ -259,7 +263,7 @@
     font-optical-sizing: auto;
     font-synthesis-style: none; /* no fake slant on Arabic, Urdu or Bangla */
     -webkit-font-smoothing: antialiased;
-    transition: background-color 200ms ease, color 200ms ease;
+    transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
   }
 
   html:lang(bn) body {
@@ -283,7 +287,7 @@
     text-decoration-color: var(--hair-strong);
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
-    transition: text-decoration-color 160ms ease, color 160ms ease;
+    transition: text-decoration-color var(--dur-fast) ease, color var(--dur-fast) ease;
   }
 
   a:hover {
@@ -462,7 +466,7 @@
     color: var(--muted);
     cursor: pointer;
     text-decoration: none;
-    transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+    transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
   }
 
   .page-close-button {
@@ -481,7 +485,7 @@
     width: 16px;
     height: 16px;
     opacity: 0.6;
-    transition: opacity 160ms ease;
+    transition: opacity var(--dur-fast) ease;
   }
 
   html[data-theme="dark"] .theme-toggle-icon {
@@ -596,7 +600,7 @@
     color: var(--muted);
     font-size: 1.05rem;
     text-decoration: none;
-    transition: color 160ms ease;
+    transition: color var(--dur-fast) ease;
   }
 
   .page-nav-icon {
@@ -692,14 +696,15 @@
     background: var(--bg);
     font: 400 0.95rem/1 var(--serif);
     opacity: 0;
-    translate: 0 8px;
+    scale: 0.85;
     pointer-events: none;
-    transition: opacity 160ms ease, translate 240ms var(--ease), color 160ms ease, border-color 160ms ease;
+    transition: opacity var(--dur) var(--ease), scale var(--dur) var(--ease), color var(--dur-fast) ease,
+      border-color var(--dur-fast) ease;
   }
 
   .back-to-top.is-visible {
     opacity: 1;
-    translate: 0 0;
+    scale: 1;
     pointer-events: auto;
   }
 
@@ -795,21 +800,10 @@
     flex: none;
     background-color: currentColor;
     mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 10'%3E%3Cpath d='M1 5h11M8.5 1.5 12 5l-3.5 3.5' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-    transition: translate 200ms var(--ease);
   }
 
   [dir="rtl"] .action-chip-arrow {
     scale: -1 1;
-  }
-
-  .action-chip:hover .action-chip-arrow,
-  .shelf-more-card:hover .action-chip-arrow {
-    translate: 3px 0;
-  }
-
-  [dir="rtl"] .action-chip:hover .action-chip-arrow,
-  [dir="rtl"] .shelf-more-card:hover .action-chip-arrow {
-    translate: -3px 0;
   }
 
   .action-chip-icon--mail {
@@ -835,7 +829,7 @@
     color: var(--muted);
     font-size: 0.9rem;
     text-decoration: none;
-    transition: color 160ms ease;
+    transition: color var(--dur-fast) ease;
   }
 
   .social-chip:hover,
@@ -1019,7 +1013,7 @@
     height: 14px;
     filter: grayscale(1);
     opacity: 0.75;
-    transition: filter 200ms ease, opacity 200ms ease;
+    transition: filter var(--dur-fast) ease, opacity var(--dur-fast) ease;
   }
 
   .skill-sticker:hover img {
@@ -1100,7 +1094,7 @@
     text-decoration-color: transparent;
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
-    transition: text-decoration-color 160ms ease;
+    transition: text-decoration-color var(--dur-fast) ease;
   }
 
   .article-item > a:hover :is(h2, h3),
@@ -1130,7 +1124,7 @@
   .hero-avatar-card {
     isolation: isolate;
     background: var(--bg);
-    transition: background-color 200ms ease;
+    transition: background-color var(--dur-fast) ease;
   }
 
   .hero-illustration {
@@ -1575,7 +1569,7 @@
     fill-opacity: 0.85;
     transform-box: fill-box;
     transform-origin: center;
-    transition: fill-opacity 180ms ease;
+    transition: fill-opacity var(--dur-fast) ease;
     cursor: pointer;
   }
 
@@ -1675,17 +1669,12 @@
     background: var(--c);
     border-radius: 2px;
     transform-origin: left center;
-    animation: chart-meter-draw 800ms var(--ease) both;
-    animation-delay: calc(var(--i, 0) * 60ms + 100ms);
   }
 
   [dir="rtl"] .chart-meter-fill {
     transform-origin: right center;
   }
 
-  @keyframes chart-meter-draw {
-    from { transform: scaleX(0); }
-  }
 
   @media (max-width: 560px) {
     .wakatime-language-chip,
@@ -1801,23 +1790,11 @@
     transform-origin: bottom;
   }
 
-  .github-yearly-chart.is-drawing .github-yearly-bar {
-    animation: chart-bar-draw 800ms var(--ease) both;
-    animation-delay: calc(var(--i, 0) * 70ms + 100ms);
-  }
-
-  @keyframes chart-bar-draw {
-    from { transform: scaleY(0); }
-  }
-
-  @keyframes chart-ink-in {
-    from { opacity: 0; }
-  }
 
   .github-yearly-wash {
     fill: var(--text);
     fill-opacity: 0.14;
-    transition: fill-opacity 160ms ease;
+    transition: fill-opacity var(--dur-fast) ease;
   }
 
   .github-yearly-col.is-current .github-yearly-wash {
@@ -1854,11 +1831,6 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .github-yearly-chart.is-drawing .github-yearly-label,
-  .github-yearly-chart.is-drawing .github-yearly-ring {
-    animation: chart-ink-in 400ms ease both;
-    animation-delay: calc(var(--i, 0) * 70ms + 600ms);
-  }
 
   .github-yearly-col.is-current .github-yearly-label,
   .github-yearly-col.is-peak .github-yearly-label {
@@ -1898,7 +1870,7 @@
     text-decoration: none;
     font-size: 0.82rem;
     line-height: 1.5;
-    transition: border-color 160ms ease;
+    transition: border-color var(--dur-fast) ease;
   }
 
   .github-repo-card:hover,
@@ -1960,7 +1932,6 @@
     color: transparent;
     background: color-mix(in srgb, var(--text) var(--a, 50%), transparent);
     transform-origin: left center;
-    animation: chart-meter-draw 800ms var(--ease) both;
   }
 
   .leetcode-difficulty-segment--easy { --a: 25%; }
@@ -2032,13 +2003,7 @@
     background: var(--surface);
     outline: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
     outline-offset: -1px;
-    transition: opacity 200ms ease, translate 300ms var(--ease);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .gr_grid_book_container > a:hover img {
-      translate: 0 -3px;
-    }
+    transition: opacity var(--dur-fast) ease;
   }
 
   .book-strip--title {
@@ -2089,7 +2054,7 @@
     color: var(--muted);
     text-align: center;
     text-decoration: none;
-    transition: color 160ms ease, border-color 160ms ease;
+    transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease;
   }
 
   .shelf-more-card:hover,
@@ -2116,16 +2081,6 @@
     color: var(--faint);
   }
 
-  .gr_grid_book_container.is-book-entering {
-    animation: gr-book-enter 0.5s var(--ease);
-  }
-
-  @keyframes gr-book-enter {
-    from {
-      opacity: 0;
-      transform: translateY(-6px);
-    }
-  }
 
   .goodreads-profile-link {
     margin-block-start: 24px;
@@ -2339,123 +2294,48 @@
 }
 
 /* ------------------------------------------------------------------ motion */
+/* Simple, iOS-like: nothing moves on its own. No entrances, no scroll reveals, no drawing in.
+   Motion answers the reader only:
+   - hover/focus: colour and opacity ease over --dur-fast
+   - press: tappable things sink to 97% while held, and spring back
+   - back to top: fades and scales in when it appears
+   - page change: a short cross-dissolve; the nav stays put
+   prefers-reduced-motion turns all of it off (see the base layer). */
+
+@layer ornaments {
+  :is(.action-chip, .shelf-more-card, .theme-toggle, .page-close-button,
+      .page-nav a, .social-chip-row a, .article-item > a, .gr_grid_book_container > a) {
+    transition-property: color, background-color, border-color, opacity, scale;
+    transition-duration: var(--dur-fast), var(--dur-fast), var(--dur-fast), var(--dur-fast), var(--dur);
+    transition-timing-function: ease, ease, ease, ease, var(--ease);
+  }
+
+  :is(.action-chip, .shelf-more-card, .back-to-top, .theme-toggle, .page-close-button,
+      .page-nav a, .social-chip-row a, .gr_grid_book_container > a):active {
+    scale: 0.97;
+    transition-duration: 80ms;
+  }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;
   }
 
-  /* app-style page changes: the nav and controls stay put (gliding to their new place),
-     the page underneath fades out and the next one rises in */
   .page-nav { view-transition-name: page-nav; }
   .header-controls { view-transition-name: header-controls; }
   .back-to-top { view-transition-name: back-to-top; }
 
-  ::view-transition-group(page-nav),
-  ::view-transition-group(header-controls) {
-    animation-duration: 320ms;
+  ::view-transition-group(*) {
+    animation-duration: var(--dur);
     animation-timing-function: var(--ease);
   }
 
-  ::view-transition-old(root) {
-    animation: page-out 160ms ease-in both;
-  }
-
+  ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation: page-in 320ms var(--ease) 60ms both;
+    animation-duration: 200ms;
+    animation-timing-function: ease;
   }
-
-  @keyframes page-out {
-    to { opacity: 0; transform: translateY(-4px); }
-  }
-
-  @keyframes page-in {
-    from { opacity: 0; transform: translateY(10px); }
-  }
-}
-
-/* html.motion is set in <head> before first paint, only without a reduced-motion preference;
-   notebook-motion.ts adds .is-inked as each piece scrolls into view. */
-@layer ornaments {
-  /* the nav is carried across page changes, so only the page's own header rises in */
-  html.motion :is(.masthead, .page-header-top) {
-    animation: rise 600ms var(--ease) backwards;
-  }
-
-  /* arriving through a page transition, which already animates the page in */
-  html.vt-arrived :is(.masthead, .page-header-top, .summary-card, .social-chip-row, .intro-stage-figure, .postcards) {
-    animation: none;
-  }
-
-  /* never from opacity 0: first-screen text must count as painted straight away */
-  @keyframes rise {
-    from {
-      opacity: 0.05;
-      transform: translateY(4px);
-    }
-  }
-
-  html.motion :is(.summary-card, .social-chip-row, .intro-stage-figure, .postcards) {
-    animation: rise 700ms var(--ease) 180ms backwards;
-  }
-
-  html.motion
-    :is(
-      .section-head, main > section:not(:first-of-type) > p, .entry,
-      .highlight, .article-item, .sticker-group, .gr_grid_book_container, .gr_grid_book_placeholder,
-      .section-actions, .stats-card, .github-repo-card, .pf, .pinned, .journal-prints
-    ):not(.is-inked) {
-    opacity: 0;
-  }
-
-  html.motion .is-inked {
-    animation: fade-up 600ms var(--ease) var(--reveal-delay, 0ms) backwards;
-  }
-
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-  }
-
-  /* a faint flower stays faint once revealed */
-  html.motion :is(.pf, .pinned).is-inked {
-    animation-name: fade-in;
-  }
-
-  @keyframes fade-in {
-    from { opacity: 0; }
-  }
-
-  /* reading progress: a hairline */
-  .reading-ribbon {
-    position: fixed;
-    inset: 0 0 auto;
-    z-index: 40;
-    height: 1.5px;
-    background: var(--text);
-    transform: scaleX(var(--progress, 0));
-    transform-origin: 0 50%;
-    pointer-events: none;
-  }
-
-  [dir="rtl"] .reading-ribbon {
-    transform-origin: 100% 50%;
-  }
-
-  @supports (animation-timeline: scroll()) {
-    .reading-ribbon {
-      animation: ribbon-progress linear both;
-      animation-timeline: scroll(root block);
-    }
-  }
-
-  @keyframes ribbon-progress {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
-
 }
 
 /* Stats widgets fill in from script just after first paint; reserve roughly their height
@@ -2529,7 +2409,7 @@
     font-size: 0.95rem;
     line-height: 1.2;
     text-decoration: none;
-    transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+    transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease, color var(--dur-fast) ease;
   }
 
   .action-chip:hover,
@@ -2914,7 +2794,7 @@
     border-radius: inherit;
     outline: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
     outline-offset: -1px;
-    transition: opacity 200ms ease;
+    transition: opacity var(--dur-fast) ease;
     translate: none !important;
   }
 
@@ -2932,7 +2812,7 @@
     margin-block-start: 12px;
     font-size: 0.95rem;
     line-height: 1.35;
-    transition: color 160ms ease;
+    transition: color var(--dur-fast) ease;
   }
 
   .book-strip--date {
@@ -2967,19 +2847,13 @@
     border-radius: 2px 5px 5px 2px;
     background: var(--surface);
     color: var(--text);
-    transition: border-color 160ms ease, color 160ms ease, translate 320ms var(--ease);
+    transition: border-color var(--dur-fast) ease, color var(--dur-fast) ease;
   }
 
   .shelf-more-card:hover,
   .shelf-more-card:focus-visible {
     border-color: var(--accent);
     color: var(--accent);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .shelf-more-card:hover {
-      translate: 0 -6px;
-    }
   }
 
   .shelf-more-label {
@@ -3387,7 +3261,7 @@
     background: var(--faint);
     mask: var(--doodle-page) center / contain no-repeat;
     rotate: -4deg;
-    transition: background-color 160ms ease, rotate 240ms var(--ease);
+    transition: background-color var(--dur-fast) ease;
   }
 
   .article-item:nth-child(even) > a::before {
@@ -3396,7 +3270,6 @@
 
   .article-item > a:hover::before {
     background: var(--accent);
-    rotate: 0deg;
   }
 
   .highlight > .meta::after,

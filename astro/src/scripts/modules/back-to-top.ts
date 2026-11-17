@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }).observe(sentinel);
 
   button.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: still ? "auto" : "smooth" });
   });
 });

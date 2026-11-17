@@ -83,7 +83,7 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
   const isNewRead = (reviewId: string | null): reviewId is string =>
     reviewId !== null && reviewId !== reviewIdOf(link.getAttribute("href")) && !knownReviewIds.has(reviewId);
 
-  const show = (entry: LastReadEntry, { animate }: { animate: boolean }): void => {
+  const show = (entry: LastReadEntry): void => {
     link.href = entry.href;
     link.title = entry.title;
     image.src = entry.imageSrc;
@@ -94,17 +94,13 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
     }
     // Only the snapshot knows read dates; a book newer than it has none to show yet.
     if (dateStrip) dateStrip.hidden = true;
-    if (animate) {
-      slot.classList.add("is-book-entering");
-      slot.addEventListener("animationend", () => slot.classList.remove("is-book-entering"), { once: true });
-    }
   };
 
   // A cached book the snapshot has since caught up with is stale: the server render wins.
   const cached = readCache();
   if (cached !== null) {
     if (isNewRead(cached.reviewId)) {
-      show(cached, { animate: false });
+      show(cached);
     } else if (knownReviewIds.has(cached.reviewId)) {
       writeCache(null);
     }
@@ -142,7 +138,7 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
       if (entry.href.length === 0 || entry.imageSrc.length === 0) {
         return;
       }
-      show(entry, { animate: true });
+      show(entry);
       writeCache(entry);
     },
   };

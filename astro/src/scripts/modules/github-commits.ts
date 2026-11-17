@@ -438,7 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fitHeatmapToContainer();
       const yearlyEl = widget.querySelector<HTMLElement>('[data-role="yearly-chart"]');
       if (yearlyPayload && yearlyEl && Math.abs(yearlyEl.clientWidth - yearlyWidth) > 8) {
-        renderYearlyChart(yearlyPayload, false);
+        renderYearlyChart(yearlyPayload);
       }
     });
   };
@@ -475,7 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ].join(" ");
   };
 
-  const renderYearlyChart = (payload: GitHubContributionPayload, animate = true): void => {
+  const renderYearlyChart = (payload: GitHubContributionPayload): void => {
     const yearlyEl = widget.querySelector<HTMLElement>('[data-role="yearly-chart"]');
     if (!(yearlyEl instanceof HTMLElement)) {
       return;
@@ -511,7 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
       viewBox: `0 0 ${width} ${height}`,
       width: String(width),
       height: String(height),
-      class: animate ? "github-yearly-chart is-drawing" : "github-yearly-chart",
+      class: "github-yearly-chart",
       role: "img",
       "aria-label": `Contributions per year: ${entries.map((e) => `${e.year} ${formatNumber(e.count)}`).join(", ")}`,
     });

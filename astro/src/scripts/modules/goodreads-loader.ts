@@ -180,9 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return book;
   };
 
-  const prefersReducedMotion = (): boolean =>
-    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
-
   const keyedBooks = (root: ParentNode): Map<string, HTMLElement> => {
     const map = new Map<string, HTMLElement>();
     root.querySelectorAll<HTMLElement>(BOOK_SELECTOR).forEach((el) => {
@@ -204,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const reconcileBookOrder = (
     targetGrid: HTMLElement,
     sourceGrid: HTMLElement,
-    { animate }: { animate: boolean },
   ): boolean => {
     const currentOrder = readBookOrder(targetGrid);
     const existingByKey = keyedBooks(targetGrid);
@@ -214,10 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (newKeys.length === 0) {
       return false;
     }
-
-    const firstRects = animate
-      ? new Map(Array.from(existingByKey.values(), (el) => [el, el.getBoundingClientRect()] as const))
-      : null;
 
     const enteringNodes: HTMLElement[] = [];
     newKeys.forEach((key) => {
@@ -242,36 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
     targetGrid.replaceChildren(fragment);
-
-    if (!animate || firstRects === null || prefersReducedMotion()) {
-      return true;
-    }
-
-    finalNodes.forEach((node) => {
-      const first = firstRects.get(node);
-      if (!first) return;
-      const last = node.getBoundingClientRect();
-      const dx = first.left - last.left;
-      const dy = first.top - last.top;
-      if (dx === 0 && dy === 0) return;
-      node.style.transition = "none";
-      node.style.transform = `translate(${dx}px, ${dy}px)`;
-    });
-
-    // Flush the inverted transforms above before clearing them, so the browser has
-    // something to transition *from* (classic FLIP: force layout between the two).
-    void targetGrid.offsetHeight;
-
-    finalNodes.forEach((node) => {
-      if (!firstRects.has(node)) return;
-      node.style.transition = "";
-      node.style.transform = "";
-    });
-
-    enteringNodes.forEach((node) => {
-      node.classList.add("is-book-entering");
-      node.addEventListener("animationend", () => node.classList.remove("is-book-entering"), { once: true });
-    });
 
     return true;
   };
@@ -298,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sourceGrid = getGridContainer(parsed);
     const targetGrid = getGridContainer(widget);
     const changed =
-      sourceGrid && targetGrid ? reconcileBookOrder(targetGrid, sourceGrid, { animate: false }) : false;
+      sourceGrid && targetGrid ? reconcileBookOrder(targetGrid, sourceGrid) : false;
 
     // The server-rendered shelf already ships pre-trimmed with its placeholder tile in
     // place, so only rebuild it when the cache actually reordered something - otherwise
@@ -311,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Layer 3: live Goodreads widget script. --------------------------------
   // Goodreads' script looks up `document.getElementById(widgetId)` and assigns
   // `innerHTML` to whatever it finds. We redirect that single lookup to a detached
-  // element so the script's response can be diffed and animated in on our terms,
+  // element so the script's response can be diffed and merged in on our terms,
   // instead of Goodreads blowing away the visible widget the instant it loads.
   const hasInjectedWidgetScript = (): boolean => (
     document.querySelector('script[data-goodreads-widget="true"]') !== null
@@ -332,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // never accepts reordering/additions from the live response.
     const changed =
       !isIndexPage && sourceGrid && targetGrid
-        ? reconcileBookOrder(targetGrid, sourceGrid, { animate: true })
+        ? reconcileBookOrder(targetGrid, sourceGrid)
         : false;
 
     // Refresh the cache regardless (Goodreads may have swapped a cover edition even

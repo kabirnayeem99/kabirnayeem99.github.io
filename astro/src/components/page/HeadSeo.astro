@@ -120,12 +120,11 @@ const SPECULATION_RULES = JSON.stringify({
 });
 
 // On arrival through a page transition: re-read the theme (a page prerendered before a
-// theme toggle would show the old one) and skip the header's entrance animation, which
-// would replay on top of the transition's own.
+// theme toggle would show the old one).
 const PAGE_ARRIVAL_SCRIPT =
-  "(function(){var r=document.documentElement;addEventListener('pagereveal',function(e){" +
+  "(function(){var r=document.documentElement;addEventListener('pagereveal',function(){" +
   "try{var t=localStorage.getItem('person-portfolio-theme');if(t==='light'||t==='dark'){r.setAttribute('data-theme',t);}}catch(_e){}" +
-  "if(e.viewTransition){r.classList.add('vt-arrived');}});})();";
+  "});})();";
 
 // Umami loads only once the page is really shown: a prerendered page someone hovered but
 // never opened must not count as a visit.
