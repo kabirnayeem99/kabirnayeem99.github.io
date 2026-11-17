@@ -52,7 +52,7 @@ export interface ReadingPageContent {
   readonly title: string;
   readonly intro: readonly string[];
   readonly now: { readonly title: string; readonly lastReadLabel: string; readonly items: readonly ReadingNowItem[] };
-  readonly languages: { readonly title: string; readonly intro: string; readonly items: readonly ReadingLanguage[] };
+  readonly languages: { readonly title: string; readonly intro?: string; readonly items: readonly ReadingLanguage[] };
   readonly notes: { readonly title: string; readonly items: readonly ReadingNote[] };
   readonly shelf: { readonly title: string; readonly copy: string };
   readonly footerHtml: string;
@@ -133,7 +133,7 @@ export function loadReadingPageContent(lang: Lang): ReadingPageContent {
     },
     languages: {
       title: readString(languages, "title", `${path}.languages`),
-      intro: readString(languages, "intro", `${path}.languages`),
+      ...optional("intro", readOptionalString(languages, "intro", `${path}.languages`)),
       items: readList(languages, "items", `${path}.languages`, (item, itemPath) => ({
         name: readString(item, "name", itemPath),
         lang: readString(item, "lang", itemPath),

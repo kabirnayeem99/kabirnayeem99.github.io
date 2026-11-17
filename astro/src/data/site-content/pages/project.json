@@ -9,7 +9,7 @@
       },
       "header": {
         "site_title": "Projects",
-        "tagline": "Some projects I’ve worked on. Employer-side work is not listed here."
+        "tagline": "Some projects I’ve worked on, on my own, for clients, and at past jobs."
       },
       "groups": [
         {
@@ -21,8 +21,7 @@
               "meta": "2024 - Kotlin · Server/Client",
               "paragraphs": [
                 "On native Android, there is a library called Ok2Curl for debugging OkHttp requests. It logs requests as curl commands, which can then be run in a terminal or shared with the backend team. Since Ktor did not have something like that, I built this for my own use.",
-                "<strong>Tech stack:</strong> Kotlin, Ktor",
-                "<strong>Why it matters:</strong> Makes it easy to extract curl commands from API requests, run them manually, or share them with the backend team."
+                "<strong>Tech stack:</strong> Kotlin, Ktor"
               ],
               "stickers": [
                 {
@@ -39,9 +38,8 @@
               "href": "https://github.com/kabirnayeem99/kVinInfo",
               "meta": "2024 - Kotlin · Multiplatform",
               "paragraphs": [
-                "A VIN library written in pure Kotlin. It can validate VIN numbers, verify checksums, and also generate mock VINs.",
-                "<strong>Tech stack:</strong> Kotlin Multiplatform",
-                "<strong>Why it matters:</strong> Anyone working with VIN-related workflows can use it to validate VINs easily or generate mock VINs for testing."
+                "A VIN library written in pure Kotlin. It can validate VINs, verify checksums, and also generate mock VINs.",
+                "<strong>Tech stack:</strong> Kotlin Multiplatform"
               ],
               "stickers": [
                 {
@@ -63,9 +61,9 @@
               "href": "https://github.com/kabirnayeem99/islam_qa_org_android",
               "meta": "2022 - Kotlin · Jetpack Compose",
               "paragraphs": [
-                "The app scraped content from IslamQA.org directly on mobile and stored it locally in a database so users could search it easily. Later I stopped updating it out of respect for IslamQA’s privacy policy.",
-                "<strong>Tech stack:</strong> Kotlin, Jetpack Compose, WorkManager",
-                "<strong>Why it matters:</strong> Makes fatwas accessible offline, anytime, from anywhere."
+                "The app scraped content from IslamQA.org directly on mobile and stored it locally in a database so users could search it easily. Later I stopped updating it out of respect for IslamQA’s terms of use.",
+                "Fatwas you can search offline.",
+                "<strong>Tech stack:</strong> Kotlin, Jetpack Compose, WorkManager"
               ],
               "stickers": [
                 {
@@ -107,9 +105,9 @@
               "href": "https://play.google.com/store/apps/details?id=com.ihadis.ihadis&hl=en-US",
               "meta": "2022 - Dart · Flutter",
               "paragraphs": [
-                "One of the most popular Islamic apps in Bangladesh. A mobile app for reading and searching more than 49,000 Bangla hadith. I had the chance to do a large part of the Flutter rewrite more or less on my own. Alhamdulillah.",
-                "<strong>Tech stack:</strong> Dart, Flutter",
-                "<strong>Why it matters:</strong> The app originally supported Android only. After the Flutter rewrite, an iOS version could be added, and the UI could be refreshed as well."
+                "One of the most popular Islamic apps in Bangladesh. A mobile app for reading and searching more than 49,000 Bangla hadith. I did much of the Flutter rewrite myself. Alhamdulillah.",
+                "The rewrite brought the app to iOS and gave it a fresh UI.",
+                "<strong>Tech stack:</strong> Dart, Flutter"
               ],
               "images": [
                 {
@@ -146,8 +144,7 @@
               "meta": "2021 - Kotlin · Clean Architecture",
               "paragraphs": [
                 "Built mainly to help military families access information about local businesses.",
-                "<strong>Tech stack:</strong> Kotlin, Clean Architecture, Firebase, Parse SDK",
-                "<strong>Why it matters:</strong> Supports local business discovery for a specific community."
+                "<strong>Tech stack:</strong> Kotlin, Clean Architecture, Firebase, Parse SDK"
               ],
               "stickers": [
                 {
@@ -169,9 +166,9 @@
               "href": "https://play.google.com/store/apps/details?id=com.thefivenetwork.five&hl=en",
               "meta": "2021 - Kotlin · Multi-module",
               "paragraphs": [
-                "This was the Android app for Boulevard’s mentorship program, a software-based mentorship and workforce development platform. Students or people early in their careers could get guidance, coaching, networking, and similar support from experienced mentors. The app itself was built as a native Android multi-module project.",
-                "<strong>Tech stack:</strong> Kotlin, multi-module Android",
-                "<strong>Why it matters:</strong> Included fairly complex features like course modules and one-to-one mentorship flows."
+                "Android app for Boulevard’s mentorship program, where students and early-career people meet mentors. Built as a multi-module app.",
+                "Included course modules and one-to-one mentorship flows.",
+                "<strong>Tech stack:</strong> Kotlin, multi-module Android"
               ],
               "images": [
                 {
@@ -201,9 +198,9 @@
               "href": "https://play.google.com/store/apps/details?id=com.marriott.mrt&hl=en",
               "meta": "2022 · Android · Experiment",
               "paragraphs": [
-                "Marriott International’s own app, mainly tied to its loyalty program, where hotel customers can sign up as members and access certain benefits. It is a fairly large-scale travel app. I got to work, in a limited capacity, on some A/B testing related features there.",
-                "<strong>Tech stack:</strong> Android",
-                "<strong>Why it matters:</strong> This was basically my first chance to work on a product with a very large user base and real scale."
+                "Marriott’s loyalty app. I worked on a few A/B-tested features.",
+                "My first app with millions of users.",
+                "<strong>Tech stack:</strong> Android"
               ],
               "images": [
                 {
@@ -226,9 +223,8 @@
               "title": "PatientAccess",
               "meta": "2021 - Android · Healthcare",
               "paragraphs": [
-                "This was a healthcare app. I had the chance to work on some parts like doctor appointment flows and map integration.",
-                "<strong>Tech stack:</strong> Android, Firestore, Jetpack, Google Maps",
-                "<strong>Why it matters:</strong> Fairly simple app overall, but early in my career it helped me learn a few useful things, especially around Google Maps work."
+                "A healthcare app. I worked on doctor appointment booking and map integration.",
+                "<strong>Tech stack:</strong> Android, Firestore, Jetpack, Google Maps"
               ],
               "stickers": [
                 {
@@ -249,9 +245,8 @@
               "href": "https://mrperfumeshop.com/",
               "meta": "2026 - WooCommerce · PHP",
               "paragraphs": [
-                "Online shop for Mr. Perfume, a perfume store in Bangladesh. Shoppers can browse fragrances for him and for her, find a scent, keep a wishlist and order online.",
-                "<strong>Tech stack:</strong> WordPress, WooCommerce, PHP",
-                "<strong>Why it matters:</strong> Customers can browse the whole range and order from anywhere, or reach the shop by phone or WhatsApp in one tap."
+                "Online shop for Mr. Perfume, a perfume store in Bangladesh, with a wishlist and ordering by phone or WhatsApp.",
+                "<strong>Tech stack:</strong> WordPress, WooCommerce, PHP"
               ],
               "images": [
                 {
@@ -273,9 +268,8 @@
               "href": "https://edumaxconsultancy.com/",
               "meta": "2026 - WordPress · PHP",
               "paragraphs": [
-                "Website for Edumax Consultancy, a study-abroad consultancy in Bangladesh. Students can explore destinations, universities, scholarship guides and IELTS preparation, and book a free consultation.",
-                "<strong>Tech stack:</strong> WordPress, PHP",
-                "<strong>Why it matters:</strong> Students and their families can look into their options in one place before speaking to an adviser."
+                "Website for Edumax, a study-abroad consultancy in Bangladesh, with guides to universities, scholarships and IELTS.",
+                "<strong>Tech stack:</strong> WordPress, PHP"
               ],
               "images": [
                 {
@@ -297,9 +291,8 @@
               "href": "https://alrafa.org/",
               "meta": "2026 - WordPress · PHP",
               "paragraphs": [
-                "Website for AL RAFA, a non-profit based in Dhaka that has worked across Bangladesh since 2009. Their programmes in education, health, water and emergency relief, their projects, news and ways to donate are all in one place, in English, Bangla and Arabic.",
-                "<strong>Tech stack:</strong> WordPress, PHP",
-                "<strong>Why it matters:</strong> Supporters can see what has been built so far, and fund a well, a school or an orphan's care directly."
+                "Website for AL RAFA, a non-profit in Dhaka, in English, Bangla and Arabic, where people can donate to its projects.",
+                "<strong>Tech stack:</strong> WordPress, PHP"
               ],
               "images": [
                 {
@@ -322,8 +315,8 @@
               "meta": "2025 - PHP · Laravel",
               "paragraphs": [
                 "A Bangla-first web app for cooperative societies. Staff and installment collectors keep member records, log monthly deposits and receipts, and check the month's collections in one place. A public demo runs on sample data.",
-                "<strong>Tech stack:</strong> PHP, Laravel",
-                "<strong>Why it matters:</strong> Smaller cooperative groups can move off paper ledgers into a simple digital system, on a phone or a computer."
+                "Helps small cooperatives move off paper ledgers.",
+                "<strong>Tech stack:</strong> PHP, Laravel"
               ],
               "images": [
                 {
@@ -344,10 +337,7 @@
               "title": "Multazim Solutions",
               "href": "https://multazimsolutions.com/",
               "meta": "2026",
-              "paragraphs": [
-                "Website for Multazim Solutions, an independent digital studio working across web, backend, mobile, commerce and growth. It shows selected work, how the studio works, and ways to get in touch.",
-                "<strong>Why it matters:</strong> Anyone looking to start a project can see past work and reach the studio by email, WhatsApp or phone."
-              ],
+              "paragraphs": ["Website for my studio: past work and how to reach us."],
               "images": [
                 {
                   "src": "assets/images/projects/multazim/home-desktop.webp",
@@ -368,9 +358,8 @@
               "href": "https://psdhs.org/",
               "meta": "2026 - WordPress · PHP",
               "paragraphs": [
-                "Website for Peace Society for Development and Humanitarian Services (PSDHS), a non-profit working in Bangladesh since 2009. Their programmes, community projects, field photos and ways to donate are all in one place, in English, Bangla and Arabic.",
-                "<strong>Tech stack:</strong> WordPress (custom block theme and content plugin), PHP",
-                "<strong>Why it matters:</strong> The team can update text, photos and projects on their own, and supporters can read about the work and donate in their own language."
+                "Website for PSDHS, a non-profit in Bangladesh, in English, Bangla and Arabic. The team updates it themselves.",
+                "<strong>Tech stack:</strong> WordPress (custom block theme and content plugin), PHP"
               ],
               "images": [
                 {

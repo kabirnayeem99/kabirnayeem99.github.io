@@ -33,7 +33,7 @@
             "subtitle": "Tahafutul Malahida",
             "author": "Dr. Mufti Yasir Nadim al-Wajidi",
             "lang": "ur",
-            "note": "Currently going through it.",
+            "note": "A reply to atheism, in Urdu.",
             "image": {
               "src": "assets/images/now/tahafutul-malahida.webp",
               "alt": "Cover of Tahafutul Malahida by Dr. Mufti Yasir Nadim al-Wajidi",
@@ -44,7 +44,7 @@
           {
             "title": "সন্দ্বীপিডিয়া",
             "lang": "bn",
-            "note": "Reading it aloud, to practise my speech articulation.",
+            "note": "Reading it out loud, to practise speaking clearly.",
             "subtitle": "Sandwipedia",
             "author": "edited by Hasan Mohammad",
             "image": {
@@ -58,25 +58,24 @@
       },
       "languages": {
         "title": "Languages I read in",
-        "intro": "Bangla is home, English is where most of my reading happens, and Urdu is the one I'm learning now.",
         "items": [
           {
             "name": "বাংলা",
             "lang": "bn",
-            "level": "Mother tongue",
-            "note": "Bangla classics like Pather Panchali are still among my favourite books."
+            "level": "Native",
+            "note": "Pather Panchali is still a favourite."
           },
           {
             "name": "English",
             "lang": "en",
             "level": "Daily",
-            "note": "Most of my reading, and almost all of my work, happens in English."
+            "note": "Most of my reading."
           },
           {
             "name": "اردو",
             "lang": "ur",
             "level": "Learning",
-            "note": "Learning to read it, slowly."
+            "note": "Slowly."
           }
         ]
       },
@@ -86,9 +85,9 @@
       },
       "shelf": {
         "title": "The whole shelf",
-        "copy": "These are books I read at some point in my life, or at least, books I remembered to add to Goodreads. Many were added from memory, from my teenage years, when the internet wasn't really a thing in my village, let alone Goodreads. I've probably forgotten to add most of them."
+        "copy": "Books I've read and logged on Goodreads. Many older ones were added from memory, so the list isn't complete."
       },
-      "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Developed with Astro. Also on <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>."
+      "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Also on <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>."
     }
   }
 }

@@ -9,9 +9,9 @@
       },
       "header": {
         "site_title": "Work",
-        "tagline": "Alhamdulillah, a short work life, and the places and people I got to work with."
+        "tagline": "A short career so far, alhamdulillah. These are the places I've worked."
       },
-      "summary": "Alhamdulillah, a short work life, and the places and people I got to work with.",
+      "summary": "A short career so far, alhamdulillah. These are the places I've worked.",
       "section_title": "Where I've worked",
       "entries": [
         {
@@ -29,6 +29,12 @@
             {
               "src": "assets/images/projects/multazim/home-desktop.webp",
               "alt": "Multazim Solutions homepage on desktop",
+              "width": 960,
+              "height": 600
+            },
+            {
+              "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
+              "alt": "Mr. Perfume online shop homepage on desktop",
               "width": 960,
               "height": 600
             },
@@ -59,17 +65,17 @@
               "height": 64
             }
           ],
-          "tags": ["Edumax Consultancy", "AL RAFA", "PSDHS", "সমবায় নথি"]
+          "tags": ["Mr. Perfume", "Edumax Consultancy", "AL RAFA", "PSDHS", "সমবায় নথি"]
         },
         {
           "title": "Syarah · Mobile Software Engineer",
           "meta": "Jun 2023 - Present · Remote",
           "paragraphs": ["A Middle East-based automotive platform."],
           "bullets": [
-            "Conceived, planned, and delivered a lightweight, on-device ML car-photo classification system using a custom-trained 42-class MobileNetV3 LiteRT/TFLite model. Integrated it across bulk upload, image validation, and live camera workflows, significantly reducing photography time and human classification errors.",
-            "Built a real-time Android VIN scanner using CameraX, LiteRT, and ML Kit, with a lightweight custom-trained quantized detector and a complex VIN recognition algorithm covering OCR validation, checksum repair, and character-confusion recovery.",
-            "Worked on an in-house camera SDK for vehicle data entry, image capture, and damage documentation during inspections, incorporating machine learning to identify which part of the car was being photographed.",
-            "Developed a reliable in-house upload manager and SDK designed to remain resilient under unstable network conditions and extreme heat, substantially reducing image loss during transfers."
+            "Planned and built an on-device model that sorts car photos into 42 classes. It runs in bulk upload, image checks and the live camera, so taking photos is faster and fewer get labelled wrong.",
+            "Built a real-time VIN scanner for Android with CameraX, LiteRT and ML Kit. A small custom model finds the VIN, OCR reads it, and the checksum helps fix misread characters.",
+            "Worked on an in-house camera SDK that inspectors use to enter car details, take photos and record damage. It uses ML to tell which part of the car is in the frame.",
+            "Built an upload manager that keeps working on weak networks and in summer heat, so far fewer photos get lost."
           ],
           "logo": {
             "src": "assets/images/work/syarah-logo.webp",
@@ -91,8 +97,7 @@
           "meta": "Oct 2022 - Sep 2023 · On-site",
           "paragraphs": ["Worked on Al-Hadith, one of the most widely used Islamic apps in Bangladesh."],
           "bullets": [
-            "Al-Hadith is one of the most popular Islamic apps in Bangladesh. I first worked on maintaining its legacy Android version, then later helped rewrite the full app in Flutter, which now runs on both iOS and Android.",
-            "The main focus of my work here was native Android and Flutter development."
+            "Maintained the old Android app first, then helped rewrite it in Flutter, so it now runs on iOS too."
           ],
           "images": [
             {
@@ -132,10 +137,7 @@
         {
           "title": "Fiverr · Freelance Bug Fixer",
           "meta": "Mar 2023 - Jul 2023 · Remote (Contract)",
-          "bullets": [
-            "Worked on bug fixing across a number of different projects.",
-            "Most of the projects were built with Flutter, although there were also some projects using other technologies."
-          ],
+          "bullets": ["Fixed bugs in other people's apps, mostly Flutter."],
           "logo": {
             "src": "assets/images/work/fiverr-logo.webp",
             "alt": "Fiverr logo",
@@ -155,9 +157,8 @@
           "title": "DevStation39 · Android Developer",
           "meta": "Aug 2021 - Sep 2022 · Remote (Denver, USA)",
           "bullets": [
-            "Worked part-time on a contract basis while I was still at university.",
-            "Worked across many projects built with different technology stacks and architectures, and gained experience collaborating with developers from different countries.",
-            "Had the opportunity to work on projects including Patient Access, a doctor appointment platform; BaseHubs, a local business discovery platform; Jobamax, a job search app; widely used products such as Marriott Bonvoy; and other projects including Ema 2."
+            "Part-time contract work while I was still at university.",
+            "Many projects with different stacks and architectures, in a team spread across countries."
           ],
           "images": [
             {
@@ -217,6 +218,12 @@
               "height": 600
             },
             {
+              "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
+              "alt": "ডেস্কটপে Mr. Perfume-এর হোমপেজ",
+              "width": 960,
+              "height": 600
+            },
+            {
               "src": "assets/images/projects/samabay/home-desktop.webp",
               "alt": "ডেস্কটপে সমবায় নথি-এর হোমপেজ",
               "width": 960,
@@ -243,7 +250,7 @@
               "height": 64
             }
           ],
-          "tags": ["Edumax Consultancy", "AL RAFA", "PSDHS", "সমবায় নথি"]
+          "tags": ["Mr. Perfume", "Edumax Consultancy", "AL RAFA", "PSDHS", "সমবায় নথি"]
         },
         {
           "title": "সাইয়ারাহ · মোবাইল সফটওয়্যার ইঞ্জিনিয়ার",
@@ -398,6 +405,12 @@
               "height": 600
             },
             {
+              "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
+              "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَتْجَرِ Mr. Perfume عَلَى ٱلْحَاسُوبِ",
+              "width": 960,
+              "height": 600
+            },
+            {
               "src": "assets/images/projects/samabay/home-desktop.webp",
               "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ সমবায় নথি عَلَى ٱلْحَاسُوبِ",
               "width": 960,
@@ -424,7 +437,7 @@
               "height": 64
             }
           ],
-          "tags": ["إِيدُومَاكْس كُونْسَلْتَنْسِي", "أَلْ رَافَا", "بِي إِسْ دِي إِتْشْ إِسْ", "সমবায় নথি"]
+          "tags": ["مِسْتَر بِيرْفْيُوم", "إِيدُومَاكْس كُونْسَلْتَنْسِي", "أَلْ رَافَا", "بِي إِسْ دِي إِتْشْ إِسْ", "সমবায় নথি"]
         },
         {
           "title": "سَيَّارَة · مُهَنْدِسُ بَرْمَجِيَّاتِ ٱلْهَوَاتِفِ",
@@ -581,6 +594,12 @@
               "height": 600
             },
             {
+              "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
+              "alt": "ڈیسک ٹاپ پر Mr. Perfume کا ہوم پیج",
+              "width": 960,
+              "height": 600
+            },
+            {
               "src": "assets/images/projects/samabay/home-desktop.webp",
               "alt": "ڈیسک ٹاپ پر সমবায় নথি کا ہوم پیج",
               "width": 960,
@@ -607,7 +626,7 @@
               "height": 64
             }
           ],
-          "tags": ["ایڈومیکس کنسلٹنسی", "اَل رافا", "پی ایس ڈی ایچ ایس", "সমবায় নথি"]
+          "tags": ["مسٹر پرفیوم", "ایڈومیکس کنسلٹنسی", "اَل رافا", "پی ایس ڈی ایچ ایس", "সমবায় নথি"]
         },
         {
           "title": "سَیَّارَہ · مُوبَائِل سافْٹْوِیَر اِنْجِینِیَر",

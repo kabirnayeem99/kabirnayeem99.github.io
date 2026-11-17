@@ -15,11 +15,15 @@ const shots = images.filter((image) => !image.place);
 const places = images.filter((image) => image.place);
 const stickers = entry.stickers ?? [];
 const tags = entry.tags ?? [];
-// Photos or a code slip make a collage beside the card; without one, stickers go on the card.
+// Photos or a code slip make a collage beside the card.
 const hasCollage = images.length > 0 || entry.snippet !== undefined;
 // A landscape first shot (e.g. a desktop site) heads the collage above the phone shots.
 const leadImage = shots[0];
-const hasLead = shots.length >= 3 && leadImage !== undefined && leadImage.width > leadImage.height;
+const hasLead = shots.length === 3 && leadImage !== undefined && leadImage.width > leadImage.height;
+// Several desktop shots and nothing else: one wide strip under the whole entry, date rail included.
+const isStrip =
+  shots.length >= 2 && places.length === 0 && entry.snippet === undefined && shots.every((image) => image.width > image.height);
+// Tool stickers sit on the card, under the text, so they never cover a screenshot.
 const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(currentRoute, sticker.src) }));
 ---
 
@@ -74,7 +78,7 @@ const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(cur
         ) : null
       }
       {
-        !hasCollage && stickerList.length > 0 ? (
+        stickerList.length > 0 ? (
           <div class="journal-card-stickers">
             {stickerList.map((sticker) => (
               <span class="journal-sticker">
@@ -91,7 +95,8 @@ const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(cur
       <div
         class="journal-prints"
         data-count={shots.length + (entry.snippet === undefined ? 0 : 1)}
-        data-lead={hasLead ? "" : undefined}
+        data-lead={hasLead && !isStrip ? "" : undefined}
+        data-strip={isStrip ? "" : undefined}
       >
         {entry.snippet !== undefined ? (
           <figure class="code-slip">
@@ -119,11 +124,6 @@ const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(cur
             />
             {image.caption ? <figcaption>{image.caption}</figcaption> : null}
           </figure>
-        ))}
-        {stickerList.map((sticker) => (
-          <span class="journal-sticker">
-            <img src={sticker.href} alt={sticker.alt} width={sticker.width} height={sticker.height} loading="lazy" decoding="async" />
-          </span>
         ))}
       </div>
     ) : null

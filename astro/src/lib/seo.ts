@@ -84,7 +84,7 @@ export function buildSchemaGraphJson(input: SchemaGraphInput): string {
   const sameAsProfiles = normalizeSameAsProfiles(input.socialProfiles);
   const personFields = (input.lang && PERSON_FIELDS_BY_LANG[input.lang]) || {
     jobTitle: "Software Engineer",
-    description: "Muslim · Bibliophile · Philomath · Software Engineer",
+    description: "Muslim · Reader · Software Engineer",
   };
 
   const webPageNode: Record<string, unknown> = {

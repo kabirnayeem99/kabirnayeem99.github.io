@@ -9,14 +9,14 @@
       },
       "header": {
         "site_title": "Writing",
-        "tagline": "Blogs, tutorials, guides, personal experiences, and some random notes."
+        "tagline": "Posts, tutorials and notes, mostly on software and Linux."
       },
       "articles": [
         {
           "title": "If I Had to Restart My Career as a Mobile Dev",
           "href": "https://kabirnayeem99.medium.com/if-i-had-to-restart-my-career-as-a-mobile-dev-bda9999909b8",
           "meta": "Medium · career",
-          "summary": "Some mistakes I made early in my career, and a few humble words for juniors or newcomers who want to build a career here."
+          "summary": "Mistakes I made early in my career, and some advice for anyone starting out."
         },
         {
           "title": "Ktor2Curl: convert Ktor requests into curl logs",
@@ -25,7 +25,7 @@
           "summary": "A tutorial on Ktor2Curl. It works a lot like Ok2Curl, but is built for Ktor and Kotlin Multiplatform."
         },
         {
-          "title": "Setup Windows for Android development",
+          "title": "Set up Windows for Android development",
           "href": "https://kabirnayeem99.medium.com/setup-windows-for-android-development-9d27e1a9d9a4",
           "meta": "Medium · environment",
           "summary": "A guide on setting up a Windows PC properly for Android development."
@@ -37,7 +37,7 @@
           "summary": "Some notes on changing themes and fonts to give GNOME + Arch a more Ubuntu-like look."
         },
         {
-          "title": "Manjaro to Arch conversation",
+          "title": "Manjaro to Arch conversion",
           "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
           "meta": "Medium · distro hopping",
           "summary": "A tutorial on using a few tricks to turn Manjaro into Arch. It probably does not work anymore. Written in 2019. My most-read blog."
@@ -46,7 +46,7 @@
           "title": "Keep calm, switch back to Windows",
           "href": "https://kabirnayeem99.medium.com/keep-calm-switch-back-to-windows-11f5f636f870",
           "meta": "Medium · productivity",
-          "summary": "A pretty pointless piece, honestly. It fits better as a bit of personal diary writing."
+          "summary": "A short, personal post about going back to Windows."
         }
       ],
       "footer_html": "If you want to leave a comment, you can do that on Medium. Or email me."

@@ -590,10 +590,24 @@
   }
 
   .page-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
     color: var(--muted);
     font-size: 1.05rem;
     text-decoration: none;
     transition: color 160ms ease;
+  }
+
+  .page-nav-icon {
+    flex: none;
+    width: 0.95em;
+    height: 0.95em;
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .page-nav-link:hover,
@@ -2705,6 +2719,17 @@
     margin-block-start: 20px;
   }
 
+  /* desktop shots run as one strip across the date rail too, so the rail never sits empty */
+  .journal-entry > .journal-prints[data-strip] {
+    grid-column: 1 / -1;
+    flex-wrap: nowrap;
+  }
+
+  .journal-prints[data-strip] .print {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
   .journal-entry-text > .meta {
     grid-column: 1;
     grid-row: 1 / span 3;
@@ -2756,6 +2781,15 @@
 
     .journal-entry-text > .meta {
       margin: 0 0 6px;
+    }
+
+    /* on a phone the strip folds into a 2 x 2 sheet */
+    .journal-entry > .journal-prints[data-strip] {
+      flex-wrap: wrap;
+    }
+
+    .journal-prints[data-strip] .print {
+      flex-basis: calc(50% - 5px);
     }
   }
 
@@ -2963,32 +2997,6 @@
     background: var(--bg);
     color: var(--muted);
     font-size: 0.7rem;
-  }
-}
-
-/* tool stickers ride on the top corner of a collage, not in its row of photos */
-@layer pages {
-  .journal-prints > .journal-sticker {
-    position: absolute;
-    z-index: 2;
-    inset-block-start: -12px;
-    inset-inline-end: -10px;
-    height: 30px;
-    padding: 6px 11px;
-    border-color: var(--hair);
-    background: var(--bg);
-  }
-
-  .journal-prints > .journal-sticker:nth-of-type(2) { inset-block-start: 26px; inset-inline-end: -16px; }
-  .journal-prints > .journal-sticker:nth-of-type(3) { inset-block-start: 64px; inset-inline-end: -10px; }
-
-  .journal-prints > .journal-sticker img {
-    height: 17px;
-  }
-
-  @media (max-width: 760px) {
-    .journal-prints > .journal-sticker { inset-inline-end: -4px; }
-    .journal-prints > .journal-sticker:nth-of-type(2) { inset-inline-end: -6px; }
   }
 }
 
@@ -3620,14 +3628,23 @@
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }
+
+  /* a lighter mark: a hand-drawn marker stroke underneath instead of a loop */
+  mark.mark--line {
+    padding: 0 0 2px;
+    margin-inline: 0;
+    background: var(--pencil-mark) left bottom / 100% 0.42em no-repeat;
+  }
 }
 
 /* ------------------------------------------------------------ reading page */
 
 @layer pages {
+  /* books on the desk: a row of covers, each with its title and note beneath */
   .reading-desk {
     display: grid;
-    gap: 28px;
+    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+    gap: 36px 28px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -3635,18 +3652,26 @@
 
   .reading-desk-item {
     display: grid;
-    grid-template-columns: 96px minmax(0, 1fr);
-    gap: 20px;
-    align-items: start;
+    grid-template-rows: auto 1fr;
+    gap: 14px;
+    align-content: start;
+  }
+
+  /* covers share one shelf height; shorter ones sit on the shelf, not stretched */
+  .reading-desk-cover {
+    display: flex;
+    align-items: flex-end;
+    aspect-ratio: 2 / 3;
+  }
+
+  .reading-desk-cover img {
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   .reading-desk-item p {
     margin-block: 0 8px;
-  }
-
-  /* an item without a cover keeps its text in the text column */
-  .reading-desk-item > div:only-child {
-    grid-column: 2;
   }
 
   .reading-desk-title {
@@ -3666,9 +3691,11 @@
     color: var(--muted);
   }
 
+  /* one column per language; two per row on a phone */
   .reading-langs {
     display: grid;
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 24px 28px;
     margin: 20px 0 0;
   }
 
@@ -3677,14 +3704,18 @@
     border-block-start: 1px solid var(--hair);
   }
 
+  /* fixed line box so Bangla, Latin and Urdu names keep the notes on one line */
   .reading-lang dt {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: 12px;
+    gap: 4px 12px;
+    min-block-size: 2rem;
   }
 
   .reading-lang-name {
     font-size: 1.2rem;
+    line-height: 1.6;
   }
 
   .reading-lang-level {
@@ -3707,9 +3738,9 @@
   }
 
   @media (max-width: 760px) {
-    .reading-desk-item {
-      grid-template-columns: 72px minmax(0, 1fr);
-      gap: 14px;
+    .reading-desk {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 18px;
     }
   }
 }

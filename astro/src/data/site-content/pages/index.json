@@ -9,13 +9,12 @@
       },
       "header": {
         "site_title": "Naimul Kabir",
-        "tagline": "Muslim · Bibliophile · Philomath · Software Engineer"
+        "tagline": "Muslim · Reader · Software Engineer"
       },
       "summary_card": [
         "<span lang=\"ar\" dir=\"rtl\">السلام عليكم ورحمة الله وبركاته</span>",
-        "I'm Naimul Kabir, from Bangladesh. This site is my <mark>notebook of ordinary days</mark>: what I read, what I write, what I build.",
-        "Grew up on a remote island. Came to love <mark>nature, loneliness, poetry and books</mark>. Books are still (almost) my only entertainment.",
-        "For a living, I write software, software of all kinds. Currently at <a class=\"inline-logo-link\" href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\"><span class=\"inline-logo\" aria-hidden=\"true\" style=\"--stamp:url(&quot;/assets/images/work/syarah-logo.webp&quot;);--stamp-ratio:2.118\"></span>Syarah</a>, building their internal tools. Also, trying to build a business with <a class=\"inline-logo-link\" href=\"https://multazimsolutions.com/\" target=\"_blank\" rel=\"noreferrer\"><span class=\"inline-logo inline-logo--tilt-r\" aria-hidden=\"true\" style=\"--stamp:url(&quot;/assets/images/work/multazim-logo.webp&quot;);--stamp-ratio:0.857\"></span>Multazim Solutions</a>."
+        "Nayeem here, from Bangladesh. Love <mark class=\"mark--line\">nature</mark>, <mark>solitude</mark> and <mark class=\"mark--line\">poetry</mark>. Once wanted to be a writer, gave up on that pretty early. Still read a lot, though.",
+        "I write software for a living. Currently at <a class=\"inline-logo-link\" href=\"https://syarah.com/\" target=\"_blank\" rel=\"noreferrer\"><span class=\"inline-logo\" aria-hidden=\"true\" style=\"--stamp:url(&quot;/assets/images/work/syarah-logo.webp&quot;);--stamp-ratio:2.118\"></span>Syarah</a>, building their internal tools. Also, trying to build a business with <a class=\"inline-logo-link\" href=\"https://multazimsolutions.com/\" target=\"_blank\" rel=\"noreferrer\"><span class=\"inline-logo inline-logo--tilt-r\" aria-hidden=\"true\" style=\"--stamp:url(&quot;/assets/images/work/multazim-logo.webp&quot;);--stamp-ratio:0.857\"></span>Multazim Solutions</a>."
       ],
       "sections": [
         {
@@ -33,7 +32,7 @@
             },
             {
               "label": "Reading",
-              "html": "Just finished <strong><em>Lonesome Dove</em></strong> by Larry McMurtry. Going through <strong lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</strong>, by Dr. Mufti Yasir Nadim al-Wajidi. Also reading <strong lang=\"bn\">সন্দ্বীপিডিয়া</strong> aloud, to practise my speech articulation.",
+              "html": "Just finished <strong><em>Lonesome Dove</em></strong> by Larry McMurtry. Going through <strong lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</strong>, by Dr. Mufti Yasir Nadim al-Wajidi. Also reading <strong lang=\"bn\">সন্দ্বীপিডিয়া</strong> out loud, to practise speaking clearly.",
               "image": {
                 "src": "assets/images/now/tahafutul-malahida.webp",
                 "alt": "Cover of Tahafutul Malahida by Dr. Mufti Yasir Nadim al-Wajidi",
@@ -43,7 +42,7 @@
             },
             {
               "label": "Revisiting",
-              "html": "The <mark>CS fundamentals</mark>, starting with <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\"><strong>operating systems</strong></a>. Yet another language or framework feels pointless in the age of AI, so back to the basics.",
+              "html": "The <mark>CS fundamentals</mark>, starting with <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\"><strong>operating systems</strong></a>. Picking up another framework feels less useful these days than knowing the basics well.",
               "image": {
                 "src": "assets/images/now/neso-operating-system.webp",
                 "alt": "Screenshot of Neso Academy's Operating System course playlist on YouTube",
@@ -115,7 +114,7 @@
             {
               "title": "Manjaro to Arch conversion",
               "href": "https://kabirnayeem99.medium.com/manjaro-to-arch-conversation-5fe4c70999f6",
-              "summary": "One of my most-read posts, with around 8k views and 4k reads. It's a rough guide to turning a Manjaro install into Arch. Old now, but still a fun read if you like Linux experiments."
+              "summary": "A rough guide to turning a Manjaro install into Arch. Old now, but still my most-read post."
             }
           ],
           "actions": [
@@ -127,7 +126,7 @@
           ]
         }
       ],
-      "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Developed with Astro. Also on <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>.",
+      "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Also on <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>.",
       "top_actions_title": "Send me an email",
       "top_actions": [
         {

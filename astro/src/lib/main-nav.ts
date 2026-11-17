@@ -4,11 +4,12 @@ import routes from "../data/site-content/routes.json";
 import { routeHref } from "./work-project-content";
 
 type Lang = "en" | "bn" | "ar" | "ur";
-type PageId = keyof typeof routes;
+export type PageId = keyof typeof routes;
 
 const LANGS: readonly Lang[] = ["en", "bn", "ar", "ur"];
 
 export interface MainNavItem {
+  readonly pageId: PageId;
   readonly label: string;
   readonly href: string;
   readonly isCurrent: boolean;
@@ -36,6 +37,7 @@ export function buildMainNav(currentRoute: string): readonly MainNavItem[] {
   return order.map((pageId) => {
     const target = (routes as Record<PageId, Record<Lang, string>>)[pageId][lang];
     return {
+      pageId,
       label: (navigationLabels as Record<PageId, Record<Lang, string>>)[pageId][lang],
       href: routeHref(currentRoute, target),
       isCurrent: target === currentRoute,

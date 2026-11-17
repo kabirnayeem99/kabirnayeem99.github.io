@@ -170,7 +170,7 @@ const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
             <h2 class="section-title">{content.languages.title}</h2>
           </div>
           <Botanical name="sprig" class="sprig" />
-          <p>{content.languages.intro}</p>
+          {content.languages.intro ? <p>{content.languages.intro}</p> : null}
           <dl class="reading-langs">
             {content.languages.items.map((item) => (
               <div class="reading-lang">
