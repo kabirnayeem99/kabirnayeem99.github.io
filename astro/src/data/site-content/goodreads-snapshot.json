@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-11-16T15:03:58.174128Z",
+  "generatedAt": "2026-11-24T13:27:00.837093Z",
   "books": [
+    {
+      "title": "The Death of Ivan Ilych",
+      "href": "https://www.goodreads.com/review/show/9126045775?utm_medium=api&utm_source=grid_widget",
+      "alt": "The Death of Ivan Ilych",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1663546974l/18386.jpg",
+      "imageLocal": "/assets/images/goodreads/18386-the-death-of-ivan-ilych.webp",
+      "imageFileName": "18386-the-death-of-ivan-ilych.webp",
+      "dateRead": null
+    },
     {
       "title": "Lonesome Dove (Lonesome Dove, #1)",
       "href": "https://www.goodreads.com/review/show/9060587500?utm_medium=api&utm_source=grid_widget",
