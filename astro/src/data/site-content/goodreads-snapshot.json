@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-11-24T13:27:00.837093Z",
+  "generatedAt": "2026-11-25T07:17:03.036315Z",
   "books": [
+    {
+      "title": "Of Mice and Men",
+      "href": "https://www.goodreads.com/review/show/9125965173?utm_medium=api&utm_source=grid_widget",
+      "alt": "Of Mice and Men",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1511302904l/890.jpg",
+      "imageLocal": "/assets/images/goodreads/890-of-mice-and-men.webp",
+      "imageFileName": "890-of-mice-and-men.webp",
+      "dateRead": null
+    },
     {
       "title": "The Death of Ivan Ilych",
       "href": "https://www.goodreads.com/review/show/9126045775?utm_medium=api&utm_source=grid_widget",
