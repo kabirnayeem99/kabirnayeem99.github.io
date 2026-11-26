@@ -8,13 +8,16 @@
 Downloaded covers vary wildly in resolution and aspect ratio. This center-crops
 the source image to the same 2:3 ratio update_goodreads_snapshot.py now crops
 every cover to (matching .gr_grid_book_container img's `aspect-ratio: 2 / 3` in
-styles.source.css), resizes it to that exact resolution, and re-encodes it as
+src/styles/widgets/bookshelf.css), resizes it to that exact resolution, and re-encodes it as
 WebP the same way (quality=75, method=6) so a manually swapped cover is
 indistinguishable from a fetched one.
 
 Usage:
     ./prepare_book_cover.py path/to/cover.jpg --book-id 12345 --title "Some Book"
     ./prepare_book_cover.py path/to/cover.jpg --output custom-name.webp
+
+The site path of the new cover (its imageLocal value) is printed on stdout; everything
+else goes to stderr. Exit status: 0 written, 1 failed, 2 usage error.
 """
 
 from __future__ import annotations
@@ -27,9 +30,11 @@ from pathlib import Path
 try:
     from PIL import Image
 except ImportError as exc:  # pragma: no cover - environment guard
-    raise SystemExit(
-        "Pillow is required.\nRun this script directly (uses uv), or: pip install -r scripts/goodreads_snapshot/requirements.txt"
-    ) from exc
+    _MISSING_PILLOW = (
+        "Pillow is required.\nRun this script directly (uses uv), "
+        "or: pip install -r scripts/goodreads_snapshot/requirements.txt"
+    )
+    raise SystemExit(_MISSING_PILLOW) from exc
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_IMAGES_DIR = REPO_ROOT / "astro/public/assets/images/goodreads"
@@ -65,7 +70,22 @@ def crop_to_ratio(image: Image.Image, target_width: int, target_height: int) -> 
         box = (0, top, width, top + new_height)
 
     cropped = image.crop(box)
-    return cropped.resize((target_width, target_height), Image.LANCZOS)
+    return cropped.resize((target_width, target_height), Image.Resampling.LANCZOS)
+
+
+def _flattened(source: Image.Image) -> Image.Image:
+    """`source` as an opaque image.
+
+    Book covers are opaque, and a stray alpha channel from a scanned or edited source
+    shouldn't show through as transparent in the grid, so it is flattened onto white.
+    """
+    if source.mode not in ("RGB", "RGBA"):
+        source = source.convert("RGBA" if "A" in source.getbands() else "RGB")
+    if source.mode != "RGBA":
+        return source
+    background = Image.new("RGB", source.size, (255, 255, 255))
+    background.paste(source, mask=source.split()[3])
+    return background
 
 
 def prepare_cover(
@@ -74,72 +94,96 @@ def prepare_cover(
     target_width: int = DEFAULT_WIDTH,
     target_height: int = DEFAULT_HEIGHT,
 ) -> None:
+    """Write `source_path` to `destination_path` as a cropped, resized WebP."""
     with Image.open(source_path) as image:
-        if image.mode not in ("RGB", "RGBA"):
-            image = image.convert("RGBA" if "A" in image.getbands() else "RGB")
-
-        # Flatten transparency onto white - book covers are opaque, and a
-        # stray alpha channel from a scanned/edited source shouldn't show
-        # through as transparent in the grid.
-        if image.mode == "RGBA":
-            background = Image.new("RGB", image.size, (255, 255, 255))
-            background.paste(image, mask=image.split()[3])
-            image = background
-
-        fitted = crop_to_ratio(image, target_width, target_height)
+        fitted = crop_to_ratio(_flattened(image), target_width, target_height)
 
         destination_path.parent.mkdir(parents=True, exist_ok=True)
         fitted.save(destination_path, format="WEBP", quality=WEBP_QUALITY, method=6)
 
 
-def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("source", type=Path, help="Path to the source cover image")
+class Arguments(argparse.Namespace):
+    """Typed command-line arguments."""
+
+    source: Path
+    book_id: str | None
+    title: str | None
+    output: Path | None
+    images_dir: Path
+    width: int
+    height: int
+
+
+def _positive_int(value: str) -> int:
+    number = int(value)
+    if number <= 0:
+        message = f"must be a positive integer, got {value}"
+        raise argparse.ArgumentTypeError(message)
+    return number
+
+
+def _parse_args(argv: list[str] | None = None) -> Arguments:
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        allow_abbrev=False,
+    )
+    parser.add_argument("source", type=Path, help="path to the source cover image")
     parser.add_argument(
         "--book-id",
-        default=None,
         help="Goodreads book id, used with --title to build the standard "
         "<id>-<slug>.webp filename matching update_goodreads_snapshot.py",
     )
-    parser.add_argument("--title", default=None, help="Book title, used to build the filename")
+    parser.add_argument("--title", help="book title, used to build the filename")
     parser.add_argument(
+        "-o",
         "--output",
         type=Path,
-        default=None,
-        help="Explicit output filename or path. Overrides --book-id/--title. "
-        "A bare filename is written into the goodreads images directory.",
+        help="explicit output filename or path; overrides --book-id/--title. "
+        "A bare filename is written into the images directory",
     )
     parser.add_argument(
         "--images-dir",
         type=Path,
         default=DEFAULT_IMAGES_DIR,
-        help=f"Directory to write into (default: {DEFAULT_IMAGES_DIR})",
+        help="directory to write into (default: %(default)s)",
     )
-    parser.add_argument("--width", type=int, default=DEFAULT_WIDTH)
-    parser.add_argument("--height", type=int, default=DEFAULT_HEIGHT)
-    return parser.parse_args()
+    parser.add_argument(
+        "--width", type=_positive_int, default=DEFAULT_WIDTH, help="(default: %(default)s)"
+    )
+    parser.add_argument(
+        "--height", type=_positive_int, default=DEFAULT_HEIGHT, help="(default: %(default)s)"
+    )
+    return parser.parse_args(argv, namespace=Arguments())
 
 
-def main() -> int:
-    args = _parse_args()
+def _destination(args: Arguments) -> Path:
+    if args.output is not None:
+        is_bare_name = not args.output.is_absolute() and args.output.parent == Path()
+        return args.images_dir / args.output if is_bare_name else args.output
+    if bool(args.title):
+        prefix = f"{args.book_id}-" if bool(args.book_id) else ""
+        return args.images_dir / f"{prefix}{_safe_slug(str(args.title))}.webp"
+    return args.images_dir / f"{_safe_slug(args.source.stem)}.webp"
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Run the command line; return the exit status."""
+    args = _parse_args(argv)
 
     if not args.source.is_file():
-        print(f"Source file not found: {args.source}", file=sys.stderr)
+        sys.stderr.write(f"prepare_book_cover: source file not found: {args.source}\n")
         return 1
 
-    if args.output is not None:
-        destination = args.output if args.output.is_absolute() or args.output.parent != Path(".") else args.images_dir / args.output
-    elif args.book_id and args.title:
-        destination = args.images_dir / f"{args.book_id}-{_safe_slug(args.title)}.webp"
-    elif args.title:
-        destination = args.images_dir / f"{_safe_slug(args.title)}.webp"
-    else:
-        destination = args.images_dir / f"{_safe_slug(args.source.stem)}.webp"
+    destination = _destination(args)
+    try:
+        prepare_cover(args.source, destination, args.width, args.height)
+    except OSError as exc:
+        sys.stderr.write(f"prepare_book_cover: {exc}\n")
+        return 1
 
-    prepare_cover(args.source, destination, args.width, args.height)
-
-    print(f"Wrote {destination} ({args.width}x{args.height})")
-    print(f"imageLocal: /assets/images/goodreads/{destination.name}")
+    sys.stderr.write(f"Wrote {destination} ({args.width}x{args.height})\n")
+    sys.stdout.write(f"/assets/images/goodreads/{destination.name}\n")
     return 0
 
 

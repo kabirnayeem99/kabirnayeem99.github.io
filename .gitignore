@@ -87,3 +87,11 @@ dist
 !.yarn/cache
 __pycache__/
 *.pyc
+
+# Python scripts toolchain
+.venv/
+.ruff_cache/
+
+# Left behind only if the Goodreads updater is killed mid-run
+.goodreads-staging-*/
+.*.backup/

@@ -1,0 +1,46 @@
+# One toolchain for the Python scripts (Astral): uv runs it, Ruff formats and lints,
+# ty type-checks. Both ship a language server (`ruff server`, `ty server`).
+[project]
+name = "person-portfolio-scripts"
+version = "0.0.0"
+requires-python = ">=3.11"
+# Mirrors the inline (PEP 723) metadata of the scripts, so ty can resolve their imports.
+dependencies = ["Pillow>=10", "fonttools>=4.50", "brotli>=1.1"]
+
+[dependency-groups]
+dev = ["ruff==0.17.6", "ty==0.0.111", "typing-extensions>=4.12"]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "COM812", # the formatter owns trailing commas
+  "CPY001", # no per-file copyright notices in this repo
+  "D203",   # conflicts with D211
+  "D213",   # conflicts with D212
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+  "PT",     # unittest, not pytest: no extra dependency
+  "S101",
+  "SLF001", # tests reach into the scripts' private helpers
+  "D",
+]
+
+[tool.ty.environment]
+python-version = "3.11"
+# The scripts are standalone files, not a package.
+extra-paths = ["fonts", "goodreads_snapshot"]
+
+[tool.ty.rules]
+all = "error"
+
+[tool.ty.terminal]
+error-on-warning = true

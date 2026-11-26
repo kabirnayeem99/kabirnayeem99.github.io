@@ -35,8 +35,19 @@ Every downloaded cover is re-encoded to WebP before it's written to
 `astro/public/assets/images/goodreads/`, so local cover files always have a `.webp` extension.
 
 Data comes from the Goodreads RSS shelf feed (`review/list_rss`), paginated automatically to
-pull the full shelf. The feed key is baked in as a default; override it with `--rss-key` or the
-`GOODREADS_RSS_KEY` env var if it ever needs to change.
+pull the full shelf. The feed key is a secret and is not stored in the repo. Set it in the
+environment (My Books -> read shelf -> RSS link at the bottom, the `key=` value):
+
+```bash
+export GOODREADS_RSS_KEY='...'
+```
+
+Without a key the script falls back to the grid widget (see below).
+
+## Command-line conventions
+
+All scripts here take `-h`/`--help` and long `--kebab-case` flags, write progress and errors to
+stderr, and exit with 0 (done), 1 (failed) or 2 (usage error).
 
 Optional flags:
 
@@ -47,13 +58,16 @@ scripts/goodreads_snapshot/update_goodreads_snapshot.py \
   --timeout-seconds 20
 ```
 
-## Lint / Type-check (optional)
+## Format, lint, type-check, test
 
-If you have `ruff` and `mypy` installed:
+One toolchain, configured in `scripts/pyproject.toml`: Ruff (format and lint, `ruff server` for
+editors) and ty (type check, `ty server`), pinned and run through uv. From `scripts/`:
 
 ```bash
-ruff check scripts/goodreads_snapshot/update_goodreads_snapshot.py
-mypy --config-file scripts/goodreads_snapshot/pyproject.toml scripts/goodreads_snapshot/update_goodreads_snapshot.py
+uv run ruff format --check .
+uv run ruff check .
+uv run ty check
+uv run python -m unittest discover -s tests
 ```
 
 ## When the RSS feed is down
