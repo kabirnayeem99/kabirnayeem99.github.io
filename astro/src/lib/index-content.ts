@@ -13,6 +13,7 @@ import {
   type SiteData,
 } from "./content-loader-shared";
 import { PAGE_IDS, type Lang, type PageId } from "./locale-config";
+import { withLastFinished } from "./last-finished";
 
 export type { Lang, PageId } from "./locale-config";
 
@@ -144,7 +145,7 @@ function readNowItems(source: Record<string, unknown>, path: string): readonly N
     const image = item.image === undefined ? undefined : readIndexImages({ image: [item.image] }, "image", itemPath)[0];
     return {
       label: readString(item, "label", itemPath),
-      html: readString(item, "html", itemPath),
+      html: withLastFinished(readString(item, "html", itemPath)),
       ...(image === undefined ? {} : { image }),
     };
   });
@@ -325,7 +326,7 @@ function readIndexSections(source: Record<string, unknown>, path: string): reado
     const item = asRecord(value[index], itemPath);
     output.push({
       title: readString(item, "title", itemPath),
-      paragraphs: readOptionalStringArray(item, "paragraphs", itemPath),
+      paragraphs: readOptionalStringArray(item, "paragraphs", itemPath).map(withLastFinished),
       images: readIndexImages(item, "images", itemPath),
       items: readNowItems(item, itemPath),
       highlights: readContentCards(item, "highlights", itemPath),

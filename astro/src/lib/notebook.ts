@@ -8,7 +8,7 @@ export const READ_DATE_LOCALE: Readonly<Record<Lang, string>> = {
   ur: "ur-PK",
 };
 
-/** Short, hand-writable date for the tape strip above a book cover ("6 Oct 2026"). */
+/** Short, hand-writable date for the tape strip above a book cover ("6 Oct 2026", or "2024"). */
 export function formatReadDate(iso: string | undefined, lang: Lang): string | undefined {
   if (typeof iso !== "string" || iso.length === 0) {
     return undefined;
@@ -17,9 +17,10 @@ export function formatReadDate(iso: string | undefined, lang: Lang): string | un
   if (Number.isNaN(date.getTime())) {
     return undefined;
   }
+  // 1 January is the placeholder for "read that year, day unknown": show the year alone.
+  const yearOnly = date.getUTCMonth() === 0 && date.getUTCDate() === 1;
   return new Intl.DateTimeFormat(READ_DATE_LOCALE[lang], {
-    day: "numeric",
-    month: "short",
+    ...(yearOnly ? {} : ({ day: "numeric", month: "short" } as const)),
     year: "numeric",
     timeZone: "UTC",
   }).format(date);

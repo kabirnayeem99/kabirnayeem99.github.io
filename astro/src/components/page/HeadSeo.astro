@@ -119,12 +119,11 @@ const SPECULATION_RULES = JSON.stringify({
   ],
 });
 
-// On arrival through a page transition: re-read the theme (a page prerendered before a
-// theme toggle would show the old one).
+// On arrival through a page transition or Back/Forward: re-read the theme (a page prerendered
+// or cached before a theme toggle would show the old one).
 const PAGE_ARRIVAL_SCRIPT =
-  "(function(){var r=document.documentElement;addEventListener('pagereveal',function(){" +
-  "try{var t=localStorage.getItem('person-portfolio-theme');if(t==='light'||t==='dark'){r.setAttribute('data-theme',t);}}catch(_e){}" +
-  "});})();";
+  "(function(){function sync(){window.personPortfolioTheme.sync();}" +
+  "addEventListener('pagereveal',sync);addEventListener('pageshow',sync);})();";
 
 // Umami loads only once the page is really shown: a prerendered page someone hovered but
 // never opened must not count as a visit.

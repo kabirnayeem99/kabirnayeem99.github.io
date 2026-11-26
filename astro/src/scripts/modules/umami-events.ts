@@ -8,6 +8,7 @@ interface UmamiApi {
 
 interface SiteThemeChangeDetail {
   readonly theme?: "light" | "dark";
+  readonly source?: "system" | "toggle";
 }
 
 declare global {
@@ -136,6 +137,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const detail = (event as CustomEvent<SiteThemeChangeDetail>).detail;
+    // Only the visitor's own toggle is worth counting, not the OS switching.
+    if (detail?.source === "system") {
+      return;
+    }
     const theme = detail?.theme === "light" || detail?.theme === "dark" ? detail.theme : "unknown";
 
     track("theme-change", { to: theme });

@@ -12,6 +12,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "stats:refresh": "node scripts/refresh-stats-snapshots.mjs",
     "lint": "eslint .",
     "test": "node --experimental-strip-types --test tests/stats-utils.test.mjs",
     "lint:css": "stylelint \"public/assets/css/styles.source.css\"",

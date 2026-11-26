@@ -1,4 +1,5 @@
 import { applyScriptLang } from "../../lib/script-lang";
+import { showLastFinished } from "./last-finished-link";
 // First slot on the home shelf: the last book read. The server renders the snapshot's
 // newest book; a newer one seen on an earlier visit comes back from localStorage at once,
 // and goodreads-loader hands over the live Goodreads response once the reader engages.
@@ -94,6 +95,8 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
     }
     // Only the snapshot knows read dates; a book newer than it has none to show yet.
     if (dateStrip) dateStrip.hidden = true;
+    // The "These days" copy names the same book.
+    showLastFinished(entry.href, entry.title);
   };
 
   // A cached book the snapshot has since caught up with is stale: the server render wins.
@@ -123,6 +126,7 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
           applyScriptLang(titleStrip, serverEntry.title);
         }
         if (dateStrip) dateStrip.hidden = serverDateHidden;
+        showLastFinished(serverEntry.href, serverEntry.title);
         writeCache(null);
         return;
       }

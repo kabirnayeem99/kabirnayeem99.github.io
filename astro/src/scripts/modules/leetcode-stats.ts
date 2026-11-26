@@ -1,4 +1,5 @@
 import { personPortfolioSnapshots } from "./stats-snapshots";
+import { liveStatus, refreshFailedStatus, savedStatus, unavailableStatus, type SavedFigures } from "./stats-status";
 
 interface RawDifficultyCount {
   readonly difficulty?: unknown;
@@ -27,6 +28,7 @@ interface LeetCodeCacheEnvelope {
 interface LeetCodeCacheEntry {
   readonly payload: LeetCodePayload;
   readonly isFresh: boolean;
+  readonly cachedAt: number;
 }
 
 interface NormalizedStats {
@@ -253,6 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return {
         payload: { solved: asSolvedPayload(p.solved) },
         isFresh,
+        cachedAt,
       };
     } catch {
       return null;
@@ -270,13 +273,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const snapshotFigures: SavedFigures = {
+    kind: "snapshot",
+    savedAt: personPortfolioSnapshots.leetcode.generatedAt,
+  };
+
   const renderStaticSnapshot = (): boolean => {
     const snapshot = getStaticSnapshot();
     if (!snapshot) {
       return false;
     }
     try {
-      render(snapshot, "Showing bundled LeetCode snapshot.");
+      render(snapshot, savedStatus("LeetCode", snapshotFigures));
       return true;
     } catch {
       return false;
@@ -287,9 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       render(
         entry.payload,
-        entry.isFresh
-          ? "Showing cached LeetCode data."
-          : "Showing stale cached LeetCode data.",
+        savedStatus("LeetCode", { kind: "cache", savedAt: entry.cachedAt }),
       );
       return true;
     } catch {
@@ -315,20 +321,20 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((solvedData) => {
       const payload: LeetCodePayload = { solved: asSolvedPayload(solvedData) };
       writeCache(payload);
-      render(payload, "Updated from LeetCode API.");
+      render(payload, liveStatus("LeetCode"));
     })
     .catch(() => {
-      if (hasRenderedCache) {
-        setStatus("Live LeetCode refresh failed. Showing cached data.", false);
+      if (cacheEntry && hasRenderedCache) {
+        setStatus(refreshFailedStatus("LeetCode", { kind: "cache", savedAt: cacheEntry.cachedAt }), false);
         return;
       }
       if (hasStaticSnapshot) {
-        setStatus("Live LeetCode refresh failed. Showing bundled snapshot.", false);
+        setStatus(refreshFailedStatus("LeetCode", snapshotFigures), false);
         return;
       }
       if (visualsEl instanceof HTMLElement) {
         visualsEl.hidden = true;
       }
-      setStatus("Could not load LeetCode stats right now.", true);
+      setStatus(unavailableStatus("LeetCode"), true);
     });
 });

@@ -11,6 +11,7 @@ import {
 } from "./stats-utils";
 import { READ_DATE_LOCALE } from "../../lib/notebook";
 import { personPortfolioSnapshots } from "./stats-snapshots";
+import { liveStatus, refreshFailedStatus, savedStatus, unavailableStatus, type SavedFigures } from "./stats-status";
 
 interface RawContribution {
   readonly date?: unknown;
@@ -30,6 +31,7 @@ interface GitHubCacheEnvelope {
 interface GitHubCacheEntry {
   readonly payload: GitHubContributionPayload;
   readonly isFresh: boolean;
+  readonly cachedAt: number;
 }
 
 interface NormalizedContribution {
@@ -134,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const ageMs = cachedAt > 0 ? Date.now() - cachedAt : Number.POSITIVE_INFINITY;
       const isFresh = cachedAt > 0 && ageMs >= 0 && ageMs <= CACHE_TTL_MS;
 
-      return { payload, isFresh };
+      return { payload, isFresh, cachedAt };
     } catch {
       return null;
     }
@@ -605,8 +607,9 @@ document.addEventListener("DOMContentLoaded", () => {
     yearlyEl.appendChild(svg);
   };
 
-  const render = (payload: GitHubContributionPayload, statusMessage: string): void => {
-    const todayUtc = toUtcDateOnly(new Date());
+  // `asOf` is the day saved figures were fetched: "last 30 days" and the heatmap end there.
+  const render = (payload: GitHubContributionPayload, statusMessage: string, asOf = new Date()): void => {
+    const todayUtc = toUtcDateOnly(asOf);
     const items = normalizeContributions(payload, todayUtc);
     const byDate = mapContributionsByDate(items);
     const days = buildHeatmapDays(byDate, todayUtc);
@@ -621,7 +624,12 @@ document.addEventListener("DOMContentLoaded", () => {
       visualsEl.hidden = false;
     }
 
-    setStatus(statusMessage || "Updated from live GitHub contribution data.", false);
+    setStatus(statusMessage, false);
+  };
+
+  const snapshotFigures: SavedFigures = {
+    kind: "snapshot",
+    savedAt: personPortfolioSnapshots.githubCommits.generatedAt,
   };
 
   const renderStaticSnapshot = (): boolean => {
@@ -631,7 +639,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      render(snapshot, "Showing bundled GitHub snapshot.");
+      render(snapshot, savedStatus("GitHub", snapshotFigures), new Date(snapshotFigures.savedAt));
       return true;
     } catch {
       return false;
@@ -642,9 +650,8 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       render(
         cacheEntry.payload,
-        cacheEntry.isFresh
-          ? "Showing cached GitHub contribution data."
-          : "Showing stale cached GitHub contribution data.",
+        savedStatus("GitHub", { kind: "cache", savedAt: cacheEntry.cachedAt }),
+        new Date(cacheEntry.cachedAt || Date.now()),
       );
       return true;
     } catch {
@@ -672,16 +679,16 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((payload) => {
       const safePayload = asPayload(payload);
       writeCache(safePayload);
-      render(safePayload, "Updated from live GitHub contribution data.");
+      render(safePayload, liveStatus("GitHub"));
     })
     .catch(() => {
-      if (hasRenderedCache) {
-        setStatus("Live GitHub refresh failed. Showing cached GitHub contribution data.", false);
+      if (cacheEntry && hasRenderedCache) {
+        setStatus(refreshFailedStatus("GitHub", { kind: "cache", savedAt: cacheEntry.cachedAt }), false);
         return;
       }
 
       if (hasStaticSnapshot) {
-        setStatus("Live GitHub refresh failed. Showing bundled GitHub snapshot.", false);
+        setStatus(refreshFailedStatus("GitHub", snapshotFigures), false);
         return;
       }
 
@@ -689,6 +696,6 @@ document.addEventListener("DOMContentLoaded", () => {
         visualsEl.hidden = true;
       }
 
-      setStatus("Could not load GitHub contribution data right now.", true);
+      setStatus(unavailableStatus("GitHub"), true);
     });
 });

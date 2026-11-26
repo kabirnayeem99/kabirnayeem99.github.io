@@ -35,6 +35,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Fresh figures for the stats page's bundled snapshot. A source that cannot be
+      # fetched keeps the committed figures, and nothing here may stop the deploy.
+      - name: Refresh stats snapshot
+        continue-on-error: true
+        timeout-minutes: 4
+        run: npm run stats:refresh
+
       - name: Validate build
         run: |
           npm run lint

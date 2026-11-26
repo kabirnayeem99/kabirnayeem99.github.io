@@ -1,6 +1,7 @@
 import { chartColor, createMeter, decorateDonut } from "./chart-ink";
 import { formatDate, formatDuration, formatPercent, isolate, parseDateOnly, toSafeNumber } from "./stats-utils";
 import { personPortfolioSnapshots } from "./stats-snapshots";
+import { liveStatus, refreshFailedStatus, savedStatus, unavailableStatus, type SavedFigures } from "./stats-status";
 
 interface RawLanguageItem {
   readonly name?: unknown;
@@ -47,6 +48,7 @@ interface WakatimeCacheEnvelope {
 interface WakatimeCacheEntry {
   readonly payload: WakatimeCachedPayload;
   readonly isFresh: boolean;
+  readonly cachedAt: number;
 }
 
 interface LanguageItem {
@@ -239,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
           summaryPayload: payload.summaryPayload as WakatimeSummaryPayload,
         },
         isFresh,
+        cachedAt,
       };
     } catch {
       return null;
@@ -607,6 +610,11 @@ interface DonutSegmentUi {
     }
   };
 
+  const snapshotFigures: SavedFigures = {
+    kind: "snapshot",
+    savedAt: personPortfolioSnapshots.wakatime.generatedAt,
+  };
+
   const renderStaticSnapshot = (): boolean => {
     const snapshot = getStaticSnapshot();
     if (!snapshot) {
@@ -617,7 +625,7 @@ interface DonutSegmentUi {
       renderFromPayloads(
         snapshot.languagePayload,
         snapshot.summaryPayload,
-        "Showing bundled WakaTime snapshot.",
+        savedStatus("WakaTime", snapshotFigures),
       );
       return true;
     } catch {
@@ -630,9 +638,7 @@ interface DonutSegmentUi {
       renderFromPayloads(
         cacheEntry.payload.languagePayload,
         cacheEntry.payload.summaryPayload,
-        cacheEntry.isFresh
-          ? "Showing cached WakaTime data."
-          : "Showing stale cached WakaTime data.",
+        savedStatus("WakaTime", { kind: "cache", savedAt: cacheEntry.cachedAt }),
       );
       return true;
     } catch {
@@ -665,20 +671,20 @@ interface DonutSegmentUi {
       };
 
       writeCache(cachePayload);
-      renderFromPayloads(languagePayload, summaryPayload, "Updated from WakaTime shared data.");
+      renderFromPayloads(languagePayload, summaryPayload, liveStatus("WakaTime"));
     })
     .catch(() => {
-      if (hasRenderedCache) {
-        setStatus("Live WakaTime refresh failed. Showing cached WakaTime data.", false);
+      if (cacheEntry && hasRenderedCache) {
+        setStatus(refreshFailedStatus("WakaTime", { kind: "cache", savedAt: cacheEntry.cachedAt }), false);
         return;
       }
 
       if (hasStaticSnapshot) {
-        setStatus("Live WakaTime refresh failed. Showing bundled WakaTime snapshot.", false);
+        setStatus(refreshFailedStatus("WakaTime", snapshotFigures), false);
         return;
       }
 
-      setStatus("Could not load live WakaTime charts right now.", true);
+      setStatus(unavailableStatus("WakaTime"), true);
       if (visualsEl instanceof HTMLElement) {
         visualsEl.hidden = true;
       }

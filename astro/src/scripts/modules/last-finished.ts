@@ -1,5 +1,4 @@
-import { withoutSeries } from "../../lib/book-title";
-import { applyScriptLang } from "../../lib/script-lang";
+import { showLastFinished } from "./last-finished-link";
 // Reading page, "Last finished": the server renders the snapshot's newest book. A newer one
 // comes from Goodreads itself, two ways:
 // - the home shelf caches the newest live book it has seen (same key as last-read-book.ts),
@@ -45,16 +44,9 @@ function setup(): void {
   const isNewRead = (reviewId: string | null): boolean =>
     reviewId !== null && reviewId !== reviewIdOf(link.getAttribute("href")) && !known.has(reviewId);
 
-  const show = (href: string, title: string): void => {
-    const clean = withoutSeries(title);
-    link.href = href;
-    link.textContent = clean;
-    applyScriptLang(link, clean);
-  };
-
   const cached = cachedBook();
   if (cached && isNewRead(cached.reviewId)) {
-    show(cached.href, cached.title);
+    showLastFinished(cached.href, cached.title);
   }
 
   const widget = document.querySelector<HTMLElement>(".goodreads-widget");
@@ -68,7 +60,7 @@ function setup(): void {
     if (!first || !href || !isNewRead(reviewId)) {
       return;
     }
-    show(href, first.getAttribute("title") ?? first.querySelector("img")?.getAttribute("alt") ?? link.textContent ?? "");
+    showLastFinished(href, first.getAttribute("title") ?? first.querySelector("img")?.getAttribute("alt") ?? link.textContent ?? "");
   });
   observer.observe(widget, { childList: true, subtree: true });
 }

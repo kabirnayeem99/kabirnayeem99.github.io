@@ -37,8 +37,8 @@
         },
         "github_commits": {
           "title": "GitHub Personal Commits",
-          "description": "Live public contribution data pulled from the GitHub API.",
-          "status_text": "Showing bundled GitHub snapshot.",
+          "description": "Public contributions from my GitHub profile.",
+          "status_text": "Loading GitHub contributions…",
           "contrib_url": "https://github-contributions-api.jogruber.de/v4/kabirnayeem99",
           "source_label": "Source:",
           "source_href": "https://github.com/kabirnayeem99",
@@ -125,8 +125,8 @@
         },
         "github_commits": {
           "title": "গিটহাব ব্যক্তিগত কমিট",
-          "description": "গিটহাব এপিআই থেকে নেওয়া লাইভ পাবলিক কন্ট্রিবিউশন ডাটা।",
-          "status_text": "বান্ডেল করা গিটহাব স্ন্যাপশট দেখানো হচ্ছে।",
+          "description": "আমার গিটহাব প্রোফাইলের পাবলিক কন্ট্রিবিউশন ডাটা।",
+          "status_text": "গিটহাব কন্ট্রিবিউশন লোড হচ্ছে…",
           "contrib_url": "https://github-contributions-api.jogruber.de/v4/kabirnayeem99",
           "source_label": "সোর্স:",
           "source_href": "https://github.com/kabirnayeem99",
@@ -213,8 +213,8 @@
         },
         "github_commits": {
           "title": "ٱلْكُومِتَاتُ ٱلشَّخْصِيَّةُ عَلَى GitHub",
-          "description": "بَيَانَاتُ ٱلْمُسَاهَمَاتِ ٱلْعَلَنِيَّةِ ٱلْمُبَاشِرَةِ ٱلْمَأْخُوذَةُ مِنْ GitHub API.",
-          "status_text": "يَجْرِي عَرْضُ لَقْطَةِ GitHub ٱلْمُجَمَّعَةِ.",
+          "description": "ٱلْمُسَاهَمَاتُ ٱلْعَلَنِيَّةُ فِي مِلَفِّي عَلَى GitHub.",
+          "status_text": "جَارٍ تَحْمِيلُ مُسَاهَمَاتِ GitHub…",
           "contrib_url": "https://github-contributions-api.jogruber.de/v4/kabirnayeem99",
           "source_label": "ٱلْمَصْدَر:",
           "source_href": "https://github.com/kabirnayeem99",
@@ -301,8 +301,8 @@
         },
         "github_commits": {
           "title": "GitHub ذاتی کمیٹس",
-          "description": "GitHub API سے لیا گیا لائیو پبلک کنٹریبیوشن ڈیٹا۔",
-          "status_text": "بنڈل کیا ہوا GitHub اسنیپ شاٹ دکھایا جا رہا ہے۔",
+          "description": "میری GitHub پروفائل کا پبلک کنٹریبیوشن ڈیٹا۔",
+          "status_text": "GitHub کنٹریبیوشنز لوڈ ہو رہی ہیں…",
           "contrib_url": "https://github-contributions-api.jogruber.de/v4/kabirnayeem99",
           "source_label": "ماخذ:",
           "source_href": "https://github.com/kabirnayeem99",

@@ -32,7 +32,7 @@
             },
             {
               "label": "Reading",
-              "html": "Just finished <strong><em>Lonesome Dove</em></strong> by Larry McMurtry. Going through <strong lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</strong>, by Dr. Mufti Yasir Nadim al-Wajidi. Also reading <strong lang=\"bn\">সন্দ্বীপিডিয়া</strong> out loud, to practise speaking clearly.",
+              "html": "Just finished <strong><em><last-finished/></em></strong>. Going through <strong lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</strong>, by Dr. Mufti Yasir Nadim al-Wajidi. Also reading <strong lang=\"bn\">সন্দ্বীপিডিয়া</strong> out loud, to practise speaking clearly.",
               "image": {
                 "src": "assets/images/now/tahafutul-malahida.webp",
                 "alt": "Cover of Tahafutul Malahida by Dr. Mufti Yasir Nadim al-Wajidi",
@@ -158,7 +158,7 @@
           "title": "বর্তমানে",
           "paragraphs": [
             "<strong>উর্দু পড়তে শিখছি</strong>, যদিও এখনো একদম প্রাথমিক পর্যায়ে। ধীরে ধীরে মান্টোর <em>আতিশ পারে</em> (<span lang=\"ur\" dir=\"rtl\">آتش پارے</span>) পড়ছি।",
-            "এখন পড়ছি <mark><em lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</em></mark>।",
+            "সম্প্রতি <strong><last-finished/></strong> পড়ে শেষ করেছি। এখন পড়ছি <mark><em lang=\"ur\" dir=\"rtl\">تہافت الملاحدہ</em></mark>।",
             "<mark>কম্পিউটার সায়েন্সের বেসিকে</mark> ফিরে যাচ্ছি। এআই-এর যুগে আরেকটা নতুন ভাষা বা ফ্রেমওয়ার্ক শেখা অর্থহীন লাগে, তাই এখন <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">অপারেটিং সিস্টেমের মৌলিক বিষয়গুলো</a> পড়ছি।"
           ],
           "images": [
@@ -251,7 +251,7 @@
           "title": "حَالِيًّا",
           "paragraphs": [
             "<strong>أَتَعَلَّمُ قِرَاءَةَ ٱلْأُرْدِيَّةِ</strong>، وَلَا أَزَالُ فِي مُسْتَوًى مُبْتَدِئٍ جِدًّا. أَقْرَأُ بِبُطْءٍ «آتش پارے» لِمَنْتُو.",
-            "أَقْرَأُ حَالِيًّا <mark>«<span lang=\"ur\">تہافت الملاحدہ</span>»</mark>.",
+            "فَرَغْتُ مُؤَخَّرًا مِنْ قِرَاءَةِ «<strong><last-finished/></strong>». أَقْرَأُ حَالِيًّا <mark>«<span lang=\"ur\">تہافت الملاحدہ</span>»</mark>.",
             "أَعُودُ إِلَىٰ <mark>أَسَاسِيَّاتِ عِلْمِ ٱلْحَاسُوبِ</mark>. تَعَلُّمُ لُغَةٍ أَوْ إِطَارِ عَمَلٍ جَدِيدٍ آخَرَ يَبْدُو بِلَا جَدْوَىٰ فِي عَصْرِ ٱلذَّكَاءِ ٱلِٱصْطِنَاعِيِّ، لِذَا أَدْرُسُ ٱلْآنَ <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">أَسَاسِيَّاتِ أَنْظِمَةِ ٱلتَّشْغِيلِ</a>."
           ],
           "images": [
@@ -336,7 +336,7 @@
           "title": "فی الحال",
           "paragraphs": [
             "<strong>اردو پڑھنا سیکھ رہا ہوں</strong>، ابھی بالکل ابتدائی سطح پر۔ آہستہ آہستہ منٹو کی «آتش پارے» پڑھ رہا ہوں۔",
-            "آج کل <mark>«تہافت الملاحدہ»</mark> پڑھ رہا ہوں۔",
+            "حال ہی میں «<strong><last-finished/></strong>» پڑھ کر ختم کی ہے۔ آج کل <mark>«تہافت الملاحدہ»</mark> پڑھ رہا ہوں۔",
             "<mark>کمپیوٹر سائنس کی بنیادوں</mark> کی طرف واپس جا رہا ہوں۔ اے آئی کے دور میں ایک اور نئی زبان یا فریم ورک سیکھنا بےسود لگتا ہے، اس لیے آج کل <a href=\"https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O\" target=\"_blank\" rel=\"noreferrer\">آپریٹنگ سسٹم کی بنیادی باتیں</a> پڑھ رہا ہوں۔"
           ],
           "images": [

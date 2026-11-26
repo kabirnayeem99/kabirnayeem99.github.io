@@ -1,6 +1,7 @@
 import { chartColor, createMeter, decorateDonut } from "./chart-ink";
 import { formatNumber, toSafeNumber } from "./stats-utils";
 import { personPortfolioSnapshots } from "./stats-snapshots";
+import { liveStatus, refreshFailedStatus, savedStatus, unavailableStatus, type SavedFigures } from "./stats-status";
 
 interface GitHubRepo {
   readonly name: string;
@@ -25,6 +26,7 @@ interface GitHubProfileCacheEnvelope {
 interface GitHubProfileCacheEntry {
   readonly payload: GitHubProfilePayload;
   readonly isFresh: boolean;
+  readonly cachedAt: number;
 }
 
 interface LanguageSegment {
@@ -167,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const ageMs = cachedAt > 0 ? Date.now() - cachedAt : Number.POSITIVE_INFINITY;
       const isFresh = cachedAt > 0 && ageMs >= 0 && ageMs <= CACHE_TTL_MS;
 
-      return { payload: p, isFresh };
+      return { payload: p, isFresh, cachedAt };
     } catch {
       return null;
     }
@@ -386,13 +388,18 @@ document.addEventListener("DOMContentLoaded", () => {
     setStatus(statusMessage, false);
   };
 
+  const snapshotFigures: SavedFigures = {
+    kind: "snapshot",
+    savedAt: personPortfolioSnapshots.githubProfile.generatedAt,
+  };
+
   const renderStaticSnapshot = (): boolean => {
     const snapshot = getStaticSnapshot();
     if (!snapshot) {
       return false;
     }
     try {
-      render(snapshot, "Showing bundled GitHub snapshot.");
+      render(snapshot, savedStatus("GitHub", snapshotFigures));
       return true;
     } catch {
       return false;
@@ -403,7 +410,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       render(
         entry.payload,
-        entry.isFresh ? "Showing cached GitHub profile." : "Showing stale cached GitHub profile.",
+        savedStatus("GitHub", { kind: "cache", savedAt: entry.cachedAt }),
       );
       return true;
     } catch {
@@ -449,16 +456,16 @@ document.addEventListener("DOMContentLoaded", () => {
         languages,
       };
       writeCache(payload);
-      render(payload, "Updated from live GitHub data.");
+      render(payload, liveStatus("GitHub"));
     })
     .catch(() => {
-      if (hasRenderedCache) {
-        setStatus("Live GitHub refresh failed. Showing cached GitHub profile.", false);
+      if (cacheEntry && hasRenderedCache) {
+        setStatus(refreshFailedStatus("GitHub", { kind: "cache", savedAt: cacheEntry.cachedAt }), false);
         return;
       }
 
       if (hasStaticSnapshot) {
-        setStatus("Live GitHub refresh failed. Showing bundled GitHub snapshot.", false);
+        setStatus(refreshFailedStatus("GitHub", snapshotFigures), false);
         return;
       }
 
@@ -466,6 +473,6 @@ document.addEventListener("DOMContentLoaded", () => {
         visualsEl.hidden = true;
       }
 
-      setStatus("Could not load GitHub profile data right now.", true);
+      setStatus(unavailableStatus("GitHub"), true);
     });
 });
