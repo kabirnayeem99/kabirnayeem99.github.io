@@ -1,3 +1,7 @@
+// With the extension so that Node's type stripping (npm test) can resolve it too.
+import { formatMarginDate } from "../../lib/notebook.ts";
+import type { Lang } from "../../lib/locale-config";
+
 export interface StatsUtils {
   readonly toSafeNumber: (value: unknown) => number;
   readonly formatPercent: (value: number) => string;
@@ -6,7 +10,7 @@ export interface StatsUtils {
   readonly parseDateOnly: (value: unknown) => Date | null;
   readonly addUtcDays: (date: Date, days: number) => Date;
   readonly dateKey: (date: Date) => string;
-  readonly formatDate: (date: Date) => string;
+  readonly formatDate: (date: Date, lang?: Lang) => string;
   readonly formatNumber: (value: number) => string;
 }
 
@@ -66,12 +70,19 @@ export function dateKey(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
 
-export function formatDate(date: Date): string {
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+export function pageLang(): Lang {
+  const lang = typeof document === "undefined" ? "" : document.documentElement.lang;
+  return lang === "bn" || lang === "ar" || lang === "ur" ? lang : "en";
+}
+
+/** The site's date format ("17 Nov 2026"), in the page's language. */
+export function formatDate(date: Date, lang: Lang = pageLang()): string {
+  return formatMarginDate(date.toISOString(), lang);
+}
+
+/** Keeps a figure or date in its own reading order inside a right-to-left line. */
+export function isolate(text: string): string {
+  return `\u2068${text}\u2069`;
 }
 
 export function formatNumber(value: number): string {

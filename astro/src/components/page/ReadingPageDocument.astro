@@ -1,7 +1,6 @@
 ---
 import { scriptLang } from "../../lib/script-lang";
 import BackToTopButton from "./BackToTopButton.astro";
-import Botanical from "./Botanical.astro";
 import ClosePageHeader from "./ClosePageHeader.astro";
 import HeadSeo from "./HeadSeo.astro";
 import PageFooter from "./PageFooter.astro";
@@ -113,11 +112,9 @@ const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
         ) : null}
 
         <section class="reading-now">
-          <Botanical name="cosmos-nod" class="pf pf--end pf--tall pf--tilt-l" />
           <div class="section-head">
             <h2 class="section-title">{content.now.title}</h2>
           </div>
-          <Botanical name="sprig" class="sprig" />
           <ul class="reading-desk">
             {content.now.items.map((item) => (
               <li class="reading-desk-item">
@@ -165,11 +162,9 @@ const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
         </section>
 
         <section class="reading-languages">
-          <Botanical name="buds" class="pf pf--start pf--tall-wide pf--tilt-r" />
           <div class="section-head">
             <h2 class="section-title">{content.languages.title}</h2>
           </div>
-          <Botanical name="sprig" class="sprig" />
           {content.languages.intro ? <p>{content.languages.intro}</p> : null}
           <dl class="reading-langs">
             {content.languages.items.map((item) => (
@@ -189,7 +184,6 @@ const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
             <div class="section-head">
               <h2 class="section-title">{content.notes.title}</h2>
             </div>
-            <Botanical name="sprig" class="sprig" />
             {content.notes.items.map((note) => (
               <article class="reading-note">
                 <h3>
@@ -209,7 +203,6 @@ const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
         ) : null}
 
         <section class="stats-report-section stats-report-section--books" id="shelf" data-umami-track-view="books-full">
-          <Botanical name="wheat" class="pf pf--start pf--slim" />
           <div class="summary-card stats-card stats-bookshelf">
             <h2 class="section-title">{content.shelf.title}</h2>
             <p>{content.shelf.copy}</p>

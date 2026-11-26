@@ -1,6 +1,5 @@
 ---
 import { clippingMast } from "../../lib/notebook";
-import Botanical from "./Botanical.astro";
 
 interface BlogArticle {
   readonly title: string;
@@ -11,21 +10,12 @@ interface BlogArticle {
 
 interface Props {
   readonly articles: readonly BlogArticle[];
-  readonly withFlowers?: boolean;
 }
 
-const { articles, withFlowers = true } = Astro.props;
+const { articles } = Astro.props;
 ---
 
 <section>
-  {
-    withFlowers ? (
-      <>
-        <Botanical name="buds" class="pf pf--end pf--tall-wide pf--tilt-r" />
-        <Botanical name="cosmos-head" class="pf pf--start pf--head-small pf--tilt-l" />
-      </>
-    ) : null
-  }
   <ul class="article-list">
     {
       articles.map((article) => {

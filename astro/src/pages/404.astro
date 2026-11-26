@@ -1,7 +1,5 @@
 ---
 // GitHub Pages serves 404.html with a proper 404 HTTP status for any missing URL.
-import Botanical from "../components/page/Botanical.astro";
-import BotanicalSprite from "../components/page/BotanicalSprite.astro";
 import { siteUrl } from "../config/site";
 import { UMAMI_WEBSITE_ID } from "../lib/page-shared";
 import {
@@ -40,10 +38,8 @@ const shouldLoadUmami = shouldLoadUmamiScript(
     }
   </head>
   <body>
-    <BotanicalSprite />
     <div class="site">
       <main id="main-content" class="not-found">
-        <Botanical name="cosmos-nod" class="pf pf--start pf--tall pf--tilt-l" />
         <h1 class="site-title">Page Not Found</h1>
         <p class="not-found-note">This page doesn't exist or has been moved.</p>
         <a href="/" class="action-chip action-chip--primary">

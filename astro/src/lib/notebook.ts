@@ -1,8 +1,7 @@
 import type { Lang } from "./locale-config";
-import type { BotanicalName } from "./botanicals";
 
 // Gregorian calendar everywhere: the Arabic default (ar-SA) would switch to Hijri dates.
-const READ_DATE_LOCALE: Readonly<Record<Lang, string>> = {
+export const READ_DATE_LOCALE: Readonly<Record<Lang, string>> = {
   en: "en-GB",
   bn: "bn-BD",
   ar: "ar-u-ca-gregory",
@@ -56,15 +55,4 @@ export function clippingMast(href: string, meta?: string): ClippingMast {
   }
   const publication = host === "medium.com" || host.endsWith(".medium.com") ? "Medium" : host.replace(/^www\./, "");
   return { publication, topic: undefined };
-}
-
-/** Flowers taped into cards, cycled so neighbours differ. */
-const PINNED_CYCLE: readonly BotanicalName[] = ["sage", "cosmos-head", "dandelion", "euc", "cosmos-head", "buds"];
-
-export function pinnedBotanical(index: number): BotanicalName {
-  return PINNED_CYCLE[index % PINNED_CYCLE.length] ?? "cosmos-head";
-}
-
-export function isTallBotanical(name: BotanicalName): boolean {
-  return name !== "cosmos-head";
 }

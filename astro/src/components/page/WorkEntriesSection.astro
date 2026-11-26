@@ -1,7 +1,6 @@
 ---
 import { assetHref, type CardImage, type ContentCard, type PictureCredit } from "../../lib/work-project-content";
 import HandArrow from "./HandArrow.astro";
-import Botanical from "./Botanical.astro";
 import JournalEntry from "./JournalEntry.astro";
 
 interface Props {
@@ -43,13 +42,10 @@ const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
   }
 </section>
 <section>
-  <Botanical name="cosmos-nod" class="pf pf--start pf--tall pf--tilt-l" />
-  <Botanical name="buds" class="pf pf--end pf--tall-wide pf--tilt-r" />
   <div class="section-head">
     <h2 class="section-title">{sectionTitle}</h2>
     <HandArrow variant="curl" class="hand-arrow--title" />
   </div>
-  <Botanical name="sprig" class="sprig" />
   <ol class="journal">
     {entries.map((entry) => <JournalEntry entry={entry} tagsLabel={tagsLabel} />)}
   </ol>

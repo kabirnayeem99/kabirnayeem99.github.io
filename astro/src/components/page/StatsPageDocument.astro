@@ -1,6 +1,5 @@
 ---
 import { scriptLang } from "../../lib/script-lang";
-import Botanical from "./Botanical.astro";
 import ClosePageHeader from "./ClosePageHeader.astro";
 import HeadSeo from "./HeadSeo.astro";
 import PageFooter from "./PageFooter.astro";
@@ -14,7 +13,7 @@ import {
 } from "../../lib/page-shared";
 import { buildBreadcrumb, buildSchemaGraphJson } from "../../lib/seo";
 import { transliterateLocalizedText } from "../../lib/content-loader-shared";
-import { formatReadDate } from "../../lib/notebook";
+import { formatMarginDate, formatReadDate } from "../../lib/notebook";
 import { loadStatsPageContent } from "../../lib/stats-content";
 import {
   assetHref,
@@ -71,7 +70,6 @@ const typingStats = (() => {
       return {
         wpm: parseFloat(cols[2] ?? ""),
         acc: parseFloat(cols[3] ?? ""),
-        consistency: parseFloat(cols[5] ?? ""),
       };
     })
     .filter((r) => !isNaN(r.wpm) && r.wpm > 0);
@@ -80,7 +78,6 @@ const typingStats = (() => {
   const pbWpm = Math.max(...rows.map((r) => r.wpm));
   const avgWpm = rows.reduce((s, r) => s + r.wpm, 0) / total;
   const avgAcc = rows.reduce((s, r) => s + r.acc, 0) / total;
-  const avgConsistency = rows.reduce((s, r) => s + r.consistency, 0) / total;
   const recent = rows.slice(0, 10);
   const recentAvg = recent.reduce((s, r) => s + r.wpm, 0) / recent.length;
   return {
@@ -88,7 +85,6 @@ const typingStats = (() => {
     pbWpm: pbWpm.toFixed(1),
     avgWpm: avgWpm.toFixed(1),
     avgAcc: avgAcc.toFixed(1),
-    avgConsistency: avgConsistency.toFixed(1),
     recentAvg: recentAvg.toFixed(1),
   };
 })();
@@ -104,7 +100,6 @@ const typingCopy =
         recentAverage: "مُتَوَسِّطُ ٱلْأَخِيرِ (١٠)",
         allTimeAverage: "مُتَوَسِّطُ كُلِّ ٱلْوَقْتِ",
         accuracy: "مُتَوَسِّطُ ٱلدِّقَّةِ",
-        consistency: "مُتَوَسِّطُ ٱلِانْتِظَامِ",
         wpm: "كَلِمَة/د",
       }
     : lang === "ur"
@@ -117,7 +112,6 @@ const typingCopy =
           recentAverage: "حالیہ اوسط (۱۰)",
           allTimeAverage: "مجموعی اوسط",
           accuracy: "اوسط درستگی",
-          consistency: "اوسط یکسانیت",
           wpm: "لفظ/منٹ",
         }
       : {
@@ -129,7 +123,6 @@ const typingCopy =
           recentAverage: "Recent Avg (10)",
           allTimeAverage: "All-Time Avg",
           accuracy: "Avg Accuracy",
-          consistency: "Avg Consistency",
           wpm: "WPM",
         };
 
@@ -197,7 +190,6 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
           </section>
         ) : null}
         <section class="stats-report-section stats-report-section--wakatime">
-          <Botanical name="cosmos-nod" class="pf pf--start pf--tall pf--tilt-l" />
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.wakatime.title}</h2>
             <div
@@ -223,7 +215,6 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
           </div>
         </section>
         <section class="stats-report-section stats-report-section--github">
-          <Botanical name="fern" class="pf pf--end pf--fern pf--tilt-l" />
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.githubCommits.title}</h2>
             <p>{content.sections.githubCommits.description}</p>
@@ -299,7 +290,6 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
           </div>
         </section>
         <section class="stats-report-section stats-report-section--leetcode">
-          <Botanical name="poppy" class="pf pf--start pf--tall pf--tilt-r" />
           <div class="summary-card stats-card">
             <h2 class="section-title">{content.sections.leetcode.title}</h2>
             <p set:html={content.sections.leetcode.copy}></p>
@@ -333,7 +323,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
             </p>
             {typingStats && (
               <div class="leetcode-summary">
-                <div class="leetcode-card leetcode-card--primary">
+                <div class="leetcode-card">
                   <div class="leetcode-card-label">{typingCopy.personalBest}</div>
                   <div class="leetcode-card-value">{typingStats.pbWpm} {typingCopy.wpm}</div>
                 </div>
@@ -349,10 +339,6 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
                   <div class="leetcode-card-label">{typingCopy.accuracy}</div>
                   <div class="leetcode-card-value">{typingStats.avgAcc}%</div>
                 </div>
-                <div class="leetcode-card">
-                  <div class="leetcode-card-label">{typingCopy.consistency}</div>
-                  <div class="leetcode-card-value">{typingStats.avgConsistency}%</div>
-                </div>
               </div>
             )}
           </div>
@@ -360,7 +346,6 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
         {/* English: the book wall moved to the reading page. */}
         {lang !== "en" ? (
         <section class="stats-report-section stats-report-section--books" data-umami-track-view="books-full">
-          <Botanical name="wheat" class="pf pf--start pf--slim" />
           <div class="summary-card stats-card stats-bookshelf">
             <h2 class="section-title">{content.sections.goodreads.title}</h2>
             <p>{content.sections.goodreads.copy}</p>
@@ -405,7 +390,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
         footerHtml={content.footerHtml}
         lastUpdatedLabel={uiLabels.lastUpdated}
         timestampIso={buildTimestamp.iso}
-        timestampDisplay={buildTimestamp.display}
+        timestampDisplay={formatMarginDate(buildTimestamp.iso, lang)}
       />
     </div>
     <script>

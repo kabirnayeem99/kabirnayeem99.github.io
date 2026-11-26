@@ -3,10 +3,13 @@ import {
   dateKey,
   formatDate,
   formatNumber,
+  isolate,
+  pageLang,
   parseDateOnly,
   toSafeNumber,
   toUtcDateOnly,
 } from "./stats-utils";
+import { READ_DATE_LOCALE } from "../../lib/notebook";
 import { personPortfolioSnapshots } from "./stats-snapshots";
 
 interface RawContribution {
@@ -282,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
     summaryEl.appendChild(
       summaryItem(
         "Most active day",
-        best ? `${formatNumber(best.count)} on ${formatDate(best.date)}` : "n/a",
+        best ? `${isolate(formatNumber(best.count))} · ${isolate(formatDate(best.date))}` : "n/a",
       ),
     );
   };
@@ -365,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     monthsEl.innerHTML = "";
 
-    const monthFormat = new Intl.DateTimeFormat(document.documentElement.lang || "en", {
+    const monthFormat = new Intl.DateTimeFormat(READ_DATE_LOCALE[pageLang()], {
       month: "short",
       timeZone: "UTC",
     });

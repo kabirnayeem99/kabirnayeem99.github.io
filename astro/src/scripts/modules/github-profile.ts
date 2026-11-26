@@ -1,4 +1,4 @@
-import { createMeter, decorateDonut } from "./chart-ink";
+import { chartColor, createMeter, decorateDonut } from "./chart-ink";
 import { formatNumber, toSafeNumber } from "./stats-utils";
 import { personPortfolioSnapshots } from "./stats-snapshots";
 
@@ -36,35 +36,12 @@ interface LanguageSegment {
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 const SVG_NS = "http://www.w3.org/2000/svg";
 
-const LANG_COLORS: Readonly<Record<string, string>> = {
-  kotlin: "#A97BFF",
-  dart: "#00B4AB",
-  java: "#b07219",
-  typescript: "#3178c6",
-  javascript: "#f1e05a",
-  python: "#3572A5",
-  swift: "#F05138",
-  rust: "#dea584",
-  go: "#00ADD8",
-  "c++": "#f34b7d",
-  c: "#555555",
-  "c#": "#178600",
-  ruby: "#701516",
-  shell: "#89e051",
-  php: "#4F5D95",
-  lua: "#000080",
-};
-
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
 
 function safeString(value: unknown): string {
   return typeof value === "string" ? value : "";
-}
-
-function langColor(name: string): string {
-  return LANG_COLORS[name.toLowerCase()] ?? "#6b7280";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -237,24 +214,28 @@ document.addEventListener("DOMContentLoaded", () => {
     ].join(" ");
   };
 
+  /** The six most used languages, in the order the donut and its colours follow. */
+  const topLanguages = (languages: Readonly<Record<string, number>>): [string, number][] =>
+    Object.entries(languages)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 6);
+
   const renderLanguageDonut = (languages: Readonly<Record<string, number>>): void => {
     if (!(donutEl instanceof HTMLElement) || !(legendEl instanceof HTMLElement)) {
       return;
     }
 
-    const entries = Object.entries(languages)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 6);
+    const entries = topLanguages(languages);
 
     const total = entries.reduce((sum, [, count]) => sum + count, 0);
     if (total <= 0 || entries.length === 0) {
       return;
     }
 
-    const segments: LanguageSegment[] = entries.map(([name, count]) => ({
+    const segments: LanguageSegment[] = entries.map(([name, count], index) => ({
       name,
       count,
-      color: langColor(name),
+      color: chartColor(index),
     }));
 
     const svg = document.createElementNS(SVG_NS, "svg");
@@ -276,7 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const endAngle = currentAngle + segAngle;
       const path = document.createElementNS(SVG_NS, "path");
       path.setAttribute("d", describeArcPath(100, 100, radius, currentAngle, endAngle));
-      path.setAttribute("fill", seg.color);
+      path.style.fill = seg.color;
       path.setAttribute("stroke", "color-mix(in srgb, var(--surface) 92%, white 8%)");
       path.setAttribute("stroke-width", "1");
       group.appendChild(path);
@@ -338,11 +319,12 @@ document.addEventListener("DOMContentLoaded", () => {
     statsEl.appendChild(profileCard("Issues opened", formatNumber(payload.issuesOpened)));
   };
 
-  const renderRepos = (repos: readonly GitHubRepo[]): void => {
+  const renderRepos = (repos: readonly GitHubRepo[], languages: Readonly<Record<string, number>>): void => {
     if (!(reposEl instanceof HTMLElement)) {
       return;
     }
     reposEl.innerHTML = "";
+    const charted = topLanguages(languages).map(([name]) => name);
 
     repos.forEach((repo) => {
       const card = document.createElement("div");
@@ -379,7 +361,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const dot = document.createElement("span");
         dot.className = "github-repo-card-lang-dot";
-        dot.style.backgroundColor = langColor(repo.language);
+        // Same colour as the donut; a language outside it gets a neutral dot.
+        const slot = charted.indexOf(repo.language);
+        dot.style.backgroundColor = slot >= 0 ? chartColor(slot) : "var(--faint)";
 
         langBadge.appendChild(dot);
         langBadge.appendChild(document.createTextNode(repo.language));
@@ -392,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const render = (payload: GitHubProfilePayload, statusMessage: string): void => {
     renderStats(payload);
-    renderRepos(payload.repos);
+    renderRepos(payload.repos, payload.languages);
     renderLanguageDonut(payload.languages);
 
     if (visualsEl instanceof HTMLElement) {

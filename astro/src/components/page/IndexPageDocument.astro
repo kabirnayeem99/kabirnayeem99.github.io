@@ -1,7 +1,6 @@
 ---
 import { scriptLang } from "../../lib/script-lang";
 import BackToTopButton from "./BackToTopButton.astro";
-import Botanical from "./Botanical.astro";
 import BotanicalSprite from "./BotanicalSprite.astro";
 import HeadSeo from "./HeadSeo.astro";
 import HighlightCard from "./HighlightCard.astro";
@@ -29,7 +28,6 @@ import {
   clippingMast,
   formatMarginDate,
   formatReadDate,
-  pinnedBotanical,
 } from "../../lib/notebook";
 import {
   assetHref,
@@ -300,7 +298,6 @@ function buildSectionClassName(
               <div class="section-head">
                 <h2 class="section-title">{leadSection.title}</h2>
               </div>
-              <Botanical name="sprig" class="sprig" />
               {leadSection.items.length > 0 ? (
                 <div class="now-note">
                   <span class="margin-note" aria-hidden="true">{marginDate}</span>
@@ -373,18 +370,14 @@ function buildSectionClassName(
                   })}
                 </div>
               ) : null}
-              <Botanical name="poppy" class="pf pf--start pf--tall pf--tilt-r" style="inset-block-end: -120px" />
             </section>
           ) : null
         }
 
         <section class="index-section index-section--books books-shelf-section" data-umami-track-view="books">
-          <Botanical name="fern" class="pf pf--end pf--fern pf--tilt-l" />
-          <Botanical name="wheat" class="pf pf--start pf--slim" style="inset-block-start: 40%" />
           <div class="section-head">
             <h2 class="section-title">{content.statsCompact.goodreads.title}</h2>
           </div>
-          <Botanical name="sprig" class="sprig" />
           <p>{content.statsCompact.goodreads.copy}</p>
           <script type="application/json" id="goodreads-known-reviews" is:inline set:html={JSON.stringify(knownReviewIds)} />
           <div
@@ -460,17 +453,11 @@ function buildSectionClassName(
         </section>
 
         {
-          remainingSections.map((section, sectionIndex) => (
+          remainingSections.map((section) => (
             <section class={buildSectionClassName(section)}>
-              {sectionIndex % 2 === 0 ? (
-                <Botanical name="cosmos" class="pf pf--end pf--tall-wide pf--tilt-r" />
-              ) : (
-                <Botanical name="buds" class="pf pf--end pf--tall-wide pf--tilt-l" />
-              )}
               <div class="section-head">
                 <h2 class="section-title">{section.title}</h2>
               </div>
-              <Botanical name="sprig" class="sprig" />
               {section.paragraphs.map((paragraph) => (
                 <p set:html={paragraph} />
               ))}
@@ -505,8 +492,8 @@ function buildSectionClassName(
               ) : null}
               {section.highlights.length > 0 ? (
                 <div class="highlight-list">
-                  {section.highlights.map((highlight, highlightIndex) => (
-                    <HighlightCard card={highlight} botanical={pinnedBotanical(highlightIndex)} />
+                  {section.highlights.map((highlight) => (
+                    <HighlightCard card={highlight} />
                   ))}
                 </div>
               ) : null}
@@ -591,12 +578,6 @@ function buildSectionClassName(
         timestampIso={buildTimestamp.iso}
         timestampDisplay={buildTimestamp.display}
       />
-      <svg class="pressed pf pf--bouquet" viewBox="0 0 220 200" aria-hidden="true" focusable="false">
-        <use href="#bot-wheat" x="20" y="0" width="40" height="200" />
-        <use href="#bot-cosmos" x="50" y="10" width="70" height="190" />
-        <use href="#bot-euc" x="100" y="20" width="90" height="180" />
-        <use href="#bot-dandelion" x="160" y="30" width="50" height="170" />
-      </svg>
     </div>
 
     <BackToTopButton label={uiLabels.backToTop} />

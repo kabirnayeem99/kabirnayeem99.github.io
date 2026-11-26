@@ -1,8 +1,5 @@
 ---
-import type { BotanicalName } from "../../lib/botanicals";
-import { pinnedBotanical } from "../../lib/notebook";
 import type { ProjectGroup } from "../../lib/work-project-content";
-import Botanical from "./Botanical.astro";
 import HighlightCard from "./HighlightCard.astro";
 import JournalEntry from "./JournalEntry.astro";
 
@@ -11,40 +8,25 @@ interface Props {
 }
 
 const { groups } = Astro.props;
-
-// One margin flower per group, alternating sides so the page never stacks two together.
-const MARGIN_FLOWERS: readonly { name: BotanicalName; className: string }[] = [
-  { name: "poppy", className: "pf pf--start pf--tall pf--tilt-r" },
-  { name: "fern", className: "pf pf--end pf--fern pf--tilt-l" },
-  { name: "wheat", className: "pf pf--start pf--slim" },
-  { name: "cosmos", className: "pf pf--end pf--tall-wide pf--tilt-r" },
-];
-
-let cardIndex = 0;
 ---
 
 {
-  groups.map((group, groupIndex) => {
-    const flower = MARGIN_FLOWERS[groupIndex % MARGIN_FLOWERS.length];
-    return (
-      <section class={group.layout === "compact" ? "project-group project-group--compact" : "project-group"}>
-        {flower ? <Botanical name={flower.name} class={flower.className} /> : null}
-        <h2 class="section-title">{group.title}</h2>
-        <Botanical name="sprig" class="sprig" />
-        {group.layout === "compact" ? (
-          <div class="highlight-list">
-            {group.items.map((item) => (
-              <HighlightCard card={item} botanical={pinnedBotanical(cardIndex++)} />
-            ))}
-          </div>
-        ) : (
-          <ol class="journal">
-            {group.items.map((item) => (
-              <JournalEntry entry={item} />
-            ))}
-          </ol>
-        )}
-      </section>
-    );
-  })
+  groups.map((group) => (
+    <section class={group.layout === "compact" ? "project-group project-group--compact" : "project-group"}>
+      <h2 class="section-title">{group.title}</h2>
+      {group.layout === "compact" ? (
+        <div class="highlight-list">
+          {group.items.map((item) => (
+            <HighlightCard card={item} />
+          ))}
+        </div>
+      ) : (
+        <ol class="journal">
+          {group.items.map((item) => (
+            <JournalEntry entry={item} />
+          ))}
+        </ol>
+      )}
+    </section>
+  ))
 }

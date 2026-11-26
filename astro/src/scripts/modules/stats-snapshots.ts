@@ -6,7 +6,6 @@ export const personPortfolioSnapshots = Object.freeze({
     }),
     leetcode: Object.freeze({
       generatedAt: "2026-06-03T00:00:00Z",
-      profile: { ranking: 1166427 },
       solved: {
         solvedProblem: 136,
         easySolved: 89,

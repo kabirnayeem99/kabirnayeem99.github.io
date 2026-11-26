@@ -43,3 +43,11 @@ test("formatNumber rounds and clamps negatives", function () {
   assert.equal(statsUtils.formatNumber(1234.6), "1,235");
   assert.equal(statsUtils.formatNumber(-10), "0");
 });
+
+test("formatDate uses the site's date format in each language", function () {
+  const date = new Date("2026-11-17T00:00:00Z");
+  assert.equal(statsUtils.formatDate(date), "17 Nov 2026");
+  assert.equal(statsUtils.formatDate(date, "bn"), "১৭ নভে, ২০২৬");
+  assert.match(statsUtils.formatDate(date, "ar"), /نوفمبر/);
+  assert.match(statsUtils.formatDate(date, "ur"), /نومبر/);
+});

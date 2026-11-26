@@ -2,7 +2,6 @@
 import skillsData from "../../data/site-content/skills.json";
 import type { Lang } from "../../lib/locale-config";
 import { assetHref } from "../../lib/work-project-content";
-import Botanical from "./Botanical.astro";
 
 interface Props {
   readonly lang: Lang;
@@ -29,11 +28,9 @@ const skillGroups = skillsData.groups.map((group) => ({
 ---
 
 <section class="index-section index-section--stats">
-  <Botanical name="cosmos-head" class="pf pf--start pf--head-small pf--tilt-r" />
   <div class="section-head">
     <h2 class="section-title">{title}</h2>
   </div>
-  <Botanical name="sprig" class="sprig" />
   <div class="sticker-sheet taped">
     {skillGroups.map((group) => (
       <div class="sticker-group">

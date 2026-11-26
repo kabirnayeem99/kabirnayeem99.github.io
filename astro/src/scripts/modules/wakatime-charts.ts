@@ -1,11 +1,10 @@
-import { createMeter, decorateDonut } from "./chart-ink";
-import { formatDuration, formatPercent, toSafeNumber } from "./stats-utils";
+import { chartColor, createMeter, decorateDonut } from "./chart-ink";
+import { formatDate, formatDuration, formatPercent, isolate, parseDateOnly, toSafeNumber } from "./stats-utils";
 import { personPortfolioSnapshots } from "./stats-snapshots";
 
 interface RawLanguageItem {
   readonly name?: unknown;
   readonly percent?: unknown;
-  readonly color?: unknown;
 }
 
 interface WakatimeLanguagePayload {
@@ -110,9 +109,10 @@ function asSummaryPayload(value: unknown): WakatimeSummaryPayload {
   return isRecord(value) ? (value as WakatimeSummaryPayload) : {};
 }
 
-function formatDate(isoDate: unknown): string {
-  const safeDate = typeof isoDate === "string" ? isoDate : "";
-  return safeDate.length > 0 ? safeDate.slice(0, 10) : "n/a";
+/** Takes "2023-07-29" or a full ISO timestamp; only the (UTC) day is shown. */
+function formatIsoDay(isoDate: unknown): string {
+  const date = parseDateOnly(typeof isoDate === "string" ? isoDate.slice(0, 10) : "");
+  return date ? formatDate(date) : "n/a";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -263,13 +263,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const raw = Array.isArray(payload.data) ? payload.data : [];
 
     return raw
-      .map((item): LanguageItem => ({
+      .map((item) => ({
         name: String(item?.name ?? "Unknown"),
         percent: toSafeNumber(item?.percent),
-        color: typeof item?.color === "string" && item.color.length > 0 ? item.color : "#6b7280",
       }))
       .filter((item) => item.percent > 0 && !shouldExcludeLanguage(item.name))
-      .sort((left, right) => right.percent - left.percent);
+      .sort((left, right) => right.percent - left.percent)
+      .map((item, index): LanguageItem => ({ ...item, color: chartColor(index) }));
   };
 
 interface DonutSegmentUi {
@@ -342,7 +342,7 @@ interface DonutSegmentUi {
       const path = document.createElementNS(SVG_NS, "path");
       path.setAttribute("class", "wakatime-donut-segment");
       path.setAttribute("d", describeArcPath(100, 100, radius, startAngle, endAngle));
-      path.setAttribute("fill", item.color);
+      path.style.fill = item.color;
       path.setAttribute("stroke", "color-mix(in srgb, var(--surface) 92%, white 8%)");
       path.setAttribute("stroke-width", "1");
       path.setAttribute("stroke-linecap", "round");
@@ -544,10 +544,12 @@ interface DonutSegmentUi {
     summaryEl.appendChild(
       summaryItem(
         "Total coded",
-        String(
-          total.human_readable_total_including_other_language ??
-            total.human_readable_total ??
-            "n/a",
+        isolate(
+          String(
+            total.human_readable_total_including_other_language ??
+              total.human_readable_total ??
+              "n/a",
+          ),
         ),
       ),
     );
@@ -555,10 +557,12 @@ interface DonutSegmentUi {
     summaryEl.appendChild(
       summaryItem(
         "Daily average",
-        String(
-          total.human_readable_daily_average_including_other_language ??
-            total.human_readable_daily_average ??
-            "n/a",
+        isolate(
+          String(
+            total.human_readable_daily_average_including_other_language ??
+              total.human_readable_daily_average ??
+              "n/a",
+          ),
         ),
       ),
     );
@@ -566,14 +570,14 @@ interface DonutSegmentUi {
     summaryEl.appendChild(
       summaryItem(
         "Best day",
-        `${String(best.text ?? "n/a")}${best.date ? ` · ${formatDate(best.date)}` : ""}`,
+        `${isolate(String(best.text ?? "n/a"))}${best.date ? ` · ${isolate(formatIsoDay(best.date))}` : ""}`,
       ),
     );
 
     summaryEl.appendChild(
       summaryItem(
         "Tracking range",
-        `${range.start ? formatDate(range.start) : "n/a"}${range.end ? ` to ${formatDate(range.end)}` : ""}`,
+        `${isolate(formatIsoDay(range.start))}${range.end ? ` – ${isolate(formatIsoDay(range.end))}` : ""}`,
       ),
     );
   };

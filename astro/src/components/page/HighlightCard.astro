@@ -1,28 +1,16 @@
 ---
-import type { BotanicalName } from "../../lib/botanicals";
-import { isTallBotanical } from "../../lib/notebook";
 import { assetHref, type ContentCard } from "../../lib/work-project-content";
-import Botanical from "./Botanical.astro";
 
 interface Props {
   readonly card: ContentCard;
-  readonly botanical?: BotanicalName;
 }
 
-const { card, botanical } = Astro.props;
+const { card } = Astro.props;
 const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
 ---
 
 <article class="highlight">
   <span class="peel-flap" aria-hidden="true"></span>
-  {
-    botanical ? (
-      <Botanical
-        name={botanical}
-        class={isTallBotanical(botanical) ? "pinned pinned--tall" : "pinned"}
-      />
-    ) : null
-  }
   <h3>
     {
       card.href ? (
@@ -57,6 +45,7 @@ const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
               loading="lazy"
               decoding="async"
             />
+            {image.caption ? <figcaption>{image.caption}</figcaption> : null}
           </figure>
         ))}
       </div>

@@ -1,9 +1,5 @@
 import { personPortfolioSnapshots } from "./stats-snapshots";
 
-interface RawProfile {
-  readonly ranking?: unknown;
-}
-
 interface RawDifficultyCount {
   readonly difficulty?: unknown;
   readonly count?: unknown;
@@ -20,7 +16,6 @@ interface RawSolvedPayload {
 }
 
 interface LeetCodePayload {
-  readonly profile: RawProfile;
   readonly solved: RawSolvedPayload;
 }
 
@@ -39,7 +34,6 @@ interface NormalizedStats {
   readonly easySolved: number;
   readonly mediumSolved: number;
   readonly hardSolved: number;
-  readonly ranking: number;
   readonly acceptanceRate: number;
 }
 
@@ -52,10 +46,6 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function toSafeNumber(value: unknown): number {
   const num = Number(value);
   return isFinite(num) ? num : 0;
-}
-
-function asProfile(value: unknown): RawProfile {
-  return isRecord(value) ? (value as RawProfile) : {};
 }
 
 function asSolvedPayload(value: unknown): RawSolvedPayload {
@@ -123,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     easySolved: toSafeNumber(payload.solved.easySolved),
     mediumSolved: toSafeNumber(payload.solved.mediumSolved),
     hardSolved: toSafeNumber(payload.solved.hardSolved),
-    ranking: toSafeNumber(payload.profile.ranking),
     acceptanceRate: computeAcceptanceRate(payload.solved),
   });
 
@@ -152,13 +141,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     summaryEl.innerHTML = "";
-    summaryEl.appendChild(summaryCard("Solved", formatNumber(stats.totalSolved), "primary"));
+    summaryEl.appendChild(summaryCard("Solved", formatNumber(stats.totalSolved)));
     summaryEl.appendChild(summaryCard("Easy", formatNumber(stats.easySolved), "easy"));
     summaryEl.appendChild(summaryCard("Medium", formatNumber(stats.mediumSolved), "medium"));
     summaryEl.appendChild(summaryCard("Hard", formatNumber(stats.hardSolved), "hard"));
-    if (stats.ranking > 0) {
-      summaryEl.appendChild(summaryCard("Ranking", `#${formatNumber(stats.ranking)}`));
-    }
     if (stats.acceptanceRate > 0) {
       summaryEl.appendChild(summaryCard("Acceptance", `${stats.acceptanceRate}%`));
     }
@@ -228,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const render = (payload: LeetCodePayload, statusMessage: string): void => {
     const stats = normalizeStats(payload);
-    if (stats.totalSolved <= 0 && stats.ranking <= 0) {
+    if (stats.totalSolved <= 0) {
       throw new Error("No LeetCode data available");
     }
     renderSummaryCards(stats);
@@ -244,12 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!isRecord(snap)) {
       return null;
     }
-    const profile = isRecord(snap.profile) ? snap.profile : {};
-    const solved = isRecord(snap.solved) ? snap.solved : {};
-    return {
-      profile: profile as RawProfile,
-      solved: solved as RawSolvedPayload,
-    };
+    return { solved: asSolvedPayload(snap.solved) };
   };
 
   const readCacheEntry = (): LeetCodeCacheEntry | null => {
@@ -267,12 +248,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isRecord(p)) {
         return null;
       }
-      const profile = isRecord(p.profile) ? p.profile : {};
-      const solved = isRecord(p.solved) ? p.solved : {};
       const ageMs = cachedAt > 0 ? Date.now() - cachedAt : Number.POSITIVE_INFINITY;
       const isFresh = cachedAt > 0 && ageMs >= 0 && ageMs <= CACHE_TTL_MS;
       return {
-        payload: { profile: profile as RawProfile, solved: solved as RawSolvedPayload },
+        payload: { solved: asSolvedPayload(p.solved) },
         isFresh,
       };
     } catch {
@@ -332,15 +311,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  Promise.all([
-    fetchJsonWithTimeout(apiUrl, 10_000),
-    fetchJsonWithTimeout(`${apiUrl}/solved`, 10_000),
-  ])
-    .then(([profileData, solvedData]) => {
-      const payload: LeetCodePayload = {
-        profile: asProfile(profileData),
-        solved: asSolvedPayload(solvedData),
-      };
+  fetchJsonWithTimeout(`${apiUrl}/solved`, 10_000)
+    .then((solvedData) => {
+      const payload: LeetCodePayload = { solved: asSolvedPayload(solvedData) };
       writeCache(payload);
       render(payload, "Updated from LeetCode API.");
     })

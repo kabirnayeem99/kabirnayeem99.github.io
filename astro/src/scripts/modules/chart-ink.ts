@@ -3,6 +3,16 @@
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 
+const CHART_SLOTS = 6;
+
+/**
+ * The paper palette (--chart-1…6 in styles.source.css, one set per theme), handed out in
+ * its fixed order so neighbouring segments stay apart. API-supplied colours are ignored.
+ */
+export function chartColor(index: number): string {
+  return `var(--chart-${(index % CHART_SLOTS) + 1})`;
+}
+
 /** A wash-filled bar whose length is `share` (0..1) of the row; `index` staggers the draw-in. */
 export function createMeter(color: string, share: number, index: number): HTMLSpanElement {
   const meter = document.createElement("span");

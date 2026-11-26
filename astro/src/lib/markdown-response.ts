@@ -1,5 +1,7 @@
 const TAG_PATTERN = /<[^>]*>/gu;
 const WHITESPACE_PATTERN = /\s+/gu;
+// Web links written into copy survive as Markdown links; every other tag is dropped.
+const WEB_LINK_PATTERN = /<a\b[^>]*?\shref="(https?:[^"]+)"[^>]*>(.*?)<\/a>/gu;
 
 function decodeEntity(value: string): string {
   return value
@@ -12,7 +14,11 @@ function decodeEntity(value: string): string {
 }
 
 export function toMarkdownText(value: string): string {
-  const withoutTags = value.replace(TAG_PATTERN, " ");
+  const linked = value.replace(WEB_LINK_PATTERN, (_match, href: string, inner: string) => {
+    const label = inner.replace(TAG_PATTERN, " ").trim();
+    return `[${label}](${href})`;
+  });
+  const withoutTags = linked.replace(TAG_PATTERN, " ");
   const decoded = decodeEntity(withoutTags);
   return decoded.replace(WHITESPACE_PATTERN, " ").trim();
 }
