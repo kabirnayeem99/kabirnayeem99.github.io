@@ -1,70 +1,166 @@
 #!/usr/bin/env bash
-# Pre-commit: auto-format/fix the staged files, re-stage them, then run every fast check.
+# pre-commit: auto-format/fix the staged files, re-stage them, then run every fast check.
 # Docs: .githooks/README.md.
 set -euo pipefail
 
-readonly HOOK_NAME="pre-commit"
-# shellcheck source=.githooks/lib.sh
-source "$(git rev-parse --show-toplevel)/.githooks/lib.sh"
+# shellcheck source=lib.sh
+source "${BASH_SOURCE[0]%/*}/lib.sh"
 
-# Staged files (added/copied/modified/renamed) under astro/, relative to astro/.
-staged_app_files() {
-  git diff --cached --name-only --diff-filter=ACMR -- astro | sed 's#^astro/##'
+readonly UV_INSTALL_HINT="brew install uv, or https://docs.astral.sh/uv/"
+
+usage() {
+  cat <<USAGE
+Usage: .githooks/pre-commit [-h|--help]
+
+Run by git commit. Auto-fixes the staged files and re-stages them (a file with
+unstaged edits is only checked), then runs "npm run verify -- --app" in astro/,
+plus --python when files under scripts/ are staged and --shell when the hooks
+are. Docs: .githooks/README.md.
+
+Exit status: 0 passed, 1 a check failed, 2 usage error, 130 interrupted.
+USAGE
 }
 
-# A file with unstaged edits can't be fixed and re-staged without sweeping those edits into
-# the commit, so it is only checked, not fixed.
-has_unstaged_changes() {
-  ! git diff --quiet -- "astro/$1"
+# Fills STAGED with the staged changes under directory $1 that pass diff filter $2, as
+# repo-relative paths. NUL-separated, so git does not quote unusual file names.
+STAGED=()
+read_staged() {
+  local list path
+  list=$(mktemp "${TMPDIR:-/tmp}/pre-commit.XXXXXX")
+  TEMP_FILES+=("$list")
+  git diff --cached --name-only -z --diff-filter="$2" -- "$1" >"$list"
+  STAGED=()
+  while IFS= read -r -d '' path; do
+    STAGED+=("$path")
+  done <"$list"
 }
 
-autofix_staged() {
-  local file fixable=()
-  while IFS= read -r file; do
-    [[ -n "$file" && -f "$APP_DIR/$file" ]] || continue
-    if has_unstaged_changes "$file"; then
-      info "[$HOOK_NAME] $file has unstaged edits: checking only, not auto-fixing"
+# Fills FIXABLE with the staged files under directory $1 that may be rewritten. A file with
+# unstaged edits can't be fixed and re-staged without sweeping those edits into the commit,
+# so it is only checked.
+FIXABLE=()
+read_fixable() {
+  local path
+  FIXABLE=()
+  # Added, copied, modified or renamed: the files that still exist.
+  read_staged "$1" ACMR
+  ((${#STAGED[@]})) || return 0
+  for path in "${STAGED[@]}"; do
+    [[ -f "$path" ]] || continue
+    # Literal pathspecs: "[slug].astro" is a file name here, not a pattern.
+    if ! git --literal-pathspecs diff --quiet -- "$path"; then
+      info "$path has unstaged edits: checking only, not auto-fixing"
       continue
     fi
-    fixable+=("$file")
-  done < <(staged_app_files)
-  ((${#fixable[@]})) || return 0
+    FIXABLE+=("$path")
+  done
+}
 
-  local json=() code=() css=()
-  for file in "${fixable[@]}"; do
+restage_fixable() {
+  git --literal-pathspecs add -- "${FIXABLE[@]}"
+}
+
+# The fixers' failures are ignored: the checks that follow report what is left.
+autofix_app() {
+  local path file json=() code=() css=()
+  read_fixable astro
+  ((${#FIXABLE[@]})) || return 0
+  for path in "${FIXABLE[@]}"; do
+    file="${path#astro/}"
     case "$file" in
       src/data/*.json) json+=("$file") ;; # case globs match across "/"
-      *.ts | *.mts | *.astro | *.mjs | *.js) [[ $file == public/* ]] || code+=("$file") ;;
-      public/assets/css/styles.source.css) css+=("$file") ;;
+      *.ts | *.astro) code+=("$file") ;;
+      src/styles/*.css) css+=("$file") ;; # "*" also covers the subfolders
+      *) ;;
     esac
   done
 
-  info "[$HOOK_NAME] auto-fixing staged files"
+  info "auto-fixing staged files in astro/"
   (
-    cd "$APP_DIR"
+    cd astro
     if ((${#json[@]})); then npx --no-install prettier --log-level warn --write "${json[@]}"; fi
     if ((${#code[@]})); then npx --no-install eslint --fix "${code[@]}" || true; fi
     if ((${#css[@]})); then npx --no-install stylelint --fix "${css[@]}" || true; fi
-  )
-  for file in "${fixable[@]}"; do
-    git add -- "astro/$file"
+  ) </dev/null
+  restage_fixable
+}
+
+autofix_python() {
+  local path python=()
+  read_fixable scripts
+  ((${#FIXABLE[@]})) || return 0
+  for path in "${FIXABLE[@]}"; do
+    case "$path" in
+      *.py) python+=("${path#scripts/}") ;;
+      *) ;;
+    esac
+  done
+  ((${#python[@]})) || return 0
+
+  info "auto-formatting staged Python files"
+  (cd scripts && uv run ruff format -- "${python[@]}") </dev/null || true
+  restage_fixable
+}
+
+# Sets HAS_PYTHON_SECTION when files under scripts/ are staged. Deletions count: they can
+# break what is left. uv is only insisted on when Python itself changed.
+HAS_PYTHON_SECTION=false
+plan_python_section() {
+  local path
+  read_staged scripts ACDMRT
+  ((${#STAGED[@]})) || return 0
+  if ! command -v uv >/dev/null 2>&1; then
+    for path in "${STAGED[@]}"; do
+      case "$path" in
+        *.py | scripts/pyproject.toml | scripts/uv.lock)
+          require_command uv "$UV_INSTALL_HINT"
+          ;;
+        *) ;;
+      esac
+    done
+    warn "uv not found: skipping the Python checks (no Python files are staged)"
+    return 0
+  fi
+  HAS_PYTHON_SECTION=true
+}
+
+# Sets HAS_SHELL_SECTION when the hooks themselves, or their lint settings, are staged.
+HAS_SHELL_SECTION=false
+plan_shell_section() {
+  local dir
+  for dir in .githooks .shellcheckrc .editorconfig; do
+    read_staged "$dir" ACDMRT
+    if ((${#STAGED[@]})); then
+      HAS_SHELL_SECTION=true
+    fi
   done
 }
 
+# The checks themselves live in astro/scripts/verify.ts, shared with CI.
+run_verify() {
+  run_check "verify $1" astro npm run --silent verify -- "--$1"
+}
+
 main() {
-  [[ -d "$APP_DIR/node_modules" ]] || die "[$HOOK_NAME] astro/node_modules missing: run 'npm ci' in astro/"
-  autofix_staged
-  run_check "eslint" npm run --silent lint
-  run_check "stylelint" npm run --silent lint:css
-  run_check "prettier" npm run --silent format:check
-  run_check "astro check" npm run --silent check
-  run_check "unit tests" npm run --silent test
-  # A styles.source.css change must ship with its minified styles.css.
-  if git diff --cached --name-only | grep -qx "astro/public/assets/css/styles.source.css"; then
-    run_check "css build" npm run --silent css:build
-    git add -- astro/public/assets/css/styles.css
+  parse_hook_args 0 0 "$@"
+  enter_repo
+  [[ -d astro/node_modules ]] || die "astro/node_modules missing: run 'npm ci' in astro/"
+  # Decided before anything is rewritten, so a missing uv stops the commit untouched.
+  plan_python_section
+  plan_shell_section
+
+  autofix_app
+  if [[ $HAS_PYTHON_SECTION == true ]]; then
+    autofix_python
   fi
-  info "[$HOOK_NAME] all checks passed"
+  run_verify app
+  if [[ $HAS_PYTHON_SECTION == true ]]; then
+    run_verify python
+  fi
+  if [[ $HAS_SHELL_SECTION == true ]]; then
+    run_verify shell
+  fi
+  info "all checks passed"
 }
 
 main "$@"

@@ -1,17 +1,29 @@
 #!/usr/bin/env bash
-# Pre-push: build the site and run the smoke test over every page, then the global pre-push
-# (Git LFS). Docs: .githooks/README.md.
+# pre-push: build the site and run the browser checks, then the global pre-push (Git LFS). Docs: .githooks/README.md.
 set -euo pipefail
 
-readonly HOOK_NAME="pre-push"
-# shellcheck source=.githooks/lib.sh
-source "$(git rev-parse --show-toplevel)/.githooks/lib.sh"
+# shellcheck source=lib.sh
+source "${BASH_SOURCE[0]%/*}/lib.sh"
+
+usage() {
+  cat <<USAGE
+Usage: .githooks/pre-push [-h|--help] REMOTE_NAME REMOTE_URL
+
+Run by git push, which sends the list of refs on stdin. Runs
+"npm run verify -- --site" in astro/ (build and browser checks), then hands the arguments and stdin to the global pre-push hook (Git LFS).
+Docs: .githooks/README.md.
+
+Exit status: 0 passed, 1 a check failed, 2 usage error, 130 interrupted,
+otherwise the global hook's.
+USAGE
+}
 
 main() {
-  [[ -d "$APP_DIR/node_modules" ]] || die "[$HOOK_NAME] astro/node_modules missing: run 'npm ci' in astro/"
-  run_check "build" npm run --silent build
-  run_check "smoke test" npm run --silent test:smoke
-  info "[$HOOK_NAME] all checks passed"
+  parse_hook_args 2 2 "$@"
+  enter_repo
+  [[ -d astro/node_modules ]] || die "astro/node_modules missing: run 'npm ci' in astro/"
+  run_check "verify site" astro npm run --silent verify -- --site
+  info "all checks passed"
   run_global_hook "$@"
 }
 

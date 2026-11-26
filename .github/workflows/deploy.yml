@@ -19,21 +19,16 @@ jobs:
     defaults:
       run:
         working-directory: astro
-    env:
-      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: "24"
-          cache: "npm"
-          cache-dependency-path: "astro/package-lock.json"
+      - name: Set up checks
+        uses: ./.github/actions/setup
 
-      - name: Install dependencies
-        run: npm ci
+      # Every check, on the committed data. Nothing is deployed unless this passes.
+      - name: Verify
+        run: npm run verify
 
       # Fresh figures for the stats page's bundled snapshot. A source that cannot be
       # fetched keeps the committed figures, and nothing here may stop the deploy.
@@ -42,12 +37,14 @@ jobs:
         timeout-minutes: 4
         run: npm run stats:refresh
 
-      - name: Validate build
+      # Fresh figures that break the build or a page are dropped, not deployed.
+      - name: Build with fresh figures
         run: |
-          npm run lint
-          npm run check
-          npm run test
-          npm run build
+          if ! { npm run build && npm run test:smoke; }; then
+            echo "::warning::fresh stats broke the site; deploying the committed figures"
+            git checkout -- src/data/stats-snapshots.json
+            npm run build
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v6

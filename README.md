@@ -6,6 +6,7 @@ Multilingual portfolio site built and deployed with Astro.
 
 - App source: `astro/src`
 - Static assets: `astro/public`
+- Styles: `astro/src/styles` (entry `index.css`)
 - Content data: `astro/src/data/site-content/`
 
 ## Development
@@ -16,12 +17,15 @@ npm ci
 npm run dev
 ```
 
+`dev`, `build` and `check` bundle `astro/src/styles` into `astro/public/assets/css/styles.css`
+(generated, not tracked); `dev` rebuilds it as you edit.
+
 ## Static data refresh
 
 Goodreads snapshot and cover images:
 
 ```bash
-python3 scripts/goodreads_snapshot/update_goodreads_snapshot.py
+scripts/goodreads_snapshot/update_goodreads_snapshot.py
 ```
 
 GitHub stats snapshot:
@@ -35,10 +39,7 @@ The bundled GitHub snapshot data used by the site lives in astro/src/scripts/mod
 
 ```bash
 cd astro
-npm run lint
-npm run check
-npm run test
-npm run build
+npm run verify # every check; --help lists the faster groups
 ```
 
 ## Deployment

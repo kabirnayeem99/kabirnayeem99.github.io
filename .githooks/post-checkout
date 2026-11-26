@@ -1,9 +1,26 @@
 #!/usr/bin/env bash
 # post-checkout: nothing repo-specific; hands over to the global hook of the same name (Git LFS).
+# Docs: .githooks/README.md.
 set -euo pipefail
 
-readonly HOOK_NAME="post-checkout"
-# shellcheck source=.githooks/lib.sh
-source "$(git rev-parse --show-toplevel)/.githooks/lib.sh"
+# shellcheck source=lib.sh
+source "${BASH_SOURCE[0]%/*}/lib.sh"
 
-run_global_hook "$@"
+usage() {
+  cat <<USAGE
+Usage: .githooks/post-checkout [-h|--help] PREVIOUS_HEAD NEW_HEAD IS_BRANCH
+
+Run by git. Hands over to the global post-checkout hook (Git LFS), if there is one.
+Docs: .githooks/README.md.
+
+Exit status: 0 done, 2 usage error, otherwise the global hook's.
+USAGE
+}
+
+main() {
+  parse_hook_args 3 3 "$@"
+  enter_repo
+  run_global_hook "$@"
+}
+
+main "$@"

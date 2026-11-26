@@ -4,51 +4,40 @@ on:
   pull_request:
     paths:
       - "astro/**"
+      - "scripts/**"
+      - ".githooks/**"
+      - ".shellcheckrc"
+      - ".editorconfig"
+      - ".github/actions/**"
       - ".github/workflows/ci.yml"
       - ".github/workflows/deploy.yml"
   push:
     branches: ["main"]
     paths:
       - "astro/**"
+      - "scripts/**"
+      - ".githooks/**"
+      - ".shellcheckrc"
+      - ".editorconfig"
+      - ".github/actions/**"
       - ".github/workflows/ci.yml"
       - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: astro
-    env:
-      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: "24"
-          cache: "npm"
-          cache-dependency-path: "astro/package-lock.json"
+      - name: Set up checks
+        uses: ./.github/actions/setup
 
-      - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Type check
-        run: npm run check
-
-      - name: Unit tests
-        run: npm run test
-
-      - name: Build
-        run: npm run build
+      - name: Verify
+        working-directory: astro
+        run: npm run verify

@@ -1,45 +1,64 @@
 #!/usr/bin/env bash
 # commit-msg: subject line <= 72 chars, Conventional Commits shape, allowed types only.
 # Docs: .githooks/README.md.
-#
-# Accepted subject-line shapes (type restricted to the allowed list below):
-#   [TICKET] type(scope): message
-#   type(scope): message
-#   type: message
-#
-# Body lines (anything after the first line) are NOT restricted in length or content.
 set -euo pipefail
 
-msg_file="$1"
-subject=$(head -n1 "$msg_file")
+# shellcheck source=lib.sh
+source "${BASH_SOURCE[0]%/*}/lib.sh"
 
-# Merge/revert/fixup/squash commits aren't hand-authored Conventional Commits —
-# don't block those.
-case "$subject" in
-  "Merge "* | "Revert "* | "fixup!"* | "squash!"*)
-    exit 0
-    ;;
-esac
+readonly MAX_SUBJECT_LENGTH=72
+readonly ALLOWED_TYPES="fix|feat|refactor|perf|chore|build"
+readonly SUBJECT_PATTERN="^(\[[A-Za-z0-9_.-]+\] )?(${ALLOWED_TYPES})(\([A-Za-z0-9_./ -]+\))?: .+$"
 
-allowed_types="fix|feat|refactor|perf|chore|build"
-pattern="^(\[[A-Za-z0-9_.-]+\] )?(${allowed_types})(\([A-Za-z0-9_./ -]+\))?: .+$"
+usage() {
+  cat <<USAGE
+Usage: .githooks/commit-msg [-h|--help] MESSAGE_FILE
 
-len=${#subject}
-if [ "$len" -gt 72 ]; then
-  echo "commit-msg: subject line is $len chars, must be 72 or fewer:" >&2
-  echo "  $subject" >&2
-  exit 1
-fi
+Run by git commit. Checks the first line of MESSAGE_FILE: at most $MAX_SUBJECT_LENGTH characters,
+and one of
+  [TICKET] type(scope): message
+  type(scope): message
+  type: message
+with a type of ${ALLOWED_TYPES//|/, }. The body is not checked, nor are merge,
+revert, fixup! and squash! commits. Docs: .githooks/README.md.
 
-if ! [[ "$subject" =~ $pattern ]]; then
-  echo "commit-msg: subject line doesn't match Conventional Commits format:" >&2
-  echo "  $subject" >&2
-  echo "Expected one of:" >&2
-  echo "  [TICKET] type(scope): message" >&2
-  echo "  type(scope): message" >&2
-  echo "  type: message" >&2
-  echo "Allowed types: fix, feat, refactor, perf, chore, build" >&2
-  exit 1
-fi
+Exit status: 0 accepted, 1 rejected, 2 usage error.
+USAGE
+}
 
-exit 0
+reject() {
+  printf '  %s\n' "$2" >&2
+  die "$1"
+}
+
+check_subject() {
+  local subject="$1"
+  # Git writes these itself; they are not hand-authored Conventional Commits.
+  case "$subject" in
+    "Merge "* | "Revert "* | "fixup!"* | "squash!"*) return 0 ;;
+    *) ;;
+  esac
+  if ((${#subject} > MAX_SUBJECT_LENGTH)); then
+    reject "subject line is ${#subject} chars, must be $MAX_SUBJECT_LENGTH or fewer" "$subject"
+  fi
+  if [[ ! "$subject" =~ $SUBJECT_PATTERN ]]; then
+    printf '%s\n' \
+      "Expected one of:" \
+      "  [TICKET] type(scope): message" \
+      "  type(scope): message" \
+      "  type: message" \
+      "Allowed types: ${ALLOWED_TYPES//|/, }" >&2
+    reject "subject line doesn't match Conventional Commits format (see above)" "$subject"
+  fi
+}
+
+main() {
+  parse_hook_args 1 1 "$@"
+  [[ -f "$1" ]] || die "no such commit message file: $1"
+  local subject=""
+  # read fails on a last line without a newline, but still fills the variable.
+  IFS= read -r subject <"$1" || true
+  check_subject "$subject"
+}
+
+main "$@"
