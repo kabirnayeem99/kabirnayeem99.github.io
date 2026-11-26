@@ -4,6 +4,7 @@ import ClosePageHeader from "../components/page/ClosePageHeader.astro";
 import HeadSeo from "../components/page/HeadSeo.astro";
 import PageFooter from "../components/page/PageFooter.astro";
 import ProjectGroupsSection from "../components/page/ProjectGroupsSection.astro";
+import SkillStickers from "../components/page/SkillStickers.astro";
 import { computeLegacyBuildTimestamp } from "../lib/build-timestamp";
 import {
   buildOgImageUrl,
@@ -81,6 +82,7 @@ const uiLabels = content.site.locale.labels;
       />
       <main id={PAGE_LAYOUT.mainContentId}>
         <ProjectGroupsSection groups={content.groups} />
+        <SkillStickers lang="en" title="Tools I use" />
       </main>
       <PageFooter
         signature={content.site.locale.author}

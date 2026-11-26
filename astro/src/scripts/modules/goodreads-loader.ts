@@ -198,6 +198,38 @@ document.addEventListener("DOMContentLoaded", () => {
   // snapshot generator's RSS fetch never picked up than something freshly read - so, same
   // as the snapshot generator's own convention for undated books, unknowns are appended
   // at the end rather than assumed-recent and pushed to the front.
+  // The reading page folds its shelf into one grid per year. Known books stay where they
+  // are; unknown (so undated) ones join the "date not recorded" group at the end.
+  const addToYearShelf = (undatedGroup: HTMLElement, source: ParentNode): boolean => {
+    const grid = getGridContainer(undatedGroup);
+    if (!grid) return false;
+    const known = keyedBooks(widget);
+    const fresh = [...keyedBooks(source)].filter(([key]) => !known.has(key));
+    if (fresh.length === 0) return false;
+
+    fresh.forEach(([, node]) => grid.appendChild(tapeBook(node.cloneNode(true) as HTMLElement)));
+    undatedGroup.hidden = false;
+    const count = undatedGroup.querySelector<HTMLElement>(".shelf-year-count");
+    if (count) {
+      const total = grid.querySelectorAll(BOOK_SELECTOR).length;
+      const locale = document.documentElement.lang || "en";
+      const template =
+        new Intl.PluralRules(locale).select(total) === "one" ? count.dataset.countOne : count.dataset.countOther;
+      count.textContent = (template ?? "{count}").replace("{count}", new Intl.NumberFormat(locale).format(total));
+    }
+    return true;
+  };
+
+  const mergeBooks = (source: HTMLElement): boolean => {
+    const undatedGroup = widget.querySelector<HTMLElement>("[data-shelf-undated]");
+    if (undatedGroup) {
+      return addToYearShelf(undatedGroup, source);
+    }
+    const sourceGrid = getGridContainer(source);
+    const targetGrid = getGridContainer(widget);
+    return sourceGrid && targetGrid ? reconcileBookOrder(targetGrid, sourceGrid) : false;
+  };
+
   const reconcileBookOrder = (
     targetGrid: HTMLElement,
     sourceGrid: HTMLElement,
@@ -257,10 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (hasMatchingCache && cached !== null && !isIndexPage) {
     const parsed = document.createElement("div");
     parsed.innerHTML = cached.html;
-    const sourceGrid = getGridContainer(parsed);
-    const targetGrid = getGridContainer(widget);
-    const changed =
-      sourceGrid && targetGrid ? reconcileBookOrder(targetGrid, sourceGrid) : false;
+    const changed = mergeBooks(parsed);
 
     // The server-rendered shelf already ships pre-trimmed with its placeholder tile in
     // place, so only rebuild it when the cache actually reordered something - otherwise
@@ -285,17 +314,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const applyLiveResponse = (detached: HTMLElement): void => {
     const sourceGrid = getGridContainer(detached);
-    const targetGrid = getGridContainer(widget);
     if (sourceGrid) {
       lastReadSlot?.acceptLive(sourceGrid);
     }
     // See the matching guard on the cache layer above: the trimmed index widget can't
     // tell a genuinely new book apart from one merely absent due to the trim, so it
     // never accepts reordering/additions from the live response.
-    const changed =
-      !isIndexPage && sourceGrid && targetGrid
-        ? reconcileBookOrder(targetGrid, sourceGrid)
-        : false;
+    const changed = !isIndexPage && mergeBooks(detached);
 
     // Refresh the cache regardless (Goodreads may have swapped a cover edition even
     // when order didn't change), but only touch the placeholder tile when something

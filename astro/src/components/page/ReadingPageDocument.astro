@@ -15,6 +15,7 @@ import {
   UMAMI_WEBSITE_ID,
 } from "../../lib/page-shared";
 import { loadReadingPageContent } from "../../lib/reading-content";
+import { groupShelfByYear } from "../../lib/reading-shelf";
 import { buildBreadcrumb, buildSchemaGraphJson } from "../../lib/seo";
 import { loadStatsPageContent } from "../../lib/stats-content";
 import { assetHref, OG_LOCALE_BY_LANG, routeHref } from "../../lib/work-project-content";
@@ -61,10 +62,13 @@ const lastRead = goodreadsSnapshot.books[0];
 const knownReviewIds = goodreadsSnapshot.books.flatMap((book) => /\/review\/show\/(\d+)/.exec(book.href)?.[1] ?? []);
 
 
-const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
+// Every book is on the shelf: closed years cost no image downloads (lazy covers).
+const shelfBooks = goodreadsSnapshot.books.map((book) => ({
   ...book,
+  dateRead: dateOf(book),
   readDate: formatReadDate(dateOf(book), lang),
 }));
+const shelfGroups = groupShelfByYear(shelfBooks, content.shelf, lang);
 ---
 
 <!DOCTYPE html>
@@ -208,17 +212,36 @@ const shelfBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
             <p>{content.shelf.copy}</p>
             <script type="application/json" id="goodreads-known-reviews" is:inline set:html={JSON.stringify(knownReviewIds)} />
             <div class="goodreads-widget" id={`gr_grid_widget_${goodreads.widgetId}`}>
-              <div class="gr_grid_container">
-                {shelfBooks.map((book) => (
-                  <div class="gr_grid_book_container">
-                    {book.readDate ? <span class="book-strip book-strip--date" dir="auto">{book.readDate}</span> : null}
-                    <a title={book.title} rel="nofollow noreferrer" href={book.href} target="_blank" data-umami-track-book="true" data-cursor-plain>
-                      <img alt={book.alt} src={assetHref(content.route, book.imageLocal.replace(/^\/+/, ""))} loading="lazy" decoding="async" />
-                    </a>
-                    <span class="book-strip book-strip--title" dir="auto" lang={scriptLang(book.title)}>{book.title}</span>
+              {shelfGroups.map((group) => (
+                <details
+                  class="shelf-year"
+                  open={group.open}
+                  hidden={group.books.length === 0}
+                  data-shelf-undated={group.key === "undated" ? "" : undefined}
+                >
+                  <summary>
+                    <h3 class="shelf-year-name">{group.heading}</h3>
+                    <span
+                      class="shelf-year-count"
+                      data-count-one={content.shelf.countOne}
+                      data-count-other={content.shelf.countOther}
+                    >
+                      {group.count}
+                    </span>
+                  </summary>
+                  <div class="gr_grid_container">
+                    {group.books.map((book) => (
+                      <div class="gr_grid_book_container">
+                        {book.readDate ? <span class="book-strip book-strip--date" dir="auto">{book.readDate}</span> : null}
+                        <a title={book.title} rel="nofollow noreferrer" href={book.href} target="_blank" data-umami-track-book="true" data-cursor-plain>
+                          <img alt={book.alt} src={assetHref(content.route, book.imageLocal.replace(/^\/+/, ""))} loading="lazy" decoding="async" />
+                        </a>
+                        <span class="book-strip book-strip--title" dir="auto" lang={scriptLang(book.title)}>{book.title}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </details>
+              ))}
             </div>
             <p class="goodreads-profile-link">
               <a href={goodreads.profileHref} target="_blank" rel="noreferrer">{goodreads.profileLabel}</a>

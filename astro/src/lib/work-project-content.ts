@@ -142,6 +142,7 @@ export interface WorkPageContent extends CommonPageContent {
   readonly entries: readonly ContentCard[];
   readonly heroImages: readonly CardImage[];
   readonly tagsLabel: string;
+  readonly projectsLink: { readonly href: string; readonly label: string };
   readonly creditsTitle: string;
   readonly pictureCredits: readonly PictureCredit[];
 }
@@ -215,6 +216,20 @@ function readContentCards(
   return cards;
 }
 
+/** Latest year named in a card's meta line ("২০২৪ - …", "2025–2026"); undated cards get 0. */
+function metaYear(meta: string | undefined): number {
+  const latinDigits = (meta ?? "").replace(/[০-৯٠-٩۰-۹]/gu, (digit) => {
+    const code = digit.charCodeAt(0);
+    return String(code - (code >= 0x09e6 ? 0x09e6 : code >= 0x06f0 ? 0x06f0 : 0x0660));
+  });
+  return Math.max(0, ...(latinDigits.match(/(?<!\d)(?:19|20)\d{2}(?!\d)/g) ?? []).map(Number));
+}
+
+// Array sort is stable, so cards from the same year keep the order they are written in.
+function newestFirst(cards: readonly ContentCard[]): readonly ContentCard[] {
+  return [...cards].sort((a, b) => metaYear(b.meta) - metaYear(a.meta));
+}
+
 function readProjectGroups(source: Record<string, unknown>, path: string): readonly ProjectGroup[] {
   const groupsRaw = source.groups;
   if (!Array.isArray(groupsRaw)) {
@@ -231,7 +246,7 @@ function readProjectGroups(source: Record<string, unknown>, path: string): reado
     }
     groups.push({
       title: readString(group, "title", groupPath),
-      items: readContentCards(group, "items", groupPath),
+      items: newestFirst(readContentCards(group, "items", groupPath)),
       ...(layout === undefined ? {} : { layout }),
     });
   }
@@ -326,6 +341,13 @@ export function loadWorkPageContent(lang: Lang): WorkPageContent {
     entries: readContentCards(localePage, "entries", path),
     heroImages: readCardImages(localePage, "hero_images", path),
     tagsLabel: readString(localePage, "tags_label", path),
+    projectsLink: {
+      href: routeHref(
+        common.route,
+        readRouteMap(asRecord(context.routes.project, "root.routes.project"), "root.routes.project")[lang],
+      ),
+      label: readString(localePage, "projects_link", path),
+    },
     creditsTitle: readString(localePage, "credits_title", path),
     pictureCredits: readPictureCredits(page, "root.pages.work"),
   };

@@ -39,5 +39,7 @@ export function GET(): Response {
   }
 
   lines.push("");
+  lines.push(`[${toMarkdownText(content.projectsLink.label)}](${content.site.baseUrl}${content.projectsLink.href})`);
+  lines.push("");
   return buildMarkdownResponse(`${lines.join("\n")}\n`);
 }

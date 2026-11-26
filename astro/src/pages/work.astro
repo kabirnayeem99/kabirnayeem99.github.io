@@ -3,8 +3,6 @@ import BackToTopButton from "../components/page/BackToTopButton.astro";
 import ClosePageHeader from "../components/page/ClosePageHeader.astro";
 import HeadSeo from "../components/page/HeadSeo.astro";
 import PageFooter from "../components/page/PageFooter.astro";
-import ProjectGroupsSection from "../components/page/ProjectGroupsSection.astro";
-import SkillStickers from "../components/page/SkillStickers.astro";
 import WorkEntriesSection from "../components/page/WorkEntriesSection.astro";
 import { computeLegacyBuildTimestamp } from "../lib/build-timestamp";
 import {
@@ -17,14 +15,11 @@ import { buildBreadcrumb, buildSchemaGraphJson } from "../lib/seo";
 import {
   buildAlternateLinks,
   buildOgLocaleAlternates,
-  loadProjectPageContent,
   loadWorkPageContent,
   OG_LOCALE_BY_LANG,
 } from "../lib/work-project-content";
 
 const content = loadWorkPageContent("en");
-// Work and projects share one page now; /project.html still builds for old links.
-const projectGroups = loadProjectPageContent("en").groups;
 const buildTimestamp = computeLegacyBuildTimestamp("en");
 
 const canonicalUrl = `${content.site.baseUrl}/${content.route}`;
@@ -91,11 +86,10 @@ const uiLabels = content.site.locale.labels;
           entries={content.entries}
           heroImages={content.heroImages}
           tagsLabel={content.tagsLabel}
+          projectsLink={content.projectsLink}
           creditsTitle={content.creditsTitle}
           pictureCredits={content.pictureCredits}
         />
-        <ProjectGroupsSection groups={projectGroups} />
-        <SkillStickers lang="en" title="Tools I use" />
       </main>
       <PageFooter
         signature={content.site.locale.author}

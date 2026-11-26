@@ -59,9 +59,14 @@
           ],
           "actions": [
             {
-              "label": "See all work & projects",
-              "page_id": "work",
+              "label": "See all projects",
+              "page_id": "project",
               "variant": "primary"
+            },
+            {
+              "label": "Work history",
+              "page_id": "work",
+              "variant": "secondary"
             }
           ],
           "images": [
@@ -212,7 +217,12 @@
           ],
           "actions": [
             {
-              "label": "কাজ ও প্রজেক্ট",
+              "label": "প্রজেক্ট দেখুন",
+              "page_id": "project",
+              "variant": "secondary"
+            },
+            {
+              "label": "কর্মজীবন",
               "page_id": "work",
               "variant": "secondary"
             }
@@ -305,7 +315,12 @@
           ],
           "actions": [
             {
-              "label": "ٱلْعَمَلُ وَٱلْمَشَارِيعُ",
+              "label": "ٱلْمَشَارِيعُ",
+              "page_id": "project",
+              "variant": "secondary"
+            },
+            {
+              "label": "ٱلْخِبْرَةُ ٱلْمِهَنِيَّةُ",
               "page_id": "work",
               "variant": "secondary"
             }
@@ -392,7 +407,12 @@
           ],
           "actions": [
             {
-              "label": "کام اور پراجیکٹس",
+              "label": "پراجیکٹس",
+              "page_id": "project",
+              "variant": "secondary"
+            },
+            {
+              "label": "تجربۂ کار",
               "page_id": "work",
               "variant": "secondary"
             }

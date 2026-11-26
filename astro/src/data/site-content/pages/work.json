@@ -4,7 +4,7 @@
     "en": {
       "meta": {
         "title": "Work · Naimul Kabir",
-        "description": "Where Naimul Kabir has worked, and the things he has built along the way: backends, web apps, internal tools and mobile apps.",
+        "description": "Where Naimul Kabir has worked as a software engineer: backends, web apps, internal tools and mobile apps.",
         "keywords": "Naimul Kabir, work, projects, full-stack developer, backend, web apps, mobile apps, Kotlin, Laravel"
       },
       "header": {
@@ -25,32 +25,6 @@
             "width": 120,
             "height": 140
           },
-          "images": [
-            {
-              "src": "assets/images/projects/multazim/home-desktop.webp",
-              "alt": "Multazim Solutions homepage on desktop",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
-              "alt": "Mr. Perfume online shop homepage on desktop",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/samabay/home-desktop.webp",
-              "alt": "সমবায় নথি homepage on desktop",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/edumax/home-desktop.webp",
-              "alt": "Edumax Consultancy homepage on desktop",
-              "width": 960,
-              "height": 600
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/wordpress.webp",
@@ -99,26 +73,6 @@
           "bullets": [
             "Maintained the old Android app first, then helped rewrite it in Flutter, so it now runs on iOS too."
           ],
-          "images": [
-            {
-              "src": "assets/images/projects/al-hadith/hadith-books.webp",
-              "alt": "Al Hadith: list of hadith books",
-              "width": 360,
-              "height": 640
-            },
-            {
-              "src": "assets/images/projects/al-hadith/chapter-reading.webp",
-              "alt": "Al Hadith: reading a chapter",
-              "width": 360,
-              "height": 640
-            },
-            {
-              "src": "assets/images/projects/al-hadith/tahkik.webp",
-              "alt": "Al Hadith: hadith by tahkik grade",
-              "width": 360,
-              "height": 640
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -160,14 +114,6 @@
             "Part-time contract work while I was still at university.",
             "Many projects with different stacks and architectures, in a team spread across countries."
           ],
-          "images": [
-            {
-              "src": "assets/images/projects/marriott-bonvoy/brand.webp",
-              "alt": "Marriott Bonvoy app screens: home, hotel search and nearby hotels map",
-              "width": 960,
-              "height": 492
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -182,6 +128,7 @@
       "footer_html": "Need more detail? Email <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>, or find me on <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>.",
       "credits_title": "Picture credits",
       "tags_label": "Worked on",
+      "projects_link": "See the projects, with screenshots",
       "hero_images": []
     },
     "bn": {
@@ -210,32 +157,6 @@
             "width": 120,
             "height": 140
           },
-          "images": [
-            {
-              "src": "assets/images/projects/multazim/home-desktop.webp",
-              "alt": "ডেস্কটপে Multazim Solutions-এর হোমপেজ",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
-              "alt": "ডেস্কটপে Mr. Perfume-এর হোমপেজ",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/samabay/home-desktop.webp",
-              "alt": "ডেস্কটপে সমবায় নথি-এর হোমপেজ",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/edumax/home-desktop.webp",
-              "alt": "ডেস্কটপে Edumax Consultancy-এর হোমপেজ",
-              "width": 960,
-              "height": 600
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/wordpress.webp",
@@ -284,26 +205,6 @@
             "আল-হাদিস বাংলাদেশের অন্যতম জনপ্রিয় ইসলামি অ্যাপ। প্রথমে এর লিগেসি অ্যান্ড্রয়েড ভার্সনের মেইনটেন্যান্সে কাজ করেছি। পরে পুরো অ্যাপটি ফ্লাটারে নতুন করে লেখার কাজেও যুক্ত ছিলাম, যা এখন আইওএস ও অ্যান্ড্রয়েড উভয় প্ল্যাটফর্মেই চলে।",
             "এখানে আমার মূল কাজ ছিল নেটিভ অ্যান্ড্রয়েড এবং ফ্লাটার ডেভেলপমেন্ট।"
           ],
-          "images": [
-            {
-              "src": "assets/images/projects/al-hadith/hadith-books.webp",
-              "alt": "আল হাদিস: হাদিস গ্রন্থের তালিকা",
-              "width": 360,
-              "height": 640
-            },
-            {
-              "src": "assets/images/projects/al-hadith/chapter-reading.webp",
-              "alt": "আল হাদিস: অধ্যায় পড়া",
-              "width": 360,
-              "height": 640
-            },
-            {
-              "src": "assets/images/projects/al-hadith/tahkik.webp",
-              "alt": "আল হাদিস: তাহকিক অনুযায়ী হাদিস",
-              "width": 360,
-              "height": 640
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -349,14 +250,6 @@
             "বিভিন্ন টেকনোলজি স্ট্যাক ও আর্কিটেকচারে তৈরি অনেকগুলো প্রজেক্টে কাজ করার সুযোগ হয়েছে। পাশাপাশি বিভিন্ন দেশের ডেভেলপারদের সঙ্গে কাজ করার অভিজ্ঞতাও হয়েছে।",
             "Patient Access-এর মতো ডাক্তার অ্যাপয়েন্টমেন্ট প্ল্যাটফর্ম, BaseHubs-এর মতো লোকাল বিজনেস ডিসকভারি প্ল্যাটফর্ম, Jobamax-এর মতো জব সার্চ অ্যাপ, Marriott Bonvoy-এর মতো বহুল ব্যবহৃত প্রোডাক্ট এবং Ema 2-সহ বিভিন্ন ধরনের প্রজেক্টে কাজ করার সুযোগ হয়েছে।"
           ],
-          "images": [
-            {
-              "src": "assets/images/projects/marriott-bonvoy/brand.webp",
-              "alt": "ম্যারিয়ট বনভয় অ্যাপের স্ক্রিন: হোম, হোটেল সার্চ আর কাছের হোটেলের ম্যাপ",
-              "width": 960,
-              "height": 492
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -371,6 +264,7 @@
       "footer_html": "আরও বিস্তারিত জানতে ইমেইল করুন <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>।",
       "credits_title": "ছবির কৃতজ্ঞতা",
       "tags_label": "যেগুলোতে কাজ করেছি",
+      "projects_link": "স্ক্রিনশটসহ প্রজেক্টগুলো দেখুন",
       "hero_images": []
     },
     "ar": {
@@ -397,32 +291,6 @@
             "width": 120,
             "height": 140
           },
-          "images": [
-            {
-              "src": "assets/images/projects/multazim/home-desktop.webp",
-              "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ Multazim Solutions عَلَى ٱلْحَاسُوبِ",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
-              "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَتْجَرِ Mr. Perfume عَلَى ٱلْحَاسُوبِ",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/samabay/home-desktop.webp",
-              "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ সমবায় নথি عَلَى ٱلْحَاسُوبِ",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/edumax/home-desktop.webp",
-              "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَوْقِعِ Edumax Consultancy عَلَى ٱلْحَاسُوبِ",
-              "width": 960,
-              "height": 600
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/wordpress.webp",
@@ -471,26 +339,6 @@
             "يُعَدُّ تَطْبِيقُ «ٱلْحَدِيث» مِنْ أَشْهَرِ ٱلتَّطْبِيقَاتِ ٱلْإِسْلَامِيَّةِ فِي بِنْغَلَادِيش. بَدَأْتُ بِصِيَانَةِ نُسْخَتِهِ ٱلْقَدِيمَةِ عَلَىٰ أَنْدْرُوِيد، ثُمَّ سَاهَمْتُ لَاحِقًا فِي إِعَادَةِ كِتَابَةِ ٱلتَّطْبِيقِ كَامِلًا بِفْلَاتَر، لِيَعْمَلَ عَلَىٰ آي أُو إِس وَأَنْدْرُوِيد.",
             "كَانَ تَرْكِيزُ عَمَلِي هُنَا عَلَىٰ تَطْوِيرِ أَنْدْرُوِيد ٱلْأَصْلِيِّ وَفْلَاتَر."
           ],
-          "images": [
-            {
-              "src": "assets/images/projects/al-hadith/hadith-books.webp",
-              "alt": "تَطْبِيقُ ٱلْحَدِيثِ: قَائِمَةُ كُتُبِ ٱلْحَدِيثِ",
-              "width": 360,
-              "height": 640
-            },
-            {
-              "src": "assets/images/projects/al-hadith/chapter-reading.webp",
-              "alt": "تَطْبِيقُ ٱلْحَدِيثِ: قِرَاءَةُ بَابٍ",
-              "width": 360,
-              "height": 640
-            },
-            {
-              "src": "assets/images/projects/al-hadith/tahkik.webp",
-              "alt": "تَطْبِيقُ ٱلْحَدِيثِ: ٱلْأَحَادِيثُ حَسَبَ دَرَجَةِ ٱلتَّحْقِيقِ",
-              "width": 360,
-              "height": 640
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -536,14 +384,6 @@
             "عَمِلْتُ عَلَىٰ مَشَارِيعَ كَثِيرَةٍ مَبْنِيَّةٍ بِمَجْمُوعَاتٍ مُخْتَلِفَةٍ مِنَ ٱلتِّقْنِيَّاتِ وَبِمَعْمَارِيَّاتٍ مُتَنَوِّعَةٍ، وَٱكْتَسَبْتُ أَيْضًا خِبْرَةً فِي ٱلْعَمَلِ مَعَ مُطَوِّرِينَ مِنْ بُلْدَانٍ مُخْتَلِفَةٍ.",
             "أُتِيحَتْ لِيَ ٱلْفُرْصَةُ لِلْعَمَلِ عَلَىٰ مَشَارِيعَ مِنْهَا «بَيْشَنْتْ أَكْسِس»، وَهُوَ مِنَصَّةٌ لِمَوَاعِيدِ ٱلْأَطِبَّاءِ، وَ«بَيْسْ هَبْس» لِٱكْتِشَافِ ٱلْأَعْمَالِ ٱلْمَحَلِّيَّةِ، وَ«جُوبَامَكْس» لِلْبَحْثِ عَنِ ٱلْوَظَائِفِ، وَمُنْتَجَاتٍ وَاسِعَةِ ٱلِاسْتِخْدَامِ مِثْلَ «مَارْيُوتْ بُونْفُوَاي»، وَمَشَارِيعَ أُخْرَىٰ مِنْهَا «إِيمَا ٢»."
           ],
-          "images": [
-            {
-              "src": "assets/images/projects/marriott-bonvoy/brand.webp",
-              "alt": "شَاشَاتُ تَطْبِيقِ Marriott Bonvoy: ٱلرَّئِيسِيَّةُ وَٱلْبَحْثُ عَنْ فُنْدُقٍ وَخَرِيطَةُ ٱلْفَنَادِقِ ٱلْقَرِيبَةِ",
-              "width": 960,
-              "height": 492
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -558,6 +398,7 @@
       "footer_html": "لِمَزِيدٍ مِنَ ٱلتَّفَاصِيلِ، يُمْكِنُكَ مُرَاسَلَتِي عَلَىٰ <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>.",
       "credits_title": "مَصَادِرُ ٱلصُّوَرِ",
       "tags_label": "مِمَّا عَمِلْتُ عَلَيْهِ",
+      "projects_link": "ٱطَّلِعْ عَلَى ٱلْمَشَارِيعِ مَعَ لَقَطَاتِ ٱلشَّاشَةِ",
       "hero_images": []
     },
     "ur": {
@@ -586,32 +427,6 @@
             "width": 120,
             "height": 140
           },
-          "images": [
-            {
-              "src": "assets/images/projects/multazim/home-desktop.webp",
-              "alt": "ڈیسک ٹاپ پر Multazim Solutions کا ہوم پیج",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
-              "alt": "ڈیسک ٹاپ پر Mr. Perfume کا ہوم پیج",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/samabay/home-desktop.webp",
-              "alt": "ڈیسک ٹاپ پر সমবায় নথি کا ہوم پیج",
-              "width": 960,
-              "height": 600
-            },
-            {
-              "src": "assets/images/projects/edumax/home-desktop.webp",
-              "alt": "ڈیسک ٹاپ پر Edumax Consultancy کا ہوم پیج",
-              "width": 960,
-              "height": 600
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/wordpress.webp",
@@ -660,26 +475,6 @@
             "اَلْحَدِیث بَنْگْلَہ دِیش کی مَقْبُول تَرِین اِسْلَامِی اَیْپْس میں سے اَیک ہے۔ پَہلے اِس کے لِیگَسِی اَینْڈْرَائِڈ وَرْژَن کی مَینْٹِینَنْس پَر کَام کِیا، پِھر بَعْد میں پُورِی اَیْپ کو فْلَٹَر میں نَئے سِرے سے لِکھنے کے کَام میں بھی حِصَّہ لِیا، جو اَب آئی او اَیس اور اَینْڈْرَائِڈ دُونوں پَر چَلتی ہے۔",
             "یَہاں مِیرے کَام کا بُنْیَادِی مَرْکَز نَیْٹِو اَینْڈْرَائِڈ اور فْلَٹَر ڈِوَلَپْمَنْٹ تھا۔"
           ],
-          "images": [
-            {
-              "src": "assets/images/projects/al-hadith/hadith-books.webp",
-              "alt": "الحدیث: حدیث کی کتابوں کی فہرست",
-              "width": 360,
-              "height": 640
-            },
-            {
-              "src": "assets/images/projects/al-hadith/chapter-reading.webp",
-              "alt": "الحدیث: باب پڑھنا",
-              "width": 360,
-              "height": 640
-            },
-            {
-              "src": "assets/images/projects/al-hadith/tahkik.webp",
-              "alt": "الحدیث: تحقیق کے لحاظ سے احادیث",
-              "width": 360,
-              "height": 640
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -725,14 +520,6 @@
             "مُخْتَلِف ٹِیکْنَالُوجِی سْٹَیکْس اور آَرْکِٹَیکْچَرْز میں تَیَّار کِیے گَئے کَئی پْرَاجَیکْٹْس پَر کَام کَرنے کا مَوقَع مِلا۔ اِس کے عِلَاوَہ مُخْتَلِف مُلْکوں کے ڈِوَلَپَرْز کے سَاتھ کَام کَرنے کا تَجْرِبَہ بھی ہُوَا۔",
             "پَیشَنْٹ اَکْسِس جَیسے ڈَاکْٹَر اَپْوَائِنْٹْمَنْٹ پَلَیٹْفَارْم، بَیسْ ہَبْس جَیسے لَوْکَل بَزِنِس ڈِسْکَوَرِی پَلَیٹْفَارْم، جُوبَامَیکْس جَیسی جَاب سَرْچ اَیْپ، مَیرِیَٹ بُونْوَائِی جَیسی بَہُت زِیَادَہ اِسْتِعْمَال ہُونے وَالِی اَیْپ، اور اِیمَا ۲ سَمِیت مُخْتَلِف قِسْم کے پْرَاجَیکْٹْس پَر کَام کَرنے کا مَوقَع مِلا۔"
           ],
-          "images": [
-            {
-              "src": "assets/images/projects/marriott-bonvoy/brand.webp",
-              "alt": "Marriott Bonvoy ایپ کی اسکرینیں: ہوم، ہوٹل سرچ اور قریبی ہوٹلوں کا نقشہ",
-              "width": 960,
-              "height": 492
-            }
-          ],
           "stickers": [
             {
               "src": "assets/images/stickers/android.webp",
@@ -747,6 +534,7 @@
       "footer_html": "مَزِید تَفْصِیل جَانْنِی ہو تو اِیمَیل کَرِیں: <a href=\"mailto:kabirnayeem.99@gmail.com\">kabirnayeem.99@gmail.com</a>۔",
       "credits_title": "تَصَاوِیر کے حَوَالے",
       "tags_label": "جِن پَر کَام کِیَا",
+      "projects_link": "اسکرین شاٹس کے ساتھ پراجیکٹس دیکھیں",
       "hero_images": []
     }
   },

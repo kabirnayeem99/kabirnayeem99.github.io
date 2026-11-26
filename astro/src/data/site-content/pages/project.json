@@ -603,6 +603,29 @@
           "title": "অন্যান্য ওয়েবসাইট",
           "items": [
             {
+              "title": "Mr. Perfume",
+              "href": "https://mrperfumeshop.com/",
+              "meta": "২০২৬ - উকমার্স · পিএইচপি",
+              "paragraphs": [
+                "Mr. Perfume-এর অনলাইন দোকান। বাংলাদেশের একটা পারফিউমের দোকান, উইশলিস্ট আর ফোন বা হোয়াটসঅ্যাপে অর্ডার করার সুযোগসহ।",
+                "<strong>টেক স্ট্যাক:</strong> ওয়ার্ডপ্রেস, উকমার্স, পিএইচপি"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
+                  "alt": "ডেস্কটপে Mr. Perfume অনলাইন দোকানের হোমপেজ",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/mrperfumeshop/home-mobile.webp",
+                  "alt": "মোবাইলে Mr. Perfume অনলাইন দোকানের হোমপেজ",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
               "title": "Edumax Consultancy",
               "href": "https://edumaxconsultancy.com/",
               "meta": "২০২৬ - ওয়ার্ডপ্রেস · পিএইচপি",
@@ -947,6 +970,29 @@
           "title": "مَوَاقِعُ أُخْرَى",
           "items": [
             {
+              "title": "مِسْتَر بِيرْفْيُوم",
+              "href": "https://mrperfumeshop.com/",
+              "meta": "2026 - وُوكُومِيرْس · بِي إِتش بِي",
+              "paragraphs": [
+                "مَتْجَرٌ إِلِكْتُرُونِيٌّ لِـ مِسْتَر بِيرْفْيُوم، وَهُوَ مَحَلُّ عُطُورٍ فِي بَنْغَلَادِيش، مَعَ قَائِمَةِ رَغَبَاتٍ وَإِمْكَانِيَّةِ ٱلطَّلَبِ بِٱلْهَاتِفِ أَوْ وَاتْسَاب.",
+                "<strong>ٱلتِّقْنِيَّاتُ:</strong> وُورْدْبْرِيس، وُوكُومِيرْس، بِي إِتش بِي"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَتْجَرِ مِسْتَر بِيرْفْيُوم عَلَى ٱلْحَاسُوبِ",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/mrperfumeshop/home-mobile.webp",
+                  "alt": "ٱلصَّفْحَةُ ٱلرَّئِيسِيَّةُ لِمَتْجَرِ مِسْتَر بِيرْفْيُوم عَلَى ٱلْجَوَّالِ",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
+            {
               "title": "Edumax Consultancy",
               "href": "https://edumaxconsultancy.com/",
               "meta": "2026 - وُورْدْبْرِيس · بِي إِتش بِي",
@@ -1290,6 +1336,29 @@
         {
           "title": "دیگر ویب سائٹس",
           "items": [
+            {
+              "title": "مسٹر پرفیوم",
+              "href": "https://mrperfumeshop.com/",
+              "meta": "2026 - ووکامرس · پی ایچ پی",
+              "paragraphs": [
+                "مسٹر پرفیوم کی آن لائن دکان، جو بنگلہ دیش میں پرفیوم کی ایک دکان ہے، وش لسٹ اور فون یا واٹس ایپ پر آرڈر کی سہولت کے ساتھ۔",
+                "<strong>ٹیک اسٹیک:</strong> ورڈپریس، ووکامرس، پی ایچ پی"
+              ],
+              "images": [
+                {
+                  "src": "assets/images/projects/mrperfumeshop/home-desktop.webp",
+                  "alt": "ڈیسک ٹاپ پر مسٹر پرفیوم کی آن لائن دکان کا ہوم پیج",
+                  "width": 960,
+                  "height": 600
+                },
+                {
+                  "src": "assets/images/projects/mrperfumeshop/home-mobile.webp",
+                  "alt": "موبائل پر مسٹر پرفیوم کی آن لائن دکان کا ہوم پیج",
+                  "width": 390,
+                  "height": 844
+                }
+              ]
+            },
             {
               "title": "Edumax Consultancy",
               "href": "https://edumaxconsultancy.com/",

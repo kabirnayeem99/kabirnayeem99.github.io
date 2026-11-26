@@ -85,6 +85,10 @@
       },
       "shelf": {
         "title": "The whole shelf",
+        "recent_label": "Recently added",
+        "undated_label": "Date not recorded",
+        "count_one": "{count} book",
+        "count_other": "{count} books",
         "copy": "Books I've read and logged on Goodreads. Many older ones were added from memory, so the list isn't complete."
       },
       "footer_html": "&copy; <span id=\"year\">2025</span> Naimul Kabir. Also on <a href=\"https://www.linkedin.com/in/kabirnayeem99/\" target=\"_blank\" rel=\"noreferrer\">LinkedIn</a>."

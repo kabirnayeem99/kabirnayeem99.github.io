@@ -9,11 +9,13 @@ interface Props {
   readonly entries: readonly ContentCard[];
   readonly heroImages: readonly CardImage[];
   readonly tagsLabel: string;
+  readonly projectsLink: { readonly href: string; readonly label: string };
   readonly creditsTitle: string;
   readonly pictureCredits: readonly PictureCredit[];
 }
 
-const { summary, sectionTitle, entries, heroImages, tagsLabel, creditsTitle, pictureCredits } = Astro.props;
+const { summary, sectionTitle, entries, heroImages, tagsLabel, projectsLink, creditsTitle, pictureCredits } =
+  Astro.props;
 const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
 ---
 
@@ -21,6 +23,12 @@ const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
   <div class="summary-card">
     <p set:html={summary} />
   </div>
+  <p class="work-projects-link">
+    <a class="action-chip" href={projectsLink.href} data-nav-page-id="project">
+      <span>{projectsLink.label}</span>
+      <span class="action-chip-arrow" aria-hidden="true"></span>
+    </a>
+  </p>
   {
     heroImages.length > 0 ? (
       <div class="postcards">
@@ -49,6 +57,12 @@ const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
   <ol class="journal">
     {entries.map((entry) => <JournalEntry entry={entry} tagsLabel={tagsLabel} />)}
   </ol>
+  <p class="work-projects-link work-projects-link--after">
+    <a class="action-chip" href={projectsLink.href} data-nav-page-id="project">
+      <span>{projectsLink.label}</span>
+      <span class="action-chip-arrow" aria-hidden="true"></span>
+    </a>
+  </p>
 </section>
 {
   pictureCredits.length > 0 ? (

@@ -1,4 +1,6 @@
 ---
+import { buildContactLinks } from "../../lib/contact-links";
+import { loadIndexPageContent } from "../../lib/index-content";
 import { LANGS, type Lang } from "../../lib/locale-config";
 import { formatMarginDate } from "../../lib/notebook";
 
@@ -18,6 +20,8 @@ const firstSegment = Astro.url.pathname.split("/").find((part) => part.length > 
 const pathLang = firstSegment.replace(/\.html$/, "");
 const lang: Lang = (LANGS as readonly string[]).includes(pathLang) ? (pathLang as Lang) : "en";
 const shortDate = formatMarginDate(timestampIso, lang);
+const index = loadIndexPageContent(lang);
+const contacts = buildContactLinks(index);
 ---
 
 <footer class="site-colophon">
@@ -38,4 +42,22 @@ const shortDate = formatMarginDate(timestampIso, lang);
     </p>
   </div>
   <p class="footer-copy" set:html={footerHtml} />
+  {/* Phones only (the sidebar shows these on wider screens). */}
+  <ul class="footer-contacts" aria-label={index.socialRowLabel}>
+    {
+      contacts.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noreferrer" : undefined}
+            data-umami-track-social="true"
+            data-social-platform={link.icon}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </footer>

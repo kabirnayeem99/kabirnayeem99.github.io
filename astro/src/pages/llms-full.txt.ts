@@ -91,6 +91,8 @@ function buildWorkSection(): string {
       if (text.length > 0) lines.push(`- ${text}`);
     }
   }
+  lines.push("");
+  lines.push(`[${toMarkdownText(content.projectsLink.label)}](${content.site.baseUrl}${content.projectsLink.href})`);
   return lines.join("\n");
 }
 

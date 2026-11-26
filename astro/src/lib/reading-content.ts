@@ -43,6 +43,18 @@ export interface ReadingNote {
   readonly paragraphs: readonly string[];
 }
 
+export interface ShelfText {
+  readonly title: string;
+  readonly copy: string;
+  /** Heading for undated books at the top of the shelf: the newest arrivals. */
+  readonly recentLabel: string;
+  /** Heading for any other book without a read date. */
+  readonly undatedLabel: string;
+  /** Book counts, with "{count}" standing for the number. */
+  readonly countOne: string;
+  readonly countOther: string;
+}
+
 export interface ReadingPageContent {
   readonly lang: Lang;
   readonly site: SiteData & { readonly locale: LocaleInfo };
@@ -54,7 +66,7 @@ export interface ReadingPageContent {
   readonly now: { readonly title: string; readonly lastReadLabel: string; readonly items: readonly ReadingNowItem[] };
   readonly languages: { readonly title: string; readonly intro?: string; readonly items: readonly ReadingLanguage[] };
   readonly notes: { readonly title: string; readonly items: readonly ReadingNote[] };
-  readonly shelf: { readonly title: string; readonly copy: string };
+  readonly shelf: ShelfText;
   readonly footerHtml: string;
 }
 
@@ -154,6 +166,10 @@ export function loadReadingPageContent(lang: Lang): ReadingPageContent {
     shelf: {
       title: readString(shelf, "title", `${path}.shelf`),
       copy: readString(shelf, "copy", `${path}.shelf`),
+      recentLabel: readString(shelf, "recent_label", `${path}.shelf`),
+      undatedLabel: readString(shelf, "undated_label", `${path}.shelf`),
+      countOne: readString(shelf, "count_one", `${path}.shelf`),
+      countOther: readString(shelf, "count_other", `${path}.shelf`),
     },
     footerHtml: readString(locale, "footer_html", path),
   };
