@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-11-25T07:17:03.036315Z",
+  "generatedAt": "2026-11-26T07:12:37.164239Z",
   "books": [
+    {
+      "title": "The Warrior Ethos",
+      "href": "https://www.goodreads.com/review/show/9130653177?utm_medium=api&utm_source=grid_widget",
+      "alt": "The Warrior Ethos",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1400898389l/11441002.jpg",
+      "imageLocal": "/assets/images/goodreads/11441002-the-warrior-ethos.webp",
+      "imageFileName": "11441002-the-warrior-ethos.webp",
+      "dateRead": null
+    },
     {
       "title": "Of Mice and Men",
       "href": "https://www.goodreads.com/review/show/9125965173?utm_medium=api&utm_source=grid_widget",
