@@ -4,6 +4,7 @@ import BackToTopButton from "./BackToTopButton.astro";
 import BotanicalSprite from "./BotanicalSprite.astro";
 import HeadSeo from "./HeadSeo.astro";
 import HighlightCard from "./HighlightCard.astro";
+import Icon from "./Icon.astro";
 import PageFooter from "./PageFooter.astro";
 import SiteSidebar from "./SiteSidebar.astro";
 import SkillStickers from "./SkillStickers.astro";
@@ -509,6 +510,7 @@ function buildSectionClassName(
                           rel="noreferrer"
                           data-umami-track-article="true"
                         >
+                          <Icon name="article" class="article-icon" />
                           <span class="clipping-mast" aria-hidden="true">
                             <b>{mast.publication}</b>
                           </span>
@@ -536,7 +538,7 @@ function buildSectionClassName(
                         data-nav-page-id={resolved.navPageId}
                       >
                         {resolved.isMailto ? (
-                          <span class="action-chip-icon action-chip-icon--mail" aria-hidden="true" />
+                          <Icon name="mail" />
                         ) : null}
                         <span>{resolved.labelText}</span>
                         {resolved.showTrailingArrow ? (

@@ -67,6 +67,7 @@ const CONTENT_IDENTIFIERS = new Set([
   "api_url",
   "dir",
   "href",
+  "icon",
   "layout",
   "page_id",
   "profile_href",

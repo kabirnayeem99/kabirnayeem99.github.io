@@ -1,15 +1,18 @@
+import type { IconName } from "./icons";
+
 export type SocialPlatform = "github" | "linkedin" | "medium" | "leetcode";
 
 export type SocialChipIconName = "email" | SocialPlatform;
 
-export const SOCIAL_CHIP_ICON_CLASS_BY_NAME: Readonly<
-  Record<SocialChipIconName, string>
+/** null: Simple Icons does not carry the brand, so the link shows its name only. */
+export const SOCIAL_CHIP_ICON_BY_NAME: Readonly<
+  Record<SocialChipIconName, IconName | null>
 > = {
-  email: "social-chip-icon--email",
-  github: "social-chip-icon--github",
-  linkedin: "social-chip-icon--linkedin",
-  medium: "social-chip-icon--medium",
-  leetcode: "social-chip-icon--leetcode",
+  email: "mail",
+  github: "github",
+  linkedin: null,
+  medium: "medium",
+  leetcode: "leetcode",
 };
 
 function parseHostname(href: string): string {

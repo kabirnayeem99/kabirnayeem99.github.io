@@ -25,10 +25,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "Kotlin",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "Kotlin"
                 }
               ],
               "snippet": "$ curl \\\n  -H 'Authorization: [masked]' \\\n  -H 'Content-Type: application/json' \\\n  'https://api.example.com/users' \\\n  --data-binary '{\"name\":\"Alice\"}'"
@@ -43,10 +41,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "Kotlin",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "Kotlin"
                 }
               ],
               "snippet": "\"WBA3A5G59DNP26082\".withVinInfo {\n  year          // 2013\n  region        // Europe\n  manufacturer  // BMW AG\n  isValid       // true\n}"
@@ -67,16 +63,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "Kotlin",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "Kotlin"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "Android",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "Android"
                 }
               ],
               "images": [
@@ -131,10 +123,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/flutter.webp",
-                  "alt": "Flutter",
-                  "width": 320,
-                  "height": 90
+                  "icon": "flutter",
+                  "label": "Flutter"
                 }
               ]
             },
@@ -148,16 +138,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "Kotlin",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "Kotlin"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "Android",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "Android"
                 }
               ]
             },
@@ -180,16 +166,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "Kotlin",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "Kotlin"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "Android",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "Android"
                 }
               ]
             },
@@ -212,10 +194,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "Android",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "Android"
                 }
               ]
             },
@@ -228,10 +208,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "Android",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "Android"
                 }
               ]
             }
@@ -384,10 +362,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "কটলিন",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "কটলিন"
                 }
               ],
               "snippet": "$ curl \\\n  -H 'Authorization: [masked]' \\\n  -H 'Content-Type: application/json' \\\n  'https://api.example.com/users' \\\n  --data-binary '{\"name\":\"Alice\"}'"
@@ -403,10 +379,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "কটলিন",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "কটলিন"
                 }
               ],
               "snippet": "\"WBA3A5G59DNP26082\".withVinInfo {\n  year          // 2013\n  region        // Europe\n  manufacturer  // BMW AG\n  isValid       // true\n}"
@@ -427,16 +401,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "কটলিন",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "কটলিন"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "অ্যান্ড্রয়েড",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "অ্যান্ড্রয়েড"
                 }
               ],
               "images": [
@@ -491,10 +461,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/flutter.webp",
-                  "alt": "ফ্লাটার",
-                  "width": 320,
-                  "height": 90
+                  "icon": "flutter",
+                  "label": "ফ্লাটার"
                 }
               ]
             },
@@ -509,16 +477,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "কটলিন",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "কটলিন"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "অ্যান্ড্রয়েড",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "অ্যান্ড্রয়েড"
                 }
               ]
             },
@@ -541,16 +505,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "কটলিন",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "কটলিন"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "অ্যান্ড্রয়েড",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "অ্যান্ড্রয়েড"
                 }
               ]
             },
@@ -573,10 +533,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "অ্যান্ড্রয়েড",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "অ্যান্ড্রয়েড"
                 }
               ]
             },
@@ -590,10 +548,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "অ্যান্ড্রয়েড",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "অ্যান্ড্রয়েড"
                 }
               ]
             }
@@ -751,10 +707,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "كُوتْلِن",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "كُوتْلِن"
                 }
               ],
               "snippet": "$ curl \\\n  -H 'Authorization: [masked]' \\\n  -H 'Content-Type: application/json' \\\n  'https://api.example.com/users' \\\n  --data-binary '{\"name\":\"Alice\"}'"
@@ -770,10 +724,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "كُوتْلِن",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "كُوتْلِن"
                 }
               ],
               "snippet": "\"WBA3A5G59DNP26082\".withVinInfo {\n  year          // 2013\n  region        // Europe\n  manufacturer  // BMW AG\n  isValid       // true\n}"
@@ -794,16 +746,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "كُوتْلِن",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "كُوتْلِن"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "أَنْدْرُوِيد",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "أَنْدْرُوِيد"
                 }
               ],
               "images": [
@@ -858,10 +806,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/flutter.webp",
-                  "alt": "فْلَاتِر",
-                  "width": 320,
-                  "height": 90
+                  "icon": "flutter",
+                  "label": "فْلَاتِر"
                 }
               ]
             },
@@ -876,16 +822,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "كُوتْلِن",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "كُوتْلِن"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "أَنْدْرُوِيد",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "أَنْدْرُوِيد"
                 }
               ]
             },
@@ -908,16 +850,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "كُوتْلِن",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "كُوتْلِن"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "أَنْدْرُوِيد",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "أَنْدْرُوِيد"
                 }
               ]
             },
@@ -940,10 +878,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "أَنْدْرُوِيد",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "أَنْدْرُوِيد"
                 }
               ]
             },
@@ -957,10 +893,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "أَنْدْرُوِيد",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "أَنْدْرُوِيد"
                 }
               ]
             }
@@ -1118,10 +1052,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "کوٹلِن",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "کوٹلِن"
                 }
               ],
               "snippet": "$ curl \\\n  -H 'Authorization: [masked]' \\\n  -H 'Content-Type: application/json' \\\n  'https://api.example.com/users' \\\n  --data-binary '{\"name\":\"Alice\"}'"
@@ -1137,10 +1069,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "کوٹلِن",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "کوٹلِن"
                 }
               ],
               "snippet": "\"WBA3A5G59DNP26082\".withVinInfo {\n  year          // 2013\n  region        // Europe\n  manufacturer  // BMW AG\n  isValid       // true\n}"
@@ -1161,16 +1091,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "کوٹلِن",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "کوٹلِن"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "اَینڈرائِڈ",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "اَینڈرائِڈ"
                 }
               ],
               "images": [
@@ -1225,10 +1151,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/flutter.webp",
-                  "alt": "فلَٹَر",
-                  "width": 320,
-                  "height": 90
+                  "icon": "flutter",
+                  "label": "فلَٹَر"
                 }
               ]
             },
@@ -1243,16 +1167,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "کوٹلِن",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "کوٹلِن"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "اَینڈرائِڈ",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "اَینڈرائِڈ"
                 }
               ]
             },
@@ -1275,16 +1195,12 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/kotlin.webp",
-                  "alt": "کوٹلِن",
-                  "width": 293,
-                  "height": 64
+                  "icon": "kotlin",
+                  "label": "کوٹلِن"
                 },
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "اَینڈرائِڈ",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "اَینڈرائِڈ"
                 }
               ]
             },
@@ -1307,10 +1223,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "اَینڈرائِڈ",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "اَینڈرائِڈ"
                 }
               ]
             },
@@ -1324,10 +1238,8 @@
               ],
               "stickers": [
                 {
-                  "src": "assets/images/stickers/android.webp",
-                  "alt": "اَینڈرائِڈ",
-                  "width": 320,
-                  "height": 187
+                  "icon": "android",
+                  "label": "اَینڈرائِڈ"
                 }
               ]
             }

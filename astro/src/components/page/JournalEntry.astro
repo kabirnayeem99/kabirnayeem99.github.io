@@ -1,6 +1,7 @@
 ---
 import { Code } from "astro:components";
 import { assetHref, type ContentCard } from "../../lib/work-project-content";
+import Icon from "./Icon.astro";
 
 interface Props {
   readonly entry: ContentCard;
@@ -23,8 +24,6 @@ const hasLead = shots.length === 3 && leadImage !== undefined && leadImage.width
 // Several desktop shots and nothing else: one wide strip under the whole entry, date rail included.
 const isStrip =
   shots.length >= 2 && places.length === 0 && entry.snippet === undefined && shots.every((image) => image.width > image.height);
-// Tool stickers sit on the card, under the text, so they never cover a screenshot.
-const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(currentRoute, sticker.src) }));
 ---
 
 <li class="journal-entry" data-collage={hasCollage ? "" : undefined}>
@@ -78,11 +77,13 @@ const stickerList = stickers.map((sticker) => ({ ...sticker, href: assetHref(cur
         ) : null
       }
       {
-        stickerList.length > 0 ? (
+        // Tool stickers sit on the card, under the text, so they never cover a screenshot.
+        stickers.length > 0 ? (
           <div class="journal-card-stickers">
-            {stickerList.map((sticker) => (
+            {stickers.map((sticker) => (
               <span class="journal-sticker">
-                <img src={sticker.href} alt={sticker.alt} width={sticker.width} height={sticker.height} loading="lazy" decoding="async" />
+                <Icon name={sticker.icon} />
+                {sticker.label}
               </span>
             ))}
           </div>

@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
   readonly label: string;
 }
@@ -12,5 +14,5 @@ const { label } = Astro.props;
   data-back-to-top
   hidden
   aria-label={label}
-  title={label}><span aria-hidden="true">↑</span></button
+  title={label}><Icon name="arrow_upward" /></button
 >

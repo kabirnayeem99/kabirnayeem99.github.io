@@ -1,5 +1,6 @@
 ---
 import { clippingMast } from "../../lib/notebook";
+import Icon from "./Icon.astro";
 
 interface BlogArticle {
   readonly title: string;
@@ -28,6 +29,7 @@ const { articles } = Astro.props;
               rel="noreferrer"
               data-umami-track-article="true"
             >
+              <Icon name="article" class="article-icon" />
               <span class="clipping-mast" aria-hidden="true">
                 <b>{mast.publication}</b>
                 {mast.topic ? <span>{mast.topic}</span> : null}

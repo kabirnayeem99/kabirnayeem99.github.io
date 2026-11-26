@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const icon = button.querySelector<HTMLImageElement>("[data-theme-toggle-icon]");
 
   const currentTheme = (): Theme => (
     document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light"
@@ -32,14 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
       button.title = nextLabel;
     }
 
-    if (icon instanceof HTMLImageElement) {
-      const darkModeIconSrc = button.dataset.darkIconSrc;
-      const lightModeIconSrc = button.dataset.lightIconSrc;
-      const nextIconSrc = isDark ? darkModeIconSrc : lightModeIconSrc;
-      if (typeof nextIconSrc === "string" && nextIconSrc.length > 0) {
-        icon.src = nextIconSrc;
-      }
-    }
   };
 
   showTheme(currentTheme());

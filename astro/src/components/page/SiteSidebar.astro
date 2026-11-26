@@ -7,10 +7,11 @@ import { loadIndexPageContent } from "../../lib/index-content";
 import type { Lang } from "../../lib/locale-config";
 import { buildContactLinks } from "../../lib/contact-links";
 import { buildMainNav } from "../../lib/main-nav";
-import { SOCIAL_CHIP_ICON_CLASS_BY_NAME } from "../../lib/social-chip-icons";
-import { assetHref, routeHref } from "../../lib/work-project-content";
+import { SOCIAL_CHIP_ICON_BY_NAME } from "../../lib/social-chip-icons";
+import { routeHref } from "../../lib/work-project-content";
 import Botanical from "./Botanical.astro";
 import HeaderControls from "./HeaderControls.astro";
+import Icon from "./Icon.astro";
 import PageNav from "./PageNav.astro";
 
 interface Props {
@@ -59,32 +60,33 @@ const NameTag = isHome ? "h1" : "p";
   <div class="sidebar-foot">
     <ul class="sidebar-links" aria-label={content.socialRowLabel}>
       {
-        links.map((link) => (
-          <li>
-            <a
-              class="social-chip"
-              href={link.href}
-              target={link.external ? "_blank" : undefined}
-              rel={link.external ? "noreferrer" : undefined}
-              data-umami-track-social="true"
-              data-social-platform={link.icon}
-            >
-              <span class={`social-chip-icon ${SOCIAL_CHIP_ICON_CLASS_BY_NAME[link.icon]}`} aria-hidden="true" />
-              <span>{link.label}</span>
-            </a>
-          </li>
-        ))
+        links.map((link) => {
+          const iconName = SOCIAL_CHIP_ICON_BY_NAME[link.icon];
+          return (
+            <li>
+              <a
+                class="social-chip"
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noreferrer" : undefined}
+                data-umami-track-social="true"
+                data-social-platform={link.icon}
+              >
+                {iconName ? <Icon name={iconName} /> : null}
+                <span>{link.label}</span>
+              </a>
+            </li>
+          );
+        })
       }
     </ul>
     <HeaderControls
       currentRoute={currentRoute}
-      darkModeIconHref={assetHref(currentRoute, "icons/theme-dark.svg")}
       lang={lang}
       languageLinks={languageLinks}
       languageMenuId={languageMenuId}
       languageMenuLabels={content.site.languageMenuLabels}
       languageSwitcherLabel={content.site.locale.languageSwitcherLabel}
-      lightModeIconHref={assetHref(currentRoute, "icons/theme-light.svg")}
       themeDarkLabel={uiLabels.themeDark}
       themeLightLabel={uiLabels.themeLight}
     />

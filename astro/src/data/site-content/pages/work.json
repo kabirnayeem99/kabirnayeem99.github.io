@@ -27,16 +27,12 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/wordpress.webp",
-              "alt": "WordPress",
-              "width": 309,
-              "height": 64
+              "icon": "wordpress",
+              "label": "WordPress"
             },
             {
-              "src": "assets/images/stickers/laravel.webp",
-              "alt": "Laravel",
-              "width": 93,
-              "height": 64
+              "icon": "laravel",
+              "label": "Laravel"
             }
           ],
           "tags": ["Mr. Perfume", "Edumax Consultancy", "AL RAFA", "PSDHS", "সমবায় নথি"]
@@ -59,10 +55,8 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "Android",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "Android"
             }
           ]
         },
@@ -75,16 +69,12 @@
           ],
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "Android",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "Android"
             },
             {
-              "src": "assets/images/stickers/flutter.webp",
-              "alt": "Flutter",
-              "width": 320,
-              "height": 90
+              "icon": "flutter",
+              "label": "Flutter"
             }
           ]
         },
@@ -100,10 +90,8 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/flutter.webp",
-              "alt": "Flutter",
-              "width": 320,
-              "height": 90
+              "icon": "flutter",
+              "label": "Flutter"
             }
           ]
         },
@@ -116,10 +104,8 @@
           ],
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "Android",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "Android"
             }
           ],
           "tags": ["Patient Access", "BaseHubs", "Jobamax", "Marriott Bonvoy", "Ema 2"]
@@ -159,16 +145,12 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/wordpress.webp",
-              "alt": "ওয়ার্ডপ্রেস",
-              "width": 309,
-              "height": 64
+              "icon": "wordpress",
+              "label": "ওয়ার্ডপ্রেস"
             },
             {
-              "src": "assets/images/stickers/laravel.webp",
-              "alt": "লারাভেল",
-              "width": 93,
-              "height": 64
+              "icon": "laravel",
+              "label": "লারাভেল"
             }
           ],
           "tags": ["Mr. Perfume", "Edumax Consultancy", "AL RAFA", "PSDHS", "সমবায় নথি"]
@@ -190,10 +172,8 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "অ্যান্ড্রয়েড",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "অ্যান্ড্রয়েড"
             }
           ]
         },
@@ -207,16 +187,12 @@
           ],
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "অ্যান্ড্রয়েড",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "অ্যান্ড্রয়েড"
             },
             {
-              "src": "assets/images/stickers/flutter.webp",
-              "alt": "ফ্লাটার",
-              "width": 320,
-              "height": 90
+              "icon": "flutter",
+              "label": "ফ্লাটার"
             }
           ]
         },
@@ -235,10 +211,8 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/flutter.webp",
-              "alt": "ফ্লাটার",
-              "width": 320,
-              "height": 90
+              "icon": "flutter",
+              "label": "ফ্লাটার"
             }
           ]
         },
@@ -252,10 +226,8 @@
           ],
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "অ্যান্ড্রয়েড",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "অ্যান্ড্রয়েড"
             }
           ],
           "tags": ["Patient Access", "BaseHubs", "Jobamax", "Marriott Bonvoy", "Ema 2"]
@@ -293,16 +265,12 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/wordpress.webp",
-              "alt": "وُورْدْبْرِيس",
-              "width": 309,
-              "height": 64
+              "icon": "wordpress",
+              "label": "وُورْدْبْرِيس"
             },
             {
-              "src": "assets/images/stickers/laravel.webp",
-              "alt": "لَارَافِيل",
-              "width": 93,
-              "height": 64
+              "icon": "laravel",
+              "label": "لَارَافِيل"
             }
           ],
           "tags": ["مِسْتَر بِيرْفْيُوم", "إِيدُومَاكْس كُونْسَلْتَنْسِي", "أَلْ رَافَا", "بِي إِسْ دِي إِتْشْ إِسْ", "সমবায় নথি"]
@@ -324,10 +292,8 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "أَنْدْرُوِيد",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "أَنْدْرُوِيد"
             }
           ]
         },
@@ -341,16 +307,12 @@
           ],
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "أَنْدْرُوِيد",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "أَنْدْرُوِيد"
             },
             {
-              "src": "assets/images/stickers/flutter.webp",
-              "alt": "فْلَاتِر",
-              "width": 320,
-              "height": 90
+              "icon": "flutter",
+              "label": "فْلَاتِر"
             }
           ]
         },
@@ -369,10 +331,8 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/flutter.webp",
-              "alt": "فْلَاتِر",
-              "width": 320,
-              "height": 90
+              "icon": "flutter",
+              "label": "فْلَاتِر"
             }
           ]
         },
@@ -386,10 +346,8 @@
           ],
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "أَنْدْرُوِيد",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "أَنْدْرُوِيد"
             }
           ],
           "tags": ["بَاشِنْت أَكْسِس", "بَيْس هَبْز", "جُوبَامَاكْس", "مَارِيُوت بُونْفُوي", "إِيمَا ٢"]
@@ -429,16 +387,12 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/wordpress.webp",
-              "alt": "ورڈپریس",
-              "width": 309,
-              "height": 64
+              "icon": "wordpress",
+              "label": "ورڈپریس"
             },
             {
-              "src": "assets/images/stickers/laravel.webp",
-              "alt": "لاراوَیل",
-              "width": 93,
-              "height": 64
+              "icon": "laravel",
+              "label": "لاراوَیل"
             }
           ],
           "tags": ["مسٹر پرفیوم", "ایڈومیکس کنسلٹنسی", "اَل رافا", "پی ایس ڈی ایچ ایس", "সমবায় নথি"]
@@ -460,10 +414,8 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "اَینڈرائِڈ",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "اَینڈرائِڈ"
             }
           ]
         },
@@ -477,16 +429,12 @@
           ],
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "اَینڈرائِڈ",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "اَینڈرائِڈ"
             },
             {
-              "src": "assets/images/stickers/flutter.webp",
-              "alt": "فلَٹَر",
-              "width": 320,
-              "height": 90
+              "icon": "flutter",
+              "label": "فلَٹَر"
             }
           ]
         },
@@ -505,10 +453,8 @@
           },
           "stickers": [
             {
-              "src": "assets/images/stickers/flutter.webp",
-              "alt": "فلَٹَر",
-              "width": 320,
-              "height": 90
+              "icon": "flutter",
+              "label": "فلَٹَر"
             }
           ]
         },
@@ -522,10 +468,8 @@
           ],
           "stickers": [
             {
-              "src": "assets/images/stickers/android.webp",
-              "alt": "اَینڈرائِڈ",
-              "width": 320,
-              "height": 187
+              "icon": "android",
+              "label": "اَینڈرائِڈ"
             }
           ],
           "tags": ["پَیشَنْٹ اَیکْسَس", "بَیس ہَبْز", "جَوبَامَیکْس", "مَیرِیَٹ بونْوائے", "اِیمَا ۲"]

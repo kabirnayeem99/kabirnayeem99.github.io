@@ -1,3 +1,4 @@
+import starSvg from "@material-symbols/svg-400/rounded/star.svg?raw";
 import { chartColor, createMeter, decorateDonut } from "./chart-ink";
 import { formatNumber, toSafeNumber } from "./stats-utils";
 import { personPortfolioSnapshots } from "./stats-snapshots";
@@ -321,6 +322,16 @@ document.addEventListener("DOMContentLoaded", () => {
     statsEl.appendChild(profileCard("Issues opened", formatNumber(payload.issuesOpened)));
   };
 
+  const createStarIcon = (): Element => {
+    const template = document.createElement("template");
+    template.innerHTML = starSvg;
+    const icon = template.content.firstElementChild as Element;
+    icon.setAttribute("class", "icon");
+    icon.setAttribute("role", "img");
+    icon.setAttribute("aria-label", "Stars");
+    return icon;
+  };
+
   const renderRepos = (repos: readonly GitHubRepo[], languages: Readonly<Record<string, number>>): void => {
     if (!(reposEl instanceof HTMLElement)) {
       return;
@@ -345,7 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const stars = document.createElement("span");
       stars.className = "github-repo-card-stars";
-      stars.textContent = `★ ${formatNumber(repo.stars)}`;
+      stars.append(createStarIcon(), ` ${formatNumber(repo.stars)}`);
       header.appendChild(stars);
 
       card.appendChild(header);

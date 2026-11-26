@@ -443,6 +443,21 @@
     }
   }
 
+  /* icons (lib/icons.ts): 18px beside text, 20px in the nav, controls and lists */
+  .icon {
+    flex: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    fill: currentcolor;
+  }
+
+  .page-nav-icon,
+  .article-icon,
+  :is(.theme-toggle, .language-switcher-button, .back-to-top) .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
   /* icon buttons: close, theme, language, back to top */
   .header-controls {
     display: flex;
@@ -481,37 +496,13 @@
     border-color: var(--hair-strong);
   }
 
-  .theme-toggle-icon {
-    width: 16px;
-    height: 16px;
-    opacity: 0.6;
-    transition: opacity var(--dur-fast) ease;
+  .theme-toggle-icon--light,
+  html[data-theme="dark"] .theme-toggle-icon--dark {
+    display: none;
   }
 
-  html[data-theme="dark"] .theme-toggle-icon {
-    filter: invert(1);
-  }
-
-  .theme-toggle:hover .theme-toggle-icon {
-    opacity: 1;
-  }
-
-  .page-close-icon,
-  .language-switcher-globe {
-    width: 15px;
-    height: 15px;
-    background-color: currentColor;
-    mask: var(--icon) center / contain no-repeat;
-  }
-
-  .page-close-icon {
-    --icon: url("../icons/ui/close.svg");
-  }
-
-  .language-switcher-globe {
-    --icon: url("../icons/ui/drawn-globe.svg");
-    width: 17px;
-    height: 17px;
+  html[data-theme="dark"] .theme-toggle-icon--light {
+    display: block;
   }
 
   /* language menu */
@@ -603,17 +594,6 @@
     transition: color var(--dur-fast) ease;
   }
 
-  .page-nav-icon {
-    flex: none;
-    width: 0.95em;
-    height: 0.95em;
-    fill: none;
-    stroke: currentcolor;
-    stroke-width: 1.6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
   .page-nav-link:hover,
   .page-nav-link:focus-visible {
     color: var(--text);
@@ -694,7 +674,6 @@
     z-index: 30;
     border-color: var(--hair);
     background: var(--bg);
-    font: 400 0.95rem/1 var(--serif);
     opacity: 0;
     scale: 0.85;
     pointer-events: none;
@@ -806,14 +785,6 @@
     scale: -1 1;
   }
 
-  .action-chip-icon--mail {
-    width: 15px;
-    height: 15px;
-    flex: none;
-    background-color: currentColor;
-    mask: url("../icons/ui/social-email.svg") center / contain no-repeat;
-  }
-
   /* social links: icon + word */
   .social-chip-row {
     display: flex;
@@ -836,19 +807,6 @@
   .social-chip:focus-visible {
     color: var(--text);
   }
-
-  .social-chip-icon {
-    width: 15px;
-    height: 15px;
-    background-color: currentColor;
-    mask: var(--icon) center / contain no-repeat;
-  }
-
-  .social-chip-icon--email { --icon: url("../icons/ui/social-email.svg"); }
-  .social-chip-icon--github { --icon: url("../icons/ui/social-github.svg"); }
-  .social-chip-icon--linkedin { --icon: url("../icons/ui/social-linkedin.svg"); }
-  .social-chip-icon--medium { --icon: url("../icons/ui/social-medium.svg"); }
-  .social-chip-icon--leetcode { --icon: url("../icons/ui/social-leetcode.svg"); }
 
   .taped {
     position: relative;
@@ -993,20 +951,6 @@
     gap: 6px;
     font-size: 0.92rem;
     line-height: 1.5;
-  }
-
-  /* solid ink silhouettes: brand colours of any lightness read the same, and the cut-outs
-     inside a mark come from its transparency */
-  .skill-sticker img {
-    flex: none;
-    width: 15px;
-    height: 15px;
-    filter: brightness(0) drop-shadow(0 0 0 #000); /* twice over: thin outlines hold up */
-    opacity: 0.88;
-  }
-
-  html[data-theme="dark"] .skill-sticker img {
-    filter: brightness(0) invert(1) drop-shadow(0 0 0 #fff);
   }
 
   .skill-sticker span[lang="ur"] {
@@ -1347,24 +1291,14 @@
     display: inline-flex;
     align-items: center;
     align-self: flex-end;
-    height: 28px;
-    padding: 5px 10px;
+    gap: 6px;
+    min-height: 28px;
+    padding: 3px 10px;
     border: 1px solid var(--hair);
     border-radius: 999px;
     background: var(--bg);
-    line-height: 0;
-  }
-
-  /* the zero-offset shadow lays the mark over itself, firming up its see-through parts */
-  .journal-sticker img {
-    width: auto;
-    height: 16px;
-    filter: brightness(0) drop-shadow(0 0 0 #000);
-    opacity: 0.88;
-  }
-
-  html[data-theme="dark"] .journal-sticker img {
-    filter: brightness(0) invert(1) drop-shadow(0 0 0 #fff);
+    color: var(--text);
+    font-size: 0.82rem;
   }
 
   /* code or terminal output */
@@ -1887,6 +1821,17 @@
   .github-repo-card-lang {
     font: 400 0.72rem/1.5 var(--mono);
     color: var(--muted);
+  }
+
+  .github-repo-card-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .github-repo-card-stars .icon {
+    width: 0.875rem;
+    height: 0.875rem;
   }
 
   .github-repo-card-lang {
@@ -3090,7 +3035,6 @@
     --pencil-scribble: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 12' fill='none' stroke='%238f887b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8C30 4.8 64 9.8 100 6.2S130 6.4 137 5'/%3E%3Cpath d='M10 10.4C44 8.6 82 11.2 124 8.4' stroke-opacity='.5' stroke-width='1'/%3E%3C/svg%3E");
     --pencil-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' fill='none' stroke='%231d5c43' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' preserveAspectRatio='none' stroke-opacity='.6'%3E%3Cpath d='M1 5C40 2.6 92 7 140 4.2S188 5.2 199 3.8'/%3E%3C/svg%3E");
     --doodle-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 16' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 9.5c6-1.6 12-2.4 18-2.3 2.6 0 5 .3 8.3.9'/%3E%3Cpath d='M21 2.2c2.4 1.9 4.6 3.6 7 5.7-2.6 1.6-4.9 3.6-7.4 6'/%3E%3C/svg%3E");
-    --doodle-page: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 4.6l12.4-.4 4.4 4.7.3 18.6-17 .4z'/%3E%3Cpath d='M20.4 4.4l.3 4.7 4.1-.3'/%3E%3Cpath d='M11.6 13.6h9.8'/%3E%3Cpath d='M11.5 17.7l9.6-.2'/%3E%3Cpath d='M11.6 21.7h6.6'/%3E%3C/svg%3E");
   }
 
   html[data-theme="dark"] {
@@ -3170,42 +3114,22 @@
     mask: var(--doodle-arrow) center / contain no-repeat;
   }
 
-  /* a pencilled page beside each article */
+  /* a document icon beside each article */
   .article-item > a {
     position: relative;
-    padding-inline-start: 46px;
+    padding-inline-start: 36px;
   }
 
-  .article-item > a::before {
-    content: "";
+  .article-icon {
     position: absolute;
-    inset-block-start: 22px;
+    inset-block-start: 24px;
     inset-inline-start: 0;
-    width: 28px;
-    height: 28px;
-    background: var(--faint);
-    mask: var(--doodle-page) center / contain no-repeat;
-    rotate: -4deg;
-    transition: background-color var(--dur-fast) ease;
+    color: var(--muted);
+    transition: color var(--dur-fast) ease;
   }
 
-  .article-item:nth-child(even) > a::before {
-    rotate: 3deg;
-  }
-
-  .article-item > a:hover::before {
-    background: var(--accent);
-  }
-
-  @media (max-width: 640px) {
-    .article-item > a {
-      padding-inline-start: 36px;
-    }
-
-    .article-item > a::before {
-      width: 22px;
-      height: 22px;
-    }
+  .article-item > a:hover .article-icon {
+    color: var(--accent);
   }
 
   /* the margin arrows read as pencil, not faint grey */
@@ -3326,45 +3250,10 @@
   }
 }
 
-/* header icons: one hand-drawn set (moon/sun, globe, close), same weight and size */
+/* header controls */
 @layer chrome {
-  :root {
-    --icon-moon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19.6 14.6c-1.2.5-2.5.8-3.9.7-4.4-.2-7.9-3.9-7.7-8.4.1-1.4.5-2.7 1.2-3.8-3.7 1-6.4 4.5-6.3 8.5.2 4.6 4.1 8.2 8.7 8 3.6-.1 6.7-2.3 8-5z'/%3E%3C/svg%3E");
-    --icon-sun: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.1 8.1c2.1 0 3.9 1.8 3.8 4 0 2.1-1.8 3.8-3.9 3.8-2.2 0-3.9-1.8-3.9-3.9.1-2.2 1.8-3.9 4-3.9z'/%3E%3Cpath d='M12 2.6v2.1'/%3E%3Cpath d='M12.1 19.3v2.2'/%3E%3Cpath d='M2.7 12.1h2.1'/%3E%3Cpath d='M19.2 11.9h2.2'/%3E%3Cpath d='M5.3 5.4l1.5 1.5'/%3E%3Cpath d='M17.2 17.3l1.6 1.5'/%3E%3Cpath d='M5.4 18.7l1.5-1.6'/%3E%3Cpath d='M17.3 6.8l1.5-1.5'/%3E%3C/svg%3E");
-    --icon-globe: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.1c4.9-.1 8.9 3.9 8.9 8.8.1 5-3.9 9-8.8 9.1-5 0-9-3.9-9.1-8.9C3 7.2 7 3.2 12 3.1z'/%3E%3Cpath d='M12.2 3.2c-2.5 2.3-3.7 5.4-3.7 8.8 0 3.4 1.3 6.6 3.6 8.9'/%3E%3Cpath d='M11.9 3.2c2.4 2.2 3.7 5.4 3.7 8.7.1 3.5-1.2 6.7-3.6 9'/%3E%3Cpath d='M3.6 9.2c5.6.6 11.2.5 16.8-.2'/%3E%3Cpath d='M3.7 14.9c5.5-.5 11.1-.4 16.7.3'/%3E%3C/svg%3E");
-    --icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.6 5.4c4.4 4.2 8.7 8.6 13 13.2'/%3E%3Cpath d='M18.4 5.7c-4.5 4.1-8.7 8.4-12.9 12.9'/%3E%3C/svg%3E");
-  }
-
   .header-controls {
     gap: 2px;
-  }
-
-  .theme-toggle-icon {
-    display: none;
-  }
-
-  .theme-toggle::before {
-    content: "";
-    width: 19px;
-    height: 19px;
-    background-color: currentColor;
-    mask: var(--icon-moon) center / contain no-repeat;
-  }
-
-  html[data-theme="dark"] .theme-toggle::before {
-    mask-image: var(--icon-sun);
-  }
-
-  .language-switcher-globe {
-    --icon: var(--icon-globe);
-    width: 19px;
-    height: 19px;
-  }
-
-  .page-close-icon {
-    --icon: var(--icon-close);
-    width: 17px;
-    height: 17px;
   }
 
   .language-menu a[lang="ur"] {

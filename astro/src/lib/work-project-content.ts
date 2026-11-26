@@ -1,3 +1,4 @@
+import { toIconName, type IconName } from "./icons";
 import { posix as pathPosix } from "node:path";
 import {
   asRecord,
@@ -36,6 +37,11 @@ export interface CardImage {
   readonly place?: boolean;
 }
 
+export interface CardSticker {
+  readonly icon: IconName;
+  readonly label: string;
+}
+
 export interface ContentCard {
   readonly title: string;
   readonly href?: string;
@@ -46,7 +52,7 @@ export interface ContentCard {
   /** Work page only: company mark stamped beside the title. */
   readonly logo?: CardImage;
   /** Work page only: small tool/platform marks stuck on the photo stack. */
-  readonly stickers?: readonly CardImage[];
+  readonly stickers?: readonly CardSticker[];
   /** Work page only: handwritten name tags (client products and the like). */
   readonly tags?: readonly string[];
   /** A few lines of code or terminal output, shown as a taped slip in place of a photo. */
@@ -90,6 +96,24 @@ function readCardImages(source: Record<string, unknown>, key: string, path: stri
     throw new Error(`Expected array at ${path}.${key}`);
   }
   return value.map((raw, index) => readCardImage(raw, `${path}.${key}[${index}]`));
+}
+
+function readCardStickers(source: Record<string, unknown>, path: string): readonly CardSticker[] {
+  const value = source.stickers;
+  if (value === undefined) {
+    return [];
+  }
+  if (!Array.isArray(value)) {
+    throw new Error(`Expected array at ${path}.stickers`);
+  }
+  return value.map((raw, index) => {
+    const stickerPath = `${path}.stickers[${index}]`;
+    const sticker = asRecord(raw, stickerPath);
+    return {
+      icon: toIconName(readString(sticker, "icon", stickerPath), `${stickerPath}.icon`),
+      label: readString(sticker, "label", stickerPath),
+    };
+  });
 }
 
 function readPictureCredits(source: Record<string, unknown>, path: string): readonly PictureCredit[] {
@@ -175,7 +199,7 @@ function readContentCards(
       meta?: string;
       images?: readonly CardImage[];
       logo?: CardImage;
-      stickers?: readonly CardImage[];
+      stickers?: readonly CardSticker[];
       tags?: readonly string[];
       snippet?: string;
     } = {
@@ -197,7 +221,7 @@ function readContentCards(
     if (item.logo !== undefined) {
       card.logo = readCardImage(item.logo, `${itemPath}.logo`);
     }
-    const stickers = readCardImages(item, "stickers", itemPath);
+    const stickers = readCardStickers(item, itemPath);
     if (stickers.length > 0) {
       card.stickers = stickers;
     }
