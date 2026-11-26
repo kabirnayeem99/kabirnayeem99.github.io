@@ -91,6 +91,8 @@ for (const viewport of VIEWPORTS) {
       problems.push(`${current}: console ${message.text()}`);
     });
     page.on("requestfailed", (request) => {
+      // Leaving a page cancels its lazy images still in flight: not a broken request.
+      if (request.failure()?.errorText === "net::ERR_ABORTED") return;
       if (request.url().startsWith(origin)) problems.push(`${current}: failed ${request.url()}`);
     });
 
