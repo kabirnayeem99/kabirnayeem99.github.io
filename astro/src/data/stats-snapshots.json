@@ -1,6 +1,6 @@
 {
   "wakatime": {
-    "generatedAt": "2026-11-26T07:25:07.282Z",
+    "generatedAt": "2026-11-26T07:51:48.024Z",
     "languagePayload": {
       "data": [
         {
@@ -539,7 +539,7 @@
     }
   },
   "githubCommits": {
-    "generatedAt": "2026-11-26T07:25:07.282Z",
+    "generatedAt": "2026-11-26T07:51:48.025Z",
     "total": {
       "2018": 1,
       "2019": 16,
@@ -549,7 +549,7 @@
       "2023": 537,
       "2024": 334,
       "2025": 601,
-      "2026": 2502
+      "2026": 2506
     },
     "contributions": [
       {
@@ -2409,70 +2409,76 @@
       },
       {
         "date": "2026-11-26",
-        "count": 6,
+        "count": 10,
         "level": 1
       }
     ]
   },
   "githubProfile": {
-    "generatedAt": "2026-06-03T00:00:00Z",
+    "generatedAt": "2026-11-26T07:51:48.025Z",
     "repos": [
       {
-        "name": "foody-rte",
-        "description": "Food ordering Android app built with Kotlin and Jetpack Compose",
+        "name": "Ktor2Curl",
+        "description": "Transform Ktor HTTP requests into runnable curl commands.",
+        "stars": 30,
+        "language": "Kotlin",
+        "htmlUrl": "https://github.com/kabirnayeem99/Ktor2Curl"
+      },
+      {
+        "name": "miniGallery",
+        "description": "Minimalist gallery application for Android with Material You design",
         "stars": 14,
         "language": "Kotlin",
-        "htmlUrl": "https://github.com/kabirnayeem99/foody-rte"
+        "htmlUrl": "https://github.com/kabirnayeem99/miniGallery"
       },
       {
-        "name": "flutter-voice-journal",
-        "description": "Voice journaling app built with Flutter",
+        "name": "islam_qa_org_android",
+        "description": "Native android frontend for IslamQA.org",
         "stars": 8,
-        "language": "Dart",
-        "htmlUrl": "https://github.com/kabirnayeem99/flutter-voice-journal"
-      },
-      {
-        "name": "v2_clean_arch_android_bloc",
-        "description": "Android app with clean architecture using Kotlin and BLoC",
-        "stars": 6,
         "language": "Kotlin",
-        "htmlUrl": "https://github.com/kabirnayeem99/v2_clean_arch_android_bloc"
+        "htmlUrl": "https://github.com/kabirnayeem99/islam_qa_org_android"
       },
       {
-        "name": "wasm_live",
-        "description": "WebAssembly experiment with Kotlin/Wasm",
+        "name": "AlarmForSalat",
+        "description": "Salat time reminder application built with Kotlin for Android. ",
         "stars": 5,
         "language": "Kotlin",
-        "htmlUrl": "https://github.com/kabirnayeem99/wasm_live"
+        "htmlUrl": "https://github.com/kabirnayeem99/AlarmForSalat"
       },
       {
-        "name": "islam_qa_android",
-        "description": "Islamic Q&A Android app",
-        "stars": 4,
-        "language": "Kotlin",
-        "htmlUrl": "https://github.com/kabirnayeem99/islam_qa_android"
+        "name": "Kuizi",
+        "description": "❓ Kuizi is a cross platform quiz application built with Flutter. ",
+        "stars": 5,
+        "language": "Dart",
+        "htmlUrl": "https://github.com/kabirnayeem99/Kuizi"
       },
       {
-        "name": "resume_swift_ui",
-        "description": "Resume app built with SwiftUI",
-        "stars": 3,
-        "language": "Swift",
-        "htmlUrl": "https://github.com/kabirnayeem99/resume_swift_ui"
+        "name": "OneSarkel",
+        "description": "💬 Instant messaging application inspired by One UI 2",
+        "stars": 5,
+        "language": "Dart",
+        "htmlUrl": "https://github.com/kabirnayeem99/OneSarkel"
       }
     ],
-    "mergedPrs": 45,
-    "issuesOpened": 23,
+    "mergedPrs": 43,
+    "issuesOpened": 43,
     "languages": {
-      "Kotlin": 18,
-      "Dart": 8,
-      "Java": 6,
-      "Swift": 3,
-      "TypeScript": 2,
-      "Python": 2
+      "Kotlin": 21,
+      "Dart": 11,
+      "Python": 1,
+      "Java": 1,
+      "Swift": 6,
+      "HTML": 2,
+      "CSS": 1,
+      "Go": 7,
+      "TypeScript": 1,
+      "Rust": 1,
+      "C++": 1,
+      "PHP": 1
     }
   },
   "leetcode": {
-    "generatedAt": "2026-11-26T07:25:07.282Z",
+    "generatedAt": "2026-11-26T07:51:48.025Z",
     "solved": {
       "solvedProblem": 136,
       "easySolved": 89,
