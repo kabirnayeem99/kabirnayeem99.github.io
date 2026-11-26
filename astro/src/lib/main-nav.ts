@@ -1,12 +1,15 @@
-import navigation from "../data/site-content/navigation.json";
-import navigationLabels from "../data/site-content/navigation-labels.json";
-import routes from "../data/site-content/routes.json";
+import navigationJson from "../data/site-content/navigation.json";
+import navigationLabelsJson from "../data/site-content/navigation-labels.json";
+import routesJson from "../data/site-content/routes.json";
+import { navigationLabelsSchema, navigationSchema, routesSchema } from "./content-schema.ts";
+import { ALL_PAGE_IDS, LANGS, type AnyPageId, type Lang } from "./locale-config";
 import { routeHref } from "./work-project-content";
 
-type Lang = "en" | "bn" | "ar" | "ur";
-export type PageId = keyof typeof routes;
+export type PageId = AnyPageId;
 
-const LANGS: readonly Lang[] = ["en", "bn", "ar", "ur"];
+const navigation = navigationSchema.parse(navigationJson);
+const navigationLabels = navigationLabelsSchema.parse(navigationLabelsJson);
+const routes = routesSchema.parse(routesJson);
 
 export interface MainNavItem {
   readonly pageId: PageId;
@@ -17,14 +20,7 @@ export interface MainNavItem {
 
 /** Detect the active locale from a page's own route (e.g. "bn/work.html" -> "bn"). */
 function detectLang(currentRoute: string): Lang {
-  for (const lang of LANGS) {
-    for (const pageId of Object.keys(routes) as PageId[]) {
-      if ((routes as Record<PageId, Record<Lang, string>>)[pageId][lang] === currentRoute) {
-        return lang;
-      }
-    }
-  }
-  return "en";
+  return LANGS.find((lang) => ALL_PAGE_IDS.some((pageId) => routes[pageId][lang] === currentRoute)) ?? "en";
 }
 
 /**
@@ -33,12 +29,11 @@ function detectLang(currentRoute: string): Lang {
  */
 export function buildMainNav(currentRoute: string): readonly MainNavItem[] {
   const lang = detectLang(currentRoute);
-  const order = (navigation as Record<Lang, PageId[]>)[lang];
-  return order.map((pageId) => {
-    const target = (routes as Record<PageId, Record<Lang, string>>)[pageId][lang];
+  return navigation[lang].map((pageId) => {
+    const target = routes[pageId][lang];
     return {
       pageId,
-      label: (navigationLabels as Record<PageId, Record<Lang, string>>)[pageId][lang],
+      label: navigationLabels[pageId][lang],
       href: routeHref(currentRoute, target),
       isCurrent: target === currentRoute,
     };

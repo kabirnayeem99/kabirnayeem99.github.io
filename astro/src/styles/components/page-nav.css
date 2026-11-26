@@ -1,0 +1,112 @@
+@layer chrome {
+  /* primary navigation: a quiet row of words */
+  .page-nav {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    margin-block-start: 28px;
+  }
+
+  .page-nav-track {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+  }
+
+  .page-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--muted);
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: color var(--dur-fast) ease;
+  }
+
+  .page-nav-link:hover,
+  .page-nav-link:focus-visible {
+    color: var(--text);
+  }
+
+  .page-nav-link[aria-current="page"] {
+    color: var(--text);
+  }
+
+  /* the current page: a highlighter swiped by hand under the word. The shape stays inside
+     its own box, so no edge gets sliced off */
+  .page-nav-label {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .page-nav-link[aria-current="page"] .page-nav-label::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset-inline: -0.4em;
+    inset-block-end: -0.12em;
+    height: 0.78em;
+    background: var(--accent);
+    opacity: 0.24;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' preserveAspectRatio='none'%3E%3Cpath d='M5 8.6C22 6.1 41 7.3 62 5.8S101 3.9 114 5.2c3 .3 2.600 2.300.4 2.900l2.100 1.2c1.600 1.1.2 2.600-2.300 2.700l.9 1.5c.4 1.500-2 2-4.600 2C89 15.200 70 16.700 49 16.400S20 18.100 8.500 16.6c-3-.4-3.4-2-1.2-2.8l-3-1.1c-2-1-.8-2.6 1.4-2.9C3.4 9.300 3.2 8.900 5 8.600Z'/%3E%3C/svg%3E")
+      center / 100% 100% no-repeat;
+  }
+
+  /* the same ink reads fainter on the dark ground */
+  html[data-theme="dark"] .page-nav-link[aria-current="page"] .page-nav-label::before {
+    opacity: 0.38;
+  }
+
+  .page-nav-link[aria-current="page"] .page-nav-icon {
+    color: var(--accent);
+  }
+
+  .site-sidebar .page-nav {
+    margin: 0;
+  }
+
+  .site-sidebar .page-nav-track {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .site-sidebar .page-nav-link {
+    gap: 14px;
+    min-height: 36px;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 1000px) {
+    .site-sidebar .page-nav {
+      grid-column: 1 / -1;
+    }
+
+    .site-sidebar .page-nav-track {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 4px 20px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .site-sidebar .page-nav-track {
+      flex: 1;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .site-sidebar .page-nav-link {
+      justify-content: center;
+      min-width: 32px;
+      min-height: 44px;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .site-sidebar .page-nav-icon {
+      display: none;
+    }
+  }
+}

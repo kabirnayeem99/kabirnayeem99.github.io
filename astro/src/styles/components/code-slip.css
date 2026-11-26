@@ -1,0 +1,41 @@
+@layer pages {
+  /* code or terminal output */
+  .code-slip {
+    position: relative;
+    flex: 1 1 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .code-slip pre {
+    margin: 0;
+    padding: 16px 18px;
+    overflow-x: auto;
+    border-radius: var(--radius);
+    font: 400 0.78rem/1.65 var(--mono);
+    white-space: pre;
+  }
+
+  .code-slip pre,
+  html[data-theme="dark"] .code-slip pre {
+    background: none;
+    color: var(--text);
+    border: 1px solid var(--hair-strong);
+  }
+
+  /* syntax colour from Shiki's dual theme (github light/dark), switched by the site theme;
+     the block itself stays an outline with no fill */
+  .code-slip pre.astro-code {
+    background: none !important;
+  }
+
+  .code-slip .astro-code,
+  .code-slip .astro-code span {
+    color: var(--shiki-light);
+  }
+
+  html[data-theme="dark"] .code-slip .astro-code,
+  html[data-theme="dark"] .code-slip .astro-code span {
+    color: var(--shiki-dark);
+  }
+}

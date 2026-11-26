@@ -1,6 +1,6 @@
-import goodreadsSnapshot from "../data/site-content/goodreads-snapshot.json";
-import { withoutSeries } from "./book-title";
-import { scriptLang } from "./script-lang";
+import goodreadsSnapshot from "../data/site-content/goodreads-snapshot.json" with { type: "json" };
+import { withoutSeries } from "./book-title.ts";
+import { scriptLang } from "./script-lang.ts";
 
 // Page copy writes <last-finished/> where it names the last book finished. It is filled from
 // the snapshot's newest book, the same one the home shelf marks "Last read" and the Reading
@@ -11,9 +11,11 @@ const PLACEHOLDER = /<last-finished\s*\/>/g;
 const escapeHtml = (value: string): string =>
   value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 
-export function withLastFinished(html: string): string {
+export function fillLastFinished(
+  html: string,
+  book: { readonly href: string; readonly title: string } | undefined,
+): string {
   return html.replace(PLACEHOLDER, () => {
-    const book = goodreadsSnapshot.books[0];
     if (!book) {
       throw new Error("goodreads-snapshot.json has no books to fill <last-finished/>");
     }
@@ -25,3 +27,5 @@ export function withLastFinished(html: string): string {
     );
   });
 }
+
+export const withLastFinished = (html: string): string => fillLastFinished(html, goodreadsSnapshot.books[0]);

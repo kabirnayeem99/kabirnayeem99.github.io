@@ -63,19 +63,19 @@ export function loadBlogPageContent(lang: Lang): BlogPageContent {
   const root = loadSiteContentRoot();
 
   const site = asRecord(root.site, "root.site");
-  const siteLocales = asRecord(site.locales, "root.site.locales");
+  const siteLocales = asRecord(site["locales"], "root.site.locales");
   const localeRaw = asRecord(siteLocales[lang], `root.site.locales.${lang}`);
 
   const routes = asRecord(root.routes, "root.routes");
-  const routeIndex = readRouteMap(asRecord(routes.index, "root.routes.index"), "root.routes.index");
-  const routeBlog = readRouteMap(asRecord(routes.blog, "root.routes.blog"), "root.routes.blog");
+  const routeIndex = readRouteMap(asRecord(routes["index"], "root.routes.index"), "root.routes.index");
+  const routeBlog = readRouteMap(asRecord(routes["blog"], "root.routes.blog"), "root.routes.blog");
 
   const pages = asRecord(root.pages, "root.pages");
-  const blogPage = asRecord(pages.blog, "root.pages.blog");
-  const blogLocales = asRecord(blogPage.locales, "root.pages.blog.locales");
-  const blogLocale = asRecord(blogLocales[lang] ?? blogLocales.en, `root.pages.blog.locales.${lang}`);
-  const blogMeta = asRecord(blogLocale.meta, `root.pages.blog.locales.${lang}.meta`);
-  const blogHeader = asRecord(blogLocale.header, `root.pages.blog.locales.${lang}.header`);
+  const blogPage = asRecord(pages["blog"], "root.pages.blog");
+  const blogLocales = asRecord(blogPage["locales"], "root.pages.blog.locales");
+  const blogLocale = asRecord(blogLocales[lang] ?? blogLocales["en"], `root.pages.blog.locales.${lang}`);
+  const blogMeta = asRecord(blogLocale["meta"], `root.pages.blog.locales.${lang}.meta`);
+  const blogHeader = asRecord(blogLocale["header"], `root.pages.blog.locales.${lang}.header`);
 
   return {
     lang,

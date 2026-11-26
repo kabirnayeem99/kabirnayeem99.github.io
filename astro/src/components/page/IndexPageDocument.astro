@@ -1,4 +1,5 @@
 ---
+import { hasText } from "../../scripts/modules/guards";
 import { scriptLang } from "../../lib/script-lang";
 import BackToTopButton from "./BackToTopButton.astro";
 import BotanicalSprite from "./BotanicalSprite.astro";
@@ -18,6 +19,7 @@ import {
   type PageId,
 } from "../../lib/index-content";
 import { LANGS } from "../../lib/locale-config";
+import { selectShelfPicks } from "../../lib/home-shelf";
 import {
   buildOgImageUrl,
   buildPageAssetHrefs,
@@ -41,7 +43,7 @@ interface Props {
   readonly lang: Lang;
 }
 
-const { lang } = Astro.props as Props;
+const { lang } = Astro.props;
 const content = loadIndexPageContent(lang);
 const buildTimestamp = computeLegacyBuildTimestamp(lang);
 const currentRoute = content.route;
@@ -157,18 +159,10 @@ function resolveAction(action: IndexAction): ResolvedAction {
 // Picks missing from the snapshot are skipped; with none left, recent reads fill in.
 const SHELF_PICKS = 8;
 const lastReadBook = goodreadsSnapshot.books[0];
-const snapshotByFile = new Map(goodreadsSnapshot.books.map((book) => [book.imageFileName, book]));
-const readTime = (book: (typeof goodreadsSnapshot.books)[number]): number =>
-  Date.parse((book as { dateRead?: string }).dateRead ?? "") || 0;
-const pickedBooks = featuredBooks.books
-  .flatMap((fileName) => snapshotByFile.get(fileName) ?? [])
-  .filter((book) => book !== lastReadBook)
-  .sort((a, b) => readTime(b) - readTime(a))
-  .slice(0, SHELF_PICKS);
-const shelfPicks = pickedBooks.length > 0 ? pickedBooks : goodreadsSnapshot.books.slice(1, 1 + SHELF_PICKS);
+const shelfPicks = selectShelfPicks(goodreadsSnapshot.books, featuredBooks.books, SHELF_PICKS);
 const toShelfBook = (book: (typeof goodreadsSnapshot.books)[number]) => ({
   ...book,
-  readDate: formatReadDate((book as { dateRead?: string }).dateRead, lang),
+  readDate: formatReadDate(book.dateRead ?? undefined, lang),
 });
 const lastReadShelfBook = lastReadBook ? toShelfBook(lastReadBook) : undefined;
 const goodreadsBooks = shelfPicks.map(toShelfBook);
@@ -215,6 +209,13 @@ const viewAllStatsAction: IndexAction = {
 
 const visibleSections = content.sections.filter((section) => section.tags.length === 0);
 const [leadSection, ...remainingSections] = visibleSections;
+
+/** The showcase link's name: its visible captions (for voice control), then where it goes. */
+function showcaseLabel(section: (typeof visibleSections)[number]): string {
+  const captions = section.images.flatMap((image) => image.caption ?? []).join(" ");
+  const destination = section.actions[0]?.label ?? section.title;
+  return captions.length > 0 ? `${captions} — ${destination}` : destination;
+}
 
 function buildSectionClassName(
   section: (typeof visibleSections)[number],
@@ -390,7 +391,7 @@ function buildSectionClassName(
               {lastReadShelfBook ? (
                 <div class="gr_grid_book_container gr_grid_book_container--last-read" data-last-read>
                   <span class="book-strip book-strip--last-read">{LAST_READ_LABEL[lang]}</span>
-                  <span class="book-strip book-strip--date" dir="auto" hidden={!lastReadShelfBook.readDate}>
+                  <span class="book-strip book-strip--date" dir="auto" hidden={!hasText(lastReadShelfBook.readDate)}>
                     {lastReadShelfBook.readDate}
                   </span>
                   <a
@@ -414,7 +415,7 @@ function buildSectionClassName(
               {
                 goodreadsBooks.map((book) => (
                   <div class="gr_grid_book_container">
-                    {book.readDate ? (
+                    {hasText(book.readDate) ? (
                       <span class="book-strip book-strip--date" dir="auto">{book.readDate}</span>
                     ) : null}
                     <a
@@ -466,7 +467,7 @@ function buildSectionClassName(
                 <a
                   class="work-showcase"
                   href={routeHref(currentRoute, routeForAction("project"))}
-                  aria-label={section.actions[0]?.label ?? section.title}
+                  aria-label={showcaseLabel(section)}
                   data-nav-page-id="project"
                   data-nav-source="work-showcase"
                 >
@@ -485,7 +486,9 @@ function buildSectionClassName(
                             decoding="async"
                           />
                         </div>
-                        {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+                        {hasText(image.caption) ? <figcaption>{image.caption}</figcaption> : null}
+                        {/* Keeps the captions separate words in the link's visible text. */}
+                        {" "}
                       </figure>
                     );
                   })}

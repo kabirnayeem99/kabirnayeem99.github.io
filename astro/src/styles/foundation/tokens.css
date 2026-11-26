@@ -1,0 +1,122 @@
+/* Design tokens, per theme and per script. Contrast notes sit beside the colours.
+   --chart-* / --lc-*: colour only where it tells things apart (language bars and donuts,
+   LeetCode difficulty), in muted inks that sit on paper. Each theme's set passes the
+   dataviz validator in this order (3:1 on the page, neighbours CVD-safe); text labels
+   accompany every colour. Magnitude (heatmap, yearly bars) stays ink.
+   --pencil-* / --doodle-arrow: the hand-drawn strokes, inline SVG (no images, fonts or
+   script). Painted lines are baked per theme; icons and arrows are masks. */
+
+@layer tokens {
+  :root {
+    color-scheme: light;
+    font-size: 17px;
+
+    /* contrast on --bg: text 18:1, soft 14:1, muted 8.6:1, faint 5.3:1 (all ≥ WCAG AA) */
+    --bg: #faf8f3;
+    --surface: #f2eee5;
+    --text: #17140f;
+    --soft: #2b2721;
+    --muted: #4e483f;
+    --faint: #6d665b;
+    --hair: #e5e0d5;
+    --hair-strong: #cdc6b7;
+    --accent: #1d5c43;
+    --accent-soft: color-mix(in srgb, var(--accent) 38%, transparent);
+    --focus: var(--accent);
+
+    /* every stack names all scripts; unicode-range sends each character to its own face */
+    --serif: "Newsreader", "Tiro Bangla", "Amiri", Georgia, serif;
+    --serif-ur: "Newsreader", "Tiro Bangla", "Gulzar", "Amiri", Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --font-site: var(--serif);
+
+    --measure: 720px;
+    --gap: 24px;
+    --space: 96px; /* between sections */
+    --radius: 6px;
+
+    /* motion: only in answer to a tap, hover or page change. One curve, close to the
+       curve iOS uses for sheets; short and quiet. */
+    --ease: cubic-bezier(0.32, 0.72, 0, 1);
+    --dur-fast: 150ms;
+    --dur: 250ms;
+
+    /* aliases kept for any script that reads them */
+    --text-muted: var(--muted);
+    --card: var(--bg);
+    --rose: var(--accent);
+    --chart-1: #5585bf;
+    --chart-2: #a47829;
+    --chart-3: #229882;
+    --chart-4: #823e21;
+    --chart-5: #9068a6;
+    --chart-6: #737923;
+    --lc-easy: var(--chart-3);
+    --lc-medium: var(--chart-2);
+    --lc-hard: var(--chart-4);
+    --pencil-rule: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 6' fill='none' stroke='%23c4bdae' stroke-width='1.1' stroke-linecap='round' stroke-linejoin='round' preserveAspectRatio='none'%3E%3Cpath d='M0 3C70 2 130 4.2 210 3.1S350 1.9 430 3.3 560 3.8 600 3'/%3E%3Cpath d='M0 3.6C90 4.2 160 2.6 260 3.4S420 4.3 600 3.6' stroke-opacity='.45' stroke-width='.8'/%3E%3C/svg%3E");
+    --pencil-scribble: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 12' fill='none' stroke='%238f887b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8C30 4.8 64 9.8 100 6.2S130 6.4 137 5'/%3E%3Cpath d='M10 10.4C44 8.6 82 11.2 124 8.4' stroke-opacity='.5' stroke-width='1'/%3E%3C/svg%3E");
+    --pencil-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' fill='none' stroke='%231d5c43' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' preserveAspectRatio='none' stroke-opacity='.6'%3E%3Cpath d='M1 5C40 2.6 92 7 140 4.2S188 5.2 199 3.8'/%3E%3C/svg%3E");
+    --doodle-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 16' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 9.5c6-1.6 12-2.4 18-2.3 2.6 0 5 .3 8.3.9'/%3E%3Cpath d='M21 2.2c2.4 1.9 4.6 3.6 7 5.7-2.6 1.6-4.9 3.6-7.4 6'/%3E%3C/svg%3E");
+    --pencil-loop: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40' preserveAspectRatio='none' fill='none' stroke='%231d5c43' stroke-width='1.6' stroke-linecap='round' stroke-opacity='.75'%3E%3Cpath vector-effect='non-scaling-stroke' d='M22 7C70 1.5 148 2 184 8.5c15 2.8 14 19.5-5 24.5-40 8.5-118 7.5-157 .8C4 30.5 2.5 17.5 14 11 32 3.4 92 2.6 126 4.2'/%3E%3C/svg%3E");
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #12100d;
+    --surface: #1c1915;
+    --text: #f3efe7;
+    --soft: #ddd6ca;
+    --muted: #b7ae9f;
+    --faint: #928a7c;
+    --hair: #2a2620;
+    --hair-strong: #3e3830;
+    --accent: #8fd1b0;
+    --chart-1: #306da4;
+    --chart-2: #ac8637;
+    --chart-3: #41b098;
+    --chart-4: #994f42;
+    --chart-5: #a878b7;
+    --chart-6: #838d3e;
+    --pencil-rule: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 6' fill='none' stroke='%23423c33' stroke-width='1.1' stroke-linecap='round' stroke-linejoin='round' preserveAspectRatio='none'%3E%3Cpath d='M0 3C70 2 130 4.2 210 3.1S350 1.9 430 3.3 560 3.8 600 3'/%3E%3Cpath d='M0 3.6C90 4.2 160 2.6 260 3.4S420 4.3 600 3.6' stroke-opacity='.45' stroke-width='.8'/%3E%3C/svg%3E");
+    --pencil-scribble: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 12' fill='none' stroke='%237a7266' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8C30 4.8 64 9.8 100 6.2S130 6.4 137 5'/%3E%3Cpath d='M10 10.4C44 8.6 82 11.2 124 8.4' stroke-opacity='.5' stroke-width='1'/%3E%3C/svg%3E");
+    --pencil-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' fill='none' stroke='%238fd1b0' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' preserveAspectRatio='none' stroke-opacity='.6'%3E%3Cpath d='M1 5C40 2.6 92 7 140 4.2S188 5.2 199 3.8'/%3E%3C/svg%3E");
+    --pencil-loop: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40' preserveAspectRatio='none' fill='none' stroke='%238fd1b0' stroke-width='1.6' stroke-linecap='round' stroke-opacity='.75'%3E%3Cpath vector-effect='non-scaling-stroke' d='M22 7C70 1.5 148 2 184 8.5c15 2.8 14 19.5-5 24.5-40 8.5-118 7.5-157 .8C4 30.5 2.5 17.5 14 11 32 3.4 92 2.6 126 4.2'/%3E%3C/svg%3E");
+  }
+
+  html:lang(ur) {
+    --font-site: var(--serif-ur);
+  }
+
+  /* text in another script than the page: Urdu → Gulzar, Arabic → Amiri (Bangla needs no
+     rule: only Tiro Bangla covers it). Nastaleeq and Naskh sit small beside Latin. */
+  :not(html)[lang="ur"] {
+    font-family: var(--serif-ur);
+  }
+
+  :not(html)[lang="ar"] {
+    font-family: var(--serif);
+  }
+
+  html:not(:lang(ur)) :not(html)[lang="ur"] {
+    line-height: 1;
+  }
+
+  /* Gulzar and Tiro Bangla ship one weight: a browser-faked bold smears them. Inside text
+     of another language the script already stands out, so keep it at its true weight. */
+  html:not(:lang(ur)) :not(html)[lang="ur"],
+  html:not(:lang(bn)) :not(html)[lang="bn"] {
+    font-synthesis-weight: none;
+  }
+
+  html:not(:lang(ar)) :not(html)[lang="ar"] {
+    font-size: 1.1em;
+  }
+
+  @media (max-width: 760px) {
+    :root {
+      --space: 64px;
+      --gap: 20px;
+    }
+  }
+}

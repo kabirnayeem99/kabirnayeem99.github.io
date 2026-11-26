@@ -1,0 +1,56 @@
+@layer components {
+  /* social links: icon + word */
+  .social-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin-block: 24px 0;
+  }
+
+  .social-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color var(--dur-fast) ease;
+    color: var(--soft);
+  }
+
+  .social-chip:hover,
+  .social-chip:focus-visible {
+    color: var(--text);
+  }
+
+  .social-chip:hover {
+    color: var(--accent);
+  }
+
+  /* in this layer so they win over the chip's own box rules above */
+  .sidebar-links .social-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 32px;
+    padding: 0;
+    border: 0;
+    font-size: 0.95rem;
+  }
+
+  /* the contact logos share the pages' 20px icon column */
+  .sidebar-links .social-chip .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--muted);
+  }
+
+  .sidebar-links .social-chip:hover .icon {
+    color: inherit;
+  }
+
+  @media (max-width: 1000px) {
+    .sidebar-links .social-chip {
+      gap: 8px;
+    }
+  }
+}

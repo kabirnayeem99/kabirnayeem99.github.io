@@ -1,0 +1,181 @@
+@layer widgets {
+  /* language charts: donut + legend */
+  .wakatime-language-chart,
+  .github-profile-lang-section {
+    display: grid;
+    grid-template-columns: 160px minmax(0, 1fr);
+    gap: 18px 36px;
+    align-items: center;
+  }
+
+  .wakatime-donut,
+  .github-profile-donut {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  .wakatime-donut-svg,
+  .github-profile-donut-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .wakatime-donut-segment,
+  .github-profile-donut-svg path {
+    stroke-width: 2;
+    fill-opacity: 0.85;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: fill-opacity var(--dur-fast) ease;
+    cursor: pointer;
+    stroke: var(--bg);
+  }
+
+  .wakatime-donut-segment.is-active,
+  .wakatime-donut-segment:hover {
+    fill-opacity: 1;
+  }
+
+  .chart-donut-title {
+    font: 500 20px/1 var(--serif);
+    fill: var(--text);
+  }
+
+  .chart-donut-value {
+    font: 400 16px/1 var(--mono);
+    fill: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .wakatime-donut-center {
+    display: none;
+  }
+
+  .wakatime-legend,
+  .github-profile-lang-legend {
+    list-style: none;
+    display: grid;
+    gap: 0;
+    width: 100%;
+  }
+
+  .wakatime-legend-item,
+  .github-profile-lang-item {
+    display: block;
+  }
+
+  .wakatime-language-chip,
+  .github-profile-lang-item {
+    display: grid;
+    grid-template-columns: minmax(4.5rem, 7.5rem) minmax(0, 1fr) 4rem;
+    gap: 14px;
+    align-items: center;
+    padding-block: 5px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .wakatime-legend-name,
+  .github-profile-lang-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .wakatime-legend-percent,
+  .github-profile-lang-count {
+    color: var(--muted);
+    font: 400 0.78rem/1.5 var(--mono);
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+    white-space: nowrap;
+  }
+
+  .wakatime-legend-item {
+    cursor: pointer;
+  }
+
+  .wakatime-legend-item.is-active .wakatime-legend-name {
+    font-weight: 600;
+  }
+
+  .wakatime-legend-item:focus-visible .wakatime-language-chip {
+    outline: 1.5px solid var(--focus);
+  }
+
+  /* language bars: the language's colour over a pencil track */
+  .chart-meter {
+    display: block;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--pencil-rule) left center / 600px 6px repeat-x;
+    overflow: visible;
+  }
+
+  .chart-meter-fill {
+    display: block;
+    width: var(--share);
+    min-width: 2px;
+    height: 100%;
+    background: var(--c);
+    transform-origin: left center;
+    border-radius: 3px 6px 4px 5px / 5px 3px 6px 3px;
+  }
+
+  [dir="rtl"] .chart-meter-fill {
+    transform-origin: right center;
+  }
+
+  .chart-donut-hole {
+    fill: var(--bg);
+  }
+
+  /* stats sketched in pencil: double-drawn rings round the donuts, hatched bars */
+  .chart-donut-ring {
+    display: inline;
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 1;
+    opacity: 0.45;
+  }
+
+  .chart-donut-ring--echo {
+    stroke-width: 0.7;
+    opacity: 0.25;
+  }
+
+  .chart-donut-ring--inner {
+    stroke-dasharray: 3 2.5;
+    opacity: 0.35;
+  }
+
+  @media (max-width: 760px) {
+    .wakatime-language-chart,
+    .github-profile-lang-section {
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: center;
+    }
+
+    .wakatime-donut,
+    .github-profile-donut {
+      max-width: 180px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .wakatime-language-chip,
+    .github-profile-lang-item {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2px 12px;
+    }
+
+    .chart-meter {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+}

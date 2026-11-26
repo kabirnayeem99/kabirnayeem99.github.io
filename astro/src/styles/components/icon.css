@@ -1,0 +1,16 @@
+@layer chrome {
+  /* icons (lib/icons.ts): 18px beside text, 20px in the nav, controls and lists */
+  .icon {
+    flex: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    fill: currentcolor;
+  }
+
+  .page-nav-icon,
+  .article-icon,
+  :is(.theme-toggle, .language-switcher-button, .back-to-top) .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}

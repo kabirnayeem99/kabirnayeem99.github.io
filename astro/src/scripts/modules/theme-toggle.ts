@@ -1,14 +1,4 @@
-type Theme = "light" | "dark";
-
-declare global {
-  interface Window {
-    // Defined by the head bootstrap script (lib/page-labels.ts).
-    personPortfolioTheme?: {
-      readonly sync: () => void;
-      readonly choose: (theme: Theme) => void;
-    };
-  }
-}
+import type { Theme } from "../../inline/theme-api";
 
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
@@ -25,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isDark = theme === "dark";
     button.setAttribute("aria-pressed", String(isDark));
 
-    const nextLabel = isDark ? button.dataset.lightLabel : button.dataset.darkLabel;
+    const nextLabel = isDark ? button.dataset["lightLabel"] : button.dataset["darkLabel"];
     if (typeof nextLabel === "string" && nextLabel.length > 0) {
       button.setAttribute("aria-label", nextLabel);
       button.title = nextLabel;
@@ -43,5 +33,3 @@ document.addEventListener("DOMContentLoaded", () => {
     window.personPortfolioTheme?.choose(currentTheme() === "dark" ? "light" : "dark");
   });
 });
-
-export {};

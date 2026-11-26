@@ -1,0 +1,73 @@
+@layer widgets {
+  /* LeetCode */
+  .leetcode-visuals {
+    display: grid;
+    gap: 12px;
+  }
+
+  .leetcode-difficulty-bar {
+    display: flex;
+    overflow: hidden;
+    height: 10px;
+    gap: 2px; /* surface gap between fills */
+    border-radius: 4px 8px 5px 7px / 7px 4px 8px 4px;
+  }
+
+  .leetcode-difficulty-segment {
+    height: 100%;
+    overflow: hidden;
+    font-size: 0;
+    color: transparent;
+    background: color-mix(in srgb, var(--text) var(--a, 50%), transparent);
+    transform-origin: left center;
+  }
+
+  /* LeetCode difficulty */
+  .leetcode-difficulty-segment--easy {
+    --a: 25%;
+    background: var(--lc-easy);
+  }
+
+  .leetcode-difficulty-segment--medium {
+    --a: 55%;
+    background: var(--lc-medium);
+  }
+
+  .leetcode-difficulty-segment--hard {
+    --a: 90%;
+    background: var(--lc-hard);
+  }
+
+  .leetcode-difficulty-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    margin-block-start: 10px;
+    font-size: 0.85rem;
+    color: var(--soft);
+  }
+
+  .leetcode-difficulty-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .leetcode-difficulty-swatch {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+  }
+
+  .leetcode-difficulty-legend-item--easy .leetcode-difficulty-swatch {
+    background: var(--lc-easy);
+  }
+
+  .leetcode-difficulty-legend-item--medium .leetcode-difficulty-swatch {
+    background: var(--lc-medium);
+  }
+
+  .leetcode-difficulty-legend-item--hard .leetcode-difficulty-swatch {
+    background: var(--lc-hard);
+  }
+}

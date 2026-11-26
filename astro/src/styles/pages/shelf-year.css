@@ -1,0 +1,60 @@
+/* Work page: projects, shelf by year. */
+
+@layer utilities {
+  .work-projects-link {
+    margin: 0;
+  }
+
+  .work-intro .work-projects-link {
+    font-size: 1rem;
+    font-style: normal;
+  }
+
+  .work-projects-link--after {
+    margin-block-start: 32px;
+  }
+
+  .shelf-year {
+    border-block-start: 1px solid var(--hair);
+  }
+
+  .shelf-year summary {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    min-height: 48px;
+    padding-block: 10px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .shelf-year summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* a plain plus / minus at the far end: open or closed without relying on colour */
+  .shelf-year summary::after {
+    content: "+";
+    margin-inline-start: auto;
+    color: var(--muted);
+  }
+
+  .shelf-year[open] summary::after {
+    content: "−";
+  }
+
+  .shelf-year-name {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  .shelf-year-count {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .shelf-year .gr_grid_container {
+    margin-block: 8px 28px;
+  }
+}

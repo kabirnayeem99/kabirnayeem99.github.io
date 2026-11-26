@@ -1,0 +1,50 @@
+/* Page grid: a sticky left margin (the sidebar) beside one column of content. Below
+   1000px the margin folds into a compact block on top. */
+
+@layer layout {
+  .site {
+    position: relative;
+    margin-inline: auto;
+    padding: 72px var(--gap) 64px;
+    --sidebar: 200px;
+    --sidebar-gap: 80px;
+    display: grid;
+    grid-template-columns: var(--sidebar) minmax(0, var(--measure));
+    column-gap: var(--sidebar-gap);
+    align-items: start;
+    max-width: calc(var(--sidebar) + var(--sidebar-gap) + var(--measure) + var(--gap) * 2);
+  }
+
+  main {
+    position: relative;
+  }
+
+  main > section,
+  .index-section,
+  .project-group,
+  .stats-report-section {
+    position: relative;
+    margin-block-start: var(--space);
+  }
+
+  main > section:first-child {
+    margin-block-start: 0;
+  }
+
+  .site > * {
+    grid-column: 2;
+  }
+
+  .site > .site-sidebar {
+    grid-column: 1;
+    grid-row: 1 / span 40;
+  }
+
+  @media (max-width: 1000px) {
+    .site {
+      display: block;
+      max-width: calc(var(--measure) + var(--gap) * 2);
+      padding-block-start: 32px;
+    }
+  }
+}

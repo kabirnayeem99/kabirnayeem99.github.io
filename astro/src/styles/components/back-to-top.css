@@ -1,0 +1,37 @@
+@layer chrome {
+  /* back to top */
+  .back-to-top {
+    position: fixed;
+    inset-inline-end: 20px;
+    inset-block-end: 20px;
+    z-index: 30;
+    border-color: var(--hair);
+    background: var(--bg);
+    opacity: 0;
+    scale: 0.85;
+    pointer-events: none;
+    transition:
+      opacity var(--dur) var(--ease),
+      scale var(--dur) var(--ease),
+      color var(--dur-fast) ease,
+      border-color var(--dur-fast) ease;
+  }
+
+  .back-to-top.is-visible {
+    opacity: 1;
+    scale: 1;
+    pointer-events: auto;
+  }
+
+  .back-to-top:hover {
+    color: var(--text);
+    border-color: var(--hair-strong);
+  }
+
+  @media (max-width: 760px) {
+    .back-to-top {
+      inset-inline-end: 12px;
+      inset-block-end: 12px;
+    }
+  }
+}

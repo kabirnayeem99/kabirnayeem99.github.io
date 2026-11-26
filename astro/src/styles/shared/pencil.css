@@ -1,0 +1,28 @@
+/* The hand-drawn pass over the minimal layout: pencil rules shared by several components. */
+
+@layer ornaments {
+  /* pencil rules replace hairlines: drawn as a background strip along the edge */
+  .highlight,
+  .article-item,
+  .sticker-group,
+  .journal-entry,
+  .site-colophon,
+  .wakatime-card,
+  .github-commits-card,
+  .github-profile-card,
+  .leetcode-card,
+  .github-repo-card {
+    border-block-start: 0 !important;
+    background: var(--pencil-rule) left top / 600px 6px repeat-x;
+  }
+
+  .highlight-list > .highlight:last-child,
+  .article-item:last-child,
+  .sticker-group:last-child,
+  .journal-entry:last-child {
+    border-block-end: 0 !important;
+    background:
+      var(--pencil-rule) left top / 600px 6px repeat-x,
+      var(--pencil-rule) left bottom / 600px 6px repeat-x;
+  }
+}

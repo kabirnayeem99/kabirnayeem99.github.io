@@ -1,0 +1,93 @@
+/* Decorations: one pressed flower beside the avatar, and hand-drawn arrows. */
+
+@layer ornaments {
+  .botanical-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .pressed {
+    display: block;
+    overflow: visible;
+    pointer-events: none;
+    filter: grayscale(1);
+    opacity: 0.22;
+  }
+
+  html[data-theme="dark"] .pressed {
+    filter: grayscale(1) invert(1);
+    opacity: 0.16;
+  }
+
+  .sleeve-flower {
+    position: absolute;
+    z-index: 2; /* over the logo's page-coloured backing */
+    inset-inline-end: -14px;
+    inset-block-start: -18px;
+    width: 54px;
+    height: 54px;
+  }
+
+  [dir="rtl"] .sleeve-flower {
+    scale: -1 1;
+  }
+
+  /* hand-drawn arrows, as thin grey strokes */
+  /* the margin arrows read as pencil, not faint grey */
+  .hand-arrow {
+    display: block;
+    overflow: visible;
+    pointer-events: none;
+    color: var(--muted);
+  }
+
+  .hand-arrow path {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  [dir="rtl"] .hand-arrow {
+    scale: -1 1;
+  }
+
+  .hand-arrow--title {
+    flex: none;
+    margin-block-end: 34px;
+    width: 46px;
+    height: 32px;
+  }
+
+  .hand-arrow--to-contact {
+    margin-block: 18px -12px;
+    margin-inline-start: 4px;
+    scale: -1 1;
+    width: 40px;
+    height: 28px;
+  }
+
+  [dir="rtl"] .hand-arrow--to-contact {
+    scale: 1 1;
+  }
+
+  .sidebar-avatar .sleeve-flower {
+    inset-inline-end: -6px;
+    inset-block-start: -10px;
+  }
+
+  @media (max-width: 1000px) {
+    .sidebar-avatar .sleeve-flower {
+      display: none;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .sleeve-flower {
+      display: none;
+    }
+  }
+}

@@ -15,6 +15,7 @@ import {
   type SiteData,
 } from "./content-loader-shared";
 import { LANGS, OG_LOCALE_BY_LANG, type Lang } from "./locale-config";
+import { newestFirst } from "./project-order";
 
 export type { Lang } from "./locale-config";
 export { OG_LOCALE_BY_LANG } from "./locale-config";
@@ -37,7 +38,7 @@ export interface CardImage {
   readonly place?: boolean;
 }
 
-export interface CardSticker {
+interface CardSticker {
   readonly icon: IconName;
   readonly label: string;
 }
@@ -74,7 +75,7 @@ function readCardImage(raw: unknown, imagePath: string): CardImage {
     throw new Error(`Expected numeric width/height at ${imagePath}`);
   }
   const caption = readOptionalString(image, "caption", imagePath);
-  if (image.place !== undefined && typeof image.place !== "boolean") {
+  if (image["place"] !== undefined && typeof image["place"] !== "boolean") {
     throw new Error(`Expected boolean at ${imagePath}.place`);
   }
   return {
@@ -83,7 +84,7 @@ function readCardImage(raw: unknown, imagePath: string): CardImage {
     width,
     height,
     ...(caption === undefined ? {} : { caption }),
-    ...(image.place === true ? { place: true } : {}),
+    ...(image["place"] === true ? { place: true } : {}),
   };
 }
 
@@ -99,7 +100,7 @@ function readCardImages(source: Record<string, unknown>, key: string, path: stri
 }
 
 function readCardStickers(source: Record<string, unknown>, path: string): readonly CardSticker[] {
-  const value = source.stickers;
+  const value = source["stickers"];
   if (value === undefined) {
     return [];
   }
@@ -117,7 +118,7 @@ function readCardStickers(source: Record<string, unknown>, path: string): readon
 }
 
 function readPictureCredits(source: Record<string, unknown>, path: string): readonly PictureCredit[] {
-  const value = source.picture_credits;
+  const value = source["picture_credits"];
   if (value === undefined) {
     return [];
   }
@@ -218,8 +219,8 @@ function readContentCards(
     if (images.length > 0) {
       card.images = images;
     }
-    if (item.logo !== undefined) {
-      card.logo = readCardImage(item.logo, `${itemPath}.logo`);
+    if (item["logo"] !== undefined) {
+      card.logo = readCardImage(item["logo"], `${itemPath}.logo`);
     }
     const stickers = readCardStickers(item, itemPath);
     if (stickers.length > 0) {
@@ -240,22 +241,8 @@ function readContentCards(
   return cards;
 }
 
-/** Latest year named in a card's meta line ("২০২৪ - …", "2025–2026"); undated cards get 0. */
-function metaYear(meta: string | undefined): number {
-  const latinDigits = (meta ?? "").replace(/[০-৯٠-٩۰-۹]/gu, (digit) => {
-    const code = digit.charCodeAt(0);
-    return String(code - (code >= 0x09e6 ? 0x09e6 : code >= 0x06f0 ? 0x06f0 : 0x0660));
-  });
-  return Math.max(0, ...(latinDigits.match(/(?<!\d)(?:19|20)\d{2}(?!\d)/g) ?? []).map(Number));
-}
-
-// Array sort is stable, so cards from the same year keep the order they are written in.
-function newestFirst(cards: readonly ContentCard[]): readonly ContentCard[] {
-  return [...cards].sort((a, b) => metaYear(b.meta) - metaYear(a.meta));
-}
-
 function readProjectGroups(source: Record<string, unknown>, path: string): readonly ProjectGroup[] {
-  const groupsRaw = source.groups;
+  const groupsRaw = source["groups"];
   if (!Array.isArray(groupsRaw)) {
     throw new Error(`Expected array at ${path}.groups`);
   }
@@ -288,7 +275,7 @@ function loadSharedContext(lang: Lang): SharedContentContext {
   const root = loadSiteContentRoot();
 
   const site = asRecord(root.site, "root.site");
-  const siteLocales = asRecord(site.locales, "root.site.locales");
+  const siteLocales = asRecord(site["locales"], "root.site.locales");
   const siteLocale = asRecord(siteLocales[lang], `root.site.locales.${lang}`);
   const routes = asRecord(root.routes, "root.routes");
 
@@ -318,17 +305,17 @@ function readCommonPageContent(
   const context = loadSharedContext(lang);
   const pages = asRecord(context.root.pages, "root.pages");
   const page = asRecord(pages[pageId], `root.pages.${pageId}`);
-  const locales = asRecord(page.locales, `root.pages.${pageId}.locales`);
+  const locales = asRecord(page["locales"], `root.pages.${pageId}.locales`);
   const localePage = asRecord(locales[lang], `root.pages.${pageId}.locales.${lang}`);
-  const meta = asRecord(localePage.meta, `root.pages.${pageId}.locales.${lang}.meta`);
-  const header = asRecord(localePage.header, `root.pages.${pageId}.locales.${lang}.header`);
+  const meta = asRecord(localePage["meta"], `root.pages.${pageId}.locales.${lang}.meta`);
+  const header = asRecord(localePage["header"], `root.pages.${pageId}.locales.${lang}.header`);
 
   const workOrProjectRoutes = readRouteMap(
     asRecord(context.routes[pageId], `root.routes.${pageId}`),
     `root.routes.${pageId}`,
   );
   const indexRoutes = readRouteMap(
-    asRecord(context.routes.index, "root.routes.index"),
+    asRecord(context.routes["index"], "root.routes.index"),
     "root.routes.index",
   );
 
@@ -357,7 +344,7 @@ function readCommonPageContent(
 export function loadWorkPageContent(lang: Lang): WorkPageContent {
   const { context, localePage, common } = readCommonPageContent(lang, "work");
   const path = `root.pages.work.locales.${lang}`;
-  const page = asRecord(asRecord(context.root.pages, "root.pages").work, "root.pages.work");
+  const page = asRecord(asRecord(context.root.pages, "root.pages")["work"], "root.pages.work");
   return {
     ...common,
     summary: readString(localePage, "summary", path),
@@ -368,7 +355,7 @@ export function loadWorkPageContent(lang: Lang): WorkPageContent {
     projectsLink: {
       href: routeHref(
         common.route,
-        readRouteMap(asRecord(context.routes.project, "root.routes.project"), "root.routes.project")[lang],
+        readRouteMap(asRecord(context.routes["project"], "root.routes.project"), "root.routes.project")[lang],
       ),
       label: readString(localePage, "projects_link", path),
     },
@@ -402,11 +389,6 @@ export function buildAlternateLinks(
 
 export function buildOgLocaleAlternates(lang: Lang): readonly string[] {
   return LANGS.filter((entry) => entry !== lang).map((entry) => OG_LOCALE_BY_LANG[entry]);
-}
-
-export function relativeHref(fromRoute: string, toRoute: string): string {
-  const fromDir = pathPosix.dirname(fromRoute) || ".";
-  return pathPosix.relative(fromDir, toRoute);
 }
 
 // Root-absolute, so a page renders the same whichever URL form opens it (/ar.html,

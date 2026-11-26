@@ -6,7 +6,7 @@ const SVG_NS = "http://www.w3.org/2000/svg";
 const CHART_SLOTS = 6;
 
 /**
- * The paper palette (--chart-1…6 in styles.source.css, one set per theme), handed out in
+ * The paper palette (--chart-1…6 in src/styles/foundation/tokens.css, one set per theme), handed out in
  * its fixed order so neighbouring segments stay apart. API-supplied colours are ignored.
  */
 export function chartColor(index: number): string {

@@ -1,3 +1,5 @@
+import { hasText } from "./guards";
+
 document.addEventListener("DOMContentLoaded", () => {
   const widget = document.querySelector<HTMLElement>(".goodreads-widget");
   if (!(widget instanceof HTMLElement)) {
@@ -77,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const installFallbackMetadata = (image: HTMLImageElement): void => {
-    if (image.dataset.goodreadsFallbackReady === "true") {
+    if (image.dataset["goodreadsFallbackReady"] === "true") {
       return;
     }
 
@@ -86,10 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    image.dataset.goodreadsFallbackReady = "true";
-    image.dataset.goodreadsFallbackPrimary = source;
-    image.dataset.goodreadsFallbackQueue = JSON.stringify(buildFallbackSources(source));
-    image.dataset.goodreadsFallbackIndex = "0";
+    image.dataset["goodreadsFallbackReady"] = "true";
+    image.dataset["goodreadsFallbackPrimary"] = source;
+    image.dataset["goodreadsFallbackQueue"] = JSON.stringify(buildFallbackSources(source));
+    image.dataset["goodreadsFallbackIndex"] = "0";
     image.loading = "lazy";
     image.decoding = "async";
     image.referrerPolicy = "no-referrer";
@@ -97,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const applyNextFallback = (image: HTMLImageElement): boolean => {
-    const queueJson = image.dataset.goodreadsFallbackQueue;
+    const queueJson = image.dataset["goodreadsFallbackQueue"];
     if (typeof queueJson !== "string" || queueJson.length === 0) {
       return false;
     }
@@ -120,7 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return false;
     }
 
-    const index = Number(image.dataset.goodreadsFallbackIndex || "0");
+    const stored = image.dataset["goodreadsFallbackIndex"];
+    const index = Number(hasText(stored) ? stored : "0");
     if (!Number.isInteger(index) || index < 0 || index >= queue.length) {
       return false;
     }
@@ -129,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof nextSource !== "string" || nextSource.length === 0) {
       return false;
     }
-    image.dataset.goodreadsFallbackIndex = String(index + 1);
+    image.dataset["goodreadsFallbackIndex"] = String(index + 1);
 
     if (image.getAttribute("src") !== nextSource) {
       image.setAttribute("src", nextSource);
@@ -157,8 +160,8 @@ document.addEventListener("DOMContentLoaded", () => {
     images.forEach((image) => {
       installFallbackMetadata(image);
 
-      if (image.dataset.goodreadsErrorHandlerBound !== "true") {
-        image.dataset.goodreadsErrorHandlerBound = "true";
+      if (image.dataset["goodreadsErrorHandlerBound"] !== "true") {
+        image.dataset["goodreadsErrorHandlerBound"] = "true";
         image.addEventListener("error", handleImageError);
       }
 
@@ -179,8 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
       mutation.addedNodes.forEach((node) => {
         if (node instanceof HTMLImageElement) {
           installFallbackMetadata(node);
-          if (node.dataset.goodreadsErrorHandlerBound !== "true") {
-            node.dataset.goodreadsErrorHandlerBound = "true";
+          if (node.dataset["goodreadsErrorHandlerBound"] !== "true") {
+            node.dataset["goodreadsErrorHandlerBound"] = "true";
             node.addEventListener("error", handleImageError);
           }
           if (node.complete && node.naturalWidth === 0) {

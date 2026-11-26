@@ -4,7 +4,7 @@ import { DEFAULT_LANG, LANGS, type Lang } from "./locale-config";
 
 type SitemapPriority = "1.0" | "0.8" | "0.7" | "0.6";
 
-export interface SitemapEntry {
+interface SitemapEntry {
   readonly href: string;
   readonly priority: SitemapPriority;
 }

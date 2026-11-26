@@ -1,4 +1,5 @@
 ---
+import { hasText } from "../../scripts/modules/guards";
 import { scriptLang } from "../../lib/script-lang";
 import BackToTopButton from "./BackToTopButton.astro";
 import ClosePageHeader from "./ClosePageHeader.astro";
@@ -55,7 +56,7 @@ const goodreadsScriptSource = (() => {
 })();
 
 type SnapshotBook = (typeof goodreadsSnapshot.books)[number];
-const dateOf = (book: SnapshotBook): string | undefined => (book as { dateRead?: string | null }).dateRead ?? undefined;
+const dateOf = (book: SnapshotBook): string | undefined => book.dateRead ?? undefined;
 
 // "Last finished": the snapshot's newest read (last-finished.ts swaps in a newer live one).
 const lastRead = goodreadsSnapshot.books[0];
@@ -135,11 +136,11 @@ const shelfGroups = groupShelfByYear(shelfBooks, content.shelf, lang);
                   </figure>
                 ) : null}
                 <div>
-                  <h3 class="reading-desk-title"><span lang={item.lang} dir={item.lang ? "auto" : undefined}>{item.title}</span></h3>
-                  {item.subtitle || item.author ? (
+                  <h3 class="reading-desk-title"><span lang={item.lang} dir={hasText(item.lang) ? "auto" : undefined}>{item.title}</span></h3>
+                  {hasText(item.subtitle) || hasText(item.author) ? (
                     <p class="reading-desk-meta">
-                      {item.subtitle ? <em>{item.subtitle}</em> : null}
-                      {item.subtitle && item.author ? " · " : null}
+                      {hasText(item.subtitle) ? <em>{item.subtitle}</em> : null}
+                      {hasText(item.subtitle) && hasText(item.author) ? " · " : null}
                       {item.author}
                     </p>
                   ) : null}
@@ -169,7 +170,7 @@ const shelfGroups = groupShelfByYear(shelfBooks, content.shelf, lang);
           <div class="section-head">
             <h2 class="section-title">{content.languages.title}</h2>
           </div>
-          {content.languages.intro ? <p>{content.languages.intro}</p> : null}
+          {hasText(content.languages.intro) ? <p>{content.languages.intro}</p> : null}
           <dl class="reading-langs">
             {content.languages.items.map((item) => (
               <div class="reading-lang">
@@ -191,13 +192,13 @@ const shelfGroups = groupShelfByYear(shelfBooks, content.shelf, lang);
             {content.notes.items.map((note) => (
               <article class="reading-note">
                 <h3>
-                  {note.href ? (
+                  {hasText(note.href) ? (
                     <a href={note.href} target="_blank" rel="noreferrer" dir="auto">{note.title}</a>
                   ) : (
                     <span dir="auto">{note.title}</span>
                   )}
                 </h3>
-                {note.author || note.date ? (
+                {hasText(note.author) || hasText(note.date) ? (
                   <p class="reading-desk-meta">{[note.author, note.date].filter(Boolean).join(" · ")}</p>
                 ) : null}
                 {note.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
@@ -232,7 +233,7 @@ const shelfGroups = groupShelfByYear(shelfBooks, content.shelf, lang);
                   <div class="gr_grid_container">
                     {group.books.map((book) => (
                       <div class="gr_grid_book_container">
-                        {book.readDate ? <span class="book-strip book-strip--date" dir="auto">{book.readDate}</span> : null}
+                        {hasText(book.readDate) ? <span class="book-strip book-strip--date" dir="auto">{book.readDate}</span> : null}
                         <a title={book.title} rel="nofollow noreferrer" href={book.href} target="_blank" data-umami-track-book="true" data-cursor-plain>
                           <img alt={book.alt} src={assetHref(content.route, book.imageLocal.replace(/^\/+/, ""))} loading="lazy" decoding="async" />
                         </a>

@@ -1,13 +1,25 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
-    "strict": true,
-    "noImplicitAny": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "noFallthroughCasesInSwitch": true,
-    "useDefineForClassFields": true,
+    // On top of "strictest" (which already inherits verbatimModuleSyntax, isolatedModules,
+    // allowImportingTsExtensions and noEmit from Astro's base).
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedSideEffectImports": true,
+    // Node runs the config, scripts and tests by stripping types, so only erasable syntax.
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": true,
+    // No JavaScript is left; if some appears it is type-checked too.
+    "allowJs": true,
+    "checkJs": true,
+    // "skipLibCheck": false fails inside Astro's and unstorage's own declaration files
+    // (missing optional peers, conflicting globals), so it stays at Astro's true.
     "types": ["node"]
   },
-  "exclude": ["node_modules", "dist", ".astro", "public"]
+  // "**/*" does not enter folders starting with a dot.
+  "include": ["${configDir}/.astro/types.d.ts", "${configDir}/**/*", "${configDir}/src/pages/.well-known/**/*"],
+  // src/sw has its own tsconfig.json (worker globals instead of the DOM); `npm run check`
+  // checks it too.
+  "exclude": ["${configDir}/node_modules", "${configDir}/dist", "${configDir}/public", "${configDir}/src/sw"]
 }

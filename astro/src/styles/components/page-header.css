@@ -1,0 +1,49 @@
+@layer chrome {
+  /* inner pages: close + title */
+  .page-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .page-closebar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .site-title--page {
+    font-size: 2.2rem;
+    font-style: italic;
+  }
+
+  .page-heading {
+    margin-block-end: 64px;
+  }
+
+  .page-heading .site-title--page {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 1000px) {
+    .page-heading {
+      margin-block-end: 48px;
+    }
+
+    .page-heading .site-title--page {
+      font-size: 1.9rem;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .site-title--page {
+      font-size: 1.8rem;
+    }
+
+    .page-heading {
+      margin-block-end: 28px;
+    }
+  }
+}

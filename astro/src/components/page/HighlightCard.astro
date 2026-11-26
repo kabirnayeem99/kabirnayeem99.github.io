@@ -1,4 +1,5 @@
 ---
+import { hasText } from "../../scripts/modules/guards";
 import { assetHref, type ContentCard } from "../../lib/work-project-content";
 
 interface Props {
@@ -6,14 +7,15 @@ interface Props {
 }
 
 const { card } = Astro.props;
-const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
+const requestedRoute = Astro.url.pathname.replace(/^\/+/, "");
+const currentRoute = requestedRoute === "" ? "index.html" : requestedRoute;
 ---
 
 <article class="highlight">
   <span class="peel-flap" aria-hidden="true"></span>
   <h3>
     {
-      card.href ? (
+      hasText(card.href) ? (
         <a href={card.href} target="_blank" rel="noreferrer">
           {card.title}
         </a>
@@ -45,11 +47,11 @@ const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
               loading="lazy"
               decoding="async"
             />
-            {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+            {hasText(image.caption) ? <figcaption>{image.caption}</figcaption> : null}
           </figure>
         ))}
       </div>
     ) : null
   }
-  {card.meta ? <p class="meta">{card.meta}</p> : null}
+  {hasText(card.meta) ? <p class="meta">{card.meta}</p> : null}
 </article>

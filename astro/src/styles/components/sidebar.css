@@ -1,0 +1,239 @@
+/* The margin column every page shares (SiteSidebar.astro). On phones: a small avatar
+   and name beside the controls. */
+
+@layer chrome {
+  header#top {
+    position: relative;
+    margin-block-end: 72px;
+  }
+
+  /* masthead (index) */
+  .masthead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .site-title {
+    margin: 0;
+    font-family: var(--font-site);
+    font-weight: 400;
+    font-size: 2.6rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
+  }
+
+  .tagline {
+    margin: 8px 0 0;
+    max-width: none;
+    font-size: 1.12rem;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  /* #top: outranks the older header#top rules (position/margins) */
+  #top.site-sidebar {
+    position: sticky;
+    inset-block-start: 58px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-height: calc(100vh - 118px);
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* the scroll box clips: give hover rings, focus outlines and the avatar's flower room
+       to spill past the column edge, then take the space back so nothing moves */
+    padding: 14px;
+    margin: -14px;
+  }
+
+  .sidebar-identity {
+    display: grid;
+    gap: 18px;
+  }
+
+  .sidebar-avatar {
+    position: relative;
+    display: block;
+    width: 150px;
+    margin-inline-start: -10px;
+  }
+
+  .sidebar-name .site-title {
+    font-size: 1.7rem;
+    line-height: 1.15;
+  }
+
+  html:not(:lang(en)) .site-title {
+    letter-spacing: 0;
+  }
+
+  .sidebar-name .site-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .sidebar-name .tagline {
+    margin-block-start: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* pages sit with the name above them; contacts and the theme button follow, set off by
+     a pencil stroke rather than pushed to the bottom of the screen */
+  .sidebar-foot {
+    display: grid;
+    justify-items: start;
+    gap: 10px;
+    margin-block-start: -16px;
+  }
+
+  .sidebar-links {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: 20px 0 0;
+    background: var(--pencil-scribble) left top / 72px 8px no-repeat;
+    list-style: none;
+  }
+
+  [dir="rtl"] .sidebar-links {
+    background-position: right top;
+  }
+
+  @media (max-width: 1000px) {
+    #top.site-sidebar {
+      position: static;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 22px 16px;
+      max-height: none;
+      overflow: visible;
+      margin-block-end: 56px;
+    }
+
+    .sidebar-identity {
+      grid-template-columns: 64px minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+    }
+
+    .sidebar-avatar {
+      width: 72px;
+      margin-inline-start: -6px;
+    }
+
+    .sidebar-name .site-title {
+      font-size: 1.5rem;
+    }
+
+    .sidebar-name .tagline {
+      margin-block-start: 2px;
+      font-size: 0.85rem;
+    }
+
+    .sidebar-foot {
+      display: contents;
+    }
+
+    .sidebar-links {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      padding: 0;
+      background: none;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .site-title {
+      font-size: 2.1rem;
+    }
+
+    header#top {
+      margin-block-end: 56px;
+    }
+
+    #top.site-sidebar {
+      gap: 10px 8px;
+      margin-block-end: 32px;
+      border-block-end: 1px solid var(--hair);
+    }
+
+    .sidebar-identity {
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .sidebar-avatar {
+      width: 52px;
+      margin-inline-start: -2px;
+    }
+
+    .sidebar-name .site-title {
+      font-size: 1.2rem;
+    }
+
+    .sidebar-name .tagline {
+      margin: 0;
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    html:lang(ur) .sidebar-name .tagline {
+      line-height: 1.9;
+    }
+
+    .sidebar-links {
+      display: none;
+    }
+  }
+}
+
+@layer components {
+  /* hero logo */
+  .hero-avatar,
+  .hero-avatar-card {
+    display: block;
+  }
+
+  /* logo.svg carries a solid white square. Blend it against its own page-coloured backing:
+     inside an animating (isolated) layer there is nothing behind it, and the white shows. */
+  .hero-avatar-card {
+    isolation: isolate;
+    background: var(--bg);
+    transition: background-color var(--dur-fast) ease;
+  }
+
+  .hero-illustration {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    filter: grayscale(1) contrast(1.1);
+  }
+
+  html[data-theme="dark"] .hero-illustration {
+    mix-blend-mode: screen;
+    filter: grayscale(1) invert(1) brightness(0.9);
+  }
+}
+
+@layer pages {
+  /* logo.svg is a square with the drawing in its middle band: show just the drawing */
+  .sidebar-avatar .hero-avatar-card {
+    aspect-ratio: 1024 / 720;
+    overflow: hidden;
+  }
+
+  .sidebar-avatar .hero-illustration {
+    margin-block-start: -8%;
+  }
+}

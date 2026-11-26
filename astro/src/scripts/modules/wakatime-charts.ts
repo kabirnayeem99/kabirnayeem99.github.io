@@ -1,48 +1,21 @@
 import { chartColor, createMeter, decorateDonut } from "./chart-ink";
 import { formatDate, formatDuration, formatPercent, isolate, parseDateOnly, toSafeNumber } from "./stats-utils";
+import { isRecord, toArray, toRecord, hasText } from "./guards";
 import { personPortfolioSnapshots } from "./stats-snapshots";
 import { liveStatus, refreshFailedStatus, savedStatus, unavailableStatus, type SavedFigures } from "./stats-status";
 
-interface RawLanguageItem {
-  readonly name?: unknown;
-  readonly percent?: unknown;
-}
-
+/** The API responses; every field is checked where it is read. */
 interface WakatimeLanguagePayload {
-  readonly data?: readonly RawLanguageItem[];
-}
-
-interface WakatimeSummaryData {
-  readonly best_day?: {
-    readonly date?: unknown;
-    readonly text?: unknown;
-  };
-  readonly grand_total?: {
-    readonly total_seconds?: unknown;
-    readonly total_seconds_including_other_language?: unknown;
-    readonly human_readable_total?: unknown;
-    readonly human_readable_total_including_other_language?: unknown;
-    readonly human_readable_daily_average?: unknown;
-    readonly human_readable_daily_average_including_other_language?: unknown;
-  };
-  readonly range?: {
-    readonly start?: unknown;
-    readonly end?: unknown;
-  };
+  readonly data?: unknown;
 }
 
 interface WakatimeSummaryPayload {
-  readonly data?: WakatimeSummaryData;
+  readonly data?: unknown;
 }
 
 interface WakatimeCachedPayload {
   readonly languagePayload: WakatimeLanguagePayload;
   readonly summaryPayload: WakatimeSummaryPayload;
-}
-
-interface WakatimeCacheEnvelope {
-  readonly cachedAt?: unknown;
-  readonly payload?: unknown;
 }
 
 interface WakatimeCacheEntry {
@@ -99,16 +72,9 @@ const EXCLUDED_LANGUAGE_KEYWORDS = [
   "file",
 ] as const;
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
-}
-
-function asLanguagePayload(value: unknown): WakatimeLanguagePayload {
-  return isRecord(value) ? (value as WakatimeLanguagePayload) : {};
-}
-
-function asSummaryPayload(value: unknown): WakatimeSummaryPayload {
-  return isRecord(value) ? (value as WakatimeSummaryPayload) : {};
+/** Text or a number as written; anything else gets the fallback. */
+function displayText(value: unknown, fallback = "n/a"): string {
+  return typeof value === "string" || typeof value === "number" ? String(value) : fallback;
 }
 
 /** Takes "2023-07-29" or a full ISO timestamp; only the (UTC) day is shown. */
@@ -139,9 +105,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const cacheKey = `person-portfolio:wakatime:v1:${encodeURIComponent(languagesUrl)}:${encodeURIComponent(summaryUrl)}`;
 
-  const normalizeLanguageName = (name: unknown): string => String(name ?? "").trim().toLowerCase();
+  const normalizeLanguageName = (name: string): string => name.trim().toLowerCase();
 
-  const shouldExcludeLanguage = (name: unknown): boolean => {
+  const shouldExcludeLanguage = (name: string): boolean => {
     const normalized = normalizeLanguageName(name);
     if (normalized.length === 0) {
       return true;
@@ -165,10 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const totalTrackedSeconds = (payload: WakatimeSummaryPayload): number => {
-    const data = isRecord(payload.data) ? payload.data : {};
-    const grandTotal = isRecord(data.grand_total) ? data.grand_total : {};
+    const grandTotal = toRecord(toRecord(payload.data)["grand_total"]);
 
-    return toSafeNumber(grandTotal.total_seconds_including_other_language ?? grandTotal.total_seconds);
+    return toSafeNumber(grandTotal["total_seconds_including_other_language"] ?? grandTotal["total_seconds"]);
   };
 
   const fetchJsonWithTimeout = async (url: string, timeoutMs: number): Promise<unknown> => {
@@ -194,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const fetchWakatime = (url: string): Promise<unknown> => {
+  const fetchWakatime = async (url: string): Promise<unknown> => {
     return fetchJsonWithTimeout(url, 10_000);
   };
 
@@ -209,36 +174,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     return {
-      languagePayload: snapshot.languagePayload as WakatimeLanguagePayload,
-      summaryPayload: snapshot.summaryPayload as WakatimeSummaryPayload,
+      languagePayload: snapshot.languagePayload,
+      summaryPayload: snapshot.summaryPayload,
     };
   };
 
   const readCacheEntry = (): WakatimeCacheEntry | null => {
     try {
       const raw = window.localStorage.getItem(cacheKey);
-      if (!raw) {
+      if (!hasText(raw)) {
         return null;
       }
 
-      const parsed = JSON.parse(raw) as WakatimeCacheEnvelope;
-      if (!isRecord(parsed) || !isRecord(parsed.payload)) {
+      const parsed: unknown = JSON.parse(raw);
+      if (!isRecord(parsed) || !isRecord(parsed["payload"])) {
         return null;
       }
 
-      const payload = parsed.payload;
-      if (!isRecord(payload.languagePayload) || !isRecord(payload.summaryPayload)) {
+      const payload = parsed["payload"];
+      if (!isRecord(payload["languagePayload"]) || !isRecord(payload["summaryPayload"])) {
         return null;
       }
 
-      const cachedAt = toSafeNumber(parsed.cachedAt);
+      const cachedAt = toSafeNumber(parsed["cachedAt"]);
       const ageMs = cachedAt > 0 ? Date.now() - cachedAt : Number.POSITIVE_INFINITY;
       const isFresh = cachedAt > 0 && ageMs >= 0 && ageMs <= CACHE_TTL_MS;
 
       return {
         payload: {
-          languagePayload: payload.languagePayload as WakatimeLanguagePayload,
-          summaryPayload: payload.summaryPayload as WakatimeSummaryPayload,
+          languagePayload: payload["languagePayload"],
+          summaryPayload: payload["summaryPayload"],
         },
         isFresh,
         cachedAt,
@@ -263,12 +228,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const normalizeLanguages = (payload: WakatimeLanguagePayload): LanguageItem[] => {
-    const raw = Array.isArray(payload.data) ? payload.data : [];
-
-    return raw
+    return toArray(payload.data)
+      .map(toRecord)
       .map((item) => ({
-        name: String(item?.name ?? "Unknown"),
-        percent: toSafeNumber(item?.percent),
+        name: displayText(item["name"], "Unknown"),
+        percent: toSafeNumber(item["percent"]),
       }))
       .filter((item) => item.percent > 0 && !shouldExcludeLanguage(item.name))
       .sort((left, right) => right.percent - left.percent)
@@ -526,7 +490,7 @@ interface DonutSegmentUi {
 
     const text = document.createElement("div");
     text.className = "wakatime-card-value";
-    text.textContent = value || "n/a";
+    text.textContent = value === "" ? "n/a" : value;
 
     card.appendChild(title);
     card.appendChild(text);
@@ -538,21 +502,19 @@ interface DonutSegmentUi {
       return;
     }
 
-    const data = isRecord(payload.data) ? payload.data : {};
-    const total = isRecord(data.grand_total) ? data.grand_total : {};
-    const best = isRecord(data.best_day) ? data.best_day : {};
-    const range = isRecord(data.range) ? data.range : {};
+    const data = toRecord(payload.data);
+    const total = toRecord(data["grand_total"]);
+    const best = toRecord(data["best_day"]);
+    const range = toRecord(data["range"]);
+    const hasBestDate = Boolean(best["date"]);
+    const hasRangeEnd = Boolean(range["end"]);
 
     summaryEl.innerHTML = "";
     summaryEl.appendChild(
       summaryItem(
         "Total coded",
         isolate(
-          String(
-            total.human_readable_total_including_other_language ??
-              total.human_readable_total ??
-              "n/a",
-          ),
+          displayText(total["human_readable_total_including_other_language"] ?? total["human_readable_total"]),
         ),
       ),
     );
@@ -561,10 +523,8 @@ interface DonutSegmentUi {
       summaryItem(
         "Daily average",
         isolate(
-          String(
-            total.human_readable_daily_average_including_other_language ??
-              total.human_readable_daily_average ??
-              "n/a",
+          displayText(
+            total["human_readable_daily_average_including_other_language"] ?? total["human_readable_daily_average"],
           ),
         ),
       ),
@@ -573,14 +533,14 @@ interface DonutSegmentUi {
     summaryEl.appendChild(
       summaryItem(
         "Best day",
-        `${isolate(String(best.text ?? "n/a"))}${best.date ? ` · ${isolate(formatIsoDay(best.date))}` : ""}`,
+        `${isolate(displayText(best["text"]))}${hasBestDate ? ` · ${isolate(formatIsoDay(best["date"]))}` : ""}`,
       ),
     );
 
     summaryEl.appendChild(
       summaryItem(
         "Tracking range",
-        `${isolate(formatIsoDay(range.start))}${range.end ? ` – ${isolate(formatIsoDay(range.end))}` : ""}`,
+        `${isolate(formatIsoDay(range["start"]))}${hasRangeEnd ? ` – ${isolate(formatIsoDay(range["end"]))}` : ""}`,
       ),
     );
   };
@@ -662,8 +622,8 @@ interface DonutSegmentUi {
 
   Promise.all([fetchWakatime(languagesUrl), fetchWakatime(summaryUrl)])
     .then((results) => {
-      const languagePayload = asLanguagePayload(results[0]);
-      const summaryPayload = asSummaryPayload(results[1]);
+      const languagePayload: WakatimeLanguagePayload = toRecord(results[0]);
+      const summaryPayload: WakatimeSummaryPayload = toRecord(results[1]);
 
       const cachePayload: WakatimeCachedPayload = {
         languagePayload,

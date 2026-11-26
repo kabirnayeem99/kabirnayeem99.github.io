@@ -1,4 +1,6 @@
+import { isNewRead, LAST_READ_CACHE_KEY, parseKnownReviewIds, reviewIdOf } from "../../lib/last-read";
 import { applyScriptLang } from "../../lib/script-lang";
+import { isRecord } from "./guards";
 import { showLastFinished } from "./last-finished-link";
 // First slot on the home shelf: the last book read. The server renders the snapshot's
 // newest book; a newer one seen on an earlier visit comes back from localStorage at once,
@@ -8,8 +10,6 @@ import { showLastFinished } from "./last-finished-link";
 // only trusted when the snapshot has never seen it (a genuinely new read). The widget
 // carries no read date, so a new book shows its "last read" tape without one until the
 // next snapshot refresh dates it.
-
-const CACHE_KEY = "goodreads-last-read:v1";
 
 interface LastReadEntry {
   readonly reviewId: string;
@@ -22,31 +22,19 @@ export interface LastReadSlot {
   readonly acceptLive: (sourceGrid: ParentNode) => void;
 }
 
-const reviewIdOf = (href: string | null | undefined): string | null =>
-  (typeof href === "string" ? /\/review\/show\/(\d+)/.exec(href)?.[1] : undefined) ?? null;
-
-function readKnownReviewIds(): ReadonlySet<string> {
-  try {
-    const parsed = JSON.parse(document.getElementById("goodreads-known-reviews")?.textContent ?? "[]") as unknown;
-    return new Set(Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === "string") : []);
-  } catch {
-    return new Set();
-  }
-}
-
 function readCache(): LastReadEntry | null {
   try {
-    const entry = JSON.parse(window.localStorage.getItem(CACHE_KEY) ?? "null") as Partial<LastReadEntry> | null;
+    const entry: unknown = JSON.parse(window.localStorage.getItem(LAST_READ_CACHE_KEY) ?? "null");
     if (
-      entry === null ||
-      typeof entry.reviewId !== "string" ||
-      typeof entry.href !== "string" ||
-      typeof entry.title !== "string" ||
-      typeof entry.imageSrc !== "string"
+      !isRecord(entry) ||
+      typeof entry["reviewId"] !== "string" ||
+      typeof entry["href"] !== "string" ||
+      typeof entry["title"] !== "string" ||
+      typeof entry["imageSrc"] !== "string"
     ) {
       return null;
     }
-    return { reviewId: entry.reviewId, href: entry.href, title: entry.title, imageSrc: entry.imageSrc };
+    return { reviewId: entry["reviewId"], href: entry["href"], title: entry["title"], imageSrc: entry["imageSrc"] };
   } catch {
     return null;
   }
@@ -55,9 +43,9 @@ function readCache(): LastReadEntry | null {
 function writeCache(entry: LastReadEntry | null): void {
   try {
     if (entry === null) {
-      window.localStorage.removeItem(CACHE_KEY);
+      window.localStorage.removeItem(LAST_READ_CACHE_KEY);
     } else {
-      window.localStorage.setItem(CACHE_KEY, JSON.stringify(entry));
+      window.localStorage.setItem(LAST_READ_CACHE_KEY, JSON.stringify(entry));
     }
   } catch {
     // Storage may be unavailable (private mode); the server-rendered book stays.
@@ -72,7 +60,7 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
     return null;
   }
 
-  const knownReviewIds = readKnownReviewIds();
+  const knownReviewIds = parseKnownReviewIds(document.getElementById("goodreads-known-reviews")?.textContent);
   const dateStrip = slot.querySelector<HTMLElement>(".book-strip--date");
   const titleStrip = slot.querySelector<HTMLElement>(".book-strip--title");
 
@@ -81,8 +69,8 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
   const serverEntry = { href: link.href, title: link.title, imageSrc: image.src, alt: image.alt };
   const serverDateHidden = dateStrip?.hidden ?? true;
 
-  const isNewRead = (reviewId: string | null): reviewId is string =>
-    reviewId !== null && reviewId !== reviewIdOf(link.getAttribute("href")) && !knownReviewIds.has(reviewId);
+  const isNew = (reviewId: string | null): reviewId is string =>
+    isNewRead(reviewId, link.getAttribute("href"), knownReviewIds);
 
   const show = (entry: LastReadEntry): void => {
     link.href = entry.href;
@@ -102,7 +90,7 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
   // A cached book the snapshot has since caught up with is stale: the server render wins.
   const cached = readCache();
   if (cached !== null) {
-    if (isNewRead(cached.reviewId)) {
+    if (isNew(cached.reviewId)) {
       show(cached);
     } else if (knownReviewIds.has(cached.reviewId)) {
       writeCache(null);
@@ -130,7 +118,7 @@ export function setupLastReadSlot(widget: HTMLElement): LastReadSlot | null {
         writeCache(null);
         return;
       }
-      if (!first || !liveImage || !isNewRead(reviewId)) {
+      if (!first || !liveImage || !isNew(reviewId)) {
         return;
       }
       const entry: LastReadEntry = {

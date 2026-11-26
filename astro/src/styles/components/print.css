@@ -1,0 +1,40 @@
+@layer components {
+  .taped {
+    position: relative;
+  }
+
+  /* images: plain, square-cornered prints with a hairline */
+  .print {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .print img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    outline: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+    outline-offset: -1px;
+    background: var(--surface);
+  }
+
+  .print figcaption {
+    margin-block-start: 6px;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
+  .highlight-prints {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-block: 16px 4px;
+  }
+
+  .highlight-prints .print {
+    flex-basis: 0;
+  }
+}

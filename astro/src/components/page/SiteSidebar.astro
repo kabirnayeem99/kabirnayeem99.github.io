@@ -72,7 +72,7 @@ const NameTag = isHome ? "h1" : "p";
                 data-umami-track-social="true"
                 data-social-platform={link.icon}
               >
-                {iconName ? <Icon name={iconName} /> : null}
+                {iconName !== null ? <Icon name={iconName} /> : null}
                 <span>{link.label}</span>
               </a>
             </li>

@@ -1,8 +1,6 @@
-type Theme = "light" | "dark";
+import { toRecord } from "./guards";
 
-interface SiteThemeChangeDetail {
-  readonly theme: Theme;
-}
+type Theme = "light" | "dark";
 
 document.addEventListener("DOMContentLoaded", () => {
   const currentTheme = (): Theme => (
@@ -54,9 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("site-theme-change", (event: Event) => {
     if (event instanceof CustomEvent) {
-      const detail = (event as CustomEvent<SiteThemeChangeDetail>).detail;
-      if (detail?.theme === "light" || detail?.theme === "dark") {
-        applyThemeUpdates(detail.theme);
+      const { theme } = toRecord(event.detail);
+      if (theme === "light" || theme === "dark") {
+        applyThemeUpdates(theme);
         return;
       }
     }
@@ -64,5 +62,3 @@ document.addEventListener("DOMContentLoaded", () => {
     applyThemeUpdates(currentTheme());
   });
 });
-
-export {};

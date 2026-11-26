@@ -1,0 +1,37 @@
+/* Cursor: the ordinary arrow and hand, redrawn as a soft pencil sketch (mouse only).
+   Imported before pages/shelf-year.css, whose summary cursor has to win. */
+
+@layer utilities {
+  @media (pointer: fine) {
+    :root {
+      --cursor-arrow: url("../icons/cursor/arrow.svg") 2 1, auto;
+      --cursor-hand: url("../icons/cursor/hand.svg") 8 1, pointer;
+    }
+
+    html[data-theme="dark"] {
+      --cursor-arrow: url("../icons/cursor/arrow-dark.svg") 2 1, auto;
+      --cursor-hand: url("../icons/cursor/hand-dark.svg") 8 1, pointer;
+    }
+
+    html,
+    body {
+      cursor: var(--cursor-arrow);
+    }
+
+    :is(a[href], button, summary, label[for], select, [role="button"], [data-theme-toggle]) {
+      cursor: var(--cursor-hand);
+    }
+
+    :is(a[href], button) * {
+      cursor: inherit;
+    }
+
+    :is(
+      input:not([type="button"], [type="submit"], [type="checkbox"], [type="radio"]),
+      textarea,
+      [contenteditable="true"]
+    ) {
+      cursor: text;
+    }
+  }
+}

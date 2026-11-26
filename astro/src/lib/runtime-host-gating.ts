@@ -13,7 +13,7 @@ export function resolveCanonicalHostname(url: string): string | null {
   }
 }
 
-export function isLocalDevelopmentHostname(hostname: string): boolean {
+function isLocalDevelopmentHostname(hostname: string): boolean {
   return LOCAL_DEVELOPMENT_HOSTNAMES.has(normalizeHostname(hostname));
 }
 

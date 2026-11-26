@@ -36,6 +36,7 @@ import swift from "simple-icons/icons/swift.svg?raw";
 import tensorflow from "simple-icons/icons/tensorflow.svg?raw";
 import typescript from "simple-icons/icons/typescript.svg?raw";
 import wordpress from "simple-icons/icons/wordpress.svg?raw";
+import type { IconName } from "./icon-names";
 
 // Medium's dots mark, kept by hand: the current Simple Icons one is a square with cropped
 // lettering that looks cut off at icon size.
@@ -101,14 +102,18 @@ export const ICONS = {
   tensorflow: brand(tensorflow),
   typescript: brand(typescript),
   wordpress: brand(wordpress),
-} as const satisfies Readonly<Record<string, IconShape>>;
+} as const satisfies Readonly<Record<IconName, IconShape>>;
 
-export type IconName = keyof typeof ICONS;
+export type { IconName } from "./icon-names";
+
+function isIconName(value: string): value is IconName {
+  return Object.hasOwn(ICONS, value);
+}
 
 /** Reads an icon name from content data, failing the build on one the site does not ship. */
 export function toIconName(value: string, path: string): IconName {
-  if (!Object.hasOwn(ICONS, value)) {
+  if (!isIconName(value)) {
     throw new Error(`Unknown icon "${value}" at ${path}`);
   }
-  return value as IconName;
+  return value;
 }

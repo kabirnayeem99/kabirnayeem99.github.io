@@ -1,4 +1,5 @@
 ---
+import { hasText } from "../../scripts/modules/guards";
 import { Code } from "astro:components";
 import { assetHref, type ContentCard } from "../../lib/work-project-content";
 import Icon from "./Icon.astro";
@@ -9,11 +10,12 @@ interface Props {
 }
 
 const { entry, tagsLabel } = Astro.props;
-const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
+const requestedRoute = Astro.url.pathname.replace(/^\/+/, "");
+const currentRoute = requestedRoute === "" ? "index.html" : requestedRoute;
 const images = entry.images ?? [];
 // The work itself leads the collage; photos of where it happened are tucked in small.
-const shots = images.filter((image) => !image.place);
-const places = images.filter((image) => image.place);
+const shots = images.filter((image) => image.place !== true);
+const places = images.filter((image) => image.place === true);
 const stickers = entry.stickers ?? [];
 const tags = entry.tags ?? [];
 // Photos or a code slip make a collage beside the card.
@@ -30,11 +32,11 @@ const isStrip =
   <div class="journal-entry-paper">
     <div class="journal-entry-text highlight">
       <span class="peel-flap" aria-hidden="true"></span>
-      {entry.meta ? <p class="meta">{entry.meta}</p> : null}
+      {hasText(entry.meta) ? <p class="meta">{entry.meta}</p> : null}
       <div class="journal-entry-head">
         <h3>
           {
-            entry.href ? (
+            hasText(entry.href) ? (
               <a href={entry.href} target="_blank" rel="noreferrer">
                 {entry.title}
               </a>
@@ -67,7 +69,7 @@ const isStrip =
       {
         tags.length > 0 ? (
           <div class="journal-tags">
-            {tagsLabel ? <span class="journal-tags-label">{tagsLabel}</span> : null}
+            {hasText(tagsLabel) ? <span class="journal-tags-label">{tagsLabel}</span> : null}
             <ul>
               {tags.map((tag) => (
                 <li>{tag}</li>
@@ -112,7 +114,7 @@ const isStrip =
         ) : null}
         {[...shots, ...places].map((image) => (
           <figure
-            class={image.place ? "print print--place" : "print"}
+            class={image.place === true ? "print print--place" : "print"}
             style={`--ar:${(image.width / image.height).toFixed(3)}`}
           >
             <img
@@ -123,7 +125,7 @@ const isStrip =
               loading="lazy"
               decoding="async"
             />
-            {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+            {hasText(image.caption) ? <figcaption>{image.caption}</figcaption> : null}
           </figure>
         ))}
       </div>

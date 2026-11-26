@@ -1,28 +1,19 @@
+import { isRecord, toArray, toRecord, hasText } from "./guards";
 import { personPortfolioSnapshots } from "./stats-snapshots";
 import { liveStatus, refreshFailedStatus, savedStatus, unavailableStatus, type SavedFigures } from "./stats-status";
 
-interface RawDifficultyCount {
-  readonly difficulty?: unknown;
-  readonly count?: unknown;
-  readonly submissions?: unknown;
-}
-
+/** The API response; every field is checked where it is read. */
 interface RawSolvedPayload {
   readonly solvedProblem?: unknown;
   readonly easySolved?: unknown;
   readonly mediumSolved?: unknown;
   readonly hardSolved?: unknown;
-  readonly totalSubmissionNum?: readonly RawDifficultyCount[];
-  readonly acSubmissionNum?: readonly RawDifficultyCount[];
+  readonly totalSubmissionNum?: unknown;
+  readonly acSubmissionNum?: unknown;
 }
 
 interface LeetCodePayload {
   readonly solved: RawSolvedPayload;
-}
-
-interface LeetCodeCacheEnvelope {
-  readonly cachedAt?: unknown;
-  readonly payload?: unknown;
 }
 
 interface LeetCodeCacheEntry {
@@ -41,17 +32,9 @@ interface NormalizedStats {
 
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
-}
-
 function toSafeNumber(value: unknown): number {
   const num = Number(value);
   return isFinite(num) ? num : 0;
-}
-
-function asSolvedPayload(value: unknown): RawSolvedPayload {
-  return isRecord(value) ? (value as RawSolvedPayload) : {};
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -98,12 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const computeAcceptanceRate = (solved: RawSolvedPayload): number => {
-    const totalSubs = Array.isArray(solved.totalSubmissionNum) ? solved.totalSubmissionNum : [];
-    const acSubs = Array.isArray(solved.acSubmissionNum) ? solved.acSubmissionNum : [];
-    const findAll = (arr: readonly RawDifficultyCount[]) =>
-      arr.find((x) => String(x?.difficulty).toLowerCase() === "all");
-    const total = toSafeNumber(findAll(totalSubs)?.submissions);
-    const accepted = toSafeNumber(findAll(acSubs)?.submissions);
+    const findAll = (counts: unknown) =>
+      toArray(counts)
+        .filter(isRecord)
+        .find((entry) => String(entry["difficulty"]).toLowerCase() === "all");
+    const total = toSafeNumber(findAll(solved.totalSubmissionNum)?.["submissions"]);
+    const accepted = toSafeNumber(findAll(solved.acSubmissionNum)?.["submissions"]);
     if (total <= 0) {
       return 0;
     }
@@ -123,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const summaryCard = (label: string, value: string, modifier?: string): HTMLDivElement => {
     const card = document.createElement("div");
-    card.className = modifier ? `leetcode-card leetcode-card--${modifier}` : "leetcode-card";
+    card.className = hasText(modifier) ? `leetcode-card leetcode-card--${modifier}` : "leetcode-card";
 
     const title = document.createElement("div");
     title.className = "leetcode-card-label";
@@ -171,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `Difficulty breakdown: ${stats.easySolved} easy, ${stats.mediumSolved} medium, ${stats.hardSolved} hard`,
     );
 
-    const segments: ReadonlyArray<{ readonly count: number; readonly cls: string; readonly label: string }> = [
+    const segments: readonly { readonly count: number; readonly cls: string; readonly label: string }[] = [
       { count: stats.easySolved, cls: "easy", label: "Easy" },
       { count: stats.mediumSolved, cls: "medium", label: "Medium" },
       { count: stats.hardSolved, cls: "hard", label: "Hard" },
@@ -232,28 +215,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!isRecord(snap)) {
       return null;
     }
-    return { solved: asSolvedPayload(snap.solved) };
+    return { solved: toRecord(snap.solved) };
   };
 
   const readCacheEntry = (): LeetCodeCacheEntry | null => {
     try {
       const raw = window.localStorage.getItem(cacheKey);
-      if (!raw) {
+      if (!hasText(raw)) {
         return null;
       }
-      const parsed = JSON.parse(raw) as LeetCodeCacheEnvelope;
+      const parsed: unknown = JSON.parse(raw);
       if (!isRecord(parsed)) {
         return null;
       }
-      const cachedAt = toSafeNumber(parsed.cachedAt);
-      const p = parsed.payload;
+      const cachedAt = toSafeNumber(parsed["cachedAt"]);
+      const p = parsed["payload"];
       if (!isRecord(p)) {
         return null;
       }
       const ageMs = cachedAt > 0 ? Date.now() - cachedAt : Number.POSITIVE_INFINITY;
       const isFresh = cachedAt > 0 && ageMs >= 0 && ageMs <= CACHE_TTL_MS;
       return {
-        payload: { solved: asSolvedPayload(p.solved) },
+        payload: { solved: toRecord(p["solved"]) },
         isFresh,
         cachedAt,
       };
@@ -319,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchJsonWithTimeout(`${apiUrl}/solved`, 10_000)
     .then((solvedData) => {
-      const payload: LeetCodePayload = { solved: asSolvedPayload(solvedData) };
+      const payload: LeetCodePayload = { solved: toRecord(solvedData) };
       writeCache(payload);
       render(payload, liveStatus("LeetCode"));
     })

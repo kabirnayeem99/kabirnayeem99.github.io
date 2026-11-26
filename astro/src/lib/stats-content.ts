@@ -104,50 +104,37 @@ export interface StatsPageContent {
   readonly pageRoutes: RouteMap;
 }
 
-function replaceQueryParams(url: string, replacements: Readonly<Record<string, string>>): string {
-  const parsed = new URL(url);
-  for (const [key, value] of Object.entries(replacements)) {
-    parsed.searchParams.set(key, value);
-  }
-  return parsed.toString();
-}
-
-export function statsEmbedThemeSources(lightUrl: string): readonly [string, string] {
-  const darkUrl = replaceQueryParams(lightUrl, { variant: "dark" });
-  return [lightUrl, darkUrl];
-}
-
 export function loadStatsPageContent(lang: Lang): StatsPageContent {
   const root = loadSiteContentRoot();
 
   const site = asRecord(root.site, "root.site");
-  const siteLocales = asRecord(site.locales, "root.site.locales");
+  const siteLocales = asRecord(site["locales"], "root.site.locales");
   const localeRaw = asRecord(siteLocales[lang], `root.site.locales.${lang}`);
 
   const routes = asRecord(root.routes, "root.routes");
-  const routeIndex = readRouteMap(asRecord(routes.index, "root.routes.index"), "root.routes.index");
-  const routeStats = readRouteMap(asRecord(routes.stats, "root.routes.stats"), "root.routes.stats");
+  const routeIndex = readRouteMap(asRecord(routes["index"], "root.routes.index"), "root.routes.index");
+  const routeStats = readRouteMap(asRecord(routes["stats"], "root.routes.stats"), "root.routes.stats");
 
   const pages = asRecord(root.pages, "root.pages");
-  const statsPage = asRecord(pages.stats, "root.pages.stats");
-  const statsLocales = asRecord(statsPage.locales, "root.pages.stats.locales");
-  const statsLocale = asRecord(statsLocales[lang] ?? statsLocales.en, `root.pages.stats.locales.${lang}`);
-  const meta = asRecord(statsLocale.meta, `root.pages.stats.locales.${lang}.meta`);
-  const header = asRecord(statsLocale.header, `root.pages.stats.locales.${lang}.header`);
-  const sections = asRecord(statsLocale.sections, `root.pages.stats.locales.${lang}.sections`);
-  const wakatime = asRecord(sections.wakatime, `root.pages.stats.locales.${lang}.sections.wakatime`);
+  const statsPage = asRecord(pages["stats"], "root.pages.stats");
+  const statsLocales = asRecord(statsPage["locales"], "root.pages.stats.locales");
+  const statsLocale = asRecord(statsLocales[lang] ?? statsLocales["en"], `root.pages.stats.locales.${lang}`);
+  const meta = asRecord(statsLocale["meta"], `root.pages.stats.locales.${lang}.meta`);
+  const header = asRecord(statsLocale["header"], `root.pages.stats.locales.${lang}.header`);
+  const sections = asRecord(statsLocale["sections"], `root.pages.stats.locales.${lang}.sections`);
+  const wakatime = asRecord(sections["wakatime"], `root.pages.stats.locales.${lang}.sections.wakatime`);
   const githubCommits = asRecord(
-    sections.github_commits,
+    sections["github_commits"],
     `root.pages.stats.locales.${lang}.sections.github_commits`,
   );
-  const leetcode = asRecord(sections.leetcode, `root.pages.stats.locales.${lang}.sections.leetcode`);
+  const leetcode = asRecord(sections["leetcode"], `root.pages.stats.locales.${lang}.sections.leetcode`);
   const learningPath = asRecord(
-    sections.learning_path,
+    sections["learning_path"],
     `root.pages.stats.locales.${lang}.sections.learning_path`,
   );
-  const goodreads = asRecord(sections.goodreads, `root.pages.stats.locales.${lang}.sections.goodreads`);
+  const goodreads = asRecord(sections["goodreads"], `root.pages.stats.locales.${lang}.sections.goodreads`);
   const githubProfile = asRecord(
-    sections.github_profile,
+    sections["github_profile"],
     `root.pages.stats.locales.${lang}.sections.github_profile`,
   );
 

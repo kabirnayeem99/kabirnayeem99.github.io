@@ -1,0 +1,83 @@
+/* Motion, simple and iOS-like: nothing moves on its own. Motion answers the reader only:
+   hover/focus eases colour over --dur-fast; press sinks tappable things to 97%; back to
+   top fades in; a page change cross-dissolves while the nav stays put.
+   prefers-reduced-motion turns all of it off. */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  .page-nav {
+    view-transition-name: page-nav;
+  }
+
+  .header-controls {
+    view-transition-name: header-controls;
+  }
+
+  .back-to-top {
+    view-transition-name: back-to-top;
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: var(--dur);
+    animation-timing-function: var(--ease);
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 200ms;
+    animation-timing-function: ease;
+  }
+
+  .sidebar-identity {
+    view-transition-name: sidebar-identity;
+  }
+
+  .sidebar-links {
+    view-transition-name: sidebar-links;
+  }
+}
+
+@layer ornaments {
+  :is(
+    .action-chip,
+    .shelf-more-card,
+    .theme-toggle,
+    .page-close-button,
+    .page-nav a,
+    .social-chip-row a,
+    .article-item > a,
+    .gr_grid_book_container > a
+  ) {
+    transition-property: color, background-color, border-color, opacity, scale;
+    transition-duration: var(--dur-fast), var(--dur-fast), var(--dur-fast), var(--dur-fast), var(--dur);
+    transition-timing-function: ease, ease, ease, ease, var(--ease);
+  }
+
+  :is(
+    .action-chip,
+    .shelf-more-card,
+    .back-to-top,
+    .theme-toggle,
+    .page-close-button,
+    .page-nav a,
+    .social-chip-row a,
+    .gr_grid_book_container > a
+  ):active {
+    scale: 0.97;
+    transition-duration: 80ms;
+  }
+}
+
+@layer utilities {
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}

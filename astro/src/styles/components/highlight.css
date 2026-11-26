@@ -1,0 +1,113 @@
+@layer components {
+  /* plain list rows, ruled apart */
+  .highlight-list {
+    display: grid;
+    gap: 0;
+  }
+
+  /* dated work: a ledger, date in the margin column */
+  .highlight {
+    position: relative;
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    column-gap: 32px;
+    align-content: start;
+    padding-block: 26px;
+  }
+
+  .highlight h3 {
+    margin: 0 0 6px;
+    font-weight: 500;
+    font-size: 1.3rem;
+    line-height: 1.3;
+    margin-block-end: 8px;
+  }
+
+  .highlight p {
+    max-width: none;
+    margin: 0 0 8px;
+  }
+
+  .highlight ul {
+    margin: 0 0 8px;
+    padding-inline-start: 1.1em;
+    list-style: "– ";
+  }
+
+  .highlight li + li {
+    margin-block-start: 4px;
+  }
+
+  .meta {
+    margin: 0 0 6px;
+    font: 400 0.75rem/1.5 var(--mono);
+    letter-spacing: 0.02em;
+    color: var(--muted);
+  }
+
+  .highlight .meta {
+    margin: 10px 0 0;
+  }
+
+  .article-item .meta {
+    display: none;
+  }
+
+  .highlight > * {
+    grid-column: 2;
+  }
+
+  .highlight > .meta {
+    grid-column: 1;
+    margin: 4px 0 0;
+    color: var(--muted);
+  }
+
+  .highlight p,
+  .highlight ul {
+    color: var(--soft);
+  }
+
+  .highlight h3 a {
+    text-decoration-color: var(--hair-strong);
+  }
+
+  .highlight li::marker {
+    color: var(--accent);
+  }
+
+  html:not(:lang(en)) .meta {
+    font-family: var(--font-site);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 640px) {
+    .highlight {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .highlight > *,
+    .highlight > .meta {
+      grid-column: 1;
+      grid-row: auto;
+    }
+
+    .highlight > .meta {
+      order: -1;
+      margin: 0 0 6px;
+    }
+  }
+}
+
+@layer ornaments {
+  /* the date column spans the card's first rows, so it never pushes the text */
+  .highlight > .meta {
+    grid-row: 1 / span 3;
+  }
+
+  @media (max-width: 640px) {
+    .highlight > .meta {
+      grid-row: auto;
+    }
+  }
+}

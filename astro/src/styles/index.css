@@ -1,0 +1,55 @@
+/* Minimal: one column, one typeface, hairlines and whitespace, with a pencil pass that
+ * gives it a rough, sketched edge.
+ *
+ * `npm run css:build` bundles this into public/assets/css/styles.css (generated, not
+ * tracked). url() paths are copied as written, so write them relative to that output
+ * file: "../fonts/...", "../icons/...".
+ *
+ * Cascade: the layer order below decides first. Within one layer, at equal specificity,
+ * the later import wins, so move an @import only after checking for shared elements.
+ */
+
+@layer reset, tokens, base, layout, chrome, components, pages, widgets, ornaments, utilities;
+
+@import "./foundation/fonts.css";
+@import "./foundation/reset.css";
+@import "./foundation/tokens.css";
+@import "./foundation/base.css";
+@import "./foundation/layout.css";
+@import "./components/icon.css";
+@import "./components/mark.css";
+@import "./components/skip-link.css";
+@import "./components/sidebar.css";
+@import "./components/page-header.css";
+@import "./components/page-nav.css";
+@import "./components/header-controls.css";
+@import "./components/footer.css";
+@import "./components/back-to-top.css";
+@import "./components/section.css";
+@import "./components/action-chip.css";
+@import "./components/social-chip.css";
+@import "./components/print.css";
+@import "./components/highlight.css";
+@import "./components/skills.css";
+@import "./components/articles.css";
+@import "./components/inline-logo.css";
+@import "./components/code-slip.css";
+@import "./pages/home.css";
+@import "./pages/lede.css";
+@import "./pages/showcase.css";
+@import "./pages/journal.css";
+@import "./shared/cursor.css";
+@import "./pages/shelf-year.css";
+@import "./pages/reading.css";
+@import "./pages/not-found.css";
+@import "./widgets/stats.css";
+@import "./widgets/language-chart.css";
+@import "./widgets/github-heatmap.css";
+@import "./widgets/github-yearly.css";
+@import "./widgets/github-repos.css";
+@import "./widgets/leetcode.css";
+@import "./widgets/bookshelf.css";
+@import "./shared/ornaments.css";
+@import "./shared/pencil.css";
+@import "./shared/motion.css";
+@import "./shared/utilities.css";

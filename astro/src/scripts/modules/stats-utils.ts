@@ -109,6 +109,5 @@ declare global {
   var personPortfolioStatsUtils: Readonly<StatsUtils> | undefined;
 }
 
-(globalThis as typeof globalThis & { personPortfolioStatsUtils?: Readonly<StatsUtils> })
-  .personPortfolioStatsUtils = personPortfolioStatsUtils;
+globalThis.personPortfolioStatsUtils = personPortfolioStatsUtils;
 

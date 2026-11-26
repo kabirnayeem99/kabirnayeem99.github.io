@@ -1,7 +1,8 @@
 ---
+import { hasText } from "../../scripts/modules/guards";
 import { buildContactLinks } from "../../lib/contact-links";
 import { loadIndexPageContent } from "../../lib/index-content";
-import { LANGS, type Lang } from "../../lib/locale-config";
+import { isLang, type Lang } from "../../lib/locale-config";
 import { formatMarginDate } from "../../lib/notebook";
 
 interface Props {
@@ -18,7 +19,7 @@ const { footerHtml, lastUpdatedLabel, timestampIso, timestampDisplay, signature 
 // Localized pages live under /bn/, /ar/, /ur/ (or bn.html, ar.html, ur.html for home).
 const firstSegment = Astro.url.pathname.split("/").find((part) => part.length > 0) ?? "";
 const pathLang = firstSegment.replace(/\.html$/, "");
-const lang: Lang = (LANGS as readonly string[]).includes(pathLang) ? (pathLang as Lang) : "en";
+const lang: Lang = isLang(pathLang) ? pathLang : "en";
 const shortDate = formatMarginDate(timestampIso, lang);
 const index = loadIndexPageContent(lang);
 const contacts = buildContactLinks(index);
@@ -27,7 +28,7 @@ const contacts = buildContactLinks(index);
 <footer class="site-colophon">
   <div class="footer-signoff">
     {
-      signature ? (
+      hasText(signature) ? (
         <p class="footer-signature">
           <span>{signature}</span>
           <svg class="footer-flourish" viewBox="0 0 300 40" aria-hidden="true" focusable="false">

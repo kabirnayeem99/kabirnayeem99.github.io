@@ -12,7 +12,7 @@ export interface ContactLink {
 export function buildContactLinks(content: IndexPageContent): readonly ContactLink[] {
   return [
     ...content.topActions
-      .filter((action) => action.href?.startsWith("mailto:"))
+      .filter((action) => action.href?.startsWith("mailto:") === true)
       .map((action) => ({
         href: action.href ?? "",
         label: action.label.replace(/^✉\s*/, ""),

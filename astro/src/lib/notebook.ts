@@ -1,4 +1,4 @@
-import type { Lang } from "./locale-config";
+import type { Lang } from "./locale-config.ts";
 
 // Gregorian calendar everywhere: the Arabic default (ar-SA) would switch to Hijri dates.
 export const READ_DATE_LOCALE: Readonly<Record<Lang, string>> = {
@@ -9,7 +9,7 @@ export const READ_DATE_LOCALE: Readonly<Record<Lang, string>> = {
 };
 
 /** Short, hand-writable date for the tape strip above a book cover ("6 Oct 2026", or "2024"). */
-export function formatReadDate(iso: string | undefined, lang: Lang): string | undefined {
+export function formatReadDate(iso: string | null | undefined, lang: Lang): string | undefined {
   if (typeof iso !== "string" || iso.length === 0) {
     return undefined;
   }

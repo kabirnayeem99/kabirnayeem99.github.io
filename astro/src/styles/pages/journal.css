@@ -1,0 +1,284 @@
+@layer pages {
+  /* work + projects: a journal of entries */
+  .journal {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* jobs and projects: the same ledger, date rail on the start side */
+  .journal-entry {
+    position: relative;
+    display: grid;
+    gap: 20px;
+    padding-block: 32px;
+    grid-template-columns: 150px minmax(0, 1fr);
+    column-gap: 32px;
+    row-gap: 0;
+  }
+
+  .journal-entry .meta {
+    margin: 0 0 4px;
+  }
+
+  .journal-entry-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-block-end: 8px;
+  }
+
+  .journal-entry h3 {
+    margin: 0;
+    line-height: 1.4;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .journal-entry h3 a {
+    text-decoration-color: var(--hair-strong);
+  }
+
+  /* inside a journal entry the "highlight" text block is not its own row */
+  .journal-entry-text.highlight {
+    padding: 0;
+    border: 0;
+  }
+
+  .journal-entry-text > p,
+  .journal-entry-text > ul {
+    max-width: 66ch;
+  }
+
+  .journal-entry-text > ul {
+    margin-block-end: 0;
+  }
+
+  /* company mark, monochrome */
+  .journal-stamp {
+    --stamp-h: 18px;
+    position: relative;
+    display: inline-block;
+    flex: none;
+    height: var(--stamp-h);
+    width: calc(var(--stamp-h) * var(--stamp-ratio, 2));
+    opacity: 0.9;
+  }
+
+  .journal-stamp::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--text);
+    /* the mark twice over: its see-through facets come out denser, still distinct */
+    mask:
+      var(--stamp) center / contain no-repeat,
+      var(--stamp) center / contain no-repeat;
+  }
+
+  .journal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 6px;
+    margin-block-start: 12px;
+    font-size: 0.82rem;
+  }
+
+  .journal-tags-label {
+    margin-inline-end: 4px;
+    color: var(--muted);
+  }
+
+  .journal-tags ul {
+    display: flex;
+    flex: 1 1 12rem;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 6px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* tags (where I did it): plain mono words */
+  .journal-tags li {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+    border-radius: 4px;
+    font: 400 0.72rem/1.5 var(--mono);
+    letter-spacing: 0.02em;
+    color: var(--soft);
+    padding: 0;
+    border: 0;
+  }
+
+  /* images: rows of equal height (flex-grow = aspect ratio) */
+  .journal-prints {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .journal-prints .print {
+    flex: var(--ar) 1 0;
+  }
+
+  .journal-card-stickers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-block-start: 14px;
+  }
+
+  /* tool marks */
+  .journal-sticker {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-end;
+    gap: 6px;
+    min-height: 28px;
+    padding: 3px 10px;
+    border: 1px solid var(--hair);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.82rem;
+  }
+
+  /* work intro */
+  .work-intro {
+    display: grid;
+    gap: 32px;
+  }
+
+  .postcards {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .postcard {
+    flex: var(--ar) 1 0;
+    min-width: 0;
+  }
+
+  /* picture credits */
+  .picture-credits h2 {
+    margin: 0 0 6px;
+    font: 400 0.72rem/1.4 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .picture-credits ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .picture-credits li {
+    display: inline;
+  }
+
+  .picture-credits li + li::before {
+    content: " · ";
+  }
+
+  .journal-entry-paper,
+  .journal-entry-text.highlight {
+    display: contents;
+  }
+
+  .journal-entry-text > *,
+  .journal-entry > .journal-prints {
+    grid-column: 2;
+  }
+
+  .journal-entry > .journal-prints {
+    margin-block-start: 20px;
+  }
+
+  /* desktop shots run as one strip across the date rail too, so the rail never sits empty */
+  .journal-entry > .journal-prints[data-strip] {
+    grid-column: 1 / -1;
+    flex-wrap: nowrap;
+  }
+
+  .journal-prints[data-strip] .print {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .journal-prints[data-lead] .print:first-child {
+    flex-basis: 100%;
+  }
+
+  .journal-prints[data-count] .print.print--place {
+    flex: none;
+    width: 120px;
+  }
+
+  .journal-entry-text > .meta {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    margin: 6px 0 0;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .journal-prints[data-count="1"] .print:not(.print--place) {
+    flex: none;
+    width: min(calc(260px * var(--ar)), 100%);
+  }
+
+  .journal-entry-text > p {
+    color: var(--soft);
+  }
+
+  html:not(:lang(en)) .journal-tags li {
+    font-family: var(--font-site);
+    font-size: 0.82rem;
+  }
+
+  .journal-tags li + li::before {
+    content: "· ";
+    color: var(--faint);
+  }
+
+  @media (max-width: 640px) {
+    .journal-entry {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .journal-entry-text > *,
+    .journal-entry > .journal-prints,
+    .journal-entry-text > .meta {
+      grid-column: 1;
+      grid-row: auto;
+    }
+
+    .journal-entry-text > .meta {
+      margin: 0 0 6px;
+    }
+
+    /* on a phone the strip folds into a 2 x 2 sheet */
+    .journal-entry > .journal-prints[data-strip] {
+      flex-wrap: wrap;
+    }
+
+    .journal-prints[data-strip] .print {
+      flex-basis: calc(50% - 5px);
+    }
+  }
+}

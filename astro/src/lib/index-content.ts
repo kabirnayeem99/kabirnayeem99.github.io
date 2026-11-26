@@ -43,7 +43,7 @@ interface ArticleLink {
   readonly summary: string;
 }
 
-export interface IndexImage {
+interface IndexImage {
   readonly src: string;
   readonly alt: string;
   readonly width: number;
@@ -52,13 +52,13 @@ export interface IndexImage {
   readonly caption?: string;
 }
 
-export interface NowItem {
+interface NowItem {
   readonly label: string;
   readonly html: string;
   readonly image?: IndexImage;
 }
 
-export interface IndexSection {
+interface IndexSection {
   readonly title: string;
   readonly paragraphs: readonly string[];
   /** Prints taped beside the section's text (e.g. covers of the books being read). */
@@ -98,7 +98,7 @@ interface IndexSiteData extends SiteData {
   readonly languageMenuLabels: Readonly<Record<Lang, string>>;
 }
 
-export interface RouteTable {
+interface RouteTable {
   readonly index: Readonly<Record<Lang, string>>;
   readonly work: Readonly<Record<Lang, string>>;
   readonly project: Readonly<Record<Lang, string>>;
@@ -132,7 +132,7 @@ function isPageId(value: string): value is PageId {
 const NAV_ONLY_PAGES: ReadonlySet<string> = new Set(["reading"]);
 
 function readNowItems(source: Record<string, unknown>, path: string): readonly NowItem[] {
-  const value = source.items;
+  const value = source["items"];
   if (value === undefined) {
     return [];
   }
@@ -142,7 +142,7 @@ function readNowItems(source: Record<string, unknown>, path: string): readonly N
   return value.map((raw, index) => {
     const itemPath = `${path}.items[${index}]`;
     const item = asRecord(raw, itemPath);
-    const image = item.image === undefined ? undefined : readIndexImages({ image: [item.image] }, "image", itemPath)[0];
+    const image = item["image"] === undefined ? undefined : readIndexImages({ image: [item["image"]] }, "image", itemPath)[0];
     return {
       label: readString(item, "label", itemPath),
       html: withLastFinished(readString(item, "html", itemPath)),
@@ -171,7 +171,7 @@ function readPageIdArray(source: Record<string, unknown>, key: string, path: str
 function readAction(source: Record<string, unknown>, path: string): IndexAction {
   const label = readString(source, "label", path);
   const href = readOptionalString(source, "href", path);
-  const pageIdRaw = source.page_id;
+  const pageIdRaw = source["page_id"];
   const variantRaw = readString(source, "variant", path);
 
   const variant: "primary" | "secondary" =
@@ -315,7 +315,7 @@ function readIndexImages(source: Record<string, unknown>, key: string, path: str
 }
 
 function readIndexSections(source: Record<string, unknown>, path: string): readonly IndexSection[] {
-  const value = source.sections;
+  const value = source["sections"];
   if (!Array.isArray(value)) {
     throw new Error(`Expected array at ${path}.sections`);
   }
@@ -343,40 +343,40 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
   const root = loadSiteContentRoot();
 
   const site = asRecord(root.site, "root.site");
-  const siteLocales = asRecord(site.locales, "root.site.locales");
+  const siteLocales = asRecord(site["locales"], "root.site.locales");
   const localeRaw = asRecord(siteLocales[lang], `root.site.locales.${lang}`);
-  const languageMenuLabelsRaw = asRecord(site.language_menu_labels, "root.site.language_menu_labels");
+  const languageMenuLabelsRaw = asRecord(site["language_menu_labels"], "root.site.language_menu_labels");
 
   const routesRaw = asRecord(root.routes, "root.routes");
   const routes: RouteTable = {
-    index: readRouteMap(asRecord(routesRaw.index, "root.routes.index"), "root.routes.index"),
-    work: readRouteMap(asRecord(routesRaw.work, "root.routes.work"), "root.routes.work"),
-    project: readRouteMap(asRecord(routesRaw.project, "root.routes.project"), "root.routes.project"),
-    blog: readRouteMap(asRecord(routesRaw.blog, "root.routes.blog"), "root.routes.blog"),
-    stats: readRouteMap(asRecord(routesRaw.stats, "root.routes.stats"), "root.routes.stats"),
-    reading: readRouteMap(asRecord(routesRaw.reading, "root.routes.reading"), "root.routes.reading"),
+    index: readRouteMap(asRecord(routesRaw["index"], "root.routes.index"), "root.routes.index"),
+    work: readRouteMap(asRecord(routesRaw["work"], "root.routes.work"), "root.routes.work"),
+    project: readRouteMap(asRecord(routesRaw["project"], "root.routes.project"), "root.routes.project"),
+    blog: readRouteMap(asRecord(routesRaw["blog"], "root.routes.blog"), "root.routes.blog"),
+    stats: readRouteMap(asRecord(routesRaw["stats"], "root.routes.stats"), "root.routes.stats"),
+    reading: readRouteMap(asRecord(routesRaw["reading"], "root.routes.reading"), "root.routes.reading"),
   };
 
   const navigationRaw = asRecord(root.navigation, "root.navigation");
   const navigationLabelsRaw = asRecord(root.navigation_labels, "root.navigation_labels");
   const pagesRaw = asRecord(root.pages, "root.pages");
 
-  const indexPageRaw = asRecord(pagesRaw.index, "root.pages.index");
-  const indexLocalesRaw = asRecord(indexPageRaw.locales, "root.pages.index.locales");
+  const indexPageRaw = asRecord(pagesRaw["index"], "root.pages.index");
+  const indexLocalesRaw = asRecord(indexPageRaw["locales"], "root.pages.index.locales");
   const indexLocale = asRecord(indexLocalesRaw[lang], `root.pages.index.locales.${lang}`);
-  const indexMeta = asRecord(indexLocale.meta, `root.pages.index.locales.${lang}.meta`);
-  const indexHeader = asRecord(indexLocale.header, `root.pages.index.locales.${lang}.header`);
+  const indexMeta = asRecord(indexLocale["meta"], `root.pages.index.locales.${lang}.meta`);
+  const indexHeader = asRecord(indexLocale["header"], `root.pages.index.locales.${lang}.header`);
 
-  const statsPageRaw = asRecord(pagesRaw.stats, "root.pages.stats");
-  const statsLocalesRaw = asRecord(statsPageRaw.locales, "root.pages.stats.locales");
+  const statsPageRaw = asRecord(pagesRaw["stats"], "root.pages.stats");
+  const statsLocalesRaw = asRecord(statsPageRaw["locales"], "root.pages.stats.locales");
   const statsLocale = asRecord(
-    statsLocalesRaw[lang] ?? statsLocalesRaw.en,
+    statsLocalesRaw[lang] ?? statsLocalesRaw["en"],
     `root.pages.stats.locales.${lang}`,
   );
-  const statsSections = asRecord(statsLocale.sections, `root.pages.stats.locales.${lang}.sections`);
-  const statsWakaTime = asRecord(statsSections.wakatime, `root.pages.stats.locales.${lang}.sections.wakatime`);
+  const statsSections = asRecord(statsLocale["sections"], `root.pages.stats.locales.${lang}.sections`);
+  const statsWakaTime = asRecord(statsSections["wakatime"], `root.pages.stats.locales.${lang}.sections.wakatime`);
   const statsGoodreads = asRecord(
-    statsSections.goodreads,
+    statsSections["goodreads"],
     `root.pages.stats.locales.${lang}.sections.goodreads`,
   );
 
@@ -384,27 +384,27 @@ export function loadIndexPageContent(lang: Lang): IndexPageContent {
 
   const navigationLabels: Record<PageId, string> = {
     index: readString(
-      asRecord(navigationLabelsRaw.index, "root.navigation_labels.index"),
+      asRecord(navigationLabelsRaw["index"], "root.navigation_labels.index"),
       lang,
       "root.navigation_labels.index",
     ),
     work: readString(
-      asRecord(navigationLabelsRaw.work, "root.navigation_labels.work"),
+      asRecord(navigationLabelsRaw["work"], "root.navigation_labels.work"),
       lang,
       "root.navigation_labels.work",
     ),
     project: readString(
-      asRecord(navigationLabelsRaw.project, "root.navigation_labels.project"),
+      asRecord(navigationLabelsRaw["project"], "root.navigation_labels.project"),
       lang,
       "root.navigation_labels.project",
     ),
     blog: readString(
-      asRecord(navigationLabelsRaw.blog, "root.navigation_labels.blog"),
+      asRecord(navigationLabelsRaw["blog"], "root.navigation_labels.blog"),
       lang,
       "root.navigation_labels.blog",
     ),
     stats: readString(
-      asRecord(navigationLabelsRaw.stats, "root.navigation_labels.stats"),
+      asRecord(navigationLabelsRaw["stats"], "root.navigation_labels.stats"),
       lang,
       "root.navigation_labels.stats",
     ),

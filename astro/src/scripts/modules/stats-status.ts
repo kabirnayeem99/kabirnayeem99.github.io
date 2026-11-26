@@ -5,7 +5,7 @@ import { isLang, type Lang } from "../../lib/locale-config";
 import { formatMarginDate } from "../../lib/notebook";
 
 export type StatsSource = "WakaTime" | "GitHub" | "LeetCode";
-export type SavedKind = "snapshot" | "cache";
+type SavedKind = "snapshot" | "cache";
 
 export interface SavedFigures {
   readonly kind: SavedKind;

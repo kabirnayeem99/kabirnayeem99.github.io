@@ -1,0 +1,80 @@
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-site);
+    font-size: 1.08rem;
+    line-height: 1.6;
+    font-kerning: normal;
+    font-optical-sizing: auto;
+    font-synthesis-style: none; /* no fake slant on Arabic, Urdu or Bangla */
+    -webkit-font-smoothing: antialiased;
+    transition:
+      background-color var(--dur-fast) ease,
+      color var(--dur-fast) ease;
+  }
+
+  html:lang(bn) body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  html:lang(ar) body {
+    font-size: 1.2rem;
+    line-height: 1.85;
+  }
+
+  html:lang(ur) body {
+    font-size: 1.1rem;
+    line-height: 2.1;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: var(--hair-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition:
+      text-decoration-color var(--dur-fast) ease,
+      color var(--dur-fast) ease;
+  }
+
+  a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  p {
+    margin-block-end: 1em;
+    max-width: 68ch;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--text) 16%, transparent);
+  }
+
+  main a:not([class]) {
+    text-decoration-color: var(--accent-soft);
+  }
+
+  main a:not([class]):hover {
+    color: var(--accent);
+    text-decoration-color: currentColor;
+  }
+}

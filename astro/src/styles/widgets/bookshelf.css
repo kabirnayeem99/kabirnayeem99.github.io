@@ -1,0 +1,189 @@
+/* Bookshelf: plain covers with a hairline edge; no shadow, no lift. */
+
+@layer components {
+  /* small text labels that used to be tape */
+  .book-strip {
+    display: block;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+}
+
+@layer widgets {
+  /* Goodreads: a clean grid of covers */
+  .goodreads-widget {
+    min-height: 12rem;
+  }
+
+  .goodreads-widget.is-empty {
+    min-height: 0;
+  }
+
+  .gr_grid_container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 28px 16px;
+    margin-block: 24px 0;
+  }
+
+  .gr_grid_book_container,
+  .gr_grid_book_placeholder {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .gr_grid_book_container > a,
+  .shelf-more-card {
+    order: -1; /* cover first, labels underneath, so rows line up */
+    display: block;
+    width: 100%;
+  }
+
+  .gr_grid_book_container img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    background: var(--surface);
+    border-radius: inherit;
+    outline: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    outline-offset: -1px;
+    transition: opacity var(--dur-fast) ease;
+    translate: none !important;
+  }
+
+  .book-strip--title {
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--text);
+    margin-block-start: 12px;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    transition: color var(--dur-fast) ease;
+  }
+
+  .book-strip--date {
+    order: 2;
+    font-family: var(--mono);
+    color: var(--muted);
+    margin-block-start: 3px;
+    font-size: 0.7rem;
+  }
+
+  /* last read: same cell, marked with a small accent label */
+  .book-strip--last-read {
+    order: 3;
+    align-self: flex-start;
+    margin-block-start: 4px;
+    border: 0;
+    border-radius: 999px;
+    color: var(--accent);
+    font: 500 0.66rem/1.5 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0;
+    background: none;
+  }
+
+  .book-strip--blank {
+    display: none;
+  }
+
+  /* "show all": a cover-sized card in the last cell */
+  .shelf-more-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 2 / 3;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    gap: 10px;
+    border: 1px solid var(--hair-strong);
+    border-radius: 2px 5px 5px 2px;
+    color: var(--text);
+    transition:
+      border-color var(--dur-fast) ease,
+      color var(--dur-fast) ease;
+    background: none;
+    border-style: dashed;
+    translate: none !important;
+  }
+
+  .shelf-more-label {
+    text-wrap: balance;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .shelf-more-pocket {
+    position: absolute;
+    inset-inline: 0;
+    text-align: center;
+    inset-block-end: 16px;
+  }
+
+  .shelf-more-pocket span {
+    font: 400 0.68rem/1 var(--mono);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.7rem;
+    padding: 0;
+    background: none;
+  }
+
+  .goodreads-profile-link {
+    margin-block-start: 24px;
+    font-size: 0.95rem;
+  }
+
+  .gr_grid_book_container > a {
+    position: relative;
+    border-radius: 3px;
+  }
+
+  html:not(:lang(en)) .book-strip--last-read {
+    font-family: var(--font-site);
+    font-size: 0.78rem;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .shelf-more-card:hover,
+  .shelf-more-card:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .gr_grid_book_container > a:hover img {
+      opacity: 0.85;
+    }
+
+    .gr_grid_book_container:has(> a:hover) .book-strip--title {
+      color: var(--accent);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .gr_grid_container {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px 12px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .gr_grid_container {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}

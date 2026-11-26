@@ -1,9 +1,13 @@
-import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { LANGS, PAGE_IDS, type Lang } from "./locale-config";
-import type { Direction } from "./site-types";
+import type { z } from "astro/zod";
+import { navigationLabelsSchema, navigationSchema, pageSchemas, routesSchema, siteSchema } from "./content-schema.ts";
+import { readContentFile } from "./content-validate.ts";
+import { ALL_PAGE_IDS, mapLangs, type Lang, type PageId } from "./locale-config.ts";
+import { isRecord } from "../scripts/modules/guards.ts";
+import type { Direction } from "./site-types.ts";
 
-const CONTENT_DIR = resolve(process.cwd(), "src/data/site-content");
+const CONTENT_PATH = "src/data/site-content";
+const CONTENT_DIR = resolve(process.cwd(), CONTENT_PATH);
 
 const LATIN_TO_ARABIC: Readonly<Record<string, string>> = {
   a: "ا",
@@ -81,7 +85,7 @@ const CONTENT_IDENTIFIERS = new Set([
 
 function transliterateLatinText(value: string, alphabet: Readonly<Record<string, string>>): string {
   return value.replace(/[A-Za-z]+/g, (word) =>
-    [...word.toLowerCase()].map((character) => alphabet[character] ?? character).join(""),
+    Array.from(word.toLowerCase(), (character) => alphabet[character] ?? character).join(""),
   );
 }
 
@@ -123,24 +127,24 @@ const SHARED_CONTENT_FILE_PATHS = [
 ] as const;
 
 export function listSiteContentFilePaths(): readonly string[] {
-  const pageFilePaths = PAGE_IDS.map((pageId) => resolve(CONTENT_DIR, "pages", `${pageId}.json`));
+  const pageFilePaths = ALL_PAGE_IDS.map((pageId) => resolve(CONTENT_DIR, "pages", `${pageId}.json`));
   return [...SHARED_CONTENT_FILE_PATHS, ...pageFilePaths];
 }
 
 interface SiteContentRoot {
-  readonly site: Record<string, unknown>;
-  readonly routes: Record<string, unknown>;
-  readonly navigation: Record<string, unknown>;
-  readonly navigation_labels: Record<string, unknown>;
-  readonly pages: Readonly<Record<(typeof PAGE_IDS)[number], Record<string, unknown>>>;
+  readonly site: z.infer<typeof siteSchema>;
+  readonly routes: z.infer<typeof routesSchema>;
+  readonly navigation: z.infer<typeof navigationSchema>;
+  readonly navigation_labels: z.infer<typeof navigationLabelsSchema>;
+  readonly pages: { readonly [Id in PageId]: z.infer<(typeof pageSchemas)[Id]> };
 }
 
 let siteContentCache: SiteContentRoot | undefined;
-const useInMemoryCache = process.env.NODE_ENV === "production";
+const useInMemoryCache = process.env["NODE_ENV"] === "production";
 
-function readJsonObject(filePath: string, pathLabel: string): Record<string, unknown> {
-  const raw = JSON.parse(readFileSync(filePath, "utf-8")) as unknown;
-  return asRecord(raw, pathLabel);
+/** One file under src/data/site-content, checked against its schema. */
+export function readSiteContentFile<T>(name: string, schema: z.ZodType<T>): T {
+  return readContentFile(process.cwd(), `${CONTENT_PATH}/${name}`, schema);
 }
 
 export function loadSiteContentRoot(): SiteContentRoot {
@@ -148,28 +152,18 @@ export function loadSiteContentRoot(): SiteContentRoot {
     return siteContentCache;
   }
 
-  const site = readJsonObject(resolve(CONTENT_DIR, "site.json"), "root.site");
-  const routes = readJsonObject(resolve(CONTENT_DIR, "routes.json"), "root.routes");
-  const navigation = readJsonObject(resolve(CONTENT_DIR, "navigation.json"), "root.navigation");
-  const navigationLabels = readJsonObject(
-    resolve(CONTENT_DIR, "navigation-labels.json"),
-    "root.navigation_labels",
-  );
-
-  const pages: Record<(typeof PAGE_IDS)[number], Record<string, unknown>> = {
-    index: readJsonObject(resolve(CONTENT_DIR, "pages/index.json"), "root.pages.index"),
-    work: readJsonObject(resolve(CONTENT_DIR, "pages/work.json"), "root.pages.work"),
-    project: readJsonObject(resolve(CONTENT_DIR, "pages/project.json"), "root.pages.project"),
-    blog: readJsonObject(resolve(CONTENT_DIR, "pages/blog.json"), "root.pages.blog"),
-    stats: readJsonObject(resolve(CONTENT_DIR, "pages/stats.json"), "root.pages.stats"),
-  };
-
   const siteContentRoot: SiteContentRoot = {
-    site,
-    routes,
-    navigation,
-    navigation_labels: navigationLabels,
-    pages,
+    site: readSiteContentFile("site.json", siteSchema),
+    routes: readSiteContentFile("routes.json", routesSchema),
+    navigation: readSiteContentFile("navigation.json", navigationSchema),
+    navigation_labels: readSiteContentFile("navigation-labels.json", navigationLabelsSchema),
+    pages: {
+      index: readSiteContentFile("pages/index.json", pageSchemas.index),
+      work: readSiteContentFile("pages/work.json", pageSchemas.work),
+      project: readSiteContentFile("pages/project.json", pageSchemas.project),
+      blog: readSiteContentFile("pages/blog.json", pageSchemas.blog),
+      stats: readSiteContentFile("pages/stats.json", pageSchemas.stats),
+    },
   };
   if (useInMemoryCache) {
     siteContentCache = siteContentRoot;
@@ -183,7 +177,7 @@ export interface MetaText {
   readonly keywords: string;
 }
 
-export interface SiteLocaleUiLabels {
+interface SiteLocaleUiLabels {
   readonly skipToMain: string;
   readonly closePage: string;
   readonly lastUpdated: string;
@@ -200,7 +194,7 @@ export interface SiteLocaleBuildTimestamp {
   };
 }
 
-export interface SiteSocialPlatformLabels {
+interface SiteSocialPlatformLabels {
   readonly github: string;
   readonly linkedin: string;
   readonly medium: string;
@@ -229,10 +223,10 @@ export interface SiteData {
 export type RouteMap = Readonly<Record<Lang, string>>;
 
 export function asRecord(value: unknown, path: string): Record<string, unknown> {
-  if (value === null || typeof value !== "object" || Array.isArray(value)) {
+  if (!isRecord(value) || Array.isArray(value)) {
     throw new Error(`Expected object at ${path}`);
   }
-  return value as Record<string, unknown>;
+  return value;
 }
 
 export function readString(source: Record<string, unknown>, key: string, path: string): string {
@@ -258,7 +252,7 @@ export function readOptionalString(
   return localizeLatinScript(value, key, path);
 }
 
-export function readDirection(source: Record<string, unknown>, key: string, path: string): Direction {
+function readDirection(source: Record<string, unknown>, key: string, path: string): Direction {
   const value = readString(source, key, path);
   if (value !== "ltr" && value !== "rtl") {
     throw new Error(`Expected direction at ${path}.${key}`);
@@ -277,7 +271,7 @@ export function readStringArray(
   }
   const output: string[] = [];
   for (let index = 0; index < value.length; index += 1) {
-    const entry = value[index];
+    const entry: unknown = value[index];
     if (typeof entry !== "string") {
       throw new Error(`Expected string at ${path}.${key}[${index}]`);
     }
@@ -300,7 +294,7 @@ export function readOptionalStringArray(
   }
   const output: string[] = [];
   for (let index = 0; index < value.length; index += 1) {
-    const entry = value[index];
+    const entry: unknown = value[index];
     if (typeof entry !== "string") {
       throw new Error(`Expected string at ${path}.${key}[${index}]`);
     }
@@ -310,11 +304,7 @@ export function readOptionalStringArray(
 }
 
 export function readLangStringMap(source: Record<string, unknown>, path: string): Readonly<Record<Lang, string>> {
-  const output: Record<Lang, string> = {} as Record<Lang, string>;
-  for (const lang of LANGS) {
-    output[lang] = readString(source, lang, path);
-  }
-  return output;
+  return mapLangs((lang) => readString(source, lang, path));
 }
 
 export function readRouteMap(source: Record<string, unknown>, path: string): RouteMap {
@@ -322,10 +312,10 @@ export function readRouteMap(source: Record<string, unknown>, path: string): Rou
 }
 
 export function readLocaleInfo(source: Record<string, unknown>, path: string): LocaleInfo {
-  const labels = asRecord(source.labels, `${path}.labels`);
-  const buildTimestamp = asRecord(source.build_timestamp, `${path}.build_timestamp`);
-  const dayPeriod = asRecord(buildTimestamp.day_period, `${path}.build_timestamp.day_period`);
-  const socialPlatformLabels = asRecord(source.social_platform_labels, `${path}.social_platform_labels`);
+  const labels = asRecord(source["labels"], `${path}.labels`);
+  const buildTimestamp = asRecord(source["build_timestamp"], `${path}.build_timestamp`);
+  const dayPeriod = asRecord(buildTimestamp["day_period"], `${path}.build_timestamp.day_period`);
+  const socialPlatformLabels = asRecord(source["social_platform_labels"], `${path}.social_platform_labels`);
 
   return {
     dir: readDirection(source, "dir", path),

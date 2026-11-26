@@ -6,7 +6,7 @@ interface Props {
   readonly class?: string;
 }
 
-const { variant, class: className = "" } = Astro.props as Props;
+const { variant, class: className = "" } = Astro.props;
 
 const ARROWS = {
   curl: {

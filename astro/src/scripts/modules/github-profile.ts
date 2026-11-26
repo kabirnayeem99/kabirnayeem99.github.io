@@ -1,5 +1,6 @@
 import starSvg from "@material-symbols/svg-400/rounded/star.svg?raw";
 import { chartColor, createMeter, decorateDonut } from "./chart-ink";
+import { isRecord, toArray, toRecord, hasText } from "./guards";
 import { formatNumber, toSafeNumber } from "./stats-utils";
 import { personPortfolioSnapshots } from "./stats-snapshots";
 import { liveStatus, refreshFailedStatus, savedStatus, unavailableStatus, type SavedFigures } from "./stats-status";
@@ -19,11 +20,6 @@ interface GitHubProfilePayload {
   readonly languages: Readonly<Record<string, number>>;
 }
 
-interface GitHubProfileCacheEnvelope {
-  readonly cachedAt?: unknown;
-  readonly payload?: unknown;
-}
-
 interface GitHubProfileCacheEntry {
   readonly payload: GitHubProfilePayload;
   readonly isFresh: boolean;
@@ -39,12 +35,35 @@ interface LanguageSegment {
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 const SVG_NS = "http://www.w3.org/2000/svg";
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
-}
-
 function safeString(value: unknown): string {
   return typeof value === "string" ? value : "";
+}
+
+function isRepo(value: unknown): value is GitHubRepo {
+  return (
+    isRecord(value) &&
+    typeof value["name"] === "string" &&
+    typeof value["description"] === "string" &&
+    typeof value["stars"] === "number" &&
+    (typeof value["language"] === "string" || value["language"] === null) &&
+    typeof value["htmlUrl"] === "string"
+  );
+}
+
+function toLanguageCounts(value: unknown): Record<string, number> {
+  return Object.fromEntries(
+    Object.entries(toRecord(value)).filter((entry): entry is [string, number] => typeof entry[1] === "number"),
+  );
+}
+
+/** Reads a payload in this module's own shape: the bundled snapshot, or the browser cache. */
+function toProfilePayload(source: Record<string, unknown>): GitHubProfilePayload {
+  return {
+    repos: toArray(source["repos"]).filter(isRepo),
+    mergedPrs: Math.max(0, Math.round(toSafeNumber(source["mergedPrs"]))),
+    issuesOpened: Math.max(0, Math.round(toSafeNumber(source["issuesOpened"]))),
+    languages: toLanguageCounts(source["languages"]),
+  };
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -97,30 +116,26 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const normalizeAllRepos = (raw: unknown): readonly GitHubRepo[] => {
-    if (!Array.isArray(raw)) {
-      return [];
-    }
-
-    return (raw as unknown[])
+    return toArray(raw)
       .map((item): GitHubRepo | null => {
         if (!isRecord(item)) {
           return null;
         }
-        if (item.fork === true) {
+        if (item["fork"] === true) {
           return null;
         }
-        const name = safeString(item.name);
-        if (!name) {
+        const name = safeString(item["name"]);
+        if (name === "") {
           return null;
         }
 
         return {
           name,
-          description: safeString(item.description),
-          stars: Math.max(0, Math.round(toSafeNumber(item.stargazers_count))),
+          description: safeString(item["description"]),
+          stars: Math.max(0, Math.round(toSafeNumber(item["stargazers_count"]))),
           language:
-            typeof item.language === "string" && item.language.length > 0 ? item.language : null,
-          htmlUrl: safeString(item.html_url),
+            typeof item["language"] === "string" && item["language"].length > 0 ? item["language"] : null,
+          htmlUrl: safeString(item["html_url"]),
         };
       })
       .filter((r): r is GitHubRepo => r !== null)
@@ -130,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const aggregateLanguages = (repos: readonly GitHubRepo[]): Record<string, number> => {
     const counts: Record<string, number> = {};
     repos.forEach((repo) => {
-      if (repo.language) {
+      if (hasText(repo.language)) {
         counts[repo.language] = (counts[repo.language] ?? 0) + 1;
       }
     });
@@ -138,39 +153,33 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const getStaticSnapshot = (): GitHubProfilePayload | null => {
-    const snap = (personPortfolioSnapshots as unknown as Record<string, unknown>).githubProfile;
-    if (!isRecord(snap)) {
-      return null;
-    }
-
-    const repos = Array.isArray(snap.repos) ? (snap.repos as GitHubRepo[]) : [];
-    const mergedPrs = Math.max(0, Math.round(toSafeNumber(snap.mergedPrs)));
-    const issuesOpened = Math.max(0, Math.round(toSafeNumber(snap.issuesOpened)));
-    const languages = isRecord(snap.languages)
-      ? (snap.languages as Record<string, number>)
-      : {};
-
-    return { repos, mergedPrs, issuesOpened, languages };
+    const snap: unknown = personPortfolioSnapshots.githubProfile;
+    return isRecord(snap) ? toProfilePayload(snap) : null;
   };
 
   const readCacheEntry = (): GitHubProfileCacheEntry | null => {
     try {
       const raw = window.localStorage.getItem(cacheKey);
-      if (!raw) {
+      if (!hasText(raw)) {
         return null;
       }
 
-      const parsed = JSON.parse(raw) as GitHubProfileCacheEnvelope;
-      if (!isRecord(parsed) || !isRecord(parsed.payload)) {
+      const parsed: unknown = JSON.parse(raw);
+      if (!isRecord(parsed) || !isRecord(parsed["payload"])) {
         return null;
       }
 
-      const p = parsed.payload as unknown as GitHubProfilePayload;
-      const cachedAt = toSafeNumber(parsed.cachedAt);
+      const { repos, languages } = parsed["payload"];
+      if (!Array.isArray(repos) || !isRecord(languages)) {
+        return null;
+      }
+
+      const payload = toProfilePayload(parsed["payload"]);
+      const cachedAt = toSafeNumber(parsed["cachedAt"]);
       const ageMs = cachedAt > 0 ? Date.now() - cachedAt : Number.POSITIVE_INFINITY;
       const isFresh = cachedAt > 0 && ageMs >= 0 && ageMs <= CACHE_TTL_MS;
 
-      return { payload: p, isFresh, cachedAt };
+      return { payload, isFresh, cachedAt };
     } catch {
       return null;
     }
@@ -325,7 +334,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const createStarIcon = (): Element => {
     const template = document.createElement("template");
     template.innerHTML = starSvg;
-    const icon = template.content.firstElementChild as Element;
+    const icon = template.content.firstElementChild;
+    if (!icon) {
+      throw new Error("Star icon has no root element");
+    }
     icon.setAttribute("class", "icon");
     icon.setAttribute("role", "img");
     icon.setAttribute("aria-label", "Stars");
@@ -361,14 +373,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       card.appendChild(header);
 
-      if (repo.description) {
+      if (repo.description !== "") {
         const desc = document.createElement("p");
         desc.className = "github-repo-card-desc";
         desc.textContent = repo.description;
         card.appendChild(desc);
       }
 
-      if (repo.language) {
+      if (hasText(repo.language)) {
         const langBadge = document.createElement("span");
         langBadge.className = "github-repo-card-lang";
 
@@ -454,11 +466,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const languages = aggregateLanguages(allRepos);
       const mergedPrs = Math.max(
         0,
-        Math.round(toSafeNumber(isRecord(prsRaw) ? prsRaw.total_count : 0)),
+        Math.round(toSafeNumber(isRecord(prsRaw) ? prsRaw["total_count"] : 0)),
       );
       const issuesOpened = Math.max(
         0,
-        Math.round(toSafeNumber(isRecord(issuesRaw) ? issuesRaw.total_count : 0)),
+        Math.round(toSafeNumber(isRecord(issuesRaw) ? issuesRaw["total_count"] : 0)),
       );
       const payload: GitHubProfilePayload = {
         repos: topRepos,

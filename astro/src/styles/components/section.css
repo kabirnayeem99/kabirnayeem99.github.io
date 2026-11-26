@@ -1,0 +1,60 @@
+@layer components {
+  /* section heads: a large serif title */
+  .section-title {
+    position: relative;
+    margin: 0 0 28px;
+    font: 400 2rem/1.15 var(--font-site);
+    letter-spacing: -0.015em;
+    text-transform: none;
+    color: var(--text);
+  }
+
+  .section-head {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  .section-head .section-title {
+    flex: 0 1 auto;
+  }
+
+  html:not(:lang(en)) .section-title {
+    text-transform: none;
+    font-family: var(--font-site);
+    font-size: 1.85rem;
+    letter-spacing: 0;
+  }
+
+  .section-actions {
+    display: flex;
+    flex-wrap: wrap;
+    margin-block-start: 28px;
+  }
+
+  .peel-flap {
+    display: none;
+  }
+}
+
+@layer pages {
+  .project-group .section-title {
+    margin-block-end: 20px;
+  }
+}
+
+@layer ornaments {
+  /* section titles get a scribbled underline */
+  .section-title {
+    padding-block-end: 14px;
+    background: var(--pencil-scribble) left bottom / 132px 12px no-repeat;
+  }
+
+  [dir="rtl"] .section-title {
+    background-position: right bottom;
+  }
+
+  .section-actions {
+    gap: 12px 32px;
+  }
+}

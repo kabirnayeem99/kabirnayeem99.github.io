@@ -1,0 +1,13 @@
+@layer pages {
+  /* 404 */
+  .not-found {
+    display: grid;
+    gap: 16px;
+    justify-items: start;
+    padding-block: 20vh;
+  }
+
+  .not-found-note {
+    color: var(--muted);
+  }
+}

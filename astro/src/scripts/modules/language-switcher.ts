@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const firstLink = menu.querySelector<HTMLAnchorElement>("a");
 
     if ("showPopover" in HTMLElement.prototype) {
-      menu.addEventListener("toggle", (rawEvent) => {
-        const event = rawEvent as { newState: string };
+      menu.addEventListener("toggle", (event) => {
         const isOpen = event.newState === "open";
         button.setAttribute("aria-expanded", String(isOpen));
         switcher.classList.toggle("is-open", isOpen);

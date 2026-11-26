@@ -1,0 +1,93 @@
+@layer components {
+  /* text links with an arrow */
+  .action-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-underline-offset: 4px;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    text-decoration: none;
+    transition:
+      border-color var(--dur-fast) ease,
+      background-color var(--dur-fast) ease,
+      color var(--dur-fast) ease;
+  }
+
+  .action-chip:hover,
+  .action-chip:focus-visible {
+    text-decoration-color: currentColor;
+    border-color: var(--text);
+  }
+
+  .action-chip--secondary {
+    color: var(--muted);
+  }
+
+  .action-chip--secondary:hover {
+    color: var(--text);
+  }
+
+  .action-chip-arrow {
+    flex: none;
+    background-color: currentColor;
+  }
+
+  [dir="rtl"] .action-chip-arrow {
+    scale: -1 1;
+  }
+
+  .action-chip--primary:hover,
+  .action-chip--primary:focus-visible {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--bg);
+  }
+}
+
+@layer ornaments {
+  /* links with an arrow: written, not boxed */
+  .action-chip,
+  .action-chip--primary {
+    padding: 2px 0 6px;
+    border: 0;
+    border-radius: 0;
+    background: var(--pencil-scribble) left bottom / 100% 9px no-repeat;
+    color: var(--text);
+  }
+
+  .action-chip:hover,
+  .action-chip:focus-visible,
+  .action-chip--primary:hover {
+    background-color: transparent;
+    color: var(--accent);
+  }
+
+  .action-chip-arrow {
+    width: 26px;
+    height: 14px;
+    mask: var(--doodle-arrow) center / contain no-repeat;
+  }
+}
+
+@layer utilities {
+  /* the one call to action that must not be missed (home → work): circled in pen like the
+     marked phrases, in the accent ink, a size up from the other written links */
+  .action-chip.action-chip--primary {
+    gap: 10px;
+    padding: 14px 30px 13px;
+    margin-inline-start: -14px;
+    border: 0;
+    border-radius: 0;
+    background: var(--pencil-loop) center / 100% 100% no-repeat;
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .action-chip.action-chip--primary:hover,
+  .action-chip.action-chip--primary:focus-visible {
+    background: var(--pencil-loop) center / 100% 100% no-repeat;
+    color: var(--text);
+  }
+}

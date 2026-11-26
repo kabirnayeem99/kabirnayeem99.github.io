@@ -1,4 +1,5 @@
 ---
+import { hasText } from "../../scripts/modules/guards";
 import { scriptLang } from "../../lib/script-lang";
 import ClosePageHeader from "./ClosePageHeader.astro";
 import HeadSeo from "./HeadSeo.astro";
@@ -29,7 +30,7 @@ interface Props {
   readonly lang: Lang;
 }
 
-const { lang } = Astro.props as Props;
+const { lang } = Astro.props;
 const content = loadStatsPageContent(lang);
 const buildTimestamp = computeLegacyBuildTimestamp(lang);
 const canonicalUrl = `${content.site.baseUrl}/${content.route}`;
@@ -63,7 +64,7 @@ const goodreadsScriptSource = (() => {
   }
 })();
 const typingStats = (() => {
-  const lines = (csvRaw as string).trim().split("\n").slice(1);
+  const lines = csvRaw.trim().split("\n").slice(1);
   const rows = lines
     .map((line) => {
       const cols = line.split(",");
@@ -130,7 +131,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
   ...book,
   title: transliterateLocalizedText(book.title, lang),
   alt: transliterateLocalizedText(book.alt, lang),
-  readDate: formatReadDate((book as { dateRead?: string }).dateRead, lang),
+  readDate: formatReadDate(book.dateRead ?? undefined, lang),
 }));
 ---
 
@@ -228,9 +229,21 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
               </p>
               <div class="github-commits-visuals" data-role="visuals" hidden>
                 <div class="github-commits-summary" data-role="summary-cards"></div>
-                <div class="github-yearly-wrap" data-role="yearly-chart"></div>
+                {/* Both charts scroll sideways on phones: focusable, so a keyboard can scroll them. */}
+                <div
+                  class="github-yearly-wrap"
+                  data-role="yearly-chart"
+                  role="group"
+                  tabindex="0"
+                  aria-label={content.sections.githubCommits.title}
+                ></div>
                 <div class="github-heatmap-wrap">
-                  <div class="github-heatmap-scroll">
+                  <div
+                    class="github-heatmap-scroll"
+                    role="group"
+                    tabindex="0"
+                    aria-label={content.sections.githubCommits.heatmapAriaLabel}
+                  >
                     <div
                       class="github-heatmap"
                       data-role="heatmap"
@@ -353,7 +366,7 @@ const goodreadsBooks = goodreadsSnapshot.books.slice(0, 300).map((book) => ({
               <div class="gr_grid_container">
                 {goodreadsBooks.map((book) => (
                   <div class="gr_grid_book_container">
-                    {book.readDate ? (
+                    {hasText(book.readDate) ? (
                       <span class="book-strip book-strip--date" dir="auto">{book.readDate}</span>
                     ) : null}
                     <a

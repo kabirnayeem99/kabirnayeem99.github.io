@@ -1,14 +1,10 @@
 import { isProductionHostMatch, readExpectedSiteHostname } from "../../lib/runtime-host-gating";
+import { toRecord } from "./guards";
 
 type UmamiPayload = Record<string, string>;
 
 interface UmamiApi {
   track: (eventName: string, eventData?: UmamiPayload) => void;
-}
-
-interface SiteThemeChangeDetail {
-  readonly theme?: "light" | "dark";
-  readonly source?: "system" | "toggle";
 }
 
 declare global {
@@ -63,9 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const navLink = event.target.closest<HTMLAnchorElement>("a[data-nav-page-id]");
     if (navLink instanceof HTMLAnchorElement) {
-      const navPage = navLink.dataset.navPageId;
+      const navPage = navLink.dataset["navPageId"];
       if (navPage === "work" || navPage === "project" || navPage === "stats") {
-        track("nav-click", { page: navPage, source: navLink.dataset.navSource ?? "nav" });
+        track("nav-click", { page: navPage, source: navLink.dataset["navSource"] ?? "nav" });
       }
     }
 
@@ -80,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const socialLink = event.target.closest<HTMLAnchorElement>('a[data-umami-track-social="true"]');
     if (socialLink instanceof HTMLAnchorElement) {
       track("social-click", {
-        platform: textOrUnknown(socialLink.dataset.socialPlatform),
+        platform: textOrUnknown(socialLink.dataset["socialPlatform"]),
         href: textOrUnknown(socialLink.getAttribute("href")),
       });
     }
@@ -105,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    const pageId = document.body?.getAttribute("data-page-id");
+    const pageId = document.body.getAttribute("data-page-id");
     if (pageId !== "stats") {
       return;
     }
@@ -136,12 +132,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const detail = (event as CustomEvent<SiteThemeChangeDetail>).detail;
+    const detail = toRecord(event.detail);
     // Only the visitor's own toggle is worth counting, not the OS switching.
-    if (detail?.source === "system") {
+    if (detail["source"] === "system") {
       return;
     }
-    const theme = detail?.theme === "light" || detail?.theme === "dark" ? detail.theme : "unknown";
+    const theme = detail["theme"] === "light" || detail["theme"] === "dark" ? detail["theme"] : "unknown";
 
     track("theme-change", { to: theme });
   });
@@ -162,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
             continue;
           }
 
-          const sectionName = target.dataset.umamiTrackView;
+          const sectionName = target.dataset["umamiTrackView"];
           if (sectionName === undefined || seenSections.has(sectionName)) {
             continue;
           }

@@ -1,4 +1,5 @@
 ---
+import { hasText } from "../../scripts/modules/guards";
 import { assetHref, type CardImage, type ContentCard, type PictureCredit } from "../../lib/work-project-content";
 import HandArrow from "./HandArrow.astro";
 import JournalEntry from "./JournalEntry.astro";
@@ -16,7 +17,8 @@ interface Props {
 
 const { summary, sectionTitle, entries, heroImages, tagsLabel, projectsLink, creditsTitle, pictureCredits } =
   Astro.props;
-const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
+const requestedRoute = Astro.url.pathname.replace(/^\/+/, "");
+const currentRoute = requestedRoute === "" ? "index.html" : requestedRoute;
 ---
 
 <section class="page-intro work-intro">
@@ -42,7 +44,7 @@ const currentRoute = Astro.url.pathname.replace(/^\/+/, "") || "index.html";
               loading={index === 0 ? "eager" : "lazy"}
               decoding="async"
             />
-            {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+            {hasText(image.caption) ? <figcaption>{image.caption}</figcaption> : null}
           </figure>
         ))}
       </div>

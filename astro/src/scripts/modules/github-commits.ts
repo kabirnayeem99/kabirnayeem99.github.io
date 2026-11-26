@@ -10,22 +10,14 @@ import {
   toUtcDateOnly,
 } from "./stats-utils";
 import { READ_DATE_LOCALE } from "../../lib/notebook";
+import { isRecord, toArray, toRecord, hasText } from "./guards";
 import { personPortfolioSnapshots } from "./stats-snapshots";
 import { liveStatus, refreshFailedStatus, savedStatus, unavailableStatus, type SavedFigures } from "./stats-status";
 
-interface RawContribution {
-  readonly date?: unknown;
-  readonly count?: unknown;
-}
-
+/** The API response; every field is checked where it is read. */
 interface GitHubContributionPayload {
-  readonly total?: Record<string, unknown>;
-  readonly contributions?: readonly RawContribution[];
-}
-
-interface GitHubCacheEnvelope {
-  readonly cachedAt?: unknown;
-  readonly payload?: unknown;
+  readonly total?: unknown;
+  readonly contributions?: unknown;
 }
 
 interface GitHubCacheEntry {
@@ -51,14 +43,6 @@ const WEEKS_TO_SHOW = 53;
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 const HEATMAP_SCALE = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"] as const;
 const SVG_NS = "http://www.w3.org/2000/svg";
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
-}
-
-function asPayload(value: unknown): GitHubContributionPayload {
-  return isRecord(value) ? (value as GitHubContributionPayload) : {};
-}
 
 function asElement<T extends Element>(value: T | null): T | null {
   return value instanceof Element ? value : null;
@@ -114,25 +98,24 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const getStaticSnapshot = (): GitHubContributionPayload | null => {
-    return isRecord(personPortfolioSnapshots.githubCommits)
-      ? (personPortfolioSnapshots.githubCommits as GitHubContributionPayload)
-      : null;
+    const snapshot: unknown = personPortfolioSnapshots.githubCommits;
+    return isRecord(snapshot) ? snapshot : null;
   };
 
   const readCacheEntry = (): GitHubCacheEntry | null => {
     try {
       const raw = window.localStorage.getItem(cacheKey);
-      if (!raw) {
+      if (!hasText(raw)) {
         return null;
       }
 
-      const parsed = JSON.parse(raw) as GitHubCacheEnvelope;
+      const parsed: unknown = JSON.parse(raw);
       if (!isRecord(parsed)) {
         return null;
       }
 
-      const cachedAt = toSafeNumber(parsed.cachedAt);
-      const payload = asPayload(parsed.payload);
+      const cachedAt = toSafeNumber(parsed["cachedAt"]);
+      const payload: GitHubContributionPayload = toRecord(parsed["payload"]);
       const ageMs = cachedAt > 0 ? Date.now() - cachedAt : Number.POSITIVE_INFINITY;
       const isFresh = cachedAt > 0 && ageMs >= 0 && ageMs <= CACHE_TTL_MS;
 
@@ -160,18 +143,18 @@ document.addEventListener("DOMContentLoaded", () => {
     payload: GitHubContributionPayload,
     todayUtc: Date,
   ): NormalizedContribution[] => {
-    const raw = Array.isArray(payload.contributions) ? payload.contributions : [];
     const normalized: NormalizedContribution[] = [];
 
-    raw.forEach((item) => {
-      const date = parseDateOnly(item?.date);
+    toArray(payload.contributions).forEach((raw) => {
+      const item = toRecord(raw);
+      const date = parseDateOnly(item["date"]);
       if (!(date instanceof Date) || date.getTime() > todayUtc.getTime()) {
         return;
       }
 
       normalized.push({
         date,
-        count: Math.max(0, Math.round(toSafeNumber(item?.count))),
+        count: Math.max(0, Math.round(toSafeNumber(item["count"]))),
       });
     });
 
@@ -180,15 +163,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const mapContributionsByDate = (items: readonly NormalizedContribution[]): Record<string, number> => {
-    const byDate: Record<string, number> = Object.create(null);
-    items.forEach((item) => {
-      byDate[dateKey(item.date)] = item.count;
-    });
-    return byDate;
+    return Object.fromEntries(items.map((item) => [dateKey(item.date), item.count]));
   };
 
   const totalContributionsByYear = (payload: GitHubContributionPayload): number => {
-    const yearlyTotals = isRecord(payload.total) ? payload.total : {};
+    const yearlyTotals = toRecord(payload.total);
     return Object.keys(yearlyTotals).reduce((sum, year) => {
       return sum + Math.max(0, Math.round(toSafeNumber(yearlyTotals[year])));
     }, 0);
@@ -274,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const currentYear = String(todayUtc.getUTCFullYear());
-    const yearlyTotals = isRecord(payload.total) ? payload.total : {};
+    const yearlyTotals = toRecord(payload.total);
     const currentYearTotal = toSafeNumber(yearlyTotals[currentYear]);
     const allTimeTotal = totalContributionsByYear(payload);
     const last30Days = sumLastDays(byDate, todayUtc, 30);
@@ -308,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const swatch = document.createElement("span");
       swatch.className = "github-heatmap-legend-swatch";
       swatch.style.backgroundColor = color;
-      swatch.dataset.level = String(level);
+      swatch.dataset["level"] = String(level);
       legendEl.appendChild(swatch);
     });
 
@@ -339,11 +318,11 @@ document.addEventListener("DOMContentLoaded", () => {
         dot.style.backgroundColor = "transparent";
       } else {
         const level = levelFromCount(day.count, maxCount);
-        const color = HEATMAP_SCALE[level] ?? "#ebedf0";
+        const color = HEATMAP_SCALE[level];
         const label = `${formatNumber(day.count)} contributions on ${formatDate(day.date)}`;
 
         dot.style.backgroundColor = color;
-        dot.dataset.level = String(level);
+        dot.dataset["level"] = String(level);
         dot.setAttribute("role", "img");
         dot.setAttribute("aria-label", label);
         dot.title = label;
@@ -394,7 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
         label.className = "github-heatmap-month";
         label.style.gridColumn = String(day.week + 1);
         label.textContent = monthFormat.format(day.date);
-        monthsEl?.appendChild(label);
+        monthsEl.appendChild(label);
         lastLabel = label;
       });
   };
@@ -487,7 +466,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     yearlyPayload = payload;
 
-    const yearlyTotals = isRecord(payload.total) ? payload.total : {};
+    const yearlyTotals = toRecord(payload.total);
     const entries = Object.entries(yearlyTotals)
       .map(([year, count]) => ({ year, count: Math.max(0, Math.round(toSafeNumber(count))) }))
       .sort((a, b) => Number(a.year) - Number(b.year));
@@ -498,7 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Drawn at the real pixel size so text stays a readable size at every width.
-    const width = Math.max(entries.length * 34, Math.round(yearlyEl.clientWidth || 640));
+    const width = Math.max(entries.length * 34, Math.round(yearlyEl.clientWidth === 0 ? 640 : yearlyEl.clientWidth));
     yearlyWidth = width;
     const compact = width < 560;
     const height = compact ? 190 : 230;
@@ -651,7 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
       render(
         cacheEntry.payload,
         savedStatus("GitHub", { kind: "cache", savedAt: cacheEntry.cachedAt }),
-        new Date(cacheEntry.cachedAt || Date.now()),
+        new Date(cacheEntry.cachedAt === 0 ? Date.now() : cacheEntry.cachedAt),
       );
       return true;
     } catch {
@@ -677,7 +656,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchJsonWithTimeout(apiUrl, 12_000)
     .then((payload) => {
-      const safePayload = asPayload(payload);
+      const safePayload: GitHubContributionPayload = toRecord(payload);
       writeCache(safePayload);
       render(safePayload, liveStatus("GitHub"));
     })

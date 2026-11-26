@@ -1,4 +1,4 @@
-import type { IconName } from "./icons";
+import type { IconName } from "./icons.ts";
 
 export type SocialPlatform = "github" | "linkedin" | "medium" | "leetcode";
 

@@ -1,0 +1,33 @@
+/* The lede and page intros. These rules share elements and override each other in turn:
+   keep their order. */
+
+@layer pages {
+  /* page intros */
+  .page-intro p,
+  .stats-report-intro p {
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+
+  /* intro reads as the lede */
+  .summary-card p {
+    font-size: 1.32rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  /* stylelint-disable-next-line no-duplicate-selectors -- must follow .summary-card p */
+  .page-intro p,
+  .stats-report-intro p {
+    color: var(--soft);
+  }
+
+  /* no trailing space under the lede */
+  .work-intro .summary-card p {
+    margin: 0;
+  }
+
+  .summary-card p:last-child {
+    margin-block-end: 0;
+  }
+}

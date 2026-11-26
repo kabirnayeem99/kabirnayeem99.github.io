@@ -1,0 +1,131 @@
+/* Home "work": one mixed spread of website windows and phones, each standing on its own. */
+
+@layer pages {
+  .work-showcase {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: center;
+    gap: 36px 24px;
+    margin-block: 40px 32px;
+  }
+
+  .showcase-item {
+    margin: 0;
+  }
+
+  /* row one: a wide window and two phones; row two: two windows */
+  .showcase-item--window {
+    grid-column: span 6;
+  }
+
+  .showcase-item--phone {
+    grid-column: span 2;
+  }
+
+  .showcase-item:first-child {
+    grid-column: span 8;
+  }
+
+  .showcase-window {
+    overflow: hidden;
+    border: 1px solid var(--hair-strong);
+    border-radius: 7px;
+    background: var(--bg);
+    box-shadow: 0 18px 36px -24px color-mix(in srgb, var(--text) 45%, transparent);
+  }
+
+  .showcase-bar {
+    display: flex;
+    gap: 4px;
+    padding: 6px 8px;
+    border-block-end: 1px solid var(--hair);
+    background: var(--surface);
+  }
+
+  .showcase-bar i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--hair-strong);
+  }
+
+  .showcase-window img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .showcase-phone {
+    padding: 3px;
+    border: 1px solid var(--hair-strong);
+    border-radius: 9px;
+    background: #1d1a16;
+    box-shadow: 0 16px 30px -18px color-mix(in srgb, var(--text) 60%, transparent);
+  }
+
+  /* the phones lean a little, each its own way */
+  .showcase-item--phone:nth-child(2) .showcase-phone {
+    rotate: -3deg;
+  }
+
+  .showcase-item--phone:nth-child(3) .showcase-phone {
+    rotate: 2deg;
+  }
+
+  .showcase-phone img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 17;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 6px;
+  }
+
+  .showcase-item figcaption {
+    margin-block-start: 12px;
+    font-size: 0.85rem;
+    font-style: italic;
+    line-height: 1.35;
+    color: var(--muted);
+  }
+
+  .showcase-item--phone figcaption {
+    text-align: center;
+  }
+
+  /* the whole spread is one link to the work page */
+  a.work-showcase,
+  a.work-showcase figcaption {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a.work-showcase figcaption {
+    color: var(--muted);
+  }
+
+  a.work-showcase:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 10px;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 760px) {
+    /* a window across, the two phones side by side, then the other windows */
+    .work-showcase {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 20px;
+    }
+
+    .showcase-item--window,
+    .showcase-item:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .showcase-item--phone {
+      grid-column: span 1;
+      padding-inline: 12%;
+    }
+  }
+}

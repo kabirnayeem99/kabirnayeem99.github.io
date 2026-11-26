@@ -8,7 +8,7 @@ interface Props {
   readonly ariaLabel?: string;
 }
 
-const { items, ariaLabel = "Primary" } = Astro.props as Props;
+const { items, ariaLabel = "Primary" } = Astro.props;
 
 const NAV_ICONS: Record<PageId, IconName> = {
   index: "home",

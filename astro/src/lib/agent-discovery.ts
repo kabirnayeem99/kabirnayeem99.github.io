@@ -1,4 +1,4 @@
-export type AgentDiscoveryRelation =
+type AgentDiscoveryRelation =
   | "api-catalog"
   | "service-desc"
   | "service-doc"

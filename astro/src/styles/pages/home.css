@@ -1,0 +1,151 @@
+@layer pages {
+  /* the avatar moved to the sidebar: the home intro is a single column now */
+  .intro-stage {
+    grid-template-columns: minmax(0, 1fr) 120px;
+    gap: 48px;
+    align-items: start;
+    display: block;
+  }
+
+  .intro-stage-figure {
+    position: relative;
+    padding-block-start: 6px;
+  }
+
+  .entry {
+    position: relative;
+    display: flow-root;
+  }
+
+  .now-prints {
+    float: inline-end;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 180px;
+    margin-block: 4px 12px;
+    margin-inline: 28px 0;
+  }
+
+  .now-print {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .now-print--wide {
+    flex-basis: 100%;
+  }
+
+  .margin-note {
+    display: block;
+    margin-block-end: 8px;
+    font: 400 0.75rem/1.5 var(--mono);
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* "right now": plain text, dated like the rest */
+  .index-section--lead .entry,
+  [dir="rtl"] .index-section--lead .entry {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  /* "these days": a short dated list, each line with its picture stuck beside it */
+  .now-note .margin-note {
+    display: block;
+    margin-block-end: 18px;
+  }
+
+  .now-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .now-item {
+    display: grid;
+    grid-template-columns: 124px minmax(0, 1fr) 84px;
+    column-gap: 24px;
+    align-items: start;
+    padding-block: 22px;
+    border-block-start: 1px solid var(--hair);
+  }
+
+  .now-item:last-child {
+    border-block-end: 1px solid var(--hair);
+  }
+
+  .now-label {
+    padding-block-start: 0.35em;
+    font: 400 0.72rem/1.5 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .now-item p {
+    margin: 0;
+  }
+
+  .index-section--lead .entry p:last-child {
+    margin-block-end: 0;
+  }
+
+  .now-thumb {
+    justify-self: end;
+    width: 72px;
+    rotate: -4deg;
+    box-shadow: 0 1px 2px color-mix(in srgb, var(--text) 12%, transparent);
+  }
+
+  .now-item:nth-child(even) .now-thumb {
+    rotate: 5deg;
+  }
+
+  .now-thumb img {
+    max-height: 96px;
+    object-fit: cover;
+  }
+
+  /* keep a title in another script whole rather than split across lines */
+  .now-item [lang] {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 760px) {
+    .intro-stage {
+      grid-template-columns: minmax(0, 1fr) 72px;
+      gap: 20px;
+    }
+
+    .now-prints {
+      width: 128px;
+      margin-inline-start: 18px;
+    }
+
+    .now-item {
+      grid-template-columns: minmax(0, 1fr) 64px;
+      row-gap: 6px;
+    }
+
+    .now-label {
+      grid-column: 1;
+      padding: 0;
+    }
+
+    .now-item p {
+      grid-column: 1;
+    }
+
+    .now-thumb {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      width: 56px;
+    }
+  }
+}

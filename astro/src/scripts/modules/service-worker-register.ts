@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const unregisterAll = async (): Promise<void> => {
     try {
       const registrations = await navigator.serviceWorker.getRegistrations();
-      await Promise.all(registrations.map((registration) => registration.unregister()));
+      await Promise.all(registrations.map(async (registration) => registration.unregister()));
     } catch {
       // Ignore unregistration errors.
     }
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const swPathAttribute = document.body?.getAttribute("data-sw-path") ?? null;
+  const swPathAttribute = document.body.getAttribute("data-sw-path") ?? null;
   const swPath =
     typeof swPathAttribute === "string" && swPathAttribute.length > 0
       ? swPathAttribute
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register(swPath)
-      .then((registration) => registration.update().catch(() => undefined))
+      .then(async (registration) => registration.update().catch(() => undefined))
       .catch(() => {
         // Ignore registration failures.
       });

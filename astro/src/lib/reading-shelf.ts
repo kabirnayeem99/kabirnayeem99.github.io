@@ -1,5 +1,5 @@
-import type { Lang } from "./locale-config";
-import type { ShelfText } from "./reading-content";
+import type { Lang } from "./locale-config.ts";
+import type { ShelfText } from "./reading-content.ts";
 
 // The shelf is split into one collapsible group per year read, all open to begin with.
 // Undated books at the top of the snapshot are the ones the snapshot script has just picked

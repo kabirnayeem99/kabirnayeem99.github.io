@@ -1,0 +1,139 @@
+/* Stats page, shared by the widgets: plain sections on the page; no panels, cards or shadows. */
+
+@layer pages {
+  /* widgets fill in from script just after first paint: reserve roughly their height
+     so the sections below don't jump */
+  [data-wakatime-widget] {
+    min-height: 300px;
+  }
+
+  [data-github-commits-widget] {
+    min-height: 420px;
+  }
+
+  [data-github-profile-widget] {
+    min-height: 560px;
+  }
+
+  [data-leetcode-widget] {
+    min-height: 180px;
+  }
+
+  .stats-card .meta a {
+    color: inherit;
+  }
+}
+
+@layer widgets {
+  .stats-card {
+    position: relative;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  /* stats panels also carry .summary-card: keep their copy at body size, not lede size */
+  .stats-card p {
+    max-width: 68ch;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .stats-card .meta {
+    margin: 16px 0 0;
+  }
+
+  .wakatime-status,
+  .github-commits-status,
+  .github-profile-status,
+  .leetcode-status,
+  .goodreads-status {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .is-error {
+    color: var(--text);
+  }
+
+  /* headline numbers: tiles stretch to fill the row, so a short row leaves no empty block */
+  /* headline numbers: open tiles, each under its own hairline; no box, so a part-filled
+     last row simply ends */
+  .wakatime-summary,
+  .github-commits-summary,
+  .github-profile-summary,
+  .leetcode-summary {
+    display: grid;
+    margin-block: 16px 24px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0 24px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    overflow: visible;
+  }
+
+  .wakatime-card-label,
+  .github-commits-card-label,
+  .github-profile-card-label,
+  .leetcode-card-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .wakatime-card-value,
+  .github-commits-card-value,
+  .github-profile-card-value,
+  .leetcode-card-value {
+    margin-block-start: 2px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.5rem;
+  }
+
+  .stats-card > p {
+    color: var(--soft);
+  }
+
+  .stats-card p.meta {
+    font-size: 0.75rem;
+  }
+
+  .stats-card p.goodreads-profile-link {
+    font-size: 1rem;
+  }
+
+  .wakatime-card,
+  .github-commits-card,
+  .github-profile-card,
+  .leetcode-card {
+    padding: 12px 0 14px;
+  }
+
+  /* the first figure of each grid leads, on its own line; the rest sit quieter under it */
+  :is(.wakatime-summary, .github-commits-summary, .github-profile-summary, .leetcode-summary) > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  :is(.wakatime-card, .github-commits-card, .github-profile-card, .leetcode-card) > [class$="-value"] {
+    font-size: 1.15rem;
+    font-weight: 400;
+  }
+
+  :is(.wakatime-card, .github-commits-card, .github-profile-card, .leetcode-card):first-child > [class$="-value"] {
+    font-size: 2.2rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 760px) {
+    .stats-card {
+      padding: 0;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 ---
+import { hasText } from "../../scripts/modules/guards";
 import skillsData from "../../data/site-content/skills.json";
 import type { Lang } from "../../lib/locale-config";
 import { toIconName } from "../../lib/icons";
@@ -16,10 +17,10 @@ const { lang, title } = Astro.props;
 const skillGroups = skillsData.groups.map((group) => ({
   label: group.label[lang],
   items: group.items.map((item) => {
-    const extra = item as { icon?: string; lang?: string; note?: Readonly<Record<Lang, string>> };
+    const extra: { name: string; icon?: string; lang?: string; note?: Readonly<Record<Lang, string>> } = item;
     return {
       name: item.name,
-      icon: extra.icon ? toIconName(extra.icon, `skills.json ${item.name}`) : undefined,
+      icon: hasText(extra.icon) ? toIconName(extra.icon, `skills.json ${item.name}`) : undefined,
       lang: extra.lang,
       note: extra.note?.[lang],
     };
@@ -37,10 +38,10 @@ const skillGroups = skillsData.groups.map((group) => ({
         <h3 class="sticker-group-label">{group.label}</h3>
         <ul class="sticker-row">
           {group.items.map((item) => (
-            <li class="skill-sticker" data-spoken={item.lang ? "" : undefined}>
-              {item.icon ? <Icon name={item.icon} /> : null}
-              <span lang={item.lang} dir={item.lang ? "auto" : undefined}>{item.name}</span>
-              {item.note ? <small class="skill-sticker-note">{item.note}</small> : null}
+            <li class="skill-sticker" data-spoken={hasText(item.lang) ? "" : undefined}>
+              {item.icon !== undefined ? <Icon name={item.icon} /> : null}
+              <span lang={item.lang} dir={hasText(item.lang) ? "auto" : undefined}>{item.name}</span>
+              {hasText(item.note) ? <small class="skill-sticker-note">{item.note}</small> : null}
             </li>
           ))}
         </ul>

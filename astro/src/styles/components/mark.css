@@ -1,0 +1,33 @@
+@layer base {
+  mark,
+  .mark {
+    color: inherit;
+    border-radius: 2px;
+  }
+}
+
+@layer pages {
+  mark,
+  .mark {
+    font-weight: 500;
+  }
+}
+
+@layer ornaments {
+  /* marked phrases: circled in pen, a rough open loop around each line of the phrase */
+  mark,
+  .mark {
+    padding: 0.26em 0.42em 0.22em;
+    margin-inline: -0.22em;
+    background: var(--pencil-loop) center / 100% 100% no-repeat;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* a lighter mark: a hand-drawn marker stroke underneath instead of a loop */
+  mark.mark--line {
+    padding: 0 0 2px;
+    margin-inline: 0;
+    background: var(--pencil-mark) left bottom / 100% 0.42em no-repeat;
+  }
+}

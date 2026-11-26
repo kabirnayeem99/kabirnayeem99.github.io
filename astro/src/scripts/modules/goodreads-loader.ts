@@ -1,5 +1,6 @@
 import { applyScriptLang } from "../../lib/script-lang";
 import { onFirstInteraction } from "./first-interaction";
+import { isRecord } from "./guards";
 import { setupLastReadSlot } from "./last-read-book";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,12 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const scriptSource = document.body?.getAttribute("data-goodreads-script-src") ?? null;
+  const scriptSource = document.body.getAttribute("data-goodreads-script-src") ?? null;
   if (typeof scriptSource !== "string" || scriptSource.length === 0) {
     return;
   }
 
-  const widgetId = widget.id || "default";
+  const widgetId = widget.id === "" ? "default" : widget.id;
   // v5: earlier reconcile logic could get tricked into permanently caching a bloated,
   // wrongly-ordered widget snapshot (see reconcileBookOrder below) - bump the version so
   // browsers holding that corrupted entry fall back to the correct server-rendered order
@@ -35,27 +36,26 @@ document.addEventListener("DOMContentLoaded", () => {
         return null;
       }
 
-      const decoded = JSON.parse(raw) as unknown;
-      if (decoded === null || typeof decoded !== "object") {
+      const entry: unknown = JSON.parse(raw);
+      if (!isRecord(entry)) {
         return null;
       }
 
-      const entry = decoded as Partial<GoodreadsCacheEntry>;
       if (
-        typeof entry.fetchedAt !== "number" ||
-        !Number.isFinite(entry.fetchedAt) ||
-        typeof entry.html !== "string" ||
-        entry.html.length === 0 ||
-        typeof entry.scriptSource !== "string" ||
-        entry.scriptSource.length === 0
+        typeof entry["fetchedAt"] !== "number" ||
+        !Number.isFinite(entry["fetchedAt"]) ||
+        typeof entry["html"] !== "string" ||
+        entry["html"].length === 0 ||
+        typeof entry["scriptSource"] !== "string" ||
+        entry["scriptSource"].length === 0
       ) {
         return null;
       }
 
       return {
-        fetchedAt: entry.fetchedAt,
-        html: entry.html,
-        scriptSource: entry.scriptSource,
+        fetchedAt: entry["fetchedAt"],
+        html: entry["html"],
+        scriptSource: entry["scriptSource"],
       };
     } catch {
       return null;
@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const isIndexPage = document.body?.getAttribute("data-page-id") === "index";
-  const statsBooksHref = widget.dataset.statsBooksHref ?? null;
+  const isIndexPage = document.body.getAttribute("data-page-id") === "index";
+  const statsBooksHref = widget.dataset["statsBooksHref"] ?? null;
   const INDEX_BOOK_LIMIT = 9;
 
   const applyIndexBookLimit = (): void => {
@@ -93,7 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
     serverPlaceholder?.remove();
 
     // Strip <br> clears and any Goodreads branding links/paragraphs injected by their script.
-    widget.querySelectorAll(".gr_grid_book_placeholder, br").forEach((el) => el.remove());
+    widget.querySelectorAll(".gr_grid_book_placeholder, br").forEach((el) => {
+      el.remove();
+    });
     widget.querySelectorAll<HTMLElement>("a, p").forEach((el) => {
       if (!el.closest(".gr_grid_book_container")) el.remove();
     });
@@ -161,7 +163,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Live Goodreads markup is a bare cover link; tape a title strip under it so a newly
   // arrived book matches the server-rendered shelf (no read date is available here).
   const tapeBook = (book: HTMLElement): HTMLElement => {
-    book.querySelectorAll(".book-catalogue-title").forEach((el) => el.remove());
+    book.querySelectorAll(".book-catalogue-title").forEach((el) => {
+      el.remove();
+    });
     const link = book.querySelector<HTMLAnchorElement>("a[href]");
     if (link instanceof HTMLAnchorElement) {
       link.setAttribute("data-cursor-plain", "");
@@ -207,14 +211,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const fresh = [...keyedBooks(source)].filter(([key]) => !known.has(key));
     if (fresh.length === 0) return false;
 
-    fresh.forEach(([, node]) => grid.appendChild(tapeBook(node.cloneNode(true) as HTMLElement)));
+    fresh.forEach(([, node]) => {
+      grid.appendChild(tapeBook(document.importNode(node, true)));
+    });
     undatedGroup.hidden = false;
     const count = undatedGroup.querySelector<HTMLElement>(".shelf-year-count");
     if (count) {
       const total = grid.querySelectorAll(BOOK_SELECTOR).length;
-      const locale = document.documentElement.lang || "en";
+      const { lang } = document.documentElement;
+    const locale = lang === "" ? "en" : lang;
       const template =
-        new Intl.PluralRules(locale).select(total) === "one" ? count.dataset.countOne : count.dataset.countOther;
+        new Intl.PluralRules(locale).select(total) === "one" ? count.dataset["countOne"] : count.dataset["countOther"];
       count.textContent = (template ?? "{count}").replace("{count}", new Intl.NumberFormat(locale).format(total));
     }
     return true;
@@ -247,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     newKeys.forEach((key) => {
       const fresh = sourceByKey.get(key);
       if (!fresh) return;
-      enteringNodes.push(tapeBook(fresh.cloneNode(true) as HTMLElement));
+      enteringNodes.push(tapeBook(document.importNode(fresh, true)));
     });
 
     const finalNodes: HTMLElement[] = [
@@ -259,7 +266,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     const fragment = document.createDocumentFragment();
-    finalNodes.forEach((node) => fragment.appendChild(node));
+    finalNodes.forEach((node) => {
+      fragment.appendChild(node);
+    });
     Array.from(sourceGrid.children).forEach((child) => {
       if (child instanceof HTMLElement && !child.classList.contains("gr_grid_book_container")) {
         fragment.appendChild(child.cloneNode(true));
@@ -286,7 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // server-rendered top slice (already the correct, snapshot-dated order) is left alone;
   // only the untrimmed stats-page widget - where the full known set actually is on
   // screen - gets to accept new books from a fresher response.
-  if (hasMatchingCache && cached !== null && !isIndexPage) {
+  if (hasMatchingCache && !isIndexPage) {
     const parsed = document.createElement("div");
     parsed.innerHTML = cached.html;
     const changed = mergeBooks(parsed);
@@ -347,14 +356,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById = ((id: string): HTMLElement | null => (
       id === widgetId ? detachedTarget : originalGetElementById(id)
-    )) as typeof document.getElementById;
+    ));
 
     const script = document.createElement("script");
     script.async = true;
     script.defer = true;
     script.src = scriptSource;
     script.type = "text/javascript";
-    script.dataset.goodreadsWidget = "true";
+    script.dataset["goodreadsWidget"] = "true";
     script.addEventListener("load", () => {
       restoreGetElementById();
       applyLiveResponse(detachedTarget);
@@ -363,7 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
       restoreGetElementById();
       applyIndexBookLimit();
     });
-    document.body?.appendChild(script);
+    document.body.appendChild(script);
   };
 
   const scheduleOnIdle = (): void => {

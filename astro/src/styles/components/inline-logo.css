@@ -1,0 +1,35 @@
+@layer components {
+  /* a company mark set into running text, in the same ink as the work page's stamps */
+  .inline-logo {
+    display: inline-block;
+    height: 0.95em;
+    width: calc(0.95em * var(--stamp-ratio, 2));
+    margin-inline: 0.15em 0.35em;
+    vertical-align: -0.05em;
+    background: var(--text);
+    opacity: 0.9;
+    mask:
+      var(--stamp) center / contain no-repeat,
+      var(--stamp) center / contain no-repeat;
+    /* stuck on by hand: a little crooked, a touch above the line */
+    rotate: -7deg;
+    translate: 0 -0.12em;
+  }
+
+  [dir="rtl"] .inline-logo {
+    rotate: 7deg;
+  }
+
+  /* a second sticker leans the other way */
+  .inline-logo--tilt-r {
+    rotate: 8deg;
+  }
+
+  [dir="rtl"] .inline-logo--tilt-r {
+    rotate: -8deg;
+  }
+
+  .inline-logo-link {
+    white-space: nowrap;
+  }
+}

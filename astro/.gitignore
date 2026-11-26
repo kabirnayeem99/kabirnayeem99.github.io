@@ -2,3 +2,5 @@ node_modules/
 dist/
 .astro/
 .artifacts/
+# generated from src/styles by `npm run css:build`
+public/assets/css/styles.css

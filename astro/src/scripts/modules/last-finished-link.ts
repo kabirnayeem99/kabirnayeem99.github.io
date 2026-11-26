@@ -1,5 +1,5 @@
-import { withoutSeries } from "../../lib/book-title";
-import { applyScriptLang } from "../../lib/script-lang";
+import { withoutSeries } from "../../lib/book-title.ts";
+import { applyScriptLang } from "../../lib/script-lang.ts";
 
 /** Points every "last finished" mention on the page at the given book. */
 export function showLastFinished(href: string, title: string): void {

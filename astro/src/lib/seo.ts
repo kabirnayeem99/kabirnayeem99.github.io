@@ -1,5 +1,9 @@
-import navigationLabels from "../data/site-content/navigation-labels.json";
-import { LANGS } from "./locale-config";
+import { hasText } from "../scripts/modules/guards.ts";
+import navigationLabelsJson from "../data/site-content/navigation-labels.json";
+import { navigationLabelsSchema } from "./content-schema.ts";
+import { isLang, LANGS } from "./locale-config";
+
+const navigationLabels = navigationLabelsSchema.parse(navigationLabelsJson);
 
 type BreadcrumbPageId = "work" | "project" | "blog" | "stats" | "reading";
 
@@ -23,10 +27,10 @@ export function buildBreadcrumb(
   pageId: BreadcrumbPageId,
   lang: string,
 ): { readonly homeLabel: string; readonly pageLabel: string } {
-  const labels = navigationLabels as Record<string, Record<string, string>>;
+  const known = isLang(lang) ? lang : undefined;
   return {
-    homeLabel: labels["index"]?.[lang] ?? "Home",
-    pageLabel: labels[pageId]?.[lang] ?? pageId,
+    homeLabel: known === undefined ? "Home" : navigationLabels.index[known],
+    pageLabel: known === undefined ? pageId : navigationLabels[pageId][known],
   };
 }
 
@@ -45,7 +49,7 @@ const PERSON_FIELDS_BY_LANG: Partial<Record<string, { jobTitle: string; descript
   },
 };
 
-export function scriptSafeJson(value: object): string {
+function scriptSafeJson(value: object): string {
   return JSON.stringify(value).replace("</script", "<\\/script");
 }
 
@@ -82,7 +86,8 @@ function normalizeSameAsProfiles(profiles: readonly string[]): readonly string[]
 
 export function buildSchemaGraphJson(input: SchemaGraphInput): string {
   const sameAsProfiles = normalizeSameAsProfiles(input.socialProfiles);
-  const personFields = (input.lang && PERSON_FIELDS_BY_LANG[input.lang]) || {
+  const localized = hasText(input.lang) ? PERSON_FIELDS_BY_LANG[input.lang] : undefined;
+  const personFields = localized ?? {
     jobTitle: "Software Engineer",
     description: "Muslim · Reader · Software Engineer",
   };

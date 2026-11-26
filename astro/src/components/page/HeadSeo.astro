@@ -1,5 +1,8 @@
 ---
-import { THEME_BOOTSTRAP_SCRIPT } from "../../lib/page-labels";
+import { hasText } from "../../scripts/modules/guards";
+import PAGE_ARRIVAL_SCRIPT from "../../inline/page-arrival.ts?es5-script";
+import THEME_BOOTSTRAP_SCRIPT from "../../inline/theme-bootstrap.ts?es5-script";
+import UMAMI_LOADER from "../../inline/umami-loader.ts?es5-script";
 import {
   resolveCanonicalHostname,
   shouldLoadUmamiScript,
@@ -68,7 +71,7 @@ const {
   appleTouchIconHref = "assets/icons/apple-touch-icon.png",
   manifestHref = "site.webmanifest",
   discoveryLinks = AGENT_DISCOVERY_LINKS,
-  preconnectHrefs = [] as readonly string[],
+  preconnectHrefs = [],
   robots = "index, follow",
   lang = "en",
 } = Astro.props;
@@ -119,17 +122,10 @@ const SPECULATION_RULES = JSON.stringify({
   ],
 });
 
-// On arrival through a page transition or Back/Forward: re-read the theme (a page prerendered
-// or cached before a theme toggle would show the old one).
-const PAGE_ARRIVAL_SCRIPT =
-  "(function(){function sync(){window.personPortfolioTheme.sync();}" +
-  "addEventListener('pagereveal',sync);addEventListener('pageshow',sync);})();";
-
-// Umami loads only once the page is really shown: a prerendered page someone hovered but
-// never opened must not count as a visit.
-function buildUmamiLoader(websiteId: string, domains: string | null | undefined): string {
+// Umami's loader (inline/umami-loader.ts), given the values it needs.
+function buildUmamiLoader(websiteId: string, domains: string | null): string {
   const config = JSON.stringify({ websiteId, domains: domains ?? "" });
-  return `(function(c){function load(){var s=document.createElement("script");s.src="https://cloud.umami.is/script.js";s.defer=true;s.dataset.websiteId=c.websiteId;if(c.domains)s.dataset.domains=c.domains;document.head.appendChild(s);}if(document.prerendering){document.addEventListener("prerenderingchange",load,{once:true});}else{load();}})(${config});`;
+  return `(function(umamiConfig){${UMAMI_LOADER}})(${config});`;
 }
 ---
 
@@ -143,7 +139,7 @@ function buildUmamiLoader(websiteId: string, domains: string | null | undefined)
   <meta name="author" content={author} />
   <meta name="robots" content={robots} />
   <link rel="canonical" href={canonicalUrl} />
-  {feedHref && <link rel="alternate" type="application/rss+xml" title="Blog — Naimul Kabir" href={feedHref} />}
+  {hasText(feedHref) && <link rel="alternate" type="application/rss+xml" title="Blog — Naimul Kabir" href={feedHref} />}
   {
     discoveryLinks.map((link) => (
       <link rel={link.rel} href={link.href} type={link.type} title={link.title} />

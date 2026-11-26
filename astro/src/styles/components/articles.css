@@ -1,0 +1,82 @@
+@layer components {
+  /* articles: a plain list */
+  .article-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .article-item > a {
+    display: block;
+    padding-block: 22px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .clipping-mast {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    margin-block-end: 6px;
+    font: 400 0.72rem/1.4 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  /* big serif headlines */
+  .article-item :is(h2, h3) {
+    margin: 0 0 6px;
+    line-height: 1.3;
+    text-wrap: balance;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: text-decoration-color var(--dur-fast) ease;
+    font-size: 1.45rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .article-item > a:hover :is(h2, h3),
+  .article-item > a:focus-visible :is(h2, h3) {
+    text-decoration-color: currentColor;
+  }
+
+  .article-item p {
+    max-width: none;
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--soft);
+  }
+
+  .article-item > a:hover :is(h2, h3) {
+    color: var(--accent);
+  }
+
+  .clipping-mast b {
+    color: var(--accent);
+    font-weight: 500;
+  }
+}
+
+@layer ornaments {
+  /* a document icon beside each article */
+  .article-item > a {
+    position: relative;
+    padding-inline-start: 36px;
+  }
+
+  .article-icon {
+    position: absolute;
+    inset-block-start: 24px;
+    inset-inline-start: 0;
+    color: var(--muted);
+    transition: color var(--dur-fast) ease;
+  }
+
+  .article-item > a:hover .article-icon {
+    color: var(--accent);
+  }
+}

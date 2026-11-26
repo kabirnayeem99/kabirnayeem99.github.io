@@ -1,13 +1,15 @@
 ---
+import { hasText } from "../../scripts/modules/guards";
 import {
   AGENT_DISCOVERY_LINKS,
   toAbsoluteDiscoveryHref,
+  type AgentDiscoveryLink,
 } from "../../lib/agent-discovery";
 import { buildSeoFileContext } from "../../lib/seo-files";
 
 const { baseUrl } = buildSeoFileContext();
 const canonicalUrl = `${baseUrl}/docs/api`;
-const resources = AGENT_DISCOVERY_LINKS.map((link) => ({
+const resources = AGENT_DISCOVERY_LINKS.map((link: AgentDiscoveryLink) => ({
   ...link,
   href: toAbsoluteDiscoveryHref(baseUrl, link.href),
 }));
@@ -65,7 +67,7 @@ const resources = AGENT_DISCOVERY_LINKS.map((link) => ({
           resources.map((resource) => (
             <li>
               <a href={resource.href}>{resource.href}</a> ({resource.rel})
-              {resource.type ? ` - ${resource.type}` : ""}
+              {hasText(resource.type) ? ` - ${resource.type}` : ""}
             </li>
           ))
         }

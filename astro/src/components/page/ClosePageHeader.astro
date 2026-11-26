@@ -12,16 +12,16 @@ interface Props {
 }
 
 // homeHref/closeLabel are kept for the page call sites; the sidebar now links home.
-const { title, currentRoute } = Astro.props as Props;
+const { title, currentRoute } = Astro.props;
 
 // Which page and language this is, from the route table, so the header can offer the same
 // page in the other languages.
-const routeTable = routes as Readonly<Record<string, Readonly<Record<Lang, string>>>>;
+const routeTable: Readonly<Record<string, Readonly<Record<Lang, string>>>> = routes;
 const match = PAGE_IDS.flatMap((pageId) =>
   LANGS.filter((code) => routeTable[pageId]?.[code] === currentRoute).map((code) => ({ pageId, code })),
 )[0];
 const lang: Lang = match?.code ?? "en";
-const languageLinks = routeTable[match?.pageId ?? "index"] as Readonly<Record<Lang, string>>;
+const languageLinks: Readonly<Record<Lang, string>> = routes[match?.pageId ?? "index"];
 ---
 
 <BotanicalSprite />
@@ -31,6 +31,7 @@ const languageLinks = routeTable[match?.pageId ?? "index"] as Readonly<Record<La
   languageLinks={languageLinks}
   languageMenuId={`language-menu-${match?.pageId ?? "page"}-${lang}`}
 />
-<div class="page-heading">
-  <h1 class="site-title site-title--page">{title}</h1>
+{/* A named region, so the title is inside a landmark (the sidebar is already the banner). */}
+<div class="page-heading" role="region" aria-labelledby="page-title">
+  <h1 id="page-title" class="site-title site-title--page">{title}</h1>
 </div>
