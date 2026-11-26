@@ -1,15 +1,14 @@
 // The home shelf after "Last read": hand-picked books, newest read first. Picks missing from
 // the snapshot are skipped; with none left, recent reads fill in.
 
+import { parseReadDate } from "./read-date.ts";
+
 interface SnapshotBook {
   readonly imageFileName: string;
   readonly dateRead: string | null;
 }
 
-const readTime = (book: SnapshotBook): number => {
-  const time = Date.parse(book.dateRead ?? "");
-  return Number.isNaN(time) ? 0 : time;
-};
+const readTime = (book: SnapshotBook): number => parseReadDate(book.dateRead)?.getTime() ?? 0;
 
 /** `books` is the snapshot, newest first: its first book is "Last read" and is never repeated. */
 export function selectShelfPicks<T extends SnapshotBook>(

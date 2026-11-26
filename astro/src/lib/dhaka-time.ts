@@ -4,6 +4,8 @@ import { INTL_LOCALE_BY_LANG, type Lang } from "./locale-config.ts";
 
 const DHAKA_TIME_ZONE = "Asia/Dhaka";
 const DHAKA_UTC_OFFSET = "+06:00";
+const NOON = 12;
+const EVENING_STARTS = 17;
 
 interface DhakaDateParts {
   readonly year: number;
@@ -108,22 +110,14 @@ export function formatBuildTimestamp(date: Date, lang: Lang, buildTimestampText:
   const year = formatLocalizedNumber(parts.year, locale, 1);
   const hour24 = parts.hour24;
   const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
-  const amPm =
-    lang === "ar"
-      ? hour24 >= 12
-        ? "م"
-        : "ص"
-      : lang === "ur"
-        ? hour24 >= 12
-          ? "شام"
-          : "صبح"
-        : hour24 >= 12
-          ? "PM"
-          : "AM";
   const hour = formatLocalizedNumber(hour12, locale, 2);
   const minute = formatLocalizedNumber(parts.minute, locale, 2);
   const second = formatLocalizedNumber(parts.second, locale, 2);
-  const dayPeriod = hour24 >= 12 ? buildTimestampText.dayPeriod.evening : buildTimestampText.dayPeriod.morning;
+  const period = hour24 < NOON ? "morning" : hour24 < EVENING_STARTS ? "afternoon" : "evening";
+  const dayPeriod = buildTimestampText.dayPeriod[period];
+  // Urdu has no short AM/PM marker apart from these words, so it shows the word once.
+  const marker =
+    lang === "ur" ? "" : ` ${hour24 < NOON ? (lang === "ar" ? "ص" : "AM") : lang === "ar" ? "م" : "PM"}`;
 
-  return `${buildTimestampText.prefix} ${day} ${month} ${year} ${hour}:${minute}:${second} ${amPm} (${dayPeriod})`;
+  return `${buildTimestampText.prefix} ${day} ${month} ${year} ${hour}:${minute}:${second}${marker} (${dayPeriod})`;
 }

@@ -61,7 +61,7 @@ const localeInfoSchema = z.strictObject({
   }),
   build_timestamp: z.strictObject({
     prefix: text,
-    day_period: z.strictObject({ morning: text, evening: text }),
+    day_period: z.strictObject({ morning: text, afternoon: text, evening: text }),
   }),
   social_platform_labels: z.strictObject({ github: text, linkedin: text, medium: text, leetcode: text }),
 });
@@ -301,17 +301,9 @@ const indexLocale = z.strictObject({
   social_row_label: text,
 });
 
-// The Arabic and Urdu home pages have never had the top actions (the email link).
-const indexLocaleWithoutTopActions = indexLocale.partial({ top_actions_title: true, top_actions: true });
-
 const indexPageSchema = z.strictObject({
   og_type: ogType,
-  locales: z.strictObject({
-    en: indexLocale,
-    bn: indexLocale,
-    ar: indexLocaleWithoutTopActions,
-    ur: indexLocaleWithoutTopActions,
-  }),
+  locales: perLang(indexLocale),
 });
 
 const workPageSchema = z.strictObject({

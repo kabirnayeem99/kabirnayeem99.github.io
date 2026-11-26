@@ -19,6 +19,12 @@ test("1 January means the day is unknown: the year alone", () => {
   assert.equal(formatReadDate("2024-01-02T00:00:00Z", "en"), "2 Jan 2024");
 });
 
+test("a date written as 1 January keeps its year in any offset", () => {
+  assert.equal(formatReadDate("2012-01-01T00:00:00+06:00", "en"), "2012");
+  assert.equal(formatReadDate("2012-01-01T23:00:00-08:00", "en"), "2012");
+  assert.equal(formatMarginDate("2012-01-01T00:00:00+06:00", "en"), "1 Jan 2012");
+});
+
 test("read dates are shown in UTC", () => {
   assert.equal(formatReadDate("2026-03-01T02:00:00+06:00", "en"), "28 Feb 2026");
 });
@@ -46,19 +52,21 @@ test("formatIsoDhaka is six hours ahead of UTC, across a year end", () => {
   assert.equal(formatIsoDhaka(new Date("2025-12-31T18:00:00Z")), "2026-01-01T00:00:00+06:00");
 });
 
-const words = { prefix: "built", dayPeriod: { morning: "Morning", evening: "Evening" } };
+const words = { prefix: "built", dayPeriod: { morning: "Morning", afternoon: "Afternoon", evening: "Evening" } };
 const stamp = (utc: string, lang: Lang = "en") => formatBuildTimestamp(new Date(utc), lang, words);
 
 test("the build stamp uses a twelve-hour clock, turning at midnight and noon", () => {
   assert.equal(stamp("2026-03-04T18:00:00Z"), "built 5 March 2026 12:00:00 AM (Morning)");
   assert.equal(stamp("2026-03-05T05:59:59Z"), "built 5 March 2026 11:59:59 AM (Morning)");
-  assert.equal(stamp("2026-03-05T06:00:00Z"), "built 5 March 2026 12:00:00 PM (Evening)");
-  assert.equal(stamp("2026-03-05T07:05:09Z"), "built 5 March 2026 01:05:09 PM (Evening)");
+  assert.equal(stamp("2026-03-05T06:00:00Z"), "built 5 March 2026 12:00:00 PM (Afternoon)");
+  assert.equal(stamp("2026-03-05T07:05:09Z"), "built 5 March 2026 01:05:09 PM (Afternoon)");
+  assert.equal(stamp("2026-03-05T10:59:59Z"), "built 5 March 2026 04:59:59 PM (Afternoon)");
+  assert.equal(stamp("2026-03-05T11:00:00Z"), "built 5 March 2026 05:00:00 PM (Evening)");
 });
 
 test("the build stamp uses each language's digits and day marker", () => {
   const evening = "2026-03-05T13:00:00Z";
   assert.match(stamp(evening, "bn"), /৫ মার্চ ২০২৬ ০৭:০০:০০ PM/);
   assert.match(stamp(evening, "ar"), /مارس .* م \(Evening\)$/);
-  assert.match(stamp(evening, "ur"), /مارچ .* شام \(Evening\)$/);
+  assert.match(stamp(evening, "ur"), /مارچ ۲۰۲۶ [^ ]+ \(Evening\)$|مارچ 2026 [^ ]+ \(Evening\)$/);
 });

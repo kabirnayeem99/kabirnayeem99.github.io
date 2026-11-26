@@ -20,6 +20,14 @@ function cachedBook(): { reviewId: string; href: string; title: string } | null 
   return null;
 }
 
+function forgetCachedBook(): void {
+  try {
+    window.localStorage.removeItem(LAST_READ_CACHE_KEY);
+  } catch {
+    // Storage unavailable: nothing was cached.
+  }
+}
+
 function setup(): void {
   const link = document.querySelector<HTMLAnchorElement>("[data-last-finished]");
   if (!link) {
@@ -27,6 +35,9 @@ function setup(): void {
   }
   const known = parseKnownReviewIds(document.getElementById("goodreads-known-reviews")?.textContent);
   const isNew = (reviewId: string | null): boolean => isNewRead(reviewId, link.getAttribute("href"), known);
+  // The server-rendered book (the snapshot's newest), kept so a stale cached book can be undone.
+  const server = { href: link.href, title: link.textContent };
+  const serverReviewId = reviewIdOf(link.getAttribute("href"));
 
   const cached = cachedBook();
   if (cached && isNew(cached.reviewId)) {
@@ -41,6 +52,13 @@ function setup(): void {
     const first = widget.querySelector<HTMLAnchorElement>(".gr_grid_book_container a[href]");
     const href = first?.getAttribute("href");
     const reviewId = reviewIdOf(href);
+    // Goodreads agrees with the snapshot, so a cached newer book is gone from the shelf (the
+    // same rule as last-read-book.ts).
+    if (reviewId !== null && reviewId === serverReviewId && reviewIdOf(link.getAttribute("href")) !== serverReviewId) {
+      showLastFinished(server.href, server.title);
+      forgetCachedBook();
+      return;
+    }
     if (!first || !hasText(href) || !isNew(reviewId)) {
       return;
     }

@@ -84,7 +84,13 @@ async function serve(astroArgs: readonly string[]): Promise<number> {
   });
   const watcher = await startWatching("warning");
   try {
-    server = spawn(process.execPath, [ASTRO_BIN, "dev", ...astroArgs], { cwd: APP_DIR, stdio: "inherit" });
+    // Under an AI agent Astro would move to the background and return, ending the CSS watch
+    // with it. Any value but "1" keeps it in the foreground; `--background` still works.
+    server = spawn(process.execPath, [ASTRO_BIN, "dev", ...astroArgs], {
+      cwd: APP_DIR,
+      env: { ...process.env, ASTRO_DEV_BACKGROUND: process.env["ASTRO_DEV_BACKGROUND"] ?? "0" },
+      stdio: "inherit",
+    });
     // Rejects if the server cannot be started.
     const exit: unknown[] = await once(server, "exit");
     return stoppedWith ?? (exit[0] === 0 ? 0 : 1);

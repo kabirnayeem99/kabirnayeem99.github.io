@@ -1,3 +1,4 @@
+import { parseReadDate } from "./read-date.ts";
 import type { Lang } from "./locale-config.ts";
 import type { ShelfText } from "./reading-content.ts";
 
@@ -25,8 +26,7 @@ export function groupShelfByYear<T extends { readonly dateRead?: string | null |
   lang: Lang,
 ): readonly ShelfGroup<T>[] {
   const yearOf = (book: T): number | null => {
-    const time = Date.parse(book.dateRead ?? "");
-    return Number.isNaN(time) ? null : new Date(time).getUTCFullYear();
+    return parseReadDate(book.dateRead)?.getUTCFullYear() ?? null;
   };
 
   const firstDated = books.findIndex((book) => yearOf(book) !== null);

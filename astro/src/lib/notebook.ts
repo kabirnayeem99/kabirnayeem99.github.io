@@ -1,4 +1,5 @@
 import type { Lang } from "./locale-config.ts";
+import { parseReadDate } from "./read-date.ts";
 
 // Gregorian calendar everywhere: the Arabic default (ar-SA) would switch to Hijri dates.
 export const READ_DATE_LOCALE: Readonly<Record<Lang, string>> = {
@@ -13,8 +14,8 @@ export function formatReadDate(iso: string | null | undefined, lang: Lang): stri
   if (typeof iso !== "string" || iso.length === 0) {
     return undefined;
   }
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) {
+  const date = parseReadDate(iso);
+  if (date === null) {
     return undefined;
   }
   // 1 January is the placeholder for "read that year, day unknown": show the year alone.
@@ -33,7 +34,7 @@ export function formatMarginDate(iso: string, lang: Lang): string {
     month: "short",
     year: "numeric",
     timeZone: "UTC",
-  }).format(new Date(iso));
+  }).format(parseReadDate(iso) ?? new Date(iso));
 }
 
 export interface ClippingMast {

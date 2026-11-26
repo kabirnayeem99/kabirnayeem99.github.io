@@ -36,6 +36,8 @@ test("a book is a new read only when neither shown nor in the snapshot", () => {
 test("withoutSeries drops only a trailing series marker", () => {
   assert.equal(withoutSeries("Lonesome Dove (Lonesome Dove, #1)"), "Lonesome Dove");
   assert.equal(withoutSeries("Edge (Saga, #2.5) "), "Edge");
+  assert.equal(withoutSeries("Omnibus (Saga, #1-3)"), "Omnibus");
+  assert.equal(withoutSeries("Omnibus (Saga, #0.5–2)"), "Omnibus");
   assert.equal(withoutSeries("Dune (Deluxe Edition)"), "Dune (Deluxe Edition)");
   assert.equal(withoutSeries("(Saga, #1) Prelude"), "(Saga, #1) Prelude");
 });

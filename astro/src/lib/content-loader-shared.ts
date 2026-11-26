@@ -190,6 +190,7 @@ export interface SiteLocaleBuildTimestamp {
   readonly prefix: string;
   readonly dayPeriod: {
     readonly morning: string;
+    readonly afternoon: string;
     readonly evening: string;
   };
 }
@@ -334,6 +335,7 @@ export function readLocaleInfo(source: Record<string, unknown>, path: string): L
       prefix: readString(buildTimestamp, "prefix", `${path}.build_timestamp`),
       dayPeriod: {
         morning: readString(dayPeriod, "morning", `${path}.build_timestamp.day_period`),
+        afternoon: readString(dayPeriod, "afternoon", `${path}.build_timestamp.day_period`),
         evening: readString(dayPeriod, "evening", `${path}.build_timestamp.day_period`),
       },
     },

@@ -40,9 +40,10 @@ test("an empty shelf still has the undated group, for books fetched later", () =
   assert.equal(groups[0]?.count, "0 books");
 });
 
-test("the year is read in UTC", () => {
-  const groups = groupShelfByYear([book("a", "2025-01-01T03:00:00+06:00")], TEXT, "en");
-  assert.equal(groups[0]?.key, "2024");
+test("the year is read in UTC, except for a date written as 1 January", () => {
+  const yearOf = (date: string) => groupShelfByYear([book("a", date)], TEXT, "en")[0]?.key;
+  assert.equal(yearOf("2024-12-31T23:00:00-08:00"), "2025");
+  assert.equal(yearOf("2025-01-01T03:00:00+06:00"), "2025");
 });
 
 test("counts pick the singular or plural and use the language's digits", () => {

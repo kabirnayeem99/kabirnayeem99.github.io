@@ -29,6 +29,7 @@
         "prefix": "built and deployed at",
         "day_period": {
           "morning": "Morning",
+          "afternoon": "Afternoon",
           "evening": "Evening"
         }
       },
@@ -56,6 +57,7 @@
         "prefix": "বিল্ড ও ডিপ্লয় করা হয়েছে",
         "day_period": {
           "morning": "সকাল",
+          "afternoon": "দুপুর",
           "evening": "সন্ধ্যা"
         }
       },
@@ -83,6 +85,7 @@
         "prefix": "تم البناء والنشر في",
         "day_period": {
           "morning": "صباحًا",
+          "afternoon": "ظهرًا",
           "evening": "مساءً"
         }
       },
@@ -110,6 +113,7 @@
         "prefix": "بلڈ اور ڈپلائے کیا گیا",
         "day_period": {
           "morning": "صبح",
+          "afternoon": "دوپہر",
           "evening": "شام"
         }
       },
