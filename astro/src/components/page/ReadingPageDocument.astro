@@ -215,7 +215,7 @@ const shelfGroups = groupShelfByYear(shelfBooks, content.shelf, lang);
               {shelfGroups.map((group) => (
                 <details
                   class="shelf-year"
-                  open={group.open}
+                  open
                   hidden={group.books.length === 0}
                   data-shelf-undated={group.key === "undated" ? "" : undefined}
                 >
