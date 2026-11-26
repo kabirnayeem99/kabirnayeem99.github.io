@@ -29,7 +29,6 @@ import ktor from "simple-icons/icons/ktor.svg?raw";
 import laravel from "simple-icons/icons/laravel.svg?raw";
 import leetcode from "simple-icons/icons/leetcode.svg?raw";
 import linux from "simple-icons/icons/linux.svg?raw";
-import medium from "simple-icons/icons/medium.svg?raw";
 import opencode from "simple-icons/icons/opencode.svg?raw";
 import php from "simple-icons/icons/php.svg?raw";
 import python from "simple-icons/icons/python.svg?raw";
@@ -37,6 +36,11 @@ import swift from "simple-icons/icons/swift.svg?raw";
 import tensorflow from "simple-icons/icons/tensorflow.svg?raw";
 import typescript from "simple-icons/icons/typescript.svg?raw";
 import wordpress from "simple-icons/icons/wordpress.svg?raw";
+
+// Medium's dots mark, kept by hand: the current Simple Icons one is a square with cropped
+// lettering that looks cut off at icon size.
+const medium =
+  '<svg><path d="M13 12a6 6 0 1 1-12 0 6 6 0 0 1 12 0M23 12c0 2.761-.448 5-1 5s-1-2.239-1-5 .448-5 1-5 1 2.239 1 5M17 18c1.657 0 3-2.686 3-6s-1.343-6-3-6-3 2.686-3 6 1.343 6 3 6"/></svg>';
 
 const MATERIAL_VIEW_BOX = "0 -960 960 960";
 // Simple Icons fill their 24px box edge to edge; this margin matches the optical size of a
