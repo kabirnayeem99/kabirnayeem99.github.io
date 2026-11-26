@@ -1,18 +1,8 @@
 name: Astro CI
 
+# Pull requests only: a push to main is verified by the deploy workflow, once.
 on:
   pull_request:
-    paths:
-      - "astro/**"
-      - "scripts/**"
-      - ".githooks/**"
-      - ".shellcheckrc"
-      - ".editorconfig"
-      - ".github/actions/**"
-      - ".github/workflows/ci.yml"
-      - ".github/workflows/deploy.yml"
-  push:
-    branches: ["main"]
     paths:
       - "astro/**"
       - "scripts/**"
@@ -27,16 +17,23 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: "ci-${{ github.ref }}"
+  cancel-in-progress: true
+
 jobs:
   validate:
+    if: github.event.pull_request.draft != true
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
       - name: Set up checks
         uses: ./.github/actions/setup
+        with:
+          tools: "true"
 
       - name: Verify
         working-directory: astro

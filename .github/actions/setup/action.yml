@@ -1,5 +1,10 @@
 name: Set up checks
-description: Node, uv, ShellCheck, shfmt, npm packages and Chromium, as `npm run verify` needs.
+description: Node, npm packages and Chromium for `npm run verify`; optionally uv, ShellCheck and shfmt.
+
+inputs:
+  tools:
+    description: Also install what the --python and --shell groups need.
+    default: "false"
 
 runs:
   using: composite
@@ -12,10 +17,12 @@ runs:
         cache-dependency-path: "astro/package-lock.json"
 
     - name: Setup uv
+      if: inputs.tools == 'true'
       uses: astral-sh/setup-uv@v9.0.0
 
     # Pinned, so a new release cannot change what passes.
     - name: Install ShellCheck and shfmt
+      if: inputs.tools == 'true'
       shell: bash
       env:
         SHELLCHECK_VERSION: v0.11.0
@@ -35,7 +42,14 @@ runs:
       working-directory: astro
       run: npm ci
 
+    - name: Cache Chromium
+      uses: actions/cache@v6
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ hashFiles('astro/package-lock.json') }}
+
+    # The headless shell is all the checks launch.
     - name: Install Chromium
       shell: bash
       working-directory: astro
-      run: npx --no-install playwright install --with-deps chromium
+      run: npx --no-install playwright install --with-deps --only-shell chromium

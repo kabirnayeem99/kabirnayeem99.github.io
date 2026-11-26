@@ -32,7 +32,7 @@ Repository guidance for AI/code agents.
 From `astro/`, after `npm ci` (which also points git at `.githooks/`):
 
 ```bash
-npm run verify              # everything; the same command CI and deploy run
+npm run verify              # everything; what CI runs on pull requests
 npm run verify -- --app     # fast: lint, CSS lint, format, types, unused code, unit tests
 npm run verify -- --help    # the other groups: --python, --shell, --site
 ```

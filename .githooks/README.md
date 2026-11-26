@@ -1,6 +1,6 @@
 # .githooks
 
-The repo's git hooks: the local gate for every commit and push. CI and deploy run the same
+The repo's git hooks: the local gate for every commit and push. Pull requests (all groups) and deploys (app and site) run the same
 checks with `npm run verify`; the list lives only in `astro/scripts/verify.ts`.
 
 | Hook | Runs |

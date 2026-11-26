@@ -3,6 +3,11 @@ name: Deploy Astro to Pages
 on:
   push:
     branches: ["main"]
+    # Only what can change the site.
+    paths:
+      - "astro/**"
+      - ".github/actions/**"
+      - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
 permissions:
@@ -15,7 +20,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 12
     defaults:
       run:
         working-directory: astro
@@ -26,9 +31,10 @@ jobs:
       - name: Set up checks
         uses: ./.github/actions/setup
 
-      # Every check, on the committed data. Nothing is deployed unless this passes.
+      # The site's checks, on the committed data; the Python and shell groups run in hooks
+      # and on pull requests. Nothing is deployed unless this passes.
       - name: Verify
-        run: npm run verify
+        run: npm run verify -- --app --site
 
       # Fresh figures for the stats page's bundled snapshot. A source that cannot be
       # fetched keeps the committed figures, and nothing here may stop the deploy.
